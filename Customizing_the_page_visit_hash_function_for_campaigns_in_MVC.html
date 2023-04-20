@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Customizing the page visit hash function for campaigns in MVC - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script>
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico_11_Documentation_Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880509"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico_11_Documentation_Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing_websites.html">Developing websites</a></li>
+                                                                                                         <li class="shortcut"><a href="Developing_sites_using_ASP.NET_MVC.html">Developing sites using ASP.NET MVC</a></li>
+                                                                                                         <li class="shortcut"><a href="Implementing_on-line_marketing_features_on_MVC_sites.html">Implementing on-line marketing features on MVC sites</a></li>
+                                                                                     <li><a href="Tracking_campaigns_on_MVC_sites.html">Tracking campaigns on MVC sites</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880509"> <span>Customizing the page visit hash function for campaigns in MVC</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+        $page.content
+<p   
+>When using <a   href="Tracking_campaigns_on_MVC_sites.html">campaigns on MVC sites</a>, the system hashes the URLs of <i class=" ">Page visit</i> conversions/journey steps and activities to be able to put data for reports together as quickly as possible.</p>
+<p   
+>By default, the hash function removes the protocol and all query string parameters from the URL. The campaign then works regardless of the used protocol (for example, for both <i class=" ">http</i> and <i class=" ">https</i>). However, the default hash function does not work for sites where displaying of pages is performed via query strings (for example, if the URL of a page on your site looks like <i class=" ">http://www.mysite.com/index.html?viewpage=123</i>). More specifically, the noted address will be trimmed to <i class=" ">www.mysite.com/index.html</i>, and all pages trimmed to this &quot;URL root&quot; will be logged as conversions for a single page. Therefore, <a   href="Providing_friendly_URLs_on_MVC_sites.html">SEO-friendly URLs</a> are recommended.</p>
+<p   
+>If you use campaigns and your site displays content via query string parameters or uses any other scenarios that are not supported by default, you can customize the hash function to fulfill your needs.</p>
+    <h3 id="src-68880509_safe-id-Q3VzdG9taXppbmd0aGVwYWdldmlzaXRoYXNoZnVuY3Rpb25mb3JjYW1wYWlnbnNpbk1WQy1Ib3dpdHdvcmtz4oCTVXNpbmd0aGVoYXNodG9kaXNwbGF5cmVwb3J0cw" class="heading "><span>How it works &ndash; Using the hash to display reports</span></h3>
+<p   
+>For every activity that occurs on a site, the system creates a record in the database in the <strong class=" ">OM_Activity</strong> table. However, when a page visit activity occurs on an <a   href="Developing_sites_using_ASP.NET_MVC.html">MVC site</a>, the process is more complex. The system:</p>
+<ol class=" "><li class=" "><p   
+>Trims the page URL &ndash; the result is a &quot;URL root&quot; without the protocol, query string parameters, and any other fragment identifiers</p>
+</li><li class=" "><p   
+>Hashes the URL root</p>
+</li><li class=" "><p   
+>Saves the hashed URL root into the <strong class=" ">ActivityURLHash</strong> column (in the <i class=" ">OM_Activity</i> table)</p>
+</li></ol><p   
+>Then, when a report is recalculated, the system:</p>
+<ol class=" "><li class=" "><p   
+>Trims the URLs of page visit conversions and campaign journey steps the same way as for page visit activities</p>
+</li><li class=" "><p   
+>Hashes the URL roots</p>
+</li><li class=" "><p   
+>Compares the hashed URL root of the given conversion or journey step against the <i class=" ">ActivityURLHash</i> column with hashed URL roots of the tracked activities</p>
+</li></ol><p   
+>If the hashes match, the activity is included in the reports.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68880509_safe-id-Q3VzdG9taXppbmd0aGVwYWdldmlzaXRoYXNoZnVuY3Rpb25mb3JjYW1wYWlnbnNpbk1WQy1Ib3dpdHdvcmtz4oCTVXNpbmd0aGVoYXNodG9kaXNwbGF5cmVwb3J0cw">How it works &ndash; Using the hash to display reports</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880509_CustomizingthepagevisithashfunctionforcampaignsinMVC-Implementingacustomhashfunction">Implementing a custom hash function</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880509_safe-id-Q3VzdG9taXppbmd0aGVwYWdldmlzaXRoYXNoZnVuY3Rpb25mb3JjYW1wYWlnbnNpbk1WQy1FeGFtcGxl4oCTSGFzaGZ1bmN0aW9uZm9ybXVsdGlsaW5ndWFsc2l0ZXM">Example &ndash; Hash function for multilingual sites</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="Tracking_campaigns_on_MVC_sites.html">Tracking campaigns on MVC sites</a></p>
+</li><li class=" "><p   
+><a   href="Campaigns.html">Campaigns</a></p>
+</li><li class=" "><p   
+><a   href="Setting_up_campaigns.html">Setting up campaigns</a></p>
+</li><li class=" "><p   
+><a   href="Scheduling_and_evaluating_campaigns.html">Scheduling and evaluating campaigns</a></p>
+</li><li class=" "><p   
+><a   href="Developing_sites_using_ASP.NET_MVC.html">Developing sites using ASP.NET MVC</a></p>
+</li></ul>        </div>
+    </div>
+<p   
+></p>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title">Kentico EMS required</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+        </div>
+    </div>
+<p   
+></p>
+    <h3 id="src-68880509_CustomizingthepagevisithashfunctionforcampaignsinMVC-Implementingacustomhashfunction" class="heading "><span>Implementing a custom hash function</span></h3>
+<p   
+>To implement a custom hash function that overrides the default hash function:</p>
+<ol class=" "><li class=" "><p   
+>Create a new <strong class=" ">Class Library</strong> project in Visual Studio (separately from the solutions of your MVC and Kentico applications).</p>
+</li><li class=" "><p   
+>Add the Kentico API libraries to the project:</p>
+<ol class=" "><li class=" "><p   
+>Right-click the project in the <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
+</li><li class=" "><p   
+>Search for the <a  class="external-link" href="https://www.nuget.org/packages/Kentico.Libraries"><strong class=" ">Kentico.Libraries</strong></a> package.</p>
+</li><li class=" "><p   
+>Install the <i class=" ">Kentico.Libraries</i> version that matches the exact version of your Kentico project and your MVC project&#39;s <i class=" ">Kentico.Libraries</i> package.<br/><br/></p>
+</li></ol></li><li class=" "><p   
+>Edit the project&#39;s<strong class=" "> AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder) and add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Add a new class to the project, for example named <strong class=" ">CustomActivityUrlHashPreprocessor.cs</strong>.</p>
+</li><li class=" "><p   
+>Make the class implement the <strong class=" ">    <span style="color: #000000;">
+IActivityUrlPreprocessor    </span>
+</strong> interface.</p>
+</li><li class=" "><p   
+>Add the <strong class=" ">RegisterImplementation</strong> assembly attribute above the class declaration.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.WebAnalytics;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">[assembly: RegisterImplementation(</code><code class="keyword">typeof</code><code class="plain">(IActivityUrlPreprocessor), </code><code class="keyword">typeof</code><code class="plain">(CustomActivityUrlHashPreprocessor))]</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomActivityUrlHashPreprocessor : IActivityUrlPreprocessor</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Implement the class&#39;s     <span style="color: #000000;">
+<strong class=" ">PreprocessActivityUrl</strong> method.<br/>    </span>
+</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> PreprocessActivityUrl(</code><code class="keyword">string</code><code class="plain"> activityUrl)</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	...</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>    <span style="color: #000000;">
+The <i class=" ">PreprocessActivityUrl</i> method:    </span>
+    <span style="color: #000000;">
+    </span>
+</p>
+<ul class=" "><li class=" "><p   
+>    <span style="color: #000000;">
+Takes the original URL of an activity, conversion, or campaign journey step    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #000000;">
+Returns a     <span style="color: #000000;">
+processed     </span>
+URL in a form that can be hashed. The hash is then used for later calculations or saving into the database    </span>
+</p>
+</li></ul>        </div>
+    </div>
+</li><li class=" "><p   
+>    <span style="color: #000000;">
+Save and build the project.    </span>
+</p>
+</li></ol><p   
+>    <span style="color: #000000;">
+You then need to apply the customization to BOTH your MVC and Kentico application:<br/>    </span>
+</p>
+<ol class=" "><li class=" "><p   
+>Copy the project&#39;s assembly file (DLL) into a subfolder in the directories of your MVC and Kentico applications (or use any other method for deploying DLLs).</p>
+</li><li class=" "><p   
+>Open your Kentico and MVC projects in Visual Studio.</p>
+</li><li class=" "><p   
+>Add a reference to the custom DLL from your MVC project and your Kentico web project.    <span style="color: #000000;">
+    </span>
+    <span style="color: #000000;">
+<br/>    </span>
+</p>
+</li></ol>    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Improving performance</strong></p>
+<p   
+>To improve performance of report calculation, create a database index for the <strong class=" ">ActivityURLHash</strong> column in the <strong class=" ">OM_Activity</strong> database table. The index should be non-clustered and non-unique. See the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/ms189280.aspx">Create Nonclustered Indexes</a> article for more information.</p>
+        </div>
+    </div>
+    <h3 id="src-68880509_safe-id-Q3VzdG9taXppbmd0aGVwYWdldmlzaXRoYXNoZnVuY3Rpb25mb3JjYW1wYWlnbnNpbk1WQy1FeGFtcGxl4oCTSGFzaGZ1bmN0aW9uZm9ybXVsdGlsaW5ndWFsc2l0ZXM" class="heading "><span>Example &ndash; Hash function for multilingual sites</span></h3>
+<p   
+>The following example demonstrates how to implement a custom hash function that removes the culture code from URLs. The example assumes that the URL has the following patterns:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;protocol&gt;:</code><code class="comments">//&lt;domain&gt;/&lt;culture code&gt;/&lt;other identifiers&gt;</code></div>
+</div>
+    </div>
+<p   
+>For example:</p>
+<ul class=" "><li class=" "><p   
+>http://www.mysite.com/en-US/Articles/11/Coffee-Beverages-Explained</p>
+</li><li class=" "><p   
+>https://myothersite.net/es-ES/Contacts</p>
+</li></ul><p   
+>Logging of page visits will then work for all language variants.</p>
+<p   
+>To implement the example:</p>
+<ol class=" "><li class=" "><p   
+>Create a new <strong class=" ">Class Library</strong> project in Visual Studio (according to the procedure described in <a   href="#src-68880509_CustomizingthepagevisithashfunctionforcampaignsinMVC-Implementingacustomhashfunction">Implementing a custom hash function</a>).</p>
+</li><li class=" "><p   
+>Add the <strong class=" ">    <span style="color: #000000;">
+CustomActivityUrlHashPreprocessor    </span>
+.cs </strong>class:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.SiteProvider;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.WebAnalytics;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">[assembly: RegisterImplementation(</code><code class="keyword">typeof</code><code class="plain">(IActivityUrlPreprocessor), </code><code class="keyword">typeof</code><code class="plain">(CustomActivityUrlHashPreprocessor))]</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomActivityUrlHashPreprocessor : IActivityUrlPreprocessor</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// Prepares the specified URL for hashing. Trims the protocol, query strings, and the culture code.</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;param name="activityUrl"&gt;Original URL that is trimmed.&lt;/param&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;returns&gt;URL root that is ready to be hashed.&lt;/returns&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> PreprocessActivityUrl(</code><code class="keyword">string</code><code class="plain"> activityUrl)</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Removes query strings</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> url = URLHelper.RemoveQuery(activityUrl);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="comments">// Removes fragment identifiers</code></div>
+<div class="line"><code class="plain">        url = RemoveAnchor(url);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="comments">// Removes the protocol</code></div>
+<div class="line"><code class="plain">        url = URLHelper.RemoveProtocol(url);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="comments">// Removes the culture code</code></div>
+<div class="line"><code class="plain">        url = RemoveCultureCode(url);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="comments">// Removes the trailing slash (the slash after the URL)</code></div>
+<div class="line"><code class="plain">        url = URLHelper.RemoveTrailingSlashFromURL(url);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> url.ToLower();</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// Removes the culture code from the specified URL.</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;param name="url"&gt;URL in the expected format (domain.com/en-US/path/to/page).&lt;/param&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;returns&gt;URL without the culture code.&lt;/returns&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> RemoveCultureCode(</code><code class="keyword">string</code><code class="plain"> url)</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Removes the protocol and the domain from the URL</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> path = URLHelper.RemoveProtocolAndDomain(url);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="comments">// Separates the culture code (the first segment between slashes after the domain)</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> cultureCode = path.Split(</code><code class="keyword">new</code><code class="plain">[] { </code><code class="string">'/'</code><code class="plain"> }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="comments">// Remove the culture code from the URL</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.IsNullOrEmpty(cultureCode) &amp;&amp; CultureSiteInfoProvider.IsCultureOnSite(cultureCode, SiteContext.CurrentSiteName))</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> url.Replace(</code><code class="string">'/'</code><code class="plain"> + cultureCode, </code><code class="keyword">string</code><code class="plain">.Empty);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> url;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// Removes fragment identifiers from the specified URL.</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;param name="url"&gt;URL from which fragment identifiers are removed.&lt;/param&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">/// &lt;returns&gt;URL without fragment identifiers.&lt;/returns&gt;</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> RemoveAnchor(</code><code class="keyword">string</code><code class="plain"> url)</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Gets the position of the hashtag symbol</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">int</code><code class="plain"> index = url.IndexOf(</code><code class="string">"#"</code><code class="plain">, StringComparison.Ordinal);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="comments">// Removes the found hashtag and all content after</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (index &gt; 0)</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> url.Substring(0, index);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> url;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>    <span style="color: #000000;">
+Build the project and transfer the DLL to BOTH your MVC and Kentico application.    </span>
+</p>
+</li></ol><p   
+>    <span style="color: #000000;">
+Now, when you create a campaign with page visit conversions or campaign journey steps, you will see reports regardless of the displayed     </span>
+    <span style="color: #000000;">
+language variant.    </span>
+</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

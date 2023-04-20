@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Working with layout web parts - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script>
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico_11_Documentation_Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880716"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico_11_Documentation_Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing_websites.html">Developing websites</a></li>
+                                                                                     <li><a href="Developing_websites_using_the_Portal_engine.html">Developing websites using the Portal engine</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880716"> <span>Working with layout web parts</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+        $page.content
+<p   
+>Layout web parts allow you to define and modify the structure of <a   href="Developing_websites_using_the_Portal_engine.html">portal engine page templates</a> without the need to edit the code of page layouts. Each layout web part contains one or more child zones that are arranged in a specific way. You can configure the layouts just like standard web parts using properties, or even directly on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application.</p>
+<p   
+>To create a page with a web part-based layout:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p   
+>Create a new page.</p>
+</li><li class=" "><p   
+>Select <strong class=" ">Create a blank page</strong> in the template selection dialog.</p>
+<ul class=" "><li class=" "><p   
+>This creates a page with no layout and a single web part zone.</p>
+</li></ul></li><li class=" "><p   
+>On the <strong class=" ">Design</strong> tab, add and configure the required layout web parts.</p>
+</li><li class=" "><p   
+>Fill in the page&#39;s content into the zones defined by the layout web parts.</p>
+</li></ol><p   
+>In addition to defining flexible web part zones, some layout web parts also provide special functionality, such as:</p>
+<ul class=" "><li class=" "><p   
+>Collapsible page sections</p>
+</li><li class=" "><p   
+>Zones with a fixed position</p>
+</li><li class=" "><p   
+>Graphical interfaces that allow users to select which zone&#39;s content the page displays</p>
+</li></ul>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Adding layouts as widgets</strong></p>
+<p   
+>Layouts can also be added to pages as <a   href="Preparing_widgets_for_users.html">widgets</a>. This gives editors or other users without design permissions additional flexibility when it comes to arranging page content. The zones generated by layout widgets automatically match the type of the parent zone.</p>
+<p   
+>Users can place layout widgets onto their <a   href="Working_with_widget_dashboards.html">widget dashboards</a> to help organize the content. When adding content into a layout on a dashboard page, you need to drag new widgets from their default location to the appropriate zone generated by the layout (it is not possible to add widgets into specific dashboard zones directly).</p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68880716_Workingwithlayoutwebparts-Editingthecontentoflayoutwebparts">Editing the content of layout web parts</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880716_Workingwithlayoutwebparts-Availablelayoutwebparts">Available layout web parts</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880716_Workingwithlayoutwebparts-Preparinglayoutswithdefaultcontent">Preparing layouts with default content</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="Using_and_configuring_web_parts.html">Using and configuring web parts</a></p>
+</li><li class=" "><p   
+><a   href="Developing_websites_using_the_Portal_engine.html">Developing websites using the Portal engine</a></p>
+</li><li class=" "><p   
+><a   href="Editing_page_layouts.html">Editing page layouts</a></p>
+</li><li class=" "><p   
+><a   href="Developing_layout_web_parts.html">Developing layout web parts</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68880716_Workingwithlayoutwebparts-Editingthecontentoflayoutwebparts" class="heading "><span>Editing the content of layout web parts</span></h3>
+<p   
+>To add or edit the content of the zones generated by layout web parts, view the given page on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application. You can manage the zones inside the layout like any other standard web part zones and add the required web parts.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880716/Web_Part_Layout_Design.png" alt="images/download/attachments/68880716/Web_Part_Layout_Design.png" width="500"  />
+        <br/><span class="caption">Designing a page with a Columns layout web part</span>
+    </p>
+<p   
+>All default layout web parts have the <strong class=" ">Allow design mode</strong> property. If enabled, the <strong class=" ">Design</strong> tab provides additional zone management actions for the layout. You can dynamically resize individual layout zones by dragging the green lines on the borders. Layouts composed of multiple zones also allow designers to directly add or remove the sections that form the layout (columns, tabs etc.).</p>
+<p   
+>Once you add and configure the layout web part and all of its child web parts, the page displays the entered content on the live site using the specified structure.</p>
+    <h3 id="src-68880716_Workingwithlayoutwebparts-Availablelayoutwebparts" class="heading "><span>Available layout web parts</span></h3>
+<p   
+>Kentico provides the following layout web parts by default. You can find them in the <strong class=" ">Layouts</strong> web part category.</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Layout web part</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Accordion layout<br/>    <span style="color: #ffffff;">
+_________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Provides a layout divided into multiple panes that can be expanded or collapsed.</p>
+<ul class=" "><li class=" "><p   
+>Each pane defines a separate web part zone.</p>
+</li><li class=" "><p   
+>Users can click on the pane headers to select which pane the page displays.</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Collapsible panel</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Generates a web part zone inside a panel that users can expand or collapse.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Columns layout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Provides a CSS&#8209;based column layout for content. Each column defines a separate web part zone.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Rows layout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Provides a row layout for content. Each row contains a separate web part zone.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Table layout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Provides a table layout for content. Each cell in the table defines a separate web part zone.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Tabs layout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Creates an AJAX tab layout.</p>
+<ul class=" "><li class=" "><p   
+>You can add content for each tab through a separate web part zone.</p>
+</li><li class=" "><p   
+>Users can click on the tabs to select which content the page displays.</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Web part zone</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Adds a single web part zone to the page that you can use to group multiple web parts or assign additional formatting.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Zones with effect</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Provides a list of elements that define separate web part zones.</p>
+<p   
+>You can apply additional JavaScript effects (e.g. using jQuery) to the content displayed by the zones. You need to specify the scripts used to generate the effects through the web part&#39;s properties.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Wizard layout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Provides a layout divided into multiple steps.</p>
+<ul class=" "><li class=" "><p   
+>The wizard displays one step at a time and allows users to navigate through them in consecutive order.</p>
+</li><li class=" "><p   
+>The content of each step is defined in its own web part zone.</p>
+</li><li class=" "><p   
+>The layout may generate two additional zones as a header and footer for the wizard. You can add the header content and the buttons used to move between steps through the <strong class=" ">Wizard header</strong> and <strong class=" ">Wizard buttons</strong> web parts.</p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Tip</strong>: If you cannot achieve the desired layout using the built-in web parts, you can create new layout web parts or customize existing ones to fulfill your requirements.<strong class=" "></strong></p>
+<p   
+><strong class=" ">See</strong>: <a   href="Developing_layout_web_parts.html">Developing layout web parts</a></p>
+        </div>
+    </div>
+    <h3 id="src-68880716_Workingwithlayoutwebparts-Preparinglayoutswithdefaultcontent" class="heading "><span>Preparing layouts with default content</span></h3>
+<p   
+>Layouts with default content allow designers to quickly add reusable groups of functionality composed of multiple web parts. To set up the default content, create specialized versions of existing layout web parts:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Web parts</strong> application.</p>
+</li><li class=" "><p   
+><a   href="Creating_inherited_web_parts.html">Create an inherited web part</a> based on a layout web part.</p>
+</li><li class=" "><p   
+>Open the <strong class=" ">Default content</strong> tab.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Configure default content</strong>.</p>
+</li><li class=" "><p   
+>Configure the layout and add child web parts just like when editing pages on the <strong class=" ">Design</strong> tab.</p>
+</li></ol>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The web part only uses the default content if you leave the <strong class=" ">Skip initial configuration</strong> property enabled on the <strong class=" ">General</strong> tab.</p>
+        </div>
+    </div>
+<p   
+>When you add instances of the inherited layout web part on the <strong class=" ">Design</strong> tab of pages, the system automatically inserts the default content into the layout&#39;s zones. The default content overrides the standard default values of the <a   href="Working_with_web_part_properties.html">web part&#39;s properties</a>.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

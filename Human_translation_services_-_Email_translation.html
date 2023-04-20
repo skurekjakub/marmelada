@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Human translation services - Email translation - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script>
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico_11_Documentation_Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880880"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico_11_Documentation_Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Multilingual_websites.html">Multilingual websites</a></li>
+                                                                                     <li><a href="Configuring_translation_services.html">Configuring translation services</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880880"> <span>Human translation services - Email translation</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+        $page.content
+<p   
+>The Email translation service delivers the translation data via email. When a user submits a page for translation, the service creates a zip package containing the XLIFF source files and sends it to the specified translators as an attachment of an email message. The email service allows you to exchange data with translators or agencies that do not have their own API for managing submissions.</p>
+<p   
+>The system cannot cancel email translation submissions once they have been sent. In these cases, you need to contact the translators directly.</p>
+<p   
+>The email translation service does not support automatic retrieval of completed translations. The translators can submit the files by:</p>
+<ul class=" "><li class=" "><p   
+>Uploading the zip archive containing the finished translation via a link included in the original assignment email</p>
+</li><li class=" "><p   
+>Sending the translation (in XLIFF format) to a member of the website&#39;s staff, who can then import it manually through the <strong class=" ">Translations</strong> application.</p>
+</li></ul><p   
+>Once the translation is imported into the corresponding submission, you can process it to transfer the new content into the pages.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: Email translation uses the <strong class=" ">Translation services - Submit translation</strong> <a   href="Managing_email_templates.html">email template</a>. The service does not work if you delete this template (a template with the code name <i class=" ">translationservice.submittranslation</i> must exist in the system).</p>
+        </div>
+    </div>
+    <h3 id="src-68880880_HumantranslationservicesEmailtranslation-Configuringtheemailtranslationservice" class="heading "><span>Configuring the email translation service</span></h3>
+<p   
+>To set up the email translation service:</p>
+<ol class=" "><li class=" "><p   
+>Ensure that your application is configured to send emails through an appropriate <a   href="Configuring_SMTP_servers.html">SMTP server</a>.</p>
+</li><li class=" "><p   
+>Open the <strong class=" ">Settings</strong> application.</p>
+</li><li class=" "><p   
+>Select the<strong class=" "> Content -&gt; Translation services</strong> category.</p>
+</li><li class=" "><p   
+>Fill in the following settings in the <strong class=" ">Translation via email</strong> section:</p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Setting</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Translation submission recipients</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the addresses to which the system sends translation assignments through the e&#8209;mail service. You can enter multiple email addresses separated by semicolons.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Email sender</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>When sending translation assignment emails, the system automatically sets the sender to the address of the user who submitted the translation. The value of this setting is used if no user address is available, for example in the case of translations submitted automatically or via the API.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><br/><br/></p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+>The service sends the translation emails using the specified addresses.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68880880_HumantranslationservicesEmailtranslation-Configuringtheemailtranslationservice">Configuring the email translation service</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880880_HumantranslationservicesEmailtranslation-Settinglanguage-specificrecipients">Setting language-specific recipients</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880880_HumantranslationservicesEmailtranslation-Customizingthetranslationemails">Customizing the translation emails</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="Human_translation_services_-_Translations.com.html">Human translation services - Translations.com</a></p>
+</li><li class=" "><p   
+><a   href="Human_translation_services_-_Manual_translation.html">Human translation services - Manual translation</a></p>
+</li><li class=" "><p   
+><a   href="Configuring_SMTP_servers.html">Configuring SMTP servers</a></p>
+</li><li class=" "><p   
+><a   href="Translating_content_using_external_services.html">Translating content using external services</a></p>
+</li></ul>        </div>
+    </div>
+<p   
+></p>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title">Kentico EMS required</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+        </div>
+    </div>
+<p   
+></p>
+    <h3 id="src-68880880_HumantranslationservicesEmailtranslation-Settinglanguage-specificrecipients" class="heading "><span>Setting language-specific recipients</span></h3>
+<p   
+>If you need to assign different translator addresses for individual languages:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Translation services</strong> application.</p>
+</li><li class=" "><p   
+>Create a clone of the <i class=" ">Translation via email</i> service for each additional language. Click <strong class=" ">Other actions</strong> (<strong class=" ">...</strong>) next to the service and select <strong class=" ">Clone</strong> in the menu.</p>
+</li><li class=" "><p   
+>Edit the services and enter the appropriate translator addresses into the <strong class=" ">Translation submission recipients</strong> property. This property overrides the <strong class=" ">Email sender</strong> setting.<br/><br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880880/Email_Translation_Service_French.png" alt="images/download/attachments/68880880/Email_Translation_Service_French.png" width="500"  />
+        <br/><span class="caption">Cloned e-mail translation service for the French language</span>
+    <p   
+><br/><br/></p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+>When submitting pages for translation, users need to select the clone of the email translation service that matches the target language.</p>
+    <h3 id="src-68880880_HumantranslationservicesEmailtranslation-Customizingthetranslationemails" class="heading "><span>Customizing the translation emails</span></h3>
+<p   
+>To change the content of the email messages that the service sends to translators, you need to modify the appropriate <a   href="Managing_email_templates.html">email template</a>:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Email templates</strong> application.</p>
+</li><li class=" "><p   
+>Edit the <strong class=" ">Translation services - Submit translation</strong> template.</p>
+</li><li class=" "><p   
+>Alter the template according to your specific requirements.<br/></p>
+<ul class=" "><li class=" "><p   
+>You can use <a   href="Macro_expressions.html">macro expressions</a> to dynamically insert the values of the given translation submission. For example:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">{% Submission.SubmissionSourceCulture %}</strong> - returns the culture code of the translation source language.</p>
+</li><li class=" "><p   
+><strong class=" ">{% Submission.SubmissionTargetCulture %}</strong> - returns the culture code of the target language.</p>
+</li><li class=" "><p   
+><strong class=" ">{% GetTranslationPriority(Submission.SubmissionPriority) %}</strong> - returns the priority set for the submission (low, normal or high).</p>
+</li><li class=" "><p   
+><strong class=" ">{% Submission.SubmissionDeadline %}</strong> - returns the date and time of the submission&#39;s deadline.</p>
+</li><li class=" "><p   
+><strong class=" ">{% Submission.SubmissionInstructions %}</strong> - returns the additional instructions entered for the submission.</p>
+</li><li class=" "><p   
+><strong class=" ">{% Submission.SubmissionWordCount %}</strong> - returns the total number of words in the translation source text.</p>
+</li><li class=" "><p   
+><strong class=" ">{%SubmissionLink%}</strong> - returns the URL of a system page where users can upload finished translation packages.<br/><br/></p>
+</li></ul></li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p   
+>(Optional) Follow the steps described for the manual translation service if you wish to <a   href="Human_translation_services_-_Manual_translation.html#src-68880882_HumantranslationservicesManualtranslation-Customizingtheinstructionfiles">customize the instruction files</a> included in the zip package attached to the e&#8209;mails.</p>
+</li></ol><p   
+>The service sends all translation assignment emails based on the current email and instruction file templates.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

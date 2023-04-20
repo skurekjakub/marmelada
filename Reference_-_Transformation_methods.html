@@ -1,0 +1,2969 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Reference - Transformation methods - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script>
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico_11_Documentation_Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880620"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico_11_Documentation_Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing_websites.html">Developing websites</a></li>
+                                                                                                         <li class="shortcut"><a href="Loading_and_displaying_data_on_websites.html">Loading and displaying data on websites</a></li>
+                                                                                     <li><a href="Writing_transformations.html">Writing transformations</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880620"> <span>Reference - Transformation methods</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+        $page.content
+<p   
+><span id="src-68880620_ReferenceTransformationmethods-TransformationMethodsTop"></span></p>
+<p   
+>This reference provides information about the default methods specifically designed for use in <a   href="Writing_transformations.html">transformations</a>:</p>
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Dataloading">Data loading</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Booleanoperations">Boolean operations</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-URLsandpagelinks">URLs and page links</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Textmanipulation">Text manipulation</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Images">Images</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-E-commerce">E-commerce</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-SKUprice">SKU price</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-SKUpriceformatting">SKU price formatting</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-SKUproperties">SKU properties</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-URLs">URLs</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Discounts">Discounts</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Googletagmanagerproductdata">Google tag manager product data</a></p>
+</li></ul></li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Membershipandcommunity">Membership and community</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_safe-id-UmVmZXJlbmNlVHJhbnNmb3JtYXRpb25tZXRob2RzLURhdGUmdGltZQ">Date &amp; time</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Smartsearch">Smart search</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_safe-id-UmVmZXJlbmNlVHJhbnNmb3JtYXRpb25tZXRob2RzLVN5bmRpY2F0aW9uKFJTUyxBdG9tLFhNTCk">Syndication (RSS, Atom, XML)</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-MicrosoftSharePoint">Microsoft SharePoint</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Placeholdersforsublevelsinhierarchicaldata">Placeholders for sublevels in hierarchical data</a></p>
+</li><li class=" "><p   
+><a   href="#src-68880620_ReferenceTransformationmethods-Editingbuttonsforpagesdisplayedbylistingwebparts">Editing buttons for pages displayed by listing web parts</a></p>
+</li></ul><p   
+></p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Important</strong></p>
+<p   
+>The listed methods are available for both <strong class=" ">ASCX</strong> and <strong class=" ">Text / XML</strong> transformations (the examples are in ASCX format).</p>
+<p   
+>For <strong class=" ">Text / XML</strong> transformations, use macro method equivalents with identical signatures. If you encounter problems, use the macro autocomplete help to find information about potential syntax differences.</p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Notes</strong></p>
+<ul class=" "><li class=" "><p   
+>All transformation methods return <strong class=" "><i class=" ">string</i></strong> values (unless otherwise specified).</p>
+</li><li class=" "><p   
+>In addition to the listed method, <strong class=" ">ASCX</strong> transformations allow you to call any type of inline code, including ASP.NET system methods, Kentico API or custom API.</p>
+</li><li class=" "><p   
+>For <strong class=" ">Text / XML</strong> transformations, you can also use general macro methods. See: <a   href="Reference_-_Macro_methods.html">Reference - Macro methods</a></p>
+</li></ul>        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="Writing_transformations.html">Writing transformations</a></p>
+</li><li class=" "><p   
+><a   href="Adding_custom_methods_to_transformations.html">Adding custom methods to transformations</a></p>
+</li><li class=" "><p   
+><a   href="Reference_-_Macro_methods.html">Reference - Macro methods</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68880620_ReferenceTransformationmethods-Dataloading" class="heading "><span>Data loading</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Eval</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string columnName</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool encode</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Loads the value from the specified column of the transformed object&#39;s data. Returns the value as an <i class=" ">object</i> data type. Use only for ASCX transformations.</p>
+<p   
+>The optional boolean parameter specifies whether the method HTML encodes the loaded value. When not specified, the encoding depends on the value of the <i class=" ">CMSHTMLEncodeEval</i> web.config key (false by default).</p>
+<p   
+>&lt;%# Eval(&quot;NewsTitle&quot;) %&gt;<br/>&lt;%# Eval(&quot;NewsTitle&quot;, true) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Eval&lt;ReturnType&gt;</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string columnName</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Loads the value from a column of the transformed object&#39;s data, and returns it as an object of the specified type. Use only for ASCX transformations.</p>
+<p   
+>&lt;%# Eval&lt;string&gt;(&quot;NodeAliasPath&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>EvalCDATA</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string columnName    <span style="color: #999999;">
+    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool encapsulate</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Loads the value from the specified column of the transformed object&#39;s data and escapes all occurrences of the <strong class=" ">]]&gt;</strong> sequence in the returned string.</p>
+<p   
+>Depending on the optional boolean parameter (true by default), the method wraps the whole string in the <strong class=" ">&lt;![CDATA[&quot;wrapped text&quot;]]&gt;</strong> enclosure.</p>
+<p   
+>&lt;%# EvalCDATA(&quot;NewsText&quot;) %&gt;<br/>&lt;%# EvalCDATA(&quot;NewsText&quot;, true) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>EvalJSString</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string columnName    <span style="color: #999999;">
+    </span>
+    <span style="color: #999999;">
+    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Loads the value from the specified column of the transformed object&#39;s data. Encodes the returned text to be used in JavaScript code and encapsulates it into &#39; characters.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetEditableValue</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string controlId<br/>    <span style="color: #ffffff;">
+____________________    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Loads the content of an editable region on the page. Specify the region using the control ID (web part control ID).</p>
+<p   
+>&lt;%# GetEditableValue(&quot;mainText&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetNotEmpty</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object columnsOjb</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the value of the first data column that is not empty or <i class=" ">null</i>. The parameter must provide a list of column names separated by semicolons.</p>
+<p   
+>&lt;%# GetNotEmpty(&quot;FullName;UserName&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetColumnName</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string columns</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool allowEmptyColumn</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the value of the first column that is present in the data of the transformed object. The parameter must provide a list of column names separated by semicolons.</p>
+<p   
+>By default, the method only returns columns that are not <i class=" ">null</i> or empty. Set the optional second parameter to <i class=" ">true</i> to allow empty values.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Property</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DataItem</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets the currently transformed data item.</p>
+<p   
+>&lt;%# DataItem %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DataItemIndex</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets the data item index for the current transformation container. You have to use <i class=" ">Container.DataItemIndex</i> to get the index in the current binding context.</p>
+<p   
+>&lt;%# DataItemIndex %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DataItemCount</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets the total number of data items in the current transformation container. If pagination is used, the <i class=" ">DataItemCount</i> returns the number of items on the current page.</p>
+<p   
+>&lt;%# DataItemCount %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DataRowView</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets a<i class=" "> DataRowView</i> of the transformed record&#39;s data.</p>
+<p   
+>&lt;%# DataRowView[&quot;UserName&quot;] %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DisplayIndex</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets the current position of the data item as displayed in a control.</p>
+<p   
+>&lt;%# DisplayIndex %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DocumentCustomData</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets the value of custom page data fields (culture specific). Use the [&quot;nodename&quot;] notation to retrieve data stored in the specified node of the XML.</p>
+<p   
+>See also: <a   href="Storing_custom_data_for_all_page_types.html">Storing custom data for all page types</a></p>
+<p   
+>&lt;%# DocumentCustomData[&quot;myproperty&quot;] %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>EditableItems</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets the content of the specified editable region on the page.</p>
+<p   
+>&lt;%# EditableItems[&quot;mainText&quot;] %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>NodeCustomData</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets the value of custom page data fields (shared for all culture versions). Use the [&quot;nodename&quot;] notation to retrieve data stored in the specified node of the XML.</p>
+<p   
+>See also: <a   href="Storing_custom_data_for_all_page_types.html">Storing custom data for all page types</a></p>
+<p   
+>&lt;%# NodeCustomData[&quot;myproperty&quot;] %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-Booleanoperations" class="heading "><span>Boolean operations</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object value</p>
+</li><li class=" "><p   
+>object trueResult</p>
+</li><li class=" "><p   
+>object falseResult</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a result according to the boolean value of the first parameter.</p>
+<p   
+>&lt;%# If(Eval(&quot;IsSecuredNode&quot;), &quot;The page requires authentication&quot;, &quot;The page is publicly available&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IfCompare</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object value</p>
+</li><li class=" "><p   
+>object comparableValue</p>
+</li><li class=" "><p   
+>object falseResult</p>
+</li><li class=" "><p   
+>object trueResult</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Compares the values of the first and the second parameter.</p>
+<ul class=" "><li class=" "><p   
+>If the parameters are different or are both <i class=" ">null</i>, the method returns the third parameter.</p>
+</li><li class=" "><p   
+>If the parameters are equal, the fourth parameter is returned.</p>
+</li></ul><p   
+>&lt;%# IfCompare(1, 2, &quot;The values are different&quot;, &quot;The values are equal&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IfEmpty</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object value</p>
+</li><li class=" "><p   
+>object emptyResult</p>
+</li><li class=" "><p   
+>object nonEmptyResult<br/>    <span style="color: #ffffff;">
+____________________    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Checks for emptiness of the value in the first parameter.</p>
+<ul class=" "><li class=" "><p   
+>If the first parameter is <i class=" ">null</i>, the method returns the second parameter.</p>
+</li><li class=" "><p   
+>If the first parameter is not <i class=" ">null</i>, the third parameter is returned.</p>
+</li></ul><p   
+>&lt;%# IfEmpty(Eval(&quot;ProductPhoto&quot;), &quot;No image&quot;, GetImage(&quot;ProductPhoto&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IfTrue</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object value</p>
+</li><li class=" "><p   
+>object trueResult</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Checks whether the first parameter contains a true boolean value.</p>
+<ul class=" "><li class=" "><p   
+>If true, the method returns the second parameter.</p>
+</li><li class=" "><p   
+>If false, an empty string is returned.</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IsFirst</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a <i class=" ">true</i> value if the transformed data item is the first in the provided data. If pagination is used, the method returns a <i class=" ">true</i> value for the first item on the current page.</p>
+<p   
+>&lt;%# IsFirst() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IsLast</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a <i class=" ">true</i> value if the transformed data item is the last in the provided data. If pagination is used, the method returns a <i class=" ">true</i> value for the last item on the current page.</p>
+<p   
+>&lt;%# IsLast() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IsCurrentDocument</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a <i class=" ">true</i> value if the transformed page is equal to the page where the transformation is being displayed.</p>
+<p   
+>&lt;%# IsCurrentDocument() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IsDocumentOnSelectedPath</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a <i class=" ">true</i> value if the transformed page is present on the <a   href="Setting_page_aliases.html">alias path</a> of the page where the transformation is being displayed (i.e. if the transformed page is an ancestor of the current page).</p>
+<p   
+>&lt;%# IsDocumentOnSelectedPath() %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-URLsandpagelinks" class="heading "><span>URLs and page links</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped relative-table confluenceTable">
+                    <colgroup>
+                                    <col  width="11.3218%"/>
+                                    <col  width="11.8795%"/>
+                                    <col  width="76.6871%"/>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetAbsoluteUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string relativeUrl</p>
+</li><li class=" "><p   
+><i class=" ">    <span style="color: #999999;">
+int siteId    </span>
+</i></p>
+</li><li class=" "><p   
+><i class=" ">    <span style="color: #999999;">
+object siteNameObj    </span>
+</i></p>
+</li><li class=" "><p   
+><i class=" ">    <span style="color: #999999;">
+string domainName    </span>
+</i></p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Converts relative URLs to absolute URLs. You can specify the target domain name in the absolute URL using either a site ID, site code name or explicitly.</p>
+<p   
+>If you leave all optional parameters empty, the method generates the absolute URL using the domain of the current site.</p>
+<p   
+>&lt;%# GetAbsoluteUrl(&quot;~/Home.aspx&quot;) %&gt;<br/>&lt;%# GetAbsoluteUrl(&quot;~/Home.aspx&quot;, Eval&lt;int&gt;(&quot;NodeSiteID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetAttachmentIcon</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object attachmentGuidColumn</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the attachment file type icon according to the extension of the file identified by the given GUID column.</p>
+<p   
+>&lt;%# GetAttachmentIcon(&quot;AttachmentGUID&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetAttachmentUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object attachmentFileName</p>
+</li><li class=" "><p   
+>object nodeAliasPath</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string variant</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the attachment file specified by name in the first parameter, loaded from the page whose alias path matches the second parameter. For example, you can use the method for working with <a   href="Creating_grouped_page_attachments.html">grouped</a> and <a   href="Page_attachments.html">unsorted</a> attachments.</p>
+<p   
+>You can optionally generate a URL for an <a   href="Managing_responsive_images.html">image variant</a> of the attachment by specifying an image variant definition identifier.</p>
+<p   
+>The method returns the same URL as the <i class=" ">GetAttachmentUrlByDocumentId</i> method, but without loading the whole page, which results in better performance.</p>
+<p   
+>&lt;%# GetAttachmentUrl(Eval(&quot;AttachmentName&quot;), Eval(&quot;NodeAliasPath&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetAttachmentUrlByDocumentId</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object attachmentFileName</p>
+</li><li class=" "><p   
+>object attachmentDocumentId</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string variant</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the attachment file specified by name in the first parameter, loaded from the page whose ID matches the second parameter.</p>
+<p   
+>You can optionally generate a URL for an <a   href="Managing_responsive_images.html">image variant</a> of the attachment by specifying an image variant definition identifier.</p>
+<p   
+>&lt;%# GetAttachmentUrlByDocumentId(Eval(&quot;AttachmentFileName&quot;), Eval(&quot;AttachmentDocumentID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetAttachmentUrlByGUID</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object attachmentGuid</p>
+</li><li class=" "><p   
+>    <span style="color: #000000;">
+object attachmentFileName    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string variant</i><br/>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the attachment file specified by an attachment GUID value.</p>
+<p   
+>You can optionally generate a URL for an <a   href="Managing_responsive_images.html">image variant</a> of the attachment by specifying an image variant definition identifier.</p>
+<p   
+>The method&#39;s file name parameter does not have to correspond with the real file name.</p>
+<p   
+>&lt;%# GetAttachmentUrlByGUID(Eval(&quot;AttachmentGUIDColumn&quot;), &quot;&lt;custom_file_name&gt;&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDocumentLink</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool encodeName</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a HTML link (&lt;a&gt; tag) that leads to the transformed page. By default, the method HTML encodes the page name in the link title. Set the optional parameter to false to disable the encoding.</p>
+<p   
+>&lt;%# GetDocumentLink() %&gt;<br/>&lt;%# GetDocumentLink(false) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDocumentUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the specified page. The method does not evaluate <a   href="Extensionless_and_custom_URLs.html">custom URL extensions</a> set for the page.</p>
+<p   
+>&lt;%# GetDocumentUrl() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDocumentUrlById</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object documentIdObj    <span style="color: #003366;">
+<i class=" "><br/></i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the specified page. The method evaluates <a   href="Extensionless_and_custom_URLs.html">custom URL extensions</a> set for the page if the system is set to use extensionless URLs.</p>
+<p   
+>&lt;%# GetDocumentUrlById(Eval(&quot;DocumentID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDocumentUrlByGUID</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object nodeGuid</p>
+</li><li class=" "><p   
+>object nodeAlias</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a <a   href="Linking_pages_and_files.html">permanent URL</a> of the specified page (with the NodeGUID in the query string).</p>
+<p   
+>&lt;%# GetDocumentUrlByGUID(    <span style="color: #16233a;">
+Eval(    </span>
+    <span style="color: #16233a;">
+&quot;NodeGUID&quot;)    </span>
+, Eval(&quot;NodeAlias&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetFileIcon</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object fileExtension</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an &lt;i&gt; tag displaying a font icon that represents the MIME type of the specified file extension.</p>
+<p   
+>&lt;%# GetFileIcon(Eval(&quot;DocumentExtensions&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetFileIconClass</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string extension</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the name of a CSS class, which you can use to display font icons representing the MIME type of the specified file extension. Assign the class to an &lt;i&gt; tag to display the icon.</p>
+<p   
+>&lt;i class=&quot;&lt;%# GetFileIconClass(Eval&lt;string&gt;(&quot;DocumentExtensions&quot;)) %&gt;&quot;&gt;&lt;/i&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetForumPostUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object postIDPath</p>
+</li><li class=" "><p   
+>object fourmID</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the <a   href="Forums.html">forum</a> post specified by the path in the first parameter, from the forum specified by the identifier in the second parameter.</p>
+<p   
+>&lt;%# GetForumPostUrl(Eval(&quot;PostIDPath&quot;), Eval(&quot;ForumID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetMediaFileUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object fileGUID</p>
+</li><li class=" "><p   
+>object fileName</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the specified <a   href="Media_library_files.html">media file</a>. The media file is specified by the file GUID in the first parameter and the file name in the second parameter.</p>
+<p   
+>&lt;%# GetMediaFileUrl(Eval(&quot;FileGUID&quot;), Eval(&quot;FileName&quot;)) %&gt;</p>
+<p   
+>Note: <i class=" ">GetMediaFileUrl</i> requires different parameters when used as a macro method for <i class=" ">Text / XML</i> transformations:</p>
+<ul class=" "><li class=" "><p   
+><i class=" ">libraryId</i> &ndash; the ID of the media library containing the file (the value in the media file&#39;s <i class=" ">FileLibraryID</i> column).</p>
+</li><li class=" "><p   
+><i class=" ">filePath</i> &ndash; the file&#39;s media library path and extension (the value in the media file&#39;s <i class=" ">FilePath</i> column).</p>
+</li><li class=" "><p   
+><i class=" ">fileGuid</i> &ndash; the file&#39;s GUID identifier (the value in the media file&#39;s <i class=" ">FileGuid</i> column).</p>
+</li><li class=" "><p   
+><i class=" ">fileName</i> &ndash; the file&#39;s name, without the extension (the value in the media file&#39;s <i class=" ">FileName</i> column).</p>
+</li><li class=" "><p   
+><i class=" ">useSecureLinks</i> &ndash; true/false value indicating whether the link evaluates media library permissions.</p>
+</li><li class=" "><p   
+>(optional) <i class=" ">downloadLink</i> &ndash; true/false value indicating whether the link forces a file download (i.e. uses the <i class=" ">attachment</i> content-disposition).</p>
+</li></ul><p   
+>For example: <i class=" ">{% GetMediaFileUrl(FileLibraryID, FilePath, FileGuid, FileName, true) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetMetaFileUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object fileGUID</p>
+</li><li class=" "><p   
+>object fileName</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the specified meta file. The file is specified by the file GUID in the first parameter and the file name in the second parameter.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetNavigationUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a resolved (absolute) URL of the page that&#39;s currently being processed. The resulting URL is not encoded. The method reflects page navigation settings, such as <i class=" ">URL redirection</i>, and <i class=" ">Redirect to first child</i>.</p>
+<p   
+>&lt;%# GetNavigationUrl() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object aliasPath</p>
+</li><li class=" "><p   
+>object urlPath</p>
+</li><li class=" "><p   
+><i class=" ">    <span style="color: #999999;">
+object siteName    </span>
+</i></p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the page specified by the <a   href="Setting_page_aliases.html">alias path</a> in the first parameter or the URL path in the second parameter.</p>
+<p   
+>&lt;%# GetUrl(Eval(&quot;NodeAliasPath&quot;), Eval(&quot;DocumentUrlPath&quot;)) %&gt;<br/>&lt;%# GetUrl(Eval(&quot;NodeAliasPath&quot;), Eval(&quot;DocumentUrlPath&quot;), Eval(&quot;SiteName&quot;)) %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-Textmanipulation" class="heading "><span>Text manipulation</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>EnsureMaximumLineLength</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object textObj</p>
+</li><li class=" "><p   
+>int maxLength</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allows you to insert line breaks into long sequences of characters without whitespace (such as URLs). The method places the line break after the number of characters specified by the second parameter.</p>
+<p   
+>&lt;%# EnsureMaximumLineLength(&quot;VeryLongStringWithoutAnyBlankSpaces&quot;, 21) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>HTMLEncode</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string text</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Encodes HTML tags in the specified text.</p>
+<p   
+>&lt;%# HTMLEncode(&quot;Sample text &lt;br /&gt;&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>LimitLength</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object textObj</p>
+</li><li class=" "><p   
+>int maxLength</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string padString</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool wholeWords</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Limits text to the length specified in the second parameter. The third parameter is the trimming suffix, i.e. the string appended to the end of shortened strings. The suffix is included in the maximum length. For example, if you use the &quot;...&quot; suffix and a maximum length of 100 characters, the returned string contains the first 97 characters of the original string, followed by an ellipsis.</p>
+<p   
+>Set the last parameter to true to avoid trimming in the middle of words.</p>
+<p   
+>&lt;%# LimitLength(&quot;Example of long text&quot;, 10 , &quot;...&quot;, true) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Localize</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object text</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Resolves all <a   href="Localizing_text_fields.html">localization expressions</a> inside the specified text.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>RemoveDiscussionMacros</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object inputText</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Removes all BBCode tags from the provided text.</p>
+<p   
+>&lt;%# RemoveDiscussionMacros(&quot;[quote]Sample text[/quote]&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>RemoveDynamicControls</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object inputText</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Removes all controls from the specified text (such as inline <a   href="Preparing_widgets_for_users.html">widgets</a>).</p>
+<p   
+>&lt;%# RemoveDynamicControls(Eval(&quot;NewsText&quot;) ) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>StripTags</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object inputText<br/>    <span style="color: #ffffff;">
+_______________    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Completely removes HTML tags from the specified text.</p>
+<p   
+>&lt;%# StripTags(&quot;Sample text &lt;br /&gt;&quot;) %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-Images" class="heading "><span>Images</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetEditableImage</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string controlId</p>
+</li><li class=" "><p   
+>object maxSideSize</p>
+</li><li class=" "><p   
+>object width</p>
+</li><li class=" "><p   
+>object height</p>
+</li><li class=" "><p   
+>object alt</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an image tag that displays the content of an editable image control or web part on the page. Specify the editable image using the control ID (web part control ID).</p>
+<p   
+>&lt;%# GetEditableValue(&quot;mainImage&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetEditableImageUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string controlId</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the image selected inside the specified editable image control or web part. Specify the editable image using the control ID (web part control ID).</p>
+<p   
+>&lt;%# GetEditableImageUrl(&quot;mainImage&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetImage</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object attachmentGuidColumn</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object (int) maxSideSize</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object (int) width</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object (int) height</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object alt<br/>    <span style="color: #ffffff;">
+__________________________    </span>
+</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an image tag that displays the image file whose GUID is stored in the specified column of the transformed object&#39;s data.</p>
+<p   
+>&lt;%# GetImage(&quot;NewsTeaser&quot;) %&gt;<br/>&lt;%# GetImage(&quot;NewsTeaser&quot;, 200) %&gt;<br/>&lt;%# GetImage(&quot;NewsTeaser&quot;, 200, 100) %&gt;<br/>&lt;%# GetImage(&quot;NewsTeaser&quot;, 200, 200, 100) %&gt;<br/>&lt;%# GetImage(&quot;NewsTeaser&quot;, 200, 200, 100, &quot;image alternate text&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetImageByUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object imageUrl</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object (int) maxSideSize</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object (int) width</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object (int) height</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object alt</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an image tag that displays the image stored under the specified URL.</p>
+<p   
+>&lt;%# GetImageByUrl(&quot;~/Images/Image1.aspx&quot;) %&gt;<br/>&lt;%# GetImageByUrl(&quot;~/Images/Image1.aspx&quot;, 100, 200) %&gt;<br/>&lt;%# GetImageByUrl(&quot;~/Images/Image1.aspx&quot;, 200) %&gt;<br/>&lt;%# GetImageByUrl(&quot;~/Images/Image1.aspx&quot;, 200, 100, 200, &quot;image alternate text&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IfImage</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object attachmentGuidColumn</p>
+</li><li class=" "><p   
+>object isImage</p>
+</li><li class=" "><p   
+>object notImage</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Checks whether the page attachment specified by the GUID in the first parameter is an image file. If the file is an image, the method returns the value of the second parameter, otherwise the value of the third parameter.</p>
+<p   
+>&lt;%# IfImage(&quot;NewsTeaser&quot;, &quot;The file is an image&quot;, &quot;The file is not an image&quot;) %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-E-commerce" class="heading "><span>E-commerce</span></h3>
+    <h4 id="src-68880620_ReferenceTransformationmethods-SKUprice" class="heading "><span>SKU price</span></h4>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUPrice</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an SKU price based on the SKU data and the data of the current shopping cart.</p>
+<p  class="auto-cursor-target" 
+>The price includes any <a   href="Working_with_catalog_discounts.html">catalog discounts</a> that apply.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>To display the list price of a product, use the <i class=" ">GetSKUListPrice</i> method.</p>
+        </div>
+    </div>
+<p   
+>&lt;%# GetSKUPrice() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUFormattedPrice</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a <a   href="Configuring_currencies.html">formatted</a> SKU price based on the SKU data and the data of the current shopping cart.</p>
+<p   
+>The price includes any <a   href="Working_with_catalog_discounts.html">catalog discounts</a> that apply.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>To display the formatted list price of a product, use the <i class=" ">GetSKUFormattedListPrice</i> method.</p>
+        </div>
+    </div>
+<p   
+>&lt;%# GetSKUFormattedPrice() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUListPrice</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an SKU list price based on the SKU data and the data of the current shopping cart. The list price is loaded from the <i class=" ">SKURetailPrice</i> column.</p>
+<p   
+>&lt;%# GetSKUListPrice() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUFormattedListPrice</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a <a   href="Configuring_currencies.html">formatted</a> SKU list price based on the SKU data and the data of the current shopping cart. The list price is loaded from the <i class=" ">SKURetailPrice</i> column.</p>
+<p   
+>&lt;%# GetSKUFormattedListPrice() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUOriginalPrice</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the <i class=" ">greater</i> of the following SKU price options:</p>
+<ul class=" "><li class=" "><p   
+>The product&#39;s list price (from the <i class=" ">SKURetailPrice</i> column)<br/>&ndash; OR &ndash;</p>
+</li><li class=" "><p   
+>The product&#39;s price (from the <i class=" ">SKUPrice</i> column) without any discounts applied</p>
+</li></ul><p   
+>If both prices are equal to the standard product price with discounts (i.e. the product&#39;s list price is equal to the price and no discounts apply), the method returns <i class=" ">0</i>.<br/></p>
+<p   
+>&lt;%# GetSKUOriginalPrice() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUFormattedOriginalPrice</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+<p   
+>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the <i class=" ">greater</i> of the following SKU price options and <a   href="Configuring_currencies.html">formats the result</a> according to the currency used in the current shopping cart:</p>
+<ul class=" "><li class=" "><p   
+>The product&#39;s list price (from the <i class=" ">SKURetailPrice</i> column)<br/>&ndash; OR &ndash;</p>
+</li><li class=" "><p   
+>The product&#39;s price (from the <i class=" ">SKUPrice</i> column) without any discounts applied</p>
+</li></ul><p   
+>If both prices are equal to the standard product price with discounts (i.e. the product&#39;s list price is equal to the price and no discounts apply), the method returns <i class=" ">0</i>.<br/></p>
+<p   
+>&lt;%# GetSKUFormattedOriginalPrice() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUPriceSaving</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+><i class=" ">    <span style="color: #999999;">
+bool percentage    </span>
+</i></p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the amount of money saved on the price of the processed SKU, as a percentage or in the <a   href="Configuring_currencies.html">currency</a> of the current shopping cart.</p>
+<p   
+>The savings are calculated based on the difference between the product&#39;s price (from the <i class=" ">SKUPrice</i> column, including any <a   href="Working_with_catalog_discounts.html">catalog discounts</a> that apply) and the <i class=" ">greater</i> of the following options:</p>
+<ul class=" "><li class=" "><p   
+>The product&#39;s list price (from the <i class=" ">SKURetailPrice</i> column)<br/>&ndash; OR &ndash;</p>
+</li><li class=" "><p   
+>The product&#39;s price (from the <i class=" ">SKUPrice</i> column) without any discounts applied</p>
+</li></ul><p   
+>If the product&#39;s price is greater than the list price and no discounts apply, the method returns <i class=" ">0</i>.</p>
+<p   
+>The optional <i class=" ">bool percentage</i> parameter determines whether the result is returned as a percentage. By default the value is <i class=" ">false,</i> which means the result is returned in the currency of the current shopping cart.</p>
+<p   
+>&lt;%# GetSKUPriceSaving(true) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUFormattedPriceSaving</p>
+<p   
+>    <span style="color: #ffffff;">
+__________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the amount of money saved on the price of the processed SKU and <a   href="Configuring_currencies.html">formats the result</a> according to the currency used in the current shopping cart.</p>
+<p   
+>The savings are calculated based on the difference between the product&#39;s price (from the <i class=" ">SKUPrice</i> column, including any <a   href="Working_with_catalog_discounts.html">catalog discounts</a> that apply) and the <i class=" ">greater</i> of the following options:</p>
+<ul class=" "><li class=" "><p   
+>The product&#39;s list price (from the <i class=" ">SKURetailPrice</i> column)<br/>&ndash; OR &ndash;</p>
+</li><li class=" "><p   
+>The product&#39;s price (from the <i class=" ">SKUPrice</i> column) without any discounts applied</p>
+</li></ul><p   
+>If the product&#39;s price is greater than the list price and no discounts apply, the method returns <i class=" ">0</i>.</p>
+<p   
+>&lt;%# GetSKUFormattedPriceSaving() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUTax</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Depending on the site&#39;s <strong class=" ">Prices include tax</strong> <a   href="Settings_-_E-commerce.html">setting</a>, returns either:</p>
+<ul class=" "><li class=" "><p   
+>The tax value that will be added to the processed SKU&#39;s price during checkout (if prices do not include tax)<br/>&ndash; OR &ndash;</p>
+</li><li class=" "><p   
+>The tax portion of the processed SKU&#39;s price (if prices already include tax)</p>
+</li></ul><p   
+>For example:</p>
+<ul class=" "><li class=" "><p   
+>Prices do not include tax, the SKU price is 50 and the applied tax rate is 5% &ndash; returns <strong class=" ">2.5</strong></p>
+</li><li class=" "><p   
+>Prices include tax, the SKU price is 55 and the applied tax rate is 10% &ndash; returns <strong class=" ">5</strong></p>
+</li></ul><p   
+>&lt;%# GetSKUTax() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetFormattedSKUTax</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Displays a tax value for the processed SKU and <a   href="Configuring_currencies.html">formats the result</a> according to the currency used in the current shopping cart. Depending on the site&#39;s <strong class=" ">Prices include tax</strong> <a   href="Settings_-_E-commerce.html">setting</a>, returns either:</p>
+<ul class=" "><li class=" "><p   
+>The tax value that will be added to the processed SKU&#39;s price during checkout (if prices do not include tax)<br/>&ndash; OR &ndash;</p>
+</li><li class=" "><p   
+>The tax portion of the processed SKU&#39;s price (if prices already include tax)</p>
+</li></ul><p   
+>&lt;%# GetFormattedSKUTax() %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h4 id="src-68880620_ReferenceTransformationmethods-SKUpriceformatting" class="heading "><span>SKU price formatting</span></h4>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ApplyExchangeRate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>decimal price</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the specified price (<i class=" ">decimal price</i>) in the <a   href="Configuring_currencies.html">currency</a> of the current user&#39;s shopping cart and then converts the value into the current site&#39;s main currency (according to the configured <a   href="Configuring_exchange_rates.html">exchange rates</a>).</p>
+<p   
+>&lt;%# ApplyExchangeRate(100) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>FormatPrice</p>
+<p   
+>    <span style="color: #ffffff;">
+__________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>decimal price</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool round</i>    </span>
+</p>
+</li></ul><p   
+>    <span style="color: #999999;">
+<i class=" ">    <span style="color: #ffffff;">
+_________________________    </span>
+<br/></i>    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the specified price (<i class=" ">decimal price</i>) formatted according to the <a   href="Configuring_currencies.html">currency</a> of the current user&#39;s shopping cart. The method does not work in contexts where the current shopping cart is not available.</p>
+<ul class=" "><li class=" "><p   
+>Set whether the price should be rounded (<i class=" ">bool round</i>) to the number of decimal fields specified in the current site&#39;s currency settings. Price rounding is enabled by default if the <i class=" ">round</i> parameter is not specified.</p>
+</li></ul><p   
+>&lt;%# FormatPrice(100, true) %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h4 id="src-68880620_ReferenceTransformationmethods-SKUproperties" class="heading "><span>SKU properties</span></h4>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUIndicatorProperty</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string column</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a value from the specified column (<i class=" ">string column</i>) of the <a   href="Product_statuses.html">public status</a> assigned to the transformed product. Commonly used public status columns are <i class=" ">PublicStatusDisplayName</i> and <i class=" ">PublicStatusName</i>.</p>
+<p   
+>If the product is evaluated as a new product, the public status is determined by <a   href="Settings_-_E-commerce.html">the <strong class=" ">Public status for &#39;new products&#39;</strong> setting</a>.</p>
+<p   
+>&lt;%# GetSKUIndicatorProperty(&quot;PublicStatusDisplayName&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IsSKUAvailableForSale</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns whether the given SKU can be bought by <a   href="Customers.html">customers</a> on the live site based on the properties of the SKU.</p>
+<p   
+>&lt;%# IsSKUAvailableForSale() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IsSKUInStock</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns whether the given SKU is available or not based on the <a   href="Products.html">stock amount property</a> of the SKU.</p>
+<p   
+>&lt;%# IsSKUInStock() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUNodeAlias</p>
+<p   
+>    <span style="color: #ffffff;">
+__________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+<p   
+>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the node alias of the given SKU. If there are multiple nodes for the SKU, the first occurrence is returned. If there is not any node for the SKU, an empty string is returned.</p>
+<p   
+>&lt;%# GetSKUNodeAlias() %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h4 id="src-68880620_ReferenceTransformationmethods-URLs" class="heading "><span>URLs</span></h4>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+<p   
+>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the user-friendly permanent URL of the SKU.</p>
+<p   
+>&lt;%# GetSKUUrl() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetProductUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object (Guid) skuGuid</p>
+</li><li class=" "><p   
+>object (string) skuName</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object (string) siteName</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the user-friendly URL of the <a   href="Products.html">product</a> specified by the <a   href="Linking_pages_and_files.html">GUID</a> (<i class=" ">object skuGuid</i>) and name (<i class=" ">object skuName</i>) of the product on the specified <a   href="Managing_sites.html">site</a> (<i class=" ">object siteName</i>). If you do not specify the site name, the system uses the current site.</p>
+<p   
+>&lt;%# GetProductUrl(Eval(&quot;SkuGuid&quot;), Eval(&quot;SkuName&quot;), Eval(&quot;SiteName&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetProductUrlById</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object (int) skuID</p>
+</li><li class=" "><p   
+>object (string) skuName</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object (string) siteNameObj</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the user-friendly URL of the product specified by the ID (<i class=" ">object skuID</i>) and name (object skuName) of the product on the specified site (<i class=" ">object siteName</i>). If you do not specify the site name, the system uses the current site.</p>
+<p   
+>&lt;%# GetProductUrlByID(Eval(&quot;SkuID&quot;), Eval(&quot;SkuName&quot;), Eval(&quot;SiteName&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetProductUrlForFeed</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object (Guid) skuGUID</p>
+</li><li class=" "><p   
+>object (string) skuName</p>
+</li><li class=" "><p   
+>object (string) siteName</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the specified product (<i class=" ">object skuGUID</i>) with the specified name (<i class=" ">object skuName</i>) with the feed query string parameter in the URL for the feed on the specified site (<i class=" ">object siteName</i>). If you do not specify the site name, the system uses the current site.</p>
+<p   
+>&lt;%# GetProductUrlForFeed(Eval(&quot;SkuGuid&quot;), Eval(&quot;SkuName&quot;), Eval(&quot;SiteName&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSKUImageUrl</p>
+<p   
+>    <span style="color: #ffffff;">
+__________________________    </span>
+</p>
+<p   
+>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>int width</p>
+</li><li class=" "><p   
+>int height</p>
+</li></ul><p   
+>OR</p>
+<ul class=" "><li class=" "><p   
+>int maxSideSize</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the product image. Specify the required width (<i class=" ">object width</i>) and height (<i class=" ">object height</i>) of the image, or the maximum side width of the image (<i class=" ">object maxsidesize</i>).</p>
+<p   
+>If the product image is not specified, the URL of the <a   href="Settings_-_E-commerce.html">default product image</a> is returned.</p>
+<p   
+>&lt;%# GetSKUImageUrl(200, 300) %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h4 id="src-68880620_ReferenceTransformationmethods-Discounts" class="heading "><span>Discounts</span></h4>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDiscountCouponCodeRemoveButton</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string couponCode</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string cssClass</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string buttonText</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Available for transformations displaying <a   href="Working_with_coupon_codes.html">coupon code</a> items using the <strong class=" ">Coupon codes</strong> web part.</p>
+<p   
+>Generates an <i class=" ">&lt;input&gt;</i> element (of the <i class=" ">submit</i> type) that removes the specified coupon code from the shopping cart when clicked.</p>
+<p   
+>&lt;%# GetDiscountCouponCodeRemoveButton(Eval&lt;string&gt;(&quot;Code&quot;), &quot;btn&quot;) %&gt;<br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetMultiBuyDiscountNames</p>
+<p   
+>    <span style="color: #ffffff;">
+__________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+<p   
+>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Available for transformations displaying shopping cart items (for example using the <strong class=" ">Shopping cart content</strong> web part).</p>
+<p   
+>Returns the names and price values of <a   href="Working_with_Buy_X_Get_Y_discounts.html">Buy X Get Y discounts</a> and <a   href="Working_with_product_coupons.html">Product coupons</a> applied to the current shopping cart item, enclosed within <strong class=" ">li</strong> HTML tags.</p>
+<p   
+>&lt;%# GetMultiBuyDiscountNames() %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h4 id="src-68880620_ReferenceTransformationmethods-Googletagmanagerproductdata" class="heading "><span>Google tag manager product data</span></h4>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetGtmProductJson</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object additionalData</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string purpose</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p  class="auto-cursor-target" 
+>Returns a JSON string containing the data of the transformed product (SKU), in a format suitable for use with the Google Tag Manager and Universal Analytics Enhanced Ecommerce features.</p>
+<p   
+>For more information, see <a   href="Integrating_Google_Analytics_Enhanced_Ecommerce.html">Integrating Google Analytics Enhanced Ecommerce</a>.</p>
+<p   
+>The optional <i class=" ">additionalData</i> parameter allows you to extend the returned JSON string (custom fields and values).</p>
+<p   
+>The optional <i class=" ">purpose</i> parameter can be processed in <a   href="Customizing_e-commerce_data_for_Google_Analytics.html">code customizations of the product data creation process</a>, if you need to return different JSON data for various scenarios.</p>
+<p   
+>&lt;%# GetGtmProductJson(&quot;{ &#39;list&#39; : &#39;Search Results&#39;}&quot;, &quot;searchImpressions&quot;) %&gt;<br/></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-Membershipandcommunity" class="heading "><span>Membership and community</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetAge</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateOfBirth</p>
+</li><li class=" "><p   
+>string unknownAge</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns age calculated according to the date of birth given in the first parameter. If the date of birth is not available, the method returns the string specified in the second parameter.</p>
+<p   
+>&lt;%# GetAge(Eval(&quot;UserDateOfBirth&quot;),&quot;Unknown age&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetBadgeImage</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>int badgeId</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an image tag that displays the specified user <a   href="Badges.html">badge</a>.</p>
+<p   
+>&lt;%# GetBadgeImage(Eval&lt;int&gt;(&quot;UserBadgeID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetBadgeName</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>int badgeId</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the display name of the specified <a   href="Badges.html">badge</a>.</p>
+<p   
+>&lt;%# GetBadgeName(Eval&lt;int&gt;(&quot;UserBadgeID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetGender</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object genderObj<br/>    <span style="color: #ffffff;">
+_____________________    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the gender of users according to the value specified in the parameter. Load the value from the user&#39;s gender field.</p>
+<ul class=" "><li class=" "><p   
+>1 = Male</p>
+</li><li class=" "><p   
+>2 = Female</p>
+</li><li class=" "><p   
+>unspecified (0) = N/A</p>
+</li></ul><p   
+>&lt;%# GetGender(Eval(&quot;UserGender&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetGroupAvatarImage</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object avatarId</i>    </span>
+    <span style="color: #999999;">
+<br/>    </span>
+</p>
+</li><li class=" "><p   
+>int maxSideSize</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int width</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int heigth</i>    </span>
+</p>
+</li><li class=" "><p   
+>object alt</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an image tag that displays the <a   href="Avatars.html">avatar</a> of a <a   href="Groups.html">group</a>. The group is either identified automatically using the <i class=" ">AvatarGuid</i> field of the transformed group, or you can optionally specify an identifier value using the first parameter.</p>
+<p   
+>&lt;%# GetGroupAvatarImage(200, &quot;Alternate text&quot;) %&gt;<br/>&lt;%# GetGroupAvatarImage(Eval(&quot;GroupAvatarID&quot;), 200, &quot;Alternate text&quot;) %&gt;<br/>&lt;%# GetGroupAvatarImage(Eval(&quot;GroupAvatarID&quot;), 200, 150, 150, &quot;Alternate text&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetGroupProfileUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object groupNameOjb</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string siteName</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the specified <a   href="Groups.html">group&#39;s</a> profile page.</p>
+<p   
+>&lt;%# GetGroupProfileUrl(Eval(&quot;GroupName&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetMemberProfileUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object memberNameObj</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string siteName</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the user profile page for the specified group member.</p>
+<p   
+>&lt;%# GetMemberProfileUrl(Eval(&quot;UserName&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetUserAvatarImage</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">object avatarId</i>    </span>
+    <span style="color: #999999;">
+<br/>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+    <span style="color: #999999;">
+<i class=" ">object userId</i>    </span>
+    </span>
+</p>
+</li><li class=" "><p   
+>int maxSideSize</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int width</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int heigth</i>    </span>
+</p>
+</li><li class=" "><p   
+>object alt</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns an image tag that displays the <a   href="Avatars.html">avatar</a> of a user. The user is either identified automatically using the <i class=" ">AvatarGuid</i> field of the transformed user, or you can specify either an avatar identifier or user identifier.</p>
+<p   
+>&lt;%# GetUserAvatarImage(200, &quot;Alternate text&quot;) %&gt;<br/>&lt;%# GetUserAvatarImage(Eval(&quot;UserID&quot;), 200, 150, 150, &quot;Alternate text&quot;) %&gt;<br/>&lt;%# GetUserAvatarImage(Eval(&quot;UserAvatarID&quot;), Eval(&quot;UserID&quot;), 200, &quot;Alternate text&quot;) %&gt;<br/>&lt;%# GetUserAvatarImage(Eval(&quot;UserAvatarID&quot;), Eval(&quot;UserID&quot;), 200, 150, 150, &quot;Alt&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetUserAvatarImageUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object avatarId</p>
+</li><li class=" "><p   
+>object userId</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string userEmail</i>    </span>
+</p>
+</li><li class=" "><p   
+>int maxSideSize</p>
+</li><li class=" "><p   
+>int width</p>
+</li><li class=" "><p   
+>int heigth</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the specified user&#39;s <a   href="Avatars.html">avatar</a> image. If the user does not have an avatar, the method returns the URL of the default avatar image.</p>
+<p   
+>&lt;%# GetUserAvatarImageUrl(Eval(&quot;UserAvatarID&quot;), Eval(&quot;UserID&quot;), 200, 150, 150) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetUserFullName</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>int userId</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the full name of the specified user.</p>
+<p   
+>&lt;%# GetUserFullName(Eval&lt;int&gt;(&quot;UserID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetUserProfileUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object userNameObj</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string siteName</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the user profile page for the specified user.</p>
+<p   
+>&lt;%# GetUserProfileURL(Eval(&quot;UserName&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>TrimSitePrefix</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object userName</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Removes the site prefix from user names (if site prefixes are enabled in <strong class=" ">Settings -&gt; Security &amp; Membership -&gt; Use site prefix for user names</strong>).</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_safe-id-UmVmZXJlbmNlVHJhbnNmb3JtYXRpb25tZXRob2RzLURhdGUmdGltZQ" class="heading "><span>Date &amp; time</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>FormatDate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateTime<br/>    <span style="color: #ffffff;">
+_____________________    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Displays the specified date without the time component. The method automatically formats the date according to the current culture.</p>
+<p   
+>&lt;%# FormatDate(DateTime.Now) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>FormatDateTime</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateTime</p>
+</li><li class=" "><p   
+>string format</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Displays the date and time value according to a <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/az4se3k1%28v=vs.110%29.aspx">format string</a>. The method formats the date and time according to the current culture.</p>
+<p   
+>&lt;%# FormatDateTime(DateTime.Now, &quot;MM/dd/yyyy HH:mm&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string dateTimeField</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Loads a date value from the specified field of the transformed object&#39;s data.</p>
+<p   
+>&lt;%# GetDate(&quot;NewsReleaseDate&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDateTime</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string dateTimeField<br/>OR</p>
+</li><li class=" "><p   
+>object dateTime<br/>OR</p>
+</li><li class=" "><p   
+>DateTime dateTime<br/><br/></p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string format</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Loads a date and time value from the specified field of the transformed object&#39;s data. The value uses the <a   href="Configuring_time_zones.html">time zone</a> set for the server.</p>
+<p   
+>Optionally, you can format the date and time value according to a <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/az4se3k1%28v=vs.110%29.aspx">format string</a>.</p>
+<p   
+>&lt;%# GetDateTime(&quot;NewsReleaseDate&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetCustomDateTime</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateTime</p>
+</li><li class=" "><p   
+>string timeZoneName</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Converts a date and time value to the specified <a   href="Configuring_time_zones.html">time zone</a>.</p>
+<p   
+>&lt;%# GetCustomDateTime(DateTime.Now, &quot;GreenwichMeanTime&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDateTimeString</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateTime</p>
+</li><li class=" "><p   
+>bool showTooltip</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Converts the specified date and time value to the <a   href="Configuring_time_zones.html">time zone</a> set for the server. The second parameter determines whether the displayed date and time has a tooltip.</p>
+<p   
+>&lt;%# GetDateTimeString(&quot;NewsReleaseDate&quot;, true) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSiteDateTime</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateTime</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Converts the specified date and time value to the current site&#39;s <a   href="Configuring_time_zones.html">time zone</a>.</p>
+<p   
+>&lt;%# GetSiteDateTime(Eval(&quot;NewsReleaseDate&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetUserDateTime</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateTime</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Converts the specified date and time value to the <a   href="Configuring_time_zones.html">time zone</a> set for the user viewing the page.</p>
+<p   
+>&lt;%# GetUserDateTime(Eval(&quot;NewsReleaseDate&quot;)) %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-Smartsearch" class="heading "><span>Smart search</span></h3>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>See <a   href="Setting_up_search_on_your_website.html">Setting up search on your website</a> for more information.</p>
+        </div>
+    </div>
+<p   
+></p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SearchResultUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool absolute</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool addLangParameter</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the page containing the details of the search result.</p>
+<ul class=" "><li class=" "><p   
+>The optional &#39;absolute&#39; parameter indicates if the returned URL is absolute.</p>
+<ul class=" "><li class=" "><p   
+>False by default.</p>
+</li></ul></li><li class=" "><p   
+>The optional &#39;addLangParameter&#39; indicates if a culture specific query should be added to the URL.</p>
+<ul class=" "><li class=" "><p   
+>True by default. Note that clicking a link leading to a different culture changes the visitor&#39;s site culture.</p>
+</li></ul></li></ul><p   
+>&lt;%# SearchResultUrl(true, false) %&gt;</p>
+<p   
+><strong class=" ">Note</strong>: The <strong class=" ">SearchResultUrl</strong> method does not return valid URLs for search results produced by <a   href="Defining_local_general_indexes.html">general indexes</a>, since the indexed objects are not pages and there is no default page to display the object details. You need to write and use a <a   href="Adding_custom_methods_to_transformations.html">custom transformation method</a> to generate the correct URL of a custom page displaying the appropriate information.<br/><br/><strong class=" ">Combine with default culture</strong></p>
+<p   
+>When the <a   href="Editing_the_content_of_multilingual_websites.html#src-68880867_Editingthecontentofmultilingualwebsites-Usingthedefaultlanguageversionforuntranslatedpages">Combine with default culture</a> setting is enabled, visitors will see pages in the default culture if they aren&#39;t translated to their current culture.</p>
+<ul class=" "><li class=" "><p   
+>If the <i class=" ">addLangParameter</i> is set to false, the site culture will NOT change once visitors click the link leading to the page in the default culture. That is, they keep on browsing the site in the culture they made the search in.</p>
+</li><li class=" "><p   
+>If the <i class=" ">addLangParameter </i>is set to true, the site culture will change once visitors click the link leading to the page in the default culture. That is, they keep on browsing the site in the default culture afterwards.</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SearchHighlight</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string text</p>
+</li><li class=" "><p   
+>string startTag</p>
+</li><li class=" "><p   
+>string endTag<i class=" ">    <span style="color: #999999;">
+    </span>
+</i></p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Wraps the text of the first parameter into the tags specified by the other two parameters.</p>
+<p   
+>&lt;%# SearchHighlight(SearchResultUrl(),&quot;&lt;strong&gt;&quot;,&quot;&lt;/strong&gt;&quot;)%&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSearchImageUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string noImageUrl</p>
+</li><li class=" "><p   
+>int maxSideSize    <span style="color: #999999;">
+    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the current search result&#39;s image.</p>
+<p   
+>The first parameter specifies the URL used if no image is found &ndash; enter either the full relative path starting from the application root (~/), or a partial path starting from the <i class=" ">~/App_Themes/&lt;skin_folder&gt;/Images/</i> directory. The second parameter specifies the maximum side size to which the method resizes the image.</p>
+<p   
+>&lt;%# GetSearchImageUrl(&quot;~/App_Themes/Default/Images/CMSModules/CMS_SmartSearch/no_image.gif&quot;, 90) %&gt;</p>
+<p   
+>&lt;%# GetSearchImageUrl(&quot;/CMSModules/CMS_SmartSearch/no_image.gif&quot;, 90) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSearchValue</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string columnName<br/>    <span style="color: #ffffff;">
+_____________________    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the value of the specified field for the current search result. Allows you to access both the general fields of the given objects type (page, custom table etc.) and any other fields included in the search index.</p>
+<p   
+>&lt;%# GetSearchValue(&quot;DocumentName&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSearchedContent</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string content</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Parses the searched content as XML if required, and removes dynamic controls and macro expressions.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+<p   
+></p>
+    <h3 id="src-68880620_safe-id-UmVmZXJlbmNlVHJhbnNmb3JtYXRpb25tZXRob2RzLVN5bmRpY2F0aW9uKFJTUyxBdG9tLFhNTCk" class="heading "><span>Syndication (RSS, Atom, XML)</span></h3>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>See also: <a   href="Setting_up_syndication_feeds.html">Setting up syndication feeds</a></p>
+        </div>
+    </div>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetAtomDateTime</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateTime</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the specified date and time value in a format suitable for Atom feeds (according to <a  class="external-link" href="http://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a>).</p>
+<p   
+>&lt;%# GetAtomDateTime(Eval(&quot;DocumentCreatedWhen&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetRSSDateTime</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object dateTime</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the specified date and time value in a format suitable for RSS feeds (according to <a  class="external-link" href="http://www.w3.org/Protocols/rfc822/">RFC 882</a>).</p>
+<p   
+>&lt;%# GetRSSDateTime(Eval(&quot;DocumentCreatedWhen&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetBlogCommentUrlForFeed</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object documentIdObj<br/>    <span style="color: #ffffff;">
+__________________    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the comments added to the <a   href="Blogs.html">blog post</a> specified by a page identifier. Includes the feed query string parameter in the URL.</p>
+<p   
+>&lt;%# GetBlogCommentUrlForFeed(Eval(&quot;DocumentID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetDocumentUrlForFeed</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>-</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the transformed document with the feed query string parameter in the URL. The method takes the feed name from the <strong class=" ">Feed name</strong> property of the syndication web part used to generate the feed.</p>
+<p   
+><strong class=" ">Note</strong>: Since the method adds the <strong class=" ">feed</strong> query string parameter, please use a different parameter name in the <strong class=" ">Feed querystring key</strong> property of the syndication web part.</p>
+<p   
+>&lt;%# GetDocumentUrlForFeed() %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetForumPostUrlForFeed</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object postIDPath</p>
+</li><li class=" "><p   
+>object forumId</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the forum post specified by the path in the first parameter and the forum identifier in the second parameter. Includes the feed query string parameter in the URL.</p>
+<p   
+>&lt;%# GetForumPostUrlForFeed(Eval(&quot;PostIDPath&quot;), Eval(&quot;PostForumID&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetMediaFileUrlForFeed</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object fileGUID</p>
+</li><li class=" "><p   
+>object fileName</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the media file specified by the GUID in the first parameter and the file name in the second parameter. Includes the feed query string parameter in the URL.</p>
+<p   
+>&lt;%# GetMediaFileUrlForFeed(Eval(&quot;FileGUID&quot;), Eval(&quot;FileName&quot;)) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetMessageBoardUrlForFeed</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>object documentIdObj</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the message board specified by the identifier of the page containing the message board. Includes the feed query string parameter in the URL.</p>
+<p   
+>&lt;%# GetMessageBoardUrlForFeed(&quot;DocumentIdObj&quot;) %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-MicrosoftSharePoint" class="heading "><span>Microsoft SharePoint</span></h3>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>See also: <a   href="Displaying_SharePoint_data_in_Kentico.html">Displaying SharePoint data in Kentico</a></p>
+        </div>
+    </div>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSharePointFileUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string fileRefColumnName</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int cacheMinutes</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int cacheFileSize</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int width</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int height</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int maxSideSize</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of a file from a SharePoint server. The first parameter sets the name of the data column containing the name of the file <i class=" ">(FileRef</i> by default). Has optional parameters for specifying file caching and image dimensions.</p>
+<p   
+>&lt;%# GetSharePointFileUrl(&quot;NameOfColumnContainingPathToFile&quot;, 5, 1024) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSharePointImageUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">string fileRefColumnName</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int width</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int height</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">int maxSideSize</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of an image file from a SharePoint server. The first parameter sets the name of the data column containing the name of the file <i class=" ">(FileRef</i> by default). Has optional parameters for specifying image dimensions.</p>
+<p   
+>&lt;%# GetSharePointImageUrl(&quot;NameOfColumnContainingPathToFile&quot;, null, null, 300) %&gt;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-Placeholdersforsublevelsinhierarchicaldata" class="heading "><span>Placeholders for sublevels in hierarchical data</span></h3>
+<p   
+>If you are writing transformations for items from a hierarchical data source (for example page data from the <i class=" ">Universal viewer</i> web part), you can add a placeholder that sets the position of sublevels:</p>
+<p   
+>For <strong class=" ">ASCX</strong> transformations:</p>
+    <div  class="confbox programlisting">
+                <div class="content">
+        <pre><code>&lt;cms:SubLevelPlaceHolder runat=&quot;server&quot; ID=&quot;plcSub&quot; /&gt;</code></pre>
+        </div>
+    </div>
+<p   
+>For <strong class=" ">Text</strong> transformations:</p>
+    <div  class="confbox programlisting">
+                <div class="content">
+        <pre><code>{^SubLevelPlaceHolder^}</code></pre>
+        </div>
+    </div>
+<p   
+>When displaying items that have descendants in the hierarchy, the placeholder is replaced by the child level under the given item. If you do not add the sublevel placeholder, the system automatically renders child levels after the code of parent items.</p>
+<p   
+>You can use the sublevel placeholder in <a   href="Using_hierarchical_transformations.html">hierarchical transformations</a>, as well as standard transformations applied to hierarchical data.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The sublevel placeholder only works if the <strong class=" ">Hierarchical display mode</strong> property of the viewer web part is set to <strong class=" ">Inner</strong>.</p>
+        </div>
+    </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+    <h3 id="src-68880620_ReferenceTransformationmethods-Editingbuttonsforpagesdisplayedbylistingwebparts" class="heading "><span>Editing buttons for pages displayed by listing web parts</span></h3>
+<p   
+>You can configure listing web parts (such as the <i class=" ">Repeater</i>) to display special buttons in editing mode (on the <strong class=" ">Page</strong> tab of the <strong class=" ">Pages</strong> application). The buttons allow users to edit or delete individual items displayed in the list.</p>
+<p   
+>To set the exact position of the editing buttons, add the following expression into the code of <strong class=" ">ASCX</strong> item transformations:</p>
+    <div  class="confbox programlisting">
+                <div class="content">
+        <pre><code>##editbuttons##</code></pre>
+        </div>
+    </div>
+<p   
+><a   href="#src-68880620_ReferenceTransformationmethods-TransformationMethodsTop">&gt; Back to the list of transformation method categories</a></p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

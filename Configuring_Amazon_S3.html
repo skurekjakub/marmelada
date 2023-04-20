@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Configuring Amazon S3 - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script>
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico_11_Documentation_Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882094"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico_11_Documentation_Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Custom_development.html">Custom development</a></li>
+                                                                                                         <li class="shortcut"><a href="Working_with_physical_files_using_the_API.html">Working with physical files using the API</a></li>
+                                                                                     <li><a href="Configuring_file_system_providers.html">Configuring file system providers</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882094"> <span>Configuring Amazon S3</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+        $page.content
+<p   
+>You can utilize the Amazon S3 storage service for storing your website files even though the website is hosted on-premise, on your own server.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">File name case<br/></strong></p>
+<p   
+>Unlike standard Windows file systems, the Amazon S3 storage is case-sensitive. To ensure consistent behavior, Kentico automatically converts all file and folder names to lower case when processing files on Amazon S3.</p>
+        </div>
+    </div>
+    <h3 id="src-68882094_ConfiguringAmazonS3-ConfiguringKenticotouseAmazonS3" class="heading "><span>Configuring Kentico to use Amazon S3</span></h3>
+<ol class=" "><li class=" "><p   
+>Make sure that you have your Amazon S3 account set up and that you have created at least one bucket. <a  class="external-link" href="https://console.aws.amazon.com">Amazon Management Console</a>.</p>
+</li><li class=" "><p   
+>Add the following key into the <i class=" ">appSettings</i> section of your project&#39;s <strong class=" ">web.config</strong>.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSExternalStorageName"</code><code class="plain"> value=</code><code class="string">"amazon"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Important</strong>: Setting the <strong class=" ">CMSExternalStorageName</strong> key maps the entire file system of your application to the Amazon S3 storage. Do NOT set this key if you only wish to map specific folders (for example media file folders).</p>
+<p   
+>To map a specific folder, define an Amazon S3 storage provider as described in the <a   href="#src-68882094_ConfiguringAmazonS3-Storingfilesindifferentbuckets">Storing files in different buckets</a> section.</p>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Add the following key to specify the bucket that you want to use to store files. Replace the value with the name of the bucket.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSAmazonBucketName"</code><code class="plain">  value=</code><code class="string">"YourBucketName"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Specify the ID of your Amazon access key by inserting the following key:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSAmazonAccessKeyID"</code><code class="plain"> value=</code><code class="string">"YourKey"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Specify the Amazon access key by adding the following key:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSAmazonAccessKey"</code><code class="plain"> value=</code><code class="string">"YourSecret"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li></ol><p   
+>After you save your web.config, Kentico starts storing files in the specified Amazon S3 bucket.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Additional website settings</strong></p>
+<p   
+>When configuring this type of storage, keep in mind that the website itself must be configured to store files in the file system rather than in the database only. In <strong class=" ">Settings -&gt; System -&gt; Files</strong> enable the <strong class=" ">Store files in file system</strong> option.</p>
+<p   
+>It is also recommended to enable <strong class=" ">Redirect files to disk</strong> in <strong class=" ">Settings -&gt; System -&gt; Performance</strong>. This means that files will be requested from the Amazon S3 account rather than from the database (if possible).</p>
+        </div>
+    </div>
+<p   
+>Also, see the <a   href="#src-68882094_ConfiguringAmazonS3-Medialibrarynotes">Media library notes</a> at the end of this page for additional information about specifics of media libraries when using Amazon S3 storage.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68882094_ConfiguringAmazonS3-ConfiguringKenticotouseAmazonS3">Configuring Kentico to use Amazon S3</a></p>
+</li><li class=" "><p   
+><a   href="#src-68882094_ConfiguringAmazonS3-Storingfilesindifferentbuckets">Storing files in different buckets</a></p>
+</li><li class=" "><p   
+><a   href="#src-68882094_ConfiguringAmazonS3-ConfiguringKenticotouseAmazonCloudFrontCDN">Configuring Kentico to use Amazon CloudFront CDN</a></p>
+</li><li class=" "><p   
+><a   href="#src-68882094_ConfiguringAmazonS3-Medialibrarynotes">Media library notes</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68882094_ConfiguringAmazonS3-Storingtoomanyfilesinonemedialibraryfolder">Storing too many files in one media library folder</a></p>
+</li><li class=" "><p   
+><a   href="#src-68882094_ConfiguringAmazonS3-UsingthesamebucketnameswhenCMSAmazonPublicAccessissettotrue">Using the same bucket names when CMSAmazonPublicAccess is set to true</a></p>
+</li></ul></li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class="confluence-link "><p   
+><a   href="Working_with_physical_files_using_the_API.html">Working with physical files using the API</a></p>
+</li><li class="confluence-link "><p   
+><a   href="Configuring_file_system_providers.html">Configuring file system providers</a></p>
+</li></ul>        </div>
+    </div>
+<p   
+>You can configure the following optional settings:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Key</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Sample Value</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CMSAmazonTempPath</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Path to a local directory that the system uses to store temporary files.</p>
+<p   
+><strong class=" ">Default value</strong>: &lt;installation root&gt;\CMS\App_Data\AmazonTemp</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain"> &lt;add key=</code><code class="string">"CMSAmazonTempPath"</code><code class="plain"> value=</code><code class="string">"C:\Windows\Temp"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CMSAmazonCachePath</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Path to a local directory where the provider stores cached files.</p>
+<p   
+><strong class=" ">Default value</strong>: &lt;installation root&gt;\CMS\App_Data\AmazonCache</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSAmazonCachePath"</code><code class="plain"> value=</code><code class="string">"C:\Cache"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CMSAmazonEndPoint</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allows you to change the default URL of the Amazon S3 <a  class="external-link" href="http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteEndpoints.html">Website Endpoint</a>. For example, you can change the endpoint if you want to use CloudFront CDN.</p>
+<p   
+><strong class=" ">Default value</strong>: http://&lt;yourbucketname&gt;.s3.amazonaws.com</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSAmazonEndPoint"</code><code class="plain"> value=</code><code class="string">"http://someendpoint.s3.amazonaws.com"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CMSAmazonRestApiEndPoint</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allows you to change the default URL of the Amazon S3 <a  class="external-link" href="http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteEndpoints.html#WebsiteRestEndpointDiff">REST API Endpoint</a>. The system uses the REST API to determine the region of buckets.</p>
+<p   
+><strong class=" ">Default value</strong>: https://s3.amazonaws.com</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSAmazonRestApiEndPoint"</code><code class="plain"> value=</code><code class="string">"http://s3.amazonaws.com"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CMSAmazonPublicAccess</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Specifies whether files uploaded to Amazon S3 through Kentico are accessible for public users.</p>
+<p   
+><strong class=" ">Default value</strong>:</p>
+<p   
+><i class=" ">true</i> if you specify an endpoint</p>
+<p   
+><i class=" ">false</i> If no endpoint is specified</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+        <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSAmazonPublicAccess"</code><code class="plain"> value=</code><code class="string">"true"</code><code class="plain">/&gt; </code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h3 id="src-68882094_ConfiguringAmazonS3-Storingfilesindifferentbuckets" class="heading "><span>Storing files in different buckets</span></h3>
+<p   
+>By default, the system stores files in a single bucket. However, the built-in Amazon S3 storage provider allows you to map sections of the file system to different buckets.</p>
+<ol class=" "><li class=" "><p   
+>Open the Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p   
+>Create a <a   href="Initializing_modules_to_run_custom_code.html">custom module class</a>.</p>
+<ul class=" "><li class=" "><p   
+>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">website</i> installations).</p>
+</li></ul>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Override the module&#39;s <strong class=" ">OnInit</strong> method and perform the following:</p>
+<ul class=" "><li class=" "><p   
+>Create a new instance of the Amazon S3 storage provider.</p>
+</li><li class=" "><p   
+>Specify the target bucket using the <strong class=" ">CustomRootPath </strong>property of the provider.</p>
+</li><li class=" "><p   
+>(Optional) You can specify whether you want the bucket to be publicly accessible using the <strong class=" ">PublicExternalFolderObject</strong> property of the provider. True means the bucket is publicly accessible.</p>
+</li><li class=" "><p   
+>Map a directory to the provider. This is the directory that you want to store in the bucket.</p>
+</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.IO;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="comments">// Registers the custom module into the system</code></div>
+<div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomInitializationModule))]</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomInitializationModule : Module</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomInit"</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> CustomInitializationModule()</code></div>
+<div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomInit"</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">	{</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
+<div class="line"><code class="plain">	{</code></div>
+<div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">		</code><code class="comments">// Creates a new StorageProvider instance for Amazon S3</code></div>
+<div class="line"><code class="plain">		</code><code class="keyword">var</code><code class="plain"> mediaProvider = StorageProvider.CreateAmazonStorageProvider();</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">		</code><code class="comments">// Specifies the target bucket</code></div>
+<div class="line"><code class="plain">		mediaProvider.CustomRootPath = </code><code class="string">"mymediabucket"</code><code class="plain">;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">		</code><code class="comments">// Makes the bucket publicly accessible</code></div>
+<div class="line"><code class="plain">		mediaProvider.PublicExternalFolderObject = </code><code class="keyword">true</code><code class="plain">;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">		</code><code class="comments">// Maps a directory to the provider</code></div>
+<div class="line"><code class="plain">		StorageHelper.MapStoragePath(</code><code class="string">"~/MySite/Media/"</code><code class="plain">, mediaProvider);</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Save the file. If your project is installed in the web application format, rebuild the solution.</p>
+</li></ol>    <h3 id="src-68882094_ConfiguringAmazonS3-ConfiguringKenticotouseAmazonCloudFrontCDN" class="heading "><span>Configuring Kentico to use Amazon CloudFront CDN</span></h3>
+<p  class="topictitle" 
+>A Content Delivery Network (CDN) speeds up distribution of content to the end users through a network of data centers. See <a  class="external-link" href="https://aws.amazon.com/cloudfront/details/">Amazon CloudFront Product Details</a> to learn more.</p>
+<p  class="topictitle" 
+>To start using the Amazon CloudFront service with Kentico:</p>
+<ol class=" "><li class=" "><p   
+>Create a <strong class=" ">CloudFront Distribution</strong>. You can use the<a  class="external-link" href="https://console.aws.amazon.com"> Amazon Management Console</a>. Select your Amazon S3 storage bucket as the <strong class=" ">Origin Domain Name</strong>.</p>
+</li><li class=" "><p   
+>Edit the <strong class=" ">web.config</strong> file of your Kentico project.</p>
+</li><li class=" "><p   
+>Add the <strong class=" ">CMSAmazonPublicAccess </strong>and <strong class=" ">CMSAmazonEndPoint </strong>keys into the web.config file:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">appSettings</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSAmazonPublicAccess"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"true"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSAmazonEndPoint"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"EndpointURL"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">appSettings</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Set the value of the <strong class=" ">CMSAmazonEndPoint</strong> key to the <strong class=" ">Domain Name</strong> URL of your created CDN.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>If your site runs under <strong class=" ">HTTPS</strong>, we recommend always specifying the endpoint URL with the <strong class=" ">HTTPS</strong> protocol as well.</p>
+<p   
+>For example: <i class=" ">    <span style="color: #444444;">
+https://domain.cloudfront.net    </span>
+</i></p>
+<p   
+>Not doing so may result in <a  class="external-link" href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content?hl=en">Mixed Content</a> warnings being logged in your web browser&#39;s console when retrieving files from the CDN.</p>
+        </div>
+    </div>
+</li></ol><p   
+>Your project now starts using the created CDN service.</p>
+    <h3 id="src-68882094_ConfiguringAmazonS3-Medialibrarynotes" class="heading "><span>Media library notes</span></h3>
+<p   
+>Using Amazon S3 storage for your project has some effects on media libraries.</p>
+    <h4 id="src-68882094_ConfiguringAmazonS3-Storingtoomanyfilesinonemedialibraryfolder" class="heading "><span>Storing too many files in one media library folder</span></h4>
+<p   
+>Storing a large number of media files in a single folder can significantly affect the performance of your project when editing the files in the Media library application. See <a   href="Configuring_media_libraries.html#src-68879365_Configuringmedialibraries-Medialibrarylimitationswhenstoringfilesinanexternalstorage">Media library limitations when storing files in an external storage</a> for details.</p>
+    <h4 id="src-68882094_ConfiguringAmazonS3-UsingthesamebucketnameswhenCMSAmazonPublicAccessissettotrue" class="heading "><span>Using the same bucket names when CMSAmazonPublicAccess is set to true</span></h4>
+<p   
+>If all following conditions are true:</p>
+<ul class=" "><li class=" "><p   
+>you use Amazon S3 as external storage</p>
+</li><li class=" "><p   
+>you set the <i class=" ">CMSAmazonPublicAccess</i> key to <i class=" ">true</i></p>
+</li><li class=" "><p   
+>you want to use <a   href="Content_staging.html">content staging</a></p>
+</li></ul><p   
+>then the buckets on all storages must have the <strong class=" ">same name</strong>.</p>
+<p   
+>The reason is that when using the <i class=" ">CMSAmazonPublicAccess</i> key, direct file links use the name of the bucket in the URL. Therefore, if your staging server is connected to a different storage, the buckets where the media library files are stored must have the same name in all storages.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

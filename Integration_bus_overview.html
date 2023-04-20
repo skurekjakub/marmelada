@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Integration bus overview - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script>
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico_11_Documentation_Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882894"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico_11_Documentation_Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Integrating_3rd_party_systems.html">Integrating 3rd party systems</a></li>
+                                                                                     <li><a href="Using_the_integration_bus.html">Using the integration bus</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882894"> <span>Integration bus overview</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+        $page.content
+<p   
+>The integration bus synchronizes objects and pages with third party systems. It provides a safer and more reliable way than other solutions, because the synchronization tasks can be ordered in a queue and recovered if they fail. You can implement the synchronization in both directions:</p>
+<ul class=" "><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Outgoingtasks-FromKenticotoexternalapplications">Outgoing tasks</a> &ndash; perform synchronization from Kentico to external applications.</p>
+</li><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Incomingtasks-FromexternalapplicationstoKentico">Incoming tasks</a> &ndash; perform synchronization from external systems to Kentico.</p>
+</li></ul>    <h3 id="src-68882894_Integrationbusoverview-Outgoingtasks-FromKenticotoexternalapplications" class="heading "><span>Outgoing tasks - From Kentico to external applications</span></h3>
+<p   
+>Outgoing synchronization tasks are based on <i class=" ">subscriptions</i>.</p>
+    <h4 id="src-68882894_Integrationbusoverview-Subscriptions" class="heading "><span>Subscriptions</span></h4>
+<p   
+>Subscriptions keep track of operations performed in Kentico, such as creating, updating or deleting objects and pages. Developers need to prepare subscriptions for operations that should be synchronized to external systems. When an operation that has a subscription occurs, the system passes the request to a connector, which processes the synchronization in one of two modes (depends on the subscription settings):</p>
+<ul class=" "><li class="confluence-link "><p   
+><a   href="#src-68882894_Integrationbusoverview-Asynchronousprocessing">Asynchronously</a> &ndash; synchronization tasks are placed into a queue, which is automatically processed by the system at the end of each web request that logs new tasks. Failed tasks remain in the queue and are executed again during the next task processing.</p>
+</li><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Synchronousprocessing">Synchronously&nbsp;</a>&ndash; synchronization tasks are passed directly to the connector.</p>
+</li></ul><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882894/Integration_Subscriptions.png" alt="images/download/attachments/68882894/Integration_Subscriptions.png" width="546" height="202" />
+        <br/><span class="caption">The role of subscriptions in the integration process</span>
+    </p>
+<p   
+><strong class=" ">Data types for subscriptions</strong></p>
+<p   
+>Subscriptions use one of three data types to specify which data is transferred:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Simple</strong> &ndash; synchronizes the content of objects.</p>
+</li><li class=" "><p   
+><strong class=" ">SimpleSnapshot</strong> &ndash; synchronizes whole objects and preserves foreign key bindings. This applies only when the 3rd party system has an architecture and database design similar to Kentico.</p>
+</li><li class=" "><p   
+><strong class=" ">Snapshot</strong> &ndash; synchronizes multiple objects at once. For example a main object with its children, such as polls together with poll answers. Not supported for pages.</p>
+</li></ul><p   
+>For details, refer to the <a   href="Reference_-_Integration_bus_data_types.html#src-68882893_ReferenceIntegrationbusdatatypes-TaskDataTypeEnum">TaskDataTypeEnum</a> enumeration.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Outgoingtasks-FromKenticotoexternalapplications">Outgoing tasks - From Kentico to external applications</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Subscriptions">Subscriptions</a></p>
+</li><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Asynchronousprocessing">Asynchronous processing</a></p>
+</li><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Synchronousprocessing">Synchronous processing</a></p>
+</li></ul></li><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Incomingtasks-FromexternalapplicationstoKentico">Incoming tasks - From external applications to Kentico</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-Implementingaservice">Implementing a service</a></p>
+</li><li class=" "><p   
+><a   href="#src-68882894_Integrationbusoverview-CallingtheKenticoAPI">Calling the Kentico API</a></p>
+</li></ul></li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="Enabling_the_integration_bus.html">Enabling the integration bus</a></p>
+</li><li class=" "><p   
+><a   href="Creating_integration_connectors.html">Creating integration connectors</a></p>
+</li><li class=" "><p   
+><a   href="Managing_integration_tasks.html">Managing integration tasks</a></p>
+</li></ul>        </div>
+    </div>
+    <h4 id="src-68882894_Integrationbusoverview-Asynchronousprocessing" class="heading "><span>Asynchronous processing</span></h4>
+<p   
+>With asynchronous processing of tasks, the data of the changed object or page is first stored in the database (the task is logged in the task queue). If the external system is not available, the tasks wait ordered in the queue until they can be reliably processed.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882894/Outgoing_Async_Basic.png" alt="images/download/attachments/68882894/Outgoing_Async_Basic.png" width="522" height="103" />
+        <br/><span class="caption">The mechanism of asynchronous processing</span>
+    </p>
+<p   
+>The<strong class=" "> advantages</strong> of asynchronous processing:</p>
+<ul class=" "><li class=" "><p   
+>Synchronization data is not lost even if the processing of tasks fails.</p>
+</li><li class=" "><p   
+>Asynchronous processing is highly scalable, all time&#8209;consuming operations are performed one by one.</p>
+</li><li class=" "><p   
+>Allows translation of column values using the <i class=" ">TranslateColumnsToExternal()</i> method.</p>
+</li></ul><p   
+>The<strong class=" "> disadvantages</strong> of asynchronous processing:</p>
+<ul class=" "><li class=" "><p   
+>No context is available during the object/page processing.</p>
+</li></ul><p   
+>Otherwise, asynchronous processing does not have any major disadvantages, and can be used for most scenarios.</p>
+<p   
+>To ensure maximum performance, the system postpones the logging and processing of tasks until the <a  class="external-link" href="https://docs.microsoft.com/en-us/dotnet/api/system.web.httpapplication.endrequest"><i class=" ">EndRequest</i></a> event.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882894/Outgoing_Async_Lifecycle.png" alt="images/download/attachments/68882894/Outgoing_Async_Lifecycle.png" width="551" height="610" />
+        <br/><span class="caption">Flow chart of asynchronous processing of outgoing tasks</span>
+    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: Processing doesn&rsquo;t start on <i class=" ">EndRequest</i> when the object or page has been changed in an asynchronous thread (for example when importing new sites with the <strong class=" ">Log integration tasks</strong> option enabled).</p>
+        </div>
+    </div>
+<p   
+>When the processing thread starts, the connector begins by fetching the first task in the queue (FIFO principle). Fetched tasks are transformed to strongly typed objects and passed to the methods implemented in the connector class. In some cases, additional methods are called, for example when performing translation of foreign keys. When the task is processed, the result value (of type <a   href="Reference_-_Integration_bus_data_types.html#src-68882893_ReferenceIntegrationbusdatatypes-IntegrationProcessResultEnum">IntegrationProcessResultEnum</a>) is returned to notify the connector. Depending on the result, the connector decides what to do next.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882894/Outgoing_Async_Main.png" alt="images/download/attachments/68882894/Outgoing_Async_Main.png" width="546" height="423" />
+        <br/><span class="caption">The role of connectors in asynchronous processing</span>
+    </p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The <i class=" ">BaseIntegrationConnector</i> is already implemented. You only need to prepare the parts of the code shown in the inherited connector class (<i class=" ">CustomIntegrationConnector</i> in the figure above).</p>
+        </div>
+    </div>
+    <h4 id="src-68882894_Integrationbusoverview-Synchronousprocessing" class="heading "><span>Synchronous processing</span></h4>
+<p   
+>When using synchronous processing, the changed object is passed directly to the connector for further processing.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882894/Outgoing_Sync_Basic.png" alt="images/download/attachments/68882894/Outgoing_Sync_Basic.png" width="522" height="103" />
+        <br/><span class="caption">The mechanism of synchronous processing</span>
+    </p>
+<p   
+>The <strong class=" ">advantages</strong> of synchronous processing include:</p>
+<ul class=" "><li class=" "><p   
+>You can manipulate objects within the context of Kentico &ndash; you can access properties like <i class=" ">Parent</i> or <i class=" ">Children</i> of the currently processed object, and the data is fetched from the database just in time.</p>
+</li><li class=" "><p   
+>With pages, you can access properties like <i class=" ">Tags</i>, <i class=" ">Categories</i> and <i class=" ">Attachments</i>.</p>
+</li></ul><p   
+>The <strong class=" ">disadvantages</strong> of synchronous processing include:</p>
+<ul class=" "><li class=" "><p   
+>The system does not store the synchronization data in the database &ndash; if an error occurs and the connector fails to process the request, the data is lost.</p>
+</li><li class=" "><p   
+>Synchronous processing of large or numerous tasks may slow down the application.</p>
+</li><li class=" "><p   
+>No <i class=" ">TranslateColumnsToExternal()</i> method.</p>
+</li></ul><p   
+>It is recommended to use synchronous processing only if you need to leverage the advantages.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882894/Outgoing_Sync_Flow.png" alt="images/download/attachments/68882894/Outgoing_Sync_Flow.png" width="529" height="305" />
+        <br/><span class="caption">Flow chart of synchronous processing of outgoing tasks</span>
+    </p>
+<p   
+>Processing of synchronous tasks starts immediately after an object or page matching a subscription is changed. Unlike asynchronous processing, where the logging and processing is postponed until the application reaches <a  class="external-link" href="https://docs.microsoft.com/en-us/dotnet/api/system.web.httpapplication.endrequest"><i class=" ">EndRequest</i></a>, synchronous processing sends the data instantly to the subscribed connectors.</p>
+<p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/68882894/Outgoing_Sync_Main.png" alt="images/download/attachments/68882894/Outgoing_Sync_Main.png" width="546" height="375" />
+        <br/><span class="caption">The role of connectors in synchronous processing</span>
+    </p>
+    <h3 id="src-68882894_Integrationbusoverview-Incomingtasks-FromexternalapplicationstoKentico" class="heading "><span>Incoming tasks - From external applications to Kentico</span></h3>
+<p   
+>The inbound direction allows you to transfer changes from external applications to Kentico by sending data to the Integration bus. The system stores the data in a queue, later takes it from the queue, and processes it on a regular basis or on your request. Processing of incoming tasks is <strong class=" ">always asynchronous</strong>.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882894/Incoming_Basic.png" alt="images/download/attachments/68882894/Incoming_Basic.png" width="522" height="103" />
+        <br/><span class="caption">The mechanism of inbound task processing</span>
+    </p>
+<p   
+>Your task as a developer is to implement methods that help the system log the correct data into the queue. You need to convert the external object to a corresponding internal object or page, and supply translation information if you want to preserve foreign key bindings:</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882894/Incoming_Main.png" alt="images/download/attachments/68882894/Incoming_Main.png" width="553" height="325" />
+    </p>
+<p   
+>There are two ways to implement the communication between Kentico and your external system:</p>
+<ul class=" "><li class=" "><p   
+>Implement a service</p>
+</li><li class=" "><p   
+>Call the Kentico API (requires references to Kentico DLLs, i.e. installation of the <i class=" ">Kentico.Libraries</i> NuGet package)</p>
+</li></ul>    <h4 id="src-68882894_Integrationbusoverview-Implementingaservice" class="heading "><span>Implementing a service</span></h4>
+<p   
+>The communication is ensured by a custom service (Web API, WCF, etc.) that you need to implement within the Kentico application. The service then calls the Kentico API, which uses a connector to convert external objects to Kentico objects.</p>
+<p   
+>The advantage is that your external application does not need to reference Kentico libraries (DLLs).</p>
+<p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/68882894/Incoming_Service.png" alt="images/download/attachments/68882894/Incoming_Service.png" width="700" height="311" />
+        <br/><span class="caption">Inbound synchronization using a custom service</span>
+    </p>
+    <h4 id="src-68882894_Integrationbusoverview-CallingtheKenticoAPI" class="heading "><span>Calling the Kentico API</span></h4>
+<p   
+>Your external application needs to reference the Kentico libraries (DLLs) and have a connection to your Kentico database. See <a   href="Using_the_Kentico_API_externally.html">Using the Kentico API externally</a> to learn how to set up this scenario.</p>
+<p   
+>You need to implement a connector class as part of a separate library, and reference it from both your external application and the related Kentico application.</p>
+<p   
+>Then call the API <i class=" ">(ProcessExternalTask</i> method) within your application&#39;s code, which performs the following tasks:</p>
+<ol class=" "><li class=" "><p   
+>Converts external objects to Kentico objects using the connector.</p>
+</li><li class=" "><p   
+>Logs the synchronization data (integration tasks) directly into the connected Kentico database.</p>
+</li></ol><p   
+>The advantage is that even if the Kentico application is not accessible for some reason, the synchronization data is logged to the queue and can be reliably processed later without loss of data.</p>
+<p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/68882894/Incoming_API.png" alt="images/download/attachments/68882894/Incoming_API.png" width="700"  />
+        <br/><span class="caption">Inbound synchronization using the Kentico API</span>
+    </p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

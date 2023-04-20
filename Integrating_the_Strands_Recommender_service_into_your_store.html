@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Integrating the Strands Recommender service into your store - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script>
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico_11_Documentation_Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882864"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico_11_Documentation_Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Integrating_3rd_party_systems.html">Integrating 3rd party systems</a></li>
+                                                                                     <li><a href="Strands_Recommender_integration.html">Strands Recommender integration</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882864"> <span>Integrating the Strands Recommender service into your store</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+        $page.content
+<p   
+>To integrate the Strands Recommender service into your store in Kentico:</p>
+<ol class=" "><li class=" "><p   
+>Sign in to the <a  class="external-link" href="https://retail.strands.com/login/">Strands Recommender</a> website.</p>
+</li><li class=" "><p   
+>On the <strong class=" ">my account</strong> page, copy your <strong class=" ">API ID</strong> and <strong class=" ">Validation Token</strong>.<br/><br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882864/getting_api_from_strands_website.png" alt="images/download/attachments/68882864/getting_api_from_strands_website.png" width="500" height="228" />
+        <br/><span class="caption">Getting Strands API ID and Validation token from the Strands website</span>
+    <p   
+><br/><br/></p>
+</li><li class=" "><p   
+>In Kentico, open the <strong class=" ">Settings </strong>application and navigate to the <strong class=" ">Integration -&gt; Strands Recommender </strong>settings.</p>
+</li><li class=" "><p   
+>Paste your <strong class=" ">API ID</strong> and <strong class=" ">Validation Token </strong>into the respective fields in the <strong class=" ">General </strong>category.</p>
+</li><li class=" "><p   
+>(Optional) In the <strong class=" ">Catalog feed </strong>category, configure how Kentico generates the Strands catalog feed.</p>
+<ul class=" "><li class=" "><p  class="auto-cursor-target" 
+>Kentico comes with a default Strands catalog transformation, <i class=" "><a   href="#src-68882864_IntegratingtheStrandsRecommenderserviceintoyourstore-TheStrandscatalogtransformation">StrandsRecommender.Transformations.CatalogFeedTransformation</a></i>. The transformation handles which fields each of the items in the catalog contains.<br/><br/><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/39486683/setting_up_strands_catalog_feed.png" alt="images/download/attachments/39486683/setting_up_strands_catalog_feed.png" width="500"  />
+        <br/><span class="caption">Configuring the Strands catalog feed</span>
+    </p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>You can always check how the Strands<strong class=" "> catalog feed</strong> looks with the current configuration by <strong class=" ">Saving</strong> the configuration and<strong class=" "> </strong>opening the catalog in your browser. The feed is generated in &lt;site address&gt;<i class=" ">/CMSModules/StrandsRecommender/CMSPages/StrandsCatalogFeed.ashx</i>. The whole <strong class=" ">URL</strong> of the feed is then, for example:<br/><br/><i class=" "><a  class="external-link" href="http://www.yoursite.com/CMSModules/StrandsRecommender/CMSPages/StrandsCatalogFeed.ashx">http://www.yoursite.com/CMSModules/StrandsRecommender/CMSPages/StrandsCatalogFeed.ashx</a></i></p>
+        </div>
+    </div>
+</li></ul></li><li class=" "><p   
+>In the <strong class=" ">Automatic catalog upload </strong>category, select the <strong class=" ">Enable automatic catalog upload </strong>check box.</p>
+</li><li class=" "><p   
+>Set the frequency at which the system uploads the <strong class=" ">catalog feed</strong> to Strands.<br/><br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/39486683/setting_up_strands_catalog_upload_interval.png" alt="images/download/attachments/39486683/setting_up_strands_catalog_upload_interval.png" width="500"  />
+        <br/><span class="caption">Scheduling automatic catalog upload frequency</span>
+    <p   
+><br/><br/></p>
+</li><li class=" "><p   
+>(Optional) In the <strong class=" ">Catalog access restriction </strong>category, insert a <strong class=" ">Username</strong> and <strong class=" ">Password</strong> for accessing the Strands catalog feed. This restricts the access to the Strands catalog feed, which can otherwise be<strong class=" "> viewed by anyone</strong> with access to the site.</p>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Using Windows Authentication?</span>
+        </div>
+        <div class="scroll-expand-content">
+<p   
+>Note that <strong class=" ">Catalog access restriction </strong>doesn&#39;t work if you are using Windows Authentication to access Kentico.</p>
+        </div>
+    </div>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/39486683/setting_up_strands_catalog_access_restriction.png" alt="images/download/attachments/39486683/setting_up_strands_catalog_access_restriction.png" width="500"  />
+        <br/><span class="caption">Restricting access to the Strands catalog</span>
+    </p>
+</li><li class=" "><p   
+><strong class=" ">Save </strong>the settings.</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Note </strong>that using the <strong class=" ">Save</strong> button automatically starts a Strands catalog feed upload to Strands.</p>
+</li></ul></li><li class=" "><p   
+>Open the Strands <a  class="external-link" href="https://recommender.strands.com/tpl/website/">Recommendations</a> page and set up your recommendation widgets.</p>
+</li><li class=" "><p   
+><a   href="Placing_Strands_recommendations_on_a_page.html">Place Strands recommendation widgets onto pages </a>by placing the <strong class=" ">Strands recommendations </strong>web part.<br/>&ndash; OR &ndash;<br/><a   href="Placing_Strands_recommendations_into_marketing_emails.html">Place Strands recommendations into marketing emails</a>.</p>
+</li></ol>    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="#src-68882864_IntegratingtheStrandsRecommenderserviceintoyourstore-TheStrandscatalogtransformation">The Strands catalog transformation</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="Strands_Recommender_integration.html">Strands Recommender integration</a></p>
+</li><li class=" "><p   
+><a   href="Settings_-_Strands_Recommender.html">Settings - Strands Recommender</a></p>
+</li><li class=" "><p   
+><a   href="Placing_Strands_recommendations_on_a_page.html">Placing Strands recommendations on a page</a></p>
+</li><li class=" "><p   
+><a   href="Placing_Strands_recommendations_into_marketing_emails.html">Placing Strands recommendations into marketing emails</a></p>
+</li></ul><ul class=" "><li class=" "><p   
+><a   href="E-commerce_features.html">E-commerce features</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68882864_IntegratingtheStrandsRecommenderserviceintoyourstore-TheStrandscatalogtransformation" class="heading "><span>The Strands catalog transformation</span></h3>
+<p   
+>The default Strands catalog transformation, <i class=" ">    <span style="color: #000000;">
+StrandsRecommender.Transformations.CatalogFeedTransformation    </span>
+</i>, handles which fields each of the items in the catalog contains.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                    <div class="title">The StrandsRecommender.Transformations.CatalogFeedTransformation transformation</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="The StrandsRecommender.Transformations.CatalogFeedTransformation transformation" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">item</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">id</code><code class="plain">&gt;{% ItemID %}&lt;/</code><code class="keyword">id</code><code class="plain">&gt; </code></div>
+<div class="line"><code class="plain">  {% foreach (document in LanguageVersions) { %}</code></div>
+<div class="line"><code class="plain">     {% cultureCode = document.DocumentCulture.Replace("-", "").ToLower();; #%}</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">title_</code><code class="plain">{% cultureCode %}&gt;</code><code class="color2">&lt;![CDATA[{% document.DocumentName #%}]]&gt;</code><code class="plain">&lt;/</code><code class="keyword">title_</code><code class="plain">{% cultureCode %}&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">link_</code><code class="plain">{% cultureCode %}&gt;</code><code class="color2">&lt;![CDATA[{% document.AbsoluteUrl + "?lang=" + document.DocumentCulture #%}]]&gt;</code><code class="plain">&lt;/</code><code class="keyword">link_</code><code class="plain">{% cultureCode %}&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">description_</code><code class="plain">{% cultureCode %}&gt;</code><code class="color2">&lt;![CDATA[{% document.DocumentSKUDescription %}]]&gt;</code><code class="plain">&lt;/</code><code class="keyword">description_</code><code class="plain">{% cultureCode %}&gt;</code></div>
+<div class="line"><code class="plain">  {% } #%}</code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">  {% foreach (currency in Currencies) { %}</code></div>
+<div class="line"><code class="plain">    {% currencyCode = currency.CurrencyCode.ToLower();; #%}</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">price_</code><code class="plain">{% currencyCode %}&gt;{% Math.Round(SKU.GetPrice(currency), currency.CurrencyRoundTo, "AwayFromZero") %}&lt;/</code><code class="keyword">price_</code><code class="plain">{% currencyCode %}&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">cur_</code><code class="plain">{% currencyCode %}&gt;{% currency.CurrencyCode %}&lt;/</code><code class="keyword">cur_</code><code class="plain">{% currencyCode %}&gt;</code></div>
+<div class="line"><code class="plain">  {% } #%}</code></div>
+<div class="line"><code class="plain">  </code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">price</code><code class="plain">&gt;{% SKU.SKUPrice #%}&lt;/</code><code class="keyword">price</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">image_link</code><code class="plain">&gt;</code><code class="color2">&lt;![CDATA[{% GetAbsoluteUrl(SKU.SKUImagePath) #%}]]&gt;</code><code class="plain">&lt;/</code><code class="keyword">image_link</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">category</code><code class="plain">&gt;{% ItemCategory %}&lt;/</code><code class="keyword">category</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">SKUDepartmentID</code><code class="plain">&gt;{% SKU.SKUDepartmentID #%}&lt;/</code><code class="keyword">SKUDepartmentID</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">SKUProductType</code><code class="plain">&gt;</code><code class="color2">&lt;![CDATA[{% SKU.SKUProductType #%}]]&gt;</code><code class="plain">&lt;/</code><code class="keyword">SKUProductType</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">SKUSupplierID</code><code class="plain">&gt;{% SKU.SKUSupplierID #%}&lt;/</code><code class="keyword">SKUSupplierID</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">SKUManufacturerID</code><code class="plain">&gt;{% SKU.SKUManufacturerID #%}&lt;/</code><code class="keyword">SKUManufacturerID</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">item</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+<p   
+><strong class=" ">Note</strong> the following properties used in the transformation:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">ItemID </strong>&ndash; an ID of each of the items in the content tree. Same for each language version of the item. Sent to Strands as a unique identifier of the item (<i class=" ">ID field</i>).</p>
+</li><li class=" "><p   
+><strong class=" ">ItemCategory </strong>&ndash; a page type ID. Same for each language version. Sent to Strands as a <i class=" ">category field</i>. You can <a   href="Customizing_how_products_are_categorized_in_the_Strands_integration.html">customize how products are categorized</a>.</p>
+</li><li class=" "><p   
+><strong class=" ">SKU </strong>&ndash; items of the <i class=" ">COM_SKU</i> table, such as <i class=" ">SKU.SKUPrice</i>, <i class=" ">SKU.SKUDepartmentID</i>, <i class=" ">SKU.SKUProductType</i>, and others.</p>
+</li><li class=" "><p   
+><strong class=" ">LanguageVersions </strong>&ndash; a collection of every language version of a particular item. Each member of the collection is of <i class=" ">TreeNode </i>type and contains columns from the <i class=" ">CMS_Document</i> and <i class=" ">CMS Tree</i> tables. Such as <i class=" ">DocumentSKUName</i>, <i class=" ">DocumentSKUDescription</i>, <i class=" ">DocumentPageTitle</i>, <i class=" ">NodeAlias</i>, and others.</p>
+</li><li class=" "><p   
+><strong class=" ">Currencies </strong>&ndash; a collection of the available currencies. Each member is of <i class=" ">CurrencyInfo </i>type and contains columns from the <i class=" ">COM_Currency</i> table, such as <i class=" ">CurrencyCode</i> and <i class=" ">CurrencyName</i>.</p>
+</li></ul>    <div  class="confbox admonition admonition-warning has-no-icon">
+                        <div class="admonition-body">
+<p   
+>The <strong class=" ">&lt;id&gt;</strong> and <strong class=" ">&lt;category&gt;</strong> elements must always contain<strong class=" "> </strong>the <strong class=" ">ItemID</strong> and <strong class=" ">ItemCategory</strong> properties. You can customize all the other tags in the transformation.</p>
+        </div>
+    </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>
