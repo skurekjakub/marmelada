@@ -51,7 +51,7 @@
             (window.location.port ? ':' + window.location.port : '');
         var pageLocation = locationOrigin + window.location.pathname;
         var url = pageLocation.substr(0, pageLocation.lastIndexOf('/') + 1);
-        var searchPageUrl = url + 'search.htm?query=' + query;
+        var searchPageUrl = url + 'search.html?query=' + query;
         window.location.assign(searchPageUrl);
     };
 
