@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Registering CSS preprocessors - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,91 +148,63 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->CSS preprocessors allow you to:</p>
-<ul class=" "><li class=" "><p   
->Integrate dynamic stylesheet languages, such as LESS, Sass or Stylus (you can then write CSS code that is shorter and easier to maintain)</p>
-</li><li class=" "><p   
->Perform custom processing of CSS code (for example validation, or other automatic adjustments)</p>
-</li></ul><p   
->You can use the API to register any number of CSS preprocessors, and choose a language (preprocessor) for individual   <a   href="Designing-websites-using-CSS">CSS stylesheets</a> managed by the CSS stylesheets application. The system then stores two versions of the code for each stylesheet. You work with the unprocessed code in the editing interface, but browsers always recieve the plain CSS version when rendering pages.</p>
-    <h3 id="src-68882142_RegisteringCSSpreprocessors-Registeringserver-sideCSSprocessors" class="heading "><span>Registering server-side CSS processors</span></h3>
-<p   
->You need to register your CSS preprocessors at the beginning of the application&#39;s life cycle. Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a> and perform the registration during the initialization of the module (override the <strong class=" ">OnInit</strong> method of the module class).</p>
-<p   
->Use the <strong class=" ">CssStylesheetInfoProvider.RegisterCssPreprocessor</strong> method to add preprocessors into the system. For server-side CSS processing, call the method with the following parameters:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Name (string)</strong> - a unique identifier of the preprocessor.</p>
-</li><li class=" "><p   
-><strong class=" ">Extension (string)</strong> - the file extension of the stylesheets that use the given preprocessor (language). Used when   <a   href="Editing-object-code-externally">deploying</a> stylesheets as physical files.</p>
-</li><li class=" "><p   
-><strong class=" ">Display name (string)</strong> - a name that appears when selecting the language for stylesheets in the administration interface.</p>
-</li><li class=" "><p   
-><a  class="external-link" href="http://msdn.microsoft.com/en-us/library/d186xcf0%28v=vs.110%29.aspx">Callback method</a> that handles the processing of the CSS code.</p>
-</li></ul><p   
->When writing the callback method, either use the API of an external CSS preprocessor library, or implement your own custom logic. The callback<i class=" "> must return a string containing plain CSS code</i>.</p>
-<p   
->The callback method provides a <strong class=" ">CSSEventArgs</strong> parameter with the following string properties:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Code</strong> - the stylesheet&#39;s original code, which the preprocessor needs to convert into plain CSS.</p>
-</li><li class=" "><p   
-><strong class=" ">ErrorMessage</strong> - allows you to set a message that the system displays in the stylesheet editing interface if an error occurs while processing the CSS.</p>
-</li></ul>    <div  class="confbox panel">
+<div class="section-left"><p>CSS preprocessors allow you to:</p><ul class=" "><li class=" "><p>Integrate dynamic stylesheet languages, such as LESS, Sass or Stylus (you can then write CSS code that is shorter and easier to maintain)</p>
+</li><li class=" "><p>Perform custom processing of CSS code (for example validation, or other automatic adjustments)</p>
+</li></ul><p>You can use the API to register any number of CSS preprocessors, and choose a language (preprocessor) for individual <a href="designing-websites-using-css">CSS stylesheets</a> managed by the CSS stylesheets application. The system then stores two versions of the code for each stylesheet. You work with the unprocessed code in the editing interface, but browsers always recieve the plain CSS version when rendering pages.</p><h3 id="src-68882142_RegisteringCSSpreprocessors-Registeringserver-sideCSSprocessors" class="heading "><span>Registering server-side CSS processors</span></h3><p>You need to register your CSS preprocessors at the beginning of the application's life cycle. Create a <a href="initializing-modules-to-run-custom-code">custom module class</a> and perform the registration during the initialization of the module (override the <strong class=" ">OnInit</strong> method of the module class).</p><p>Use the <strong class=" ">CssStylesheetInfoProvider.RegisterCssPreprocessor</strong> method to add preprocessors into the system. For server-side CSS processing, call the method with the following parameters:</p><ul class=" "><li class=" "><p><strong class=" ">Name (string)</strong> - a unique identifier of the preprocessor.</p>
+</li><li class=" "><p><strong class=" ">Extension (string)</strong> - the file extension of the stylesheets that use the given preprocessor (language). Used when <a href="editing-object-code-externally">deploying</a> stylesheets as physical files.</p>
+</li><li class=" "><p><strong class=" ">Display name (string)</strong> - a name that appears when selecting the language for stylesheets in the administration interface.</p>
+</li><li class=" "><p><a class="external-link" href="http://msdn.microsoft.com/en-us/library/d186xcf0%28v=vs.110%29.aspx">Callback method</a> that handles the processing of the CSS code.</p>
+</li></ul><p>When writing the callback method, either use the API of an external CSS preprocessor library, or implement your own custom logic. The callback<i class=" "> must return a string containing plain CSS code</i>.</p><p>The callback method provides a <strong class=" ">CSSEventArgs</strong> parameter with the following string properties:</p><ul class=" "><li class=" "><p><strong class=" ">Code</strong> - the stylesheet's original code, which the preprocessor needs to convert into plain CSS.</p>
+</li><li class=" "><p><strong class=" ">ErrorMessage</strong> - allows you to set a message that the system displays in the stylesheet editing interface if an error occurs while processing the CSS.</p>
+</li></ul></div>
+
+    
+
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882142_RegisteringCSSpreprocessors-Registeringserver-sideCSSprocessors">Registering server-side CSS processors</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882142_RegisteringCSSpreprocessors-AssigningCSSprocessorstostylesheets">Assigning CSS processors to stylesheets</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882142_RegisteringCSSpreprocessors-Implementingclient-sideCSSprocessing">Implementing client-side CSS processing</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882142_registeringcsspreprocessors-registeringserver-sidecssprocessors">Registering server-side CSS processors</a></p>
+</li><li class=" "><p><a href="#src-68882142_registeringcsspreprocessors-assigningcssprocessorstostylesheets">Assigning CSS processors to stylesheets</a></p>
+</li><li class=" "><p><a href="#src-68882142_registeringcsspreprocessors-implementingclient-sidecssprocessing">Implementing client-side CSS processing</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Designing-websites-using-CSS">Designing websites using CSS</a></p>
+<ul class=" "><li class=" "><p><a href="designing-websites-using-css">Designing websites using CSS</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h4 id="src-68882142_RegisteringCSSpreprocessors-Example" class="heading "><span>Example</span></h4>
-<p   
->The following example registers a sample processor that converts the final CSS code of stylesheets into upper case.</p>
-<ol class=" "><li class=" "><p   
->Open your project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-    <div  class="confbox admonition admonition-info">
+<p>The following example registers a sample processor that converts the final CSS code of stylesheets into upper case.</p>
+<ol class=" "><li class=" "><p>Open your project in Visual Studio.</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+<p>For basic execution of initialization code, you only need to register a "code-only" module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and call the <strong class=" ">RegisterCssPreprocessor</strong> method.</p>
-</li><li class=" "><p   
->Implement the callback method that handles the server-side CSS processing (<strong class=" ">ParseCss</strong> in the example).</p>
-</li><li class=" "><p   
->Save the module class file (<strong class=" ">Build</strong> the solution on web application installations).</p>
-</li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and call the <strong class=" ">RegisterCssPreprocessor</strong> method.</p>
+</li><li class=" "><p>Implement the callback method that handles the server-side CSS processing (<strong class=" ">ParseCss</strong> in the example).</p>
+</li><li class=" "><p>Save the module class file (<strong class=" ">Build</strong> the solution on web application installations).</p>
+</li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">using CMS;</code></div>
 <div class="line"><code class="plain">using CMS.Base;</code></div>
 <div class="line"><code class="plain">using CMS.DataEngine;</code></div>
 <div class="line"><code class="plain">using CMS.PortalEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(typeof(CustomCSSProcessorModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomCSSProcessorModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomCSSPreprocessor"</code></div>
@@ -242,21 +212,21 @@
 <div class="line"><code class="plain">		: base(</code><code class="string">"CustomCSSPreprocessor"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> override </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		base.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Registers the 'Upper case CSS processor'</code></div>
 <div class="line"><code class="plain">		CssStylesheetInfoProvider.RegisterCssPreprocessor(</code><code class="string">"customCss"</code><code class="plain">, </code><code class="string">".css"</code><code class="plain">, </code><code class="string">"Upper case CSS processor"</code><code class="plain">, ParseCss);</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Callback method that defines the processor's functionality</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> string ParseCss(CssEventArgs parsingArguments)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		string cssOutput = String.Empty;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="keyword">try</code></div>
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// Call the API of your preprocessor or implement custom processing logic</code></div>
@@ -268,7 +238,7 @@
 <div class="line"><code class="plain">			</code><code class="comments">// Sets a message that the stylesheet editing UI displays if an error occurs during the CSS processing</code></div>
 <div class="line"><code class="plain">			parsingArguments.ErrorMessage = e.Message;</code></div>
 <div class="line"><code class="plain">		}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Returns the plain CSS output of the processor</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> cssOutput;</code></div>
 <div class="line"><code class="plain">	}</code></div>
@@ -276,80 +246,51 @@
 </div>
     </div>
     <h3 id="src-68882142_RegisteringCSSpreprocessors-AssigningCSSprocessorstostylesheets" class="heading "><span>Assigning CSS processors to stylesheets</span></h3>
-<p   
->Once you register one or more CSS preprocessors, you can create stylesheets that use the added functionality. See   <a   href="Designing-websites-using-CSS">Designing websites using CSS</a> for general information about managing stylesheets stored in Kentico.</p>
-<ol class=" "><li class=" "><p   
->Log in to the Kentico administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">CSS stylesheets </strong>application.</p>
-</li><li class=" "><p   
->Add a <strong class=" ">New CSS stylesheet</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Language</strong>. The available options include all registered CSS preprocessors (display names) and <i class=" ">Plain CSS</i>.</p>
-</li><li class=" "><p   
->Write the stylesheet code. You can use any syntax supported by the selected preprocessor.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->When you save the stylesheet, the selected preprocessor generates the plain CSS equivalent of the actual code. The system stores both types of code for the stylesheet.</p>
-<ul class=" "><li class=" "><p   
->You work with the unprocessed code in the editing interface (for example the code of a dynamic stylesheet language)</p>
-</li><li class=" "><p   
->Browsers always receive the plain CSS version when rendering pages that use the stylesheet</p>
-</li></ul>    <div  class="confbox admonition admonition-tip">
+<p>Once you register one or more CSS preprocessors, you can create stylesheets that use the added functionality. See <a href="designing-websites-using-css">Designing websites using CSS</a> for general information about managing stylesheets stored in Kentico.</p>
+<ol class=" "><li class=" "><p>Log in to the Kentico administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">CSS stylesheets </strong>application.</p>
+</li><li class=" "><p>Add a <strong class=" ">New CSS stylesheet</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Language</strong>. The available options include all registered CSS preprocessors (display names) and <i class=" ">Plain CSS</i>.</p>
+</li><li class=" "><p>Write the stylesheet code. You can use any syntax supported by the selected preprocessor.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>When you save the stylesheet, the selected preprocessor generates the plain CSS equivalent of the actual code. The system stores both types of code for the stylesheet.</p>
+<ul class=" "><li class=" "><p>You work with the unprocessed code in the editing interface (for example the code of a dynamic stylesheet language)</p>
+</li><li class=" "><p>Browsers always receive the plain CSS version when rendering pages that use the stylesheet</p>
+</li></ul>    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To preview the plain CSS output of a stylesheet&#39;s code, select the <strong class=" ">Plain CSS preview</strong> radio button above the editor.</p>
+<p><strong class=" ">Tip</strong>: To preview the plain CSS output of a stylesheet's code, select the <strong class=" ">Plain CSS preview</strong> radio button above the editor.</p>
         </div>
     </div>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882142/Stylesheet_Custom_Language.png" alt="images/download/attachments/68882142/Stylesheet_Custom_Language.png" width="500"  />
-        <br/><span class="caption">Editing a stylesheet that uses a custom preprocessor (language)</span>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882142/Stylesheet_Custom_Language.png" alt="images/download/attachments/68882142/Stylesheet_Custom_Language.png" width="500">
+        <br><span class="caption">Editing a stylesheet that uses a custom preprocessor (language)</span>
     </p>
     <h4 id="src-68882142_RegisteringCSSpreprocessors-Changingthelanguageofstylesheets" class="heading "><span>Changing the language of stylesheets</span></h4>
-<p   
->If you have multiple CSS processors registered in the system, you can switch stylesheets to a different language:</p>
-    <div  class="confbox admonition admonition-note">
+<p>If you have multiple CSS processors registered in the system, you can switch stylesheets to a different language:</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Warning</strong>: When you change a stylesheet&#39;s language, the system <i class=" "><strong class=" ">permanently</strong></i> converts the code to plain CSS.</p>
+<p><strong class=" ">Warning</strong>: When you change a stylesheet's language, the system <i class=" "><strong class=" ">permanently</strong></i> converts the code to plain CSS.</p>
         </div>
     </div>
-<ol class=" "><li class=" "><p   
->Edit the stylesheet.</p>
-</li><li class=" "><p   
->Click <u class=" ">Change</u> next to the <strong class=" ">Language</strong> field.</p>
-</li><li class=" "><p   
->Select the new language (preprocessor).</p>
-</li><li class=" "><p   
->Click <strong class=" ">Change language</strong>.</p>
-</li></ol><p   
->The original processor converts the stylesheet&#39;s code to plain CSS. You need to manually adjust the code according to the new language.</p>
+<ol class=" "><li class=" "><p>Edit the stylesheet.</p>
+</li><li class=" "><p>Click <u class=" ">Change</u> next to the <strong class=" ">Language</strong> field.</p>
+</li><li class=" "><p>Select the new language (preprocessor).</p>
+</li><li class=" "><p>Click <strong class=" ">Change language</strong>.</p>
+</li></ol><p>The original processor converts the stylesheet's code to plain CSS. You need to manually adjust the code according to the new language.</p>
     <h3 id="src-68882142_RegisteringCSSpreprocessors-Implementingclient-sideCSSprocessing" class="heading "><span>Implementing client-side CSS processing</span></h3>
-<p   
->The system allows you to add CSS processing that runs directly in client browsers. For example, you can integrate dynamic stylesheet languages with client-side compilers.</p>
-<p   
->To register a client-side CSS preprocessor, use the same basic approach as for   <a   href="#src-68882142_RegisteringCSSpreprocessors-Registeringserver-sideCSSprocessors">server-side processing</a>. Call the <strong class=" ">CssStylesheetInfoProvider.RegisterCssPreprocessor</strong> method with additional <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/d186xcf0%28v=vs.110%29.aspx">callback method</a> parameters:</p>
-<ul class=" "><li class=" "><p   
->The first extra callback (Action delegate) renders the required scripts on the CSS stylesheet editing page. The client scripts must always define a <strong class=" ">GetCss</strong> method that converts stylesheet code into plain CSS.<br/><br/></p>
-</li><li class=" "><p   
->The second callback detects errors in the client-side CSS processing. Use the callback to check the result of the <strong class=" ">GetCss</strong> client script method, and set an error message if necessary. The CSS processing finishes only if this callback returns an empty string.</p>
-</li></ul><p   
->Even when using a client-side preprocessor, we strongly recommend implementing equivalent functionality on the server. The server-side logic serves as a backup for scenarios where client-side processing is not possible (for example when using the API to update stylesheet code or during   <a   href="Content-staging">content staging</a>).</p>
-<p   
->The system performs the processing in the following order:</p>
-<ol class=" "><li class=" "><p   
->Processing via the <strong class=" ">GetCss</strong> client script method</p>
-</li><li class=" "><p   
->If the result of <strong class=" ">GetCss</strong> is empty, the preprocessor runs the server-side callback</p>
+<p>The system allows you to add CSS processing that runs directly in client browsers. For example, you can integrate dynamic stylesheet languages with client-side compilers.</p>
+<p>To register a client-side CSS preprocessor, use the same basic approach as for <a href="#src-68882142_registeringcsspreprocessors-registeringserver-sidecssprocessors">server-side processing</a>. Call the <strong class=" ">CssStylesheetInfoProvider.RegisterCssPreprocessor</strong> method with additional <a class="external-link" href="http://msdn.microsoft.com/en-us/library/d186xcf0%28v=vs.110%29.aspx">callback method</a> parameters:</p>
+<ul class=" "><li class=" "><p>The first extra callback (Action delegate) renders the required scripts on the CSS stylesheet editing page. The client scripts must always define a <strong class=" ">GetCss</strong> method that converts stylesheet code into plain CSS.<br><br></p>
+</li><li class=" "><p>The second callback detects errors in the client-side CSS processing. Use the callback to check the result of the <strong class=" ">GetCss</strong> client script method, and set an error message if necessary. The CSS processing finishes only if this callback returns an empty string.</p>
+</li></ul><p>Even when using a client-side preprocessor, we strongly recommend implementing equivalent functionality on the server. The server-side logic serves as a backup for scenarios where client-side processing is not possible (for example when using the API to update stylesheet code or during <a href="content-staging">content staging</a>).</p>
+<p>The system performs the processing in the following order:</p>
+<ol class=" "><li class=" "><p>Processing via the <strong class=" ">GetCss</strong> client script method</p>
+</li><li class=" "><p>If the result of <strong class=" ">GetCss</strong> is empty, the preprocessor runs the server-side callback</p>
 </li></ol>    <h4 id="src-68882142_RegisteringCSSpreprocessors-Example.1" class="heading "><span>Example</span></h4>
-<p   
->The following example creates a client-side preprocessor that converts the final CSS code of stylesheets to lower case.</p>
-<ol class=" "><li class=" "><p   
->Prepare a JavaScript file that defines the <strong class=" ">GetCss</strong> method. For example, create <strong class=" ">cssclientside.js</strong> in the <strong class=" ">~/CMSScripts/Custom</strong> folder.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example creates a client-side preprocessor that converts the final CSS code of stylesheets to lower case.</p>
+<ol class=" "><li class=" "><p>Prepare a JavaScript file that defines the <strong class=" ">GetCss</strong> method. For example, create <strong class=" ">cssclientside.js</strong> in the <strong class=" ">~/CMSScripts/Custom</strong> folder.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">cssclientside.js</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="cssclientside.js" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Returns processed CSS code as a string, or an error message (starting with 'error|')</code></div>
@@ -357,7 +298,7 @@
 <div class="line"><code class="keyword">function</code><code class="plain"> GetCss(originalCode)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> returnCode;</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">try</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Implement your client-side processing of the CSS code</code></div>
@@ -369,28 +310,27 @@
 <div class="line"><code class="plain">		</code><code class="comments">// Returns an error message in the format recognizable by the 'DetectClientSideErrors' callback method</code></div>
 <div class="line"><code class="plain">		returnCode = </code><code class="string">'error|'</code><code class="plain"> + ex.message;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> returnCode;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Register the CSS preprocessor and define the required callback methods. See   <a   href="#src-68882142_RegisteringCSSpreprocessors-Registeringserver-sideCSSprocessors">Registering server-side CSS processors</a> for information about the basic process.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Register the CSS preprocessor and define the required callback methods. See <a href="#src-68882142_registeringcsspreprocessors-registeringserver-sidecssprocessors">Registering server-side CSS processors</a> for information about the basic process.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using System;</code></div>
 <div class="line"><code class="plain">using System.Web.UI;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">using CMS;</code></div>
 <div class="line"><code class="plain">using CMS.Base;</code></div>
 <div class="line"><code class="plain">using CMS.Base.Web.UI;</code></div>
 <div class="line"><code class="plain">using CMS.DataEngine;</code></div>
 <div class="line"><code class="plain">using CMS.PortalEngine;</code></div>
 <div class="line"><code class="plain">using CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(typeof(CustomClientCSSProcessorModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomClientCSSProcessorModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomClientCSSPreprocessor"</code></div>
@@ -398,22 +338,22 @@
 <div class="line"><code class="plain">		: base(</code><code class="string">"CustomClientCSSPreprocessor"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> override </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		base.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Registers the 'Client-side CSS processor'</code></div>
 <div class="line"><code class="plain">		CssStylesheetInfoProvider.RegisterCssPreprocessor(</code><code class="string">"customClientCss"</code><code class="plain">, </code><code class="string">".css"</code><code class="plain">, </code><code class="string">"Client-side CSS processor"</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">		ServerParseCss, RegisterClientScripts, DetectClientSideErrors);</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Registers JavaScript code and files required for client-side processing</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> RegisterClientScripts()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		Page page = PageContext.CurrentPage;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Links 'cssclientside.js' onto the editing page for stylesheets using the "Client-side CSS processor" language</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// The client script must always define the 'GetCss' method</code></div>
 <div class="line"><code class="plain">		ScriptHelper.RegisterClientScriptInclude(page, typeof(string),</code></div>
@@ -433,12 +373,12 @@
 <div class="line"><code class="plain">			string[] errorParts = getCssOutput.Split(</code><code class="keyword">new</code><code class="plain">[] { </code><code class="string">'|'</code><code class="plain"> });</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">return</code><code class="plain"> errorParts[</code><code class="value">1</code><code class="plain">];</code></div>
 <div class="line"><code class="plain">		}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Returns an empty string if the client-side processing was successful</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// In this case, the system uses the output of the 'GetCss' JavaScript method as the result of the CSS processing</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> String.Empty;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Callback method that defines server-side processing</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Used if the 'GetCss' JavaScript method returns an empty value</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> string ServerParseCss(CssEventArgs parsingArguments)</code></div>
@@ -449,8 +389,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ol><p   
->You can now   <a   href="#src-68882142_RegisteringCSSpreprocessors-AssigningCSSprocessorstostylesheets">assign the preprocessor to a stylesheet</a> and try out the functionality.</p>
+</li></ol><p>You can now <a href="#src-68882142_registeringcsspreprocessors-assigningcssprocessorstostylesheets">assign the preprocessor to a stylesheet</a> and try out the functionality.</p>
         </div>
 
     </article>
@@ -471,5 +410,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Tracking marketing emails on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,58 +150,42 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can use the   <a   href="Email-marketing">email marketing</a> features of Kentico with websites that are presented by a   <a   href="Developing-sites-using-ASP.NET-MVC">separate MVC application</a>. In this scenario, you manage and send marketing emails from the administration interface of the Kentico application. All settings related to email marketing that you configure in Kentico apply (both global settings and the configuration of individual email feeds).</p>
-<p   
->When you have   <a   href="Tracking-marketing-emails">tracking</a> enabled for an email feed (opened emails and clicked links), the system collects data by processing hidden image requests and link redirects. In standard scenarios, the Kentico application handles these tracking requests. For MVC scenarios, you need to register the email tracking functionality into the MVC application. This allows the email tracking to work even when the related Kentico application is not publicly available.</p>
-    <div  class="confbox admonition admonition-note">
+<div class="section-left"></div><p>You can use the <a href="email-marketing">email marketing</a> features of Kentico with websites that are presented by a <a href="developing-sites-using-asp.net-mvc">separate MVC application</a>. In this scenario, you manage and send marketing emails from the administration interface of the Kentico application. All settings related to email marketing that you configure in Kentico apply (both global settings and the configuration of individual email feeds).</p>
+<p>When you have <a href="tracking-marketing-emails">tracking</a> enabled for an email feed (opened emails and clicked links), the system collects data by processing hidden image requests and link redirects. In standard scenarios, the Kentico application handles these tracking requests. For MVC scenarios, you need to register the email tracking functionality into the MVC application. This allows the email tracking to work even when the related Kentico application is not publicly available.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong></p>
-<p   
->When you send out a marketing email, Kentico generates tracking links according to the type of the site containing the given email feed.</p>
-<ul class=" "><li class=" "><p   
->For standard sites, the tracking links target the handlers within the Kentico application itself.</p>
-</li><li class=" "><p   
->For &quot;Content only&quot; sites (i.e. sites created using the <i class=" ">MVC Blank Site</i> template), the base URL of the tracking links uses the site&#39;s <i class=" ">Presentation URL</i>.</p>
-</li></ul><p   
->This means your site in Kentico <i class=" "><strong class=" ">must be marked as content only</strong></i> if you wish to handle marketing email tracking on the side of the MVC website.</p>
+<p><strong class=" ">Important</strong></p>
+<p>When you send out a marketing email, Kentico generates tracking links according to the type of the site containing the given email feed.</p>
+<ul class=" "><li class=" "><p>For standard sites, the tracking links target the handlers within the Kentico application itself.</p>
+</li><li class=" "><p>For "Content only" sites (i.e. sites created using the <i class=" ">MVC Blank Site</i> template), the base URL of the tracking links uses the site's <i class=" ">Presentation URL</i>.</p>
+</li></ul><p>This means your site in Kentico <i class=" "><strong class=" ">must be marked as content only</strong></i> if you wish to handle marketing email tracking on the side of the MVC website.</p>
         </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Tracking-marketing-emails">Tracking marketing emails</a></p>
-</li><li class=" "><p   
->  <a   href="Handling-newsletter-subscriptions-on-MVC-sites">Handling newsletter subscriptions on MVC sites</a></p>
+<ul class=" "><li class=" "><p><a href="tracking-marketing-emails">Tracking marketing emails</a></p>
+</li><li class=" "><p><a href="handling-newsletter-subscriptions-on-mvc-sites">Handling newsletter subscriptions on MVC sites</a></p>
 </li></ul>        </div>
     </div>
-<p   
->Perform the following steps to register email tracking functionality for your MVC application:</p>
-<ol class=" "><li class=" "><p   
->Install the   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Newsletters.Web.Mvc</strong> integration package</a> into your MVC project.</p>
-</li><li class=" "><p   
->Edit the application&#39;s <i class=" ">App_Start\RouteConfig.cs</i> file.</p>
-<ol class=" "><li class=" "><p   
->Add a <i class=" ">using</i> statement for the <strong class=" ">Kentico.Newsletters.Web.Mvc</strong> namespace.</p>
-</li><li class=" "><p   
->Call predefined extension methods to register routes for the handling of opened email and clicked link tracking requests (typically inside the <strong class=" ">RegisterRoutes</strong> method).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Perform the following steps to register email tracking functionality for your MVC application:</p>
+<ol class=" "><li class=" "><p>Install the <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Newsletters.Web.Mvc</strong> integration package</a> into your MVC project.</p>
+</li><li class=" "><p>Edit the application's <i class=" ">App_Start\RouteConfig.cs</i> file.</p>
+<ol class=" "><li class=" "><p>Add a <i class=" ">using</i> statement for the <strong class=" ">Kentico.Newsletters.Web.Mvc</strong> namespace.</p>
+</li><li class=" "><p>Call predefined extension methods to register routes for the handling of opened email and clicked link tracking requests (typically inside the <strong class=" ">RegisterRoutes</strong> method).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Mvc;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Routing;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Web.Mvc;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Newsletters.Web.Mvc;</code></div>
 </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li></ol></li></ol><p   
->When a recipient opens an email or clicks a link in the content, the system automatically sends the tracking requests through the MVC site. The registered routes ensure that the tracking data is processed and logged into the shared Kentico database. From the point of view of the recipient reading the email, everything works the same way as when handling tracking through the Kentico application.</p>
+</li></ol></li></ol><p>When a recipient opens an email or clicks a link in the content, the system automatically sends the tracking requests through the MVC site. The registered routes ensure that the tracking data is processed and logged into the shared Kentico database. From the point of view of the recipient reading the email, everything works the same way as when handling tracking through the Kentico application.</p>
         </div>
 
     </article>
@@ -224,5 +206,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

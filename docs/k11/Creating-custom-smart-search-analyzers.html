@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating custom smart search analyzers - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,100 +150,57 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If the selection of built&#8209;in indexing analyzers is insufficient, you can specify custom&#8209;written or third&#8209;party analyzers for search indexes. Custom analyzers allow you to perform text tokenization according to any requirements. You can use custom analyzers with any type of smart search index.</p>
-<p   
->To use a custom analyzer, you need to create and add the appropriate code files to your web project. Classes defining custom analyzers must:</p>
-<ul class=" "><li class=" "><p   
->inherit from the <strong class=" ">Lucene.Net.Analysis.Analyzer</strong> class</p>
-</li><li class=" "><p   
->implement the <strong class=" ">CMS.Search.ISearchAnalyzer</strong> interface</p>
+<div class="section-left"></div><p>If the selection of built‑in indexing analyzers is insufficient, you can specify custom‑written or third‑party analyzers for search indexes. Custom analyzers allow you to perform text tokenization according to any requirements. You can use custom analyzers with any type of smart search index.</p>
+<p>To use a custom analyzer, you need to create and add the appropriate code files to your web project. Classes defining custom analyzers must:</p>
+<ul class=" "><li class=" "><p>inherit from the <strong class=" ">Lucene.Net.Analysis.Analyzer</strong> class</p>
+</li><li class=" "><p>implement the <strong class=" ">CMS.Search.ISearchAnalyzer</strong> interface</p>
 </li></ul>    <h3 id="src-68882122_Creatingcustomsmartsearchanalyzers-Example" class="heading "><span>Example</span></h3>
-<p   
->The following example demonstrates how to assign a custom analyzer to a smart search index. The sample analyzer divides text into tokens at non-letter characters and is case insensitive.</p>
-    <div  class="confbox panel">
+<p>The following example demonstrates how to assign a custom analyzer to a smart search index. The sample analyzer divides text into tokens at non-letter characters and is case insensitive.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Creating-local-search-indexes">Creating local search indexes</a></p>
+<ul class=" "><li class=" "><p><a href="creating-local-search-indexes">Creating local search indexes</a></p>
 </li></ul>        </div>
     </div>
     <h4 id="src-68882122_Creatingcustomsmartsearchanalyzers-Addingthecustomanalyzerproject" class="heading "><span>Adding the custom analyzer project</span></h4>
-<ol class="conf-macro output-inline "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Add a new <strong class=" ">Class Library</strong> project to the Kentico solution, for example named <i class=" ">CustomSearchAnalyzer</i>.</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Helpers.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Search.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">Lucene.Net.v3.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the <i class=" ">CustomSearchAnalyzer</i> project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Open your Kentico program files directory (by default <i class=" ">C:\Program Files\Kentico\&lt;version&gt;</i>) and expand the <i class=" ">CodeSamples\CustomizationSamples\CustomSearchAnalyzer</i> subfolder.</p>
-</li><li class=" "><p   
->Copy the following files into the <i class=" ">CustomSearchAnalyzer</i> directory in your web project:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CustomSearchAnalyzer.cs</strong></p>
-</li><li class=" "><p   
-><strong class=" ">SpaceTokenizer.cs</strong></p>
-</li></ul></li><li class=" "><p   
->Include the new files into the <i class=" ">CustomSearchAnalyzer</i> project in Visual Studio:</p>
-<ol class="conf-macro output-inline "><li class=" "><p   
->Expand the <i class=" ">CustomSearchAnalyzer</i> project in the Solution Explorer.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
-</li><li class=" "><p   
->Select the new files while holding the <strong class=" ">Ctrl</strong> key.</p>
-</li><li class=" "><p   
->Right-click one of the files and select <strong class=" ">Include in Project</strong>.</p>
-</li></ol></li><li class=" "><p   
->Build the <strong class=" ">CustomSearchAnalyzer</strong> project (Build the entire solution on web application projects).</p>
+<ol class="conf-macro output-inline "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Add a new <strong class=" ">Class Library</strong> project to the Kentico solution, for example named <i class=" ">CustomSearchAnalyzer</i>.</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries:</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Helpers.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Search.dll</strong></p>
+</li><li class=" "><p><strong class=" ">Lucene.Net.v3.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the <i class=" ">CustomSearchAnalyzer</i> project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Open your Kentico program files directory (by default <i class=" ">C:\Program Files\Kentico\&lt;version&gt;</i>) and expand the <i class=" ">CodeSamples\CustomizationSamples\CustomSearchAnalyzer</i> subfolder.</p>
+</li><li class=" "><p>Copy the following files into the <i class=" ">CustomSearchAnalyzer</i> directory in your web project:</p>
+<ul class=" "><li class=" "><p><strong class=" ">CustomSearchAnalyzer.cs</strong></p>
+</li><li class=" "><p><strong class=" ">SpaceTokenizer.cs</strong></p>
+</li></ul></li><li class=" "><p>Include the new files into the <i class=" ">CustomSearchAnalyzer</i> project in Visual Studio:</p>
+<ol class="conf-macro output-inline "><li class=" "><p>Expand the <i class=" ">CustomSearchAnalyzer</i> project in the Solution Explorer.</p>
+</li><li class=" "><p>Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
+</li><li class=" "><p>Select the new files while holding the <strong class=" ">Ctrl</strong> key.</p>
+</li><li class=" "><p>Right-click one of the files and select <strong class=" ">Include in Project</strong>.</p>
+</li></ol></li><li class=" "><p>Build the <strong class=" ">CustomSearchAnalyzer</strong> project (Build the entire solution on web application projects).</p>
 </li></ol>    <h4 id="src-68882122_Creatingcustomsmartsearchanalyzers-Assigningthecustomanalyzertoasearchindex" class="heading "><span>Assigning the custom analyzer to a search index</span></h4>
-<ol class=" "><li class=" "><p   
->Sign in to the Kentico administration interface and open the <strong class=" ">Smart search</strong> application.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Local indexes</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New Index</strong>. Fill in the following properties:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Display name</strong>: Space analyzer page index</p>
-</li><li class=" "><p   
-><strong class=" ">Index type</strong>: Pages</p>
-</li><li class=" "><p   
-><strong class=" ">Analyzer type</strong>: Custom</p>
-</li><li class=" "><p   
-><strong class=" ">Analyzer class - Assembly name</strong>: CustomSearchAnalyzer</p>
-</li><li class=" "><p   
-><strong class=" ">Analyzer class - Class</strong>: CMS.CustomSearchAnalyzer.CustomSearchAnalyzer</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Indexed content</strong> tab and click <strong class=" ">Add allowed content</strong>.</p>
-</li><li class=" "><p   
->Type <i class=" ">/%</i> into the <strong class=" ">Path</strong> field to index all pages and click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Switch over to the <strong class=" ">Cultures</strong> tab and add the cultures used by your website.</p>
-</li><li class=" "><p   
->Go to the <strong class=" ">General</strong> tab and <strong class=" ">Rebuild</strong> the index.</p>
-</li></ol><p   
->You can test the index and its analyzer by switching to the <strong class=" ">Search preview</strong> tab and searching for words from the content of the website&#39;s pages.</p>
+<ol class=" "><li class=" "><p>Sign in to the Kentico administration interface and open the <strong class=" ">Smart search</strong> application.</p>
+</li><li class=" "><p>Open the <strong class=" ">Local indexes</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">New Index</strong>. Fill in the following properties:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Display name</strong>: Space analyzer page index</p>
+</li><li class=" "><p><strong class=" ">Index type</strong>: Pages</p>
+</li><li class=" "><p><strong class=" ">Analyzer type</strong>: Custom</p>
+</li><li class=" "><p><strong class=" ">Analyzer class - Assembly name</strong>: CustomSearchAnalyzer</p>
+</li><li class=" "><p><strong class=" ">Analyzer class - Class</strong>: CMS.CustomSearchAnalyzer.CustomSearchAnalyzer</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Indexed content</strong> tab and click <strong class=" ">Add allowed content</strong>.</p>
+</li><li class=" "><p>Type <i class=" ">/%</i> into the <strong class=" ">Path</strong> field to index all pages and click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch over to the <strong class=" ">Cultures</strong> tab and add the cultures used by your website.</p>
+</li><li class=" "><p>Go to the <strong class=" ">General</strong> tab and <strong class=" ">Rebuild</strong> the index.</p>
+</li></ol><p>You can test the index and its analyzer by switching to the <strong class=" ">Search preview</strong> tab and searching for words from the content of the website's pages.</p>
         </div>
 
     </article>
@@ -266,5 +221,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

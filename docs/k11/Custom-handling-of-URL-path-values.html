@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Custom handling of URL path values - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,66 +148,47 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->To ensure that URLs can be processed correctly, the system checks text values for unsafe characters before they are added to the URL path, and makes any necessary changes. This affects fields such as page aliases, page URL paths, forum names, post subjects etc.</p>
-<p   
->By default, the process includes removal of diacritics and replacement of all forbidden characters according to the settings defined for the given site (as described in   <a   href="URL-format-and-configuration">URL format and configuration</a>). Characters with diacritics are replaced by the appropriate base character, for example <i class=" ">&uuml;</i> is converted to <i class=" ">u</i>.</p>
-<p   
->If you need to change the default behavior in any way, you can register and implement a handler for one or both of the following system events:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">OnBeforeGetSafeUrlPart</strong> - occurs whenever a potentially unsafe text value is added to a part of a URL, e.g. when the page alias field is saved (or filled automatically based on the page&#39;s name). This event can be used to customize the final format of URL paths. For example, you can convert characters from an international character set to an equivalent in Latin characters (ASCII) or specify a unique replacement string for particular forbidden characters.<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">OnBeforeRemoveDiacritics</strong> - occurs whenever the system removes diacritics from text. This is one of the default steps performed when creating safe URLs, but the event is also triggered during many text parsing operations that are not directly related to URLs (for example when indexing text for the   <a   href="Setting-up-search-on-your-website">Smart search</a>).</p>
-</li></ul><p   
->The events are members of the <strong class=" ">URLHelper</strong> and <strong class=" ">TextHelper</strong> classes respectively, which can be found under the <strong class=" ">CMS.Helpers</strong> namespace.</p>
-<ul class=" "><li class=" "><p   
->The handlers for these events have the source text included as a string parameter passed by reference, so any changes that you make in the code are reflected in the result.</p>
-</li><li class=" "><p   
->Both handlers have a <i class=" ">boolean</i> return value that indicates whether the default functionality should also be performed after the handler is executed. For this reason, it is highly recommended to set the return value to <i class=" ">true</i> for all but the most extensive customizations.</p>
-</li></ul>    <div  class="confbox admonition admonition-warning">
+<div class="section-left"></div><p>To ensure that URLs can be processed correctly, the system checks text values for unsafe characters before they are added to the URL path, and makes any necessary changes. This affects fields such as page aliases, page URL paths, forum names, post subjects etc.</p>
+<p>By default, the process includes removal of diacritics and replacement of all forbidden characters according to the settings defined for the given site (as described in <a href="url-format-and-configuration">URL format and configuration</a>). Characters with diacritics are replaced by the appropriate base character, for example <i class=" ">ü</i> is converted to <i class=" ">u</i>.</p>
+<p>If you need to change the default behavior in any way, you can register and implement a handler for one or both of the following system events:</p>
+<ul class=" "><li class=" "><p><strong class=" ">OnBeforeGetSafeUrlPart</strong> - occurs whenever a potentially unsafe text value is added to a part of a URL, e.g. when the page alias field is saved (or filled automatically based on the page's name). This event can be used to customize the final format of URL paths. For example, you can convert characters from an international character set to an equivalent in Latin characters (ASCII) or specify a unique replacement string for particular forbidden characters.<br><br></p>
+</li><li class=" "><p><strong class=" ">OnBeforeRemoveDiacritics</strong> - occurs whenever the system removes diacritics from text. This is one of the default steps performed when creating safe URLs, but the event is also triggered during many text parsing operations that are not directly related to URLs (for example when indexing text for the <a href="setting-up-search-on-your-website">Smart search</a>).</p>
+</li></ul><p>The events are members of the <strong class=" ">URLHelper</strong> and <strong class=" ">TextHelper</strong> classes respectively, which can be found under the <strong class=" ">CMS.Helpers</strong> namespace.</p>
+<ul class=" "><li class=" "><p>The handlers for these events have the source text included as a string parameter passed by reference, so any changes that you make in the code are reflected in the result.</p>
+</li><li class=" "><p>Both handlers have a <i class=" ">boolean</i> return value that indicates whether the default functionality should also be performed after the handler is executed. For this reason, it is highly recommended to set the return value to <i class=" ">true</i> for all but the most extensive customizations.</p>
+</li></ul>    <div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Warning</strong></p>
-<p   
->Only return a <i class=" ">false</i> value if you are sure that your custom handler can take full responsibility for all URL safety or diacritics removal requirements.</p>
-<p   
->Disabling the default system functionality may prevent parts of your website from working correctly, particularly in the case of handlers for the <strong class=" ">OnBeforeGetSafeUrlPart</strong> event.</p>
+<p><strong class=" ">Warning</strong></p>
+<p>Only return a <i class=" ">false</i> value if you are sure that your custom handler can take full responsibility for all URL safety or diacritics removal requirements.</p>
+<p>Disabling the default system functionality may prevent parts of your website from working correctly, particularly in the case of handlers for the <strong class=" ">OnBeforeGetSafeUrlPart</strong> event.</p>
         </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="URL-format-and-configuration">URL format and configuration</a></p>
-</li><li class=" "><p   
->  <a   href="Setting-page-aliases">Setting page aliases</a></p>
-</li><li class=" "><p   
->  <a   href="Handling-global-events">Handling global events</a></p>
+<ul class=" "><li class=" "><p><a href="url-format-and-configuration">URL format and configuration</a></p>
+</li><li class=" "><p><a href="setting-page-aliases">Setting page aliases</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68881931_CustomhandlingofURLpathvalues-Example" class="heading "><span>Example</span></h3>
-<p   
->The following example demonstrates how to define handlers for the forbidden character events:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico web project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign handlers to the required events:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example demonstrates how to define handlers for the forbidden character events:</p>
+<ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio.</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br><br></p>
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign handlers to the required events:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomURLPathModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomURLPathModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomURLPathHandling"</code></div>
@@ -217,47 +196,43 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomURLPathHandling"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the OnBeforeGetSafeURLPart event</code></div>
 <div class="line"><code class="plain">		URLHelper.OnBeforeGetSafeUrlPart += Custom_OnBeforeGetSafeUrlPart;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the OnBeforeRemoveDiacritics event</code></div>
 <div class="line"><code class="plain">		TextHelper.OnBeforeRemoveDiacritics += Custom_OnBeforeRemoveDiacritics;</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Add the definition of the <strong class=" ">Custom_OnBeforeGetSafeUrlPart</strong> handler into the module class:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Add the definition of the <strong class=" ">Custom_OnBeforeGetSafeUrlPart</strong> handler into the module class:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">static</code><code class="plain"> </code><code class="keyword">bool</code><code class="plain"> Custom_OnBeforeGetSafeUrlPart(</code><code class="keyword">ref</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> url, </code><code class="keyword">string</code><code class="plain"> siteName, EventArgs e)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Replaces all &amp; characters with the word "and"</code></div>
 <div class="line"><code class="plain">	url = url.Replace(</code><code class="string">"&amp;"</code><code class="plain">, </code><code class="string">"and"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Returns true to indicate that the default URL replacements should also be performed - removing forbidden characters and diacritics (both default and custom)</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain"> }</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->This code replaces all ampersand (&amp;) characters with the word <i class=" ">and</i>. For example, a page named <i class=" ">Products &amp; Services</i> has its default page alias generated as <i class=" ">Products-and-Services</i>, which is then used in the page&#39;s URL. This example is only meant as a simple demonstration. In real&#8209;world scenarios, the handler can be much more complex, for example when mapping the character set of an international language to appropriate ASCII characters or words.</p>
-<p   
->The <strong class=" ">siteName</strong> parameter of the handler contains the code name of the site under which the event occurred. This can be useful if you need to access the forbidden character settings of the given site in your custom code.</p>
+<p>This code replaces all ampersand (&amp;) characters with the word <i class=" ">and</i>. For example, a page named <i class=" ">Products &amp; Services</i> has its default page alias generated as <i class=" ">Products-and-Services</i>, which is then used in the page's URL. This example is only meant as a simple demonstration. In real‑world scenarios, the handler can be much more complex, for example when mapping the character set of an international language to appropriate ASCII characters or words.</p>
+<p>The <strong class=" ">siteName</strong> parameter of the handler contains the code name of the site under which the event occurred. This can be useful if you need to access the forbidden character settings of the given site in your custom code.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Add the <strong class=" ">Custom_OnBeforeRemoveDiacritics</strong> handler:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Add the <strong class=" ">Custom_OnBeforeRemoveDiacritics</strong> handler:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">static</code><code class="plain"> </code><code class="keyword">bool</code><code class="plain"> Custom_OnBeforeRemoveDiacritics(</code><code class="keyword">ref</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> text, EventArgs e)</code></div>
 <div class="line"><code class="plain">{           </code></div>
@@ -269,28 +244,24 @@
 <div class="line"><code class="plain">	text = text.Replace( </code><code class="string">"Ö"</code><code class="plain">, </code><code class="string">"Oe"</code><code class="plain"> );</code></div>
 <div class="line"><code class="plain">	text = text.Replace( </code><code class="string">"Ü"</code><code class="plain">, </code><code class="string">"Ue"</code><code class="plain"> );</code></div>
 <div class="line"><code class="plain">	text = text.Replace( </code><code class="string">"ß"</code><code class="plain">, </code><code class="string">"ss"</code><code class="plain"> );</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Returns true to indicate that the default diacritics removal should also be performed</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;                </code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->This ensures that the system uses custom replacements for German special characters rather than simply stripping the diacritics and leaving the base character.</p>
+<p>This ensures that the system uses custom replacements for German special characters rather than simply stripping the diacritics and leaving the base character.</p>
         </div>
     </div>
-</li><li class=" "><p   
-><strong class=" ">Save</strong> the file (Build your project if it was installed as a web application).</p>
-</li></ol><p   
->The system applies the changes when creating new URLs and when removing diacritics from text.</p>
-    <div  class="confbox admonition admonition-note">
+</li><li class=" "><p><strong class=" ">Save</strong> the file (Build your project if it was installed as a web application).</p>
+</li></ol><p>The system applies the changes when creating new URLs and when removing diacritics from text.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: The customization does not automatically change the aliases and URL paths of existing pages until the current value is changed or saved.</p>
+<p><strong class=" ">Note</strong>: The customization does not automatically change the aliases and URL paths of existing pages until the current value is changed or saved.</p>
         </div>
     </div>
         </div>
@@ -313,5 +284,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Displaying product listings on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,113 +149,76 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When building an MVC e-commerce site, you may want to display product catalog and   <a   href="Displaying-product-details-on-MVC-sites">product detail pages</a>. A product listing serves as a product catalog, in which you can display all   <a   href="Products">products</a>, filtered products or products from specific sections.</p>
-<p   
->This page describes how to display products from the <strong class=" ">Products</strong> application in an MVC application connected to Kentico. Regardless of products&#39; position in the product tree, you can display them on your MVC site based on your needs. When creating products, use a   <a   href="Configuring-product-page-types">product page type</a> labeled as   <a   href="Creating-content-only-page-types">content only</a>.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"><p>When building an MVC e-commerce site, you may want to display product catalog and <a href="displaying-product-details-on-mvc-sites">product detail pages</a>. A product listing serves as a product catalog, in which you can display all <a href="products">products</a>, filtered products or products from specific sections.</p><p>This page describes how to display products from the <strong class=" ">Products</strong> application in an MVC application connected to Kentico. Regardless of products' position in the product tree, you can display them on your MVC site based on your needs. When creating products, use a <a href="configuring-product-page-types">product page type</a> labeled as <a href="creating-content-only-page-types">content only</a>.</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> currently supports only products consisting of a   <a   href="Working-with-pages">page</a> and an SKU object (the default product setting). The   <a   href="Managing-stand-alone-SKUs">stand-alone SKU product mode</a> is not supported in MVC.</p>
+<p>The <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> currently supports only products consisting of a <a href="working-with-pages">page</a> and an SKU object (the default product setting). The <a href="managing-stand-alone-skus">stand-alone SKU product mode</a> is not supported in MVC.</p>
         </div>
-    </div>
-<p   
->To build product detail pages, you need to take care of the following steps:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68880556_DisplayingproductlistingsonMVCsites-SettingURLsoftheproductlisting">Setting URLs of the product listing</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880556_DisplayingproductlistingsonMVCsites-Displayingproductsinthelisting">Displaying products in the listing</a></p>
-</li></ul>    <div  class="confbox panel">
+    </div><p>To build product detail pages, you need to take care of the following steps:</p><ul class=" "><li class=" "><p><a href="#src-68880556_displayingproductlistingsonmvcsites-settingurlsoftheproductlisting">Setting URLs of the product listing</a></p>
+</li><li class=" "><p><a href="#src-68880556_displayingproductlistingsonmvcsites-displayingproductsinthelisting">Displaying products in the listing</a></p>
+</li></ul></div>
+
+    
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880556_DisplayingproductlistingsonMVCsites-SettingURLsoftheproductlisting">Setting URLs of the product listing</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880556_DisplayingproductlistingsonMVCsites-Displayingproductsinthelisting">Displaying products in the listing</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880556_displayingproductlistingsonmvcsites-settingurlsoftheproductlisting">Setting URLs of the product listing</a></p>
+</li><li class=" "><p><a href="#src-68880556_displayingproductlistingsonmvcsites-displayingproductsinthelisting">Displaying products in the listing</a></p>
+</li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68880556_DisplayingproductlistingsonMVCsites-SettingURLsoftheproductlisting" class="heading "><span>Setting URLs of the product listing</span></h3>
-<p   
->To provide SEO-friendly identifiers in the URL, you can locate your product listing to an address like <i class=" ">&lt;your domain&gt;/Store/&lt;product page type&gt;</i>.</p>
-<p   
->Add a new route to your <strong class=" ">RouteConfig</strong> class in the <strong class=" ">App_Start</strong> folder:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
-The example assumes that the system displays only products based on one product page type (named <i class=" ">LearningProductType</i>) with a controller of the same name and uses its <i class=" ">Index</i> action to actually display the products (as described below in   <a   href="#src-68880556_DisplayingproductlistingsonMVCsites-Displayingproductinformation">Displaying products in the listing</a>).</p>
+<p>To provide SEO-friendly identifiers in the URL, you can locate your product listing to an address like <i class=" ">&lt;your domain&gt;/Store/&lt;product page type&gt;</i>.</p>
+<p>Add a new route to your <strong class=" ">RouteConfig</strong> class in the <strong class=" ">App_Start</strong> folder:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
+The example assumes that the system displays only products based on one product page type (named <i class=" ">LearningProductType</i>) with a controller of the same name and uses its <i class=" ">Index</i> action to actually display the products (as described below in <a href="#src-68880556_displayingproductlistingsonmvcsites-displayingproductinformation">Displaying products in the listing</a>).</p>
     <h3 id="src-68880556_DisplayingproductlistingsonMVCsites-Displayingproductsinthelisting" class="heading "><span>Displaying products in the listing</span></h3>
-<p   
->Display all relevant product information to visitors to enable them get to a   <a   href="Displaying-product-details-on-MVC-sites">detail page</a> of their desired product. Use the <strong class=" ">Kentico.Ecommerce</strong> integration package to help you with displaying of product details.</p>
-<p   
-></p>
-    <div  class="confbox admonition admonition-tip">
+<p>Display all relevant product information to visitors to enable them get to a <a href="displaying-product-details-on-mvc-sites">detail page</a> of their desired product. Use the <strong class=" ">Kentico.Ecommerce</strong> integration package to help you with displaying of product details.</p>
+<p></p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a  class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> project. You can also run the Learning Kit website after connecting the project to a Kentico database.</p>
+<p><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> project. You can also run the Learning Kit website after connecting the project to a Kentico database.</p>
         </div>
     </div>
-<p   
-></p>
-<ol class=" "><li class=" "><p   
->  <a   href="Generating-classes-for-Kentico-objects">Generate code files of the product page types</a> you intend to display.</p>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">Page types </strong>application, edit the specific product page type.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Code</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save code</strong>.</p>
-</li></ol></li><li class=" "><p   
->Open your MVC project in Visual Studio.</p>
-</li><li class=" "><p   
->Include the generated code files to your MVC project.</p>
-</li><li class=" "><p   
->Add a view model for products.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p></p>
+<ol class=" "><li class=" "><p><a href="generating-classes-for-kentico-objects">Generate code files of the product page types</a> you intend to display.</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Page types </strong>application, edit the specific product page type.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Code</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">Save code</strong>.</p>
+</li></ol></li><li class=" "><p>Open your MVC project in Visual Studio.</p>
+</li><li class=" "><p>Include the generated code files to your MVC project.</p>
+</li><li class=" "><p>Add a view model for products.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Add a new controller for each product page type you intend to display. The controller&#39;s action retrieves products of the specific product page type and displays them. The following example uses the <strong class=" ">LearningProductType</strong> as an example.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add a new controller for each product page type you intend to display. The controller's action retrieves products of the specific product page type and displays them. The following example uses the <strong class=" ">LearningProductType</strong> as an example.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->We recommend using a   <a   href="Initializing-Kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">ShoppingService</i> and <i class=" ">PricingService</i>, create a shared instance (singleton) for all requests.</p>
+<p>We recommend using a <a href="initializing-kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">ShoppingService</i> and <i class=" ">PricingService</i>, create a shared instance (singleton) for all requests.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Add a view that sets the appearance of the product listing.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add a view that sets the appearance of the product listing.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Changing image size</strong></p>
-<p   
->To change the size of products&#39; images, use the <strong class=" ">ImageUrl </strong>HTML helper method from the   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Content.Web.Mvc</strong> integration package</a>. The system then automatically resizes the image based on the entered size while keeping the image&#39;s aspect ratio.</p>
-<p   
->Parameters:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">productImagePath</i> &ndash; a string representing a path to the image that you want to display</p>
-</li><li class=" "><p   
-><i class=" ">SizeConstrant</i> &ndash; a <i class=" ">SizeConstrant</i> object consisting of:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">Width</i> &ndash; you can enter the required width in pixels</p>
-</li><li class=" "><p   
-><i class=" ">Height</i> &ndash; you can enter the required height in pixels<br/>&mdash;OR&mdash;</p>
-</li><li class=" "><p   
-><i class=" ">Size</i> &ndash; you can enter both width and height in pixels &ndash; if used, this does not keep the aspect ratio<br/>&mdash;OR&mdash;</p>
-</li><li class=" "><p   
-><i class=" ">MaxWidthOrHeight</i> &ndash; larger images are scaled down, smaller images are not scaled up</p>
-</li></ul></li></ul><p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
-For example:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><strong class=" ">Changing image size</strong></p>
+<p>To change the size of products' images, use the <strong class=" ">ImageUrl </strong>HTML helper method from the <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Content.Web.Mvc</strong> integration package</a>. The system then automatically resizes the image based on the entered size while keeping the image's aspect ratio.</p>
+<p>Parameters:</p>
+<ul class=" "><li class=" "><p><i class=" ">productImagePath</i> – a string representing a path to the image that you want to display</p>
+</li><li class=" "><p><i class=" ">SizeConstrant</i> – a <i class=" ">SizeConstrant</i> object consisting of:</p>
+<ul class=" "><li class=" "><p><i class=" ">Width</i> – you can enter the required width in pixels</p>
+</li><li class=" "><p><i class=" ">Height</i> – you can enter the required height in pixels<br>—OR—</p>
+</li><li class=" "><p><i class=" ">Size</i> – you can enter both width and height in pixels – if used, this does not keep the aspect ratio<br>—OR—</p>
+</li><li class=" "><p><i class=" ">MaxWidthOrHeight</i> – larger images are scaled down, smaller images are not scaled up</p>
+</li></ul></li></ul><p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
+For example:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
         </div>
     </div>
-</li></ol><p   
->Visitors can now browse through products in the product listing and get to product detail pages by clicking on some product.</p>
+</li></ol><p>Visitors can now browse through products in the product listing and get to product detail pages by clicking on some product.</p>
         </div>
 
     </article>
@@ -278,5 +239,6 @@ For example:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/con
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

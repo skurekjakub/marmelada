@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Providing product filters on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,168 +150,111 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When you create a   <a   href="Displaying-product-listings-on-MVC-sites">product listing</a> in your MVC application to display a list of offered   <a   href="Products">products</a>, you may want to filter products based on its properties. For example, if you sell notebooks, you may filter them based on their   <a   href="Managing-brands-and-manufacturers">manufacturers</a>, screen resolutions, mobile internet modules and many other attributes.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"><p>When you create a <a href="displaying-product-listings-on-mvc-sites">product listing</a> in your MVC application to display a list of offered <a href="products">products</a>, you may want to filter products based on its properties. For example, if you sell notebooks, you may filter them based on their <a href="managing-brands-and-manufacturers">manufacturers</a>, screen resolutions, mobile internet modules and many other attributes.</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> currently supports only products consisting of a   <a   href="Working-with-pages">page</a> and an SKU object (the default product setting). The   <a   href="Managing-stand-alone-SKUs">stand-alone SKU product mode</a> is not supported in MVC.</p>
+<p>The <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> currently supports only products consisting of a <a href="working-with-pages">page</a> and an SKU object (the default product setting). The <a href="managing-stand-alone-skus">stand-alone SKU product mode</a> is not supported in MVC.</p>
         </div>
-    </div>
-<p   
->You can filter different attributes of products. Different processes follows when filtering:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68880557_ProvidingproductfiltersonMVCsites-Filteringbasedonpageproperties">Based on page properties</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880557_ProvidingproductfiltersonMVCsites-FilteringbasedonSKUpropertiesofaprimitivetypeorstring">Based on SKU properties of a primitive type or string</a> (typically, Boolean, byte, integer or string variables)</p>
-</li><li class=" "><p   
->  <a   href="#src-68880557_ProvidingproductfiltersonMVCsites-FilteringbasedonSKUpropertiesfromanotherdatabasetable">Based on SKU properties from another database table</a> (typically,   <a   href="Product-statuses">public statuses</a> or manufacturers)</p>
-</li></ul><p   
-></p>
-    <div  class="confbox admonition admonition-tip">
+    </div><p>You can filter different attributes of products. Different processes follows when filtering:</p><ul class=" "><li class=" "><p><a href="#src-68880557_providingproductfiltersonmvcsites-filteringbasedonpageproperties">Based on page properties</a></p>
+</li><li class=" "><p><a href="#src-68880557_providingproductfiltersonmvcsites-filteringbasedonskupropertiesofaprimitivetypeorstring">Based on SKU properties of a primitive type or string</a> (typically, Boolean, byte, integer or string variables)</p>
+</li><li class=" "><p><a href="#src-68880557_providingproductfiltersonmvcsites-filteringbasedonskupropertiesfromanotherdatabasetable">Based on SKU properties from another database table</a> (typically, <a href="product-statuses">public statuses</a> or manufacturers)</p>
+</li></ul><p></p><div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a  class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> project. You can also run the Learning Kit website after connecting the project to a Kentico database.</p>
+<p><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> project. You can also run the Learning Kit website after connecting the project to a Kentico database.</p>
         </div>
-    </div>
-<p   
-></p>
-    <h3 id="src-68880557_ProvidingproductfiltersonMVCsites-Filteringbasedonpageproperties" class="heading "><span>Filtering based on page properties</span></h3>
-<p   
->Page properties are available in   <a   href="Page-database-structure">its <i class=" ">TreeNode</i> object and its coupled data</a>.</p>
-<p   
->To filter products based on page properties:</p>
-<ol class=" "><li class=" "><p   
->Open your MVC application in Visual Studio.</p>
-</li><li class=" "><p   
->Modify a controller that processes the product listing with a filter:</p>
-<ol class=" "><li class=" "><p   
->Initialize the <strong class=" ">ShoppingService</strong> and <strong class=" ">Pricing</strong><strong class=" ">Service</strong> from the   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> if they are not already.</p>
-    <div  class="confbox admonition admonition-tip">
+    </div><p></p><h3 id="src-68880557_ProvidingproductfiltersonMVCsites-Filteringbasedonpageproperties" class="heading "><span>Filtering based on page properties</span></h3><p>Page properties are available in <a href="page-database-structure">its <i class=" ">TreeNode</i> object and its coupled data</a>.</p><p>To filter products based on page properties:</p><ol class=" "><li class=" "><p>Open your MVC application in Visual Studio.</p>
+</li><li class=" "><p>Modify a controller that processes the product listing with a filter:</p>
+<ol class=" "><li class=" "><p>Initialize the <strong class=" ">ShoppingService</strong> and <strong class=" ">Pricing</strong><strong class=" ">Service</strong> from the <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> if they are not already.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->We recommend using a   <a   href="Initializing-Kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">ShoppingService</i> and <i class=" ">PricingService</i>, create a separate instance for each request.</p>
+<p>We recommend using a <a href="initializing-kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">ShoppingService</i> and <i class=" ">PricingService</i>, create a separate instance for each request.</p>
         </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->Add a POST controller&#39;s action that processes the filter information. For example, the following code loads products based on a boolean check box (the <i class=" ">LPTWithFeature </i>represents a page type&#39;s field):<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add a POST controller's action that processes the filter information. For example, the following code loads products based on a boolean check box (the <i class=" ">LPTWithFeature </i>represents a page type's field):<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Create a where condition that limits the set of products. For example, for a check box (the <i class=" ">GetWithFeatureWhereCondition </i>method from the previous example):<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Create a where condition that limits the set of products. For example, for a check box (the <i class=" ">GetWithFeatureWhereCondition </i>method from the previous example):<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Create a method that loads products based on the where condition.</p>
-</li></ol></li><li class=" "><p   
->Create a view and models based on your filter.</p>
-</li></ol><p   
->The filter now loads products that fulfill the condition specified by the visitor.</p>
-    <div  class="confbox panel">
+</li><li class=" "><p>Create a method that loads products based on the where condition.</p>
+</li></ol></li><li class=" "><p>Create a view and models based on your filter.</p>
+</li></ol><p>The filter now loads products that fulfill the condition specified by the visitor.</p></div>
+    
+
+
+    
+
+    
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880557_ProvidingproductfiltersonMVCsites-Filteringbasedonpageproperties">Filtering based on page properties</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880557_ProvidingproductfiltersonMVCsites-FilteringbasedonSKUpropertiesofaprimitivetypeorstring">Filtering based on SKU properties of a primitive type or string</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880557_ProvidingproductfiltersonMVCsites-FilteringbasedonSKUpropertiesfromanotherdatabasetable">Filtering based on SKU properties from another database table</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880557_providingproductfiltersonmvcsites-filteringbasedonpageproperties">Filtering based on page properties</a></p>
+</li><li class=" "><p><a href="#src-68880557_providingproductfiltersonmvcsites-filteringbasedonskupropertiesofaprimitivetypeorstring">Filtering based on SKU properties of a primitive type or string</a></p>
+</li><li class=" "><p><a href="#src-68880557_providingproductfiltersonmvcsites-filteringbasedonskupropertiesfromanotherdatabasetable">Filtering based on SKU properties from another database table</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Displaying-product-listings-on-MVC-sites">Displaying product listings on MVC sites</a></p>
-</li><li class=" "><p   
->  <a   href="Developing-on-line-stores-in-MVC">Developing on-line stores in MVC</a></p>
-</li><li class=" "><p   
->  <a   href="Developing-MVC-applications">Developing MVC applications</a></p>
-</li><li class=" "><p   
->  <a   href="Installing-Kentico-integration-packages">Installing Kentico integration packages</a></p>
-</li><li class=" "><p   
->  <a   href="Products">Products</a></p>
+<ul class=" "><li class=" "><p><a href="displaying-product-listings-on-mvc-sites">Displaying product listings on MVC sites</a></p>
+</li><li class=" "><p><a href="developing-on-line-stores-in-mvc">Developing on-line stores in MVC</a></p>
+</li><li class=" "><p><a href="developing-mvc-applications">Developing MVC applications</a></p>
+</li><li class=" "><p><a href="installing-kentico-integration-packages">Installing Kentico integration packages</a></p>
+</li><li class=" "><p><a href="products">Products</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68880557_ProvidingproductfiltersonMVCsites-FilteringbasedonSKUpropertiesofaprimitivetypeorstring" class="heading "><span>Filtering based on SKU properties of a primitive type or string</span></h3>
-<p   
->SKU properties are available in the <i class=" ">COM_SKU</i> database table. In this subsection, you can learn about filtering based on SKU data that carry the full meaning in the database table. For properties that are only foreign keys from a different table, see   <a   href="#src-68880557_ProvidingproductfiltersonMVCsites-FilteringbasedonSKUpropertiesfromanotherdatabasetable">Filtering based on SKU properties from another database table</a>.</p>
-<p   
->To filter products based on the specified SKU properties:</p>
-<ol class=" "><li class=" "><p   
->Open your MVC application in Visual Studio.</p>
-</li><li class=" "><p   
->Modify a controller that processes the product listing with a filter:</p>
-<ol class=" "><li class=" "><p   
->Initialize the <strong class=" ">ShoppingService</strong> and <strong class=" ">Pricing</strong><strong class=" ">Service </strong>from the   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> if they are not already.</p>
-    <div  class="confbox admonition admonition-tip">
+<p>SKU properties are available in the <i class=" ">COM_SKU</i> database table. In this subsection, you can learn about filtering based on SKU data that carry the full meaning in the database table. For properties that are only foreign keys from a different table, see <a href="#src-68880557_providingproductfiltersonmvcsites-filteringbasedonskupropertiesfromanotherdatabasetable">Filtering based on SKU properties from another database table</a>.</p>
+<p>To filter products based on the specified SKU properties:</p>
+<ol class=" "><li class=" "><p>Open your MVC application in Visual Studio.</p>
+</li><li class=" "><p>Modify a controller that processes the product listing with a filter:</p>
+<ol class=" "><li class=" "><p>Initialize the <strong class=" ">ShoppingService</strong> and <strong class=" ">Pricing</strong><strong class=" ">Service </strong>from the <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> if they are not already.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->We recommend using a   <a   href="Initializing-Kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">ShoppingService</i> and <i class=" ">PricingService</i>, create a shared instance (singleton) for all requests.</p>
+<p>We recommend using a <a href="initializing-kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">ShoppingService</i> and <i class=" ">PricingService</i>, create a shared instance (singleton) for all requests.</p>
         </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->Add a POST controller&#39;s action that processes the filter information. For example, the following code loads products based on a price range from&ndash;to (the <i class=" ">SKUPrice</i> column from the product&#39;s SKU database table):<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add a POST controller's action that processes the filter information. For example, the following code loads products based on a price range from–to (the <i class=" ">SKUPrice</i> column from the product's SKU database table):<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Create a where condition that limits the set of products. For example, for two text boxes for a from&ndash;to range (the <i class=" ">GetPriceWhereCondition</i> method from the previous example):<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Create a where condition that limits the set of products. For example, for two text boxes for a from–to range (the <i class=" ">GetPriceWhereCondition</i> method from the previous example):<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Create a method that loads products based on the where condition.</p>
-</li></ol></li><li class=" "><p   
->Create a view and models based on your filter.</p>
-</li></ol><p   
->The filter now loads products that fulfill the condition specified by the visitor.</p>
+</li><li class=" "><p>Create a method that loads products based on the where condition.</p>
+</li></ol></li><li class=" "><p>Create a view and models based on your filter.</p>
+</li></ol><p>The filter now loads products that fulfill the condition specified by the visitor.</p>
     <h3 id="src-68880557_ProvidingproductfiltersonMVCsites-FilteringbasedonSKUpropertiesfromanotherdatabasetable" class="heading "><span>Filtering based on SKU properties from another database table</span></h3>
-<p   
->SKU properties are available in the <i class=" ">COM_SKU</i> database table. In this subsection, you can learn about filtering based on linked SKU data from another database table. For properties that carry the full meaning in the <i class=" ">COM_SKU</i> table, see   <a   href="#src-68880557_ProvidingproductfiltersonMVCsites-FilteringbasedonSKUpropertiesofaprimitivetypeorstring">Filtering based on SKU properties of a primitive type or string</a>.</p>
-<p   
->To filter products based on the specified linked properties:</p>
-<ol class=" "><li class=" "><p   
->Open your MVC application in Visual Studio.</p>
-</li><li class=" "><p   
->Modify a controller that processes the product listing with a filter:</p>
-<ol class=" "><li class=" "><p   
->Initialize the <strong class=" ">ShoppingService</strong> and <strong class=" ">Pricing</strong><strong class=" ">Service </strong>from the   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> if they are not already.</p>
-    <div  class="confbox admonition admonition-tip">
+<p>SKU properties are available in the <i class=" ">COM_SKU</i> database table. In this subsection, you can learn about filtering based on linked SKU data from another database table. For properties that carry the full meaning in the <i class=" ">COM_SKU</i> table, see <a href="#src-68880557_providingproductfiltersonmvcsites-filteringbasedonskupropertiesofaprimitivetypeorstring">Filtering based on SKU properties of a primitive type or string</a>.</p>
+<p>To filter products based on the specified linked properties:</p>
+<ol class=" "><li class=" "><p>Open your MVC application in Visual Studio.</p>
+</li><li class=" "><p>Modify a controller that processes the product listing with a filter:</p>
+<ol class=" "><li class=" "><p>Initialize the <strong class=" ">ShoppingService</strong> and <strong class=" ">Pricing</strong><strong class=" ">Service </strong>from the <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> if they are not already.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->We recommend using a   <a   href="Initializing-Kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">ShoppingService</i> and <i class=" ">PricingService</i>, create a shared instance (singleton) for all requests.</p>
+<p>We recommend using a <a href="initializing-kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">ShoppingService</i> and <i class=" ">PricingService</i>, create a shared instance (singleton) for all requests.</p>
         </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->In the GET controller&#39;s action that displays the listing with the filter, you need to get all objects to display the filter. For example, the following code gets all manufacturers&#39; names and loads all products of the product page type:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>In the GET controller's action that displays the listing with the filter, you need to get all objects to display the filter. For example, the following code gets all manufacturers' names and loads all products of the product page type:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Add a POST controller&#39;s action that processes the filter information. For example, the following code loads products based on selected manufacturers&#39; display names):<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add a POST controller's action that processes the filter information. For example, the following code loads products based on selected manufacturers' display names):<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Create a method that loads the foreign objects. For example, load the objects with an   <a   href="Loading-data-using-custom-queries">object query</a>.</p>
-</li><li class=" "><p   
->Create a where condition that limits the set of products. For example, for a check box (the <i class=" ">GetManufacturersWhereCondition</i> method from the previous example):<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Create a method that loads the foreign objects. For example, load the objects with an <a href="loading-data-using-custom-queries">object query</a>.</p>
+</li><li class=" "><p>Create a where condition that limits the set of products. For example, for a check box (the <i class=" ">GetManufacturersWhereCondition</i> method from the previous example):<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Create a method that loads products based on the where condition.</p>
-</li></ol></li><li class=" "><p   
->Create a view and models based on your filter.</p>
-</li></ol><p   
->The filter now loads products that fulfill the condition specified by the visitor.</p>
+</li><li class=" "><p>Create a method that loads products based on the where condition.</p>
+</li></ol></li><li class=" "><p>Create a view and models based on your filter.</p>
+</li></ol><p>The filter now loads products that fulfill the condition specified by the visitor.</p>
         </div>
 
     </article>
@@ -334,5 +275,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

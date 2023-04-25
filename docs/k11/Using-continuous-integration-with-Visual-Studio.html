@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Using continuous integration with Visual Studio - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,140 +149,88 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This page contains best practices and tips for developing projects in Visual Studio in combination with a <i class=" ">Team Foundation Version Control</i> or <i class=" ">Git</i> source control repository and the Kentico   <a   href="Setting-up-continuous-integration">continuous integration</a> solution. Many of the recommendations also apply generally when using continuous integration with any type of source control system.</p>
-<p   
->For detailed instructions and additional information, please refer to the following resources:</p>
-<ul class=" "><li class=" "><p   
-><a  class="external-link" href="https://www.visualstudio.com/en-us/docs/tfvc/overview">Use Team Foundation Version Control</a></p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://msdn.microsoft.com/en-us/library/hh850437(v=vs.120).aspx">Use Visual Studio with Git</a></p>
-</li></ul>    <h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Settingupworkspaces" class="heading "><span>Setting up workspaces</span></h3>
-<p   
->When using a <i class=" ">Team Foundation Version Control</i> repository, developers need to set up their Kentico project and <i class=" ">CIRepository</i> folder within a <strong class=" ">Local</strong> workspace. Server workspaces are not supported.</p>
-<p   
->See the <a  class="external-link" href="https://www.visualstudio.com/en-us/docs/tfvc/decide-between-using-local-server-workspace">Decide between using a local or a server workspace</a> article for more information about the workspace location types.</p>
-    <h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Creatinganddeletingobjects" class="heading "><span>Creating and deleting objects</span></h3>
-<p   
->When you add a new object or delete an existing one in Kentico, the system creates or removes the corresponding XML files. You may need to perform additional actions to correctly track such changes, depending on the type of your source control repository:</p>
-<ul class=" "><li class=" "><p  class="auto-cursor-target" 
-><strong class=" ">Team Foundation Version Control</strong> - by default, changes that create new files or delete existing ones appear in the list of <i class=" ">Excluded changes</i> in the <i class=" ">Visual Studio Team Explorer</i>. You need to view the detected <i class=" ">Add</i> or <i class=" ">Delete</i> operations and <i class=" ">Promote</i> the changes before you can check them in to the source control.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"><p>This page contains best practices and tips for developing projects in Visual Studio in combination with a <i class=" ">Team Foundation Version Control</i> or <i class=" ">Git</i> source control repository and the Kentico <a href="setting-up-continuous-integration">continuous integration</a> solution. Many of the recommendations also apply generally when using continuous integration with any type of source control system.</p><p>For detailed instructions and additional information, please refer to the following resources:</p><ul class=" "><li class=" "><p><a class="external-link" href="https://www.visualstudio.com/en-us/docs/tfvc/overview">Use Team Foundation Version Control</a></p>
+</li><li class=" "><p><a class="external-link" href="https://msdn.microsoft.com/en-us/library/hh850437(v=vs.120).aspx">Use Visual Studio with Git</a></p>
+</li></ul><h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Settingupworkspaces" class="heading "><span>Setting up workspaces</span></h3><p>When using a <i class=" ">Team Foundation Version Control</i> repository, developers need to set up their Kentico project and <i class=" ">CIRepository</i> folder within a <strong class=" ">Local</strong> workspace. Server workspaces are not supported.</p><p>See the <a class="external-link" href="https://www.visualstudio.com/en-us/docs/tfvc/decide-between-using-local-server-workspace">Decide between using a local or a server workspace</a> article for more information about the workspace location types.</p><h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Creatinganddeletingobjects" class="heading "><span>Creating and deleting objects</span></h3><p>When you add a new object or delete an existing one in Kentico, the system creates or removes the corresponding XML files. You may need to perform additional actions to correctly track such changes, depending on the type of your source control repository:</p><ul class=" "><li class=" "><p class="auto-cursor-target"><strong class=" ">Team Foundation Version Control</strong> - by default, changes that create new files or delete existing ones appear in the list of <i class=" ">Excluded changes</i> in the <i class=" ">Visual Studio Team Explorer</i>. You need to view the detected <i class=" ">Add</i> or <i class=" ">Delete</i> operations and <i class=" ">Promote</i> the changes before you can check them in to the source control.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Info</strong></p>
-<p   
-><i class=" ">Team Foundation Version Control</i> by default excludes the <i class=" ">*.class</i> and <i class=" ">*.user</i> file extensions. These extensions appear as part of certain directory names in the <i class=" ">CIRepository </i>  <a   href="Continuous-integration-repository-structure">folder structure</a>, for example, <i class=" ">cms.user</i> or <i class=" ">cms.class.</i> As a result, files contained in these directories will not show under <i class=" ">Pending</i> nor <i class=" ">Detected Changes</i> in the <i class=" ">Visual Studio Team Explorer</i>.</p>
-<p   
->To fix this issue, you need to <a  class="external-link" href="https://www.visualstudio.com/en-us/docs/tfvc/add-files-server#customize-which-files-are-ignored-by-version-control">add a .tfignore</a> file with the <strong class=" ">    <span style="color: #000000;">
+<p><strong class=" ">Info</strong></p>
+<p><i class=" ">Team Foundation Version Control</i> by default excludes the <i class=" ">*.class</i> and <i class=" ">*.user</i> file extensions. These extensions appear as part of certain directory names in the <i class=" ">CIRepository </i><a href="continuous-integration-repository-structure">folder structure</a>, for example, <i class=" ">cms.user</i> or <i class=" ">cms.class.</i> As a result, files contained in these directories will not show under <i class=" ">Pending</i> nor <i class=" ">Detected Changes</i> in the <i class=" ">Visual Studio Team Explorer</i>.</p>
+<p>To fix this issue, you need to <a class="external-link" href="https://www.visualstudio.com/en-us/docs/tfvc/add-files-server#customize-which-files-are-ignored-by-version-control">add a .tfignore</a> file with the <strong class=" ">    <span style="color: #000000;">
 !*.*    </span>
 </strong> rule to the root of the <i class=" ">CIRepository</i> folder, which tells the version control system not to ignore any changes made under the specified location.</p>
         </div>
     </div>
-</li><li class=" "><p   
-><strong class=" ">Git</strong> - when viewing <i class=" ">Changes,</i> files representing new objects appear in the <i class=" ">Untracked Files</i> section (delete operations are tracked automatically). You need to <i class=" ">Add</i> the files before you can <i class=" ">Commit</i> and <i class=" ">Push</i> them to a shared repository.</p>
-</li></ul><p   
-><br/></p>
-    <div  class="confbox panel">
+</li><li class=" "><p><strong class=" ">Git</strong> - when viewing <i class=" ">Changes,</i> files representing new objects appear in the <i class=" ">Untracked Files</i> section (delete operations are tracked automatically). You need to <i class=" ">Add</i> the files before you can <i class=" ">Commit</i> and <i class=" ">Push</i> them to a shared repository.</p>
+</li></ul><p><br></p></div>
+
+    
+
+
+    
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Settingupworkspaces">Setting up workspaces</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Creatinganddeletingobjects">Creating and deleting objects</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Changingobjectidentifiers">Changing object identifiers</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Checkinginchanges">Checking in changes</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Gettingnewversionsoftherepositorycontent">Getting new versions of the repository content</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Resolvingobjectconflicts">Resolving object conflicts</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Undoingchanges">Undoing changes</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Workingwithwebapplicationprojects">Working with web application projects</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-settingupworkspaces">Setting up workspaces</a></p>
+</li><li class=" "><p><a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-creatinganddeletingobjects">Creating and deleting objects</a></p>
+</li><li class=" "><p><a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-changingobjectidentifiers">Changing object identifiers</a></p>
+</li><li class=" "><p><a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-checkinginchanges">Checking in changes</a></p>
+</li><li class=" "><p><a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-gettingnewversionsoftherepositorycontent">Getting new versions of the repository content</a></p>
+</li><li class=" "><p><a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-resolvingobjectconflicts">Resolving object conflicts</a></p>
+</li><li class=" "><p><a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-undoingchanges">Undoing changes</a></p>
+</li><li class=" "><p><a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-workingwithwebapplicationprojects">Working with web application projects</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Setting-up-continuous-integration">Setting up continuous integration</a></p>
-</li><li class=" "><p   
->  <a   href="Continuous-integration-repository-structure">Continuous integration repository structure</a></p>
-</li><li class=" "><p   
->  <a   href="Object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
+<ul class=" "><li class=" "><p><a href="setting-up-continuous-integration">Setting up continuous integration</a></p>
+</li><li class=" "><p><a href="continuous-integration-repository-structure">Continuous integration repository structure</a></p>
+</li><li class=" "><p><a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Changingobjectidentifiers" class="heading "><span>Changing object identifiers</span></h3>
-<p   
->Identifiers are values that the continuous integration solution uses to determine the names and locations of files representing objects in the <i class=" ">CIRepository</i> folder:</p>
-<ul class=" "><li class=" "><p   
->In most cases, objects use their <strong class=" ">code name</strong> as the identifier.</p>
-</li><li class=" "><p   
->Object types that do not have a suitable code name use other values (a notable example are pages, which use their <i class=" ">alias path</i> as the primary identifier).</p>
-</li><li class=" "><p   
->Identifiers may also include values of related objects, such as the code name of the parent object, the name of the related site, etc.</p>
-</li></ul><p   
->Avoid making changes to object identifiers if possible, particularly for objects that have a large number of child objects or affect the identity of other objects (such as sites). This also includes operations that change the identifier indirectly, for example moving a child object under a different parent.</p>
-<p   
->When an object&#39;s identifier changes, the continuous integration solution <i class=" "><strong class=" ">deletes</strong></i> the file representing the object in the file system and creates a new one based on the new identifier. This causes a <i class=" "><strong class=" ">loss of the file&#39;s version history</strong></i> in the source control and makes it difficult to merge changes made to the same object by other developers.</p>
+<p>Identifiers are values that the continuous integration solution uses to determine the names and locations of files representing objects in the <i class=" ">CIRepository</i> folder:</p>
+<ul class=" "><li class=" "><p>In most cases, objects use their <strong class=" ">code name</strong> as the identifier.</p>
+</li><li class=" "><p>Object types that do not have a suitable code name use other values (a notable example are pages, which use their <i class=" ">alias path</i> as the primary identifier).</p>
+</li><li class=" "><p>Identifiers may also include values of related objects, such as the code name of the parent object, the name of the related site, etc.</p>
+</li></ul><p>Avoid making changes to object identifiers if possible, particularly for objects that have a large number of child objects or affect the identity of other objects (such as sites). This also includes operations that change the identifier indirectly, for example moving a child object under a different parent.</p>
+<p>When an object's identifier changes, the continuous integration solution <i class=" "><strong class=" ">deletes</strong></i> the file representing the object in the file system and creates a new one based on the new identifier. This causes a <i class=" "><strong class=" ">loss of the file's version history</strong></i> in the source control and makes it difficult to merge changes made to the same object by other developers.</p>
     <h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Checkinginchanges" class="heading "><span>Checking in changes</span></h3>
-<p   
->When checking in (committing) changes to your source control, we strongly recommend including <strong class=" ">all</strong> detected file changes in the <i class=" ">CIRepository</i> folder. It may not be obvious which files correspond to specific changes made in the Kentico administration interface. Certain objects are represented by multiple files and changes may also affect related objects or relationships between objects.</p>
-<p   
->To learn more about how objects are represented in the <i class=" ">CIRepository</i> folder, see the following pages:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="Continuous-integration-repository-structure">Continuous integration repository structure</a></p>
-</li><li class=" "><p   
->  <a   href="Object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
+<p>When checking in (committing) changes to your source control, we strongly recommend including <strong class=" ">all</strong> detected file changes in the <i class=" ">CIRepository</i> folder. It may not be obvious which files correspond to specific changes made in the Kentico administration interface. Certain objects are represented by multiple files and changes may also affect related objects or relationships between objects.</p>
+<p>To learn more about how objects are represented in the <i class=" ">CIRepository</i> folder, see the following pages:</p>
+<ul class=" "><li class=" "><p><a href="continuous-integration-repository-structure">Continuous integration repository structure</a></p>
+</li><li class=" "><p><a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
 </li></ul>    <h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Gettingnewversionsoftherepositorycontent" class="heading "><span>Getting new versions of the repository content</span></h3>
-<p   
->Whenever you load a different version of any files in the <i class=" ">CIRepository</i> folder from your source control, you need to:</p>
-<ol class=" "><li class=" "><p   
->Merge any files that conflict with your instance&#39;s local versions. See also:   <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Resolvingobjectconflicts">Resolving object conflicts</a></p>
-</li><li class=" "><p   
->  <a   href="Restoring-continuous-integration-files-to-the-database">Restore the objects into your database</a>.</p>
-</li></ol><p   
->The restore operation ensures that your instance&#39;s database is consistent with the file system repository. If you continue working on the instance without performing the restore operation, changes to local data may overwrite the new versions of the files that you loaded from the source control.</p>
+<p>Whenever you load a different version of any files in the <i class=" ">CIRepository</i> folder from your source control, you need to:</p>
+<ol class=" "><li class=" "><p>Merge any files that conflict with your instance's local versions. See also: <a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-resolvingobjectconflicts">Resolving object conflicts</a></p>
+</li><li class=" "><p><a href="restoring-continuous-integration-files-to-the-database">Restore the objects into your database</a>.</p>
+</li></ol><p>The restore operation ensures that your instance's database is consistent with the file system repository. If you continue working on the instance without performing the restore operation, changes to local data may overwrite the new versions of the files that you loaded from the source control.</p>
     <h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Resolvingobjectconflicts" class="heading "><span>Resolving object conflicts</span></h3>
-<p   
->You may encounter object conflicts when getting or checking in <i class=" ">CIRepository</i> files. Conflicts happen if your local folder and the opposing folder contain a file with the same name, but different content. File names are based on unique identifiers of objects (in most cases the object&#39;s code name).</p>
-<p   
->For more information about the identifiers of <i class=" ">CIRepository</i> files, see the   <a   href="#src-68880573_UsingcontinuousintegrationwithVisualStudio-Changingobjectidentifiers">Changing object identifiers</a> section and   <a   href="Continuous-integration-repository-structure">Continuous integration repository structure</a> page.</p>
-<p   
-><strong class=" ">Planned conflicts</strong> can occur if you need to create <i class=" "><strong class=" ">the same object</strong></i> across your entire development environment. For example, multiple developers may create a web part category with the same name when starting development of custom web parts. Even if the objects have completely identical values for all configurable properties, a conflict will occur during synchronization, because the object&#39;s GUID (globally unique identifier) value is different for each developer.</p>
-<p   
->The best solution is to have one developer create the object and check in the resulting XML files to the central source control. Other developers then load the XML files from the source control and   <a   href="Restoring-continuous-integration-files-to-the-database">restore the object</a> to their local database. This approach completely avoids object conflicts and file merging.</p>
-<p   
->If you cannot avoid an object conflict and need to merge XML files, always use the GUID value that is already checked in to the source control and replace your local GUID. Do NOT push your local GUID values to the source control &ndash; this could cause conflicts for all other developers in your environment.</p>
-    <div  class="confbox admonition admonition-note">
+<p>You may encounter object conflicts when getting or checking in <i class=" ">CIRepository</i> files. Conflicts happen if your local folder and the opposing folder contain a file with the same name, but different content. File names are based on unique identifiers of objects (in most cases the object's code name).</p>
+<p>For more information about the identifiers of <i class=" ">CIRepository</i> files, see the <a href="#src-68880573_usingcontinuousintegrationwithvisualstudio-changingobjectidentifiers">Changing object identifiers</a> section and <a href="continuous-integration-repository-structure">Continuous integration repository structure</a> page.</p>
+<p><strong class=" ">Planned conflicts</strong> can occur if you need to create <i class=" "><strong class=" ">the same object</strong></i> across your entire development environment. For example, multiple developers may create a web part category with the same name when starting development of custom web parts. Even if the objects have completely identical values for all configurable properties, a conflict will occur during synchronization, because the object's GUID (globally unique identifier) value is different for each developer.</p>
+<p>The best solution is to have one developer create the object and check in the resulting XML files to the central source control. Other developers then load the XML files from the source control and <a href="restoring-continuous-integration-files-to-the-database">restore the object</a> to their local database. This approach completely avoids object conflicts and file merging.</p>
+<p>If you cannot avoid an object conflict and need to merge XML files, always use the GUID value that is already checked in to the source control and replace your local GUID. Do NOT push your local GUID values to the source control – this could cause conflicts for all other developers in your environment.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>:</p>
-<ul class=" "><li class=" "><p   
->The XML elements and attributes used in the content of <i class=" ">CIRepository</i> files are <i class=" "><strong class=" ">case sensitive</strong></i>. Make sure you preserve the letter case if you edit the XML content when merging files.<br/><br/></p>
-</li><li class=" "><p   
->If you change an object&#39;s GUID during conflict resolution and then   <a   href="Restoring-continuous-integration-files-to-the-database">restore the object</a> to your database, you may need to manually fix broken references on your local development instance. For example, object and page fields that allow uploading of files store the GUID of the selected metafile or attachment object.</p>
+<p><strong class=" ">Note</strong>:</p>
+<ul class=" "><li class=" "><p>The XML elements and attributes used in the content of <i class=" ">CIRepository</i> files are <i class=" "><strong class=" ">case sensitive</strong></i>. Make sure you preserve the letter case if you edit the XML content when merging files.<br><br></p>
+</li><li class=" "><p>If you change an object's GUID during conflict resolution and then <a href="restoring-continuous-integration-files-to-the-database">restore the object</a> to your database, you may need to manually fix broken references on your local development instance. For example, object and page fields that allow uploading of files store the GUID of the selected metafile or attachment object.</p>
 </li></ul>        </div>
     </div>
-<p   
-><strong class=" ">Unplanned conflicts</strong> occur if developers unintentionally create <i class=" "><strong class=" ">different objects</strong></i> of the same type with matching identifiers (typically code names) and then synchronize through the source control. In such cases, you need to contact the developer who checked in the conflicting XML file and one of you must delete and recreate the object with a different identifier (or rename the identifier values). We strongly recommend changing the local object that is not checked in to the source control yet, which prevents potential conflicts for other developers.</p>
+<p><strong class=" ">Unplanned conflicts</strong> occur if developers unintentionally create <i class=" "><strong class=" ">different objects</strong></i> of the same type with matching identifiers (typically code names) and then synchronize through the source control. In such cases, you need to contact the developer who checked in the conflicting XML file and one of you must delete and recreate the object with a different identifier (or rename the identifier values). We strongly recommend changing the local object that is not checked in to the source control yet, which prevents potential conflicts for other developers.</p>
     <h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Undoingchanges" class="heading "><span>Undoing changes</span></h3>
-<p   
->We do not recommend using the Visual Studio <strong class=" ">Undo</strong> action for changes that create new files. Undoing changes may lead to inconsistencies between the state of the file system repository and the database. You can instead delete the given object in the Kentico interface, which also makes the corresponding changes in the file system.</p>
-<p   
->If you undo a delete or modify operation and revert an XML file to its previous state, you then need to   <a   href="Restoring-continuous-integration-files-to-the-database">restore the objects into the database</a> to reverse the object changes in Kentico.</p>
+<p>We do not recommend using the Visual Studio <strong class=" ">Undo</strong> action for changes that create new files. Undoing changes may lead to inconsistencies between the state of the file system repository and the database. You can instead delete the given object in the Kentico interface, which also makes the corresponding changes in the file system.</p>
+<p>If you undo a delete or modify operation and revert an XML file to its previous state, you then need to <a href="restoring-continuous-integration-files-to-the-database">restore the objects into the database</a> to reverse the object changes in Kentico.</p>
     <h3 id="src-68880573_UsingcontinuousintegrationwithVisualStudio-Workingwithwebapplicationprojects" class="heading "><span>Working with web application projects</span></h3>
-<p   
->For Kentico projects installed as a web application, the <i class=" ">App_Data/CIRepository</i> folder and its file content does not need to be included in the <strong class=" ">CMSApp</strong> project. Note that the folder still must be mapped to your source control (we strongly recommend having the entire Kentico project folder mapped).</p>
+<p>For Kentico projects installed as a web application, the <i class=" ">App_Data/CIRepository</i> folder and its file content does not need to be included in the <strong class=" ">CMSApp</strong> project. Note that the folder still must be mapped to your source control (we strongly recommend having the entire Kentico project folder mapped).</p>
         </div>
 
     </article>
@@ -305,5 +251,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

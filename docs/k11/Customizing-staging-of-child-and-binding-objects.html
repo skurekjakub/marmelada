@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customizing staging of child and binding objects - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,78 +148,54 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When using   <a   href="Content-staging">staging</a> to synchronize objects between Kentico instances, the system does not generate distinct staging tasks for most types of child objects and bindings. Child objects and bindings are often included within the data of staging tasks related to their parent object.</p>
-<p   
->Staging of child and binding data may cause problems because different environments require different types of child data processing. In some cases, you may wish to synchronize the exact state of objects from the source server, including deletion of objects that exist only on the target server. Other environments assume that relevant changes occur on the target server and need to avoid deletion of objects that do not exist on the source.</p>
-<p   
->As a result, the default behavior in Kentico may not meet the requirements of your environment. You can change the default staging behavior for specific child or binding object types by creating   <a   href="Handling-global-events">event handlers</a> for the <strong class=" ">StagingEvents.GetChildProcessingType</strong> event.</p>
-<p   
->The <i class=" ">GetChildProcessingType</i> event occurs on <strong class=" "><i class=" ">target staging servers</i></strong> when processing create or update tasks that include the data of child or binding objects, once for each child or binding type. For example, staging tasks for roles include the data of binding objects, such as user-role and role-permission relationships. When processing a create or update staging task for a role, the <i class=" ">GetChildProcessingType</i> event triggers separately for each binding type included in the role data.</p>
-<p   
-><br/></p>
-    <div  class="confbox panel">
+<div class="section-left"></div><p>When using <a href="content-staging">staging</a> to synchronize objects between Kentico instances, the system does not generate distinct staging tasks for most types of child objects and bindings. Child objects and bindings are often included within the data of staging tasks related to their parent object.</p>
+<p>Staging of child and binding data may cause problems because different environments require different types of child data processing. In some cases, you may wish to synchronize the exact state of objects from the source server, including deletion of objects that exist only on the target server. Other environments assume that relevant changes occur on the target server and need to avoid deletion of objects that do not exist on the source.</p>
+<p>As a result, the default behavior in Kentico may not meet the requirements of your environment. You can change the default staging behavior for specific child or binding object types by creating <a href="handling-global-events">event handlers</a> for the <strong class=" ">StagingEvents.GetChildProcessingType</strong> event.</p>
+<p>The <i class=" ">GetChildProcessingType</i> event occurs on <strong class=" "><i class=" ">target staging servers</i></strong> when processing create or update tasks that include the data of child or binding objects, once for each child or binding type. For example, staging tasks for roles include the data of binding objects, such as user-role and role-permission relationships. When processing a create or update staging task for a role, the <i class=" ">GetChildProcessingType</i> event triggers separately for each binding type included in the role data.</p>
+<p><br></p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Content-staging">Content staging</a></p>
-</li><li class=" "><p   
->  <a   href="Handling-global-events">Handling global events</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---Global-system-events">Reference - Global system events</a></p>
+<ul class=" "><li class=" "><p><a href="content-staging">Content staging</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
+</li><li class=" "><p><a href="reference---global-system-events">Reference - Global system events</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882275_Customizingstagingofchildandbindingobjects-CreatingGetChildProcessingTypehandlers" class="heading "><span>Creating GetChildProcessingType handlers</span></h3>
-<p   
->Use the following process to create handlers for the <i class=" ">GetChildProcessingType</i> event:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-</li></ul></li><li class=" "><p  class="confluence-link" 
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">StagingEvents.GetChildProcessingType.Execute</strong> event.</p>
-</li><li class=" "><p   
->Implement the handler method (inside the custom module class):</p>
-<ol class=" "><li class=" "><p   
->Write conditions for specific object types based on the <strong class=" ">ObjectType</strong> and <strong class=" ">ParentObjectType</strong> properties of the handler&#39;s <i class=" ">StagingChildProcessingTypeEventArgs</i> parameter.</p>
-</li><li class=" "><p   
->Set the required staging behavior through the <strong class=" ">ProcessingType</strong> property of the handler&#39;s <i class=" ">StagingChildProcessingTypeEventArgs</i> parameter.</p>
-    <div  class="confbox admonition admonition-info">
+<p>Use the following process to create handlers for the <i class=" ">GetChildProcessingType</i> event:</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+</li></ul></li><li class=" "><p class="confluence-link">Override the module's <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">StagingEvents.GetChildProcessingType.Execute</strong> event.</p>
+</li><li class=" "><p>Implement the handler method (inside the custom module class):</p>
+<ol class=" "><li class=" "><p>Write conditions for specific object types based on the <strong class=" ">ObjectType</strong> and <strong class=" ">ParentObjectType</strong> properties of the handler's <i class=" ">StagingChildProcessingTypeEventArgs</i> parameter.</p>
+</li><li class=" "><p>Set the required staging behavior through the <strong class=" ">ProcessingType</strong> property of the handler's <i class=" ">StagingChildProcessingTypeEventArgs</i> parameter.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The <strong class=" ">ProcessingType</strong> property uses values from the <i class=" ">IncludeToParentEnum</i> enumeration, with the following possible options:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Complete</strong> &ndash; Staging tasks synchronize objects to exactly match the incoming data. Any objects missing in the task data are <i class=" "><strong class=" ">deleted</strong></i>.</p>
-</li><li class=" "><p   
-><strong class=" ">Incremental</strong> &ndash; Staging tasks only add new objects or update existing ones. Objects missing in the task data are NOT deleted.</p>
-</li><li class=" "><p   
-><strong class=" ">None</strong> &ndash; Processing of staging data is disabled for the given child or binding object type and no updates occur.</p>
-</li></ul><p   
-><strong class=" ">Note</strong>: The system only triggers the <i class=" ">GetChildProcessingType</i> event for child objects that support staging as part of their parent object&#39;s data. You cannot use the <i class=" ">Complete</i> or <i class=" ">Incremental</i> values to enable staging for child or binding objects that are not included in parent data.</p>
+<p>The <strong class=" ">ProcessingType</strong> property uses values from the <i class=" ">IncludeToParentEnum</i> enumeration, with the following possible options:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Complete</strong> – Staging tasks synchronize objects to exactly match the incoming data. Any objects missing in the task data are <i class=" "><strong class=" ">deleted</strong></i>.</p>
+</li><li class=" "><p><strong class=" ">Incremental</strong> – Staging tasks only add new objects or update existing ones. Objects missing in the task data are NOT deleted.</p>
+</li><li class=" "><p><strong class=" ">None</strong> – Processing of staging data is disabled for the given child or binding object type and no updates occur.</p>
+</li></ul><p><strong class=" ">Note</strong>: The system only triggers the <i class=" ">GetChildProcessingType</i> event for child objects that support staging as part of their parent object's data. You cannot use the <i class=" ">Complete</i> or <i class=" ">Incremental</i> values to enable staging for child or binding objects that are not included in parent data.</p>
         </div>
     </div>
-</li></ol></li><li class=" "><p   
->Transfer the module code to all instances in your staging environment where you wish to apply the customization.</p>
-</li></ol><p   
->When processing incoming staging tasks, the system handles child and binding object data according to the <i class=" ">ProcessingType</i> that you set in the <i class=" ">GetChildProcessingType</i> handler.</p>
+</li></ol></li><li class=" "><p>Transfer the module code to all instances in your staging environment where you wish to apply the customization.</p>
+</li></ol><p>When processing incoming staging tasks, the system handles child and binding object data according to the <i class=" ">ProcessingType</i> that you set in the <i class=" ">GetChildProcessingType</i> handler.</p>
     <h4 id="src-68882275_Customizingstagingofchildandbindingobjects-Example" class="heading "><span>Example</span></h4>
-<p   
->The following code demonstrates how to create a custom module that changes the default staging behavior for user-role bindings. The customization switches the <strong class=" ">ProcessingType</strong> to <i class=" ">Incremental,</i> which ensures that incoming staging tasks do not delete existing user-role bindings.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following code demonstrates how to create a custom module that changes the default staging behavior for user-role bindings. The customization switches the <strong class=" ">ProcessingType</strong> to <i class=" ">Incremental,</i> which ensures that incoming staging tasks do not delete existing user-role bindings.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Synchronization;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomStagingModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomStagingModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomStaging"</code></div>
@@ -229,17 +203,17 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomStaging"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the StagingEvents.GetChildProcessingType.Execute event</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// This event occurs when the system processes incoming staging tasks, once for each child or binding object type in the task's data</code></div>
 <div class="line"><code class="plain">		StagingEvents.GetChildProcessingType.Execute += Staging_GetChildProcessingType;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Staging_GetChildProcessingType(</code><code class="keyword">object</code><code class="plain"> sender, StagingChildProcessingTypeEventArgs e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Switches the staging to incremental mode for user-role bindings</code></div>
@@ -271,5 +245,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

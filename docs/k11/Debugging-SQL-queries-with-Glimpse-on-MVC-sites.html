@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Debugging SQL queries with Glimpse on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,66 +149,41 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->During the development of your MVC application you may want to see which SQL queries are run on page load. To debug the executed SQL queries you can use the <i class=" ">Kentico.Glimpse</i>   <a   href="Installing-Kentico-integration-packages">integration package</a>.</p>
+<div class="section-left"></div><p>During the development of your MVC application you may want to see which SQL queries are run on page load. To debug the executed SQL queries you can use the <i class=" ">Kentico.Glimpse</i> <a href="installing-kentico-integration-packages">integration package</a>.</p>
     <h3 id="src-68880535_DebuggingSQLquerieswithGlimpseonMVCsites-SettingupGlimpseinMVCapplication" class="heading "><span>Setting up Glimpse in MVC application</span></h3>
-<p   
->To use Glimpse in your MVC application, you need to install the related NuGet packages and turn Glimpse on:</p>
-<ol class=" "><li class=" "><p   
->Install the required NuGet   <a   href="Installing-Kentico-integration-packages">integration packages</a>:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">Kentico.Glimpse</i> - adds the <i class=" ">Kentico SQL</i> tab, which provides insight into the SQL operations that the related Kentico instance is performing.</p>
-</li><li class=" "><p   
-><i class=" ">Glimpse.Mvc5</i> - adds the following tabs, which provide diagnostics specific to ASP.NET MVC framework:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">Execution</i></p>
-</li><li class=" "><p   
-><i class=" ">Model Binding</i></p>
-</li><li class=" "><p   
-><i class=" ">Metadata</i></p>
-</li><li class=" "><p   
-><i class=" ">Views</i></p>
-</li></ul></li></ul></li><li class=" "><p   
->Run the MVC application and navigate to <i class=" ">/glimpse.axd</i>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Turn Glimpse On</strong>.</p>
-</li></ol><p   
->The Glimpse extension is now enabled and you can use its web diagnostics features.</p>
-    <div  class="confbox panel">
+<p>To use Glimpse in your MVC application, you need to install the related NuGet packages and turn Glimpse on:</p>
+<ol class=" "><li class=" "><p>Install the required NuGet <a href="installing-kentico-integration-packages">integration packages</a>:</p>
+<ul class=" "><li class=" "><p><i class=" ">Kentico.Glimpse</i> - adds the <i class=" ">Kentico SQL</i> tab, which provides insight into the SQL operations that the related Kentico instance is performing.</p>
+</li><li class=" "><p><i class=" ">Glimpse.Mvc5</i> - adds the following tabs, which provide diagnostics specific to ASP.NET MVC framework:</p>
+<ul class=" "><li class=" "><p><i class=" ">Execution</i></p>
+</li><li class=" "><p><i class=" ">Model Binding</i></p>
+</li><li class=" "><p><i class=" ">Metadata</i></p>
+</li><li class=" "><p><i class=" ">Views</i></p>
+</li></ul></li></ul></li><li class=" "><p>Run the MVC application and navigate to <i class=" ">/glimpse.axd</i>.</p>
+</li><li class=" "><p>Click <strong class=" ">Turn Glimpse On</strong>.</p>
+</li></ol><p>The Glimpse extension is now enabled and you can use its web diagnostics features.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Debugging">Debugging</a></p>
-</li><li class=" "><p   
->  <a   href="Debugging">Installing Kentico integration packages</a></p>
+<ul class=" "><li class=" "><p><a href="debugging">Debugging</a></p>
+</li><li class=" "><p><a href="debugging">Installing Kentico integration packages</a></p>
 </li></ul>        </div>
     </div>
-<p   
->By default, the <i class=" ">Kentico SQL</i> tab in Glimpse does not show any information. You need to enable SQL debugging in the Kentico settings to populate the tab:</p>
-<ol class=" "><li class=" "><p   
->Open the Kentico <strong class=" ">Settings</strong> application.</p>
-</li><li class=" "><p   
->Navigate to <strong class=" ">System</strong> -&gt; <strong class=" ">Debug</strong>.</p>
-</li><li class=" "><p   
->In the <strong class=" ">SQL queries</strong> section, select the <strong class=" ">Enable SQL query debug</strong> option.</p>
-</li></ol><p   
->At this point the Kentico SQL tab in Glimpse shows the information about executed SQL queries. You can find the following information for each query:</p>
-<ul class=" "><li class=" "><p   
->SQL code of the query.</p>
-</li><li class=" "><p   
->Size of the data that was <strong class=" ">Sent</strong> and <strong class=" ">Received</strong>.</p>
-</li><li class=" "><p   
->The <strong class=" ">Duration</strong> of the query execution.</p>
-</li><li class=" "><p   
->The full <strong class=" ">Stack trace</strong> of each query.<br/></p>
-</li></ul><p   
-><i class=" "><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880535/Kentico_SQL_debug_in_Glimpse.png" alt="images/download/attachments/68880535/Kentico_SQL_debug_in_Glimpse.png" width="500"  />
+<p>By default, the <i class=" ">Kentico SQL</i> tab in Glimpse does not show any information. You need to enable SQL debugging in the Kentico settings to populate the tab:</p>
+<ol class=" "><li class=" "><p>Open the Kentico <strong class=" ">Settings</strong> application.</p>
+</li><li class=" "><p>Navigate to <strong class=" ">System</strong> -&gt; <strong class=" ">Debug</strong>.</p>
+</li><li class=" "><p>In the <strong class=" ">SQL queries</strong> section, select the <strong class=" ">Enable SQL query debug</strong> option.</p>
+</li></ol><p>At this point the Kentico SQL tab in Glimpse shows the information about executed SQL queries. You can find the following information for each query:</p>
+<ul class=" "><li class=" "><p>SQL code of the query.</p>
+</li><li class=" "><p>Size of the data that was <strong class=" ">Sent</strong> and <strong class=" ">Received</strong>.</p>
+</li><li class=" "><p>The <strong class=" ">Duration</strong> of the query execution.</p>
+</li><li class=" "><p>The full <strong class=" ">Stack trace</strong> of each query.<br></p>
+</li></ul><p><i class=" "><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880535/Kentico_SQL_debug_in_Glimpse.png" alt="images/download/attachments/68880535/Kentico_SQL_debug_in_Glimpse.png" width="500">
 </i></p>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: SQL queries executed by the MVC application are not logged in the <i class=" ">Debug</i> of the Kentico application.</p>
+<p><strong class=" ">Note</strong>: SQL queries executed by the MVC application are not logged in the <i class=" ">Debug</i> of the Kentico application.</p>
         </div>
     </div>
         </div>
@@ -233,5 +206,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

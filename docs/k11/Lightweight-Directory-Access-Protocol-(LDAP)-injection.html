@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Lightweight Directory Access Protocol (LDAP) injection - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,234 +148,177 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->LDAP is a protocol for accessing and modifying the directory services over TCP/IP. This protocol has many implementations. However, we will focus only on the Active Directory Lightweight Directory service in this topic, as it is used by Kentico.</p>
-<p   
->The LDAP injection attacks are similar to SQL injection attacks in principle. The attacker tries to exploit a web application to construct a malicious LDAP statement. If the application does not sanitize the user input, the attacker may be able to execute various commands.</p>
-    <h3 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1FeGFtcGxlc29mTERBUGluamVjdGlvbnM" class="heading "><span>Examples of LDAP injections</span></h3>
-    <h5 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1PYnRhaW5pbmd1c2VyaW5mb3JtYXRpb24" class="heading "><span>Obtaining user information</span></h5>
-    <div  class="tablewrap">
+<div class="section-left"><p>LDAP is a protocol for accessing and modifying the directory services over TCP/IP. This protocol has many implementations. However, we will focus only on the Active Directory Lightweight Directory service in this topic, as it is used by Kentico.</p><p>The LDAP injection attacks are similar to SQL injection attacks in principle. The attacker tries to exploit a web application to construct a malicious LDAP statement. If the application does not sanitize the user input, the attacker may be able to execute various commands.</p><h3 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1FeGFtcGxlc29mTERBUGluamVjdGlvbnM" class="heading "><span>Examples of LDAP injections</span></h3><h5 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1PYnRhaW5pbmd1c2VyaW5mb3JtYXRpb24" class="heading "><span>Obtaining user information</span></h5><div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Original query</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Original query</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->http://www.example.com/people_search.aspx?name=Andy)(zone=public)</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>http://www.example.com/people_search.aspx?name=Andy)(zone=public)</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Malformed query</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Malformed query</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->http://www.example.com/people_search.aspx?name=Andy)(zone=*)</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>http://www.example.com/people_search.aspx?name=Andy)(zone=*)</p>
             </td>
         </tr>
 </tbody>        </table>
-            </div>
-<p   
->Effect: Using the malformed query, the attacker can obtain all user information of the user Andy, not only the public information as in the original query.</p>
-    <h5 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1FbGV2YXRpb25vZnByaXZpbGVnZXM" class="heading "><span>Elevation of privileges</span></h5>
-    <div  class="tablewrap">
+            </div><p>Effect: Using the malformed query, the attacker can obtain all user information of the user Andy, not only the public information as in the original query.</p><h5 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1FbGV2YXRpb25vZnByaXZpbGVnZXM" class="heading "><span>Elevation of privileges</span></h5><div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Original query</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Original query</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->http://www.example.com/page.aspx?path=Pages&amp;recursive=yes</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>http://www.example.com/page.aspx?path=Pages&amp;recursive=yes</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Malformed query</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Malformed query</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->http://www.example.com/page.aspx?path=Pages|(level=*))&amp;recursive=yes</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>http://www.example.com/page.aspx?path=Pages|(level=*))&amp;recursive=yes</p>
             </td>
         </tr>
 </tbody>        </table>
-            </div>
-<p   
->Effect: Using the malformed query, the attacker can obtain all pages, not only those he has permissions for in the original query.</p>
-<p   
-><br/></p>
-    <div  class="confbox panel">
+            </div><p>Effect: Using the malformed query, the attacker can obtain all pages, not only those he has permissions for in the original query.</p><p><br></p></div>
+
+    
+    
+    
+
+    
+    
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1FeGFtcGxlc29mTERBUGluamVjdGlvbnM">Examples of LDAP injections</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1PYnRhaW5pbmd1c2VyaW5mb3JtYXRpb24">Obtaining user information</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1FbGV2YXRpb25vZnByaXZpbGVnZXM">Elevation of privileges</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1XaGF0Y2FuTERBUGluamVjdGlvbmF0dGFja2Rv">What can LDAP injection attack do</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1GaW5kaW5nTERBUGluamVjdGlvbnZ1bG5lcmFiaWxpdGllcw">Finding LDAP injection vulnerabilities</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1Ib3d0b3ByZXZlbnRMREFQaW5qZWN0aW9uaW5LZW50aWNv">How to prevent LDAP injection in Kentico</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1Fc2NhcGluZ3NwZWNpYWxjaGFyYWN0ZXJz">Escaping special characters</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881106_safe-id-tglnahr3zwlnahreaxjly3rvcnlby2nlc3nqcm90b2nvbchmrefqkwluamvjdglvbi1fegftcgxlc29mterbugluamvjdglvbnm">Examples of LDAP injections</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881106_safe-id-tglnahr3zwlnahreaxjly3rvcnlby2nlc3nqcm90b2nvbchmrefqkwluamvjdglvbi1pynrhaw5pbmd1c2vyaw5mb3jtyxrpb24">Obtaining user information</a></p>
+</li><li class=" "><p><a href="#src-68881106_safe-id-tglnahr3zwlnahreaxjly3rvcnlby2nlc3nqcm90b2nvbchmrefqkwluamvjdglvbi1fbgv2yxrpb25vznbyaxzpbgvnzxm">Elevation of privileges</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881106_safe-id-tglnahr3zwlnahreaxjly3rvcnlby2nlc3nqcm90b2nvbchmrefqkwluamvjdglvbi1xagf0y2futerbugluamvjdglvbmf0dgfja2rv">What can LDAP injection attack do</a></p>
+</li><li class=" "><p><a href="#src-68881106_safe-id-tglnahr3zwlnahreaxjly3rvcnlby2nlc3nqcm90b2nvbchmrefqkwluamvjdglvbi1gaw5kaw5nterbugluamvjdglvbnz1bg5lcmfiawxpdgllcw">Finding LDAP injection vulnerabilities</a></p>
+</li><li class=" "><p><a href="#src-68881106_safe-id-tglnahr3zwlnahreaxjly3rvcnlby2nlc3nqcm90b2nvbchmrefqkwluamvjdglvbi1ib3d0b3byzxzlbnrmrefqaw5qzwn0aw9uaw5lzw50awnv">How to prevent LDAP injection in Kentico</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881106_safe-id-tglnahr3zwlnahreaxjly3rvcnlby2nlc3nqcm90b2nvbchmrefqkwluamvjdglvbi1fc2nhcgluz3nwzwnpywxjagfyywn0zxjz">Escaping special characters</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1XaGF0Y2FuTERBUGluamVjdGlvbmF0dGFja2Rv" class="heading "><span>What can LDAP injection attack do</span></h3>
-<p   
->The attacker can, for example, obtain user logins and employee information, achieve privilege elevation, or modify the content inside the LDAP tree.</p>
+<p>The attacker can, for example, obtain user logins and employee information, achieve privilege elevation, or modify the content inside the LDAP tree.</p>
     <h3 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1GaW5kaW5nTERBUGluamVjdGlvbnZ1bG5lcmFiaWxpdGllcw" class="heading "><span>Finding LDAP injection vulnerabilities</span></h3>
-<ul class=" "><li class=" "><p   
->Black box testing &ndash; try to insert LDAP queries into <strong class=" ">sign-in</strong>, <strong class=" ">forgotten password</strong>, or <strong class=" ">search user</strong> fields. Also, try to insert bogus LDAP queries into these fields (see <strong class=" ">Examples of LDAP injections</strong> section).<br/></p>
-</li><li class=" "><p   
->Searching in code &ndash; try to find usages of the LDAP API in the code (see <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/ms180826.aspx">Directory Services in the .NET Framework</a> for information). Then, make sure that the input passed to the API is sanitized and validated correctly.</p>
+<ul class=" "><li class=" "><p>Black box testing – try to insert LDAP queries into <strong class=" ">sign-in</strong>, <strong class=" ">forgotten password</strong>, or <strong class=" ">search user</strong> fields. Also, try to insert bogus LDAP queries into these fields (see <strong class=" ">Examples of LDAP injections</strong> section).<br></p>
+</li><li class=" "><p>Searching in code – try to find usages of the LDAP API in the code (see <a class="external-link" href="http://msdn.microsoft.com/en-us/library/ms180826.aspx">Directory Services in the .NET Framework</a> for information). Then, make sure that the input passed to the API is sanitized and validated correctly.</p>
 </li></ul>    <h3 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1Ib3d0b3ByZXZlbnRMREFQaW5qZWN0aW9uaW5LZW50aWNv" class="heading "><span>How to prevent LDAP injection in Kentico</span></h3>
-<p   
->In Kentico, LDAP is used during the authentication process via forms. The input data is not authenticated against a database, but against Active Directory. Therefore, this spot in the system is vulnerable to LDAP injection attacks. Knowing that, we have made sure the input data is correctly validated to prevent these attacks.</p>
-<p   
->However, if you plan to create a custom web part which operates with the AD data, be sure to check and secure the input before sending the LDAP queries to the server. Good techniques are:</p>
-<ul class=" "><li class=" "><p   
->restrict user input using regular expressions - where a number is expected, validate the input for numbers; where a name is expected, validate for characters.</p>
-</li><li class=" "><p   
->escape special characters.</p>
+<p>In Kentico, LDAP is used during the authentication process via forms. The input data is not authenticated against a database, but against Active Directory. Therefore, this spot in the system is vulnerable to LDAP injection attacks. Knowing that, we have made sure the input data is correctly validated to prevent these attacks.</p>
+<p>However, if you plan to create a custom web part which operates with the AD data, be sure to check and secure the input before sending the LDAP queries to the server. Good techniques are:</p>
+<ul class=" "><li class=" "><p>restrict user input using regular expressions - where a number is expected, validate the input for numbers; where a name is expected, validate for characters.</p>
+</li><li class=" "><p>escape special characters.</p>
 </li></ul>    <h4 id="src-68881106_safe-id-TGlnaHR3ZWlnaHREaXJlY3RvcnlBY2Nlc3NQcm90b2NvbChMREFQKWluamVjdGlvbi1Fc2NhcGluZ3NwZWNpYWxjaGFyYWN0ZXJz" class="heading "><span>Escaping special characters</span></h4>
-<p   
->The required escape sequence depends on whether the user input is used to create the Distinguished Name or used as a part of the search filter.</p>
-<p   
-><strong class=" ">Used in DN - escape using / is needed:</strong></p>
-    <div  class="tablewrap">
+<p>The required escape sequence depends on whether the user input is used to create the Distinguished Name or used as a part of the search filter.</p>
+<p><strong class=" ">Used in DN - escape using / is needed:</strong></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->&amp;</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>&amp;</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->!</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>!</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->|</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>|</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->=</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>=</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->&lt;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>&lt;</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->&gt;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>&gt;</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->,</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>,</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->+</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>+</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->-</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>-</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->&quot;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>"</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->&#39;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>'</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>;</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
-><strong class=" ">Used in filter - escape using {\ASCII} is needed:</strong></p>
-    <div  class="tablewrap">
+<p><strong class=" ">Used in filter - escape using {\ASCII} is needed:</strong></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->(</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>(</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->{\28}</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>{\28}</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->)</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>)</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->{\29}</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>{\29}</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->\</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>\</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->{\5c}</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>{\5c}</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->*</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>*</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->{\2a}</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>{\2a}</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->/</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>/</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->{\2f}</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>{\2f}</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Null</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Null</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->{\0}</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>{\0}</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
->It is also a good practice to include &#39;\\&#39; at the beginning of escaped character listings to prevent recursive replacements.</p>
+<p>It is also a good practice to include '\\' at the beginning of escaped character listings to prevent recursive replacements.</p>
         </div>
 
     </article>
@@ -398,5 +339,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

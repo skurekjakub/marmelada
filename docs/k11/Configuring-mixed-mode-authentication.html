@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Configuring mixed-mode authentication - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,27 +149,21 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Mixed mode authentication enables users to sign in to your website using both   <a   href="Configuring-Windows-AD-authentication">Windows Active Directory authentication</a> and standard   <a   href="Configuring-forms-authentication">forms authentication</a>.</p>
-    <div  class="confbox admonition admonition-note">
+<div class="section-left"></div><p>Mixed mode authentication enables users to sign in to your website using both <a href="configuring-windows-ad-authentication">Windows Active Directory authentication</a> and standard <a href="configuring-forms-authentication">forms authentication</a>.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Forms and AD user name conflicts</strong></p>
-<p   
->Active Directory users cannot authenticate if an existing forms user has the same user name (only the <i class=" ">common name</i> of the AD user is processed, i.e. without the domain component). In these cases, the system cannot create an account for the AD user. You can avoid these conflicts by renaming the existing forms user.</p>
+<p><strong class=" ">Forms and AD user name conflicts</strong></p>
+<p>Active Directory users cannot authenticate if an existing forms user has the same user name (only the <i class=" ">common name</i> of the AD user is processed, i.e. without the domain component). In these cases, the system cannot create an account for the AD user. You can avoid these conflicts by renaming the existing forms user.</p>
         </div>
     </div>
-<p   
->When a user signs in using Active Directory credentials for the first time, the system automatically creates a matching user account in the Kentico database and also imports the user&#39;s domain groups as roles. The imported roles do <i class=" "><strong class=" ">not</strong></i> authorize the users to perform any actions in Kentico by default. You need to configure   <a   href="Configuring-permissions">permissions</a> and   <a   href="UI-Personalization">UI personalization</a> settings for the imported roles manually if you wish to use them.</p>
-    <div  class="confbox admonition admonition-tip">
+<p>When a user signs in using Active Directory credentials for the first time, the system automatically creates a matching user account in the Kentico database and also imports the user's domain groups as roles. The imported roles do <i class=" "><strong class=" ">not</strong></i> authorize the users to perform any actions in Kentico by default. You need to configure <a href="configuring-permissions">permissions</a> and <a href="ui-personalization">UI personalization</a> settings for the imported roles manually if you wish to use them.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Disabling the automatic role import</strong></p>
-<p   
->If you wish to disable the automatic import of user domain groups as roles in Kentico, add the following key to the <i class=" ">/configuration/appSettings</i> section of your project&#39;s web.config file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p><strong class=" ">Disabling the automatic role import</strong></p>
+<p>If you wish to disable the automatic import of user domain groups as roles in Kentico, add the following key to the <i class=" ">/configuration/appSettings</i> section of your project's web.config file:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSImportWindowsRoles"</code><code class="plain"> value=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
 </div>
@@ -180,29 +172,22 @@
     </div>
     <div class="section section-1" id="src-68880381_Configuringmixedmodeauthentication-Prerequisites">
         <h1 class="heading "><span>Prerequisites</span></h1>
-<p   
->For mixed mode authentication to work, the application must be able to access the following attributes of user objects in Active Directory (i.e. the attributes cannot be protected or confidential):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">memberof</strong></p>
-</li><li class=" "><p   
-><strong class=" ">userAccountControl</strong></p>
+<p>For mixed mode authentication to work, the application must be able to access the following attributes of user objects in Active Directory (i.e. the attributes cannot be protected or confidential):</p>
+<ul class=" "><li class=" "><p><strong class=" ">memberof</strong></p>
+</li><li class=" "><p><strong class=" ">userAccountControl</strong></p>
 </li></ul>    </div>
     <div class="section section-1" id="src-68880381_Configuringmixedmodeauthentication-Configuringmixedauthentication">
         <h1 class="heading "><span>Configuring mixed authentication</span></h1>
-<p   
->To enable mixed authentication mode:</p>
-<ol class=" "><li class=" "><p   
->Edit your application&#39;s <i class=" ">web.config</i> file.</p>
-</li><li class=" "><p   
->Make sure that the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section is set to <strong class=" ">Forms</strong> (this is the default value for Kentico projects):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>To enable mixed authentication mode:</p>
+<ol class=" "><li class=" "><p>Edit your application's <i class=" ">web.config</i> file.</p>
+</li><li class=" "><p>Make sure that the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section is set to <strong class=" ">Forms</strong> (this is the default value for Kentico projects):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;authentication mode=</code><code class="string">"Forms"</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Add the LDAP connection string of your Active Directory service into the <strong class=" ">configuration/connectionStrings</strong> section:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Add the LDAP connection string of your Active Directory service into the <strong class=" ">configuration/connectionStrings</strong> section:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;connectionStrings&gt;</code></div>
 <div class="line"><code class="plain">  ...</code></div>
@@ -210,20 +195,16 @@
 <div class="line"><code class="plain">&lt;/connectionStrings&gt;</code></div>
 </div>
     </div>
-<p   
-><br/></p>
-<ul class=" "><li class=" "><p   
->Replace the <i class=" ">&lt;LDAP connection string&gt;</i> text in the code above with the actual connection string. Enter it according to the following format:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p><br></p>
+<ul class=" "><li class=" "><p>Replace the <i class=" ">&lt;LDAP connection string&gt;</i> text in the code above with the actual connection string. Enter it according to the following format:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
-<div class="line"><code class="plain"> LDAP:</code><code class="comments">//mydomain.example.com/DC=mydomain,DC=example,DC=com</code></div>
+<div class="line"><code class="plain">&nbsp;LDAP:</code><code class="comments">//mydomain.example.com/DC=mydomain,DC=example,DC=com</code></div>
 </div>
     </div>
-<p   
->The first part is the full domain. In the second part, the same domain is divided into DC (domain component) units.<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Modify the <strong class=" ">membership</strong> and <strong class=" ">roleManager</strong> elements under the <strong class=" ">configuration/system.web</strong> section according to the following:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The first part is the full domain. In the second part, the same domain is divided into DC (domain component) units.<br><br></p>
+</li></ul></li><li class=" "><p>Modify the <strong class=" ">membership</strong> and <strong class=" ">roleManager</strong> elements under the <strong class=" ">configuration/system.web</strong> section according to the following:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;membership defaultProvider=</code><code class="string">"CMSProvider"</code><code class="plain"> userIsOnlineTimeWindow=</code><code class="string">"30"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">  &lt;providers&gt;</code></div>
@@ -234,7 +215,7 @@
 <div class="line"><code class="plain">&lt;/membership&gt;</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;roleManager defaultProvider=</code><code class="string">"CMSRoleProvider"</code><code class="plain"> enabled=</code><code class="string">"true"</code><code class="plain"> cacheRolesInCookie=</code><code class="string">"true"</code><code class="plain"> cookieName=</code><code class="string">".ASPROLES"</code><code class="plain"> cookieTimeout=</code><code class="string">"30"</code><code class="plain"> cookiePath=</code><code class="string">"/"</code><code class="plain"> cookieRequireSSL=</code><code class="string">"false"</code><code class="plain"> cookieSlidingExpiration=</code><code class="string">"true"</code><code class="plain"> cookieProtection=</code><code class="string">"All"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">  &lt;providers&gt;</code></div>
@@ -245,28 +226,21 @@
 <div class="line"><code class="plain">&lt;/roleManager&gt;</code></div>
 </div>
     </div>
-<ul class=" "><li class=" "><p   
->Replace the following values:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">username</strong> &ndash; the user name of an Active Directory account that has read permissions for the required users and groups in your domain. Must include the fully qualified domain name, for example: <strong class=" "><i class=" ">office.example.com\johns</i></strong></p>
-</li><li class=" "><p   
-><strong class=" ">password</strong> &ndash; the Active Directory password for the specified account</p>
-</li></ul></li></ul></li></ol><p   
->Users can now sign in with their Active Directory user name (without the domain) and password, or their standard Kentico user name and password.</p>
-<p   
->You can also allow users to sign in using their full Active Directory user name (e.g. <i class=" ">MyName@office.example.com</i>) by adding the following key to the <i class=" ">appSettings</i> section of your <i class=" ">web.config</i> file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ul class=" "><li class=" "><p>Replace the following values:</p>
+<ul class=" "><li class=" "><p><strong class=" ">username</strong> – the user name of an Active Directory account that has read permissions for the required users and groups in your domain. Must include the fully qualified domain name, for example: <strong class=" "><i class=" ">office.example.com\johns</i></strong></p>
+</li><li class=" "><p><strong class=" ">password</strong> – the Active Directory password for the specified account</p>
+</li></ul></li></ul></li></ol><p>Users can now sign in with their Active Directory user name (without the domain) and password, or their standard Kentico user name and password.</p>
+<p>You can also allow users to sign in using their full Active Directory user name (e.g. <i class=" ">MyName@office.example.com</i>) by adding the following key to the <i class=" ">appSettings</i> section of your <i class=" ">web.config</i> file:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
-<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSADDefaultMapUserName"</code><code class="plain"> value=</code><code class="string">"userPrincipalName"</code><code class="plain"> /&gt; </code></div>
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSADDefaultMapUserName"</code><code class="plain"> value=</code><code class="string">"userPrincipalName"</code><code class="plain"> /&gt;&nbsp;</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Password features not supported for Active Directory users</strong></p>
-<p   
->The passwords of Active Directory users are stored externally and are not managed by Kentico. For these users, the system does not support any features related to password changes or requirements (for example   <a   href="Forgotten-password">Password reset</a>,   <a   href="Password-expiration">Password expiration</a>,   <a   href="Password-strength-policy-and-its-enforcement">Password policies</a>).</p>
+<p><strong class=" ">Password features not supported for Active Directory users</strong></p>
+<p>The passwords of Active Directory users are stored externally and are not managed by Kentico. For these users, the system does not support any features related to password changes or requirements (for example <a href="forgotten-password">Password reset</a>, <a href="password-expiration">Password expiration</a>, <a href="password-strength-policy-and-its-enforcement">Password policies</a>).</p>
         </div>
     </div>
     </div>
@@ -290,5 +264,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Enabling continuous integration for custom classes - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,28 +149,18 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The Kentico   <a   href="Setting-up-continuous-integration">continuous integration solution</a> allows you to serialize the data of objects from the database into XML files and then use a source control system to synchronize the files between different instances. To enable continuous integration for the data of custom module classes, you need to set the appropriate   <a   href="Setting-the-type-information-for-module-classes">type information</a> when developing your classes. For more information about the basics of module and class development, see the example in   <a   href="Creating-custom-modules">Creating custom modules</a>.</p>
-<p   
->To configure continuous integration support for a custom module class:</p>
-<ol class=" "><li class=" "><p   
->Open the Kentico solution where you are developing the custom module (in Visual Studio).</p>
-</li><li class=" "><p   
->Edit the <i class=" ">Info</i> class representing your module class.</p>
-    <div  class="confbox admonition admonition-note">
+<div class="section-left"><p>The Kentico <a href="setting-up-continuous-integration">continuous integration solution</a> allows you to serialize the data of objects from the database into XML files and then use a source control system to synchronize the files between different instances. To enable continuous integration for the data of custom module classes, you need to set the appropriate <a href="setting-the-type-information-for-module-classes">type information</a> when developing your classes. For more information about the basics of module and class development, see the example in <a href="creating-custom-modules">Creating custom modules</a>.</p><p>To configure continuous integration support for a custom module class:</p><ol class=" "><li class=" "><p>Open the Kentico solution where you are developing the custom module (in Visual Studio).</p>
+</li><li class=" "><p>Edit the <i class=" ">Info</i> class representing your module class.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong>: To use continuous integration, the code of your custom class must be located in a separate assembly. See the   <a   href="#src-68882244_Enablingcontinuousintegrationforcustomclasses-Addingtheclasscodeintoaseparateassembly">Adding the class code into a separate assembly</a> section for more information and instructions.</p>
+<p><strong class=" ">Important</strong>: To use continuous integration, the code of your custom class must be located in a separate assembly. See the <a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-addingtheclasscodeintoaseparateassembly">Adding the class code into a separate assembly</a> section for more information and instructions.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Set the <strong class=" ">ContinuousIntegrationSettings</strong> property in the <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/bb384062.aspx">initializer</a> of the TYPEINFO object. Use a nested initializer to configure the properties of the <i class=" ">ContinuousIntegrationSettings</i> class:<br/></p>
-<ul class=" "><li class=" "><p   
->Set the <strong class=" ">Enabled</strong> property to <i class=" ">true.</i></p>
-</li><li class=" "><p   
->(Optional) Set the other   <a   href="#src-68882244_Enablingcontinuousintegrationforcustomclasses-ContinuousIntegrationSettings">ContinuousIntegrationSettings properties</a> according to the requirements of your class&#39;s data.</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Set the <strong class=" ">ContinuousIntegrationSettings</strong> property in the <a class="external-link" href="http://msdn.microsoft.com/en-us/library/bb384062.aspx">initializer</a> of the TYPEINFO object. Use a nested initializer to configure the properties of the <i class=" ">ContinuousIntegrationSettings</i> class:<br></p>
+<ul class=" "><li class=" "><p>Set the <strong class=" ">Enabled</strong> property to <i class=" ">true.</i></p>
+</li><li class=" "><p>(Optional) Set the other <a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-continuousintegrationsettings">ContinuousIntegrationSettings properties</a> according to the requirements of your class's data.</p>
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Enables continuous integration for the object type</code></div>
 <div class="line"><code class="plain">ContinuousIntegrationSettings =</code></div>
@@ -181,249 +169,177 @@
 <div class="line"><code class="plain">},</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->(Optional) Set the <strong class=" ">SerializationSettings</strong> property of the TYPEINFO object. Use a nested initializer to configure the   <a   href="#src-68882244_Enablingcontinuousintegrationforcustomclasses-SerializationSettings">SerializationSettings properties</a>.</p>
-</li><li class=" "><p   
->Save the changes.</p>
-</li></ol><p   
->If continuous integration is enabled, the system now tracks all create, update and delete operations for objects of the given custom class, and serializes the data into XML files in the <i class=" ">CIRepository</i> folder.</p>
-<p   
->To transfer all existing data of the class into your continuous integration repository, run complete serialization for all objects:</p>
-<ol class=" "><li class=" "><p   
->Disable running of   <a   href="Scheduling-tasks">scheduled tasks</a> (using the <strong class=" ">Settings -&gt; System -&gt; Scheduled tasks enabled</strong> setting).</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Continuous integration</strong> application in the Kentico administration interface.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Serialize all objects</strong>.</p>
-</li><li class=" "><p   
->Wait until the serialization process finishes and then re-enable scheduled tasks.</p>
-</li></ol><p   
->You can also use your custom object type&#39;s name (the value of the <i class=" ">OBJECT_TYPE</i> constant) when filtering objects for continuous integration within the <strong class=" ">repository.config</strong> file. See   <a   href="Excluding-objects-from-continuous-integration">Excluding objects from continuous integration</a> to learn more.</p>
-<p   
-><br/></p>
-    <div  class="confbox panel">
+</li><li class=" "><p>(Optional) Set the <strong class=" ">SerializationSettings</strong> property of the TYPEINFO object. Use a nested initializer to configure the <a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-serializationsettings">SerializationSettings properties</a>.</p>
+</li><li class=" "><p>Save the changes.</p>
+</li></ol><p>If continuous integration is enabled, the system now tracks all create, update and delete operations for objects of the given custom class, and serializes the data into XML files in the <i class=" ">CIRepository</i> folder.</p><p>To transfer all existing data of the class into your continuous integration repository, run complete serialization for all objects:</p><ol class=" "><li class=" "><p>Disable running of <a href="scheduling-tasks">scheduled tasks</a> (using the <strong class=" ">Settings -&gt; System -&gt; Scheduled tasks enabled</strong> setting).</p>
+</li><li class=" "><p>Open the <strong class=" ">Continuous integration</strong> application in the Kentico administration interface.</p>
+</li><li class=" "><p>Click <strong class=" ">Serialize all objects</strong>.</p>
+</li><li class=" "><p>Wait until the serialization process finishes and then re-enable scheduled tasks.</p>
+</li></ol><p>You can also use your custom object type's name (the value of the <i class=" ">OBJECT_TYPE</i> constant) when filtering objects for continuous integration within the <strong class=" ">repository.config</strong> file. See <a href="excluding-objects-from-continuous-integration">Excluding objects from continuous integration</a> to learn more.</p><p><br></p></div>
+
+
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882244_Enablingcontinuousintegrationforcustomclasses-Addingtheclasscodeintoaseparateassembly">Adding the class code into a separate assembly</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882244_Enablingcontinuousintegrationforcustomclasses-Deletingclassesthathavecontinuousintegrationenabled">Deleting classes that have continuous integration enabled</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882244_Enablingcontinuousintegrationforcustomclasses-References">References</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882244_Enablingcontinuousintegrationforcustomclasses-ContinuousIntegrationSettings">ContinuousIntegrationSettings</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882244_Enablingcontinuousintegrationforcustomclasses-SerializationSettings">SerializationSettings</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-addingtheclasscodeintoaseparateassembly">Adding the class code into a separate assembly</a></p>
+</li><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-deletingclassesthathavecontinuousintegrationenabled">Deleting classes that have continuous integration enabled</a></p>
+</li><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-references">References</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-continuousintegrationsettings">ContinuousIntegrationSettings</a></p>
+</li><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-serializationsettings">SerializationSettings</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Setting-the-type-information-for-module-classes">Setting the type information for module classes</a></p>
-</li><li class=" "><p   
->  <a   href="Setting-up-continuous-integration">Setting up continuous integration</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---ObjectTypeInfo">Reference - ObjectTypeInfo</a></p>
+<ul class=" "><li class=" "><p><a href="setting-the-type-information-for-module-classes">Setting the type information for module classes</a></p>
+</li><li class=" "><p><a href="setting-up-continuous-integration">Setting up continuous integration</a></p>
+</li><li class=" "><p><a href="reference---objecttypeinfo">Reference - ObjectTypeInfo</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-Addingtheclasscodeintoaseparateassembly" class="heading "><span>Adding the class code into a separate assembly</span></h3>
-<p   
->When   <a   href="Restoring-continuous-integration-files-to-the-database">restoring data</a> from the continuous integration repository to the database, the process runs outside of the Kentico web application (as a console application by default). Module classes defined directly within the Kentico web project (in the <i class=" ">App_Code</i> folder on web site projects or under the <i class=" ">CMSApp</i> project on web application installations) cannot be detected by external utilities that are not web applications and are ignored by the continuous integration restore process.</p>
-<p   
->To correctly use continuous integration with custom module classes, your class code files <i class=" ">(Info</i> and <i class=" ">InfoProvider</i> classes) must be defined within a <strong class=" ">separate assembly</strong>. The assembly must also be configured to allow the system to detect classes using the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute.</p>
-<p   
->If your module classes are located directly in the Kentico web project, use the following process to move the code to a separate assembly:</p>
-    <div  class="confbox admonition admonition-info">
+<p>When <a href="restoring-continuous-integration-files-to-the-database">restoring data</a> from the continuous integration repository to the database, the process runs outside of the Kentico web application (as a console application by default). Module classes defined directly within the Kentico web project (in the <i class=" ">App_Code</i> folder on web site projects or under the <i class=" ">CMSApp</i> project on web application installations) cannot be detected by external utilities that are not web applications and are ignored by the continuous integration restore process.</p>
+<p>To correctly use continuous integration with custom module classes, your class code files <i class=" ">(Info</i> and <i class=" ">InfoProvider</i> classes) must be defined within a <strong class=" ">separate assembly</strong>. The assembly must also be configured to allow the system to detect classes using the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute.</p>
+<p>If your module classes are located directly in the Kentico web project, use the following process to move the code to a separate assembly:</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Modules with installation package support</strong></p>
-<p   
->The following steps describe how to create a standard code library (assembly) project for the module code.</p>
-<p   
->If you are developing a module that you plan to deploy using installation packages, create a <i class=" ">web application</i> project for the module according to the steps in   <a   href="Creating-installation-packages-for-modules">Creating installation packages for modules</a>.</p>
+<p><strong class=" ">Modules with installation package support</strong></p>
+<p>The following steps describe how to create a standard code library (assembly) project for the module code.</p>
+<p>If you are developing a module that you plan to deploy using installation packages, create a <i class=" ">web application</i> project for the module according to the steps in <a href="creating-installation-packages-for-modules">Creating installation packages for modules</a>.</p>
         </div>
     </div>
-<ol class=" "><li class=" "><p   
->Create a new <i class=" ">Class Library</i> project (assembly) in the Kentico solution (or reuse an existing custom project).</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the module project:<br/></p>
-<ul class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries (and any others that you use in the module&#39;s code):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Helpers.dll</strong></p>
-</li></ul></li></ul></li><li class=" "><p   
->Add a reference from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i> to the custom module project.</p>
-</li><li class=" "><p   
->Edit the module project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).<br/></p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ol class=" "><li class=" "><p>Create a new <i class=" ">Class Library</i> project (assembly) in the Kentico solution (or reuse an existing custom project).</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the module project:<br></p>
+<ul class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries (and any others that you use in the module's code):</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Helpers.dll</strong></p>
+</li></ul></li></ul></li><li class=" "><p>Add a reference from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i> to the custom module project.</p>
+</li><li class=" "><p>Edit the module project's <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).<br></p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Move all of the module&#39;s code files <i class=" ">(Info</i> and <i class=" ">InfoProvider</i> classes, etc.) into the new project.<br/></p>
-</li><li class=" "><p   
->Save all changes.</p>
-</li><li class=" "><p   
->Build the Kentico solution (or only the module project on <i class=" ">web site</i> installations).</p>
-</li></ol><p   
->Placing the class code into a discoverable custom assembly allows the continuous integration solution to work with the class when restoring data from the <i class=" ">CIRepository</i> folder.</p>
+</li><li class=" "><p>Move all of the module's code files <i class=" ">(Info</i> and <i class=" ">InfoProvider</i> classes, etc.) into the new project.<br></p>
+</li><li class=" "><p>Save all changes.</p>
+</li><li class=" "><p>Build the Kentico solution (or only the module project on <i class=" ">web site</i> installations).</p>
+</li></ol><p>Placing the class code into a discoverable custom assembly allows the continuous integration solution to work with the class when restoring data from the <i class=" ">CIRepository</i> folder.</p>
     <h3 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-Deletingclassesthathavecontinuousintegrationenabled" class="heading "><span>Deleting classes that have continuous integration enabled</span></h3>
-<p   
->Use the following process if you ever need to delete a custom class with existing data and continuous integration enabled:</p>
-<ol class=" "><li class=" "><p   
->First delete the given class&#39;s code files and rebuild the module project in Visual Studio (or remove the entire module project if it is no longer needed).</p>
-</li><li class=" "><p   
->Delete the class in the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
-</li><li class=" "><p   
->Manually delete the folder representing the class&#39;s data from your <i class=" ">CIRepository</i> folder (the system automatically removes the data from the database, but cannot clear the continuous integration data).</p>
+<p>Use the following process if you ever need to delete a custom class with existing data and continuous integration enabled:</p>
+<ol class=" "><li class=" "><p>First delete the given class's code files and rebuild the module project in Visual Studio (or remove the entire module project if it is no longer needed).</p>
+</li><li class=" "><p>Delete the class in the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+</li><li class=" "><p>Manually delete the folder representing the class's data from your <i class=" ">CIRepository</i> folder (the system automatically removes the data from the database, but cannot clear the continuous integration data).</p>
 </li></ol>    <h3 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-References" class="heading "><span>References</span></h3>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The reference lists the <strong class=" ">ContinuousIntegrationSettings</strong> and <strong class=" ">SerializationSettings</strong> properties that are intended for public use. The classes also contain other members that are used internally or handled automatically by the system. We do not recommend working with any of the undocumented members.</p>
+<p>The reference lists the <strong class=" ">ContinuousIntegrationSettings</strong> and <strong class=" ">SerializationSettings</strong> properties that are intended for public use. The classes also contain other members that are used internally or handled automatically by the system. We do not recommend working with any of the undocumented members.</p>
         </div>
     </div>
     <h4 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-ContinuousIntegrationSettings" class="heading "><span>ContinuousIntegrationSettings</span></h4>
-<p   
->The <strong class=" ">ContinuousIntegrationSettings</strong> property of <i class=" ">ObjectTypeInfo</i> determines how classes work with the   <a   href="Setting-up-continuous-integration">continuous integration</a> solution.</p>
-<p   
->Assign an instance of the <i class=" ">ContinuousIntegrationSettings</i> class and set its properties:<br/></p>
-    <div  class="tablewrap">
+<p>The <strong class=" ">ContinuousIntegrationSettings</strong> property of <i class=" ">ObjectTypeInfo</i> determines how classes work with the <a href="setting-up-continuous-integration">continuous integration</a> solution.</p>
+<p>Assign an instance of the <i class=" ">ContinuousIntegrationSettings</i> class and set its properties:<br></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Property</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Property</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Type</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Type</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Enabled</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Enabled</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->bool</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Indicates whether the class is included in the system&#39;s continuous integration solution (when serializing all objects to the file system and tracking object changes).</p>
-<p   
->Child classes are included only if the property is also enabled for the parent class.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indicates whether the class is included in the system's continuous integration solution (when serializing all objects to the file system and tracking object changes).</p>
+<p>Child classes are included only if the property is also enabled for the parent class.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->DependencyColumns</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DependencyColumns</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->ICollection&lt;string&gt;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ICollection&lt;string&gt;</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Defined as an <i class=" ">ICollection</i> of field names. When the values of the specified fields are changed for an object, the continuous integration solution reserializes the given object and all of its child or otherwise dependent objects.</p>
-<p   
->Only needs to be set for classes that use non-standard fields to determine the identity of objects. The object type&#39;s code name, GUID, parent ID, site ID and group ID fields are included by default.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Defined as an <i class=" ">ICollection</i> of field names. When the values of the specified fields are changed for an object, the continuous integration solution reserializes the given object and all of its child or otherwise dependent objects.</p>
+<p>Only needs to be set for classes that use non-standard fields to determine the identity of objects. The object type's code name, GUID, parent ID, site ID and group ID fields are included by default.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->ObjectFileNameFields</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ObjectFileNameFields</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->ICollection&lt;string&gt;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ICollection&lt;string&gt;</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Overrides the names of the XML files containing the serialized data of the class&#39;s objects within the <i class=" ">CIRepository</i> folder. By default, the XML files are named according to the <strong class=" ">CodeNameColumn</strong> value of the corresponding object. For object types without a code name field, the <strong class=" ">GuidColumn</strong> value is used instead.</p>
-<p   
->The property is defined as an <i class=" ">ICollection</i> of field names that the system combines into the names of the continuous integration XML files. Underscores ( _ ) are used as separators between the values of the specified fields.</p>
-<p   
-><strong class=" ">Note</strong>: For continuous integration to work correctly, the combination of fields must be unique within the appropriate scope (within a given site for site-related objects, within the objects under a specific parent, etc.).</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Overrides the names of the XML files containing the serialized data of the class's objects within the <i class=" ">CIRepository</i> folder. By default, the XML files are named according to the <strong class=" ">CodeNameColumn</strong> value of the corresponding object. For object types without a code name field, the <strong class=" ">GuidColumn</strong> value is used instead.</p>
+<p>The property is defined as an <i class=" ">ICollection</i> of field names that the system combines into the names of the continuous integration XML files. Underscores ( _ ) are used as separators between the values of the specified fields.</p>
+<p><strong class=" ">Note</strong>: For continuous integration to work correctly, the combination of fields must be unique within the appropriate scope (within a given site for site-related objects, within the objects under a specific parent, etc.).</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->ObjectTypeFolderName</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ObjectTypeFolderName</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->string</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Sets the name of the folder that stores the XML files containing the serialized data of the class&#39;s objects within the <i class=" ">CIRepository</i> folder.</p>
-<p   
->If not specified, the object type name (value of the <strong class=" ">ObjectType</strong> type information property) is used by default.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sets the name of the folder that stores the XML files containing the serialized data of the class's objects within the <i class=" ">CIRepository</i> folder.</p>
+<p>If not specified, the object type name (value of the <strong class=" ">ObjectType</strong> type information property) is used by default.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->SeparatedFields</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>SeparatedFields</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->IEnumerable&lt;SeparatedField&gt;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IEnumerable&lt;SeparatedField&gt;</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Identifies fields that the continuous integration solution stores into separate files when serializing objects to the file system. The separated file is created within the same folder as the main XML file holding the remaining serialized data of the object.</p>
-<p   
->To define the separated fields, assign an <i class=" ">IEnumerable</i> collection of <strong class=" ">SeparatedField</strong> objects into <i class=" ">SeparatedFields</i>. For each <i class=" ">SeparatedField</i> object, specify the name of the field as the constructor parameter. You can configure additional settings for the separated file through the properties of the <i class=" ">SeparatedField</i> object.</p>
-<p   
-><strong class=" ">Note</strong>: If the class has a field that stores binary data (specified in the <strong class=" ">BinaryColumn</strong> type information property), the system includes the field in <i class=" ">SeparatedFields</i> by default. Manually setting the <i class=" ">SeparatedFields</i> property overrides the default separation settings for the <i class=" ">BinaryColumn</i> field, but you can define a custom <i class=" ">SeparatedField</i> object for the given field.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Identifies fields that the continuous integration solution stores into separate files when serializing objects to the file system. The separated file is created within the same folder as the main XML file holding the remaining serialized data of the object.</p>
+<p>To define the separated fields, assign an <i class=" ">IEnumerable</i> collection of <strong class=" ">SeparatedField</strong> objects into <i class=" ">SeparatedFields</i>. For each <i class=" ">SeparatedField</i> object, specify the name of the field as the constructor parameter. You can configure additional settings for the separated file through the properties of the <i class=" ">SeparatedField</i> object.</p>
+<p><strong class=" ">Note</strong>: If the class has a field that stores binary data (specified in the <strong class=" ">BinaryColumn</strong> type information property), the system includes the field in <i class=" ">SeparatedFields</i> by default. Manually setting the <i class=" ">SeparatedFields</i> property overrides the default separation settings for the <i class=" ">BinaryColumn</i> field, but you can define a custom <i class=" ">SeparatedField</i> object for the given field.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">ContinuousIntegrationSettings =</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	Enabled = </code><code class="keyword">true</code><code class="plain">,</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Adds a field that the continuous integration solution serializes into a separate file (in addition to the BinaryColumn field)</code></div>
 <div class="line"><code class="plain">	SeparatedFields = </code><code class="keyword">new</code><code class="plain"> List&lt;SeparatedField&gt;</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -437,70 +353,57 @@
 </div>
     </div>
     <h4 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-SerializationSettings" class="heading "><span>SerializationSettings</span></h4>
-<p  class="confluence-link" 
->The <strong class=" ">SerializationSettings</strong> property of <i class=" ">ObjectTypeInfo</i> determines how the system serializes class objects from the database into XML data. The serialization is used by the system&#39;s continuous integration solution.</p>
-<p   
->Assign an instance of the <i class=" ">SerializationSettings</i> class and set its properties:</p>
-    <div  class="tablewrap">
+<p class="confluence-link">The <strong class=" ">SerializationSettings</strong> property of <i class=" ">ObjectTypeInfo</i> determines how the system serializes class objects from the database into XML data. The serialization is used by the system's continuous integration solution.</p>
+<p>Assign an instance of the <i class=" ">SerializationSettings</i> class and set its properties:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Property</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Property</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Type</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Type</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->ExcludedFieldNames<br/>    <span style="color: #ffffff;">
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ExcludedFieldNames<br>    <span style="color: #ffffff;">
 ___________________________    </span>
 </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->ICollection&lt;string&gt;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ICollection&lt;string&gt;</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Allows you to limit which fields are included when serializing objects of the given class to XML. Defined as an <i class=" ">ICollection</i> of field names that you wish to exclude from the serialization (blacklist).</p>
-<p   
->By default, the system automatically excludes the class&#39;s <strong class=" ">IDColumn</strong>, <strong class=" ">TimeStampColumn</strong>, <strong class=" ">VersionGUIDColumn</strong> and<strong class=" "> BinaryColumn</strong>.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Allows you to limit which fields are included when serializing objects of the given class to XML. Defined as an <i class=" ">ICollection</i> of field names that you wish to exclude from the serialization (blacklist).</p>
+<p>By default, the system automatically excludes the class's <strong class=" ">IDColumn</strong>, <strong class=" ">TimeStampColumn</strong>, <strong class=" ">VersionGUIDColumn</strong> and<strong class=" "> BinaryColumn</strong>.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->StructuredFields</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>StructuredFields</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->IEnumerable&lt;IStructuredField&gt;</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IEnumerable&lt;IStructuredField&gt;</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Identifies fields that contain structured data, and cannot directly be serialized as inner text values of an XML element (for example fields with XML values). Ensures that the system correctly formats the value, for example as nested XML without a <a  class="external-link" href="http://en.wikipedia.org/wiki/CDATA">CDATA section</a>.</p>
-<p   
->To work with custom data formats, you need to create an <strong class=" ">IStructuredField</strong> implementation that defines how the serialization occurs.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Identifies fields that contain structured data, and cannot directly be serialized as inner text values of an XML element (for example fields with XML values). Ensures that the system correctly formats the value, for example as nested XML without a <a class="external-link" href="http://en.wikipedia.org/wiki/CDATA">CDATA section</a>.</p>
+<p>To work with custom data formats, you need to create an <strong class=" ">IStructuredField</strong> implementation that defines how the serialization occurs.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">SerializationSettings =</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Adds two fields to the default collection of fields that are excluded from the serialized data</code></div>
 <div class="line"><code class="plain">	ExcludedFieldNames = { </code><code class="string">"ClassField"</code><code class="plain">, </code><code class="string">"ClassSecondField"</code><code class="plain"> },</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Ensures that the system processes "ClassXmlField" as nested XML in the serialized data</code></div>
 <div class="line"><code class="plain">	StructuredFields = </code><code class="keyword">new</code><code class="plain"> IStructuredField[]</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -529,5 +432,6 @@ ___________________________    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

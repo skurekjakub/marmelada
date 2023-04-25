@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Converting an existing project to an Azure project - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,176 +148,109 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If you already have a Kentico web site or web application hosted on a traditional web server or prepared for deployment, you can decide to move your project to the Microsoft Azure Cloud Services. There are several tasks you need to perform before the deployment.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"><p>If you already have a Kentico web site or web application hosted on a traditional web server or prepared for deployment, you can decide to move your project to the Microsoft Azure Cloud Services. There are several tasks you need to perform before the deployment.</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->This page provides instructions on converting an existing Kentico project to Kentico Azure project designed for deployment to <strong class=" ">Azure Cloud Services</strong>. If you want to deploy your Kentico project to Azure Web Apps, please see   <a   href="Deploying-existing-Kentico-projects-to-Azure-Web-Apps">Deploying existing Kentico projects to Azure Web Apps</a>.</p>
+<p>This page provides instructions on converting an existing Kentico project to Kentico Azure project designed for deployment to <strong class=" ">Azure Cloud Services</strong>. If you want to deploy your Kentico project to Azure Web Apps, please see <a href="deploying-existing-kentico-projects-to-azure-web-apps">Deploying existing Kentico projects to Azure Web Apps</a>.</p>
         </div>
-    </div>
-<p   
->This scenario expects that you have a Kentico web site or web application project installed in a local file system, connected to a standard Microsoft SQL database. If you want to move your project to Azure Cloud Services, you need to move the media library files, deploy your database to Azure SQL (if you want to have the whole project on Azure, otherwise it is not necessary) and deploy the project files through Visual Studio.</p>
-<p   
->However, please read the <strong class=" ">Possible issues</strong> section first and adjust your project according to the recommendations.</p>
-    <h3 id="src-68881715_ConvertinganexistingprojecttoanAzureproject-Possibleissues" class="heading "><span>Possible issues</span></h3>
-<p   
->The following issues present problems which you should be aware of during the process of converting an existing project to an Azure project for deployment to Cloud Services. Please read through them, asses whether they apply to your project and adjust your project according to the recommendations.</p>
-<ul class=" "><li class=" "><p   
->Storing <strong class=" ">metafiles</strong> and <strong class=" ">attachments</strong> in the file system (when the <strong class=" ">Settings -&gt; System -&gt; Files -&gt; Store files</strong> <strong class=" ">in: File system </strong>setting is selected) is not recommended on the Azure platform. In this case you need to migrate the files to the database or the blob storage:<br/></p>
-<ul class=" "><li class=" "><p   
->Store files only in the database - select the <strong class=" ">Store files in: Database</strong> setting in <strong class=" ">Settings -&gt; System -&gt; Files</strong>.</p>
-</li><li class=" "><p   
->Or store such files in the Azure blob storage - select the <strong class=" ">Store files</strong> <strong class=" ">in: File system </strong>setting and move the files to the blob storage.</p>
-</li></ul></li><li class=" "><p   
->In the Azure environment, <strong class=" ">media files</strong> are stored in the blob storage. After you move your existing media files to the Azure blob storage, the existing links to the media files from content will stop working. You will need to manually re-save them.</p>
-</li><li class=" "><p   
->If you store <strong class=" ">virtual objects</strong> (form layouts, page layouts, transformations, etc.) in the file system (when the <strong class=" ">System -&gt; Virtual objects -&gt; Store all virtual objects in file system</strong> option is enabled), you need to move the objects back to the database before deploying your project to the Azure platform. Virtual objects cannot be stored in the file system on Azure. However, you can store virtual objects in the file system in your local development project if you   <a   href="Developing-Kentico-Azure-projects-locally#src-68881711_DevelopingKenticoAzureprojectslocally-DevelopingAzureprojectslocallyaswebapplications">develop the project as a web application</a>.</p>
-</li><li class=" "><p   
->If you have set up a <strong class=" ">web farm</strong> in your project, the system can contain unnecessary web farm servers in the database. The web farm servers are generated automatically on Azure. Therefore, we recommend that you delete the old web farm servers in the UI to ensure that a licensing error does not occur.</p>
-</li><li class=" "><p   
->Review any <strong class=" ">custom code</strong> that works with the file system. Make sure that the code uses CMS.IO. Also migrate relevant files to the blob storage.</p>
-</li><li class=" "><p   
->Your <strong class=" ">database</strong> may contain custom database objects that are not supported on Azure SQL. This is a limitation of the Azure platform, you might not be able to migrate your database to Azure SQL without modifications. These issues might happen if you have somehow customized your database (stored procedures, indexes, access to tables) or if you have developed custom modules.</p>
-</li></ul>    <div  class="confbox panel">
+    </div><p>This scenario expects that you have a Kentico web site or web application project installed in a local file system, connected to a standard Microsoft SQL database. If you want to move your project to Azure Cloud Services, you need to move the media library files, deploy your database to Azure SQL (if you want to have the whole project on Azure, otherwise it is not necessary) and deploy the project files through Visual Studio.</p><p>However, please read the <strong class=" ">Possible issues</strong> section first and adjust your project according to the recommendations.</p><h3 id="src-68881715_ConvertinganexistingprojecttoanAzureproject-Possibleissues" class="heading "><span>Possible issues</span></h3><p>The following issues present problems which you should be aware of during the process of converting an existing project to an Azure project for deployment to Cloud Services. Please read through them, asses whether they apply to your project and adjust your project according to the recommendations.</p><ul class=" "><li class=" "><p>Storing <strong class=" ">metafiles</strong> and <strong class=" ">attachments</strong> in the file system (when the <strong class=" ">Settings -&gt; System -&gt; Files -&gt; Store files</strong> <strong class=" ">in: File system </strong>setting is selected) is not recommended on the Azure platform. In this case you need to migrate the files to the database or the blob storage:<br></p>
+<ul class=" "><li class=" "><p>Store files only in the database - select the <strong class=" ">Store files in: Database</strong> setting in <strong class=" ">Settings -&gt; System -&gt; Files</strong>.</p>
+</li><li class=" "><p>Or store such files in the Azure blob storage - select the <strong class=" ">Store files</strong> <strong class=" ">in: File system </strong>setting and move the files to the blob storage.</p>
+</li></ul></li><li class=" "><p>In the Azure environment, <strong class=" ">media files</strong> are stored in the blob storage. After you move your existing media files to the Azure blob storage, the existing links to the media files from content will stop working. You will need to manually re-save them.</p>
+</li><li class=" "><p>If you store <strong class=" ">virtual objects</strong> (form layouts, page layouts, transformations, etc.) in the file system (when the <strong class=" ">System -&gt; Virtual objects -&gt; Store all virtual objects in file system</strong> option is enabled), you need to move the objects back to the database before deploying your project to the Azure platform. Virtual objects cannot be stored in the file system on Azure. However, you can store virtual objects in the file system in your local development project if you <a href="developing-kentico-azure-projects-locally#src-68881711_developingkenticoazureprojectslocally-developingazureprojectslocallyaswebapplications">develop the project as a web application</a>.</p>
+</li><li class=" "><p>If you have set up a <strong class=" ">web farm</strong> in your project, the system can contain unnecessary web farm servers in the database. The web farm servers are generated automatically on Azure. Therefore, we recommend that you delete the old web farm servers in the UI to ensure that a licensing error does not occur.</p>
+</li><li class=" "><p>Review any <strong class=" ">custom code</strong> that works with the file system. Make sure that the code uses CMS.IO. Also migrate relevant files to the blob storage.</p>
+</li><li class=" "><p>Your <strong class=" ">database</strong> may contain custom database objects that are not supported on Azure SQL. This is a limitation of the Azure platform, you might not be able to migrate your database to Azure SQL without modifications. These issues might happen if you have somehow customized your database (stored procedures, indexes, access to tables) or if you have developed custom modules.</p>
+</li></ul></div>
+    
+
+
+    
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881715_ConvertinganexistingprojecttoanAzureproject-Possibleissues">Possible issues</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881715_ConvertinganexistingprojecttoanAzureproject-Prerequisites-Cloudenvironment">Prerequisites - Cloud environment</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881715_ConvertinganexistingprojecttoanAzureproject-Part1-Movethemediafiles">Part 1 - Move the media files</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881715_ConvertinganexistingprojecttoanAzureproject-Part2-Deploythedatabase">Part 2 - Deploy the database</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881715_ConvertinganexistingprojecttoanAzureproject-Part3-Converttheproject">Part 3 - Convert the project</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881715_ConvertinganexistingprojecttoanAzureproject-Finish-ConfigureanddeploytheAzureproject">Finish - Configure and deploy the Azure project</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881715_ConvertinganexistingprojecttoanAzureproject-Repairingmedialibrarylinksandmacroexpressions">Repairing media library links and macro expressions</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881715_convertinganexistingprojecttoanazureproject-possibleissues">Possible issues</a></p>
+</li><li class=" "><p><a href="#src-68881715_convertinganexistingprojecttoanazureproject-prerequisites-cloudenvironment">Prerequisites - Cloud environment</a></p>
+</li><li class=" "><p><a href="#src-68881715_convertinganexistingprojecttoanazureproject-part1-movethemediafiles">Part 1 - Move the media files</a></p>
+</li><li class=" "><p><a href="#src-68881715_convertinganexistingprojecttoanazureproject-part2-deploythedatabase">Part 2 - Deploy the database</a></p>
+</li><li class=" "><p><a href="#src-68881715_convertinganexistingprojecttoanazureproject-part3-converttheproject">Part 3 - Convert the project</a></p>
+</li><li class=" "><p><a href="#src-68881715_convertinganexistingprojecttoanazureproject-finish-configureanddeploytheazureproject">Finish - Configure and deploy the Azure project</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881715_convertinganexistingprojecttoanazureproject-repairingmedialibrarylinksandmacroexpressions">Repairing media library links and macro expressions</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68881715_ConvertinganexistingprojecttoanAzureproject-Prerequisites-Cloudenvironment" class="heading "><span>Prerequisites - Cloud environment</span></h3>
-<p   
->Before you start converting and deploying your project to the Azure platform, make sure that you have all the necessary services prepared in the <a  class="external-link" href="https://portal.azure.com/">Azure Management Portal</a>:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="Preparing-the-Azure-cloud-environment#src-68881718_PreparingtheAzurecloudenvironment-CreatingaMicrosoftAzureStorage">Create an Azure Storage</a> &ndash; the blob storage is necessary for storing media and other types of files.</p>
-</li><li class=" "><p   
->  <a   href="Preparing-the-Azure-cloud-environment#src-68881718_PreparingtheAzurecloudenvironment-CreatingaMicrosoftAzureSQLServerandadatabase">Create an Azure SQL Server</a> and configure its firewall to accept your IP address &ndash; if you want to deploy your database to the Azure platform, you need to prepare an Azure SQL server. You do not need to prepare an empty database though, as the database will be created during the deployment process.</p>
-</li><li class=" "><p   
->  <a   href="Preparing-the-Azure-cloud-environment#src-68881718_PreparingtheAzurecloudenvironment-CreatingaMicrosoftAzureCloudservice">Create an Azure Cloud Service</a> &ndash; this service will host your project and provide computing power.</p>
+<p>Before you start converting and deploying your project to the Azure platform, make sure that you have all the necessary services prepared in the <a class="external-link" href="https://portal.azure.com/">Azure Management Portal</a>:</p>
+<ul class=" "><li class=" "><p><a href="preparing-the-azure-cloud-environment#src-68881718_preparingtheazurecloudenvironment-creatingamicrosoftazurestorage">Create an Azure Storage</a> – the blob storage is necessary for storing media and other types of files.</p>
+</li><li class=" "><p><a href="preparing-the-azure-cloud-environment#src-68881718_preparingtheazurecloudenvironment-creatingamicrosoftazuresqlserverandadatabase">Create an Azure SQL Server</a> and configure its firewall to accept your IP address – if you want to deploy your database to the Azure platform, you need to prepare an Azure SQL server. You do not need to prepare an empty database though, as the database will be created during the deployment process.</p>
+</li><li class=" "><p><a href="preparing-the-azure-cloud-environment#src-68881718_preparingtheazurecloudenvironment-creatingamicrosoftazurecloudservice">Create an Azure Cloud Service</a> – this service will host your project and provide computing power.</p>
 </li></ul>    <h3 id="src-68881715_ConvertinganexistingprojecttoanAzureproject-Part1-Movethemediafiles" class="heading "><span>Part 1 - Move the media files</span></h3>
-<p   
->When the website runs in the Azure environment, media files are automatically stored in the blob storage. Therefore, we recommend that you move your existing media files to the blob storage as well to have all files in one place.</p>
-<ol class=" "><li class=" "><p   
->Open the created Azure blob storage.</p>
-<ul class=" "><li class=" "><p   
->You can use an arbitrary file manager for Microsoft Azure blob storage. We recommend <a  class="external-link" href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">Cloudberry explorer for Microsoft Azure</a>.</p>
-</li></ul></li><li class=" "><p   
->Create a new container in the root called <strong class=" "><i class=" ">cmsstorage</i>.</strong></p>
-</li><li class=" "><p   
->Move all media library files to the created container including the site name folder.</p>
-<ul class=" "><li class=" "><p   
->The default location of all libraries of a particular site is <strong class=" ">~/&lt;sitename&gt;/media</strong>.</p>
-</li><li class=" "><p   
->The folder structure on the blob storage will look like this: cmsstorage/&lt;sitename&gt;/media/&lt;medialibraryname&gt;/&lt;medialibraryfiles&gt;.<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Convert any uppercase letters to lowercase, because Azure blob storage is case sensitive.</p>
-</li></ol><p   
->You have prepared your media library storage.</p>
+<p>When the website runs in the Azure environment, media files are automatically stored in the blob storage. Therefore, we recommend that you move your existing media files to the blob storage as well to have all files in one place.</p>
+<ol class=" "><li class=" "><p>Open the created Azure blob storage.</p>
+<ul class=" "><li class=" "><p>You can use an arbitrary file manager for Microsoft Azure blob storage. We recommend <a class="external-link" href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">Cloudberry explorer for Microsoft Azure</a>.</p>
+</li></ul></li><li class=" "><p>Create a new container in the root called <strong class=" "><i class=" ">cmsstorage</i>.</strong></p>
+</li><li class=" "><p>Move all media library files to the created container including the site name folder.</p>
+<ul class=" "><li class=" "><p>The default location of all libraries of a particular site is <strong class=" ">~/&lt;sitename&gt;/media</strong>.</p>
+</li><li class=" "><p>The folder structure on the blob storage will look like this: cmsstorage/&lt;sitename&gt;/media/&lt;medialibraryname&gt;/&lt;medialibraryfiles&gt;.<br><br></p>
+</li></ul></li><li class=" "><p>Convert any uppercase letters to lowercase, because Azure blob storage is case sensitive.</p>
+</li></ol><p>You have prepared your media library storage.</p>
     <h3 id="src-68881715_ConvertinganexistingprojecttoanAzureproject-Part2-Deploythedatabase" class="heading "><span>Part 2 - Deploy the database</span></h3>
-<p   
->You can host your project on Microsoft Azure and keep your database in a standard Microsoft SQL server. However, we recommend that you also move your database to Azure, as hosting your database on Azure ensures the best performance.</p>
-<p   
->To learn how to deploy on-premise databases to Azure SQL Database, see the <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-cloud-migrate">SQL Server database migration to SQL Database in the cloud</a> article.</p>
-<p   
->For example, you can use the following steps to deploy your database using the <i class=" ">Deploy Database to Microsoft Azure Database</i> wizard in SQL Server Management Studio:</p>
-<ol class=" "><li class=" "><p   
->Deploy your SQL server according to the instructions in the <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-cloud-migrate">SQL Server database migration to SQL Database in the cloud</a> article.</p>
-</li><li class=" "><p   
->Change the connection string in the <strong class=" ">web.config</strong> file of your Kentico project to connect to the deployed Azure SQL database. You can use the following template:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>You can host your project on Microsoft Azure and keep your database in a standard Microsoft SQL server. However, we recommend that you also move your database to Azure, as hosting your database on Azure ensures the best performance.</p>
+<p>To learn how to deploy on-premise databases to Azure SQL Database, see the <a class="external-link" href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-cloud-migrate">SQL Server database migration to SQL Database in the cloud</a> article.</p>
+<p>For example, you can use the following steps to deploy your database using the <i class=" ">Deploy Database to Microsoft Azure Database</i> wizard in SQL Server Management Studio:</p>
+<ol class=" "><li class=" "><p>Deploy your SQL server according to the instructions in the <a class="external-link" href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-cloud-migrate">SQL Server database migration to SQL Database in the cloud</a> article.</p>
+</li><li class=" "><p>Change the connection string in the <strong class=" ">web.config</strong> file of your Kentico project to connect to the deployed Azure SQL database. You can use the following template:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">connectionStrings</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">"CMSConnectionString"</code><code class="plain"> </code><code class="color1">connectionString</code><code class="plain">=</code><code class="string">"Server=DATABASE_SERVER.database.windows.net;Database=DATABASE_NAME;User ID=DB_SERVER_USER_NAME;Password=DB_SERVER_PASSWORD;Trusted_Connection=False;Encrypt=True;Connection Timeout=120;"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">connectionStrings</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-<p   
->Replace the upper-case words with your own data.</p>
-</li></ol><p   
->Test if the database works as expected with your project. You now have a project that uses an Azure SQL database.</p>
+<p>Replace the upper-case words with your own data.</p>
+</li></ol><p>Test if the database works as expected with your project. You now have a project that uses an Azure SQL database.</p>
     <h3 id="src-68881715_ConvertinganexistingprojecttoanAzureproject-Part3-Converttheproject" class="heading "><span>Part 3 - Convert the project</span></h3>
-<p   
->The best way of converting a normal project to an Azure project is to install a blank new Kentico Azure project and transfer your customizations.</p>
-<ol class=" "><li class=" "><p   
->  <a   href="Installing-Kentico-Azure-projects">Install an empty Kentico Azure project</a> using the Kentico Installer.</p>
-</li><li class=" "><p   
->Move all your customizations of the code base in your project to the new Kentico Azure project.</p>
-<ul class=" "><li class=" "><p   
->We recommend that you compare empty, not customized project with your project using some external compare tool.</p>
-</li></ul></li><li class=" "><p   
->Copy any additional files required by the site, such as custom user controls or stylesheet design files.</p>
-</li><li class=" "><p   
->Include the copied files in your project:</p>
-<ol class=" "><li class=" "><p   
->Open Visual Studio and enable the <strong class=" ">Show all files</strong> button at the top of the Solution Explorer.</p>
-</li><li class=" "><p   
->Right click the given files and select <strong class=" ">Include In Project</strong>.</p>
-</li><li class=" "><p   
->Check the properties (<strong class=" ">Right click -&gt; Properties</strong>) of all files that were included into the project and make sure that the value of their <strong class=" ">Build Action</strong> property is set to <i class=" ">Content</i>.</p>
-</li></ol></li></ol><p   
->Your project is now converted to an Azure project.</p>
+<p>The best way of converting a normal project to an Azure project is to install a blank new Kentico Azure project and transfer your customizations.</p>
+<ol class=" "><li class=" "><p><a href="installing-kentico-azure-projects">Install an empty Kentico Azure project</a> using the Kentico Installer.</p>
+</li><li class=" "><p>Move all your customizations of the code base in your project to the new Kentico Azure project.</p>
+<ul class=" "><li class=" "><p>We recommend that you compare empty, not customized project with your project using some external compare tool.</p>
+</li></ul></li><li class=" "><p>Copy any additional files required by the site, such as custom user controls or stylesheet design files.</p>
+</li><li class=" "><p>Include the copied files in your project:</p>
+<ol class=" "><li class=" "><p>Open Visual Studio and enable the <strong class=" ">Show all files</strong> button at the top of the Solution Explorer.</p>
+</li><li class=" "><p>Right click the given files and select <strong class=" ">Include In Project</strong>.</p>
+</li><li class=" "><p>Check the properties (<strong class=" ">Right click -&gt; Properties</strong>) of all files that were included into the project and make sure that the value of their <strong class=" ">Build Action</strong> property is set to <i class=" ">Content</i>.</p>
+</li></ol></li></ol><p>Your project is now converted to an Azure project.</p>
     <h3 id="src-68881715_ConvertinganexistingprojecttoanAzureproject-Finish-ConfigureanddeploytheAzureproject" class="heading "><span>Finish - Configure and deploy the Azure project</span></h3>
-<p   
->When your project is converted, transfer the listed settings from the web.config file to the ServiceConfiguration.Cloud.cscfg file and perform the described configurations. After that, your project is ready to be deployed to the cloud.</p>
-<ol class=" "><li class=" "><p   
->Make sure that you copy the value of the <strong class=" ">CMSHashStringSalt</strong> key from the web.config file in your original project to the web.config file in your Azure project.</p>
-<ul class=" "><li class=" "><p   
->If you do not copy this value, all macros and other features that use hashing will become invalid in the Azure project and you will have to re-save them.</p>
-</li></ul></li><li class=" "><p   
->Specify the connection string in the <strong class=" ">ServiceConfiguration.Cloud.cscfg</strong> file in the<strong class=" "> CMSApp</strong> and <strong class=" ">SmartSearchWorker</strong> sections. You can use the following template:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>When your project is converted, transfer the listed settings from the web.config file to the ServiceConfiguration.Cloud.cscfg file and perform the described configurations. After that, your project is ready to be deployed to the cloud.</p>
+<ol class=" "><li class=" "><p>Make sure that you copy the value of the <strong class=" ">CMSHashStringSalt</strong> key from the web.config file in your original project to the web.config file in your Azure project.</p>
+<ul class=" "><li class=" "><p>If you do not copy this value, all macros and other features that use hashing will become invalid in the Azure project and you will have to re-save them.</p>
+</li></ul></li><li class=" "><p>Specify the connection string in the <strong class=" ">ServiceConfiguration.Cloud.cscfg</strong> file in the<strong class=" "> CMSApp</strong> and <strong class=" ">SmartSearchWorker</strong> sections. You can use the following template:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">ConfigurationSettings</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">Setting</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">"CMSConnectionString"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"Server=DATABASE_SERVER.database.windows.net;Database=DATABASE_NAME;User ID=DB_SERVER_USER_NAME;Password=DB_SERVER_PASSWORD;Trusted_Connection=False;Encrypt=True;Connection Timeout=120;"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">ConfigurationSettings</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-<p   
->Replace the upper-case words with your own data.<br/><br/></p>
-</li><li class=" "><p   
->Configure the blob storage settings and <strong class=" ">Smart search</strong> settings in the <strong class=" ">ServiceConfiguration.Cloud.cscfg</strong> file as specified in   <a   href="Configuring-Kentico-Azure-projects-for-Cloud-Services#src-68881729_ConfiguringKenticoAzureprojectsforCloudServices-Basicconfiguration">Basic configuration</a>.</p>
-</li><li class=" "><p   
->When your project is configured,   <a   href="Deploying-Azure-projects-to-Cloud-Services">deploy your Azure project</a>.</p>
-</li></ol><p   
->Your whole project is now deployed to the Azure platform.</p>
-<p   
->If you now wish to further develop your project locally, copy the settings to the <strong class=" ">ServiceConfiguration.Local.cscfg</strong> file and change the connection string to connect to a local database (instead of the production database on Azure). We also recommend that you prepare another Azure blob storage and connect it to your local project. See   <a   href="Developing-Kentico-Azure-projects-locally">Developing Kentico Azure projects locally</a> for more information. You can set up   <a   href="Content-staging">Content staging</a> to synchronize the media files between the blob storages.</p>
+<p>Replace the upper-case words with your own data.<br><br></p>
+</li><li class=" "><p>Configure the blob storage settings and <strong class=" ">Smart search</strong> settings in the <strong class=" ">ServiceConfiguration.Cloud.cscfg</strong> file as specified in <a href="configuring-kentico-azure-projects-for-cloud-services#src-68881729_configuringkenticoazureprojectsforcloudservices-basicconfiguration">Basic configuration</a>.</p>
+</li><li class=" "><p>When your project is configured, <a href="deploying-azure-projects-to-cloud-services">deploy your Azure project</a>.</p>
+</li></ol><p>Your whole project is now deployed to the Azure platform.</p>
+<p>If you now wish to further develop your project locally, copy the settings to the <strong class=" ">ServiceConfiguration.Local.cscfg</strong> file and change the connection string to connect to a local database (instead of the production database on Azure). We also recommend that you prepare another Azure blob storage and connect it to your local project. See <a href="developing-kentico-azure-projects-locally">Developing Kentico Azure projects locally</a> for more information. You can set up <a href="content-staging">Content staging</a> to synchronize the media files between the blob storages.</p>
     <h4 id="src-68881715_ConvertinganexistingprojecttoanAzureproject-Repairingmedialibrarylinksandmacroexpressions" class="heading "><span>Repairing media library links and macro expressions</span></h4>
-<p   
->If you have created links from content (pages) to the media library files as   <a   href="Linking-pages-and-files#src-68881933_Linkingpagesandfiles-Creatingpermanentlinkstopages">permanent links</a>, they should work correctly even after deploying your project to the Azure environment.</p>
-<p   
->However, if you have created them as direct links (with the file name in the URL), you need to correct them to point to the new address of the media files:</p>
-    <div  class="confbox admonition admonition-note">
+<p>If you have created links from content (pages) to the media library files as <a href="linking-pages-and-files#src-68881933_linkingpagesandfiles-creatingpermanentlinkstopages">permanent links</a>, they should work correctly even after deploying your project to the Azure environment.</p>
+<p>However, if you have created them as direct links (with the file name in the URL), you need to correct them to point to the new address of the media files:</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Media library links with Azure CDN</strong></p>
-<p   
->Configuring Azure CDN also changes the location of media library files. If you plan to configure the Azure CDN for your project, <strong class=" ">re-save the media library links <i class=" ">after</i> you configure the CDN</strong> for your project. Otherwise, you will have to re-save the links again.</p>
+<p><strong class=" ">Media library links with Azure CDN</strong></p>
+<p>Configuring Azure CDN also changes the location of media library files. If you plan to configure the Azure CDN for your project, <strong class=" ">re-save the media library links <i class=" ">after</i> you configure the CDN</strong> for your project. Otherwise, you will have to re-save the links again.</p>
         </div>
     </div>
-<ul class=" "><li class=" "><p   
->Open your Azure website and re-save the existing links to the media library files from content (pages). Correct links to the media files on a blob storage should begin with <i class=" ">/CMSPages/GetAzureFile.aspx</i>.</p>
-</li></ul><p   
->Also check that existing   <a   href="Entering-macro-expressions">macro expressions</a> work correctly.</p>
+<ul class=" "><li class=" "><p>Open your Azure website and re-save the existing links to the media library files from content (pages). Correct links to the media files on a blob storage should begin with <i class=" ">/CMSPages/GetAzureFile.aspx</i>.</p>
+</li></ul><p>Also check that existing <a href="entering-macro-expressions">macro expressions</a> work correctly.</p>
         </div>
 
     </article>
@@ -340,5 +271,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

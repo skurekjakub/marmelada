@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Using locally stored search indexes - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,77 +148,47 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-    <div  class="confbox admonition admonition-info">
+    <div class="section-left"></div><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: The information in this section applies to search indexes stored in the application&#39;s file system. The system also supports cloud-based   <a   href="Using-Azure-Search">Azure Search indexes</a>.</p>
+<p><strong class=" ">Note</strong>: The information in this section applies to search indexes stored in the application's file system. The system also supports cloud-based <a href="using-azure-search">Azure Search indexes</a>.</p>
         </div>
     </div>
-<p   
->Kentico provides an index-based search engine (Smart search), which allows users to search through the content of websites and various types of data within the system. The smart search is based on <a  class="external-link" href="http://lucenenet.apache.org/"><strong class=" ">Lucene.Net</strong></a> (version 3.0.3) &ndash; a C# and .NET platform port of the Java <strong class=" "><a  class="external-link" href="http://lucene.apache.org">Lucene search engine</a></strong>.</p>
-<p   
->The smart search uses <strong class=" ">indexes </strong>to store information about the website content. When a user sends a search request, the system searches through the appropriate indexes, which results in <strong class=" ">significantly better performance </strong>compared to linear SQL query search.</p>
-<p   
->To set up the smart search functionality on your website, you need to perform the following steps:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="Enabling-search-indexing">Enable search indexing</a> in the system.</p>
-</li><li class=" "><p   
->  <a   href="Creating-local-search-indexes">Create search indexes</a>. Assign the indexes to your site and define their exact content.</p>
-</li><li class=" "><p   
->Add smart search web parts onto the pages of your website. To learn more about the web parts, see   <a   href="Building-a-search-interface-for-local-indexes">Building a search interface for local indexes</a> and   <a   href="Adding-filters-for-local-search-indexes">Adding filters for local search indexes</a>.</p>
+<p>Kentico provides an index-based search engine (Smart search), which allows users to search through the content of websites and various types of data within the system. The smart search is based on <a class="external-link" href="http://lucenenet.apache.org/"><strong class=" ">Lucene.Net</strong></a> (version 3.0.3) – a C# and .NET platform port of the Java <strong class=" "><a class="external-link" href="http://lucene.apache.org">Lucene search engine</a></strong>.</p>
+<p>The smart search uses <strong class=" ">indexes </strong>to store information about the website content. When a user sends a search request, the system searches through the appropriate indexes, which results in <strong class=" ">significantly better performance </strong>compared to linear SQL query search.</p>
+<p>To set up the smart search functionality on your website, you need to perform the following steps:</p>
+<ol class=" "><li class=" "><p><a href="enabling-search-indexing">Enable search indexing</a> in the system.</p>
+</li><li class=" "><p><a href="creating-local-search-indexes">Create search indexes</a>. Assign the indexes to your site and define their exact content.</p>
+</li><li class=" "><p>Add smart search web parts onto the pages of your website. To learn more about the web parts, see <a href="building-a-search-interface-for-local-indexes">Building a search interface for local indexes</a> and <a href="adding-filters-for-local-search-indexes">Adding filters for local search indexes</a>.</p>
 </li></ol>    <h3 id="src-75071575_Usinglocallystoredsearchindexes-Howthesmartsearchworks" class="heading "><span>How the smart search works</span></h3>
-<p   
->The system stores the content of smart search indexes in physical <strong class=" ">index files</strong>. The index files are located in the <strong class=" ">~/App_Data/CMSModules/SmartSearch/&lt;Index code name&gt;</strong> folder within your web project directory.</p>
-<p   
->Pages, forums and other Kentico objects are reflected in the index file as <strong class=" ">Index documents</strong>. The index documents contain the same fields as the corresponding Kentico objects, based on the search settings of individual object types. Depending on these settings, an <strong class=" ">Index writer</strong> creates representations of objects in the index files. When an object included in the index is created, removed or has one of its fields modified, the system automatically logs an <strong class=" ">Indexing task</strong>, which updates the corresponding index document. When a search occurs for selected indexes, an <strong class=" ">Index searcher</strong> goes through the content of the corresponding index files and returns relevant results.</p>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
-    <div  class="confbox panel">
+<p>The system stores the content of smart search indexes in physical <strong class=" ">index files</strong>. The index files are located in the <strong class=" ">~/App_Data/CMSModules/SmartSearch/&lt;Index code name&gt;</strong> folder within your web project directory.</p>
+<p>Pages, forums and other Kentico objects are reflected in the index file as <strong class=" ">Index documents</strong>. The index documents contain the same fields as the corresponding Kentico objects, based on the search settings of individual object types. Depending on these settings, an <strong class=" ">Index writer</strong> creates representations of objects in the index files. When an object included in the index is created, removed or has one of its fields modified, the system automatically logs an <strong class=" ">Indexing task</strong>, which updates the corresponding index document. When a search occurs for selected indexes, an <strong class=" ">Index searcher</strong> goes through the content of the corresponding index files and returns relevant results.</p>
+    
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Providing-smart-search-on-MVC-sites">Providing smart search on MVC sites</a></p>
+<ul class=" "><li class=" "><p><a href="providing-smart-search-on-mvc-sites">Providing smart search on MVC sites</a></p>
 </li></ul>        </div>
     </div>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong></p>
-<p   
->You can find a list of indexing tasks that are waiting to be processed in the <strong class=" ">Smart search</strong> application on the <strong class=" ">Local tasks</strong> tab. Here you can:</p>
-<ul class=" "><li class=" "><p   
->Look for information if you encounter problems with new content not being indexed correctly</p>
-</li><li class=" "><p   
-><strong class=" ">Delete</strong> (<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68879208/delete.png" alt="images/download/thumbnails/68879208/delete.png"  height="13" />
+<p><strong class=" ">Tip</strong></p>
+<p>You can find a list of indexing tasks that are waiting to be processed in the <strong class=" ">Smart search</strong> application on the <strong class=" ">Local tasks</strong> tab. Here you can:</p>
+<ul class=" "><li class=" "><p>Look for information if you encounter problems with new content not being indexed correctly</p>
+</li><li class=" "><p><strong class=" ">Delete</strong> (<img class="confluence-embedded-image confluence-thumbnail" src="images/download/thumbnails/68879208/delete.png" alt="images/download/thumbnails/68879208/delete.png" height="13">
 ) tasks from the indexing queue to stop unnecessary or problematic indexing</p>
-</li></ul><p   
->See also:   <a   href="Monitoring-search-indexing-tasks">Monitoring search indexing tasks</a></p>
+</li></ul><p>See also: <a href="monitoring-search-indexing-tasks">Monitoring search indexing tasks</a></p>
         </div>
     </div>
     <h4 id="src-75071575_Usinglocallystoredsearchindexes-Example" class="heading "><span>Example</span></h4>
-<p   
->The following model scenario explains the life cycle of a page in a search index file:</p>
-<ol class=" "><li class=" "><p   
->A user (editor) creates a new page.</p>
-</li><li class=" "><p   
->Upon the page&#39;s creation, the system logs a new indexing task in the database.</p>
-</li><li class=" "><p   
->The smart search either runs the indexing task immediately or processes it later using a scheduled task.</p>
-</li><li class=" "><p   
->When executed, the indexing task adds the new page to the appropriate search indexes. The system indexes the page&#39;s content based on the search field settings defined for the given page type.</p>
-</li><li class=" "><p   
->A visitor arrives on the website and sends a search request via a smart search web part.</p>
-</li><li class=" "><p   
->The system processes the search request, searches through the assigned indexes, and returns results.</p>
+<p>The following model scenario explains the life cycle of a page in a search index file:</p>
+<ol class=" "><li class=" "><p>A user (editor) creates a new page.</p>
+</li><li class=" "><p>Upon the page's creation, the system logs a new indexing task in the database.</p>
+</li><li class=" "><p>The smart search either runs the indexing task immediately or processes it later using a scheduled task.</p>
+</li><li class=" "><p>When executed, the indexing task adds the new page to the appropriate search indexes. The system indexes the page's content based on the search field settings defined for the given page type.</p>
+</li><li class=" "><p>A visitor arrives on the website and sends a search request via a smart search web part.</p>
+</li><li class=" "><p>The system processes the search request, searches through the assigned indexes, and returns results.</p>
 </li></ol>        </div>
 
     </article>
@@ -241,5 +209,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customizing web parts - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,261 +148,172 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->There are two basic ways to change or extend the functionality of existing   <a   href="Developing-web-parts">web parts</a>:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68882197_Customizingwebparts-Example-CustomizingtheOn-lineformwebpart"><strong class=" ">Customize the web part code</strong></a> - edit the ASPX markup or code behind of the user control that implements the web part.</p>
-</li><li class=" "><p   
-><strong class=" ">  <a   href="#src-68882197_Customizingwebparts-Example-UsingaWHEREconditionmacro">Use macro expressions in web part properties</a></strong> - by inserting   <a   href="Macro-expressions">macro expressions</a> into the values of web part properties, you can implement many types of custom functionality without modifying the web part code.</p>
-</li></ul>    <div  class="confbox admonition admonition-note">
+<div class="section-left"><p>There are two basic ways to change or extend the functionality of existing <a href="developing-web-parts">web parts</a>:</p><ul class=" "><li class=" "><p><a href="#src-68882197_customizingwebparts-example-customizingtheon-lineformwebpart"><strong class=" ">Customize the web part code</strong></a> - edit the ASPX markup or code behind of the user control that implements the web part.</p>
+</li><li class=" "><p><strong class=" "><a href="#src-68882197_customizingwebparts-example-usingawhereconditionmacro">Use macro expressions in web part properties</a></strong> - by inserting <a href="macro-expressions">macro expressions</a> into the values of web part properties, you can implement many types of custom functionality without modifying the web part code.</p>
+</li></ul><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong>: We do not recommend customizing the code of the default web parts directly. Instead, create a <i class=" ">clone</i> of the required web part and implement the changes there. Using clones ensures that the system does not overwrite your code when applying hotfixes or upgrades to newer versions of Kentico.</p>
+<p><strong class=" ">Important</strong>: We do not recommend customizing the code of the default web parts directly. Instead, create a <i class=" ">clone</i> of the required web part and implement the changes there. Using clones ensures that the system does not overwrite your code when applying hotfixes or upgrades to newer versions of Kentico.</p>
         </div>
-    </div>
-<p   
->Alternatively, you can create:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">  <a   href="Creating-inherited-web-parts">Inherited web parts</a></strong> - copies of existing web parts that share the code files, but allow you to modify the definitions of   <a   href="Working-with-web-part-properties">properties</a> and their default values.</p>
-</li><li class=" "><p   
-><strong class=" ">  <a   href="Using-custom-web-part-layouts">Custom web part layouts</a></strong> - layouts determine the appearance and design of web parts (allow you to edit or extend the web part&#39;s ASPX markup). You can select a different layout for each web part instance.</p>
-</li></ul>    <h3 id="src-68882197_Customizingwebparts-Example-CustomizingtheOn-lineformwebpart" class="heading "><span>Example - Customizing the On-line form web part</span></h3>
-<p   
->The following example creates a modified version of the <strong class=" ">On-line form</strong> web part. The customized web part sends an email whenever visitors submit the form and displays a confirmation message. You can use the same approach to alter the functionality of any of the default web parts to fit your specific requirements.</p>
-    <div  class="confbox admonition admonition-info">
+    </div><p>Alternatively, you can create:</p><ul class=" "><li class=" "><p><strong class=" "><a href="creating-inherited-web-parts">Inherited web parts</a></strong> - copies of existing web parts that share the code files, but allow you to modify the definitions of <a href="working-with-web-part-properties">properties</a> and their default values.</p>
+</li><li class=" "><p><strong class=" "><a href="using-custom-web-part-layouts">Custom web part layouts</a></strong> - layouts determine the appearance and design of web parts (allow you to edit or extend the web part's ASPX markup). You can select a different layout for each web part instance.</p>
+</li></ul><h3 id="src-68882197_Customizingwebparts-Example-CustomizingtheOn-lineformwebpart" class="heading "><span>Example - Customizing the On-line form web part</span></h3><p>The following example creates a modified version of the <strong class=" ">On-line form</strong> web part. The customized web part sends an email whenever visitors submit the form and displays a confirmation message. You can use the same approach to alter the functionality of any of the default web parts to fit your specific requirements.</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: This example is only a demonstration of the web part customization process.   <a   href="Forms">Forms</a> provide built-in functionality for setting up email notifications, autoresponders and confirmation messages.</p>
+<p><strong class=" ">Note</strong>: This example is only a demonstration of the web part customization process. <a href="forms">Forms</a> provide built-in functionality for setting up email notifications, autoresponders and confirmation messages.</p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+
+    
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882197_Customizingwebparts-Example-CustomizingtheOn-lineformwebpart">Example - Customizing the On-line form web part</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882197_Customizingwebparts-Cloningtheoriginalwebpart">Cloning the original web part</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882197_Customizingwebparts-Modifyingthewebpartcode">Modifying the web part code</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882197_Customizingwebparts-Result">Result</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68882197_Customizingwebparts-Example-UsingaWHEREconditionmacro">Example - Using a WHERE condition macro</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882197_Customizingwebparts-AddingthecustomNewspagefield">Adding the custom News page field</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882197_Customizingwebparts-SettingthedynamicWHEREcondition">Setting the dynamic WHERE condition</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882197_customizingwebparts-example-customizingtheon-lineformwebpart">Example - Customizing the On-line form web part</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882197_customizingwebparts-cloningtheoriginalwebpart">Cloning the original web part</a></p>
+</li><li class=" "><p><a href="#src-68882197_customizingwebparts-modifyingthewebpartcode">Modifying the web part code</a></p>
+</li><li class=" "><p><a href="#src-68882197_customizingwebparts-result">Result</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882197_customizingwebparts-example-usingawhereconditionmacro">Example - Using a WHERE condition macro</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882197_customizingwebparts-addingthecustomnewspagefield">Adding the custom News page field</a></p>
+</li><li class=" "><p><a href="#src-68882197_customizingwebparts-settingthedynamicwherecondition">Setting the dynamic WHERE condition</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Creating-new-web-parts">Creating new web parts</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-inherited-web-parts">Creating inherited web parts</a></p>
-</li><li class=" "><p   
->  <a   href="Using-custom-web-part-layouts">Using custom web part layouts</a></p>
+<ul class=" "><li class=" "><p><a href="creating-new-web-parts">Creating new web parts</a></p>
+</li><li class=" "><p><a href="creating-inherited-web-parts">Creating inherited web parts</a></p>
+</li><li class=" "><p><a href="using-custom-web-part-layouts">Using custom web part layouts</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h4 id="src-68882197_Customizingwebparts-Cloningtheoriginalwebpart" class="heading "><span>Cloning the original web part</span></h4>
-<p   
->Before customizing one of the web parts in Kentico, it is recommended to first create a clone. Working with a separate copy of the original web part allows you to use the default version as a reference point and backup.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Web parts</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Forms -&gt; On-line form</strong> web part in the tree.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Clone web part</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/clone.png" alt="images/download/attachments/68879208/clone.png"   />
-) above the tree and enter the following values:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">New object display name</strong>: Form with custom email</p>
-</li><li class=" "><p   
-><strong class=" ">New object code name</strong>: FormWithEmail<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Clone web part to category</strong>: Forms</p>
-</li><li class=" "><p   
-><strong class=" ">Clone web part files</strong>: yes (checked)</p>
-</li><li class=" "><p   
-><strong class=" ">Cloned web part file name</strong>: BizForms/formwithemail.ascx</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Clone</strong>.</p>
-</li></ol><p   
->The system creates a copy of the existing web part and its code files (ASCX and CS) using the specified names.</p>
+<p>Before customizing one of the web parts in Kentico, it is recommended to first create a clone. Working with a separate copy of the original web part allows you to use the default version as a reference point and backup.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Web parts</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Forms -&gt; On-line form</strong> web part in the tree.</p>
+</li><li class=" "><p>Click <strong class=" ">Clone web part</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/clone.png" alt="images/download/attachments/68879208/clone.png">
+) above the tree and enter the following values:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">New object display name</strong>: Form with custom email</p>
+</li><li class=" "><p><strong class=" ">New object code name</strong>: FormWithEmail<br><br></p>
+</li><li class=" "><p><strong class=" ">Clone web part to category</strong>: Forms</p>
+</li><li class=" "><p><strong class=" ">Clone web part files</strong>: yes (checked)</p>
+</li><li class=" "><p><strong class=" ">Cloned web part file name</strong>: BizForms/formwithemail.ascx</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Clone</strong>.</p>
+</li></ol><p>The system creates a copy of the existing web part and its code files (ASCX and CS) using the specified names.</p>
     <h4 id="src-68882197_Customizingwebparts-Modifyingthewebpartcode" class="heading "><span>Modifying the web part code</span></h4>
-<ol class=" "><li class=" "><p   
->Open your web project in Visual Studio using the <strong class=" ">WebSite.sln</strong> (or <strong class=" ">WebApp.sln</strong>) file.</p>
-</li><li class=" "><p   
->Edit <strong class=" ">~/CMSWebParts/BizForms/formwithemail.ascx</strong>.</p>
-    <div  class="confbox admonition admonition-note">
+<ol class=" "><li class=" "><p>Open your web project in Visual Studio using the <strong class=" ">WebSite.sln</strong> (or <strong class=" ">WebApp.sln</strong>) file.</p>
+</li><li class=" "><p>Edit <strong class=" ">~/CMSWebParts/BizForms/formwithemail.ascx</strong>.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong></p>
-<p   
->If you installed Kentico as a web application, the clone&#39;s code files will not be visible right away, since they are not included in the project. In this case:</p>
-<ol class=" "><li class=" "><p   
->Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
-</li><li class=" "><p   
->Right-click the <strong class=" ">formwithemail.ascx</strong> file in the BizForms folder.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Include in Project</strong>.</p>
+<p><strong class=" ">Important</strong></p>
+<p>If you installed Kentico as a web application, the clone's code files will not be visible right away, since they are not included in the project. In this case:</p>
+<ol class=" "><li class=" "><p>Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
+</li><li class=" "><p>Right-click the <strong class=" ">formwithemail.ascx</strong> file in the BizForms folder.</p>
+</li><li class=" "><p>Click <strong class=" ">Include in Project</strong>.</p>
 </li></ol>        </div>
     </div>
-</li><li class=" "><p   
->Drag a <strong class=" ">Label</strong> control onto the form and place it under the <i class=" ">BizForm</i> control.</p>
-</li><li class=" "><p   
->Set the label control&#39;s <strong class=" ">ID</strong> to <i class=" ">lblConfirmationMessage</i> and clear its <strong class=" ">Text</strong> property.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Drag a <strong class=" ">Label</strong> control onto the form and place it under the <i class=" ">BizForm</i> control.</p>
+</li><li class=" "><p>Set the label control's <strong class=" ">ID</strong> to <i class=" ">lblConfirmationMessage</i> and clear its <strong class=" ">Text</strong> property.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;cms:BizForm ID=</code><code class="string">"viewBiz"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> IsLiveSite=</code><code class="string">"true"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">&lt;asp:Label ID=</code><code class="string">"lblConfirmationMessage"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain">&gt;&lt;/asp:Label&gt;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Edit the code behind file (<i class=" ">formwithemail.ascx.cs</i>) and insert the following code underneath the default content in the <strong class=" ">viewBiz_OnAfterSave</strong> handler:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Edit the code behind file (<i class=" ">formwithemail.ascx.cs</i>) and insert the following code underneath the default content in the <strong class=" ">viewBiz_OnAfterSave</strong> handler:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Creates a new e-mail message</code></div>
 <div class="line"><code class="plain">CMS.EmailEngine.EmailMessage msg = </code><code class="keyword">new</code><code class="plain"> CMS.EmailEngine.EmailMessage();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">msg.From = </code><code class="string">"mail@localhost.local"</code><code class="plain">; </code><code class="comments">// Enter any valid e-mail address</code></div>
 <div class="line"><code class="plain">msg.Recipients = </code><code class="string">"mail@localhost.local"</code><code class="plain">; </code><code class="comments">// Use a valid e-mail address that you can access</code></div>
 <div class="line"><code class="plain">msg.Subject = </code><code class="string">"Custom form e-mail"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">msg.Body = </code><code class="string">"The value of the FirstName field: "</code></div>
 <div class="line"><code class="plain">            + CMS.Helpers.ValidationHelper.GetString(viewBiz.GetDataValue(</code><code class="string">"FirstName"</code><code class="plain">), </code><code class="string">"N/A"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Sends out the custom e-mail notification</code></div>
 <div class="line"><code class="plain">CMS.EmailEngine.EmailSender.SendEmail(msg);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Sets the confirmation message shown in the label</code></div>
 <div class="line"><code class="plain">lblConfirmationMessage.Text = </code><code class="string">"The e-mail has been sent."</code><code class="plain">;</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The web part executes the <strong class=" ">viewBiz_OnAfterSave</strong> handler method whenever a user saves the form.</p>
-<p   
->The custom code creates a new email message, sends it out, and adds text into the confirmation label. The content of the email dynamically retrieves a field value from the form using the <strong class=" ">GetDataValue(string fieldName)</strong> method of the BizForm control.</p>
+<p>The web part executes the <strong class=" ">viewBiz_OnAfterSave</strong> handler method whenever a user saves the form.</p>
+<p>The custom code creates a new email message, sends it out, and adds text into the confirmation label. The content of the email dynamically retrieves a field value from the form using the <strong class=" ">GetDataValue(string fieldName)</strong> method of the BizForm control.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Fill in valid email addresses into the <strong class=" ">From</strong> and <strong class=" ">Recipients</strong> properties of the <strong class=" ">EmailMessage</strong> object in the code.</p>
-</li><li class=" "><p   
->Save the web part&#39;s source files.</p>
-</li><li class=" "><p   
-><strong class=" ">Build</strong> the project if it was installed as a web application.</p>
-</li></ol><p   
->The customized form web part is now ready.</p>
+</li><li class=" "><p>Fill in valid email addresses into the <strong class=" ">From</strong> and <strong class=" ">Recipients</strong> properties of the <strong class=" ">EmailMessage</strong> object in the code.</p>
+</li><li class=" "><p>Save the web part's source files.</p>
+</li><li class=" "><p><strong class=" ">Build</strong> the project if it was installed as a web application.</p>
+</li></ol><p>The customized form web part is now ready.</p>
     <h4 id="src-68882197_Customizingwebparts-Result" class="heading "><span>Result</span></h4>
-<p   
->You can try out the functionality of the custom web part by adding it to a page, for example on the sample <i class=" ">Corporate site</i>:</p>
-    <div  class="confbox admonition admonition-note">
+<p>You can try out the functionality of the custom web part by adding it to a page, for example on the sample <i class=" ">Corporate site</i>:</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: You need to have a valid   <a   href="Configuring-SMTP-servers">SMTP server</a> set up in the system to send the email.</p>
+<p><strong class=" ">Note</strong>: You need to have a valid <a href="configuring-smtp-servers">SMTP server</a> set up in the system to send the email.</p>
         </div>
     </div>
-<ol class=" "><li class=" "><p   
->Log in to the Kentico administration interface and open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Select a<strong class=" "> </strong>page in the content tree.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design </strong>tab and   <a   href="Using-and-configuring-web-parts">add</a> the <strong class=" ">Form with custom e</strong><strong class=" ">mail </strong>web part.</p>
-</li><li class=" "><p   
->Set the web part&#39;s <strong class=" ">Form name </strong>property to the <strong class=" ">Contact Us</strong> form (using the <strong class=" ">Select</strong> button).</p>
-<ul class=" "><li class=" "><p   
->The <i class=" ">Contact Us</i> form is available by default if you are working with the sample Corporate Site.</p>
-</li><li class=" "><p   
->This form includes the <strong class=" ">FirstName</strong> field used in the custom code.</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">OK</strong>.</p>
-</li><li class=" "><p   
->View the page on the live site.</p>
-</li><li class=" "><p   
->Enter some values into the form and submit it.</p>
-</li></ol><p   
->The web part displays the additional confirmation message (&quot;The email has been sent.&quot;) and sends an email message to the specified address.</p>
+<ol class=" "><li class=" "><p>Log in to the Kentico administration interface and open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Select a<strong class=" "> </strong>page in the content tree.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design </strong>tab and <a href="using-and-configuring-web-parts">add</a> the <strong class=" ">Form with custom e</strong><strong class=" ">mail </strong>web part.</p>
+</li><li class=" "><p>Set the web part's <strong class=" ">Form name </strong>property to the <strong class=" ">Contact Us</strong> form (using the <strong class=" ">Select</strong> button).</p>
+<ul class=" "><li class=" "><p>The <i class=" ">Contact Us</i> form is available by default if you are working with the sample Corporate Site.</p>
+</li><li class=" "><p>This form includes the <strong class=" ">FirstName</strong> field used in the custom code.</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li><li class=" "><p>View the page on the live site.</p>
+</li><li class=" "><p>Enter some values into the form and submit it.</p>
+</li></ol><p>The web part displays the additional confirmation message ("The email has been sent.") and sends an email message to the specified address.</p>
     <h3 id="src-68882197_Customizingwebparts-Example-UsingaWHEREconditionmacro" class="heading "><span>Example - Using a WHERE condition macro</span></h3>
-<p   
->The following example shows how to dynamically set the <strong class=" ">WHERE condition</strong> of a Repeater web part through a   <a   href="Macro-expressions">macro expression</a>. The condition causes the repeater to display a full list of news pages for logged in users, and a limited sub-set for public users (unauthenticated visitors).</p>
-<p   
->The example is designed to work on the sample Corporate site. If you are using it on your site, you will have to perform some of the steps, such as choosing the transformations, according to how your site is set up.</p>
+<p>The following example shows how to dynamically set the <strong class=" ">WHERE condition</strong> of a Repeater web part through a <a href="macro-expressions">macro expression</a>. The condition causes the repeater to display a full list of news pages for logged in users, and a limited sub-set for public users (unauthenticated visitors).</p>
+<p>The example is designed to work on the sample Corporate site. If you are using it on your site, you will have to perform some of the steps, such as choosing the transformations, according to how your site is set up.</p>
     <h4 id="src-68882197_Customizingwebparts-AddingthecustomNewspagefield" class="heading "><span>Adding the custom News page field</span></h4>
-<p   
->The example uses a custom field for news pages to determine whether news items are visible for public users.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Page types</strong> application.</p>
-</li><li class=" "><p   
->Edit (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+<p>The example uses a custom field for news pages to determine whether news items are visible for public users.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Page types</strong> application.</p>
+</li><li class=" "><p>Edit (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png">
 ) the <strong class=" ">News</strong> page type.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Fields</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New field</strong>.</p>
-</li><li class=" "><p   
->Define the new field:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field type</strong>: Standard field</p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: ShowToPublicUsers</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Boolean (Yes/No)</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Show to public users</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Check box</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->You can now set the <strong class=" ">Show to public users</strong> field on the <strong class=" ">Form</strong> tab of <i class=" ">News</i> pages. Switch to the <strong class=" ">Pages</strong> application and enable the flag for some of the pages in the <strong class=" ">/News</strong> section of the website.</p>
+</li><li class=" "><p>Select the <strong class=" ">Fields</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">New field</strong>.</p>
+</li><li class=" "><p>Define the new field:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field type</strong>: Standard field</p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: ShowToPublicUsers</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Boolean (Yes/No)</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Show to public users</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Check box</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>You can now set the <strong class=" ">Show to public users</strong> field on the <strong class=" ">Form</strong> tab of <i class=" ">News</i> pages. Switch to the <strong class=" ">Pages</strong> application and enable the flag for some of the pages in the <strong class=" ">/News</strong> section of the website.</p>
     <h4 id="src-68882197_Customizingwebparts-SettingthedynamicWHEREcondition" class="heading "><span>Setting the dynamic WHERE condition</span></h4>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">Pages</strong> application,   <a   href="Creating-new-pages">create a new page</a> in the website&#39;s content tree.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Design</strong> tab and add a <strong class=" ">Repeater</strong> web part.</p>
-</li><li class=" "><p   
->Set the following properties for the Repeater:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong>: /News/%</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: CMS.News</p>
-</li><li class=" "><p   
-><strong class=" ">WHERE condition</strong>:</p>
-    <div  class="confbox programlisting">
+<ol class=" "><li class=" "><p>In the <strong class=" ">Pages</strong> application, <a href="creating-new-pages">create a new page</a> in the website's content tree.</p>
+</li><li class=" "><p>Open the <strong class=" ">Design</strong> tab and add a <strong class=" ">Repeater</strong> web part.</p>
+</li><li class=" "><p>Set the following properties for the Repeater:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Path</strong>: /News/%</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: CMS.News</p>
+</li><li class=" "><p><strong class=" ">WHERE condition</strong>:</p>
+    <div class="confbox programlisting">
                 <div class="content">
-        <pre><code>{% CurrentUser.IsAuthenticated ? &quot;&quot; : &quot;ShowToPublicUsers = 1&quot; %}</code></pre>
+        <pre><code>{% CurrentUser.IsAuthenticated ? "" : "ShowToPublicUsers = 1" %}</code></pre>
         </div>
     </div>
-</li><li class=" "><p   
-><strong class=" ">Transformation</strong>: cms.news.preview</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">OK</strong>.</p>
-</li></ol><p   
->The repeater displays all news pages from the <i class=" ">/News</i> section of the website. If you log out and view the page as a public visitor, the repeater only displays the news pages that you marked with the <strong class=" ">Show to public users</strong> flag.</p>
-    <div  class="confbox admonition admonition-info">
+</li><li class=" "><p><strong class=" ">Transformation</strong>: cms.news.preview</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p>The repeater displays all news pages from the <i class=" ">/News</i> section of the website. If you log out and view the page as a public visitor, the repeater only displays the news pages that you marked with the <strong class=" ">Show to public users</strong> flag.</p>
+    <div class="confbox admonition admonition-info">
                     <p class="title">Macro details</p>
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The macro in this example dynamically sets the <strong class=" ">WHERE condition</strong> property of the Repeater web part. The system resolves the macro when rendering the page.</p>
-<ul class=" "><li class=" "><p   
->The <i class=" ">CurrentUser.IsAuthenticated</i> expression is true if the user viewing the page is logged in on the website under a registered account.</p>
-</li><li class=" "><p   
->The ternary operator (<i class=" ">&lt;condition&gt; ? &lt;true result&gt; : &lt;false result&gt;</i>) returns:</p>
-<ul class=" "><li class=" "><p   
->An empty WHERE condition value if the user is authenticated.</p>
-</li><li class=" "><p   
-><i class=" ">ShowToPublicUsers = 1</i> if the user is public (i.e. the repeater loads and displays only pages whose <strong class=" ">Show to public users</strong> field is checked).</p>
+<p>The macro in this example dynamically sets the <strong class=" ">WHERE condition</strong> property of the Repeater web part. The system resolves the macro when rendering the page.</p>
+<ul class=" "><li class=" "><p>The <i class=" ">CurrentUser.IsAuthenticated</i> expression is true if the user viewing the page is logged in on the website under a registered account.</p>
+</li><li class=" "><p>The ternary operator (<i class=" ">&lt;condition&gt; ? &lt;true result&gt; : &lt;false result&gt;</i>) returns:</p>
+<ul class=" "><li class=" "><p>An empty WHERE condition value if the user is authenticated.</p>
+</li><li class=" "><p><i class=" ">ShowToPublicUsers = 1</i> if the user is public (i.e. the repeater loads and displays only pages whose <strong class=" ">Show to public users</strong> field is checked).</p>
 </li></ul></li></ul>        </div>
     </div>
         </div>
@@ -427,5 +336,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

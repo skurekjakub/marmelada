@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Adding custom methods to transformations - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,49 +148,36 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If you need to add custom logic into your   <a   href="Writing-transformations">transformations</a>, you can implement custom methods and call them in the transformation code. Custom transformation methods allow you to process field values, display data in custom formats, add conditions, and more.</p>
-<p   
->To create custom methods for ASCX transformations:</p>
-<ol class=" "><li class=" "><p   
->Extend the <strong class=" ">CMSTransformation</strong> partial class in the <strong class=" ">App_Code</strong> folder of your web project.</p>
-</li><li class=" "><p   
->Add the definitions of the methods inside the class.</p>
-</li></ol>    <div  class="confbox admonition admonition-note">
+<div class="section-left"></div><p>If you need to add custom logic into your <a href="writing-transformations">transformations</a>, you can implement custom methods and call them in the transformation code. Custom transformation methods allow you to process field values, display data in custom formats, add conditions, and more.</p>
+<p>To create custom methods for ASCX transformations:</p>
+<ol class=" "><li class=" "><p>Extend the <strong class=" ">CMSTransformation</strong> partial class in the <strong class=" ">App_Code</strong> folder of your web project.</p>
+</li><li class=" "><p>Add the definitions of the methods inside the class.</p>
+</li></ol>    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you wish to add custom functionality for <strong class=" ">Text</strong> transformations, implement   <a   href="Registering-custom-macro-methods">custom macro methods</a>.</p>
+<p>If you wish to add custom functionality for <strong class=" ">Text</strong> transformations, implement <a href="registering-custom-macro-methods">custom macro methods</a>.</p>
         </div>
     </div>
-<p   
->The following example demonstrates how to create a custom method that trims text values to a specified number of characters.</p>
-    <div  class="confbox panel">
+<p>The following example demonstrates how to create a custom method that trims text values to a specified number of characters.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Writing-transformations">Writing transformations</a></p>
+<ul class=" "><li class=" "><p><a href="writing-transformations">Writing transformations</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882129_Addingcustommethodstotransformations-Writingthecustomtransformationmethod" class="heading "><span>Writing the custom transformation method</span></h3>
-<ol class=" "><li class=" "><p   
->Open your Kentico web project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new folder under the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong> on web application installations) and name it <i class=" ">CustomTransformationMethods</i>.</p>
-</li><li class=" "><p   
->Right-click the folder and select <strong class=" ">Add -&gt; Add new Item</strong>.</p>
-</li><li class=" "><p   
->Create a new <strong class=" ">Class </strong>and name it <strong class=" ">CMSTransformation.cs</strong>.</p>
-    <div  class="confbox admonition admonition-note">
+<ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio.</p>
+</li><li class=" "><p>Create a new folder under the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong> on web application installations) and name it <i class=" ">CustomTransformationMethods</i>.</p>
+</li><li class=" "><p>Right-click the folder and select <strong class=" ">Add -&gt; Add new Item</strong>.</p>
+</li><li class=" "><p>Create a new <strong class=" ">Class </strong>and name it <strong class=" ">CMSTransformation.cs</strong>.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Currently, you must develop transformation methods in C#.</p>
+<p><strong class=" ">Note</strong>: Currently, you must develop transformation methods in C#.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Remove the default content of the class (apart from the basic references) and enter the following code instead:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Remove the default content of the class (apart from the basic references) and enter the following code instead:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">namespace</code><code class="plain"> CMS.DocumentEngine.Web.UI</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -216,7 +201,7 @@
 <div class="line"><code class="plain">            </code><code class="keyword">else</code></div>
 <div class="line"><code class="plain">            {</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">string</code><code class="plain"> txt = (</code><code class="keyword">string</code><code class="plain">)txtValue;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">                </code><code class="comments">// Returns a substring if the text is longer than specified</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">if</code><code class="plain"> (txt.Length &lt;= leftChars)</code></div>
 <div class="line"><code class="plain">                {</code></div>
@@ -229,42 +214,32 @@
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">} </code></div>
+<div class="line"><code class="plain">}&nbsp;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
-><strong class=" ">Save</strong> the file. <strong class=" ">Build</strong> the project if it is installed as a web application.</p>
+</li><li class=" "><p><strong class=" ">Save</strong> the file. <strong class=" ">Build</strong> the project if it is installed as a web application.</p>
 </li></ol>    <h3 id="src-68882129_Addingcustommethodstotransformations-CallingthecustommethodinASCXtransformations" class="heading "><span>Calling the custom method in ASCX transformations </span></h3>
-<ol class=" "><li class=" "><p   
->Sign in to the Kentico administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Page types</strong> application.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+<ol class=" "><li class=" "><p>Sign in to the Kentico administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">Page types</strong> application.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png">
 ) the <strong class=" ">Corporate site - Transformations</strong> page type.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Transformations</strong> tab.</p>
-</li><li class=" "><p   
->Edit the <strong class=" ">BlogsList</strong> transformation and change line 5 of its code to the following:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Select the <strong class=" ">Transformations</strong> tab.</p>
+</li><li class=" "><p>Edit the <strong class=" ">BlogsList</strong> transformation and change line 5 of its code to the following:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">..</code></div>
 <div class="line"><code class="plain">&lt;%# CustomTrimText(Eval("BlogDescription"), 50) %&gt;</code></div>
 <div class="line"><code class="plain">..</code></div>
 </div>
     </div>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882129/Custom_Transformation_Method.png" alt="images/download/attachments/68882129/Custom_Transformation_Method.png" width="500"  />
-        <br/><span class="caption">Calling a custom transformation method</span>
-    <br/><br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong> to confirm the modification.</p>
-</li></ol><p   
->To check the result, click the <strong class=" ">Preview</strong> button, enter <i class=" ">/Community/Blogs </i>into the path textbox on the preview bar and <strong class=" ">Refresh</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/refresh.png" alt="images/download/attachments/68879208/refresh.png"   />
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882129/Custom_Transformation_Method.png" alt="images/download/attachments/68882129/Custom_Transformation_Method.png" width="500">
+        <br><span class="caption">Calling a custom transformation method</span>
+    <br><br></p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong> to confirm the modification.</p>
+</li></ol><p>To check the result, click the <strong class=" ">Preview</strong> button, enter <i class=" ">/Community/Blogs </i>into the path textbox on the preview bar and <strong class=" ">Refresh</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/refresh.png" alt="images/download/attachments/68879208/refresh.png">
 ) the page section. In the preview of the blogs page that uses the transformation (on the sample Corporate site), you can see the text of the blog description truncated to the first 50 characters.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882129/Custom_Transformation_Method_Result.png" alt="images/download/attachments/68882129/Custom_Transformation_Method_Result.png" width="500"  />
-        <br/><span class="caption">Previewing the result of the custom transformation method</span>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882129/Custom_Transformation_Method_Result.png" alt="images/download/attachments/68882129/Custom_Transformation_Method_Result.png" width="500">
+        <br><span class="caption">Previewing the result of the custom transformation method</span>
     </p>
         </div>
 
@@ -286,5 +261,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

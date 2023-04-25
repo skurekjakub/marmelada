@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Retrieving content on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,131 +149,96 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The following section provides examples on how you can retrieve Kentico data in MVC applications. You can work with the following Kentico objects:</p>
-<ul class=" "><li class=" "><p   
->Pages</p>
-</li><li class=" "><p   
->Page attachments</p>
-</li><li class=" "><p   
->Form records</p>
-</li><li class=" "><p   
->Custom table items</p>
-</li><li class=" "><p   
->Custom module classes</p>
-</li><li class=" "><p   
->Media library files</p>
-</li></ul><p   
->To retrieve content from page, form, custom table, and custom module class objects, we recommend   <a   href="Generating-classes-for-Kentico-objects">generating classes</a> for these objects and using the generated code in your application.</p>
-    <h3 id="src-68880537_RetrievingcontentonMVCsites-Retrievingpages" class="heading "><span>Retrieving pages</span></h3>
-<p   
->To work with pages, you need to use   <a   href="Generating-classes-for-Kentico-objects">generated</a> strongly typed classes for page types.</p>
-<p   
->The following example uses a generated code for the <i class=" ">DancingGoat.Article</i> page type. You can use the generated providers when retrieving individual pages.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>The following section provides examples on how you can retrieve Kentico data in MVC applications. You can work with the following Kentico objects:</p><ul class=" "><li class=" "><p>Pages</p>
+</li><li class=" "><p>Page attachments</p>
+</li><li class=" "><p>Form records</p>
+</li><li class=" "><p>Custom table items</p>
+</li><li class=" "><p>Custom module classes</p>
+</li><li class=" "><p>Media library files</p>
+</li></ul><p>To retrieve content from page, form, custom table, and custom module class objects, we recommend <a href="generating-classes-for-kentico-objects">generating classes</a> for these objects and using the generated code in your application.</p><h3 id="src-68880537_RetrievingcontentonMVCsites-Retrievingpages" class="heading "><span>Retrieving pages</span></h3><p>To work with pages, you need to use <a href="generating-classes-for-kentico-objects">generated</a> strongly typed classes for page types.</p><p>The following example uses a generated code for the <i class=" ">DancingGoat.Article</i> page type. You can use the generated providers when retrieving individual pages.</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Gets the specified articles using the generated provider</code></div>
 <div class="line"><code class="plain">IEnumerable&lt;Article&gt; articles = ArticleProvider.GetArticles()</code></div>
 <div class="line"><code class="plain">    .OnSite(</code><code class="string">"MySite"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	.Culture(</code><code class="string">"en-US"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	.Path(</code><code class="string">"/Articles/"</code><code class="plain">, PathTypeEnum.Children);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets the published version of a single article using the generated provider</code></div>
 <div class="line"><code class="plain">Article article = ArticleProvider.GetArticle(nodeGuid, </code><code class="string">"en-US"</code><code class="plain">, </code><code class="string">"MySite"</code><code class="plain">);</code></div>
 </div>
-    </div>
-<p   
->By default, the generated code returns published version of pages. If you need to retrieve the latest edited version of a page, use the following approach:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    </div><p>By default, the generated code returns published version of pages. If you need to retrieve the latest edited version of a page, use the following approach:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Gets the latest version of a single article using the generated provider</code></div>
 <div class="line"><code class="plain">Article article = ArticleProvider.GetArticle(nodeGuid, </code><code class="string">"en-US"</code><code class="plain">, </code><code class="string">"MySite"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	.LatestVersion()</code></div>
 <div class="line"><code class="plain">	.Published(</code><code class="keyword">false</code><code class="plain">);</code></div>
 </div>
-    </div>
-<p   
->To filter the retrieved pages, you can use any of the query parameters for a single page type listed in   <a   href="Working-with-pages-in-the-API">Working with pages in the API</a>.</p>
-    <div  class="confbox panel">
+    </div><p>To filter the retrieved pages, you can use any of the query parameters for a single page type listed in <a href="working-with-pages-in-the-api">Working with pages in the API</a>.</p></div>
+
+    
+
+
+    
+
+    
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880537_RetrievingcontentonMVCsites-Retrievingpages">Retrieving pages</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880537_RetrievingcontentonMVCsites-Workingwithretrievedpagedata">Working with retrieved page data</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68880537_RetrievingcontentonMVCsites-Retrievingformdata">Retrieving form data</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880537_RetrievingcontentonMVCsites-Retrievingcustomtabledata">Retrieving custom table data</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880537_RetrievingcontentonMVCsites-Retrievingcustommoduleclassdata">Retrieving custom module class data</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880537_RetrievingcontentonMVCsites-Retrievingmedialibrarydata">Retrieving media library data</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880537_retrievingcontentonmvcsites-retrievingpages">Retrieving pages</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880537_retrievingcontentonmvcsites-workingwithretrievedpagedata">Working with retrieved page data</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68880537_retrievingcontentonmvcsites-retrievingformdata">Retrieving form data</a></p>
+</li><li class=" "><p><a href="#src-68880537_retrievingcontentonmvcsites-retrievingcustomtabledata">Retrieving custom table data</a></p>
+</li><li class=" "><p><a href="#src-68880537_retrievingcontentonmvcsites-retrievingcustommoduleclassdata">Retrieving custom module class data</a></p>
+</li><li class=" "><p><a href="#src-68880537_retrievingcontentonmvcsites-retrievingmedialibrarydata">Retrieving media library data</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Generating-classes-for-Kentico-objects">Generating classes for Kentico objects</a></p>
-</li><li class=" "><p   
->  <a   href="Working-with-page-attachments-in-MVC-applications">Working with page attachments in MVC applications</a></p>
-</li><li class=" "><p   
->  <a   href="Working-with-pages-in-the-API">Working with pages in the API</a></p>
+<ul class=" "><li class=" "><p><a href="generating-classes-for-kentico-objects">Generating classes for Kentico objects</a></p>
+</li><li class=" "><p><a href="working-with-page-attachments-in-mvc-applications">Working with page attachments in MVC applications</a></p>
+</li><li class=" "><p><a href="working-with-pages-in-the-api">Working with pages in the API</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h4 id="src-68880537_RetrievingcontentonMVCsites-Workingwithretrievedpagedata" class="heading "><span>Working with retrieved page data</span></h4>
-<p   
->You can access the data of a retrieved page through the properties of the object. The following types of page data are available:</p>
-<ul class=" "><li class=" "><p   
->Page form data &ndash; the data that is editable on a page&#39;s <i class=" ">Form</i> tab.</p>
-</li><li class=" "><p   
->General page data &ndash; properties available for all pages (via the <i class=" ">TreeNode</i> class). For example identifiers, values indicating the position in the content tree, etc.</p>
-</li><li class=" "><p   
->Metadata &ndash; data like the <i class=" ">page title</i> and <i class=" ">page keywords.</i></p>
+<p>You can access the data of a retrieved page through the properties of the object. The following types of page data are available:</p>
+<ul class=" "><li class=" "><p>Page form data – the data that is editable on a page's <i class=" ">Form</i> tab.</p>
+</li><li class=" "><p>General page data – properties available for all pages (via the <i class=" ">TreeNode</i> class). For example identifiers, values indicating the position in the content tree, etc.</p>
+</li><li class=" "><p>Metadata – data like the <i class=" ">page title</i> and <i class=" ">page keywords.</i></p>
 </li></ul>    <h5 id="src-68880537_RetrievingcontentonMVCsites-Accessingpageformdata" class="heading "><span>Accessing page form data</span></h5>
-<p   
->The fields available on a page&#39;s Form tab are specific to its Page type. You can see the fields that each page type uses:</p>
-<ul class=" "><li class=" "><p   
->In <i class=" ">Pages types (application) -&gt; edit page type -&gt; Fields</i> tab</p>
-</li><li class=" "><p   
->In the corresponding <i class=" ">&lt;namespace&gt;_&lt;page_type_code_name&gt;</i> database table</p>
-</li></ul><p   
->We recommend accessing specific fields of a page type via the <i class=" ">Fields</i> property:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The fields available on a page's Form tab are specific to its Page type. You can see the fields that each page type uses:</p>
+<ul class=" "><li class=" "><p>In <i class=" ">Pages types (application) -&gt; edit page type -&gt; Fields</i> tab</p>
+</li><li class=" "><p>In the corresponding <i class=" ">&lt;namespace&gt;_&lt;page_type_code_name&gt;</i> database table</p>
+</li></ul><p>We recommend accessing specific fields of a page type via the <i class=" ">Fields</i> property:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Retrieves a specific page</code></div>
 <div class="line"><code class="plain">News news = NewsProvider.GetNews(nodeGuid, </code><code class="string">"en-US"</code><code class="plain">, </code><code class="string">"MySite"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Accesses the 'Title' field</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> title = news.Fields.Title;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Accesses the 'Text' field</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> text = news.Fields.Text;</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Resolving HTML tags and relative URLs</strong></p>
-<p   
->Fields which are populated by the <strong class=" ">Rich text editor</strong> form control may contain HTML tags and relative links.     <span style="color: #3f3e3c;">
+<p><strong class=" ">Resolving HTML tags and relative URLs</strong></p>
+<p>Fields which are populated by the <strong class=" ">Rich text editor</strong> form control may contain HTML tags and relative links.     <span style="color: #3f3e3c;">
 To ensure that the content is displayed correctly, use one of the following methods:    </span>
 </p>
-<ul class=" "><li class=" "><p   
-><i class=" ">Html.Raw</i> method     <span style="color: #3f3e3c;">
+<ul class=" "><li class=" "><p><i class=" ">Html.Raw</i> method     <span style="color: #3f3e3c;">
 disables the HTML encoding for the values.    </span>
 </p>
-</li><li class=" "><p   
-><i class=" ">Html.Kentico().ResolveUrls</i> extension method     <span style="color: #3f3e3c;">
+</li><li class=" "><p><i class=" ">Html.Kentico().ResolveUrls</i> extension method     <span style="color: #3f3e3c;">
 disables the HTML encoding for the values and     </span>
 resolves relative URLs to their absolute form.</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">@Html.Raw(Model.&lt;Rich text field content&gt;)</code></div>
 <div class="line"><code class="plain">@Html.Kentico().ResolveUrls(Model.&lt;Rich text field content&gt;)</code></div>
@@ -284,49 +247,43 @@ resolves relative URLs to their absolute form.</p>
         </div>
     </div>
     <h5 id="src-68880537_RetrievingcontentonMVCsites-Retrievingpageattachments" class="heading "><span>Retrieving page attachments</span></h5>
-<p   
->For information on retrieving page attachments, see   <a   href="Working-with-page-attachments-in-MVC-applications">Working with page attachments in MVC applications</a>.</p>
+<p>For information on retrieving page attachments, see <a href="working-with-page-attachments-in-mvc-applications">Working with page attachments in MVC applications</a>.</p>
     <h3 id="src-68880537_RetrievingcontentonMVCsites-Retrievingformdata" class="heading "><span>Retrieving form data</span></h3>
-<p   
->The following example requires the classes   <a   href="Generating-classes-for-Kentico-objects">generated</a> for the <i class=" ">ContactUs </i>form included in the solution.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example requires the classes <a href="generating-classes-for-kentico-objects">generated</a> for the <i class=" ">ContactUs </i>form included in the solution.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Gets all form items</code></div>
 <div class="line"><code class="plain">IEnumerable&lt;ContactUsItem&gt; items = BizFormItemProvider.GetItems&lt;ContactUsItem&gt;();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets a single form item for a given form item ID</code></div>
 <div class="line"><code class="plain">ContactUsItem item = BizFormItemProvider.GetItem&lt;ContactUsItem&gt;(1);</code></div>
 </div>
     </div>
     <h3 id="src-68880537_RetrievingcontentonMVCsites-Retrievingcustomtabledata" class="heading "><span>Retrieving custom table data</span></h3>
-<p   
->The following example requires the classes   <a   href="Generating-classes-for-Kentico-objects">generated</a> for the <i class=" ">SampleTable </i>custom table included in the solution.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example requires the classes <a href="generating-classes-for-kentico-objects">generated</a> for the <i class=" ">SampleTable </i>custom table included in the solution.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Gets all custom table items</code></div>
 <div class="line"><code class="plain">IEnumerable&lt;SampleTableItem&gt; items = CustomTableItemProvider.GetItems&lt;SampleTableItem&gt;();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets a single custom table item for a given custom table item ID</code></div>
 <div class="line"><code class="plain">SampleTableItem item = CustomTableItemProvider.GetItem&lt;SampleTableItem&gt;(1);</code></div>
 </div>
     </div>
     <h3 id="src-68880537_RetrievingcontentonMVCsites-Retrievingcustommoduleclassdata" class="heading "><span>Retrieving custom module class data</span></h3>
-<p   
->The following example requires the classes generated for the <i class=" ">Office</i> custom module class included in the solution.</p>
-<p   
->See the   <a   href="Creating-custom-modules">Creating custom modules</a> page for information on creating custom module classes and generating code to work with them in your application.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example requires the classes generated for the <i class=" ">Office</i> custom module class included in the solution.</p>
+<p>See the <a href="creating-custom-modules">Creating custom modules</a> page for information on creating custom module classes and generating code to work with them in your application.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Gets all custom module class items</code></div>
 <div class="line"><code class="plain">IEnumerable&lt;OfficeInfo&gt; items = OfficeInfoProvider.GetOffices();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets a single custom module class item for a given class ID</code></div>
 <div class="line"><code class="plain">OfficeInfo item = OfficeInfoProvider.GetOfficeInfo(</code><code class="value">1</code><code class="plain">);</code></div>
 </div>
     </div>
     <h3 id="src-68880537_RetrievingcontentonMVCsites-Retrievingmedialibrarydata" class="heading "><span>Retrieving media library data</span></h3>
-<p   
->For information on retrieving media files from media libraries, see   <a   href="Working-with-media-libraries-on-MVC-sites">Working with media libraries on MVC sites</a>.</p>
+<p>For information on retrieving media files from media libraries, see <a href="working-with-media-libraries-on-mvc-sites">Working with media libraries on MVC sites</a>.</p>
         </div>
 
     </article>
@@ -347,5 +304,6 @@ resolves relative URLs to their absolute form.</p>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

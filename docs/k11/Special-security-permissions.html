@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Special security permissions - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,185 +149,125 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The purpose of special permissions in Kentico is to prevent <strong class=" ">privilege escalation </strong>attacks. In this type of attack, a lower privilege user can gain access to functions only available for higher privilege user. For example, editors with permissions to edit only content elevate themselves to the global administrator level.</p>
-<p   
->The special permissions cover the following areas:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68881160_Specialsecuritypermissions-ASCXcodeinlayouts">ASCX code in layouts</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881160_Specialsecuritypermissions-SQLcodeinwebpartproperties">SQL code in web part properties</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881160_Specialsecuritypermissions-SQLcodeinreports">SQL code in reports</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881160_Specialsecuritypermissions-SQLcodeinformfields">SQL code in form fields</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881160_Specialsecuritypermissions-SQLcodeintheadvancedexportdialog">SQL code in the advanced export dialog</a></p>
-</li></ul>    <div  class="confbox admonition admonition-note">
+<div class="section-left"></div><p>The purpose of special permissions in Kentico is to prevent <strong class=" ">privilege escalation </strong>attacks. In this type of attack, a lower privilege user can gain access to functions only available for higher privilege user. For example, editors with permissions to edit only content elevate themselves to the global administrator level.</p>
+<p>The special permissions cover the following areas:</p>
+<ul class=" "><li class=" "><p><a href="#src-68881160_specialsecuritypermissions-ascxcodeinlayouts">ASCX code in layouts</a></p>
+</li><li class=" "><p><a href="#src-68881160_specialsecuritypermissions-sqlcodeinwebpartproperties">SQL code in web part properties</a></p>
+</li><li class=" "><p><a href="#src-68881160_specialsecuritypermissions-sqlcodeinreports">SQL code in reports</a></p>
+</li><li class=" "><p><a href="#src-68881160_specialsecuritypermissions-sqlcodeinformfields">SQL code in form fields</a></p>
+</li><li class=" "><p><a href="#src-68881160_specialsecuritypermissions-sqlcodeintheadvancedexportdialog">SQL code in the advanced export dialog</a></p>
+</li></ul>    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Only the users with the Global administrator   <a   href="User-management">privilege level </a>can configure these settings.</strong></p>
+<p><strong class=" ">Only the users with the Global administrator <a href="user-management">privilege level </a>can configure these settings.</strong></p>
         </div>
     </div>
-<p   
->Editors and other users<strong class=" "> cannot grant or remove these special permissions</strong>. Even if you assign users to a role which is allowed to modify permissions, these special permissions will be disabled, which is indicated by a warning icon (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/warning.png" alt="images/download/attachments/68879208/warning.png"   />
+<p>Editors and other users<strong class=" "> cannot grant or remove these special permissions</strong>. Even if you assign users to a role which is allowed to modify permissions, these special permissions will be disabled, which is indicated by a warning icon (<img class="confluence-embedded-image" src="images/download/attachments/68879208/warning.png" alt="images/download/attachments/68879208/warning.png">
 ).</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881160/Special_security_permissions2.png" alt="images/download/attachments/68881160/Special_security_permissions2.png" width="500"  />
-        <br/><span class="caption">Special permissions which can be granted only by global administrators</span>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881160/Special_security_permissions2.png" alt="images/download/attachments/68881160/Special_security_permissions2.png" width="500">
+        <br><span class="caption">Special permissions which can be granted only by global administrators</span>
     </p>
     <div class="section section-1" id="src-68881160_Specialsecuritypermissions-ASCXcodeinlayouts">
         <h1 class="heading "><span>ASCX code in layouts</span></h1>
-<p   
->The <strong class=" ">Edit ASCX code</strong> permission for the <strong class=" ">Design</strong> module allows users to edit ASPX/ASCX code of   <a   href="Editing-page-layouts">page layouts</a>,   <a   href="Writing-transformations">transformations</a> and   <a   href="Defining-custom-form-layout">form layouts</a>.</p>
-<p   
->When you grant the <i class=" ">Edit ASCX code</i> permission to a certain role, then users in that role can edit such code and run any inline code within the layout &ndash; for example, code that elevates privileges. Without the permission, users cannot do this.</p>
+<p>The <strong class=" ">Edit ASCX code</strong> permission for the <strong class=" ">Design</strong> module allows users to edit ASPX/ASCX code of <a href="editing-page-layouts">page layouts</a>, <a href="writing-transformations">transformations</a> and <a href="defining-custom-form-layout">form layouts</a>.</p>
+<p>When you grant the <i class=" ">Edit ASCX code</i> permission to a certain role, then users in that role can edit such code and run any inline code within the layout – for example, code that elevates privileges. Without the permission, users cannot do this.</p>
     </div>
     <div class="section section-1" id="src-68881160_Specialsecuritypermissions-SQLcodeinwebpartproperties">
         <h1 class="heading "><span>SQL code in web part properties</span></h1>
-<p   
->The <strong class=" ">Edit SQL code</strong> permission for the <strong class=" ">Design</strong> module allows users to edit the <strong class=" ">WHERE condition</strong>,<strong class=" "> ORDER BY</strong> and <strong class=" ">Columns</strong> properties of web parts with a data source (for example various repeaters). If you grant this permission to a role, users in that role can write SQL statements into the given properties without any restrictions.</p>
-<p   
->Without the <strong class=" ">Edit SQL code</strong> permission, users can only write the following types of SQL syntax:</p>
-    <div  class="tablewrap">
+<p>The <strong class=" ">Edit SQL code</strong> permission for the <strong class=" ">Design</strong> module allows users to edit the <strong class=" ">WHERE condition</strong>,<strong class=" "> ORDER BY</strong> and <strong class=" ">Columns</strong> properties of web parts with a data source (for example various repeaters). If you grant this permission to a role, users in that role can write SQL statements into the given properties without any restrictions.</p>
+<p>Without the <strong class=" ">Edit SQL code</strong> permission, users can only write the following types of SQL syntax:</p>
+    <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->WHERE conditions</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>WHERE conditions</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->ORDER BY expressions</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>ORDER BY expressions</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Columns expressions</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Columns expressions</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
->column names, values and basic operators: =, !=, &gt;, &lt;</p>
-</li><li class=" "><p   
->AND &amp; OR operators, parentheses</p>
-</li><li class=" "><p   
-><i class=" ">column</i> BETWEEN <i class=" ">value</i> AND <i class=" ">value</i></p>
-</li><li class=" "><p   
-><i class=" ">column</i> LIKE <i class=" ">value</i></p>
-</li><li class=" "><p   
-><i class=" ">column</i> IN <i class=" ">(values)</i></p>
-</li><li class=" "><p   
-><i class=" ">column</i> IS NULL</p>
-</li><li class=" "><p   
->NOT keyword for the above expressions (NOT BETWEEN, NOT LIKE, NOT IN, IS NOT NULL)</p>
-</li></ul><p   
->For example: <i class=" ">UserID = 1</i></p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>column names, values and basic operators: =, !=, &gt;, &lt;</p>
+</li><li class=" "><p>AND &amp; OR operators, parentheses</p>
+</li><li class=" "><p><i class=" ">column</i> BETWEEN <i class=" ">value</i> AND <i class=" ">value</i></p>
+</li><li class=" "><p><i class=" ">column</i> LIKE <i class=" ">value</i></p>
+</li><li class=" "><p><i class=" ">column</i> IN <i class=" ">(values)</i></p>
+</li><li class=" "><p><i class=" ">column</i> IS NULL</p>
+</li><li class=" "><p>NOT keyword for the above expressions (NOT BETWEEN, NOT LIKE, NOT IN, IS NOT NULL)</p>
+</li></ul><p>For example: <i class=" ">UserID = 1</i></p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
->one or more column names (separated by commas)</p>
-</li><li class=" "><p   
->the ASC and DESC keywords</p>
-</li></ul><p   
->For example: <i class=" ">UserID</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>one or more column names (separated by commas)</p>
+</li><li class=" "><p>the ASC and DESC keywords</p>
+</li></ul><p>For example: <i class=" ">UserID</i></p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
->one or more column names (separated by commas)</p>
-</li><li class=" "><p   
->SQL aliases for columns defined using the AS keyword (must be upper case)</p>
-</li></ul><p   
->For example: <i class=" ">UserID, UserName</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>one or more column names (separated by commas)</p>
+</li><li class=" "><p>SQL aliases for columns defined using the AS keyword (must be upper case)</p>
+</li></ul><p>For example: <i class=" ">UserID, UserName</i></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
     <div class="section section-2" id="src-68881160_Specialsecuritypermissions-SecuringSQLpropertiesofcustomwebparts">
         <h2 class="heading "><span>Securing SQL properties of custom web parts</span></h2>
-<p   
->You also need to consider privilege escalation vulnerabilities when developing   <a   href="Developing-web-parts">custom web parts</a> with properties that allow users to input SQL code (<i class=" ">Where conditions</i>, <i class=" ">Order by</i> clauses or lists of <i class=" ">Columns</i>). To avoid the problem, assign one of the following predefined   <a   href="Assigning-form-controls-to-fields">form controls</a> to the fields representing the given web part properties (instead of using a standard text box):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Where condition</strong></p>
-</li><li class=" "><p   
-><strong class=" ">Order by</strong></p>
-</li><li class=" "><p   
-><strong class=" ">Columns</strong></p>
-</li></ul><p   
->The form controls prevent privilege escalation by providing the restrictions described above for the SQL properties of the default Kentico web parts. Only users with the <strong class=" ">Global administrator</strong>   <a   href="User-management">privilege level</a> or the <strong class=" ">Edit SQL code</strong> permission for the <strong class=" ">Design</strong> module can edit the SQL code without restrictions.</p>
-<p   
->For more information about defining web part properties, see:   <a   href="Working-with-web-part-properties">Working with web part properties</a></p>
-    <div  class="confbox admonition admonition-note">
+<p>You also need to consider privilege escalation vulnerabilities when developing <a href="developing-web-parts">custom web parts</a> with properties that allow users to input SQL code (<i class=" ">Where conditions</i>, <i class=" ">Order by</i> clauses or lists of <i class=" ">Columns</i>). To avoid the problem, assign one of the following predefined <a href="assigning-form-controls-to-fields">form controls</a> to the fields representing the given web part properties (instead of using a standard text box):</p>
+<ul class=" "><li class=" "><p><strong class=" ">Where condition</strong></p>
+</li><li class=" "><p><strong class=" ">Order by</strong></p>
+</li><li class=" "><p><strong class=" ">Columns</strong></p>
+</li></ul><p>The form controls prevent privilege escalation by providing the restrictions described above for the SQL properties of the default Kentico web parts. Only users with the <strong class=" ">Global administrator</strong> <a href="user-management">privilege level</a> or the <strong class=" ">Edit SQL code</strong> permission for the <strong class=" ">Design</strong> module can edit the SQL code without restrictions.</p>
+<p>For more information about defining web part properties, see: <a href="working-with-web-part-properties">Working with web part properties</a></p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Protecting web part properties against SQL injection</strong></p>
-<p   
->The SQL properties of the default web parts also have a security mechanism that protects against   <a   href="SQL-injection">SQL injection</a> attacks via   <a   href="Macro-expressions">macros</a>. To learn how to provide this protection for custom web part properties, see   <a   href="Macros-and-security#src-68881114_Macrosandsecurity-SQLinjections">Macros and security - SQL injections</a>.</p>
+<p><strong class=" ">Protecting web part properties against SQL injection</strong></p>
+<p>The SQL properties of the default web parts also have a security mechanism that protects against <a href="sql-injection">SQL injection</a> attacks via <a href="macro-expressions">macros</a>. To learn how to provide this protection for custom web part properties, see <a href="macros-and-security#src-68881114_macrosandsecurity-sqlinjections">Macros and security - SQL injections</a>.</p>
         </div>
     </div>
     </div>
     </div>
     <div class="section section-1" id="src-68881160_Specialsecuritypermissions-SQLcodeinreports">
         <h1 class="heading "><span>SQL code in reports</span></h1>
-<p   
->When working with the   <a   href="Working-with-system-reports">Reporting</a> application, users need to write SQL statements to get data from the database and display it in various reporting tools. This could also be dangerous because a user use SQL code to elevate privileges or get sensitive data from the database.</p>
-<p   
->The <strong class=" ">Edit SQL Queries</strong> permission for the <strong class=" ">Reporting</strong> module indicates whether a given role can edit SQL queries in reports.</p>
-<p   
->Alternatively, you can change the connection string for reports. With that, you can create a special user account on the database level with limited permissions. For example, the database user will not be able to execute any <strong class=" ">UPDATE/INSERT/DELETE</strong> queries.</p>
-<p   
->Another approach could be to separate the data into multiple databases. The first database would contain only reporting data, and the second database all other data including users. Then, the reporting module would be able to work only with the reporting data (and the user would not be able to execute malicious queries). Of course, in this scenario, you need to prepare a mechanism that ensures data synchronization.</p>
+<p>When working with the <a href="working-with-system-reports">Reporting</a> application, users need to write SQL statements to get data from the database and display it in various reporting tools. This could also be dangerous because a user use SQL code to elevate privileges or get sensitive data from the database.</p>
+<p>The <strong class=" ">Edit SQL Queries</strong> permission for the <strong class=" ">Reporting</strong> module indicates whether a given role can edit SQL queries in reports.</p>
+<p>Alternatively, you can change the connection string for reports. With that, you can create a special user account on the database level with limited permissions. For example, the database user will not be able to execute any <strong class=" ">UPDATE/INSERT/DELETE</strong> queries.</p>
+<p>Another approach could be to separate the data into multiple databases. The first database would contain only reporting data, and the second database all other data including users. Then, the reporting module would be able to work only with the reporting data (and the user would not be able to execute malicious queries). Of course, in this scenario, you need to prepare a mechanism that ensures data synchronization.</p>
     <div class="section section-2" id="src-68881160_Specialsecuritypermissions-Configuringmultipleconnectionstrings">
         <h2 class="heading "><span>Configuring multiple connection strings</span></h2>
-<ol class=" "><li class=" "><p   
->Edit your web.config file and specify a new connection string in the <strong class=" ">&lt;connectionStrings&gt;</strong> section. The name attribute must be unique.</p>
-</li><li class=" "><p   
->Go to <strong class=" ">Settings -&gt; Security &amp; Membership</strong>.</p>
-</li><li class=" "><p   
->Select the new connection string as the <strong class=" ">Default report connection string</strong> in the <strong class=" ">Reporting</strong> category.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Permissions</strong> application and configure the <strong class=" ">Set</strong> <strong class=" ">connection string</strong> permission of the Reporting module.</p>
-<ul class=" "><li class=" "><p   
->Only users in a role with the permission and global administrators can change the connection string used by reports.<br/></p>
+<ol class=" "><li class=" "><p>Edit your web.config file and specify a new connection string in the <strong class=" ">&lt;connectionStrings&gt;</strong> section. The name attribute must be unique.</p>
+</li><li class=" "><p>Go to <strong class=" ">Settings -&gt; Security &amp; Membership</strong>.</p>
+</li><li class=" "><p>Select the new connection string as the <strong class=" ">Default report connection string</strong> in the <strong class=" ">Reporting</strong> category.</p>
+</li><li class=" "><p>Open the <strong class=" ">Permissions</strong> application and configure the <strong class=" ">Set</strong> <strong class=" ">connection string</strong> permission of the Reporting module.</p>
+<ul class=" "><li class=" "><p>Only users in a role with the permission and global administrators can change the connection string used by reports.<br></p>
 </li></ul></li></ol>    </div>
     </div>
     <div class="section section-1" id="src-68881160_Specialsecuritypermissions-SQLcodeinformfields">
         <h1 class="heading "><span>SQL code in form fields</span></h1>
-<p   
->When defining the fields of   <a   href="Forms">Forms</a>, certain types of fields (  <a   href="Developing-form-controls">Form controls</a>) offer the possibility to load a list of options using an SQL query. Users are only allowed to write the code of these queries if they have the <strong class=" ">Global administrator</strong>   <a   href="User-management">privilege level</a> or belong to a role with the <strong class=" ">Edit SQL Queries</strong> permission for the <strong class=" ">Forms</strong> module.</p>
+<p>When defining the fields of <a href="forms">Forms</a>, certain types of fields (<a href="developing-form-controls">Form controls</a>) offer the possibility to load a list of options using an SQL query. Users are only allowed to write the code of these queries if they have the <strong class=" ">Global administrator</strong> <a href="user-management">privilege level</a> or belong to a role with the <strong class=" ">Edit SQL Queries</strong> permission for the <strong class=" ">Forms</strong> module.</p>
     </div>
     <div class="section section-1" id="src-68881160_Specialsecuritypermissions-SQLcodeintheadvancedexportdialog">
         <h1 class="heading "><span>SQL code in the advanced export dialog</span></h1>
-<p   
->When performing an   <a   href="Exporting-data-from-the-UI---Advanced-export">Advanced export</a> of data from a listing page in the administration interface, users with sufficient privileges have the option to modify the exported data using an SQL <strong class=" ">Where condition</strong> or <strong class=" ">Order by</strong> clause.</p>
-<p   
->Writing SQL code in the advanced export dialog is only available for users who have the <strong class=" ">Global administrator</strong>   <a   href="User-management">privilege level</a> or belong to a role that has the <strong class=" ">Edit SQL code</strong> permission for the <strong class=" ">Design</strong> module.</p>
+<p>When performing an <a href="exporting-data-from-the-ui---advanced-export">Advanced export</a> of data from a listing page in the administration interface, users with sufficient privileges have the option to modify the exported data using an SQL <strong class=" ">Where condition</strong> or <strong class=" ">Order by</strong> clause.</p>
+<p>Writing SQL code in the advanced export dialog is only available for users who have the <strong class=" ">Global administrator</strong> <a href="user-management">privilege level</a> or belong to a role that has the <strong class=" ">Edit SQL code</strong> permission for the <strong class=" ">Design</strong> module.</p>
     </div>
     <div class="section section-1" id="src-68881160_Specialsecuritypermissions-Allowingcodeeditingforsiteadministrators">
         <h1 class="heading "><span>Allowing code editing for site administrators</span></h1>
-<p   
->You can choose whether users with the <strong class=" ">Administrator</strong>   <a   href="User-management">privilege level </a>are allowed to edit SQL and ASCX code by default, or if they need to have a role with the permissions mentioned on this page.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Settings</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Security &amp; Membership</strong> category.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Administration</strong> section, set the <strong class=" ">Enable code editing for site administrators </strong>option.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.<br/></p>
+<p>You can choose whether users with the <strong class=" ">Administrator</strong> <a href="user-management">privilege level </a>are allowed to edit SQL and ASCX code by default, or if they need to have a role with the permissions mentioned on this page.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Settings</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Security &amp; Membership</strong> category.</p>
+</li><li class=" "><p>In the <strong class=" ">Administration</strong> section, set the <strong class=" ">Enable code editing for site administrators </strong>option.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.<br></p>
 </li></ol>    </div>
     <div class="section section-1" id="src-68881160_Specialsecuritypermissions-Conclusion">
         <h1 class="heading "><span>Conclusion</span></h1>
-<p   
->From a security standpoint, the best practice is to:</p>
-<ul class=" "><li class=" "><p   
->NOT grant any of the permissions listed on this page to any roles</p>
-</li><li class=" "><p   
->Not allow site administrators to edit code</p>
-</li></ul><p   
->If you do not follow this recommendation, you risk privilege escalation.</p>
+<p>From a security standpoint, the best practice is to:</p>
+<ul class=" "><li class=" "><p>NOT grant any of the permissions listed on this page to any roles</p>
+</li><li class=" "><p>Not allow site administrators to edit code</p>
+</li></ul><p>If you do not follow this recommendation, you risk privilege escalation.</p>
     </div>
         </div>
 
@@ -351,5 +289,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Example - Importing new products using Kentico Import Toolkit - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -153,191 +151,118 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->  <a   href="Kentico-Import-Toolkit">Kentico Import Toolkit</a> is a utility that allows you to import products to the system.</p>
-<p   
->This example demonstrate importing new   <a   href="Products">products</a> from an XLSX file to the sample <i class=" ">E-commerce Site </i>using Kentico Import Toolkit.</p>
-    <h3 id="src-68881303_ExampleImportingnewproductsusingKenticoImportToolkit-Preparingasourcefile" class="heading "><span>Preparing a source file</span></h3>
-<p   
->Before starting to import new products, prepare your XLSX file with products. The top row should contain the column names from the database table. We add five cellphones to sections according to their operating system:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">iOS </i>(Node ID: 118) &ndash; <i class=" ">Apple iPhone</i></p>
-</li><li class=" "><p   
-><i class=" ">Android </i>(Node ID: 117) &ndash; <i class=" ">Samsung Galaxy S5</i>,<i class=" "> Sony Xperia Z3</i> and<i class=" "> Huawei Ascend P7</i></p>
-</li><li class=" "><p   
-><i class=" ">Windows Phone</i> &ndash; <i class=" ">Nokia Lumia 1020</i></p>
-</li></ul><p   
->Since the sample <i class=" ">E-commerce Site</i> does not have a section for <i class=" ">Windows Phone</i>, the parent node of <i class=" ">Nokia Lumia 1020</i> will be <i class=" ">Cellphones</i> (Node ID: 68).</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881303/products_to_import.png" alt="images/download/attachments/68881303/products_to_import.png" width="500"  />
-        <br/><span class="caption">Products to import in an XLSX file</span>
-    </p>
-    <div  class="confbox admonition admonition-tip">
+<div class="section-left"><p><a href="kentico-import-toolkit">Kentico Import Toolkit</a> is a utility that allows you to import products to the system.</p><p>This example demonstrate importing new <a href="products">products</a> from an XLSX file to the sample <i class=" ">E-commerce Site </i>using Kentico Import Toolkit.</p><h3 id="src-68881303_ExampleImportingnewproductsusingKenticoImportToolkit-Preparingasourcefile" class="heading "><span>Preparing a source file</span></h3><p>Before starting to import new products, prepare your XLSX file with products. The top row should contain the column names from the database table. We add five cellphones to sections according to their operating system:</p><ul class=" "><li class=" "><p><i class=" ">iOS </i>(Node ID: 118) – <i class=" ">Apple iPhone</i></p>
+</li><li class=" "><p><i class=" ">Android </i>(Node ID: 117) – <i class=" ">Samsung Galaxy S5</i>,<i class=" "> Sony Xperia Z3</i> and<i class=" "> Huawei Ascend P7</i></p>
+</li><li class=" "><p><i class=" ">Windows Phone</i> – <i class=" ">Nokia Lumia 1020</i></p>
+</li></ul><p>Since the sample <i class=" ">E-commerce Site</i> does not have a section for <i class=" ">Windows Phone</i>, the parent node of <i class=" ">Nokia Lumia 1020</i> will be <i class=" ">Cellphones</i> (Node ID: 68).</p><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881303/products_to_import.png" alt="images/download/attachments/68881303/products_to_import.png" width="500">
+        <br><span class="caption">Products to import in an XLSX file</span>
+    </p><div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Download the XLSX file with the example data <a   href="attachments/68881309_1_SKUImportData.xlsx">here</a>.</p>
+<p>Download the XLSX file with the example data <a href="attachments/68881309_1_SKUImportData.xlsx">here</a>.</p>
         </div>
-    </div>
-    <h3 id="src-68881303_ExampleImportingnewproductsusingKenticoImportToolkit-Importingtheproducts" class="heading "><span>Importing the products</span></h3>
-<ol class=" "><li class=" "><p   
->Launch <strong class=" ">Kentico Import Toolkit.</strong></p>
-</li><li class=" "><p   
->Select <i class=" ">Start new import session</i>, and click <strong class=" ">Next</strong>.</p>
-</li><li class=" "><p   
->In <strong class=" ">Step 1</strong>, specify the root folder of the project into which you want to import the products.</p>
-</li><li class=" "><p   
->Confirm that you did a backup of your project, and click <strong class=" ">Next</strong>.</p>
-</li><li class=" "><p   
->In <strong class=" ">Step 2</strong>, select the following properties, and click <strong class=" ">Next</strong>:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Select data type to import</strong>: Pages</p>
-</li><li class=" "><p   
-><strong class=" ">Automatically publish pages under workflow</strong>: No (cleared)</p>
-</li><li class=" "><p   
-><strong class=" ">Import data to site</strong>: E-commerce Site</p>
-</li><li class=" "><p   
-><strong class=" ">Import as</strong>: Product - Cellphone</p>
-</li><li class=" "><p   
-><strong class=" ">Import as products</strong>: Yes (selected)</p>
-</li><li class=" "><p   
-><strong class=" ">Import options</strong>: Import new and overwrite existing pages</p>
-<ul class=" "><li class=" "><p   
->Note: In this case, all of the options in the <strong class=" ">Import options</strong> field would work (since the sample <i class=" ">E-commerce Site</i> does not contain the imported products).</p>
-</li></ul><p   
-><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881303/selecting_object_type.png" alt="images/download/attachments/68881303/selecting_object_type.png" width="500" height="350" />
-        <br/><span class="caption">Selecting object type of the products</span>
-    <p   
-><br/></p>
-</li></ul></li><li class=" "><p   
->In <strong class=" ">Step 3</strong>, select the <i class=" ">File (XML, CSV or Excel formats)</i>, browse for the prepared XLSX file, and click <strong class=" ">Next</strong>.</p>
-</li><li class=" "><p   
->Since the data starts in the <i class=" ">A1</i> cell, just click <strong class=" ">Next</strong> in <strong class=" ">Step 4</strong>.</p>
-</li><li class=" "><p   
->In <strong class=" ">Step 5</strong>, click <strong class=" ">Next</strong>.</p>
-</li><li class=" "><p   
->In <strong class=" ">Step 6</strong>, map the following target fields to the following source fields:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CellPhoneWeight</strong>: CellPhoneWeight</p>
-</li><li class=" "><p   
-><strong class=" ">CellPhone3G</strong>: CellPhone3G</p>
-</li><li class=" "><p   
-><strong class=" ">DocumentName</strong>: DocumentName</p>
-</li><li class=" "><p   
-><strong class=" ">DocumentCulture</strong>: DocumentCulture</p>
-</li><li class=" "><p   
-><strong class=" ">DocumentSKUName</strong>: DocumentName</p>
-</li><li class=" "><p   
-><strong class=" ">DocumentSKUDescription</strong>: DocumentSKUDescription</p>
-</li><li class=" "><p   
-><strong class=" ">SKUNumber</strong>: SKUNumber</p>
-</li><li class=" "><p   
-><strong class=" ">SKUName</strong>: DocumentName</p>
-</li><li class=" "><p   
-><strong class=" ">SKUDescription</strong>: DocumentSKUDescription</p>
-</li><li class=" "><p   
-><strong class=" ">SKUPrice</strong>: SKUPrice</p>
-</li><li class=" "><p   
-><strong class=" ">SKUSiteID</strong>: SKUSiteID</p>
-</li></ul>    <div  class="confbox admonition admonition-info">
+    </div><h3 id="src-68881303_ExampleImportingnewproductsusingKenticoImportToolkit-Importingtheproducts" class="heading "><span>Importing the products</span></h3><ol class=" "><li class=" "><p>Launch <strong class=" ">Kentico Import Toolkit.</strong></p>
+</li><li class=" "><p>Select <i class=" ">Start new import session</i>, and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 1</strong>, specify the root folder of the project into which you want to import the products.</p>
+</li><li class=" "><p>Confirm that you did a backup of your project, and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 2</strong>, select the following properties, and click <strong class=" ">Next</strong>:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Select data type to import</strong>: Pages</p>
+</li><li class=" "><p><strong class=" ">Automatically publish pages under workflow</strong>: No (cleared)</p>
+</li><li class=" "><p><strong class=" ">Import data to site</strong>: E-commerce Site</p>
+</li><li class=" "><p><strong class=" ">Import as</strong>: Product - Cellphone</p>
+</li><li class=" "><p><strong class=" ">Import as products</strong>: Yes (selected)</p>
+</li><li class=" "><p><strong class=" ">Import options</strong>: Import new and overwrite existing pages</p>
+<ul class=" "><li class=" "><p>Note: In this case, all of the options in the <strong class=" ">Import options</strong> field would work (since the sample <i class=" ">E-commerce Site</i> does not contain the imported products).</p>
+</li></ul><p><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881303/selecting_object_type.png" alt="images/download/attachments/68881303/selecting_object_type.png" width="500" height="350">
+        <br><span class="caption">Selecting object type of the products</span>
+    <p><br></p>
+</li></ul></li><li class=" "><p>In <strong class=" ">Step 3</strong>, select the <i class=" ">File (XML, CSV or Excel formats)</i>, browse for the prepared XLSX file, and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>Since the data starts in the <i class=" ">A1</i> cell, just click <strong class=" ">Next</strong> in <strong class=" ">Step 4</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 5</strong>, click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 6</strong>, map the following target fields to the following source fields:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">CellPhoneWeight</strong>: CellPhoneWeight</p>
+</li><li class=" "><p><strong class=" ">CellPhone3G</strong>: CellPhone3G</p>
+</li><li class=" "><p><strong class=" ">DocumentName</strong>: DocumentName</p>
+</li><li class=" "><p><strong class=" ">DocumentCulture</strong>: DocumentCulture</p>
+</li><li class=" "><p><strong class=" ">DocumentSKUName</strong>: DocumentName</p>
+</li><li class=" "><p><strong class=" ">DocumentSKUDescription</strong>: DocumentSKUDescription</p>
+</li><li class=" "><p><strong class=" ">SKUNumber</strong>: SKUNumber</p>
+</li><li class=" "><p><strong class=" ">SKUName</strong>: DocumentName</p>
+</li><li class=" "><p><strong class=" ">SKUDescription</strong>: DocumentSKUDescription</p>
+</li><li class=" "><p><strong class=" ">SKUPrice</strong>: SKUPrice</p>
+</li><li class=" "><p><strong class=" ">SKUSiteID</strong>: SKUSiteID</p>
+</li></ul>    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Some of the fields are mapped automatically (from the list above and also not from the list above). Check whether these fields are mapped correctly.</p>
+<p>Some of the fields are mapped automatically (from the list above and also not from the list above). Check whether these fields are mapped correctly.</p>
         </div>
     </div>
-<p   
->    <span style="color: #ffffff;">
+<p>    <span style="color: #ffffff;">
 _    </span>
 </p>
-</li><li class=" "><p   
->To the <i class=" ">Import the pages under following parent path or parent node ID</i> field, enter the <i class=" ">={%ParentNodeID%}</i> macro expression.</p>
-</li><li class=" "><p   
->Leave the <i class=" ">WHERE </i><i class=" ">condition</i> field blank, clear the <i class=" ">Save the old ID to new ID mappings to file</i> field, and click <strong class=" ">Next</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881303/mapping_columns.png" alt="images/download/attachments/68881303/mapping_columns.png" width="500" height="350" />
-        <br/><span class="caption">Mapping columns from the source field to the target fields</span>
-    <p   
-><br/></p>
-</li><li class=" "><p   
->In <strong class=" ">Step 7</strong>, select <i class=" ">Import the data</i>, and click <strong class=" ">Import data</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881303/target_data_preview.png" alt="images/download/attachments/68881303/target_data_preview.png" width="500"  />
-        <br/><span class="caption">Target data preview</span>
-    <p   
-><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Close</strong> the Toolkit.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881303/import_finished.png" alt="images/download/attachments/68881303/import_finished.png" width="500" height="350" />
-        <br/><span class="caption">Import finished</span>
-    </li></ol><p   
->The system now contains the five products you just added. Open the <strong class=" ">Products</strong> application in the administration interface to see the products assigned to the specified sections.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881303/imported_products_in_Kentico.png" alt="images/download/attachments/68881303/imported_products_in_Kentico.png" width="500" height="248" />
-        <br/><span class="caption">Imported products in Kentico</span>
-    </p>
-<p   
-></p>
-    <div  class="confbox panel">
+</li><li class=" "><p>To the <i class=" ">Import the pages under following parent path or parent node ID</i> field, enter the <i class=" ">={%ParentNodeID%}</i> macro expression.</p>
+</li><li class=" "><p>Leave the <i class=" ">WHERE </i><i class=" ">condition</i> field blank, clear the <i class=" ">Save the old ID to new ID mappings to file</i> field, and click <strong class=" ">Next</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881303/mapping_columns.png" alt="images/download/attachments/68881303/mapping_columns.png" width="500" height="350">
+        <br><span class="caption">Mapping columns from the source field to the target fields</span>
+    <p><br></p>
+</li><li class=" "><p>In <strong class=" ">Step 7</strong>, select <i class=" ">Import the data</i>, and click <strong class=" ">Import data</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881303/target_data_preview.png" alt="images/download/attachments/68881303/target_data_preview.png" width="500">
+        <br><span class="caption">Target data preview</span>
+    <p><br></p>
+</li><li class=" "><p><strong class=" ">Close</strong> the Toolkit.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881303/import_finished.png" alt="images/download/attachments/68881303/import_finished.png" width="500" height="350">
+        <br><span class="caption">Import finished</span>
+    </li></ol><p>The system now contains the five products you just added. Open the <strong class=" ">Products</strong> application in the administration interface to see the products assigned to the specified sections.</p><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881303/imported_products_in_Kentico.png" alt="images/download/attachments/68881303/imported_products_in_Kentico.png" width="500" height="248">
+        <br><span class="caption">Imported products in Kentico</span>
+    </p><p></p></div>
+
+    
+
+
+
+    
+    
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881303_ExampleImportingnewproductsusingKenticoImportToolkit-Preparingasourcefile">Preparing a source file</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881303_ExampleImportingnewproductsusingKenticoImportToolkit-Importingtheproducts">Importing the products</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881303_exampleimportingnewproductsusingkenticoimporttoolkit-preparingasourcefile">Preparing a source file</a></p>
+</li><li class=" "><p><a href="#src-68881303_exampleimportingnewproductsusingkenticoimporttoolkit-importingtheproducts">Importing the products</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Importing-products-using-Kentico-Import-Toolkit">Importing products using Kentico Import Toolkit</a></p>
-</li><li class=" "><p   
->  <a   href="Kentico-Import-Toolkit">Kentico Import Toolkit</a></p>
-</li><li class=" "><p   
->  <a   href="Products">Products</a></p>
+<ul class=" "><li class=" "><p><a href="importing-products-using-kentico-import-toolkit">Importing products using Kentico Import Toolkit</a></p>
+</li><li class=" "><p><a href="kentico-import-toolkit">Kentico Import Toolkit</a></p>
+</li><li class=" "><p><a href="products">Products</a></p>
 </li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+    <div class="confbox panel">
             <div class="title panel-header">Configuring the E-commerce Solution</div>
             <div class="panel-content">
-<ol class=" "><li class=" "><p   
->  <a   href="Choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-currencies">Configuring currencies</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-taxes">Configuring taxes</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-multilingual-stores">Configuring multilingual stores</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-product-page-types">Configuring product page types</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-products">Configuring products</a></p>
-<ul class=" "><li class=" "><p   
->  <a   href="Importing-products">Importing products</a><br/></p>
-<ul class=" "><li class=" "><p   
->  <a   href="Importing-products-using-Kentico-Import-Toolkit">Importing products using Kentico Import Toolkit</a><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Example - Importing new products using Kentico Import Toolkit</strong></p>
-</li></ul></li></ul></li></ul></li><li class=" "><p   
->  <a   href="Configuring-product-pages">Configuring product pages</a></p>
-</li><li class=" "><p   
->  <a   href="Checkout-process">Checkout process</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-shipping-options">Configuring shipping options</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-payment-methods">Configuring payment methods</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-invoices">Configuring invoices</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-e-commerce-email-notifications">Configuring e-commerce email notifications</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-user-registration-in-stores">Configuring user registration in stores</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-e-commerce-permissions">Configuring e-commerce permissions</a></p>
+<ol class=" "><li class=" "><p><a href="choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a></p>
+</li><li class=" "><p><a href="configuring-currencies">Configuring currencies</a></p>
+</li><li class=" "><p><a href="configuring-taxes">Configuring taxes</a></p>
+</li><li class=" "><p><a href="configuring-multilingual-stores">Configuring multilingual stores</a></p>
+</li><li class=" "><p><a href="configuring-product-page-types">Configuring product page types</a></p>
+</li><li class=" "><p><a href="configuring-products">Configuring products</a></p>
+<ul class=" "><li class=" "><p><a href="importing-products">Importing products</a><br></p>
+<ul class=" "><li class=" "><p><a href="importing-products-using-kentico-import-toolkit">Importing products using Kentico Import Toolkit</a><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Example - Importing new products using Kentico Import Toolkit</strong></p>
+</li></ul></li></ul></li></ul></li><li class=" "><p><a href="configuring-product-pages">Configuring product pages</a></p>
+</li><li class=" "><p><a href="checkout-process">Checkout process</a></p>
+</li><li class=" "><p><a href="configuring-shipping-options">Configuring shipping options</a></p>
+</li><li class=" "><p><a href="configuring-payment-methods">Configuring payment methods</a></p>
+</li><li class=" "><p><a href="configuring-invoices">Configuring invoices</a></p>
+</li><li class=" "><p><a href="configuring-e-commerce-email-notifications">Configuring e-commerce email notifications</a></p>
+</li><li class=" "><p><a href="configuring-user-registration-in-stores">Configuring user registration in stores</a></p>
+</li><li class=" "><p><a href="configuring-e-commerce-permissions">Configuring e-commerce permissions</a></p>
 </li></ol>        </div>
     </div>
         </div>
@@ -360,5 +285,6 @@ _    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Processing scheduled tasks when developing MVC applications - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,85 +149,57 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When using a separate MVC application together with a Kentico application, you need to ensure that   <a   href="Scheduling-tasks">scheduled tasks</a> on the Kentico application get processed in regular intervals. As the Kentico application itself does not usually receive traffic from site visitors, you either need to keep the application alive in a different way or process the tasks independently on the Kentico application&#39;s worker process.</p>
-<p   
->You can use one of the following approaches for processing scheduled tasks when developing MVC applications:</p>
-<ul class=" "><li class=" "><p   
->Automatic scheduler mode &ndash; recommended approach. Requires the Kentico application&#39;s worker process to remain alive.</p>
-</li><li class=" "><p   
->Scheduler Windows service &ndash; independent of the Kentico application&#39;s worker process.</p>
-</li></ul>    <h4 id="src-68880518_ProcessingscheduledtaskswhendevelopingMVCapplications-Automaticschedulermode" class="heading "><span>Automatic scheduler mode</span></h4>
-<ol class=" "><li class=" "><p   
->Configure the Kentico application to use   <a   href="Configuring-scheduled-task-execution#src-68881906_Configuringscheduledtaskexecution-AutomaticMode">Automatic scheduler mode</a>.</p>
-</li><li class=" "><p   
->Set the <a  class="external-link" href="https://technet.microsoft.com/en-us/library/cc771956(v=ws.10).aspx">Idle Time-out (minutes)</a> setting of your IIS application pool to 0. Otherwise, the application pool worker process shuts down after a period of inactivity. As the Kentico application does not receive traffic from visitors, the worker process would shut down if no one used the Kentico administration for a certain period of time and scheduled tasks would not get executed.<br/></p>
-<ul class=" "><li class=" "><p   
->If you do not want to set the <i class=" ">Idle Time-out (minutes)</i> setting to 0, you can keep the worker process alive by sending requests to the Kentico application within the set interval.</p>
-</li></ul></li></ol>    <div  class="confbox panel">
+<div class="section-left"><p>When using a separate MVC application together with a Kentico application, you need to ensure that <a href="scheduling-tasks">scheduled tasks</a> on the Kentico application get processed in regular intervals. As the Kentico application itself does not usually receive traffic from site visitors, you either need to keep the application alive in a different way or process the tasks independently on the Kentico application's worker process.</p><p>You can use one of the following approaches for processing scheduled tasks when developing MVC applications:</p><ul class=" "><li class=" "><p>Automatic scheduler mode – recommended approach. Requires the Kentico application's worker process to remain alive.</p>
+</li><li class=" "><p>Scheduler Windows service – independent of the Kentico application's worker process.</p>
+</li></ul><h4 id="src-68880518_ProcessingscheduledtaskswhendevelopingMVCapplications-Automaticschedulermode" class="heading "><span>Automatic scheduler mode</span></h4><ol class=" "><li class=" "><p>Configure the Kentico application to use <a href="configuring-scheduled-task-execution#src-68881906_configuringscheduledtaskexecution-automaticmode">Automatic scheduler mode</a>.</p>
+</li><li class=" "><p>Set the <a class="external-link" href="https://technet.microsoft.com/en-us/library/cc771956(v=ws.10).aspx">Idle Time-out (minutes)</a> setting of your IIS application pool to 0. Otherwise, the application pool worker process shuts down after a period of inactivity. As the Kentico application does not receive traffic from visitors, the worker process would shut down if no one used the Kentico administration for a certain period of time and scheduled tasks would not get executed.<br></p>
+<ul class=" "><li class=" "><p>If you do not want to set the <i class=" ">Idle Time-out (minutes)</i> setting to 0, you can keep the worker process alive by sending requests to the Kentico application within the set interval.</p>
+</li></ul></li></ol></div>
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880518_ProcessingscheduledtaskswhendevelopingMVCapplications-Example-RegularlyprocessingsearchindexingtasksonMVCsites">Example - Regularly processing search indexing tasks on MVC sites</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880518_processingscheduledtaskswhendevelopingmvcapplications-example-regularlyprocessingsearchindexingtasksonmvcsites">Example - Regularly processing search indexing tasks on MVC sites</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages:</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Scheduling-tasks">Scheduling tasks</a></p>
-</li><li class=" "><p   
->  <a   href="Installing-the-Scheduler-Windows-service">Installing the Scheduler Windows service</a></p>
+<ul class=" "><li class=" "><p><a href="scheduling-tasks">Scheduling tasks</a></p>
+</li><li class=" "><p><a href="installing-the-scheduler-windows-service">Installing the Scheduler Windows service</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h4 id="src-68880518_ProcessingscheduledtaskswhendevelopingMVCapplications-SchedulerWindowsservice" class="heading "><span>Scheduler Windows service </span></h4>
-<p   
->You can use the   <a   href="Installing-the-Scheduler-Windows-service">Scheduler Windows service</a> if you want to process scheduled tasks independently on the Kentico application.</p>
-    <div  class="confbox admonition admonition-note">
+<p>You can use the <a href="installing-the-scheduler-windows-service">Scheduler Windows service</a> if you want to process scheduled tasks independently on the Kentico application.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>:</p>
-<ul class=" "><li class=" "><p   
->The Windows scheduler service requires the Kentico EMS license.</p>
-</li><li class=" "><p   
->Tasks that are processed by the Windows service cannot resolve macros dependent on application context, such as: <i class=" ">{% ApplicationPath %}.</i></p>
+<p><strong class=" ">Note</strong>:</p>
+<ul class=" "><li class=" "><p>The Windows scheduler service requires the Kentico EMS license.</p>
+</li><li class=" "><p>Tasks that are processed by the Windows service cannot resolve macros dependent on application context, such as: <i class=" ">{% ApplicationPath %}.</i></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68880518_ProcessingscheduledtaskswhendevelopingMVCapplications-Example-RegularlyprocessingsearchindexingtasksonMVCsites" class="heading "><span>Example - Regularly processing search indexing tasks on MVC sites</span></h3>
-<p   
->To use the scheduler to regularly process   <a   href="Monitoring-search-indexing-tasks">search indexing tasks</a>, configure the appropriate scheduled tasks to run using the Scheduler Windows service.</p>
-    <div  class="confbox admonition admonition-info">
+<p>To use the scheduler to regularly process <a href="monitoring-search-indexing-tasks">search indexing tasks</a>, configure the appropriate scheduled tasks to run using the Scheduler Windows service.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->As a prerequisite, you need to:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="Installing-the-Scheduler-Windows-service">Install the Scheduler Windows service</a>.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Settings</strong> application in Kentico.</p>
-</li><li class=" "><p   
->Expand the <strong class=" ">System</strong> category and enable the <strong class=" ">Use external service</strong> setting.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
+<p>As a prerequisite, you need to:</p>
+<ol class=" "><li class=" "><p><a href="installing-the-scheduler-windows-service">Install the Scheduler Windows service</a>.</p>
+</li><li class=" "><p>Open the <strong class=" ">Settings</strong> application in Kentico.</p>
+</li><li class=" "><p>Expand the <strong class=" ">System</strong> category and enable the <strong class=" ">Use external service</strong> setting.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol>        </div>
     </div>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Scheduled tasks </strong>application.</p>
-</li><li class=" "><p   
->Edit the <strong class=" ">Execute Azure search tasks</strong> item (for   <a   href="Using-Azure-Search">Azure Search indexes</a>).</p>
-</li><li class=" "><p   
->Enable the <strong class=" ">Use external service</strong> property.</p>
-</li><li class=" "><p   
->Click<strong class=" "> Save</strong>.</p>
-</li><li class=" "><p   
->Repeat the same steps for the <strong class=" ">Execute local search tasks</strong> scheduled task (for   <a   href="Using-locally-stored-search-indexes">locally stored search indexes</a>).</p>
-</li></ol><p   
->The system now processes search tasks generated by both the MVC and Kentico application using the Windows scheduler service.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Scheduled tasks </strong>application.</p>
+</li><li class=" "><p>Edit the <strong class=" ">Execute Azure search tasks</strong> item (for <a href="using-azure-search">Azure Search indexes</a>).</p>
+</li><li class=" "><p>Enable the <strong class=" ">Use external service</strong> property.</p>
+</li><li class=" "><p>Click<strong class=" "> Save</strong>.</p>
+</li><li class=" "><p>Repeat the same steps for the <strong class=" ">Execute local search tasks</strong> scheduled task (for <a href="using-locally-stored-search-indexes">locally stored search indexes</a>).</p>
+</li></ol><p>The system now processes search tasks generated by both the MVC and Kentico application using the Windows scheduler service.</p>
         </div>
 
     </article>
@@ -250,5 +220,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

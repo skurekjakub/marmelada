@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Web.config file settings - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,85 +148,59 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->In this topic, you will find a list of the most important security settings which can be configured in the web.config file.</p>
-    <h3 id="src-68881136_Web.configfilesettings-Authentication" class="heading "><span>Authentication</span></h3>
-<p   
->You can set the default authentication mode for your website using the <strong class=" ">mode</strong> attribute, which has these values: Windows, Forms, Passport, None.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>In this topic, you will find a list of the most important security settings which can be configured in the web.config file.</p><h3 id="src-68881136_Web.configfilesettings-Authentication" class="heading "><span>Authentication</span></h3><p>You can set the default authentication mode for your website using the <strong class=" ">mode</strong> attribute, which has these values: Windows, Forms, Passport, None.</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">authentication</code><code class="plain"> </code><code class="color1">mode</code><code class="plain">=</code><code class="string">"Windows"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">authentication</code><code class="plain">&gt;</code></div>
 </div>
-    </div>
-<p  class="title" 
->See page <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/532aee0e(v=vs.100).aspx">authentication Element (ASP.NET Settings Schema)</a> for reference.</p>
-    <h4 id="src-68881136_Web.configfilesettings-Formsauthenticationtype" class="heading "><span>Forms authentication type</span></h4>
-<p   
->The <strong class=" ">Forms</strong> authentication type can be further configured using the <strong class=" ">forms</strong> element. It is recommended to use session cookies (not to use cookieless authentication) to prevent session hijacking. This can be done by changing the <strong class=" ">cookieless</strong> attribute of the form element. You can also set these attributes:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">cookieless</strong> &ndash; defines whether cookies are used and how they are used.</p>
-</li><li class=" "><p   
-><strong class=" ">timeout</strong> &ndash; specifies the number of minutes after which the authentication cookie expires.</p>
-</li><li class=" "><p   
-><strong class=" ">slidingExpiration</strong> &ndash; specifies, whether the expiration time of an authentication cookie should be reset upon each request in a session. If set to true, then the authentication cookie is refreshed with every request, so the cookie does not expire so easily.</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    </div><p class="title">See page <a class="external-link" href="http://msdn.microsoft.com/en-us/library/532aee0e(v=vs.100).aspx">authentication Element (ASP.NET Settings Schema)</a> for reference.</p><h4 id="src-68881136_Web.configfilesettings-Formsauthenticationtype" class="heading "><span>Forms authentication type</span></h4><p>The <strong class=" ">Forms</strong> authentication type can be further configured using the <strong class=" ">forms</strong> element. It is recommended to use session cookies (not to use cookieless authentication) to prevent session hijacking. This can be done by changing the <strong class=" ">cookieless</strong> attribute of the form element. You can also set these attributes:</p><ul class=" "><li class=" "><p><strong class=" ">cookieless</strong> – defines whether cookies are used and how they are used.</p>
+</li><li class=" "><p><strong class=" ">timeout</strong> – specifies the number of minutes after which the authentication cookie expires.</p>
+</li><li class=" "><p><strong class=" ">slidingExpiration</strong> – specifies, whether the expiration time of an authentication cookie should be reset upon each request in a session. If set to true, then the authentication cookie is refreshed with every request, so the cookie does not expire so easily.</p>
+</li></ul><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">authentication</code><code class="plain"> </code><code class="color1">mode</code><code class="plain">=</code><code class="string">"Forms"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">forms</code><code class="plain"> </code><code class="color1">loginUrl</code><code class="plain">=</code><code class="string">"CMSPages/logon.aspx"</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">".ASPXFORMSAUTH"</code><code class="plain"> </code><code class="color1">cookieless</code><code class="plain">=</code><code class="string">"UseCookies"</code><code class="plain"> </code><code class="color1">requireSSL</code><code class="plain">=</code><code class="string">"true"</code><code class="plain"> </code><code class="color1">timeout</code><code class="plain">=</code><code class="string">"15"</code><code class="plain"> </code><code class="color1">slidingExpiration</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">authentication</code><code class="plain">&gt;</code></div>
 </div>
-    </div>
-<p   
->The most secure solution is to set short timeout interval (e.g., 15 minutes) and disable sliding expiration. This way, if the attackers stole the session, they would only have a limited time to abuse it. However, the users will have to submit their credentials and authenticate every time the session expires (set by the timeout attribute).</p>
-<p   
->See page <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/1d3t3c61%28v=vs.100%29.aspx">forms Element for authentication (ASP.NET Settings Schema)</a> for reference.</p>
-<p   
-><br/></p>
-    <div  class="confbox panel">
+    </div><p>The most secure solution is to set short timeout interval (e.g., 15 minutes) and disable sliding expiration. This way, if the attackers stole the session, they would only have a limited time to abuse it. However, the users will have to submit their credentials and authenticate every time the session expires (set by the timeout attribute).</p><p>See page <a class="external-link" href="http://msdn.microsoft.com/en-us/library/1d3t3c61%28v=vs.100%29.aspx">forms Element for authentication (ASP.NET Settings Schema)</a> for reference.</p><p><br></p></div>
+    
+
+    
+
+    
+
+    
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881136_Web.configfilesettings-Authentication">Authentication</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881136_Web.configfilesettings-Formsauthenticationtype">Forms authentication type</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68881136_Web.configfilesettings-Cookies">Cookies</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881136_Web.configfilesettings-Session">Session</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881136_Web.configfilesettings-Errormessagesanddisablingthedebugandtrace">Error messages and disabling the debug and trace</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881136_Web.configfilesettings-Requestvalidation">Request validation</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881136_Web.configfilesettings-Viewstatevalidation">View state validation</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881136_Web.configfilesettings-Encryptingindividualsectionsoftheweb.configfile">Encrypting individual sections of the web.config file</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881136_web.configfilesettings-authentication">Authentication</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881136_web.configfilesettings-formsauthenticationtype">Forms authentication type</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881136_web.configfilesettings-cookies">Cookies</a></p>
+</li><li class=" "><p><a href="#src-68881136_web.configfilesettings-session">Session</a></p>
+</li><li class=" "><p><a href="#src-68881136_web.configfilesettings-errormessagesanddisablingthedebugandtrace">Error messages and disabling the debug and trace</a></p>
+</li><li class=" "><p><a href="#src-68881136_web.configfilesettings-requestvalidation">Request validation</a></p>
+</li><li class=" "><p><a href="#src-68881136_web.configfilesettings-viewstatevalidation">View state validation</a></p>
+</li><li class=" "><p><a href="#src-68881136_web.configfilesettings-encryptingindividualsectionsoftheweb.configfile">Encrypting individual sections of the web.config file</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Session-protection">Session protection</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-custom-error-handling-pages#src-68881111_Creatingcustomerrorhandlingpages-Handlinggeneralerrors">Handling general errors</a></p>
-</li><li class=" "><p   
->  <a   href="Cross-site-request-forgery-%28CSRF_XSRF%29">Cross site request forgery (CSRF/XSRF)</a></p>
+<ul class=" "><li class=" "><p><a href="session-protection">Session protection</a></p>
+</li><li class=" "><p><a href="creating-custom-error-handling-pages#src-68881111_creatingcustomerrorhandlingpages-handlinggeneralerrors">Handling general errors</a></p>
+</li><li class=" "><p><a href="cross-site-request-forgery-%28csrf_xsrf%29">Cross site request forgery (CSRF/XSRF)</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68881136_Web.configfilesettings-Cookies" class="heading "><span>Cookies</span></h3>
-<p   
->You should set the following attributes related to cookies:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">httpOnlyCookies</strong> &ndash; adds a <i class=" ">httpOnly</i> flag to cookies and makes it impossible to read cookies from the client. This serves as protection against XSS (for example prevents attackers from reading the session ID from cookies or the forms authentication ticket from the authentication cookie).</p>
-</li><li class=" "><p   
-><strong class=" ">requireSSL</strong> &ndash; configures cookies to require an SSL connection, which prevents communication eavesdropping. Note: Only enable the <i class=" ">requireSSL</i> attribute if your website is configured to use an encrypted HTTPS connection (see   <a   href="Configuring-SSL">Configuring SSL</a>).</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>You should set the following attributes related to cookies:</p>
+<ul class=" "><li class=" "><p><strong class=" ">httpOnlyCookies</strong> – adds a <i class=" ">httpOnly</i> flag to cookies and makes it impossible to read cookies from the client. This serves as protection against XSS (for example prevents attackers from reading the session ID from cookies or the forms authentication ticket from the authentication cookie).</p>
+</li><li class=" "><p><strong class=" ">requireSSL</strong> – configures cookies to require an SSL connection, which prevents communication eavesdropping. Note: Only enable the <i class=" ">requireSSL</i> attribute if your website is configured to use an encrypted HTTPS connection (see <a href="configuring-ssl">Configuring SSL</a>).</p>
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">system</code><code class="plain">.Web&gt;</code></div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">httpCookies</code><code class="plain"> </code><code class="color1">httpOnlyCookies</code><code class="plain">=</code><code class="string">"true"</code><code class="plain"> </code><code class="color1">requireSSL</code><code class="plain">=</code><code class="string">"true"</code><code class="plain">&gt;</code></div>
@@ -236,46 +208,36 @@
 </div>
     </div>
     <h3 id="src-68881136_Web.configfilesettings-Session" class="heading "><span>Session</span></h3>
-<p   
->You should use cookies instead of query strings to pass the session ID. This prevents session stealing, as it is easier to steal the session ID from query strings than cookies. See   <a   href="Session-protection">Session protection</a>.</p>
-<p   
->To protect the sessions against attacks, you should set the following attributes in the <strong class=" ">sessionState</strong> element:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">mode</strong> &ndash;     <span style="color: #2a2a2a;">
+<p>You should use cookies instead of query strings to pass the session ID. This prevents session stealing, as it is easier to steal the session ID from query strings than cookies. See <a href="session-protection">Session protection</a>.</p>
+<p>To protect the sessions against attacks, you should set the following attributes in the <strong class=" ">sessionState</strong> element:</p>
+<ul class=" "><li class=" "><p><strong class=" ">mode</strong> –     <span style="color: #2a2a2a;">
 specifies where to store session state values.    </span>
 </p>
-</li><li class=" "><p   
-><strong class=" ">cookieless</strong> &ndash;     <span style="color: #2a2a2a;">
+</li><li class=" "><p><strong class=" ">cookieless</strong> –     <span style="color: #2a2a2a;">
 specifies how cookies are used for a Web application.    </span>
 </p>
-</li><li class=" "><p   
-><strong class=" ">timeout</strong> &ndash; s    <span style="color: #2a2a2a;">
+</li><li class=" "><p><strong class=" ">timeout</strong> – s    <span style="color: #2a2a2a;">
 pecifies the number of minutes a session can be idle before it is abandoned.    </span>
 </p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">sessionState</code><code class="plain"> </code><code class="color1">mode</code><code class="plain">=</code><code class="string">"InProc"</code><code class="plain"> </code><code class="color1">cookieless</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> </code><code class="color1">timeout</code><code class="plain">=</code><code class="string">"20"</code><code class="plain"> /&gt;</code></div>
 </div>
     </div>
-<p   
->See page <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/h6bb9cz9(v=vs.85).aspx">sessionState Element (ASP.NET Settings Schema)</a> for reference.</p>
+<p>See page <a class="external-link" href="http://msdn.microsoft.com/en-us/library/h6bb9cz9(v=vs.85).aspx">sessionState Element (ASP.NET Settings Schema)</a> for reference.</p>
     <h3 id="src-68881136_Web.configfilesettings-Errormessagesanddisablingthedebugandtrace" class="heading "><span>Error messages and disabling the debug and trace</span></h3>
-<p   
->You should unify handling of all types of errors and exceptions in your application by adding the <strong class=" ">&lt;httpErrors&gt; </strong>element into the <strong class=" ">&lt;system.webServer&gt;</strong> section of your web.config file. See   <a   href="Creating-custom-error-handling-pages#src-68881111_Creatingcustomerrorhandlingpages-Handlinggeneralerrors">Handling general errors</a> for more information.</p>
-<p   
->Before deploying your website to the live environment, you should also disable debugging and tracing in the web.config file, as this information should not be revealed to the users.</p>
-<p   
->You can disable <strong class=" ">debugging</strong> in your application by including this code in the <i class=" ">&lt;system.web&gt;</i> section:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>You should unify handling of all types of errors and exceptions in your application by adding the <strong class=" ">&lt;httpErrors&gt; </strong>element into the <strong class=" ">&lt;system.webServer&gt;</strong> section of your web.config file. See <a href="creating-custom-error-handling-pages#src-68881111_creatingcustomerrorhandlingpages-handlinggeneralerrors">Handling general errors</a> for more information.</p>
+<p>Before deploying your website to the live environment, you should also disable debugging and tracing in the web.config file, as this information should not be revealed to the users.</p>
+<p>You can disable <strong class=" ">debugging</strong> in your application by including this code in the <i class=" ">&lt;system.web&gt;</i> section:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">system</code><code class="plain">.web&gt;</code></div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">compilation</code><code class="plain"> </code><code class="color1">debug</code><code class="plain">=</code><code class="string">"false"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">system</code><code class="plain">.web&gt;</code></div>
 </div>
     </div>
-<p   
->You can disable <strong class=" ">tracing</strong> in your application by including this code in the <i class=" ">&lt;microsoft.web.services3&gt;</i> section of your web.config file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>You can disable <strong class=" ">tracing</strong> in your application by including this code in the <i class=" ">&lt;microsoft.web.services3&gt;</i> section of your web.config file:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">microsoft</code><code class="plain">.web.services3&gt;</code></div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">diagnostics</code><code class="plain">&gt;</code></div>
@@ -284,31 +246,25 @@ pecifies the number of minutes a session can be idle before it is abandoned.    
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">microsoft</code><code class="plain">.web.services3&gt;</code></div>
 </div>
     </div>
-<p   
->Note that you can also configure tracing for web pages individually using the <strong class=" ">Trace</strong> attribute in the <strong class=" ">@ Page</strong> directive at the top of your .aspx files.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Note that you can also configure tracing for web pages individually using the <strong class=" ">Trace</strong> attribute in the <strong class=" ">@ Page</strong> directive at the top of your .aspx files.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;%@ Page Trace="true" %&gt;</code></div>
 </div>
     </div>
-<p   
->See <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/94c55d08%28v=vs.100%29.aspx">How to: Enable Tracing for an ASP.NET Page</a>.</p>
+<p>See <a class="external-link" href="http://msdn.microsoft.com/en-us/library/94c55d08%28v=vs.100%29.aspx">How to: Enable Tracing for an ASP.NET Page</a>.</p>
     <h3 id="src-68881136_Web.configfilesettings-Requestvalidation" class="heading "><span>Request validation</span></h3>
-<p   
->Request validation is a mechanism, which ensures that the ASP.NET application does not process potentially dangerous requests (possible XSS attacks). In Kentico, the request validation is disabled by default, because some parts of the system (for example, the WYSIWYG editor) send such requests, that would be suspicious to the validator. However, you can change this setting individually and enable request validation only for chosen live pages in the <strong class=" ">@ Page</strong> directive:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Request validation is a mechanism, which ensures that the ASP.NET application does not process potentially dangerous requests (possible XSS attacks). In Kentico, the request validation is disabled by default, because some parts of the system (for example, the WYSIWYG editor) send such requests, that would be suspicious to the validator. However, you can change this setting individually and enable request validation only for chosen live pages in the <strong class=" ">@ Page</strong> directive:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;@ Page validateRequest="false" %&gt;</code></div>
 </div>
     </div>
-<p   
->See <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/hh882339.aspx">Request Validation in ASP.NET</a>.</p>
+<p>See <a class="external-link" href="http://msdn.microsoft.com/en-us/library/hh882339.aspx">Request Validation in ASP.NET</a>.</p>
     <h3 id="src-68881136_Web.configfilesettings-Viewstatevalidation" class="heading "><span>View state validation</span></h3>
-<p   
->In Kentico, the view state validation is encoded using the machine key and also a private user key.</p>
-<p   
->You can enable view state validation globally in the web.config file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>In Kentico, the view state validation is encoded using the machine key and also a private user key.</p>
+<p>You can enable view state validation globally in the web.config file:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">configuration</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">  &lt;</code><code class="keyword">system</code><code class="plain">.web&gt;</code></div>
@@ -317,19 +273,13 @@ pecifies the number of minutes a session can be idle before it is abandoned.    
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">configuration</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-<p   
->You can find more information about the view state validation in   <a   href="Cross-site-request-forgery-%28CSRF_XSRF%29">Cross site request forgery (CSRF/XSRF)</a>.</p>
-<p   
->It is also possible to encrypt the view state to further increase its protection. See <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/aa479501.aspx">Encrypt ViewState in ASP.NET 2.0</a> for more information.</p>
+<p>You can find more information about the view state validation in <a href="cross-site-request-forgery-%28csrf_xsrf%29">Cross site request forgery (CSRF/XSRF)</a>.</p>
+<p>It is also possible to encrypt the view state to further increase its protection. See <a class="external-link" href="http://msdn.microsoft.com/en-us/library/aa479501.aspx">Encrypt ViewState in ASP.NET 2.0</a> for more information.</p>
     <h3 id="src-68881136_Web.configfilesettings-Encryptingindividualsectionsoftheweb.configfile" class="heading "><span>Encrypting individual sections of the web.config file</span></h3>
-<p   
->You can encrypt chosen sections of the web.config file, which can prevent attackers from obtaining sensitive information (passwords, connection string, etc.) if they manage to get hold of the file. Encrypting can be done using:</p>
-<ul class=" "><li class=" "><p   
->DPAPI &ndash; this tool provides better security, but is not suitable for web farms. See <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/ff647398.aspx">How To: Encrypt Configuration Sections in ASP.NET 2.0 Using DPAPI</a>.</p>
-</li><li class=" "><p   
->RSA &ndash; this tool is suitable for securing the web.config files on web farms. See <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/ff650304.aspx">How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA</a>.</p>
-</li></ul><p   
->Encoding is supported natively by ASP.NET, so the web application does not have to provide any additional support.</p>
+<p>You can encrypt chosen sections of the web.config file, which can prevent attackers from obtaining sensitive information (passwords, connection string, etc.) if they manage to get hold of the file. Encrypting can be done using:</p>
+<ul class=" "><li class=" "><p>DPAPI – this tool provides better security, but is not suitable for web farms. See <a class="external-link" href="http://msdn.microsoft.com/en-us/library/ff647398.aspx">How To: Encrypt Configuration Sections in ASP.NET 2.0 Using DPAPI</a>.</p>
+</li><li class=" "><p>RSA – this tool is suitable for securing the web.config files on web farms. See <a class="external-link" href="http://msdn.microsoft.com/en-us/library/ff650304.aspx">How To: Encrypt Configuration Sections in ASP.NET 2.0 Using RSA</a>.</p>
+</li></ul><p>Encoding is supported natively by ASP.NET, so the web application does not have to provide any additional support.</p>
         </div>
 
     </article>
@@ -350,5 +300,6 @@ pecifies the number of minutes a session can be idle before it is abandoned.    
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

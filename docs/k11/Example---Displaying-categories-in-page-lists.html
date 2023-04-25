@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Example - Displaying categories in page lists - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,43 +149,34 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If you have pages that are organized in   <a   href="Categorizing-pages">categories</a>, you can display a list of categories that each page belongs to. You need to write a   <a   href="Writing-transformations">transformation</a> method for displaying a list of categories assigned to a given page.</p>
-    <div  class="confbox panel">
+<div class="section-left"></div><p>If you have pages that are organized in <a href="categorizing-pages">categories</a>, you can display a list of categories that each page belongs to. You need to write a <a href="writing-transformations">transformation</a> method for displaying a list of categories assigned to a given page.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Writing-transformations">Writing transformations</a></p>
-</li><li class=" "><p   
->  <a   href="Adding-custom-methods-to-transformations">Adding custom methods to transformations</a></p>
+<ul class=" "><li class=" "><p><a href="writing-transformations">Writing transformations</a></p>
+</li><li class=" "><p><a href="adding-custom-methods-to-transformations">Adding custom methods to transformations</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882132_ExampleDisplayingcategoriesinpagelists-Displayingpagecategoriesusingacustomtransformationfunction" class="heading "><span>Displaying page categories using a custom transformation function</span></h3>
-<ol class=" "><li class=" "><p   
->Open your web project in Visual Studio.</p>
-    <div  class="confbox admonition admonition-note">
+<ol class=" "><li class=" "><p>Open your web project in Visual Studio.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: If you have already extended the <strong class=" ">CMSTransformation</strong> partial class when defining other transformation methods, you can add the method for displaying categories there without creating a new class.</p>
+<p><strong class=" ">Note</strong>: If you have already extended the <strong class=" ">CMSTransformation</strong> partial class when defining other transformation methods, you can add the method for displaying categories there without creating a new class.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Create a new folder under the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong> on web application installations) and name it <i class=" ">CustomTransformationMethods</i>.</p>
-</li><li class=" "><p   
->Right-click the folder and select <strong class=" ">Add -&gt; Add new Item</strong>.</p>
-</li><li class=" "><p   
->Create a new <strong class=" ">Class </strong>and name it <strong class=" ">CMSTransformation.cs</strong>.</p>
-</li><li class=" "><p   
->Remove the default content of the class and enter the following code:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Create a new folder under the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong> on web application installations) and name it <i class=" ">CustomTransformationMethods</i>.</p>
+</li><li class=" "><p>Right-click the folder and select <strong class=" ">Add -&gt; Add new Item</strong>.</p>
+</li><li class=" "><p>Create a new <strong class=" ">Class </strong>and name it <strong class=" ">CMSTransformation.cs</strong>.</p>
+</li><li class=" "><p>Remove the default content of the class and enter the following code:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Taxonomy;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">namespace</code><code class="plain"> CMS.DocumentEngine.Web.UI</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -201,59 +190,52 @@
 <div class="line"><code class="plain">			{</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">throw</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> Exception(</code><code class="string">"Invalid document ID"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">			}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Uses the current page's alias path if one is not specified for the category list page</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">if</code><code class="plain"> (documentListAliasPath == </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">			{</code></div>
 <div class="line"><code class="plain">				documentListAliasPath = DocumentContext.CurrentAliasPath;</code></div>
 <div class="line"><code class="plain">			}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Initializes the HTML code result</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">string</code><code class="plain"> result = </code><code class="string">""</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Gets the categories of the specified page</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">var</code><code class="plain"> categories = DocumentCategoryInfoProvider.GetDocumentCategories(documentId)</code></div>
 <div class="line"><code class="plain">																.Columns(</code><code class="string">"CMS_Category.CategoryID, CategoryDisplayName"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="keyword">foreach</code><code class="plain"> (CategoryInfo category </code><code class="keyword">in</code><code class="plain"> categories)</code></div>
 <div class="line"><code class="plain">			{</code></div>
 <div class="line"><code class="plain">				</code><code class="comments">// Constructs links for the assigned categories</code></div>
 <div class="line"><code class="plain">				</code><code class="comments">// The links lead to a page containing a list of pages that belong to the same category, with the category ID in the query string</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">int</code><code class="plain"> categoryId = category.CategoryID;</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">string</code><code class="plain"> categoryName = category.CategoryDisplayName;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">				result += </code><code class="string">"&lt;a href=\""</code><code class="plain"> + URLHelper.ResolveUrl(DocumentURLProvider.GetUrl(documentListAliasPath));</code></div>
 <div class="line"><code class="plain">				result += </code><code class="string">"?category="</code><code class="plain"> + categoryId;</code></div>
 <div class="line"><code class="plain">				result += </code><code class="string">"\"&gt;"</code><code class="plain"> + categoryName + </code><code class="string">"&lt;/a&gt;&amp;nbsp;"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">			}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="keyword">return</code><code class="plain"> result;</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the class. <strong class=" ">Build</strong> the project if it is installed as a web application.</p>
-</li><li class=" "><p   
->Call the method in the code of your transformation.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Save the class. <strong class=" ">Build</strong> the project if it is installed as a web application.</p>
+</li><li class=" "><p>Call the method in the code of your transformation.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">strong</code><code class="plain">&gt;Categories:&lt;/</code><code class="keyword">strong</code><code class="plain">&gt; &lt;%# GetDocumentCategories(Eval&lt;</code><code class="keyword">int</code><code class="plain">&gt;("DocumentID"), null) %&gt;</code></div>
 </div>
     </div>
-</li></ol><p   
->The method takes the following arguments:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">int DocumentID</strong> &ndash; the ID of the page whose categories you want to retrieve.</p>
-</li><li class=" "><p   
-><strong class=" ">string DocumentListAliasPath</strong> &ndash; path of the page that contains the list of pages (filtered according to the <i class=" ">category</i> query string parameter). If you set the argument to <i class=" ">null</i>, the method uses the current page.</p>
-</li></ul><p   
->If you view the output of the transformation, you will see the categories to which the displayed page belongs.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882132/Document_Categories.png" alt="images/download/attachments/68882132/Document_Categories.png" width="500"  />
-        <br/><span class="caption">Transformation display an article page with a list of associated categories</span>
+</li></ol><p>The method takes the following arguments:</p>
+<ul class=" "><li class=" "><p><strong class=" ">int DocumentID</strong> – the ID of the page whose categories you want to retrieve.</p>
+</li><li class=" "><p><strong class=" ">string DocumentListAliasPath</strong> – path of the page that contains the list of pages (filtered according to the <i class=" ">category</i> query string parameter). If you set the argument to <i class=" ">null</i>, the method uses the current page.</p>
+</li></ul><p>If you view the output of the transformation, you will see the categories to which the displayed page belongs.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882132/Document_Categories.png" alt="images/download/attachments/68882132/Document_Categories.png" width="500">
+        <br><span class="caption">Transformation display an article page with a list of associated categories</span>
     </p>
         </div>
 
@@ -275,5 +257,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

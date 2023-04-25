@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Checking page permissions on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,43 +150,28 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can control which   <a   href="Working-with-users-on-MVC-sites">users</a> are able to view which pages on the live site by configuring   <a   href="Page-level-permissions-%28ACLs%29">page-level permissions</a> and adjusting the controller action that   <a   href="Retrieving-content-on-MVC-sites">retrieves page content</a>.</p>
+<div class="section-left"></div><p>You can control which <a href="working-with-users-on-mvc-sites">users</a> are able to view which pages on the live site by configuring <a href="page-level-permissions-%28acls%29">page-level permissions</a> and adjusting the controller action that <a href="retrieving-content-on-mvc-sites">retrieves page content</a>.</p>
     <h3 id="src-68880539_CheckingpagepermissionsonMVCsites-Controllingaccesstopages" class="heading "><span>Controlling access to pages</span></h3>
-<p   
->The following example uses the <i class=" ">DancingGoat.Article</i> page type from the <a  class="external-link" href="https://github.com/Kentico/Mvc">Dancing Goat MVC demo</a> application. It demonstrates how to limit access to the <i class=" ">On Roasts</i> article so that only the user <i class=" ">Andy</i> can see the page content on the live site. You can use the same approach to control page-level permissions of other users.</p>
-<p   
->To control access to pages on MVC sites you first need to set   <a   href="Page-level-permissions-%28ACLs%29">page-level permissions (ACLs)</a> for a page in the content tree:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Select the <i class=" ">On Roasts</i> page in the content tree.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Properties -&gt; Security</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Add users</strong>.</p>
-</li><li class=" "><p   
->Select the user <i class=" ">Andrew Jones (Andy)</i>.</p>
-</li><li class=" "><p   
->In the <i class=" ">Access rights</i> table, click<strong class=" "> Allow</strong> for the <strong class=" ">Read</strong> permission.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol>    <div  class="confbox panel">
+<p>The following example uses the <i class=" ">DancingGoat.Article</i> page type from the <a class="external-link" href="https://github.com/Kentico/Mvc">Dancing Goat MVC demo</a> application. It demonstrates how to limit access to the <i class=" ">On Roasts</i> article so that only the user <i class=" ">Andy</i> can see the page content on the live site. You can use the same approach to control page-level permissions of other users.</p>
+<p>To control access to pages on MVC sites you first need to set <a href="page-level-permissions-%28acls%29">page-level permissions (ACLs)</a> for a page in the content tree:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Select the <i class=" ">On Roasts</i> page in the content tree.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Properties -&gt; Security</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">Add users</strong>.</p>
+</li><li class=" "><p>Select the user <i class=" ">Andrew Jones (Andy)</i>.</p>
+</li><li class=" "><p>In the <i class=" ">Access rights</i> table, click<strong class=" "> Allow</strong> for the <strong class=" ">Read</strong> permission.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol>    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Retrieving-content-on-MVC-sites">Retrieving content on MVC sites</a></p>
-</li><li class=" "><p   
->  <a   href="Page-level-permissions-%28ACLs%29">Page-level permissions (ACLs)</a></p>
+<ul class=" "><li class=" "><p><a href="retrieving-content-on-mvc-sites">Retrieving content on MVC sites</a></p>
+</li><li class=" "><p><a href="page-level-permissions-%28acls%29">Page-level permissions (ACLs)</a></p>
 </li></ul>        </div>
     </div>
-<p   
->Next, adjust the controller definition:</p>
-<ol class=" "><li class=" "><p   
->In your MVC application, open the controller that retrieves content of pages based on the <i class=" ">DancingGoat.Article</i> page type.</p>
-</li><li class=" "><p   
->In the controller action, extend the   <a   href="Working-with-pages-in-the-API">document query</a> expression by adding the <i class=" ">CheckPermissions</i> method. We recommend using   <a   href="Generating-classes-for-Kentico-objects">generated</a> providers, such as the generated <i class=" ">ArticleProvider</i> class.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Next, adjust the controller definition:</p>
+<ol class=" "><li class=" "><p>In your MVC application, open the controller that retrieves content of pages based on the <i class=" ">DancingGoat.Article</i> page type.</p>
+</li><li class=" "><p>In the controller action, extend the <a href="working-with-pages-in-the-api">document query</a> expression by adding the <i class=" ">CheckPermissions</i> method. We recommend using <a href="generating-classes-for-kentico-objects">generated</a> providers, such as the generated <i class=" ">ArticleProvider</i> class.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Gets the specified articles using the generated provider and checks their page permissions</code></div>
 <div class="line"><code class="plain">IEnumerable&lt;Article&gt; articles = ArticleProvider.GetArticles()</code></div>
@@ -198,15 +181,12 @@
 <div class="line"><code class="plain">    .CheckPermissions();</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Build the MVC project.</p>
-</li></ol><p   
->Only the user <i class=" ">Andy</i> can now view the content of the <i class=" ">On Roasts</i> page on the live site. Other users who do not have the required permission see a   <a   href="Handling-404-Not-Found-globally-in-MVC-applications">page not found error</a>.</p>
-    <div  class="confbox admonition admonition-note">
+</li><li class=" "><p>Build the MVC project.</p>
+</li></ol><p>Only the user <i class=" ">Andy</i> can now view the content of the <i class=" ">On Roasts</i> page on the live site. Other users who do not have the required permission see a <a href="handling-404-not-found-globally-in-mvc-applications">page not found error</a>.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: By default, the permission matrix is blank for all pages. This means that no users have permission to any action (for example, read page content) when permissions are checked.</p>
+<p><strong class=" ">Note</strong>: By default, the permission matrix is blank for all pages. This means that no users have permission to any action (for example, read page content) when permissions are checked.</p>
         </div>
     </div>
         </div>
@@ -229,5 +209,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

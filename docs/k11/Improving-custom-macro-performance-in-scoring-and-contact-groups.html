@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Improving custom macro performance in scoring and contact groups - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,36 +149,26 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This topic describes two ways in which you can improve   <a   href="Macro-expressions">macro</a> performance in scoring and contact groups:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="#src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Creatingacustommacroruletranslator">Create a custom macro rule translator</a> - by default,   <a   href="Registering-custom-macro-methods">custom macro</a> rules that you use in scoring and contact group conditions evaluate individually for each contact. You can improve the recalculation performance by implementing and registering translators for these macro rules. Once a macro rule has a translator registered, a database query is constructed that then selects only the contacts that fit the given macro condition.</p>
-</li><li class=" "><p   
->  <a   href="#src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Recalculatingcontactgrouprulesonlyforspecificactivities">Limit unnecessary recalculations</a> - you can further improve your site performance by making sure your   <a   href="Registering-custom-macro-methods">custom</a> contact group and scoring macro rules are recalculated only when users perform activity types that are relevant to the macro rule.</p>
-</li></ol>    <div  class="confbox admonition admonition-info has-no-icon">
+<div class="section-left"><p>This topic describes two ways in which you can improve <a href="macro-expressions">macro</a> performance in scoring and contact groups:</p><ol class=" "><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-creatingacustommacroruletranslator">Create a custom macro rule translator</a> - by default, <a href="registering-custom-macro-methods">custom macro</a> rules that you use in scoring and contact group conditions evaluate individually for each contact. You can improve the recalculation performance by implementing and registering translators for these macro rules. Once a macro rule has a translator registered, a database query is constructed that then selects only the contacts that fit the given macro condition.</p>
+</li><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-recalculatingcontactgrouprulesonlyforspecificactivities">Limit unnecessary recalculations</a> - you can further improve your site performance by making sure your <a href="registering-custom-macro-methods">custom</a> contact group and scoring macro rules are recalculated only when users perform activity types that are relevant to the macro rule.</p>
+</li></ol><div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
-<p   
-><strong class=" ">Default macro rules</strong></p>
-<p   
->Macro rules available in Kentico by default have both these optimizations implemented out of the box.</p>
+<p><strong class=" ">Default macro rules</strong></p>
+<p>Macro rules available in Kentico by default have both these optimizations implemented out of the box.</p>
         </div>
-    </div>
-    <h3 id="src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Creatingacustommacroruletranslator" class="heading "><span>Creating a custom macro rule translator</span></h3>
-<ol class=" "><li class=" "><p   
->Create a class that implements    <span style="color: #ff6600;">
+    </div><h3 id="src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Creatingacustommacroruletranslator" class="heading "><span>Creating a custom macro rule translator</span></h3><ol class=" "><li class=" "><p>Create a class that implements    <span style="color: #ff6600;">
      </span>
 the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
-</li><li class=" "><p   
->Implement the logic of the macro rule in a method that returns a query of the <i class=" ">ObjectQuery&lt;ContactInfo&gt; </i>type. The returned object needs to contain the contacts that fulfill the condition. Note that you do not have to handle contextual information, such as site context, in the query.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Implement the logic of the macro rule in a method that returns a query of the <i class=" ">ObjectQuery&lt;ContactInfo&gt; </i>type. The returned object needs to contain the contacts that fulfill the condition. Note that you do not have to handle contextual information, such as site context, in the query.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example of an implemented ContactIsFemaleMacro rule translator</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example of an implemented ContactIsFemaleMacro rule translator" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ContactManagement;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">internal</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> ContactIsFemaleInstanceTranslator: IMacroRuleInstanceTranslator</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -201,30 +189,27 @@ the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
 <div class="line"><code class="plain">		</code><code class="comments">// ruleParameters contains the data user enters in macro fields</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> paramIs = ruleParameters[</code><code class="string">"_is"</code><code class="plain">].Value;</code></div>
 <div class="line"><code class="plain">        QueryOperator queryOperator = paramIs == </code><code class="string">"!"</code><code class="plain"> ? QueryOperator.NotEquals : QueryOperator.Equals;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> ContactInfoProvider.GetContacts().Where(</code><code class="string">"ContactGender"</code><code class="plain">, queryOperator, (</code><code class="keyword">int</code><code class="plain">)UserGenderEnum.Female);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Register an instance of the <i class=" ">MacroRuleMetadata </i>class by calling the <i class=" ">MacroRuleMetadataContainer.RegisterMetadata</i> method.</p>
-<ul class=" "><li class=" "><p   
->To register the class at the beginning of the application&#39;s lifecycle, create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a> and override the <strong class=" ">OnInit</strong> method.<br/></p>
-</li><li class=" "><p   
->Either add the module class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Register an instance of the <i class=" ">MacroRuleMetadata </i>class by calling the <i class=" ">MacroRuleMetadataContainer.RegisterMetadata</i> method.</p>
+<ul class=" "><li class=" "><p>To register the class at the beginning of the application's lifecycle, create a <a href="initializing-modules-to-run-custom-code">custom module class</a> and override the <strong class=" ">OnInit</strong> method.<br></p>
+</li><li class=" "><p>Either add the module class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Collections.Generic;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ContactManagement;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomInitializationModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomInitializationModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomInit"</code></div>
@@ -232,103 +217,82 @@ the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomInit"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		MacroRuleMetadata metadata = </code><code class="keyword">new</code><code class="plain"> MacroRuleMetadata(</code></div>
 <div class="line"><code class="plain">			</code><code class="string">"ContactIsFemaleMacro"</code><code class="plain">,</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">new</code><code class="plain"> ContactIsFemaleInstanceTranslator(),</code></div>
 <div class="line"><code class="plain">			affectingActivities: </code><code class="keyword">new</code><code class="plain"> List&lt;</code><code class="keyword">string</code><code class="plain">&gt;(0),</code></div>
 <div class="line"><code class="plain">			affectingAttributes: </code><code class="keyword">new</code><code class="plain"> List&lt;</code><code class="keyword">string</code><code class="plain">&gt;(0));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		MacroRuleMetadataContainer.RegisterMetadata(metadata);</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ul></li><li class=" "><p   
->Save the files.<br/><strong class=" ">Important</strong>: Note that this way, the recalculation is not performed for any contact activity or attribute change. You can   <a   href="#src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Recalculatingcontactgroupandscoringrulesonlyforspecificactivitiesandattributes">make the rule recalculate</a> for a specific set of activities and attribute changes.</p>
-</li></ol><p   
->Now, when you use the translated macro rule in a scoring or contact group condition, the query is only performed once when you run recalculation.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>Save the files.<br><strong class=" ">Important</strong>: Note that this way, the recalculation is not performed for any contact activity or attribute change. You can <a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-recalculatingcontactgroupandscoringrulesonlyforspecificactivitiesandattributes">make the rule recalculate</a> for a specific set of activities and attribute changes.</p>
+</li></ol><p>Now, when you use the translated macro rule in a scoring or contact group condition, the query is only performed once when you run recalculation.</p><div class="confbox admonition admonition-note">
                     <p class="title">Compound conditions</p>
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->All macro rules used in a contact group or scoring macro conditions need to be translated. Otherwise, the evaluation will be performed in a non-optimized way.</p>
+<p>All macro rules used in a contact group or scoring macro conditions need to be translated. Otherwise, the evaluation will be performed in a non-optimized way.</p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+    
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Creatingacustommacroruletranslator">Creating a custom macro rule translator</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Recalculatingcontactgroupandscoringrulesonlyforspecificactivitiesandattributes">Recalculating contact group and scoring rules only for specific activities and attributes</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-creatingacustommacroruletranslator">Creating a custom macro rule translator</a></p>
+</li><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-recalculatingcontactgroupandscoringrulesonlyforspecificactivitiesandattributes">Recalculating contact group and scoring rules only for specific activities and attributes</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Segmenting-contacts-into-contact-groups">Segmenting contacts into contact groups</a></p>
-</li><li class=" "><p   
->  <a   href="Scoring-contacts">Scoring contacts</a></p>
-</li><li class=" "><p   
->  <a   href="Macro-expressions">Macro expressions</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-macro-rules">Creating macro rules</a></p>
+<ul class=" "><li class=" "><p><a href="segmenting-contacts-into-contact-groups">Segmenting contacts into contact groups</a></p>
+</li><li class=" "><p><a href="scoring-contacts">Scoring contacts</a></p>
+</li><li class=" "><p><a href="macro-expressions">Macro expressions</a></p>
+</li><li class=" "><p><a href="creating-macro-rules">Creating macro rules</a></p>
 </li></ul>        </div>
-    </div>
-<p   
-></p>
-    <div  class="confbox admonition admonition-info">
+    </div></div>
+    
+<p></p>
+    <div class="confbox admonition admonition-info">
                     <p class="title">Kentico EMS required</p>
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+<p>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
         </div>
     </div>
-<p   
-></p>
+<p></p>
     <h3 id="src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Recalculatingcontactgroupandscoringrulesonlyforspecificactivitiesandattributes" class="heading "><span>Recalculating contact group and scoring rules only for specific activities and attributes</span></h3>
-<p   
->Another way of improving your site performance is by making sure that contact groups and scores are recalculated only when necessary. You can make sure your custom contact group and scoring macro rules are only recalculated for specified activities or when specific contact attributes change.</p>
-<p   
-><strong class=" ">Examples:</strong></p>
-<ul class=" "><li class=" "><p   
->The &quot;ContactIsFemale&quot; macro doesn&#39;t need to be rebuilt by any contact activity that the visitor performs on a site. Instead, it only needs to be rebuilt by a change in the contact&#39;s &quot;contactgender&quot; attribute.</p>
-</li><li class=" "><p   
->A rule that checks whether a contact is registered for an event (&quot;CMSContactIsRegisteredForSpecifiedEvent&quot; macro by default) only needs to be rebuilt when a visitor performs an event booking activity on a site (&quot;EVENT_BOOKING&quot; activity by default).</p>
-</li><li class=" "><p   
->A rule that checks whether a contact has visited a page (&quot;CMSContactHasVisitedSpecifiedPageInLastXDays&quot; macro by default) only needs to be rebuilt when a visitor performs an event booking activity on a site (&quot;PAGE_VISIT&quot; activity by default).</p>
-</li></ul><p   
->To specify the activities and attribute changes that rebuild your custom macro rule:</p>
-<ol class=" "><li class=" "><p   
->Create a   <a   href="#src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Creatingacustommacroruletranslator">custom macro rule translator</a>.</p>
-</li><li class=" "><p   
->Extend the metadata instantiation by the following parameters:</p>
-<ol class=" "><li class=" "><p   
-><strong class=" ">IList&lt;string&gt; affectingActivities </strong>- a list of activities for which you want the macro to rebuild.</p>
-</li><li class=" "><p   
-><strong class=" ">IList&lt;string&gt;</strong> <strong class=" ">affectingAttributes</strong> - a list of attributes for which you want the macro to rebuild.</p>
-</li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Another way of improving your site performance is by making sure that contact groups and scores are recalculated only when necessary. You can make sure your custom contact group and scoring macro rules are only recalculated for specified activities or when specific contact attributes change.</p>
+<p><strong class=" ">Examples:</strong></p>
+<ul class=" "><li class=" "><p>The "ContactIsFemale" macro doesn't need to be rebuilt by any contact activity that the visitor performs on a site. Instead, it only needs to be rebuilt by a change in the contact's "contactgender" attribute.</p>
+</li><li class=" "><p>A rule that checks whether a contact is registered for an event ("CMSContactIsRegisteredForSpecifiedEvent" macro by default) only needs to be rebuilt when a visitor performs an event booking activity on a site ("EVENT_BOOKING" activity by default).</p>
+</li><li class=" "><p>A rule that checks whether a contact has visited a page ("CMSContactHasVisitedSpecifiedPageInLastXDays" macro by default) only needs to be rebuilt when a visitor performs an event booking activity on a site ("PAGE_VISIT" activity by default).</p>
+</li></ul><p>To specify the activities and attribute changes that rebuild your custom macro rule:</p>
+<ol class=" "><li class=" "><p>Create a <a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-creatingacustommacroruletranslator">custom macro rule translator</a>.</p>
+</li><li class=" "><p>Extend the metadata instantiation by the following parameters:</p>
+<ol class=" "><li class=" "><p><strong class=" ">IList&lt;string&gt; affectingActivities </strong>- a list of activities for which you want the macro to rebuild.</p>
+</li><li class=" "><p><strong class=" ">IList&lt;string&gt;</strong> <strong class=" ">affectingAttributes</strong> - a list of attributes for which you want the macro to rebuild.</p>
+</li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Rebuild custom macro rule for specific activities or attribute changes</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Rebuild custom macro rule for specific activities or attribute changes" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	...</code></div>
 <div class="line"><code class="plain">	MacroRuleMetadata metadata = </code><code class="keyword">new</code><code class="plain"> MacroRuleMetadata(</code></div>
-<div class="line"><code class="plain">		</code><code class="string">"CustomMacroRule"</code><code class="plain">, </code></div>
-<div class="line"><code class="plain">		</code><code class="keyword">new</code><code class="plain"> CustomMacroRuleTranslator(), </code></div>
+<div class="line"><code class="plain">		</code><code class="string">"CustomMacroRule"</code><code class="plain">,&nbsp;</code></div>
+<div class="line"><code class="plain">		</code><code class="keyword">new</code><code class="plain"> CustomMacroRuleTranslator(),&nbsp;</code></div>
 <div class="line"><code class="plain">		affectingActivities: </code><code class="keyword">new</code><code class="plain"> List&lt;</code><code class="keyword">string</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// Recalculate for a predefined activity</code></div>
@@ -347,7 +311,7 @@ the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Do not rebuild custom macro rule for any activities or attribute changes</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Do not rebuild custom macro rule for any activities or attribute changes" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
@@ -366,7 +330,7 @@ the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Rebuild custom macro rule for all activities and attribute changes</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Rebuild custom macro rule for all activities and attribute changes" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
@@ -388,12 +352,9 @@ the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
-><strong class=" ">Note</strong>: You can also combine the parameters as you see fit.<br/></p>
-</li><li class=" "><p   
->Save the files.</p>
-</li></ol><p   
->Now, only the specified contact activities or changes in contact attributes will trigger a recalculation of the custom macro rule.</p>
+<p><strong class=" ">Note</strong>: You can also combine the parameters as you see fit.<br></p>
+</li><li class=" "><p>Save the files.</p>
+</li></ol><p>Now, only the specified contact activities or changes in contact attributes will trigger a recalculation of the custom macro rule.</p>
         </div>
 
     </article>
@@ -414,5 +375,6 @@ the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

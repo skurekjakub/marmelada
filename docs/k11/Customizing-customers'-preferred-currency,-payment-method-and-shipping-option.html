@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customizing customers' preferred currency, payment method and shipping option - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,38 +149,28 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->In Kentico, you can modify how the system decides which   <a   href="Configuring-currencies">currency</a>,   <a   href="Configuring-payment-methods">payment method</a> and   <a   href="Configuring-shipping-options">shipping option</a> are preferred for a registered   <a   href="Customers">customer</a>. The customer&#39;s preferred currency, payment method and shipping option are pre-filled when the customer goes through the   <a   href="Checkout-process">checkout process</a>.</p>
-<p   
->By default, the preferred currency, payment method and shipping option are chosen based on the customer&#39;s last order.</p>
-<p   
->To customize how the system chooses the preferred currency, payment method and shipping option:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new class that implements the <strong class=" ">ICustomerPreferencesProvider</strong> interface (found in the <i class=" ">CMS.Ecommerce</i> namespace).</p>
-    <div  class="confbox admonition admonition-tip">
+<div class="section-left"></div><p>In Kentico, you can modify how the system decides which <a href="configuring-currencies">currency</a>, <a href="configuring-payment-methods">payment method</a> and <a href="configuring-shipping-options">shipping option</a> are preferred for a registered <a href="customers">customer</a>. The customer's preferred currency, payment method and shipping option are pre-filled when the customer goes through the <a href="checkout-process">checkout process</a>.</p>
+<p>By default, the preferred currency, payment method and shipping option are chosen based on the customer's last order.</p>
+<p>To customize how the system chooses the preferred currency, payment method and shipping option:</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
+</li><li class=" "><p>Create a new class that implements the <strong class=" ">ICustomerPreferencesProvider</strong> interface (found in the <i class=" ">CMS.Ecommerce</i> namespace).</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Class location</strong><br/></p>
-<p   
->For production sites, we recommend creating a new assembly (Class library project) in your Kentico solution and including the classes there. Then, add the appropriate references to both the assembly and the main Kentico web project. For more information, see   <a   href="Best-practices-for-customization">Best practices for customization</a>.</p>
+<p><strong class=" ">Class location</strong><br></p>
+<p>For production sites, we recommend creating a new assembly (Class library project) in your Kentico solution and including the classes there. Then, add the appropriate references to both the assembly and the main Kentico web project. For more information, see <a href="best-practices-for-customization">Best practices for customization</a>.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Implement the <strong class=" ">GetPreferences</strong> method.</p>
-<ul class=" "><li class=" "><p   
->The method must return an object of the <strong class=" ">CustomerPreferences </strong>class, which contains the <i class=" ">CurrencyID</i>, <i class=" ">PaymentOptionID</i> and <i class=" ">ShippingOptionID</i> properties (all nullable integers). Assign <i class=" ">null</i> values to the properties that you do not want to set.</p>
-</li></ul></li><li class=" "><p   
->Register your <i class=" ">ICustomerPreferencesProvider</i> implementation using the <strong class=" ">RegisterImplementation</strong> assembly attribute.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Implement the <strong class=" ">GetPreferences</strong> method.</p>
+<ul class=" "><li class=" "><p>The method must return an object of the <strong class=" ">CustomerPreferences </strong>class, which contains the <i class=" ">CurrencyID</i>, <i class=" ">PaymentOptionID</i> and <i class=" ">ShippingOptionID</i> properties (all nullable integers). Assign <i class=" ">null</i> values to the properties that you do not want to set.</p>
+</li></ul></li><li class=" "><p>Register your <i class=" ">ICustomerPreferencesProvider</i> implementation using the <strong class=" ">RegisterImplementation</strong> assembly attribute.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: RegisterImplementation(</code><code class="keyword">typeof</code><code class="plain">(ICustomerPreferencesProvider), </code><code class="keyword">typeof</code><code class="plain">(CustomCustomerPreferencesProvider))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomCustomerPreferencesProvider : ICustomerPreferencesProvider</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> CustomerPreferences GetPreferences(CustomerInfo customer, SiteInfoIdentifier site)</code></div>
@@ -192,29 +180,19 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save your project and reload your Kentico website.</p>
-</li></ol><p   
->If you open your website, the system uses the registered <i class=" ">ICustomerPreferencesProvider</i> implementation. Registered customers now have their currency, payment method and shipping option pre-filled based on your custom logic.</p>
-    <div  class="confbox panel">
+</li><li class=" "><p>Save your project and reload your Kentico website.</p>
+</li></ol><p>If you open your website, the system uses the registered <i class=" ">ICustomerPreferencesProvider</i> implementation. Registered customers now have their currency, payment method and shipping option pre-filled based on your custom logic.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Customers">Customers</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-currencies">Configuring currencies</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-payment-methods">Configuring payment methods</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-shipping-options">Configuring shipping options</a></p>
-</li><li class=" "><p   
->  <a   href="Customizing-providers">Customizing providers</a></p>
-</li><li class=" "><p   
->  <a   href="Custom-development">Custom development</a></p>
-</li><li class=" "><p   
->  <a   href="Customizing-creation-of-new-customers">Customizing creation of new customers</a></p>
-</li><li class=" "><p   
->  <a   href="Synchronizing-customer-and-user-properties">Synchronizing customer and user properties</a></p>
+<ul class=" "><li class=" "><p><a href="customers">Customers</a></p>
+</li><li class=" "><p><a href="configuring-currencies">Configuring currencies</a></p>
+</li><li class=" "><p><a href="configuring-payment-methods">Configuring payment methods</a></p>
+</li><li class=" "><p><a href="configuring-shipping-options">Configuring shipping options</a></p>
+</li><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class=" "><p><a href="custom-development">Custom development</a></p>
+</li><li class=" "><p><a href="customizing-creation-of-new-customers">Customizing creation of new customers</a></p>
+</li><li class=" "><p><a href="synchronizing-customer-and-user-properties">Synchronizing customer and user properties</a></p>
 </li></ul>        </div>
     </div>
         </div>
@@ -237,5 +215,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

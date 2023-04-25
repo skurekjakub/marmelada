@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Working with form data using the API - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,49 +148,38 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can use the Kentico API to manage the data that users submit through   <a   href="Forms">forms</a>. Two different approaches are available:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68882128_WorkingwithformdatausingtheAPI-Workingwithexistingformrecords">Work with existing form data</a> &ndash; load or modify the data stored for any form.</p>
-</li><li class=" "><p   
->  <a   href="#src-68882128_WorkingwithformdatausingtheAPI-Handlingformevents">Handle form actions directly when they occur</a> &ndash; use event handlers to execute code before or after form actions occur in the system (for example whenever users submit records for a form).</p>
+<div class="section-left"></div><p>You can use the Kentico API to manage the data that users submit through <a href="forms">forms</a>. Two different approaches are available:</p>
+<ul class=" "><li class=" "><p><a href="#src-68882128_workingwithformdatausingtheapi-workingwithexistingformrecords">Work with existing form data</a> – load or modify the data stored for any form.</p>
+</li><li class=" "><p><a href="#src-68882128_workingwithformdatausingtheapi-handlingformevents">Handle form actions directly when they occur</a> – use event handlers to execute code before or after form actions occur in the system (for example whenever users submit records for a form).</p>
 </li></ul>    <h3 id="src-68882128_WorkingwithformdatausingtheAPI-Workingwithexistingformrecords" class="heading "><span>Working with existing form records</span></h3>
-<p   
->Use the following approach to access the data of a form at any time:</p>
-<ol class=" "><li class=" "><p   
->Get a <strong class=" ">BizFormInfo</strong> object representing the form itself (call the <i class=" ">BizFormInfoProvider.GetBizFormInfo</i> method).</p>
-</li><li class=" "><p   
->Get the form&#39;s class name (use the <i class=" ">DataClassInfoProvider.GetDataClassInfo</i> method with the form&#39;s class ID as the parameter, access the <i class=" ">ClassName</i> property of the <i class=" ">DataClassInfo</i> object).</p>
-</li><li class=" "><p   
->Call one of the following methods to get the form&#39;s data:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">BizFormItemProvider.GetItems(class name)</strong> &ndash; loads all of the given form&#39;s records (or a filtered subset). You can loop through the <i class=" ">BizFormItem</i> objects in the data.</p>
-</li><li class=" "><p   
-><strong class=" ">BizFormItemProvider.GetItem(item ID, class name)</strong> &ndash; gets one <i class=" ">BizFormItem</i> record specified by ID.<strong class=" "><strong class=" "><br/></strong></strong></p>
-</li></ul></li></ol><p   
->To get the values of specific fields from <i class=" ">BizFormItem</i> objects, call the <i class=" ">GetValue</i> methods &ndash; either the general <i class=" ">GetValue,</i> which returns an object, or methods for specific data types, such as <i class=" ">GetStringValue.</i></p>
-<p   
->To set values for fields, use the <i class=" ">SetValue</i> method for individual fields and then call <i class=" ">SubmitChanges</i> for the <i class=" ">BizFormItem</i> object to save the results.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Use the following approach to access the data of a form at any time:</p>
+<ol class=" "><li class=" "><p>Get a <strong class=" ">BizFormInfo</strong> object representing the form itself (call the <i class=" ">BizFormInfoProvider.GetBizFormInfo</i> method).</p>
+</li><li class=" "><p>Get the form's class name (use the <i class=" ">DataClassInfoProvider.GetDataClassInfo</i> method with the form's class ID as the parameter, access the <i class=" ">ClassName</i> property of the <i class=" ">DataClassInfo</i> object).</p>
+</li><li class=" "><p>Call one of the following methods to get the form's data:</p>
+<ul class=" "><li class=" "><p><strong class=" ">BizFormItemProvider.GetItems(class name)</strong> – loads all of the given form's records (or a filtered subset). You can loop through the <i class=" ">BizFormItem</i> objects in the data.</p>
+</li><li class=" "><p><strong class=" ">BizFormItemProvider.GetItem(item ID, class name)</strong> – gets one <i class=" ">BizFormItem</i> record specified by ID.<strong class=" "><strong class=" "><br></strong></strong></p>
+</li></ul></li></ol><p>To get the values of specific fields from <i class=" ">BizFormItem</i> objects, call the <i class=" ">GetValue</i> methods – either the general <i class=" ">GetValue,</i> which returns an object, or methods for specific data types, such as <i class=" ">GetStringValue.</i></p>
+<p>To set values for fields, use the <i class=" ">SetValue</i> method for individual fields and then call <i class=" ">SubmitChanges</i> for the <i class=" ">BizFormItem</i> object to save the results.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.OnlineForms;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SiteProvider;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets the form info object for the 'ContactUs' form</code></div>
 <div class="line"><code class="plain">BizFormInfo formObject = BizFormInfoProvider.GetBizFormInfo(</code><code class="string">"ContactUs"</code><code class="plain">, SiteContext.CurrentSiteID);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets the class name of the 'ContactUs' form</code></div>
 <div class="line"><code class="plain">DataClassInfo formClass = DataClassInfoProvider.GetDataClassInfo(formObject.FormClassID);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> className = formClass.ClassName;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Loads the form's data</code></div>
 <div class="line"><code class="plain">ObjectQuery&lt;BizFormItem&gt; data = BizFormItemProvider.GetItems(className);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Checks whether the form contains any records</code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (!DataHelper.DataSourceIsEmpty(data))</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -201,12 +188,12 @@
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> firstNameFieldValue = item.GetStringValue(</code><code class="string">"FirstName"</code><code class="plain">, </code><code class="string">""</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> lastNameFieldValue = item.GetStringValue(</code><code class="string">"LastName"</code><code class="plain">, </code><code class="string">""</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Perform any required logic with the form field values</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	    </code><code class="comments">// Variable representing a custom value that you want to save into the form data</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">object</code><code class="plain"> customFieldValue;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Programatically assigns and saves a value for the form record's 'CustomField' field</code></div>
 <div class="line"><code class="plain">		item.SetValue(</code><code class="string">"CustomField"</code><code class="plain">, customFieldValue);</code></div>
 <div class="line"><code class="plain">		item.SubmitChanges(</code><code class="keyword">false</code><code class="plain">);</code></div>
@@ -214,32 +201,27 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Forms">Forms</a></p>
-</li><li class=" "><p   
->  <a   href="Managing-form-data">Managing form data</a></p>
+<ul class=" "><li class=" "><p><a href="forms">Forms</a></p>
+</li><li class=" "><p><a href="managing-form-data">Managing form data</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882128_WorkingwithformdatausingtheAPI-Handlingformevents" class="heading "><span>Handling form events</span></h3>
-<p   
->To perform custom actions directly when form actions occur,   <a   href="Handling-global-events">implement handlers</a> for   <a   href="Reference---Global-system-events#src-68882268_ReferenceGlobalsystemevents-BizFormItemEvents">BizFormItemEvents events</a>.</p>
-<p   
->You need to assign handlers for the events at the beginning of the application&#39;s life cycle &ndash; create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a> and override the module&#39;s <strong class=" ">OnInit</strong> method.</p>
-<p   
->To access the data of the active form in the event handler, use the <strong class=" ">Item</strong> property <i class=" ">(BizFormItem</i> type) of the <strong class=" ">BizFormItemEventArgs</strong> parameter. The parameter is available for all form item event handlers.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>To perform custom actions directly when form actions occur, <a href="handling-global-events">implement handlers</a> for <a href="reference---global-system-events#src-68882268_referenceglobalsystemevents-bizformitemevents">BizFormItemEvents events</a>.</p>
+<p>You need to assign handlers for the events at the beginning of the application's life cycle – create a <a href="initializing-modules-to-run-custom-code">custom module class</a> and override the module's <strong class=" ">OnInit</strong> method.</p>
+<p>To access the data of the active form in the event handler, use the <strong class=" ">Item</strong> property <i class=" ">(BizFormItem</i> type) of the <strong class=" ">BizFormItemEventArgs</strong> parameter. The parameter is available for all form item event handlers.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.OnlineForms;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(FormHandlerModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> FormHandlerModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomFormHandlers"</code></div>
@@ -247,23 +229,23 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomFormHandlers"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the BizFormItemEvents.Insert.After event</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// This event occurs after the creation of every new form record</code></div>
 <div class="line"><code class="plain">		BizFormItemEvents.Insert.After += FormItem_InsertAfterHandler;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Handles the form data when users create new records for the 'ContactUs' form</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> FormItem_InsertAfterHandler(</code><code class="keyword">object</code><code class="plain"> sender, BizFormItemEventArgs e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets the form data object from the event handler parameter</code></div>
 <div class="line"><code class="plain">		BizFormItem formDataItem = e.Item;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Checks that the form record was successfully created</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Ensures that the custom actions only occur for records of the 'ContactUs' form</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// The values of form class names must be in lower case</code></div>
@@ -271,12 +253,12 @@
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">string</code><code class="plain"> firstNameFieldValue = formDataItem.GetStringValue(</code><code class="string">"FirstName"</code><code class="plain">, </code><code class="string">""</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">string</code><code class="plain"> lastNameFieldValue = formDataItem.GetStringValue(</code><code class="string">"LastName"</code><code class="plain">, </code><code class="string">""</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Perform any required logic with the form field values</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Variable representing a custom value that you want to save into the form data</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">object</code><code class="plain"> customFieldValue;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Sets and saves a value for the form record's 'CustomField' field</code></div>
 <div class="line"><code class="plain">			formDataItem.SetValue(</code><code class="string">"CustomField"</code><code class="plain">, customFieldValue);</code></div>
 <div class="line"><code class="plain">			formDataItem.SubmitChanges(</code><code class="keyword">false</code><code class="plain">);</code></div>
@@ -305,5 +287,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

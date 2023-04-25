@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Custom Data provider example - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,95 +148,59 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Customization of the data provider allows you to implement your own database connector.</p>
-<p   
->You cannot modify the data provider in the App_Code folder. The customizations must be added as part of a new assembly, which you then need to register via the <strong class=" ">CMSDataProviderAssembly</strong> web.config key.</p>
-    <div  class="confbox admonition admonition-note">
+<div class="section-left"><p>Customization of the data provider allows you to implement your own database connector.</p><p>You cannot modify the data provider in the App_Code folder. The customizations must be added as part of a new assembly, which you then need to register via the <strong class=" ">CMSDataProviderAssembly</strong> web.config key.</p><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Custom data providers are <strong class=" ">not</strong> intended for accessing non-Microsoft SQL Server database engines. They only allow you to modify how queries are executed against the Microsoft SQL Server.</p>
+<p>Custom data providers are <strong class=" ">not</strong> intended for accessing non-Microsoft SQL Server database engines. They only allow you to modify how queries are executed against the Microsoft SQL Server.</p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882174_CustomDataproviderexample-Addingthecustomdataproviderassembly">Adding the custom data provider assembly</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882174_CustomDataproviderexample-Registeringthecustomdataprovider">Registering the custom data provider</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882174_customdataproviderexample-addingthecustomdataproviderassembly">Adding the custom data provider assembly</a></p>
+</li><li class=" "><p><a href="#src-68882174_customdataproviderexample-registeringthecustomdataprovider">Registering the custom data provider</a></p>
+</li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68882174_CustomDataproviderexample-Addingthecustomdataproviderassembly" class="heading "><span>Adding the custom data provider assembly</span></h3>
-<ol class="conf-macro output-inline "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Add a new <strong class=" ">Class Library</strong> project to the Kentico solution, for example named <i class=" ">CustomDataProvider</i>.</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Helpers.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the <i class=" ">CustomDataProvider</i> project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Open your Kentico program files directory (by default <i class=" ">C:\Program Files\Kentico\&lt;version&gt;</i>) and expand the <i class=" ">CodeSamples\CustomizationSamples\CustomDataProvider</i> subfolder.</p>
-</li><li class=" "><p   
->Copy the following files into the <i class=" ">CustomDataProvider</i> directory in your web project:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">DataConnection.cs</strong></p>
-</li><li class=" "><p   
-><strong class=" ">DataProvider.cs</strong></p>
-</li><li class=" "><p   
-><strong class=" ">SqlGenerator.cs</strong></p>
-</li><li class=" "><p   
-><strong class=" ">TableManager.cs</strong></p>
-</li></ul></li><li class=" "><p   
->Include the new files into the <i class=" ">CustomDataProvider</i> project in Visual Studio:</p>
-<ol class="conf-macro output-inline "><li class=" "><p   
->Expand the <i class=" ">CustomDataProvider</i> project in the Solution Explorer.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
-</li><li class=" "><p   
->Select the new files while holding the <strong class=" ">Ctrl</strong> key.</p>
-</li><li class=" "><p   
->Right-click one of the files and select <strong class=" ">Include in Project</strong>.</p>
-</li></ol></li><li class=" "><p   
->Edit the copied files and rename the namespaces to <strong class=" ">exactly</strong> match the assembly name of your custom project (<i class=" ">CustomDataProvider</i> in this example).</p>
-</li><li class=" "><p   
->Build the <strong class=" ">CustomDataProvider</strong> project (Build the entire solution on web application projects).</p>
-</li></ol><p   
->The CustomDataProvider project is now integrated into your application. By default, the classes in the custom data provider are identical to the ones used by default, but you can modify them according to your own requirements.</p>
+<ol class="conf-macro output-inline "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Add a new <strong class=" ">Class Library</strong> project to the Kentico solution, for example named <i class=" ">CustomDataProvider</i>.</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries:</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Helpers.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the <i class=" ">CustomDataProvider</i> project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Open your Kentico program files directory (by default <i class=" ">C:\Program Files\Kentico\&lt;version&gt;</i>) and expand the <i class=" ">CodeSamples\CustomizationSamples\CustomDataProvider</i> subfolder.</p>
+</li><li class=" "><p>Copy the following files into the <i class=" ">CustomDataProvider</i> directory in your web project:</p>
+<ul class=" "><li class=" "><p><strong class=" ">DataConnection.cs</strong></p>
+</li><li class=" "><p><strong class=" ">DataProvider.cs</strong></p>
+</li><li class=" "><p><strong class=" ">SqlGenerator.cs</strong></p>
+</li><li class=" "><p><strong class=" ">TableManager.cs</strong></p>
+</li></ul></li><li class=" "><p>Include the new files into the <i class=" ">CustomDataProvider</i> project in Visual Studio:</p>
+<ol class="conf-macro output-inline "><li class=" "><p>Expand the <i class=" ">CustomDataProvider</i> project in the Solution Explorer.</p>
+</li><li class=" "><p>Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
+</li><li class=" "><p>Select the new files while holding the <strong class=" ">Ctrl</strong> key.</p>
+</li><li class=" "><p>Right-click one of the files and select <strong class=" ">Include in Project</strong>.</p>
+</li></ol></li><li class=" "><p>Edit the copied files and rename the namespaces to <strong class=" ">exactly</strong> match the assembly name of your custom project (<i class=" ">CustomDataProvider</i> in this example).</p>
+</li><li class=" "><p>Build the <strong class=" ">CustomDataProvider</strong> project (Build the entire solution on web application projects).</p>
+</li></ol><p>The CustomDataProvider project is now integrated into your application. By default, the classes in the custom data provider are identical to the ones used by default, but you can modify them according to your own requirements.</p>
     <h3 id="src-68882174_CustomDataproviderexample-Registeringthecustomdataprovider" class="heading "><span>Registering the custom data provider</span></h3>
-<ol class=" "><li class=" "><p   
->Edit your application&#39;s web.config file.</p>
-</li><li class=" "><p   
->Add the following key to the configuration/appSettings section:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ol class=" "><li class=" "><p>Edit your application's web.config file.</p>
+</li><li class=" "><p>Add the following key to the configuration/appSettings section:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSDataProviderAssembly"</code><code class="plain"> value=</code><code class="string">"CustomDataProvider"</code><code class="plain">/&gt;</code></div>
 </div>
     </div>
-</li></ol><p   
->The system loads the <strong class=" ">DataProvider</strong> class from the assembly specified as the value of the <strong class=" ">CMSDataProviderAssembly</strong> key.</p>
-<p   
->Your application now uses the custom data provider for handling of database operations.</p>
+</li></ol><p>The system loads the <strong class=" ">DataProvider</strong> class from the assembly specified as the value of the <strong class=" ">CMSDataProviderAssembly</strong> key.</p>
+<p>Your application now uses the custom data provider for handling of database operations.</p>
         </div>
 
     </article>
@@ -259,5 +221,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

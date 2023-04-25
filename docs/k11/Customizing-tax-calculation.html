@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customizing tax calculation - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,261 +148,165 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The Kentico E-commerce Solution enables you to modify how the system calculates   <a   href="Configuring-taxes">taxes</a>. For example, you can:</p>
-<ul class=" "><li class=" "><p   
->Integrate 3rd-party tax calculation services</p>
-</li><li class=" "><p   
->Create custom tax application rules according to your needs</p>
-</li><li class=" "><p   
->Customize how the system gets tax rates for countries and states</p>
-</li><li class=" "><p   
->Create custom logic for exempting users from taxes</p>
-</li><li class=" "><p   
->Customize how taxes affect prices displayed in product catalogs on the live site</p>
-</li></ul><p   
->To customize the Kentico tax functionality:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio.</p>
-</li><li class=" "><p   
->Create new classes that implement one or more of the   <a   href="#src-68881641_Customizingtaxcalculation-Taxcustomizationinterfaces">tax customization interfaces</a> (described below).</p>
-    <div  class="confbox admonition admonition-tip">
+<div class="section-left"><p>The Kentico E-commerce Solution enables you to modify how the system calculates <a href="configuring-taxes">taxes</a>. For example, you can:</p><ul class=" "><li class=" "><p>Integrate 3rd-party tax calculation services</p>
+</li><li class=" "><p>Create custom tax application rules according to your needs</p>
+</li><li class=" "><p>Customize how the system gets tax rates for countries and states</p>
+</li><li class=" "><p>Create custom logic for exempting users from taxes</p>
+</li><li class=" "><p>Customize how taxes affect prices displayed in product catalogs on the live site</p>
+</li></ul><p>To customize the Kentico tax functionality:</p><ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
+</li><li class=" "><p>Create new classes that implement one or more of the <a href="#src-68881641_customizingtaxcalculation-taxcustomizationinterfaces">tax customization interfaces</a> (described below).</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Class location</strong><br/></p>
-<p   
->For production sites, we recommend creating a new assembly (Class Library project) in your Kentico solution and including the classes there. Then, add the appropriate references to both the assembly and the main Kentico web project. For more information, see   <a   href="Best-practices-for-customization">Best practices for customization</a>.</p>
+<p><strong class=" ">Class location</strong><br></p>
+<p>For production sites, we recommend creating a new assembly (Class Library project) in your Kentico solution and including the classes there. Then, add the appropriate references to both the assembly and the main Kentico web project. For more information, see <a href="best-practices-for-customization">Best practices for customization</a>.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Implement all methods required by the given interfaces.</p>
-</li><li class=" "><p   
->Register your implementations of the interfaces using the <strong class=" ">RegisterImplementation</strong> assembly attribute (or use a <i class=" ">Factory</i> class to serve instances dynamically in certain cases).</p>
-</li></ol><p   
->When you reload the website, the system uses the custom implementations that you registered instead of the default tax functionality.</p>
-    <div  class="confbox panel">
+</li><li class=" "><p>Implement all methods required by the given interfaces.</p>
+</li><li class=" "><p>Register your implementations of the interfaces using the <strong class=" ">RegisterImplementation</strong> assembly attribute (or use a <i class=" ">Factory</i> class to serve instances dynamically in certain cases).</p>
+</li></ol><p>When you reload the website, the system uses the custom implementations that you registered instead of the default tax functionality.</p></div>
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881641_Customizingtaxcalculation-Taxcustomizationinterfaces">Tax customization interfaces</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881641_Customizingtaxcalculation-Taxcalculation">Tax calculation</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881641_Customizingtaxcalculation-Taxestimation">Tax estimation</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881641_Customizingtaxcalculation-Taxesincatalogprices">Taxes in catalog prices</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881641_Customizingtaxcalculation-Addressusedintaxcalculations">Address used in tax calculations</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881641_Customizingtaxcalculation-Taxtypeperproductorshippingoption">Tax type per product or shipping option</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881641_Customizingtaxcalculation-Taxratespercountryorstate">Tax rates per country or state</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881641_Customizingtaxcalculation-Taxexemptionsforcustomers">Tax exemptions for customers</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTVXNpbmdhbmV4dGVybmFsc2VydmljZXRvY2FsY3VsYXRldGF4ZXM">Example &ndash; Using an external service to calculate taxes</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQ3JlYXRpbmd0YXhleGVtcHRpb25zZm9yY3VzdG9tZXJz">Example &ndash; Creating tax exemptions for customers</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQWRqdXN0aW5nY2F0YWxvZ3ByaWNlc2Jhc2Vkb250YXhlcw">Example &ndash; Adjusting catalog prices based on taxes</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881641_customizingtaxcalculation-taxcustomizationinterfaces">Tax customization interfaces</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881641_customizingtaxcalculation-taxcalculation">Tax calculation</a></p>
+</li><li class=" "><p><a href="#src-68881641_customizingtaxcalculation-taxestimation">Tax estimation</a></p>
+</li><li class=" "><p><a href="#src-68881641_customizingtaxcalculation-taxesincatalogprices">Taxes in catalog prices</a></p>
+</li><li class=" "><p><a href="#src-68881641_customizingtaxcalculation-addressusedintaxcalculations">Address used in tax calculations</a></p>
+</li><li class=" "><p><a href="#src-68881641_customizingtaxcalculation-taxtypeperproductorshippingoption">Tax type per product or shipping option</a></p>
+</li><li class=" "><p><a href="#src-68881641_customizingtaxcalculation-taxratespercountryorstate">Tax rates per country or state</a></p>
+</li><li class=" "><p><a href="#src-68881641_customizingtaxcalculation-taxexemptionsforcustomers">Tax exemptions for customers</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881641_safe-id-q3vzdg9taxppbmd0yxhjywxjdwxhdglvbi1fegftcgxl4octvxnpbmdhbmv4dgvybmfsc2vydmljzxrvy2fsy3vsyxrldgf4zxm">Example – Using an external service to calculate taxes</a></p>
+</li><li class=" "><p><a href="#src-68881641_safe-id-q3vzdg9taxppbmd0yxhjywxjdwxhdglvbi1fegftcgxl4octq3jlyxrpbmd0yxhlegvtchrpb25zzm9yy3vzdg9tzxjz">Example – Creating tax exemptions for customers</a></p>
+</li><li class=" "><p><a href="#src-68881641_safe-id-q3vzdg9taxppbmd0yxhjywxjdwxhdglvbi1fegftcgxl4octqwrqdxn0aw5ny2f0ywxvz3byawnlc2jhc2vkb250yxhlcw">Example – Adjusting catalog prices based on taxes</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Configuring-taxes">Configuring taxes</a></p>
-</li><li class=" "><p   
->  <a   href="Assigning-taxes-to-products-automatically">Assigning taxes to products automatically</a></p>
+<ul class=" "><li class=" "><p><a href="configuring-taxes">Configuring taxes</a></p>
+</li><li class=" "><p><a href="assigning-taxes-to-products-automatically">Assigning taxes to products automatically</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68881641_Customizingtaxcalculation-Taxcustomizationinterfaces" class="heading "><span>Tax customization interfaces</span></h3>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->All mentioned interfaces can be found in the <strong class=" ">CMS.Ecommerce</strong> namespace.</p>
+<p>All mentioned interfaces can be found in the <strong class=" ">CMS.Ecommerce</strong> namespace.</p>
         </div>
     </div>
     <h4 id="src-68881641_Customizingtaxcalculation-Taxcalculation" class="heading "><span>Tax calculation</span></h4>
-<p   
->The system uses tax calculation to get exact tax numbers in the checkout process (shopping carts, orders). A slight delay is acceptable when producing tax calculation results, so implementations using external tax calculation services are suitable.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ITaxCalculationService</strong></p>
-</li><li class=" "><p   
-><strong class=" ">ITaxCalculationServiceFactory</strong> &ndash; serves a separate instance of a class implementing <i class=" ">ITaxCalculationService</i> for each site. Must be implemented to use custom <i class=" ">ITaxCalculationService</i> implementations.</p>
-</li></ul><p   
->Implementations of <i class=" ">ITaxCalculationService</i> must contain the <strong class=" ">CalculateTaxes</strong> method. Calculate the taxes using the data from the method&#39;s <strong class=" ">TaxCalculationRequest</strong> parameter, which provides the following properties:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Items</strong> &ndash; a list of <i class=" ">TaxItem</i> objects representing all purchased items (each <i class=" ">TaxItem</i> provides the <i class=" ">SKUInfo</i> representation, quantity and total price).</p>
-</li><li class=" "><p   
-><strong class=" ">ShippingPrice</strong> &ndash; the price of the selected shipping option without tax.</p>
-</li><li class=" "><p   
-><strong class=" ">Shipping</strong> <i class=" ">&ndash; ShippingOptionInfo</i> representation of the selected shipping option.</p>
-</li><li class=" "><p   
-><strong class=" ">TaxParameters</strong> &ndash; a container providing the customer <i class=" ">(CustomerInfo</i>), currency, date of purchase, shipping/billing address, and identifier of the site for which the taxes are calculated.</p>
-</li><li class=" "><p   
-><strong class=" ">Discount</strong> &ndash; the total value of all   <a   href="Working-with-order-discounts">order discounts</a> applied to the shopping cart or order (as a calculated decimal amount, not a percentage). Other types of discounts are included in the price of individual <i class=" ">TaxItem</i> objects.</p>
-</li></ul><p   
->The <i class=" ">CalculateTaxes</i> method must return a <strong class=" ">TaxCalculationResult</strong> object that contains:</p>
-<ul class=" "><li class=" "><p   
->The final tax amount in the <strong class=" ">TotalTax</strong> property</p>
-    <div  class="confbox admonition admonition-note">
+<p>The system uses tax calculation to get exact tax numbers in the checkout process (shopping carts, orders). A slight delay is acceptable when producing tax calculation results, so implementations using external tax calculation services are suitable.</p>
+<ul class=" "><li class=" "><p><strong class=" ">ITaxCalculationService</strong></p>
+</li><li class=" "><p><strong class=" ">ITaxCalculationServiceFactory</strong> – serves a separate instance of a class implementing <i class=" ">ITaxCalculationService</i> for each site. Must be implemented to use custom <i class=" ">ITaxCalculationService</i> implementations.</p>
+</li></ul><p>Implementations of <i class=" ">ITaxCalculationService</i> must contain the <strong class=" ">CalculateTaxes</strong> method. Calculate the taxes using the data from the method's <strong class=" ">TaxCalculationRequest</strong> parameter, which provides the following properties:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Items</strong> – a list of <i class=" ">TaxItem</i> objects representing all purchased items (each <i class=" ">TaxItem</i> provides the <i class=" ">SKUInfo</i> representation, quantity and total price).</p>
+</li><li class=" "><p><strong class=" ">ShippingPrice</strong> – the price of the selected shipping option without tax.</p>
+</li><li class=" "><p><strong class=" ">Shipping</strong> <i class=" ">– ShippingOptionInfo</i> representation of the selected shipping option.</p>
+</li><li class=" "><p><strong class=" ">TaxParameters</strong> – a container providing the customer <i class=" ">(CustomerInfo</i>), currency, date of purchase, shipping/billing address, and identifier of the site for which the taxes are calculated.</p>
+</li><li class=" "><p><strong class=" ">Discount</strong> – the total value of all <a href="working-with-order-discounts">order discounts</a> applied to the shopping cart or order (as a calculated decimal amount, not a percentage). Other types of discounts are included in the price of individual <i class=" ">TaxItem</i> objects.</p>
+</li></ul><p>The <i class=" ">CalculateTaxes</i> method must return a <strong class=" ">TaxCalculationResult</strong> object that contains:</p>
+<ul class=" "><li class=" "><p>The final tax amount in the <strong class=" ">TotalTax</strong> property</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important &ndash; Hotfix 11.0.39<br/></strong></p>
-<p   
->Certain payment gateways (e.g.   <a   href="Configuring-PayPal">PayPal</a>) require separate tax values for the purchased items and the shipping costs, instead of a single overall tax value. After applying <a  class="external-link" href="https://devnet.kentico.com/download/hotfixes">hotfix 11.0.39</a> or newer, the setter of the <i class=" ">TotalTax</i> property no longer works. Instead, you need to set the following properties of the <i class=" ">TaxCalculationResult</i> object:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ItemsTax</strong> &ndash; the final tax amount for all purchased items</p>
-</li><li class=" "><p   
-><strong class=" ">ShippingTax</strong> &ndash; the final tax amount calculated for the shipping costs (if the shipping costs are not zero)</p>
+<p><strong class=" ">Important – Hotfix 11.0.39<br></strong></p>
+<p>Certain payment gateways (e.g. <a href="configuring-paypal">PayPal</a>) require separate tax values for the purchased items and the shipping costs, instead of a single overall tax value. After applying <a class="external-link" href="https://devnet.kentico.com/download/hotfixes">hotfix 11.0.39</a> or newer, the setter of the <i class=" ">TotalTax</i> property no longer works. Instead, you need to set the following properties of the <i class=" ">TaxCalculationResult</i> object:</p>
+<ul class=" "><li class=" "><p><strong class=" ">ItemsTax</strong> – the final tax amount for all purchased items</p>
+</li><li class=" "><p><strong class=" ">ShippingTax</strong> – the final tax amount calculated for the shipping costs (if the shipping costs are not zero)</p>
 </li></ul>        </div>
     </div>
-</li><li class=" "><p   
->A collection of tax name and value pairs providing details about the applied taxes in the <strong class=" ">Summary</strong> property (for example, provides data for tax summaries in   <a   href="Configuring-invoices">invoices</a>)</p>
-</li></ul><p   
->See:   <a   href="#src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTVXNpbmdhbmV4dGVybmFsc2VydmljZXRvY2FsY3VsYXRldGF4ZXM">Example - Using an external service to calculate taxes</a></p>
-    <div  class="confbox admonition admonition-info">
+</li><li class=" "><p>A collection of tax name and value pairs providing details about the applied taxes in the <strong class=" ">Summary</strong> property (for example, provides data for tax summaries in <a href="configuring-invoices">invoices</a>)</p>
+</li></ul><p>See: <a href="#src-68881641_safe-id-q3vzdg9taxppbmd0yxhjywxjdwxhdglvbi1fegftcgxl4octvxnpbmdhbmv4dgvybmfsc2vydmljzxrvy2fsy3vsyxrldgf4zxm">Example - Using an external service to calculate taxes</a></p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: The default implementation in Kentico is the same for both tax calculation and tax estimation (see below).</p>
+<p><strong class=" ">Note</strong>: The default implementation in Kentico is the same for both tax calculation and tax estimation (see below).</p>
         </div>
     </div>
     <h4 id="src-68881641_Customizingtaxcalculation-Taxestimation" class="heading "><span>Tax estimation</span></h4>
-<p   
->The system uses tax estimation to get taxes in product catalogs (for example when showing what portion of a product&#39;s price is tax) and in shipping option selectors. Implementations should produce results quickly &ndash; external tax calculation services are not recommended for the purpose of estimation.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ITaxEstimationService</strong> &ndash; implementations must contain the following methods:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">GetTax</strong> &ndash; returns a tax value (decimal) for a specified price, tax class (taxation type) and <i class=" ">TaxEstimationParameters</i> (address and currency).</p>
-</li><li class=" "><p   
-><strong class=" ">ExtractTax</strong> &ndash; returns a tax value (decimal) for a price that already includes tax, based on a specified price, tax class (taxation type) and <i class=" ">TaxEstimationParameters</i> (address, currency, identifier of the site for which the taxes are estimated). By default, this method is used for sites that have the <i class=" ">Prices include tax</i>   <a   href="Settings---E-commerce">setting</a> enabled.</p>
+<p>The system uses tax estimation to get taxes in product catalogs (for example when showing what portion of a product's price is tax) and in shipping option selectors. Implementations should produce results quickly – external tax calculation services are not recommended for the purpose of estimation.</p>
+<ul class=" "><li class=" "><p><strong class=" ">ITaxEstimationService</strong> – implementations must contain the following methods:</p>
+<ul class=" "><li class=" "><p><strong class=" ">GetTax</strong> – returns a tax value (decimal) for a specified price, tax class (taxation type) and <i class=" ">TaxEstimationParameters</i> (address and currency).</p>
+</li><li class=" "><p><strong class=" ">ExtractTax</strong> – returns a tax value (decimal) for a price that already includes tax, based on a specified price, tax class (taxation type) and <i class=" ">TaxEstimationParameters</i> (address, currency, identifier of the site for which the taxes are estimated). By default, this method is used for sites that have the <i class=" ">Prices include tax</i> <a href="settings---e-commerce">setting</a> enabled.</p>
 </li></ul></li></ul>    <h4 id="src-68881641_Customizingtaxcalculation-Taxesincatalogprices" class="heading "><span>Taxes in catalog prices</span></h4>
-<p   
->By default, the system displays prices in catalogs on the live site in the same way that price values are entered for products (with or without tax, depending on the site&#39;s <strong class=" ">Prices include tax</strong>   <a   href="Settings---E-commerce">setting</a>).</p>
-<p   
->You can customize how taxes affect catalog prices if the default options do not fulfill the needs of your store. For example, you can enter and store product prices without tax, but customize the system to display prices including tax on the live site.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ICatalogTaxCalculator</strong> &ndash; implementations must contain the <i class=" ">ApplyTax</i> method, which processes a specified product and price based on tax parameters.<br/></p>
-<ul class=" "><li class=" "><p   
->The supplied tax parameters contain the customer <i class=" ">(CustomerInfo</i>), currency, date of purchase, shipping/billing address, and identifier of the site for which the taxes are calculated.</p>
-</li><li class=" "><p   
->The <i class=" ">ApplyTax</i> method must return the price that will be displayed in live site catalogs and set the applied tax value into an <i class=" ">out</i> parameter.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">ICatalogTaxCalculatorFactory</strong> &ndash; serves a separate instance of a class implementing <i class=" ">ICatalogTaxCalculator</i> for each site. Must be implemented to use custom <i class=" ">ICatalogTaxCalculator</i> implementations.</p>
-</li></ul><p   
->Custom implementations of the catalog tax calculator only impact the prices of products displayed on the live site (when using the appropriate e-commerce   <a   href="Reference---Transformation-methods">transformation methods</a>). This type of customization does not affect the calculation of total prices during the checkout process.</p>
-<p   
->See:   <a   href="#src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQWRqdXN0aW5nY2F0YWxvZ3ByaWNlc2Jhc2Vkb250YXhlcw">Example - Adjusting catalog prices based on taxes</a></p>
+<p>By default, the system displays prices in catalogs on the live site in the same way that price values are entered for products (with or without tax, depending on the site's <strong class=" ">Prices include tax</strong> <a href="settings---e-commerce">setting</a>).</p>
+<p>You can customize how taxes affect catalog prices if the default options do not fulfill the needs of your store. For example, you can enter and store product prices without tax, but customize the system to display prices including tax on the live site.</p>
+<ul class=" "><li class=" "><p><strong class=" ">ICatalogTaxCalculator</strong> – implementations must contain the <i class=" ">ApplyTax</i> method, which processes a specified product and price based on tax parameters.<br></p>
+<ul class=" "><li class=" "><p>The supplied tax parameters contain the customer <i class=" ">(CustomerInfo</i>), currency, date of purchase, shipping/billing address, and identifier of the site for which the taxes are calculated.</p>
+</li><li class=" "><p>The <i class=" ">ApplyTax</i> method must return the price that will be displayed in live site catalogs and set the applied tax value into an <i class=" ">out</i> parameter.</p>
+</li></ul></li><li class=" "><p><strong class=" ">ICatalogTaxCalculatorFactory</strong> – serves a separate instance of a class implementing <i class=" ">ICatalogTaxCalculator</i> for each site. Must be implemented to use custom <i class=" ">ICatalogTaxCalculator</i> implementations.</p>
+</li></ul><p>Custom implementations of the catalog tax calculator only impact the prices of products displayed on the live site (when using the appropriate e-commerce <a href="reference---transformation-methods">transformation methods</a>). This type of customization does not affect the calculation of total prices during the checkout process.</p>
+<p>See: <a href="#src-68881641_safe-id-q3vzdg9taxppbmd0yxhjywxjdwxhdglvbi1fegftcgxl4octqwrqdxn0aw5ny2f0ywxvz3byawnlc2jhc2vkb250yxhlcw">Example - Adjusting catalog prices based on taxes</a></p>
     <h4 id="src-68881641_Customizingtaxcalculation-Addressusedintaxcalculations" class="heading "><span>Address used in tax calculations</span></h4>
-<p   
->You can customize how the system gets the address used in tax calculations. For example, this type of customization allows you to determine whether the system calculates taxes based on the billing or shipping address (or another custom address). Note that this type of customization overrides the system&#39;s <strong class=" ">Apply taxes based</strong> on setting.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ITaxAddressService</strong> &ndash; implementations must contain the <i class=" ">GetTaxAddress</i> method, which returns an address for tax calculation based on a specified billing address, shipping address, tax class (taxation type) and customer.</p>
-</li><li class=" "><p   
-><strong class=" ">ITaxAddressServiceFactory</strong> &ndash; serves a separate instance of a class implementing <i class=" ">ITaxAddressService</i> for each site. Must be implemented to use custom <i class=" ">ITaxAddressService</i> implementations.</p>
+<p>You can customize how the system gets the address used in tax calculations. For example, this type of customization allows you to determine whether the system calculates taxes based on the billing or shipping address (or another custom address). Note that this type of customization overrides the system's <strong class=" ">Apply taxes based</strong> on setting.</p>
+<ul class=" "><li class=" "><p><strong class=" ">ITaxAddressService</strong> – implementations must contain the <i class=" ">GetTaxAddress</i> method, which returns an address for tax calculation based on a specified billing address, shipping address, tax class (taxation type) and customer.</p>
+</li><li class=" "><p><strong class=" ">ITaxAddressServiceFactory</strong> – serves a separate instance of a class implementing <i class=" ">ITaxAddressService</i> for each site. Must be implemented to use custom <i class=" ">ITaxAddressService</i> implementations.</p>
 </li></ul>    <h4 id="src-68881641_Customizingtaxcalculation-Taxtypeperproductorshippingoption" class="heading "><span>Tax type per product or shipping option</span></h4>
-<p   
->You can customize how the system retrieves   <a   href="Configuring-taxes">Tax classes</a> for products or shipping options if you do not wish to assign the tax classes manually in the administration interface (or if you wish to override the tax class assignments in a custom way).</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ITaxClassService</strong> &ndash; implementations must contain two overloads of the <i class=" ">GetTaxClass</i> method, which return a tax class object (taxation type) for a specified product or shipping option.</p>
+<p>You can customize how the system retrieves <a href="configuring-taxes">Tax classes</a> for products or shipping options if you do not wish to assign the tax classes manually in the administration interface (or if you wish to override the tax class assignments in a custom way).</p>
+<ul class=" "><li class=" "><p><strong class=" ">ITaxClassService</strong> – implementations must contain two overloads of the <i class=" ">GetTaxClass</i> method, which return a tax class object (taxation type) for a specified product or shipping option.</p>
 </li></ul>    <h4 id="src-68881641_Customizingtaxcalculation-Taxratespercountryorstate" class="heading "><span>Tax rates per country or state</span></h4>
-<p   
->If you do not wish to use the default configuration options of   <a   href="Configuring-taxes">Tax classes,</a> you can customize how the system loads tax rate values for countries and states.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ICountryStateTaxRateSource</strong> &ndash; implementations must contain the <i class=" ">GetRate</i> method, which returns a tax rate for a specified tax class (taxation type), country and state.</p>
+<p>If you do not wish to use the default configuration options of <a href="configuring-taxes">Tax classes,</a> you can customize how the system loads tax rate values for countries and states.</p>
+<ul class=" "><li class=" "><p><strong class=" ">ICountryStateTaxRateSource</strong> – implementations must contain the <i class=" ">GetRate</i> method, which returns a tax rate for a specified tax class (taxation type), country and state.</p>
 </li></ul>    <h4 id="src-68881641_Customizingtaxcalculation-Taxexemptionsforcustomers" class="heading "><span>Tax exemptions for customers</span></h4>
-<p   
->You can customize the system to create tax exemptions for certain types of customers.</p>
-    <div  class="confbox admonition admonition-info">
+<p>You can customize the system to create tax exemptions for certain types of customers.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Default tax exemptions</strong></p>
-<p   
->By default, customers who have a <strong class=" ">Tax registration ID</strong> specified in their <i class=" ">Company details</i> are exempt from   <a   href="Configuring-taxes">Tax classes</a> with the <strong class=" ">Zero tax if tax ID is specified</strong> property enabled.</p>
-<p   
->Registering a custom <i class=" ">ICustomerTaxClassService</i> implementation overrides the default tax exemption.</p>
+<p><strong class=" ">Default tax exemptions</strong></p>
+<p>By default, customers who have a <strong class=" ">Tax registration ID</strong> specified in their <i class=" ">Company details</i> are exempt from <a href="configuring-taxes">Tax classes</a> with the <strong class=" ">Zero tax if tax ID is specified</strong> property enabled.</p>
+<p>Registering a custom <i class=" ">ICustomerTaxClassService</i> implementation overrides the default tax exemption.</p>
         </div>
     </div>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ICustomerTaxClassService</strong> &ndash; implementations must contain the <i class=" ">GetTaxClass</i> method, which determines whether taxes apply to a specified customer.</p>
-</li></ul><p   
->See:   <a   href="#src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQ3JlYXRpbmd0YXhleGVtcHRpb25zZm9yY3VzdG9tZXJz">Example - Create tax exemptions for customers</a></p>
-    <h3 id="src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTVXNpbmdhbmV4dGVybmFsc2VydmljZXRvY2FsY3VsYXRldGF4ZXM" class="heading "><span>Example &ndash; Using an external service to calculate taxes</span></h3>
-<p   
->The following example demonstrates how to customize the system to integrate with a 3rd-party tax calculation service. In this case, the tax values are calculated manually within the custom code, but you can replace the basic calculations with calls to the API of a dedicated tax calculation service.</p>
-<p   
->Prepare a separate project for custom classes in your Kentico solution:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries (and any others that you may need in your custom code):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Ecommerce.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Globalization.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Helpers.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Membership.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Edit the custom project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ul class=" "><li class=" "><p><strong class=" ">ICustomerTaxClassService</strong> – implementations must contain the <i class=" ">GetTaxClass</i> method, which determines whether taxes apply to a specified customer.</p>
+</li></ul><p>See: <a href="#src-68881641_safe-id-q3vzdg9taxppbmd0yxhjywxjdwxhdglvbi1fegftcgxl4octq3jlyxrpbmd0yxhlegvtchrpb25zzm9yy3vzdg9tzxjz">Example - Create tax exemptions for customers</a></p>
+    <h3 id="src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTVXNpbmdhbmV4dGVybmFsc2VydmljZXRvY2FsY3VsYXRldGF4ZXM" class="heading "><span>Example – Using an external service to calculate taxes</span></h3>
+<p>The following example demonstrates how to customize the system to integrate with a 3rd-party tax calculation service. In this case, the tax values are calculated manually within the custom code, but you can replace the basic calculations with calls to the API of a dedicated tax calculation service.</p>
+<p>Prepare a separate project for custom classes in your Kentico solution:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries (and any others that you may need in your custom code):</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Ecommerce.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Globalization.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Helpers.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Membership.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Edit the custom project's <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </div>
-</li></ol><p   
-></p>
-<p   
->Continue by creating custom implementations of the <strong class=" ">ITaxCalculationService</strong> and <strong class=" ">ITaxCalculationServiceFactory</strong> interfaces:</p>
-<ol class=" "><li class=" "><p   
->Add a new class under the custom project, implementing the <i class=" ">ITaxCalculationService</i> interface.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ol><p></p>
+<p>Continue by creating custom implementations of the <strong class=" ">ITaxCalculationService</strong> and <strong class=" ">ITaxCalculationServiceFactory</strong> interfaces:</p>
+<ol class=" "><li class=" "><p>Add a new class under the custom project, implementing the <i class=" ">ITaxCalculationService</i> interface.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note<br/></strong></p>
-<p   
->The following example works for projects with <a  class="external-link" href="https://devnet.kentico.com/download/hotfixes">hotfix 11.0.39</a> or newer applied. On older versions, you need to set the <i class=" ">TotalTax</i> property of the <i class=" ">TaxCaclulationResult</i> object (instead of the newer <i class=" ">ItemsTax</i> and <i class=" ">ShippingTax</i>).</p>
+<p><strong class=" ">Note<br></strong></p>
+<p>The following example works for projects with <a class="external-link" href="https://devnet.kentico.com/download/hotfixes">hotfix 11.0.39</a> or newer applied. On older versions, you need to set the <i class=" ">TotalTax</i> property of the <i class=" ">TaxCaclulationResult</i> object (instead of the newer <i class=" ">ItemsTax</i> and <i class=" ">ShippingTax</i>).</p>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Globalization;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomTaxCalculationService : ITaxCalculationService</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -413,31 +315,31 @@
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> TaxCalculationResult CalculateTaxes(TaxCalculationRequest taxRequest)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">var</code><code class="plain"> result = </code><code class="keyword">new</code><code class="plain"> TaxCalculationResult();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Sums up the total price of all purchased items</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">decimal</code><code class="plain"> itemsTotal = taxRequest.Items.Sum(item =&gt; item.Price);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Subtracts the overall order discount value from the total price</code></div>
 <div class="line"><code class="plain">        itemsTotal = itemsTotal - taxRequest.Discount;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Calculates the tax for the purchased items</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// The example only provides a very basic "calculation" based on the country in the billing address</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// You can use any type of custom calculation, e.g. call the API of a 3rd-party tax calculation service that returns the calculated taxes</code></div>
 <div class="line"><code class="plain">        result.ItemsTax = CalculateCustomTax(itemsTotal, taxRequest.TaxParameters.BillingAddress);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Adds the tax value to the returned tax summary</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// The name parameter describes the type of the applied tax (may be returned by the external tax calculation service)</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Taxes added under the same name via the 'Sum' method are automatically summed up into the existing tax summary item</code></div>
 <div class="line"><code class="plain">        result.Summary.Sum(</code><code class="string">"Custom tax"</code><code class="plain">, result.ItemsTax);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Adds a basic shipping tax based on the shipping price</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">decimal</code><code class="plain"> shippingTaxRate = 0.15m;</code></div>
 <div class="line"><code class="plain">        result.ShippingTax = taxRequest.ShippingPrice * shippingTaxRate;        </code></div>
 <div class="line"><code class="plain">        result.Summary.Sum(</code><code class="string">"Custom shipping tax"</code><code class="plain">, result.ShippingTax);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> result;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Calculates the tax for a specified price. Replace this method with any type of custom calculation.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -450,28 +352,27 @@
 <div class="line"><code class="plain">            </code><code class="comments">// Gets the 3-letter country code of the country in the billing address</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">var</code><code class="plain"> country = CountryInfoProvider.GetCountryInfo(billingAddress.AddressCountryID);</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">string</code><code class="plain"> countryCode = country?.CountryThreeLetterCode;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (countryCode == </code><code class="string">"USA"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">            {</code></div>
 <div class="line"><code class="plain">                taxRate = 0.1m;</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> (price * taxRate);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p  class="auto-cursor-target" 
->Add a new class under the custom project, implementing the <i class=" ">ITaxCalculationServiceFactory</i> interface.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p class="auto-cursor-target">Add a new class under the custom project, implementing the <i class=" ">ITaxCalculationServiceFactory</i> interface.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom implementation of ITaxCalculationServiceFactory</code></div>
 <div class="line"><code class="plain">[assembly: RegisterImplementation(</code><code class="keyword">typeof</code><code class="plain">(ITaxCalculationServiceFactory), </code><code class="keyword">typeof</code><code class="plain">(CustomTaxCalculationServiceFactory))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomTaxCalculationServiceFactory : ITaxCalculationServiceFactory</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Provides an instance of the custom tax calculation service</code></div>
@@ -484,29 +385,22 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p  class="auto-cursor-target" 
-><br/></p>
-</li><li class=" "><p   
->Save all changes and <strong class=" ">Build</strong> the custom project.<br/></p>
-</li></ol><p  class="auto-cursor-target" 
->The registered <strong class=" ">CustomTaxCalculationServiceFactory</strong> class provides an instance of <strong class=" ">CustomTaxCalculationService</strong>. The tax calculation in all shopping carts (and orders) now uses the custom logic. The customizations do not affect tax estimations in product catalogs.</p>
-    <h3 id="src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQ3JlYXRpbmd0YXhleGVtcHRpb25zZm9yY3VzdG9tZXJz" class="heading "><span>Example &ndash; Creating tax exemptions for customers</span></h3>
-<p   
->The following example demonstrates how to create a customization that adds tax exemptions for certain types of customers.</p>
-<ol class=" "><li class=" "><p   
->Recreate or reuse the custom project from the   <a   href="#src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTVXNpbmdhbmV4dGVybmFsc2VydmljZXRvY2FsY3VsYXRldGF4ZXM">custom tax calculation example</a>.</p>
-</li><li class=" "><p   
->Create a new class under the custom project, implementing the <i class=" ">ICustomerTaxClassService</i> interface.</p>
-</li><li class=" "><p   
->Save all changes and <strong class=" ">Build</strong> the custom project.</p>
-</li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p class="auto-cursor-target"><br></p>
+</li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.<br></p>
+</li></ol><p class="auto-cursor-target">The registered <strong class=" ">CustomTaxCalculationServiceFactory</strong> class provides an instance of <strong class=" ">CustomTaxCalculationService</strong>. The tax calculation in all shopping carts (and orders) now uses the custom logic. The customizations do not affect tax estimations in product catalogs.</p>
+    <h3 id="src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQ3JlYXRpbmd0YXhleGVtcHRpb25zZm9yY3VzdG9tZXJz" class="heading "><span>Example – Creating tax exemptions for customers</span></h3>
+<p>The following example demonstrates how to create a customization that adds tax exemptions for certain types of customers.</p>
+<ol class=" "><li class=" "><p>Recreate or reuse the custom project from the <a href="#src-68881641_safe-id-q3vzdg9taxppbmd0yxhjywxjdwxhdglvbi1fegftcgxl4octvxnpbmdhbmv4dgvybmfsc2vydmljzxrvy2fsy3vsyxrldgf4zxm">custom tax calculation example</a>.</p>
+</li><li class=" "><p>Create a new class under the custom project, implementing the <i class=" ">ICustomerTaxClassService</i> interface.</p>
+</li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.</p>
+</li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom implementation of ICustomerTaxClassService</code></div>
 <div class="line"><code class="plain">[assembly: RegisterImplementation(</code><code class="keyword">typeof</code><code class="plain">(ICustomerTaxClassService), </code><code class="keyword">typeof</code><code class="plain">(CustomCustomerTaxClassService))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomCustomerTaxClassService : ICustomerTaxClassService</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -529,41 +423,29 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h3 id="src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQWRqdXN0aW5nY2F0YWxvZ3ByaWNlc2Jhc2Vkb250YXhlcw" class="heading "><span>Example &ndash; Adjusting catalog prices based on taxes</span></h3>
-<p   
->The following example demonstrates how to customize the system to store product prices without tax, but display prices on the live site with tax already included.</p>
-<p   
->The example assumes that your site is configured to not include tax in prices:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Store configuration</strong> or <strong class=" ">Multistore configuration</strong> application in the Kentico administration interface.</p>
-</li><li class=" "><p   
->Navigate to the <strong class=" ">Store settings -&gt; General</strong> tab.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Taxes</strong> section, make sure that:</p>
-<ul class=" "><li class=" "><p   
->you have a <strong class=" ">Default country</strong> set (and that your tax classes have values assigned for the given country)</p>
-</li><li class=" "><p   
->the <strong class=" ">Prices include tax</strong> setting is disabled</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong> if necessary.</p>
-</li></ol><p   
->Continue by creating custom implementations of the <strong class=" ">ICatalogTaxCalculator</strong> and <strong class=" ">ICatalogTaxCalculatorFactory</strong> interfaces:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Recreate or reuse the custom project from the   <a   href="#src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTVXNpbmdhbmV4dGVybmFsc2VydmljZXRvY2FsY3VsYXRldGF4ZXM">custom tax calculation example</a>.</p>
-</li><li class=" "><p   
->Add a new class under the custom project, implementing the <i class=" ">ICatalogTaxCalculator</i> interface.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <h3 id="src-68881641_safe-id-Q3VzdG9taXppbmd0YXhjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQWRqdXN0aW5nY2F0YWxvZ3ByaWNlc2Jhc2Vkb250YXhlcw" class="heading "><span>Example – Adjusting catalog prices based on taxes</span></h3>
+<p>The following example demonstrates how to customize the system to store product prices without tax, but display prices on the live site with tax already included.</p>
+<p>The example assumes that your site is configured to not include tax in prices:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Store configuration</strong> or <strong class=" ">Multistore configuration</strong> application in the Kentico administration interface.</p>
+</li><li class=" "><p>Navigate to the <strong class=" ">Store settings -&gt; General</strong> tab.</p>
+</li><li class=" "><p>In the <strong class=" ">Taxes</strong> section, make sure that:</p>
+<ul class=" "><li class=" "><p>you have a <strong class=" ">Default country</strong> set (and that your tax classes have values assigned for the given country)</p>
+</li><li class=" "><p>the <strong class=" ">Prices include tax</strong> setting is disabled</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong> if necessary.</p>
+</li></ol><p>Continue by creating custom implementations of the <strong class=" ">ICatalogTaxCalculator</strong> and <strong class=" ">ICatalogTaxCalculatorFactory</strong> interfaces:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Recreate or reuse the custom project from the <a href="#src-68881641_safe-id-q3vzdg9taxppbmd0yxhjywxjdwxhdglvbi1fegftcgxl4octvxnpbmdhbmv4dgvybmfsc2vydmljzxrvy2fsy3vsyxrldgf4zxm">custom tax calculation example</a>.</p>
+</li><li class=" "><p>Add a new class under the custom project, implementing the <i class=" ">ICatalogTaxCalculator</i> interface.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomCatalogTaxCalculator : ICatalogTaxCalculator</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">readonly</code><code class="plain"> ITaxEstimationService estimationService;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">readonly</code><code class="plain"> ITaxClassService taxClassService;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">readonly</code><code class="plain"> ITaxAddressService addressService;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// The constructor parameters accept instances of tax-related services from CustomCatalogTaxCalculatorFactory.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// The services are used to get the appropriate tax values before applying the catalog customizations.</code></div>
@@ -574,7 +456,7 @@
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.taxClassService = taxClassService;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.addressService = addressService;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Processes a specified product and price, makes any required adjustments based on taxes, </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// and returns the price value to be displayed in live site catalogs.</code></div>
@@ -584,15 +466,15 @@
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">decimal</code><code class="plain"> ApplyTax(SKUInfo sku, </code><code class="keyword">decimal</code><code class="plain"> price, TaxCalculationParameters parameters, </code><code class="keyword">out</code><code class="plain"> </code><code class="keyword">decimal</code><code class="plain"> tax)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        tax = 0;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the tax class (taxation type) assigned to the product</code></div>
 <div class="line"><code class="plain">        TaxClassInfo taxClass = taxClassService.GetTaxClass(sku);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (taxClass != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// Uses the registered ITaxAddressService implementation to get the appropriate address for the tax calculation</code></div>
 <div class="line"><code class="plain">            IAddress address = addressService.GetTaxAddress(parameters.BillingAddress, parameters.ShippingAddress, taxClass, parameters.Customer);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Uses the registered ITaxEstimationService implementation to get the tax value</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">var</code><code class="plain"> estimationParams = </code><code class="keyword">new</code><code class="plain"> TaxEstimationParameters</code></div>
 <div class="line"><code class="plain">            {</code></div>
@@ -602,29 +484,28 @@
 <div class="line"><code class="plain">			};</code></div>
 <div class="line"><code class="plain">            tax = estimationService.GetTax(price, taxClass, estimationParams);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Returns the price to be displayed in live site catalog, with the tax value added</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> price + tax;</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Add a new class under the custom project, implementing the <i class=" ">ICatalogTaxCalculatorFactory</i> interface.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Add a new class under the custom project, implementing the <i class=" ">ICatalogTaxCalculatorFactory</i> interface.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom implementation of ICatalogTaxCalculatorFactory</code></div>
 <div class="line"><code class="plain">[assembly: RegisterImplementation(</code><code class="keyword">typeof</code><code class="plain">(ICatalogTaxCalculatorFactory), </code><code class="keyword">typeof</code><code class="plain">(CustomCatalogTaxCalculatorFactory))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomCatalogTaxCalculatorFactory : ICatalogTaxCalculatorFactory</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">readonly</code><code class="plain"> ITaxEstimationService estimationService;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">readonly</code><code class="plain"> ITaxClassService taxClassService;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">readonly</code><code class="plain"> ITaxAddressServiceFactory addressServiceFactory;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Constructor.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// The system automatically supplies instances of the ITaxEstimationService, ITaxClassService and ITaxAddressServiceFactory implementations.</code></div>
@@ -635,7 +516,7 @@
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.taxClassService = taxClassService;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.addressServiceFactory = addressServiceFactory;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Provides an instance of the custom catalog tax calculator</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> ICatalogTaxCalculator GetCalculator(</code><code class="keyword">int</code><code class="plain"> siteId)</code></div>
 <div class="line"><code class="plain">    {</code></div>
@@ -646,12 +527,9 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
-><br/></p>
-</li><li class=" "><p   
->Save all changes and <strong class=" ">Build</strong> the custom project.</p>
-</li></ol><p   
->The registered <strong class=" ">CustomCatalogTaxCalculatorFactory</strong> class provides an instance of <strong class=" ">CustomCatalogTaxCalculator</strong> and prepares instances of services needed to get the tax values. The customized catalog tax calculator ensures that tax values are added to product prices displayed on the live site (when using the appropriate e-commerce   <a   href="Reference---Transformation-methods">transformation methods</a>). The customization does not affect the calculation of total prices during the checkout process.</p>
+<p><br></p>
+</li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.</p>
+</li></ol><p>The registered <strong class=" ">CustomCatalogTaxCalculatorFactory</strong> class provides an instance of <strong class=" ">CustomCatalogTaxCalculator</strong> and prepares instances of services needed to get the tax values. The customized catalog tax calculator ensures that tax values are added to product prices displayed on the live site (when using the appropriate e-commerce <a href="reference---transformation-methods">transformation methods</a>). The customization does not affect the calculation of total prices during the checkout process.</p>
         </div>
 
     </article>
@@ -672,5 +550,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

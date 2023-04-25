@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Custom Info provider example - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,98 +148,69 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The system uses Info providers to work with individual types of objects. A provider class contains methods for creating, updating, getting, and deleting the data of the corresponding objects. By customizing the appropriate Info provider, you can change or extend the functionality of nearly any object in the system.</p>
-<p   
->The following example customizes the <strong class=" ">OrderInfoProvider</strong>, which the   <a   href="E-commerce-features">E-commerce</a> solution uses to manage product   <a   href="Orders">orders</a>. The example adds a custom action when creating orders &ndash; for orders that fulfill certain conditions,   <a   href="Configuring-customer-credit">credit</a> is added to the given customer.</p>
-<p   
->You can use the same general approach to customize any standard provider, helper or manager class in Kentico (i.e. those that inherit from the <strong class=" ">AbstractInfoProvider</strong>,<strong class=" "> AbstractHelper</strong> or <strong class=" ">AbstractManager</strong> class respectively).</p>
-    <h3 id="src-68882175_CustomInfoproviderexample-Writingthecustomprovider" class="heading "><span>Writing the custom provider</span></h3>
-<p   
->Start by preparing a separate project for custom classes in your Kentico solution:</p>
-    <div  class="confbox panel">
+<div class="section-left"><p>The system uses Info providers to work with individual types of objects. A provider class contains methods for creating, updating, getting, and deleting the data of the corresponding objects. By customizing the appropriate Info provider, you can change or extend the functionality of nearly any object in the system.</p><p>The following example customizes the <strong class=" ">OrderInfoProvider</strong>, which the <a href="e-commerce-features">E-commerce</a> solution uses to manage product <a href="orders">orders</a>. The example adds a custom action when creating orders – for orders that fulfill certain conditions, <a href="configuring-customer-credit">credit</a> is added to the given customer.</p><p>You can use the same general approach to customize any standard provider, helper or manager class in Kentico (i.e. those that inherit from the <strong class=" ">AbstractInfoProvider</strong>,<strong class=" "> AbstractHelper</strong> or <strong class=" ">AbstractManager</strong> class respectively).</p><h3 id="src-68882175_CustomInfoproviderexample-Writingthecustomprovider" class="heading "><span>Writing the custom provider</span></h3><p>Start by preparing a separate project for custom classes in your Kentico solution:</p></div>
+
+
+    
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882175_CustomInfoproviderexample-Writingthecustomprovider">Writing the custom provider</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882175_custominfoproviderexample-writingthecustomprovider">Writing the custom provider</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Customizing-providers">Customizing providers</a></p>
-</li><li class=" "><p   
->  <a   href="Registering-providers-using-assembly-attributes">Registering providers using assembly attributes</a></p>
+<ul class=" "><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class=" "><p><a href="registering-providers-using-assembly-attributes">Registering providers using assembly attributes</a></p>
 </li></ul>        </div>
-    </div>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries (and any others that you may need in your custom code):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Ecommerce.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.SiteProvider.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Edit the custom project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    </div></div>
+    
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries (and any others that you may need in your custom code):</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Ecommerce.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.SiteProvider.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Edit the custom project's <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </div>
-</li></ol><p   
->Continue by implementing the custom provider class:</p>
-<ol class=" "><li class=" "><p   
->Add a new class under the custom project. For example, name the class <i class=" "><strong class=" ">CustomOrderInfoProvider.cs</strong></i>.</p>
-</li><li class=" "><p   
->Modify the class&#39;s declaration so that it inherits from the <strong class=" ">CMS.Ecommerce.OrderInfoProvider</strong> class.</p>
-    <div  class="confbox admonition admonition-info">
+</li></ol><p>Continue by implementing the custom provider class:</p>
+<ol class=" "><li class=" "><p>Add a new class under the custom project. For example, name the class <i class=" "><strong class=" ">CustomOrderInfoProvider.cs</strong></i>.</p>
+</li><li class=" "><p>Modify the class's declaration so that it inherits from the <strong class=" ">CMS.Ecommerce.OrderInfoProvider</strong> class.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Custom providers must always inherit from the original provider class. This ensures that the custom provider supports all of the default functionality and allows you to add your own customizations by overriding the existing members of the class.</p>
+<p>Custom providers must always inherit from the original provider class. This ensures that the custom provider supports all of the default functionality and allows you to add your own customizations by overriding the existing members of the class.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Override the class&#39;s <strong class=" ">SetOrderInfoInternal</strong> method.</p>
-</li><li class=" "><p   
->  <a   href="Registering-providers-using-assembly-attributes">Register the custom provider</a> by adding the <strong class=" ">RegisterCustomProvider</strong> assembly attribute above the class declaration (requires a reference to the <strong class=" ">CMS</strong> namespace). The attribute&#39;s parameter specifies the type of the custom provider class as a <strong class=" ">System.Type</strong> object.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Override the class's <strong class=" ">SetOrderInfoInternal</strong> method.</p>
+</li><li class=" "><p><a href="registering-providers-using-assembly-attributes">Register the custom provider</a> by adding the <strong class=" ">RegisterCustomProvider</strong> assembly attribute above the class declaration (requires a reference to the <strong class=" ">CMS</strong> namespace). The attribute's parameter specifies the type of the custom provider class as a <strong class=" ">System.Type</strong> object.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SiteProvider;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom OrderInfoProvider</code></div>
 <div class="line"><code class="plain">[assembly: RegisterCustomProvider(</code><code class="keyword">typeof</code><code class="plain">(CustomOrderInfoProvider))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomOrderInfoProvider : OrderInfoProvider</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -251,28 +220,28 @@
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Indicates whether the set object is a new order</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">bool</code><code class="plain"> newOrder = ((orderObj != </code><code class="keyword">null</code><code class="plain">) &amp;&amp; (orderObj.OrderID &lt;= 0));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Updates the order or creates a new order using the default API of the base class</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.SetOrderInfoInternal(orderObj);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Adds extra credit for each new order with a total price higher than 1000</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (newOrder &amp;&amp; (orderObj.OrderTotalPriceInMainCurrency &gt; 1000))</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// Creates a new credit event</code></div>
 <div class="line"><code class="plain">            CreditEventInfo extraCredit = </code><code class="keyword">new</code><code class="plain"> CreditEventInfo();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Sets the credit event's general properties</code></div>
 <div class="line"><code class="plain">            extraCredit.EventName = </code><code class="keyword">string</code><code class="plain">.Format(</code><code class="string">"Credit for your order: {0}"</code><code class="plain">, orderObj.OrderID);</code></div>
 <div class="line"><code class="plain">            extraCredit.EventDate = DateTime.Now;</code></div>
 <div class="line"><code class="plain">            extraCredit.EventDescription = </code><code class="string">"Thank you for your order."</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">            extraCredit.EventCustomerID = orderObj.OrderCustomerID;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Sets the credit event's value in the site main currency</code></div>
 <div class="line"><code class="plain">            extraCredit.EventCreditChange = 10;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Sets credit as site credit or as global credit according to the settings</code></div>
 <div class="line"><code class="plain">            extraCredit.EventSiteID = ECommerceHelper.GetSiteID(SiteContext.CurrentSiteID, ECommerceSettings.USE_GLOBAL_CREDIT);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Saves the credit event</code></div>
 <div class="line"><code class="plain">            CreditEventInfoProvider.SetCreditEventInfo(extraCredit);</code></div>
 <div class="line"><code class="plain">        }</code></div>
@@ -280,10 +249,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save all changes and <strong class=" ">Build</strong> the custom project.</p>
-</li></ol><p   
->The override of the <strong class=" ">SetOrderInfoInternal</strong> method ensures that customers who purchase orders with a total price higher than 1000 (in the site&#39;s   <a   href="Configuring-currencies">main currency</a>) receive extra   <a   href="Configuring-customer-credit">customer credit</a>. You can use the same approach to add any other types of custom actions.</p>
+</li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.</p>
+</li></ol><p>The override of the <strong class=" ">SetOrderInfoInternal</strong> method ensures that customers who purchase orders with a total price higher than 1000 (in the site's <a href="configuring-currencies">main currency</a>) receive extra <a href="configuring-customer-credit">customer credit</a>. You can use the same approach to add any other types of custom actions.</p>
         </div>
 
     </article>
@@ -304,5 +271,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

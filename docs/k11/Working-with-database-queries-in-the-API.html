@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Working with database queries in the API - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,109 +148,84 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-    <h3 id="src-68882141_WorkingwithdatabasequeriesintheAPI-Runningqueries" class="heading "><span>Running queries</span></h3>
-<p   
->You can execute system queries in your custom code.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="section-left"><h3 id="src-68882141_WorkingwithdatabasequeriesintheAPI-Runningqueries" class="heading "><span>Running queries</span></h3><p>You can execute system queries in your custom code.</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Examples</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Examples" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Data;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Executes the cms.user.selectall query, with specified columns, and a WHERE and ORDER BY clause</code></div>
 <div class="line"><code class="plain">DataSet users = </code><code class="keyword">new</code><code class="plain"> DataQuery(</code><code class="string">"cms.user.selectall"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	.Columns(</code><code class="string">"UserID"</code><code class="plain">, </code><code class="string">"UserName"</code><code class="plain">, </code><code class="string">"FullName"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	.Where(</code><code class="string">"UserName"</code><code class="plain">, QueryOperator.Like, </code><code class="string">"%admin%"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	.OrderBy(</code><code class="string">"FullName"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	.Execute();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Assigns the value "administrator" to the "@UserName" query parameter</code></div>
 <div class="line"><code class="plain">QueryDataParameters parameters = </code><code class="keyword">new</code><code class="plain"> QueryDataParameters();</code></div>
 <div class="line"><code class="plain">parameters.Add(</code><code class="string">"@UserName"</code><code class="plain">, </code><code class="string">"administrator"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Executes the cms.user.selectbyusername query</code></div>
 <div class="line"><code class="comments">// Uses the "administrator" value for the "@UserName" parameter in the query's code</code></div>
 <div class="line"><code class="keyword">var</code><code class="plain"> query = </code><code class="keyword">new</code><code class="plain"> DataQuery(</code><code class="string">"cms.user.selectbyusername"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">query.Parameters = parameters;</code></div>
 <div class="line"><code class="plain">DataSet selectedUser = query.Result;</code></div>
 </div>
-    </div>
-<p   
->To create custom queries or modify existing ones, use one of the following approaches:</p>
-<ul class=" "><li class=" "><p   
->Manually edit the <strong class=" ">CMS_Query</strong> database table.</p>
-</li><li class=" "><p   
->Manage queries through the administration interface in:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Page types -&gt; Edit page type -&gt; Queries</strong></p>
-</li><li class=" "><p   
-><strong class=" ">Custom tables -&gt; Edit table -&gt; Queries</strong></p>
-</li><li class=" "><p   
-><strong class=" ">Modules -&gt; Edit module -&gt; Classes -&gt; Edit class -&gt; Queries</strong><br/><br/></p>
-</li></ul></li></ul>    <div  class="confbox panel">
+    </div><p>To create custom queries or modify existing ones, use one of the following approaches:</p><ul class=" "><li class=" "><p>Manually edit the <strong class=" ">CMS_Query</strong> database table.</p>
+</li><li class=" "><p>Manage queries through the administration interface in:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Page types -&gt; Edit page type -&gt; Queries</strong></p>
+</li><li class=" "><p><strong class=" ">Custom tables -&gt; Edit table -&gt; Queries</strong></p>
+</li><li class=" "><p><strong class=" ">Modules -&gt; Edit module -&gt; Classes -&gt; Edit class -&gt; Queries</strong><br><br></p>
+</li></ul></li></ul></div>
+
+    
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882141_WorkingwithdatabasequeriesintheAPI-Runningqueries">Running queries</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882141_WorkingwithdatabasequeriesintheAPI-Pre-processingqueries">Pre-processing queries</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882141_WorkingwithdatabasequeriesintheAPI-Post-processingqueries">Post-processing queries</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882141_workingwithdatabasequeriesintheapi-runningqueries">Running queries</a></p>
+</li><li class=" "><p><a href="#src-68882141_workingwithdatabasequeriesintheapi-pre-processingqueries">Pre-processing queries</a></p>
+</li><li class=" "><p><a href="#src-68882141_workingwithdatabasequeriesintheapi-post-processingqueries">Post-processing queries</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Loading-data-using-custom-queries">Loading data using custom queries</a></p>
-</li><li class=" "><p   
->  <a   href="Retrieving-database-data-using-ObjectQuery-API">Retrieving database data using ObjectQuery API</a></p>
-</li><li class=" "><p   
->  <a   href="CMS-controls---Listings-and-viewers-with-custom-queries">CMS controls - Listings and viewers with custom queries</a></p>
+<ul class=" "><li class=" "><p><a href="loading-data-using-custom-queries">Loading data using custom queries</a></p>
+</li><li class=" "><p><a href="retrieving-database-data-using-objectquery-api">Retrieving database data using ObjectQuery API</a></p>
+</li><li class=" "><p><a href="cms-controls---listings-and-viewers-with-custom-queries">CMS controls - Listings and viewers with custom queries</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68882141_WorkingwithdatabasequeriesintheAPI-Pre-processingqueries" class="heading "><span>Pre-processing queries</span></h3>
-<p   
->You can pre-process database queries using the <strong class=" ">ExecuteQuery.Before</strong> event of the <strong class=" ">SqlEvents</strong> class. The system raises the event before executing any database query. The event allows you to dynamically modify the behavior and code of queries.</p>
-<p   
->To create a handler for the <i class=" ">ExecuteQuery.Before</i> event:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-    <div  class="confbox admonition admonition-info">
+<p>You can pre-process database queries using the <strong class=" ">ExecuteQuery.Before</strong> event of the <strong class=" ">SqlEvents</strong> class. The system raises the event before executing any database query. The event allows you to dynamically modify the behavior and code of queries.</p>
+<p>To create a handler for the <i class=" ">ExecuteQuery.Before</i> event:</p>
+<ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+<p>For basic execution of initialization code, you only need to register a "code-only" module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler method to the <strong class=" ">SqlEvents.ExecuteQuery.Before</strong> event.</p>
-</li><li class=" "><p   
->Define the handler method as required.</p>
-</li></ol><p   
->The system automatically runs the module&#39;s <strong class=" ">OnInit</strong> method when the application starts, which registers your event handler.</p>
-<p   
->The following handler example replaces <i class=" ">CMS_User</i> with <i class=" ">View_CMS_User</i> in the query code when processing the <i class=" ">cms.user.selectall</i> query:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign a handler method to the <strong class=" ">SqlEvents.ExecuteQuery.Before</strong> event.</p>
+</li><li class=" "><p>Define the handler method as required.</p>
+</li></ol><p>The system automatically runs the module's <strong class=" ">OnInit</strong> method when the application starts, which registers your event handler.</p>
+<p>The following handler example replaces <i class=" ">CMS_User</i> with <i class=" ">View_CMS_User</i> in the query code when processing the <i class=" ">cms.user.selectall</i> query:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Data;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomQueryProcessingModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomQueryProcessingModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomQueryProcessing"</code></div>
@@ -260,15 +233,15 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomQueryProcessing"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}    </code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		SqlEvents.ExecuteQuery.Before += BeforeExecuteQuery;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Replaces CMS_User with View_CMS_User in the query code when processing the cms.user.selectall query</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> BeforeExecuteQuery(</code><code class="keyword">object</code><code class="plain"> sender, ExecuteQueryEventArgs&lt;DataSet&gt; e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -286,41 +259,31 @@
 </div>
     </div>
     <h3 id="src-68882141_WorkingwithdatabasequeriesintheAPI-Post-processingqueries" class="heading "><span>Post-processing queries</span></h3>
-<p   
->You can process the results of queries using the <strong class=" ">ExecuteQuery.After</strong> event of the <strong class=" ">SqlEvents</strong> class. The system raises the event after executing any database query. The event allows you to use or modify the data retrieved by queries.</p>
-<p   
->To create a handler for the <i class=" ">ExecuteQuery.After</i> event:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-    <div  class="confbox admonition admonition-info">
+<p>You can process the results of queries using the <strong class=" ">ExecuteQuery.After</strong> event of the <strong class=" ">SqlEvents</strong> class. The system raises the event after executing any database query. The event allows you to use or modify the data retrieved by queries.</p>
+<p>To create a handler for the <i class=" ">ExecuteQuery.After</i> event:</p>
+<ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+<p>For basic execution of initialization code, you only need to register a "code-only" module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler method to the <strong class=" ">SqlEvents.ExecuteQuery.After</strong> event.</p>
-</li><li class=" "><p   
->Define the handler method as required.</p>
-</li></ol><p   
->The system automatically runs the module&#39;s <strong class=" ">OnInit</strong> method when the application starts, which registers your event handler.</p>
-<p   
->The following handler example dynamically generates the full name of users and overrides the default full name (whenever the <i class=" ">cms.user.selectall</i> query is executed).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign a handler method to the <strong class=" ">SqlEvents.ExecuteQuery.After</strong> event.</p>
+</li><li class=" "><p>Define the handler method as required.</p>
+</li></ol><p>The system automatically runs the module's <strong class=" ">OnInit</strong> method when the application starts, which registers your event handler.</p>
+<p>The following handler example dynamically generates the full name of users and overrides the default full name (whenever the <i class=" ">cms.user.selectall</i> query is executed).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Data;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomQueryProcessingModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomQueryProcessingModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomQueryProcessing"</code></div>
@@ -328,15 +291,15 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomQueryProcessing"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		SqlEvents.ExecuteQuery.After += AfterExecuteQuery;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Generates the full name of users and overrides the default full name whenever the cms.user.selectall query is executed</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> AfterExecuteQuery(</code><code class="keyword">object</code><code class="plain"> sender, ExecuteQueryEventArgs&lt;DataSet&gt; e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -380,5 +343,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

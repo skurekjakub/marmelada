@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Mapping the Web analytics storage folder to the server file system - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -148,44 +146,35 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If your project uses an <strong class=" ">Azure Blob Storage</strong> file system (Azure projects deployed to Cloud Services by default or other projects with the <i class=" ">&lt;add key=&quot;CMSExternalStorageName&quot; value=&quot;azure&quot; /&gt;</i> web.config key), the system stores   <a   href="Web-analytics">web analytics</a> logs on the blob storage. The web analytics functionality writes and processes logs every minute, which can cause latency problems when using blob storage. Additionally, web analytics may create a large number of files, which further degrades the performance of the blob storage.</p>
-    <div  class="confbox panel">
+<div class="section-left"></div><p>If your project uses an <strong class=" ">Azure Blob Storage</strong> file system (Azure projects deployed to Cloud Services by default or other projects with the <i class=" ">&lt;add key="CMSExternalStorageName" value="azure" /&gt;</i> web.config key), the system stores <a href="web-analytics">web analytics</a> logs on the blob storage. The web analytics functionality writes and processes logs every minute, which can cause latency problems when using blob storage. Additionally, web analytics may create a large number of files, which further degrades the performance of the blob storage.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Configuring-Azure-storage">Configuring Azure storage</a></p>
-</li><li class=" "><p   
->  <a   href="Web-analytics">Web analytics</a></p>
+<ul class=" "><li class=" "><p><a href="configuring-azure-storage">Configuring Azure storage</a></p>
+</li><li class=" "><p><a href="web-analytics">Web analytics</a></p>
 </li></ul>        </div>
     </div>
-<p   
->We highly recommend that you map the folder storing web analytics data to the local file system of the server:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and use the following code to map the Web analytics storage to the local file system (in <i class=" ">~/App_Data/CMSModules/WebAnalytics</i>). See   <a   href="Configuring-file-system-providers">Configuring file system providers</a> for more information.</p>
-    <div  class="confbox admonition admonition-info">
+<p>We highly recommend that you map the folder storing web analytics data to the local file system of the server:</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br><br></p>
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and use the following code to map the Web analytics storage to the local file system (in <i class=" ">~/App_Data/CMSModules/WebAnalytics</i>). See <a href="configuring-file-system-providers">Configuring file system providers</a> for more information.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+<p>For basic execution of initialization code, you only need to register a "code-only" module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.IO;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomInitializationModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomInitializationModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Module class constructor, the system registers the module under the name "CustomInit"</code></div>
@@ -193,27 +182,24 @@
 <div class="line"><code class="plain">        : </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomInit"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Creates a new StorageProvider instance for the Windows file system</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">var</code><code class="plain"> webAnalyticsProvider = StorageProvider.CreateFileSystemStorageProvider();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Maps the web analytics directory to the provider</code></div>
 <div class="line"><code class="plain">        StorageHelper.MapStoragePath(</code><code class="string">"~/App_Data/CMSModules/WebAnalytics"</code><code class="plain">, webAnalyticsProvider);</code></div>
 <div class="line"><code class="plain">    }    </code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the file. If your project is installed in the web application format, rebuild the solution.</p>
-</li><li class=" "><p   
->If your project is deployed to Azure, re-deploy your project.</p>
-</li></ol><p   
->The system now stores web analytics log files on the server&#39;s file system instead of the blob storage.</p>
+</li><li class=" "><p>Save the file. If your project is installed in the web application format, rebuild the solution.</p>
+</li><li class=" "><p>If your project is deployed to Azure, re-deploy your project.</p>
+</li></ol><p>The system now stores web analytics log files on the server's file system instead of the blob storage.</p>
         </div>
 
     </article>
@@ -234,5 +220,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

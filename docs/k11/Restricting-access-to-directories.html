@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Restricting access to directories - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,11 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->We recommend that you only allow users to access the file system directories that they actually need. This means that you should forbid access to directories for all users that do not need them.</p>
-<p   
->You can configure directory restrictions in the project&#39;s web.config file. The following example <strong class=" ">forbids access </strong>to the <i class=" ">CMSSiteUtils</i> directory according to the configuration of the <strong class=" ">&lt;authorization&gt;</strong> element. See the <a  class="external-link" href="http://www.iis.net/configreference/system.webserver/security/authorization">Security Authorization</a> article for more information about the available options.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>We recommend that you only allow users to access the file system directories that they actually need. This means that you should forbid access to directories for all users that do not need them.</p><p>You can configure directory restrictions in the project's web.config file. The following example <strong class=" ">forbids access </strong>to the <i class=" ">CMSSiteUtils</i> directory according to the configuration of the <strong class=" ">&lt;authorization&gt;</strong> element. See the <a class="external-link" href="http://www.iis.net/configreference/system.webserver/security/authorization">Security Authorization</a> article for more information about the available options.</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">location</code><code class="plain"> </code><code class="color1">path</code><code class="plain">=</code><code class="string">"CMSSiteUtils"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">    &lt;</code><code class="keyword">system</code><code class="plain">.webServer&gt;</code></div>
@@ -167,61 +161,45 @@
 <div class="line"><code class="plain">    &lt;/</code><code class="keyword">system</code><code class="plain">.webServer&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">location</code><code class="plain">&gt;</code></div>
 </div>
-    </div>
-<p   
->The <i class=" ">CMSSiteUtils</i> directory contains export files and is therefore the most vulnerable and must be protected properly.</p>
-    <div  class="confbox panel">
+    </div><p>The <i class=" ">CMSSiteUtils</i> directory contains export files and is therefore the most vulnerable and must be protected properly.</p></div>
+
+    
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881133_Restrictingaccesstodirectories-Disablingdirectorybrowsing">Disabling directory browsing</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881133_Restrictingaccesstodirectories-Disablingunnecessaryexecutionofscripts">Disabling unnecessary execution of scripts</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881133_Restrictingaccesstodirectories-Keepingthewebserversclean">Keeping the web servers clean</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881133_Restrictingaccesstodirectories-CDNandexternalstorage">CDN and external storage</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881133_restrictingaccesstodirectories-disablingdirectorybrowsing">Disabling directory browsing</a></p>
+</li><li class=" "><p><a href="#src-68881133_restrictingaccesstodirectories-disablingunnecessaryexecutionofscripts">Disabling unnecessary execution of scripts</a></p>
+</li><li class=" "><p><a href="#src-68881133_restrictingaccesstodirectories-keepingthewebserversclean">Keeping the web servers clean</a></p>
+</li><li class=" "><p><a href="#src-68881133_restrictingaccesstodirectories-cdnandexternalstorage">CDN and external storage</a></p>
 </li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Export_import-package-directory-browsing">Export/import package directory browsing</a></p>
+<ul class=" "><li class=" "><p><a href="export_import-package-directory-browsing">Export/import package directory browsing</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68881133_Restrictingaccesstodirectories-Disablingdirectorybrowsing" class="heading "><span>Disabling directory browsing</span></h3>
-<p   
->Another important security precaution is to disallow listing of files in directories. This can be set in the IIS (and should be already set as default configuration). It is recommended to disable directory listing for the whole website, although you can also disable this feature only for individual directories. In such case, do not forget to disable directory browsing for the CMSSiteUtils directory.</p>
-<ol class=" "><li class=" "><p   
->Open the IIS Manager.</p>
-</li><li class=" "><p   
->Select the project for which you want to disable the listing of files.</p>
-</li><li class=" "><p   
->Double-click the <strong class=" ">Directory Browsing</strong> icon in the IIS section.<br/><br/></p>
-<img  class="confluence-embedded-image"  src="images/download/attachments/68881133/image2013-8-9-10_10_42.png" alt="images/download/attachments/68881133/image2013-8-9-10_10_42.png" width="500"  />
-        <br/><span class="caption">Select the project and open Directory Browsing</span>
-    <p   
-><br/><br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Disable</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image"  src="images/download/attachments/68881133/image2013-8-9-10_11_33.png" alt="images/download/attachments/68881133/image2013-8-9-10_11_33.png" width="500"  />
-        <br/><span class="caption">Disable directory browsing</span>
-    </li></ol><p   
->Now it is not possible to list files in directories on your website.</p>
+<p>Another important security precaution is to disallow listing of files in directories. This can be set in the IIS (and should be already set as default configuration). It is recommended to disable directory listing for the whole website, although you can also disable this feature only for individual directories. In such case, do not forget to disable directory browsing for the CMSSiteUtils directory.</p>
+<ol class=" "><li class=" "><p>Open the IIS Manager.</p>
+</li><li class=" "><p>Select the project for which you want to disable the listing of files.</p>
+</li><li class=" "><p>Double-click the <strong class=" ">Directory Browsing</strong> icon in the IIS section.<br><br></p>
+<img class="confluence-embedded-image" src="images/download/attachments/68881133/image2013-8-9-10_10_42.png" alt="images/download/attachments/68881133/image2013-8-9-10_10_42.png" width="500">
+        <br><span class="caption">Select the project and open Directory Browsing</span>
+    <p><br><br></p>
+</li><li class=" "><p>Click <strong class=" ">Disable</strong>.<br><br></p>
+<img class="confluence-embedded-image" src="images/download/attachments/68881133/image2013-8-9-10_11_33.png" alt="images/download/attachments/68881133/image2013-8-9-10_11_33.png" width="500">
+        <br><span class="caption">Disable directory browsing</span>
+    </li></ol><p>Now it is not possible to list files in directories on your website.</p>
     <h3 id="src-68881133_Restrictingaccesstodirectories-Disablingunnecessaryexecutionofscripts" class="heading "><span>Disabling unnecessary execution of scripts</span></h3>
-<p   
->You should forbid the execution of scripts where it is not required. This mainly applies to directories with multimedia or directories where you allow uploading of images. This can be set in the IIS, see <a  class="external-link" href="http://technet.microsoft.com/en-us/library/cc725855%28v=ws.10%29.aspx">Edit Feature Permissions for the Handler Mappings Feature (IIS 7)</a> for instructions.</p>
+<p>You should forbid the execution of scripts where it is not required. This mainly applies to directories with multimedia or directories where you allow uploading of images. This can be set in the IIS, see <a class="external-link" href="http://technet.microsoft.com/en-us/library/cc725855%28v=ws.10%29.aspx">Edit Feature Permissions for the Handler Mappings Feature (IIS 7)</a> for instructions.</p>
     <h3 id="src-68881133_Restrictingaccesstodirectories-Keepingthewebserversclean" class="heading "><span>Keeping the web servers clean</span></h3>
-<p   
->The server where your web presentation is located should not contain any other unnecessary data. It is not wise to store any sensitive information there (e.g., database exports).</p>
+<p>The server where your web presentation is located should not contain any other unnecessary data. It is not wise to store any sensitive information there (e.g., database exports).</p>
     <h3 id="src-68881133_Restrictingaccesstodirectories-CDNandexternalstorage" class="heading "><span>CDN and external storage</span></h3>
-<p   
->In Kentico, it is possible to store data to Azure blob storage and Amazon S3 storage. Both can be configured to allow public access so that anyone can download files, which were stored in Kentico.</p>
-<p   
->The thing is that, to enable distribution of data over CDN, you need to <strong class=" ">enable public access </strong>to these data. This can pose a security risk, as you do not usually want everyone to be able to download all files from these storages. Therefore, you can set only certain containers (Azure blob) and buckets (Amazon S3) to be publicly available.</p>
-<p   
->You can find more information in   <a   href="Configuring-file-system-providers">Configuring file system providers</a>.</p>
+<p>In Kentico, it is possible to store data to Azure blob storage and Amazon S3 storage. Both can be configured to allow public access so that anyone can download files, which were stored in Kentico.</p>
+<p>The thing is that, to enable distribution of data over CDN, you need to <strong class=" ">enable public access </strong>to these data. This can pose a security risk, as you do not usually want everyone to be able to download all files from these storages. Therefore, you can set only certain containers (Azure blob) and buckets (Amazon S3) to be publicly available.</p>
+<p>You can find more information in <a href="configuring-file-system-providers">Configuring file system providers</a>.</p>
         </div>
 
     </article>
@@ -242,5 +220,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

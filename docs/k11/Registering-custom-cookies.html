@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Registering custom cookies - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,48 +148,35 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If your website uses any custom or third-party cookies, we recommend that you register them with an appropriate   <a   href="Cookie-levels">cookie level</a>. Unregistered cookies are processed with the <i class=" ">Visitor</i> level by default.</p>
-<p   
->When a visitor adjusts their allowed cookie level (by interacting with a   <a   href="Adding-cookie-law-consent-to-web-pages">cookie consent web part</a>), the system automatically clears all cookies that have a higher level from the visitor&#39;s browser. You may also encounter problems with custom or third-party cookies not being stored if your site&#39;s <strong class=" ">System -&gt; Default cookie level</strong> setting has a lower value than <i class=" ">Visitor</i>, for example when managing   <a   href="Working-with-consents">tracking consent</a>.</p>
-    <div  class="confbox panel">
+<div class="section-left"></div><p>If your website uses any custom or third-party cookies, we recommend that you register them with an appropriate <a href="cookie-levels">cookie level</a>. Unregistered cookies are processed with the <i class=" ">Visitor</i> level by default.</p>
+<p>When a visitor adjusts their allowed cookie level (by interacting with a <a href="adding-cookie-law-consent-to-web-pages">cookie consent web part</a>), the system automatically clears all cookies that have a higher level from the visitor's browser. You may also encounter problems with custom or third-party cookies not being stored if your site's <strong class=" ">System -&gt; Default cookie level</strong> setting has a lower value than <i class=" ">Visitor</i>, for example when managing <a href="working-with-consents">tracking consent</a>.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Adding-cookie-law-consent-to-web-pages">Adding cookie law consent to web pages</a></p>
-</li><li class=" "><p   
->  <a   href="Cookie-levels">Cookie levels</a></p>
+<ul class=" "><li class=" "><p><a href="adding-cookie-law-consent-to-web-pages">Adding cookie law consent to web pages</a></p>
+</li><li class=" "><p><a href="cookie-levels">Cookie levels</a></p>
 </li></ul>        </div>
     </div>
-<p   
->To register custom cookies, you need to add custom code to your project. Call the <strong class=" ">CookieHelper.RegisterCookie</strong> method (available in the <strong class=" ">CMS.Helpers</strong> namespace of the Kentico API), with the following parameters:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">string name</strong> &ndash; the name of the cookie that you are registering.</p>
-</li><li class=" "><p   
-><strong class=" ">int level</strong> &ndash; an integer value representing the   <a   href="Cookie-levels">cookie level</a> required to use the cookie. You can access the default level values in the <i class=" ">CookieLevel</i> enumeration.</p>
-</li></ul><p   
->To ensure that your cookies are recognized correctly, call the <i class=" ">RegisterCookie</i> method at the beginning of the application&#39;s life cycle &ndash; either during the initialization of a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>, or within suitable startup code if you are   <a   href="Using-the-Kentico-API-externally">using the Kentico API in an external application</a>.</p>
+<p>To register custom cookies, you need to add custom code to your project. Call the <strong class=" ">CookieHelper.RegisterCookie</strong> method (available in the <strong class=" ">CMS.Helpers</strong> namespace of the Kentico API), with the following parameters:</p>
+<ul class=" "><li class=" "><p><strong class=" ">string name</strong> – the name of the cookie that you are registering.</p>
+</li><li class=" "><p><strong class=" ">int level</strong> – an integer value representing the <a href="cookie-levels">cookie level</a> required to use the cookie. You can access the default level values in the <i class=" ">CookieLevel</i> enumeration.</p>
+</li></ul><p>To ensure that your cookies are recognized correctly, call the <i class=" ">RegisterCookie</i> method at the beginning of the application's life cycle – either during the initialization of a <a href="initializing-modules-to-run-custom-code">custom module class</a>, or within suitable startup code if you are <a href="using-the-kentico-api-externally">using the Kentico API in an external application</a>.</p>
     <h3 id="src-76851306_Registeringcustomcookies-Example" class="heading "><span>Example</span></h3>
-<p   
->The following example demonstrates how to register a custom cookie named <i class=" ">CustomCookie</i> with the <i class=" ">Essential</i> cookie level:</p>
-<ol class=" "><li class=" "><p   
->Open the Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->We recommend adding the class into a custom <i class=" ">Class library</i> project within the Kentico solution.</p>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and call the <strong class=" ">CookieHelper.RegisterCookie</strong> method.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example demonstrates how to register a custom cookie named <i class=" ">CustomCookie</i> with the <i class=" ">Essential</i> cookie level:</p>
+<ol class=" "><li class=" "><p>Open the Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>We recommend adding the class into a custom <i class=" ">Class library</i> project within the Kentico solution.</p>
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and call the <strong class=" ">CookieHelper.RegisterCookie</strong> method.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomInitializationModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomInitializationModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Module class constructor, the system registers the module under the name "CustomInit"</code></div>
@@ -199,12 +184,12 @@
 <div class="line"><code class="plain">        : </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomInit"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Registers the "CustomCookie" with the 'Essential' cookie level</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Ensures that the cookie is preserved for visitors who change their allowed cookie level below 'Visitor'</code></div>
 <div class="line"><code class="plain">        CookieHelper.RegisterCookie(</code><code class="string">"CustomCookie"</code><code class="plain">, CookieLevel.Essential);</code></div>
@@ -212,16 +197,13 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ol><p   
->The <i class=" ">CustomCookie</i> is now registered and can be used by visitors who allow only the <i class=" ">Essential</i> cookie level (either by interacting with a cookie consent web part or based on your site&#39;s default cookie level).</p>
-    <div  class="confbox admonition admonition-tip">
+</li></ol><p>The <i class=" ">CustomCookie</i> is now registered and can be used by visitors who allow only the <i class=" ">Essential</i> cookie level (either by interacting with a cookie consent web part or based on your site's default cookie level).</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip &ndash; Setting cookies</strong></p>
-<p   
->You can use the Kentico API to save custom cookies into a user&#39;s browser. Call the <strong class=" ">CookieHelper.SetValue</strong> method within code where the HTTP context is available (for example in the code of a   <a   href="Creating-new-web-parts">custom web part</a>).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p><strong class=" ">Tip – Setting cookies</strong></p>
+<p>You can use the Kentico API to save custom cookies into a user's browser. Call the <strong class=" ">CookieHelper.SetValue</strong> method within code where the HTTP context is available (for example in the code of a <a href="creating-new-web-parts">custom web part</a>).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Saves a custom cookie named "CustomCookie" to the current visitor's browser,</code></div>
@@ -251,5 +233,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Clickjacking protection - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,38 +149,28 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->By default, the pages of Kentico Portal Engine websites cannot be embedded into frames rendered on external sites. This framing restriction is achieved by including the <a  class="external-link" href="https://en.wikipedia.org/wiki/Clickjacking#X-Frame-Options">X-Frame-Options</a> header in the HTTP response:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"></div><p>By default, the pages of Kentico Portal Engine websites cannot be embedded into frames rendered on external sites. This framing restriction is achieved by including the <a class="external-link" href="https://en.wikipedia.org/wiki/Clickjacking#X-Frame-Options">X-Frame-Options</a> header in the HTTP response:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">X-Frame-Options: SAMEORIGIN</code></div>
 </div>
     </div>
-<p   
->The header ensures that pages can only be displayed in frames if they <strong class=" ">originate on the same host name and server</strong> as the parent page. Otherwise browsers do not render them.</p>
-<p   
->The same-origin policy can help protect against clickjacking attacks that use framing. Clickjacking is a type of attack where the attacker tricks website users into clicking something different than what they see, thus performing an action that for example reveals confidential data or has another negative effect on the user or website. In a typical clickjacking scenario, the attacker places a transparent frame within a page, that contains a button or a link, over another element on a website. The underlying element can be an image or a video, which the users expect to play when they click it. Instead, they click the concealed link or button. This way the attacker can make the users perform unintended actions, usually on websites where the users are authenticated.</p>
-<p   
->If you need to intentionally display your site&#39;s pages within a frame on another domain, you can disable the same-origin policy for specific pages or website sections. To do that, add the <strong class=" ">CMSXFrameOptionsExcluded </strong>key into the <i class=" ">appSettings</i> section of your web.config file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The header ensures that pages can only be displayed in frames if they <strong class=" ">originate on the same host name and server</strong> as the parent page. Otherwise browsers do not render them.</p>
+<p>The same-origin policy can help protect against clickjacking attacks that use framing. Clickjacking is a type of attack where the attacker tricks website users into clicking something different than what they see, thus performing an action that for example reveals confidential data or has another negative effect on the user or website. In a typical clickjacking scenario, the attacker places a transparent frame within a page, that contains a button or a link, over another element on a website. The underlying element can be an image or a video, which the users expect to play when they click it. Instead, they click the concealed link or button. This way the attacker can make the users perform unintended actions, usually on websites where the users are authenticated.</p>
+<p>If you need to intentionally display your site's pages within a frame on another domain, you can disable the same-origin policy for specific pages or website sections. To do that, add the <strong class=" ">CMSXFrameOptionsExcluded </strong>key into the <i class=" ">appSettings</i> section of your web.config file:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSXFrameOptionsExcluded"</code><code class="plain"> value=</code><code class="string">"/Services;/Products;/Partners"</code><code class="plain"> /&gt;</code></div>
 </div>
     </div>
-<p   
->The system excludes all pages under the specified paths from the clickjacking protection.</p>
-<ul class=" "><li class=" "><p   
->You can enter any alias path as a value.</p>
-</li><li class=" "><p   
->To exclude multiple paths, enter values separated by semicolons (;).</p>
-</li><li class=" "><p   
->Entering &quot;/&quot; disables the protection completely.</p>
+<p>The system excludes all pages under the specified paths from the clickjacking protection.</p>
+<ul class=" "><li class=" "><p>You can enter any alias path as a value.</p>
+</li><li class=" "><p>To exclude multiple paths, enter values separated by semicolons (;).</p>
+</li><li class=" "><p>Entering "/" disables the protection completely.</p>
 </li></ul>    <div class="section section-1" id="src-68881178_Clickjackingprotection-SpecialcaseswheretheX-Frame-Optionsheaderisnotincluded">
         <h1 class="heading "><span>Special cases where the X-Frame-Options header is not included</span></h1>
-<p   
->There are a few special cases where the clickjacking protection is disabled by the system.</p>
-<p   
->These cases include   <a   href="Previewing-design-changes">preview modes of objects</a> (for example, transformations) which can be displayed in the context of different websites and different domains. To display the previews of these objects properly, Kentico does not include the X-Frame-Options header in such pages. Therefore, to maintain the security protection against clickjacking, Kentico adds a special <strong class=" ">clickjacking hash</strong> to the URL of the particular frame. The content of the frame is displayed only if hash validation is successful.</p>
+<p>There are a few special cases where the clickjacking protection is disabled by the system.</p>
+<p>These cases include <a href="previewing-design-changes">preview modes of objects</a> (for example, transformations) which can be displayed in the context of different websites and different domains. To display the previews of these objects properly, Kentico does not include the X-Frame-Options header in such pages. Therefore, to maintain the security protection against clickjacking, Kentico adds a special <strong class=" ">clickjacking hash</strong> to the URL of the particular frame. The content of the frame is displayed only if hash validation is successful.</p>
     </div>
         </div>
 
@@ -204,5 +192,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

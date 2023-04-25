@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Making payment methods dependent on shipping options - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,91 +149,62 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If you want to limit the availability of   <a   href="Configuring-payment-methods">payment methods</a> based on a specified   <a   href="Configuring-shipping-options">shipping option</a>, shipping country or a different attribute from the shopping cart, you need to customize the <strong class=" ">PaymentOptionInfoProvider</strong> class from the <strong class=" ">CMS.Ecommerce</strong> namespace.</p>
-<p   
->The following example disables the <i class=" ">PayPal</i> payment method when the   <a   href="Customers">customer</a> selects USA in the shipping address or selects <i class=" ">USPS</i> as the shipping option.</p>
-    <div  class="confbox admonition admonition-note">
+<div class="section-left"></div><p>If you want to limit the availability of <a href="configuring-payment-methods">payment methods</a> based on a specified <a href="configuring-shipping-options">shipping option</a>, shipping country or a different attribute from the shopping cart, you need to customize the <strong class=" ">PaymentOptionInfoProvider</strong> class from the <strong class=" ">CMS.Ecommerce</strong> namespace.</p>
+<p>The following example disables the <i class=" ">PayPal</i> payment method when the <a href="customers">customer</a> selects USA in the shipping address or selects <i class=" ">USPS</i> as the shipping option.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: The example assumes that the code name of the corresponding payment method is <i class=" ">PayPal</i>.</p>
+<p><strong class=" ">Note</strong>: The example assumes that the code name of the corresponding payment method is <i class=" ">PayPal</i>.</p>
         </div>
     </div>
-<p   
->Start by prepare a separate project for custom classes in your Kentico solution:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries (and any others that you may need in your custom code):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Ecommerce.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Globalization.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Helpers.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Edit the custom project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Start by prepare a separate project for custom classes in your Kentico solution:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries (and any others that you may need in your custom code):</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Ecommerce.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Globalization.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Helpers.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Edit the custom project's <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </div>
-</li></ol>    <div  class="confbox panel">
+</li></ol>    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Configuring-payment-methods">Configuring payment methods</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-shipping-options">Configuring shipping options</a></p>
-</li><li class=" "><p   
->  <a   href="Customizing-providers">Customizing providers</a></p>
-</li><li class=" "><p   
->  <a   href="Payment-related-customizing">Payment-related customizing</a></p>
-</li><li class=" "><p   
->  <a   href="Implementing-custom-shipping-carrier-providers">Implementing custom shipping carrier providers</a></p>
+<ul class=" "><li class=" "><p><a href="configuring-payment-methods">Configuring payment methods</a></p>
+</li><li class=" "><p><a href="configuring-shipping-options">Configuring shipping options</a></p>
+</li><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class=" "><p><a href="payment-related-customizing">Payment-related customizing</a></p>
+</li><li class=" "><p><a href="implementing-custom-shipping-carrier-providers">Implementing custom shipping carrier providers</a></p>
 </li></ul>        </div>
     </div>
-<p   
->Continue by creating a custom implementation of the <i class=" ">PaymentOptionInfoProvider</i> class:</p>
-<ol class=" "><li class=" "><p   
->Add a new class under the custom project, for example named <strong class=" ">CustomPaymentOptionInfoProvider</strong>.</p>
-</li><li class=" "><p   
->Make the class inherit from the <strong class=" ">PaymentOptionInfoProvider</strong> class.</p>
-</li><li class=" "><p   
->  <a   href="Registering-providers-using-assembly-attributes">Register</a> the custom provider class using the <strong class=" ">RegisterCustomProvider</strong> assembly attribute.</p>
-</li><li class=" "><p   
->Override the provider&#39;s <strong class=" ">IsPaymentOptionApplicableInternal</strong><strong class=" "> </strong>method:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Continue by creating a custom implementation of the <i class=" ">PaymentOptionInfoProvider</i> class:</p>
+<ol class=" "><li class=" "><p>Add a new class under the custom project, for example named <strong class=" ">CustomPaymentOptionInfoProvider</strong>.</p>
+</li><li class=" "><p>Make the class inherit from the <strong class=" ">PaymentOptionInfoProvider</strong> class.</p>
+</li><li class=" "><p><a href="registering-providers-using-assembly-attributes">Register</a> the custom provider class using the <strong class=" ">RegisterCustomProvider</strong> assembly attribute.</p>
+</li><li class=" "><p>Override the provider's <strong class=" ">IsPaymentOptionApplicableInternal</strong><strong class=" "> </strong>method:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Globalization;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: RegisterCustomProvider(</code><code class="keyword">typeof</code><code class="plain">(CustomPaymentOptionInfoProvider))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomPaymentOptionInfoProvider : PaymentOptionInfoProvider</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">bool</code><code class="plain"> IsPaymentOptionApplicableInternal(ShoppingCartInfo cart, PaymentOptionInfo paymentOption)</code></div>
@@ -245,13 +214,13 @@
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Allows all payment methods except for PayPal</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (!paymentOption.PaymentOptionName.Equals(</code><code class="string">"PayPal"</code><code class="plain">, StringComparison.InvariantCultureIgnoreCase))</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Disables PayPal if the billing address is within the USA</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (cart.ShoppingCartBillingAddress != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">        {</code></div>
@@ -262,7 +231,7 @@
 <div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">false</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Disables PayPal if the USPS shipping method is selected</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> (cart.ShippingOption == </code><code class="keyword">null</code><code class="plain">) ||</code></div>
 <div class="line"><code class="plain">            !cart.ShippingOption.ShippingOptionName.Equals(</code><code class="string">"USPS"</code><code class="plain">, StringComparison.InvariantCultureIgnoreCase);</code></div>
@@ -270,15 +239,12 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save all changes and <strong class=" ">Build</strong> the custom project.</p>
-</li></ol><p   
->If a customer now selects USA as the country in their billing address or selects <i class=" ">USPS</i> as their shipping option, they will not be able to use <i class=" ">PayPal</i> as the payment method.</p>
-    <div  class="confbox admonition admonition-tip">
+</li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.</p>
+</li></ol><p>If a customer now selects USA as the country in their billing address or selects <i class=" ">USPS</i> as their shipping option, they will not be able to use <i class=" ">PayPal</i> as the payment method.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you want to use the user interface for setting the limitations, you can either   <a   href="Manually-creating-the-interface-for-custom-modules">create a user interface</a> or   <a   href="Creating-custom-tables">create a custom table</a> and use the   <a   href="Custom-table-internals-and-API">custom table API</a> to add the values for the <i class=" ">Dictionary</i> variable with the limitations. Do not forget to   <a   href="Configuring-caching">set caching</a> (you can use the   <a   href="Caching-in-custom-code">CacheHelper</a> class).</p>
+<p>If you want to use the user interface for setting the limitations, you can either <a href="manually-creating-the-interface-for-custom-modules">create a user interface</a> or <a href="creating-custom-tables">create a custom table</a> and use the <a href="custom-table-internals-and-api">custom table API</a> to add the values for the <i class=" ">Dictionary</i> variable with the limitations. Do not forget to <a href="configuring-caching">set caching</a> (you can use the <a href="caching-in-custom-code">CacheHelper</a> class).</p>
         </div>
     </div>
         </div>
@@ -301,5 +267,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating the preview step in MVC checkout processes - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,117 +150,89 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The final step before payment is usually a preview of the future   <a   href="Orders">order</a>. In this step, visitors/  <a   href="Customers">customers</a> can check content of their   <a   href="Using-a-shopping-cart-on-MVC-sites">shopping cart</a>, billing/shipping   <a   href="Creating-the-customer-details-step-in-MVC-checkout-processes">details they typed about themselves</a>, and they can select their preferred   <a   href="Configuring-payment-methods">payment method</a>. Finally, the page provides a button that finalizes the   <a   href="Checkout-process-in-MVC">checkout process</a> and creates an order. Also, the button can redirect to a payment gateway if the customer selects a suitable   <a   href="Configuring-payment-methods">payment method</a>.</p>
-<p   
->To create the checkout process steps, use the   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a>.</p>
-    <div  class="confbox admonition admonition-tip">
+<div class="section-left"></div><p>The final step before payment is usually a preview of the future <a href="orders">order</a>. In this step, visitors/<a href="customers">customers</a> can check content of their <a href="using-a-shopping-cart-on-mvc-sites">shopping cart</a>, billing/shipping <a href="creating-the-customer-details-step-in-mvc-checkout-processes">details they typed about themselves</a>, and they can select their preferred <a href="configuring-payment-methods">payment method</a>. Finally, the page provides a button that finalizes the <a href="checkout-process-in-mvc">checkout process</a> and creates an order. Also, the button can redirect to a payment gateway if the customer selects a suitable <a href="configuring-payment-methods">payment method</a>.</p>
+<p>To create the checkout process steps, use the <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a>.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: You can view a sample preview checkout process step on <a  class="external-link" href="https://github.com/Kentico/Mvc">the sample MVC <i class=" ">Dancing Goat</i> site</a>.</p>
+<p><strong class=" ">Tip</strong>: You can view a sample preview checkout process step on <a class="external-link" href="https://github.com/Kentico/Mvc">the sample MVC <i class=" ">Dancing Goat</i> site</a>.</p>
         </div>
     </div>
-<ol class=" "><li class=" "><p   
->Open your controller for the checkout process in your MVC project in Visual Studio.</p>
-    <div  class="confbox admonition admonition-info">
+<ol class=" "><li class=" "><p>Open your controller for the checkout process in your MVC project in Visual Studio.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The following example uses the <strong class=" ">ShoppingService</strong> and <strong class=" ">    <span style="color: #000000;">
+<p>The following example uses the <strong class=" ">ShoppingService</strong> and <strong class=" ">    <span style="color: #000000;">
 IPaymentMethodRepository    </span>
-</strong> classes initialized in the controller&#39;s constructor. See   <a   href="Using-a-shopping-cart-on-MVC-sites">Using a shopping cart on MVC sites</a>.</p>
+</strong> classes initialized in the controller's constructor. See <a href="using-a-shopping-cart-on-mvc-sites">Using a shopping cart on MVC sites</a>.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Create a model for payment methods. The model can use the <strong class=" ">PaymentOptionInfo</strong> class from the <strong class=" ">CMS.Ecommerce</strong> namespace.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Create a model for payment methods. The model can use the <strong class=" ">PaymentOptionInfo</strong> class from the <strong class=" ">CMS.Ecommerce</strong> namespace.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you do not want to enable your customers to select their preferred payment method, you can skip this step.</p>
+<p>If you do not want to enable your customers to select their preferred payment method, you can skip this step.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Create a model for all previous steps &ndash; <strong class=" ">PreviewAndPayViewModel</strong>.</p>
-    <div  class="confbox admonition admonition-info">
+</li><li class=" "><p>Create a model for all previous steps – <strong class=" ">PreviewAndPayViewModel</strong>.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->This model uses the <i class=" ">    <span style="color: #000000;">
+<p>This model uses the <i class=" ">    <span style="color: #000000;">
 DeliveryDetailsViewModel    </span>
-</i> model created during a process described in   <a   href="Creating-the-customer-details-step-in-MVC-checkout-processes">Creating the customer details step in MVC checkout processes</a>.</p>
+</i> model created during a process described in <a href="creating-the-customer-details-step-in-mvc-checkout-processes">Creating the customer details step in MVC checkout processes</a>.</p>
         </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->Add methods that prepare the selection of payment methods.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add methods that prepare the selection of payment methods.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Add a method to the controller that creates the <strong class=" ">PreviewAndPayViewModel</strong>.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add a method to the controller that creates the <strong class=" ">PreviewAndPayViewModel</strong>.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you provide a possibility to have a different shipping address, prepare also the shipping address for the <i class=" ">DeliveryDetailsViewModel</i>.</p>
+<p>If you provide a possibility to have a different shipping address, prepare also the shipping address for the <i class=" ">DeliveryDetailsViewModel</i>.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Add a method to the controller that displays the preview step.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add a method to the controller that displays the preview step.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Add a method to the controller that processes the order. If the processing is successful, the method displays a payment page.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add a method to the controller that processes the order. If the processing is successful, the method displays a payment page.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->To limit payment methods based on the selected shipping options, see   <a   href="Making-payment-methods-dependent-on-shipping-options">Making payment methods dependent on shipping options</a>.</p>
+<p>To limit payment methods based on the selected shipping options, see <a href="making-payment-methods-dependent-on-shipping-options">Making payment methods dependent on shipping options</a>.</p>
         </div>
     </div>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you provide only   <a   href="Configuring-payment-methods">manual payment methods</a> (and therefore, you do not want to   <a   href="Connecting-to-payment-gateways-on-MVC-sites">connect any payment gateways</a>), you can redirect them directly to the thank-you page. For example:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>If you provide only <a href="configuring-payment-methods">manual payment methods</a> (and therefore, you do not want to <a href="connecting-to-payment-gateways-on-mvc-sites">connect any payment gateways</a>), you can redirect them directly to the thank-you page. For example:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
         </div>
     </div>
-</li><li class=" "><p   
->Create a view for the preview step.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Create a view for the preview step.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li></ol><p   
->When a visitor gets to the customer details step during their   <a   href="Checkout-process-in-MVC">checkout process</a>, they review their information and the cart content and can continue with creating an order. You can add either a redirect to a payment gateway or a redirect to the thank-you page.</p>
-<p   
->After creating an order, a notification email is sent based on the   <a   href="Configuring-e-commerce-email-notifications"><strong class=" ">Send order notification </strong>setting</a>.</p>
-    <div  class="confbox panel">
+</li></ol><p>When a visitor gets to the customer details step during their <a href="checkout-process-in-mvc">checkout process</a>, they review their information and the cart content and can continue with creating an order. You can add either a redirect to a payment gateway or a redirect to the thank-you page.</p>
+<p>After creating an order, a notification email is sent based on the <a href="configuring-e-commerce-email-notifications"><strong class=" ">Send order notification </strong>setting</a>.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Checkout-process-in-MVC">Checkout process in MVC</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-the-customer-details-step-in-MVC-checkout-processes">Creating the customer details step in MVC checkout processes</a></p>
-</li><li class=" "><p   
->  <a   href="Orders">Orders</a></p>
-</li><li class=" "><p   
->  <a   href="Developing-sites-using-ASP.NET-MVC">Developing sites using ASP.NET MVC</a></p>
-</li><li class=" "><p   
->  <a   href="Developing-MVC-applications">Developing MVC applications</a></p>
+<ul class=" "><li class=" "><p><a href="checkout-process-in-mvc">Checkout process in MVC</a></p>
+</li><li class=" "><p><a href="creating-the-customer-details-step-in-mvc-checkout-processes">Creating the customer details step in MVC checkout processes</a></p>
+</li><li class=" "><p><a href="orders">Orders</a></p>
+</li><li class=" "><p><a href="developing-sites-using-asp.net-mvc">Developing sites using ASP.NET MVC</a></p>
+</li><li class=" "><p><a href="developing-mvc-applications">Developing MVC applications</a></p>
 </li></ul>        </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Building the checkout process in MVC</div>
             <div class="panel-content">
-<ol class=" "><li class=" "><p   
->  <a   href="Using-a-shopping-cart-on-MVC-sites">Using a shopping cart on MVC sites</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-the-customer-details-step-in-MVC-checkout-processes">Creating the customer details step in MVC checkout processes</a></p>
-</li><li class=" "><p   
-><strong class=" ">Creating the preview step in MVC checkout processes</strong></p>
+<ol class=" "><li class=" "><p><a href="using-a-shopping-cart-on-mvc-sites">Using a shopping cart on MVC sites</a></p>
+</li><li class=" "><p><a href="creating-the-customer-details-step-in-mvc-checkout-processes">Creating the customer details step in MVC checkout processes</a></p>
+</li><li class=" "><p><strong class=" ">Creating the preview step in MVC checkout processes</strong></p>
 </li></ol>        </div>
     </div>
         </div>
@@ -285,5 +255,6 @@ DeliveryDetailsViewModel    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

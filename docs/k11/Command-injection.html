@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Command injection - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,58 +148,36 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Code injection in ASP.NET is not a well known issue. It is because in ASP.NET, code files are not inserted one into another dynamically (like in PHP). Programmers can only register controls in the web.config file or on a page. But dynamic code injection in ASP.NET is still possible. The aim is to insert C# (or VB.NET, etc.) code that is executed directly.</p>
-<p   
->The attacker can achieve this in the following situations:</p>
-<ul class=" "><li class=" "><p   
->When you use the <strong class=" ">ProcessStartInfo</strong> class in your code and execute commands which are put together from external sources.</p>
-</li><li class=" "><p   
->When your virtual path provider is able to read files from different servers, and parameters are taken from an external source.</p>
-</li><li class=" "><p   
->When you load a control dynamically and the source of the control is loaded from an external source.</p>
-</li></ul><p   
->The attacker can also manage to insert a file with code into your application directory.</p>
-<p   
-></p>
-    <div  class="confbox panel">
+<div class="section-left"><p>Code injection in ASP.NET is not a well known issue. It is because in ASP.NET, code files are not inserted one into another dynamically (like in PHP). Programmers can only register controls in the web.config file or on a page. But dynamic code injection in ASP.NET is still possible. The aim is to insert C# (or VB.NET, etc.) code that is executed directly.</p><p>The attacker can achieve this in the following situations:</p><ul class=" "><li class=" "><p>When you use the <strong class=" ">ProcessStartInfo</strong> class in your code and execute commands which are put together from external sources.</p>
+</li><li class=" "><p>When your virtual path provider is able to read files from different servers, and parameters are taken from an external source.</p>
+</li><li class=" "><p>When you load a control dynamically and the source of the control is loaded from an external source.</p>
+</li></ul><p>The attacker can also manage to insert a file with code into your application directory.</p><p></p></div>
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881104_Commandinjection-Whatcancommandinjectionattackdo">What can command injection attack do</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881104_Commandinjection-FindingcommandinjectionvulnerabilitiesinKentico">Finding command injection vulnerabilities in Kentico</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881104_Commandinjection-Avoidingcommandinjection">Avoiding command injection</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881104_commandinjection-whatcancommandinjectionattackdo">What can command injection attack do</a></p>
+</li><li class=" "><p><a href="#src-68881104_commandinjection-findingcommandinjectionvulnerabilitiesinkentico">Finding command injection vulnerabilities in Kentico</a></p>
+</li><li class=" "><p><a href="#src-68881104_commandinjection-avoidingcommandinjection">Avoiding command injection</a></p>
+</li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68881104_Commandinjection-Whatcancommandinjectionattackdo" class="heading "><span>What can command injection attack do</span></h3>
-<p   
->Simply anything that can be achieved programmatically.</p>
+<p>Simply anything that can be achieved programmatically.</p>
     <h3 id="src-68881104_Commandinjection-FindingcommandinjectionvulnerabilitiesinKentico" class="heading "><span>Finding command injection vulnerabilities in Kentico</span></h3>
-<p   
->There is no direct procedure to find code injection, but here are some tips for discovering possibly vulnerable places in Kentico:</p>
-<ul class=" "><li class=" "><p   
->Search for <strong class=" ">ProcessStartInfo</strong> in source code and check its input parameters.</p>
-</li><li class=" "><p   
->Analyze the virtual path provider module and search for any possibility of getting a file which is not a regular Kentico virtual file.</p>
-</li><li class=" "><p   
->Try to edit a transformation without administrator privileges.</p>
-</li><li class=" "><p   
->Search for usages of the <strong class=" ">LoadControl()</strong> method and check the input of the method.</p>
+<p>There is no direct procedure to find code injection, but here are some tips for discovering possibly vulnerable places in Kentico:</p>
+<ul class=" "><li class=" "><p>Search for <strong class=" ">ProcessStartInfo</strong> in source code and check its input parameters.</p>
+</li><li class=" "><p>Analyze the virtual path provider module and search for any possibility of getting a file which is not a regular Kentico virtual file.</p>
+</li><li class=" "><p>Try to edit a transformation without administrator privileges.</p>
+</li><li class=" "><p>Search for usages of the <strong class=" ">LoadControl()</strong> method and check the input of the method.</p>
 </li></ul>    <h3 id="src-68881104_Commandinjection-Avoidingcommandinjection" class="heading "><span>Avoiding command injection</span></h3>
-<p   
->You will probably never have to deal with this issue because code injection only poses a threat in the special cases described at the beginning of this chapter. Nevertheless, the general recommendations are:</p>
-<ul class=" "><li class=" "><p   
->Never load controls dynamically when their path is taken from an external source.</p>
-</li><li class=" "><p   
->Do not ever use ProcessStartInfo and other classes which execute commands or run .NET code.</p>
-</li><li class=" "><p   
->If you want to customize the virtual path provider or transformation management, be very careful.</p>
+<p>You will probably never have to deal with this issue because code injection only poses a threat in the special cases described at the beginning of this chapter. Nevertheless, the general recommendations are:</p>
+<ul class=" "><li class=" "><p>Never load controls dynamically when their path is taken from an external source.</p>
+</li><li class=" "><p>Do not ever use ProcessStartInfo and other classes which execute commands or run .NET code.</p>
+</li><li class=" "><p>If you want to customize the virtual path provider or transformation management, be very careful.</p>
 </li></ul>        </div>
 
     </article>
@@ -222,5 +198,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

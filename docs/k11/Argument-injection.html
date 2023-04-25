@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Argument injection - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,89 +148,62 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Argument injection is a type of attack based on tampering with input parameters of a page. This can enable attackers to see data which they normally cannot see or to modify data which they normally cannot modify, via the user interface.</p>
-    <h3 id="src-68881116_Argumentinjection-Exampleofargumentinjection" class="heading "><span>Example of argument injection</span></h3>
-<p   
->In this example, we have a simple .aspx page which allows users to change their passwords:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>Argument injection is a type of attack based on tampering with input parameters of a page. This can enable attackers to see data which they normally cannot see or to modify data which they normally cannot modify, via the user interface.</p><h3 id="src-68881116_Argumentinjection-Exampleofargumentinjection" class="heading "><span>Example of argument injection</span></h3><p>In this example, we have a simple .aspx page which allows users to change their passwords:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;asp:TextBox runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"txtPassword"</code><code class="plain"> &gt;</code></div>
 <div class="line"><code class="plain">&lt;/asp:TextBox&gt;&lt;asp:Button runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"btnConfirm"</code><code class="plain"> onclick=</code><code class="string">"btnConfirm_Click"</code><code class="plain"> Text=</code><code class="string">"Change password"</code><code class="plain"> /&gt;</code></div>
 </div>
-    </div>
-<p   
->In code behind, we handle the <strong class=" ">OnClick()</strong> event of the button:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    </div><p>In code behind, we handle the <strong class=" ">OnClick()</strong> event of the button:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> btnConfirm_Click(</code><code class="keyword">object</code><code class="plain"> sender, EventArgs e)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	UserInfoProvider.SetPassword(QueryHelper.GetString(</code><code class="string">"username"</code><code class="plain">, </code><code class="string">""</code><code class="plain">), txtPassword.Text.Trim());</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+
+    
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881116_Argumentinjection-Exampleofargumentinjection">Example of argument injection</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881116_Argumentinjection-Whatcanargumentinjectionattackdo">What can argument injection attack do</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881116_Argumentinjection-Findingargumentinjectionvulnerabilities">Finding argument injection vulnerabilities</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881116_Argumentinjection-AvoidingargumentinjectioninKentico">Avoiding argument injection in Kentico</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881116_Argumentinjection-Summary">Summary</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881116_argumentinjection-exampleofargumentinjection">Example of argument injection</a></p>
+</li><li class=" "><p><a href="#src-68881116_argumentinjection-whatcanargumentinjectionattackdo">What can argument injection attack do</a></p>
+</li><li class=" "><p><a href="#src-68881116_argumentinjection-findingargumentinjectionvulnerabilities">Finding argument injection vulnerabilities</a></p>
+</li><li class=" "><p><a href="#src-68881116_argumentinjection-avoidingargumentinjectioninkentico">Avoiding argument injection in Kentico</a></p>
+</li><li class=" "><p><a href="#src-68881116_argumentinjection-summary">Summary</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-<p   
->The standard way of using this page is that the user adds a link to this page on a user profile page with URL parameter &quot;username&quot; equal to the current user&#39;s user name. In this code, there are two security issues:</p>
-<ul class=" "><li class=" "><p   
->The user can change the password without entering the original one. If the user forgets to log out of a computer in an Internet caf&eacute;, then anybody can change the user&#39;s password.</p>
-</li><li class=" "><p   
->The page is vulnerable to argument injection. Any site visitor can change a password of any user of the system just by typing the URL address of the page with an appropriate user name in the parameter.</p>
+    </div></div>
+<p>The standard way of using this page is that the user adds a link to this page on a user profile page with URL parameter "username" equal to the current user's user name. In this code, there are two security issues:</p>
+<ul class=" "><li class=" "><p>The user can change the password without entering the original one. If the user forgets to log out of a computer in an Internet café, then anybody can change the user's password.</p>
+</li><li class=" "><p>The page is vulnerable to argument injection. Any site visitor can change a password of any user of the system just by typing the URL address of the page with an appropriate user name in the parameter.</p>
 </li></ul>    <h3 id="src-68881116_Argumentinjection-Whatcanargumentinjectionattackdo" class="heading "><span>What can argument injection attack do</span></h3>
-<p   
->Argument injection can usually be used to obtain various information. The attacker can, for example, read pages or view images belonging to different users and so on. The threat usually depends on the sensitivity of the information. But sometimes, you can read invoices or other kind on sensitive information. And the worst case is if you can change something. You could probably never change a user&#39;s password. But what if an application has a DeletePicture.aspx page which deletes a picture whose IDs is provided in a URL parameter?</p>
+<p>Argument injection can usually be used to obtain various information. The attacker can, for example, read pages or view images belonging to different users and so on. The threat usually depends on the sensitivity of the information. But sometimes, you can read invoices or other kind on sensitive information. And the worst case is if you can change something. You could probably never change a user's password. But what if an application has a DeletePicture.aspx page which deletes a picture whose IDs is provided in a URL parameter?</p>
     <h3 id="src-68881116_Argumentinjection-Findingargumentinjectionvulnerabilities" class="heading "><span>Finding argument injection vulnerabilities</span></h3>
-<p   
->The problem with argument injection is that any input from an external source can cause it. And there is no exact way of finding these spots. You should examine every single input. However, there are some practices which may help you find the most vulnerable places:</p>
-<ul class=" "><li class=" "><p   
->Check all inputs of pages in paths containing &quot;CMSPages&quot;. These directories contain, among others, pages which send files to the client browser and in one of the URL parameters, there is usually a path or an identifier to a file.</p>
-</li><li class=" "><p   
->Check pages which work with IDs/names taken from the URL query string or via a form field. Especially those that take user IDs or site IDs from query string parameters. These values can usually be taken from the application&#39;s context instead.</p>
+<p>The problem with argument injection is that any input from an external source can cause it. And there is no exact way of finding these spots. You should examine every single input. However, there are some practices which may help you find the most vulnerable places:</p>
+<ul class=" "><li class=" "><p>Check all inputs of pages in paths containing "CMSPages". These directories contain, among others, pages which send files to the client browser and in one of the URL parameters, there is usually a path or an identifier to a file.</p>
+</li><li class=" "><p>Check pages which work with IDs/names taken from the URL query string or via a form field. Especially those that take user IDs or site IDs from query string parameters. These values can usually be taken from the application's context instead.</p>
 </li></ul>    <h3 id="src-68881116_Argumentinjection-AvoidingargumentinjectioninKentico" class="heading "><span>Avoiding argument injection in Kentico</span></h3>
-<p   
->Let&#39;s get back to the provided example and consider the problem that anyone can specify any user name. We can solve this by:</p>
-<ul class=" "><li class=" "><p   
->Changing the user name to an identifier which is harder to guess &ndash; a GUID.</p>
-</li><li class=" "><p   
->Taking the user name from MembershipContext.</p>
-</li><li class=" "><p   
->Checking that the current user has permissions to change his password.</p>
-</li></ul><p   
->But what solution is the best? The ideal solution is to combine all of them. Every time you do an action (displaying a picture is an action too), you must check the user&#39;s permissions. Also, if you can take data from current context, do not take if from another external source. Data in the current context, for example the information about the current user, is always correct (users can not manipulate with them). And if you have to manipulate with non-context data, use GUIDs instead of names or simple IDs.</p>
+<p>Let's get back to the provided example and consider the problem that anyone can specify any user name. We can solve this by:</p>
+<ul class=" "><li class=" "><p>Changing the user name to an identifier which is harder to guess – a GUID.</p>
+</li><li class=" "><p>Taking the user name from MembershipContext.</p>
+</li><li class=" "><p>Checking that the current user has permissions to change his password.</p>
+</li></ul><p>But what solution is the best? The ideal solution is to combine all of them. Every time you do an action (displaying a picture is an action too), you must check the user's permissions. Also, if you can take data from current context, do not take if from another external source. Data in the current context, for example the information about the current user, is always correct (users can not manipulate with them). And if you have to manipulate with non-context data, use GUIDs instead of names or simple IDs.</p>
     <h3 id="src-68881116_Argumentinjection-Summary" class="heading "><span>Summary</span></h3>
-<ul class=" "><li class=" "><p   
->Always check that users have sufficient permissions to perform an action (if it&#39;s possible).</p>
-</li><li class=" "><p   
->Do not use query string/form values if is not necessary. Instead, use Kentico context values.</p>
-</li><li class=" "><p   
->If you have to use query string/form values, use GUIDs instead of IDs or names.</p>
-</li><li class=" "><p   
->Secure query string parameters with   <a   href="Query-string-hashing">hash code validation</a>.</p>
-</li><li class=" "><p   
->Combine these rules.</p>
+<ul class=" "><li class=" "><p>Always check that users have sufficient permissions to perform an action (if it's possible).</p>
+</li><li class=" "><p>Do not use query string/form values if is not necessary. Instead, use Kentico context values.</p>
+</li><li class=" "><p>If you have to use query string/form values, use GUIDs instead of IDs or names.</p>
+</li><li class=" "><p>Secure query string parameters with <a href="query-string-hashing">hash code validation</a>.</p>
+</li><li class=" "><p>Combine these rules.</p>
 </li></ul>        </div>
 
     </article>
@@ -253,5 +224,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

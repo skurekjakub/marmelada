@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Using a shopping cart on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,164 +150,118 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->In the   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a>, you can find supporting models and services to build a shopping cart in your on-line store. Visitors can put products into shopping carts and after their browsing through your store, they can continue with the   <a   href="Checkout-process-in-MVC">checkout process</a> to create an   <a   href="Orders">order</a> and become a   <a   href="Customers">customer</a>.</p>
-    <h3 id="src-68880550_UsingashoppingcartonMVCsites-CreatingashoppingcartonMVCwebsites" class="heading "><span>Creating a shopping cart on MVC websites</span></h3>
-<p   
->When a visitor opens your website, you need to create a shopping cart instance and assign the instance to the customer. To create a shopping cart, use the <strong class=" ">Kentico.Ecommerce</strong> integration package.</p>
-<ol class=" "><li class=" "><p   
->Open your MVC project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a controller for the shopping cart.</p>
-<ul class=" "><li class=" "><p   
->In all documentation examples regarding the checkout process, the <strong class=" ">CheckoutController</strong> is shared by all checkout process steps.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>In the <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a>, you can find supporting models and services to build a shopping cart in your on-line store. Visitors can put products into shopping carts and after their browsing through your store, they can continue with the <a href="checkout-process-in-mvc">checkout process</a> to create an <a href="orders">order</a> and become a <a href="customers">customer</a>.</p><h3 id="src-68880550_UsingashoppingcartonMVCsites-CreatingashoppingcartonMVCwebsites" class="heading "><span>Creating a shopping cart on MVC websites</span></h3><p>When a visitor opens your website, you need to create a shopping cart instance and assign the instance to the customer. To create a shopping cart, use the <strong class=" ">Kentico.Ecommerce</strong> integration package.</p><ol class=" "><li class=" "><p>Open your MVC project in Visual Studio.</p>
+</li><li class=" "><p>Create a controller for the shopping cart.</p>
+<ul class=" "><li class=" "><p>In all documentation examples regarding the checkout process, the <strong class=" ">CheckoutController</strong> is shared by all checkout process steps.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CheckoutController : Controller</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ul></li><li class=" "><p   
->Initialize the <strong class=" ">ShoppingService, PricingService, KenticoPaymentMethodRepository</strong>,<strong class=" "> KenticoCustomerAddressRepository</strong>, and <strong class=" ">Kentico</strong><strong class=" ">ShippingOptionRepository</strong> classes that connects to the shopping cart in Kentico.</p>
-    <div  class="confbox admonition admonition-tip">
+</li></ul></li><li class=" "><p>Initialize the <strong class=" ">ShoppingService, PricingService, KenticoPaymentMethodRepository</strong>,<strong class=" "> KenticoCustomerAddressRepository</strong>, and <strong class=" ">Kentico</strong><strong class=" ">ShippingOptionRepository</strong> classes that connects to the shopping cart in Kentico.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->We recommend using a   <a   href="Initializing-Kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for the services and repositories, create a separate instance for each request.</p>
+<p>We recommend using a <a href="initializing-kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for the services and repositories, create a separate instance for each request.</p>
         </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li></ol><p   
->After initializing the services and repositories, your MVC application can use the shopping cart and other steps of the   <a   href="Checkout-process-in-MVC">checkout process</a> from Kentico. The shopping cart processes actions that   <a   href="Customers">customers</a> require when using your on-line store. Namely,   <a   href="Customers">customers</a> can expect the following actions that you need to implement:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Displayingtheshoppingcart">Display the shopping cart content</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Addingaproducttotheshoppingcart">Add a product to the shopping cart</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Updatingashoppingcartitem">Update an item (a product) already in the shopping cart</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Usingmethodsandpropertiesfromtheclassrepresentingitemsintheshoppingcart">Remove an item (a product) from the shopping cart</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Checkingout">Continue with the checkout process to make an order</a></p>
-</li></ul>    <div  class="confbox admonition admonition-tip">
+</li></ol><p>After initializing the services and repositories, your MVC application can use the shopping cart and other steps of the <a href="checkout-process-in-mvc">checkout process</a> from Kentico. The shopping cart processes actions that <a href="customers">customers</a> require when using your on-line store. Namely, <a href="customers">customers</a> can expect the following actions that you need to implement:</p><ul class=" "><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-displayingtheshoppingcart">Display the shopping cart content</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-addingaproducttotheshoppingcart">Add a product to the shopping cart</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-updatingashoppingcartitem">Update an item (a product) already in the shopping cart</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-usingmethodsandpropertiesfromtheclassrepresentingitemsintheshoppingcart">Remove an item (a product) from the shopping cart</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-checkingout">Continue with the checkout process to make an order</a></p>
+</li></ul><div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The source code examples below often use classes from the <strong class=" ">Kentico.Ecommerce</strong> namespace from the <strong class=" ">Kentico.Ecommerce </strong>integration package.</p>
+<p>The source code examples below often use classes from the <strong class=" ">Kentico.Ecommerce</strong> namespace from the <strong class=" ">Kentico.Ecommerce </strong>integration package.</p>
         </div>
-    </div>
-    <div  class="confbox admonition admonition-tip">
+    </div><div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a  class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> or <strong class=" ">DancingGoat</strong> projects.</p>
+<p><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> or <strong class=" ">DancingGoat</strong> projects.</p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+
+
+    
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-CreatingashoppingcartonMVCwebsites">Creating a shopping cart on MVC websites</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Displayingtheshoppingcart">Displaying the shopping cart</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Evaluatingandsavingtheshoppingcart">Evaluating and saving the shopping cart</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Addingaproducttotheshoppingcart">Adding a product to the shopping cart</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Updatingashoppingcartitem">Updating a shopping cart item</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Removingashoppingcartitem">Removing a shopping cart item</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880550_UsingashoppingcartonMVCsites-Checkingout">Checking out</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-creatingashoppingcartonmvcwebsites">Creating a shopping cart on MVC websites</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-displayingtheshoppingcart">Displaying the shopping cart</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-evaluatingandsavingtheshoppingcart">Evaluating and saving the shopping cart</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-addingaproducttotheshoppingcart">Adding a product to the shopping cart</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-updatingashoppingcartitem">Updating a shopping cart item</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-removingashoppingcartitem">Removing a shopping cart item</a></p>
+</li><li class=" "><p><a href="#src-68880550_usingashoppingcartonmvcsites-checkingout">Checking out</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Developing-sites-using-ASP.NET-MVC">Developing sites using ASP.NET MVC</a></p>
-</li><li class=" "><p   
->  <a   href="Developing-MVC-applications">Developing MVC applications</a></p>
-</li><li class=" "><p   
->  <a   href="Developing-on-line-stores-in-MVC">Developing on-line stores in MVC</a></p>
-</li><li class=" "><p   
->  <a   href="Checkout-process">Checkout process</a></p>
-</li><li class=" "><p   
->  <a   href="Products">Products</a></p>
+<ul class=" "><li class=" "><p><a href="developing-sites-using-asp.net-mvc">Developing sites using ASP.NET MVC</a></p>
+</li><li class=" "><p><a href="developing-mvc-applications">Developing MVC applications</a></p>
+</li><li class=" "><p><a href="developing-on-line-stores-in-mvc">Developing on-line stores in MVC</a></p>
+</li><li class=" "><p><a href="checkout-process">Checkout process</a></p>
+</li><li class=" "><p><a href="products">Products</a></p>
 </li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+    <div class="confbox panel">
             <div class="title panel-header">Building the checkout process in MVC</div>
             <div class="panel-content">
-<ol class=" "><li class=" "><p   
-><strong class=" ">Using a shopping cart on MVC sites</strong></p>
-</li><li class=" "><p   
->  <a   href="Creating-the-customer-details-step-in-MVC-checkout-processes">Creating the customer details step in MVC checkout processes</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-the-preview-step-in-MVC-checkout-processes">Creating the preview step in MVC checkout processes</a></p>
+<ol class=" "><li class=" "><p><strong class=" ">Using a shopping cart on MVC sites</strong></p>
+</li><li class=" "><p><a href="creating-the-customer-details-step-in-mvc-checkout-processes">Creating the customer details step in MVC checkout processes</a></p>
+</li><li class=" "><p><a href="creating-the-preview-step-in-mvc-checkout-processes">Creating the preview step in MVC checkout processes</a></p>
 </li></ol>        </div>
     </div>
     <h4 id="src-68880550_UsingashoppingcartonMVCsites-Displayingtheshoppingcart" class="heading "><span>Displaying the shopping cart</span></h4>
-<p   
->Add an action method that retrieves and displays the current visitor&#39;s shopping cart to the checkout controller:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>Add an action method that retrieves and displays the current visitor's shopping cart to the checkout controller:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you do not want to use coupon codes, you do not need to create a model for your shopping cart. You can just display the shopping cart and adjust the view accordingly:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If you do not want to use coupon codes, you do not need to create a model for your shopping cart. You can just display the shopping cart and adjust the view accordingly:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">return</code><code class="plain"> View(cart);</code></div>
 </div>
     </div>
         </div>
     </div>
-<p   
->In the shopping cart&#39;s view, you can then use the shopping cart&#39;s properties to display the content of the shopping cart. For example:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>In the shopping cart's view, you can then use the shopping cart's properties to display the content of the shopping cart. For example:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Add a button to enable the visitors to   <a   href="#src-68880550_UsingashoppingcartonMVCsites-Checkingout">continue with the checkout process</a>.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
-The example code targets at the   <a   href="Creating-the-customer-details-step-in-MVC-checkout-processes">customer details step</a>.</p>
+<p>Add a button to enable the visitors to <a href="#src-68880550_usingashoppingcartonmvcsites-checkingout">continue with the checkout process</a>.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
+The example code targets at the <a href="creating-the-customer-details-step-in-mvc-checkout-processes">customer details step</a>.</p>
         </div>
     </div>
     <h4 id="src-68880550_UsingashoppingcartonMVCsites-Evaluatingandsavingtheshoppingcart" class="heading "><span>Evaluating and saving the shopping cart</span></h4>
-<p   
->When working with objects of the <strong class=" ">Kentico.Ecommerce.ShoppingCart</strong> class, you need to manually handle recalculation and saving of the shopping cart. Otherwise your shopping carts may display or store incorrect values.</p>
-<p   
->Perform these operations by calling the following methods for the shopping cart object:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Evaluate()</strong> &ndash; fully recalculates the shopping cart&#39;s values and totals based on its current content and properties (discounts, taxes, shipping, etc.). You need to call the <i class=" ">Evaluate</i> method after you modify the shopping cart content or set any properties that could affect the calculation results.</p>
-</li><li class=" "><p   
-><strong class=" ">Save()</strong> &ndash; saves the given shopping cart&#39;s state into the database. You need to call the <i class=" ">Save</i> method after making any shopping cart modifications that you wish to persist in the database. Not required for changes made to shopping cart items that are stored separately (i.e. products in the shopping cart or applied coupon codes).</p>
+<p>When working with objects of the <strong class=" ">Kentico.Ecommerce.ShoppingCart</strong> class, you need to manually handle recalculation and saving of the shopping cart. Otherwise your shopping carts may display or store incorrect values.</p>
+<p>Perform these operations by calling the following methods for the shopping cart object:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Evaluate()</strong> – fully recalculates the shopping cart's values and totals based on its current content and properties (discounts, taxes, shipping, etc.). You need to call the <i class=" ">Evaluate</i> method after you modify the shopping cart content or set any properties that could affect the calculation results.</p>
+</li><li class=" "><p><strong class=" ">Save()</strong> – saves the given shopping cart's state into the database. You need to call the <i class=" ">Save</i> method after making any shopping cart modifications that you wish to persist in the database. Not required for changes made to shopping cart items that are stored separately (i.e. products in the shopping cart or applied coupon codes).</p>
 </li></ul>    <h4 id="src-68880550_UsingashoppingcartonMVCsites-Addingaproducttotheshoppingcart" class="heading "><span>Adding a product to the shopping cart</span></h4>
-<p   
->To the checkout controller, add a POST method that adds a   <a   href="Products">product</a> to the shopping cart. For example, the system can trigger the method after a visitor clicks the <i class=" ">Add to cart</i> button.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>To the checkout controller, add a POST method that adds a <a href="products">product</a> to the shopping cart. For example, the system can trigger the method after a visitor clicks the <i class=" ">Add to cart</i> button.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
     <h4 id="src-68880550_UsingashoppingcartonMVCsites-Updatingashoppingcartitem" class="heading "><span>Updating a shopping cart item</span></h4>
-<p   
->To the checkout controller, add a POST method that changes the number of units of a shopping cart item. For example, the system can trigger the method after a visitor clicks the <i class=" ">Update</i> button in the shopping cart.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>To the checkout controller, add a POST method that changes the number of units of a shopping cart item. For example, the system can trigger the method after a visitor clicks the <i class=" ">Update</i> button in the shopping cart.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
     <h4 id="src-68880550_UsingashoppingcartonMVCsites-Removingashoppingcartitem" class="heading "><span>Removing a shopping cart item</span></h4>
-<p   
->To the checkout controller, add a POST method that removes a shopping cart item from the shopping cart. For example, the system can trigger the method after a visitor clicks the <i class=" ">Remove</i> button in the shopping cart.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>To the checkout controller, add a POST method that removes a shopping cart item from the shopping cart. For example, the system can trigger the method after a visitor clicks the <i class=" ">Remove</i> button in the shopping cart.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
     <h4 id="src-68880550_UsingashoppingcartonMVCsites-Checkingout" class="heading "><span>Checking out</span></h4>
-<p   
->To the checkout controller, add a method that enables the visitor to continue with the checkout process to the next step to make an order. You need to validate the shopping cart first.</p>
-<p   
->The next step is usually a step where the visitor/customer types their details, see   <a   href="Creating-the-customer-details-step-in-MVC-checkout-processes">Creating the customer details step in MVC checkout processes</a>.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>To the checkout controller, add a method that enables the visitor to continue with the checkout process to the next step to make an order. You need to validate the shopping cart first.</p>
+<p>The next step is usually a step where the visitor/customer types their details, see <a href="creating-the-customer-details-step-in-mvc-checkout-processes">Creating the customer details step in MVC checkout processes</a>.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
         </div>
 
@@ -331,5 +283,6 @@ The example code targets at the   <a   href="Creating-the-customer-details-step-
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

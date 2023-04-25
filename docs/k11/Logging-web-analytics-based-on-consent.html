@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Logging web analytics based on consent - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,54 +148,36 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->By default,   <a   href="Web-analytics">web analytics</a> log data for all visitors on the live website. Developers can customize the system to log web analytics only for visitors who give some form of consent.</p>
-<p   
->The system provides the <strong class=" ">WebAnalyticsEvents.CheckAnalyticsConsent</strong> global event, which triggers before any type of web analytics are logged for visitors (before processing of visitor personal data). By   <a   href="Handling-global-events">assigning a handler</a> to the event, developers can perform the following:</p>
-<ul class=" "><li class=" "><p   
->Define a condition according to the website&#39;s consent requirements. The condition can be based on   <a   href="Working-with-consents">consents managed within Kentico</a> or on any other data available in the context of the request.</p>
-</li><li class=" "><p   
->Set the <strong class=" ">HasConsent</strong> property of the handler&#39;s <strong class=" ">CheckAnalyticsConsentEventArgs</strong> parameter based on the result. If the property is <i class=" ">false</i>, the system does not process web analytics for the given request.</p>
-</li></ul>    <div  class="confbox panel">
+<div class="section-left"></div><p>By default, <a href="web-analytics">web analytics</a> log data for all visitors on the live website. Developers can customize the system to log web analytics only for visitors who give some form of consent.</p>
+<p>The system provides the <strong class=" ">WebAnalyticsEvents.CheckAnalyticsConsent</strong> global event, which triggers before any type of web analytics are logged for visitors (before processing of visitor personal data). By <a href="handling-global-events">assigning a handler</a> to the event, developers can perform the following:</p>
+<ul class=" "><li class=" "><p>Define a condition according to the website's consent requirements. The condition can be based on <a href="working-with-consents">consents managed within Kentico</a> or on any other data available in the context of the request.</p>
+</li><li class=" "><p>Set the <strong class=" ">HasConsent</strong> property of the handler's <strong class=" ">CheckAnalyticsConsentEventArgs</strong> parameter based on the result. If the property is <i class=" ">false</i>, the system does not process web analytics for the given request.</p>
+</li></ul>    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Web-analytics">Web analytics</a></p>
-</li><li class=" "><p   
->  <a   href="Working-with-consents">Working with consents</a></p>
-</li><li class=" "><p   
->  <a   href="Handling-global-events">Handling global events</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---Global-system-events">Reference - Global system events</a></p>
+<ul class=" "><li class=" "><p><a href="web-analytics">Web analytics</a></p>
+</li><li class=" "><p><a href="working-with-consents">Working with consents</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
+</li><li class=" "><p><a href="reference---global-system-events">Reference - Global system events</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-76845044_Loggingwebanalyticsbasedonconsent-Example" class="heading "><span>Example</span></h3>
-<p   
->The following example demonstrates how to disable logging of web analytics for all visitors (contacts) who have not accepted a   <a   href="Working-with-consents">consent</a> with the <i class=" ">WebAnalytics</i> code name.</p>
-    <div  class="confbox admonition admonition-info">
+<p>The following example demonstrates how to disable logging of web analytics for all visitors (contacts) who have not accepted a <a href="working-with-consents">consent</a> with the <i class=" ">WebAnalytics</i> code name.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Kentico EMS required</strong></p>
-<p   
->The example uses the   <a   href="Working-with-contacts">contact tracking</a> and   <a   href="Working-with-consents">consent</a> features to evaluate whether a visitor has given consent to log web analytics. As a result, it only works for sites with a <strong class=" ">Kentico EMS</strong> license.</p>
+<p><strong class=" ">Kentico EMS required</strong></p>
+<p>The example uses the <a href="working-with-contacts">contact tracking</a> and <a href="working-with-consents">consent</a> features to evaluate whether a visitor has given consent to log web analytics. As a result, it only works for sites with a <strong class=" ">Kentico EMS</strong> license.</p>
         </div>
     </div>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->We recommend adding the class into a custom <i class=" ">Class library</i> project within the Kentico solution.</p>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler method to the <strong class=" ">WebAnalyticsEvents.CheckAnalyticsConsent.Execute</strong> event.</p>
-</li><li class=" "><p   
->Perform the required actions within the handler method:<br/></p>
-<ul class=" "><li class=" "><p   
->To disable logging of web analytics for a given request, set the <strong class=" ">HasConsent</strong> property of the handler&#39;s <strong class=" ">CheckAnalyticsConsentEventArgs</strong> parameter to <i class=" ">false</i>.</p>
-</li><li class=" "><p   
->You can evaluate whether to log web analytics based on any custom condition. Access data from request contexts or use the <strong class=" ">ContactId</strong> property of the handler&#39;s <strong class=" ">CheckAnalyticsConsentEventArgs</strong> parameter to get the ID of the contact object for which the analytics are being logged.</p>
-</li></ul></li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>We recommend adding the class into a custom <i class=" ">Class library</i> project within the Kentico solution.</p>
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign a handler method to the <strong class=" ">WebAnalyticsEvents.CheckAnalyticsConsent.Execute</strong> event.</p>
+</li><li class=" "><p>Perform the required actions within the handler method:<br></p>
+<ul class=" "><li class=" "><p>To disable logging of web analytics for a given request, set the <strong class=" ">HasConsent</strong> property of the handler's <strong class=" ">CheckAnalyticsConsentEventArgs</strong> parameter to <i class=" ">false</i>.</p>
+</li><li class=" "><p>You can evaluate whether to log web analytics based on any custom condition. Access data from request contexts or use the <strong class=" ">ContactId</strong> property of the handler's <strong class=" ">CheckAnalyticsConsentEventArgs</strong> parameter to get the ID of the contact object for which the analytics are being logged.</p>
+</li></ul></li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
@@ -205,10 +185,10 @@
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataProtection;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ContactManagement;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.WebAnalytics;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomConsentModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomConsentModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Module class constructor, the system registers the module under the name "CustomConsent"</code></div>
@@ -216,26 +196,26 @@
 <div class="line"><code class="plain">        : </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomConsent"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Assigns a handler to the WebAnalyticsEvents.CheckAnalyticsConsent.Execute event</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// This event occurs before the system logs web analytics for visitors and processes their personal data</code></div>
 <div class="line"><code class="plain">        WebAnalyticsEvents.CheckAnalyticsConsent.Execute += Analytics_CheckConsent;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Analytics_CheckConsent(</code><code class="keyword">object</code><code class="plain"> sender, CheckAnalyticsConsentEventArgs e)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the contact for which the analytics are being logged</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Note: The contact is null for visitors who have not given consent for contact tracking</code></div>
 <div class="line"><code class="plain">        ContactInfo contact = ContactInfoProvider.GetContactInfo(e.ContactId);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the consent that will be evaluated</code></div>
 <div class="line"><code class="plain">        ConsentInfo consent = ConsentInfoProvider.GetConsentInfo(</code><code class="string">"WebAnalytics"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Disables web analytics logging for all visitors (contacts) who have not accepted the "WebAnalytics" consent declaration</code></div>
 <div class="line"><code class="plain">        IConsentAgreementService consentService = Service.Resolve&lt;IConsentAgreementService&gt;();</code></div>
 <div class="line"><code class="plain">        e.HasConsent = (contact != </code><code class="keyword">null</code><code class="plain"> &amp;&amp; consent != </code><code class="keyword">null</code><code class="plain">) &amp;&amp; consentService.IsAgreed(contact, consent);</code></div>
@@ -243,26 +223,20 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Performance recommendations</strong></p>
-<p   
->The system triggers the <strong class=" ">CheckAnalyticsConsent</strong> event frequently when displaying pages to visitors (multiple times per web request in certain cases). Running demanding operations within the event&#39;s handler method may have a negative impact on your site&#39;s performance.</p>
-<p   
->We strongly recommend caching the results of your consent conditions. To learn about the custom caching options provided by the Kentico API, see:   <a   href="Caching-in-custom-code">Caching in custom code</a></p>
+<p><strong class=" ">Performance recommendations</strong></p>
+<p>The system triggers the <strong class=" ">CheckAnalyticsConsent</strong> event frequently when displaying pages to visitors (multiple times per web request in certain cases). Running demanding operations within the event's handler method may have a negative impact on your site's performance.</p>
+<p>We strongly recommend caching the results of your consent conditions. To learn about the custom caching options provided by the Kentico API, see: <a href="caching-in-custom-code">Caching in custom code</a></p>
         </div>
     </div>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip &ndash; Logging analytics based on tracking consent</strong></p>
-<p   
->For visitors who have not given consent for the tracking of contacts and activities (see   <a   href="Working-with-consents">Working with consents</a>), the <strong class=" ">ContactId</strong> property of the handler&#39;s <strong class=" ">CheckAnalyticsConsentEventArgs</strong> parameter is 0.</p>
-<p   
->You can use the tracking consent as your condition for logging of web analytics. In this case, you do not need to define or evaluate an additional &quot;web analytics consent&quot;. You only need to create a condition that checks whether the <i class=" ">ContactId</i> value is greater than 0, i.e. that the web analytics are being logged for an existing contact.</p>
+<p><strong class=" ">Tip – Logging analytics based on tracking consent</strong></p>
+<p>For visitors who have not given consent for the tracking of contacts and activities (see <a href="working-with-consents">Working with consents</a>), the <strong class=" ">ContactId</strong> property of the handler's <strong class=" ">CheckAnalyticsConsentEventArgs</strong> parameter is 0.</p>
+<p>You can use the tracking consent as your condition for logging of web analytics. In this case, you do not need to define or evaluate an additional "web analytics consent". You only need to create a condition that checks whether the <i class=" ">ContactId</i> value is greater than 0, i.e. that the web analytics are being logged for an existing contact.</p>
         </div>
     </div>
         </div>
@@ -285,5 +259,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

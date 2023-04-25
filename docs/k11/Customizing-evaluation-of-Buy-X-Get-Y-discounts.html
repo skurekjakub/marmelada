@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customizing evaluation of Buy X Get Y discounts - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,18 +149,13 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-    <div  class="confbox admonition admonition-warning">
+    <div class="section-left"><div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->This page is out of date and hidden via restrictions. We&#39;ve decided not to rewrite this page after the E-commerce refactoring in version 11. General BXGY customizations are covered in   <a   href="Customizing-discounts">Customizing discounts</a>.</p>
-<p   
->If there is demand for BXGY customization details of this type, we can rewrite and recover this page. If that happens, remember to add a version link for the <strong class=" ">bxgy_evaluation_customizing</strong> identifier in the DevNet help service.</p>
+<p>This page is out of date and hidden via restrictions. We've decided not to rewrite this page after the E-commerce refactoring in version 11. General BXGY customizations are covered in <a href="customizing-discounts">Customizing discounts</a>.</p>
+<p>If there is demand for BXGY customization details of this type, we can rewrite and recover this page. If that happens, remember to add a version link for the <strong class=" ">bxgy_evaluation_customizing</strong> identifier in the DevNet help service.</p>
         </div>
-    </div>
-<p   
->If you want to modify the way   <a   href="Working-with-Buy-X-Get-Y-discounts">Buy X Get Y discounts</a> evaluate whether the content of the shopping cart is eligible for a Buy X Get Y discount, you need to override the <strong class=" ">GetMultiBuyDiscountsEvaluatorInternal</strong> method in   <a   href="E-commerce-customization-model">the <strong class=" ">MultiBuyDiscountInfoProvider</strong> class</a> of the <strong class=" ">CMS.Ecommerce</strong> namespace.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    </div><p>If you want to modify the way <a href="working-with-buy-x-get-y-discounts">Buy X Get Y discounts</a> evaluate whether the content of the shopping cart is eligible for a Buy X Get Y discount, you need to override the <strong class=" ">GetMultiBuyDiscountsEvaluatorInternal</strong> method in <a href="e-commerce-customization-model">the <strong class=" ">MultiBuyDiscountInfoProvider</strong> class</a> of the <strong class=" ">CMS.Ecommerce</strong> namespace.</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Returns an instance of the MultiBuyDiscountsEvaluator class that determines whether the shopping cart</code></div>
@@ -174,70 +167,46 @@
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> MultiBuyDiscountsEvaluator(cart.CartProducts);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
-    </div>
-<p   
->Since the <strong class=" ">GetMultiBuyDiscountsEvaluatorInternal</strong> method returns a <strong class=" ">MultiBuyDiscountsEvaluator</strong> object, you need to create your own class that inherits from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class.</p>
-    <h3 id="src-68881603_CustomizingevaluationofBuyXGetYdiscounts-Howitworksbydefault" class="heading "><span>How it works by default</span></h3>
-<p   
->When the system needs to evaluate whether the specific shopping cart contains products eligible for a Buy X Get Y discount, the system initializes the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class and assigns a <strong class=" ">MultiBuyDiscountsApplicator</strong> object to the <strong class=" ">Applicator</strong> property.</p>
-<ul class=" "><li class=" "><p   
->The <strong class=" ">EvaluateDiscounts</strong> method loops through all applicable Buy X Get Y discounts on the current site (i.e., discounts that are enabled on the current site in the time of evaluation for the given user role and whether the coupon was entered) and tries to apply the discount on the content of the shopping cart. Through the loop, if the system finds out that a discount forbids lower priority discounts to be applied, the system stops the loop.</p>
-<ul class=" "><li class=" "><p   
->While the method is trying to apply the discount on shopping cart items, the <strong class=" ">PrepareItemsForDiscount</strong> sorts the <strong class=" ">SortedItems</strong> list (which is sorted according to the price of the items) to the <strong class=" ">PrioritizedItems</strong> list according to the priority set by the discount (the discounted items from the &quot;get&quot; conditions are first in the list). The prioritization works as set by the <strong class=" ">PrioritizeItems</strong> method which is located in the class of the Buy X Get Y discount, originally in the <strong class=" ">IMultiBuyDiscount</strong> interface.</p>
-</li><li class=" "><p   
->The process of trying to apply the discount occurs in the <strong class=" ">TryApplyDiscount</strong> method. The method loops through all shopping cart items where it evaluates whether it is usable for the currently looped discount. The method also creates a list that records units of items that are used either for the &quot;buy&quot; conditions of the discount or the &quot;get&quot; conditions (either items required for the discount to be applied or items that are discounted).</p>
-<ul class=" "><li class=" "><p   
->The process of evaluating of the discount applicability occurs in the <strong class=" ">FindDiscountApplication</strong> method. It finds out whether the shopping cart contains any item that is in the &quot;buy&quot; or &quot;get&quot; conditions of the Buy X Get Y discount. It also checks whether a product should be autoadded to the shopping cart (the <strong class=" ">AcceptMissedDiscount</strong> method of the applicator).</p>
-<ul class=" "><li class=" "><p   
->The process of finding out whether the shopping cart contains any item in the &quot;buy&quot; conditions occurs in the <strong class=" ">FindItemsToBaseDiscountOn</strong> method. The method finds out the items with the lowest priority that fulfill the &quot;buy&quot; conditions and records how many units of the item was used for the discount.</p>
-<ul class=" "><li class=" "><p   
->The process of checking whether the item is required for the discount occurs in the <strong class=" ">CanBaseDiscountOn</strong> method. The method checks whether there is any item not used for the &quot;buy&quot; or &quot;get&quot; conditions. The method also checks whether the discount requires the item for being applied (the <strong class=" ">IsBasedOn</strong> method of the discount object).</p>
-</li><li class=" "><p   
->The process of creating a record of how many units of the specific item was used occurs in the <strong class=" ">AddItemsCount</strong> method.</p>
-</li></ul></li><li class=" "><p   
->The process of finding out whether the shopping cart contains any item in the &quot;get&quot; conditions occurs in the <strong class=" ">FindItemsToBeDiscounted</strong> method. The method finds out the items with the highest priority that fulfill the &quot;get&quot; conditions and record how man units of the item was used for the discount.</p>
-<ul class=" "><li class=" "><p   
->The process of checking whether the item is to be discounted occurs in the <strong class=" ">CanBeDiscounted</strong> method. The method checks whether there is any item not used for the &quot;buy&quot; or &quot;get&quot; conditions. The method also checks whether the discount permits to apply the discount to the item (the <strong class=" ">IsApplicableOn</strong> method of the discount object).</p>
-</li><li class=" "><p   
->The process of creating a record of how man units of the specific item was discounted occurs in the <strong class=" ">AddItemsCount</strong> method.</p>
-</li></ul></li></ul></li><li class=" "><p   
->The process of applying the discount occurs in the <strong class=" ">ApplyDiscount</strong> method. The method loops through all discounted items and calls the applicator of the discount to apply the discount.</p>
-</li><li class=" "><p   
->The process of creating a record of which shopping cart was used and how many units were used occurs in the <strong class=" ">RememberUsedItems</strong> method. The method loops through all the items used for the discount (both for the &quot;buy&quot; conditions and the &quot;get&quot; conditions) and records it.</p>
-</li></ul></li></ul></li></ul>    <div  class="confbox panel">
+    </div><p>Since the <strong class=" ">GetMultiBuyDiscountsEvaluatorInternal</strong> method returns a <strong class=" ">MultiBuyDiscountsEvaluator</strong> object, you need to create your own class that inherits from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class.</p><h3 id="src-68881603_CustomizingevaluationofBuyXGetYdiscounts-Howitworksbydefault" class="heading "><span>How it works by default</span></h3><p>When the system needs to evaluate whether the specific shopping cart contains products eligible for a Buy X Get Y discount, the system initializes the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class and assigns a <strong class=" ">MultiBuyDiscountsApplicator</strong> object to the <strong class=" ">Applicator</strong> property.</p><ul class=" "><li class=" "><p>The <strong class=" ">EvaluateDiscounts</strong> method loops through all applicable Buy X Get Y discounts on the current site (i.e., discounts that are enabled on the current site in the time of evaluation for the given user role and whether the coupon was entered) and tries to apply the discount on the content of the shopping cart. Through the loop, if the system finds out that a discount forbids lower priority discounts to be applied, the system stops the loop.</p>
+<ul class=" "><li class=" "><p>While the method is trying to apply the discount on shopping cart items, the <strong class=" ">PrepareItemsForDiscount</strong> sorts the <strong class=" ">SortedItems</strong> list (which is sorted according to the price of the items) to the <strong class=" ">PrioritizedItems</strong> list according to the priority set by the discount (the discounted items from the "get" conditions are first in the list). The prioritization works as set by the <strong class=" ">PrioritizeItems</strong> method which is located in the class of the Buy X Get Y discount, originally in the <strong class=" ">IMultiBuyDiscount</strong> interface.</p>
+</li><li class=" "><p>The process of trying to apply the discount occurs in the <strong class=" ">TryApplyDiscount</strong> method. The method loops through all shopping cart items where it evaluates whether it is usable for the currently looped discount. The method also creates a list that records units of items that are used either for the "buy" conditions of the discount or the "get" conditions (either items required for the discount to be applied or items that are discounted).</p>
+<ul class=" "><li class=" "><p>The process of evaluating of the discount applicability occurs in the <strong class=" ">FindDiscountApplication</strong> method. It finds out whether the shopping cart contains any item that is in the "buy" or "get" conditions of the Buy X Get Y discount. It also checks whether a product should be autoadded to the shopping cart (the <strong class=" ">AcceptMissedDiscount</strong> method of the applicator).</p>
+<ul class=" "><li class=" "><p>The process of finding out whether the shopping cart contains any item in the "buy" conditions occurs in the <strong class=" ">FindItemsToBaseDiscountOn</strong> method. The method finds out the items with the lowest priority that fulfill the "buy" conditions and records how many units of the item was used for the discount.</p>
+<ul class=" "><li class=" "><p>The process of checking whether the item is required for the discount occurs in the <strong class=" ">CanBaseDiscountOn</strong> method. The method checks whether there is any item not used for the "buy" or "get" conditions. The method also checks whether the discount requires the item for being applied (the <strong class=" ">IsBasedOn</strong> method of the discount object).</p>
+</li><li class=" "><p>The process of creating a record of how many units of the specific item was used occurs in the <strong class=" ">AddItemsCount</strong> method.</p>
+</li></ul></li><li class=" "><p>The process of finding out whether the shopping cart contains any item in the "get" conditions occurs in the <strong class=" ">FindItemsToBeDiscounted</strong> method. The method finds out the items with the highest priority that fulfill the "get" conditions and record how man units of the item was used for the discount.</p>
+<ul class=" "><li class=" "><p>The process of checking whether the item is to be discounted occurs in the <strong class=" ">CanBeDiscounted</strong> method. The method checks whether there is any item not used for the "buy" or "get" conditions. The method also checks whether the discount permits to apply the discount to the item (the <strong class=" ">IsApplicableOn</strong> method of the discount object).</p>
+</li><li class=" "><p>The process of creating a record of how man units of the specific item was discounted occurs in the <strong class=" ">AddItemsCount</strong> method.</p>
+</li></ul></li></ul></li><li class=" "><p>The process of applying the discount occurs in the <strong class=" ">ApplyDiscount</strong> method. The method loops through all discounted items and calls the applicator of the discount to apply the discount.</p>
+</li><li class=" "><p>The process of creating a record of which shopping cart was used and how many units were used occurs in the <strong class=" ">RememberUsedItems</strong> method. The method loops through all the items used for the discount (both for the "buy" conditions and the "get" conditions) and records it.</p>
+</li></ul></li></ul></li></ul></div>
+
+    
+
+    
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881603_CustomizingevaluationofBuyXGetYdiscounts-Howitworksbydefault">How it works by default</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881603_CustomizingevaluationofBuyXGetYdiscounts-Sourcecode">Source code</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68881603_CustomizingevaluationofBuyXGetYdiscounts-CreatingacustomevaluatingprocessofBuyXGetYdiscounts">Creating a custom evaluating process of Buy X Get Y discounts</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881603_CustomizingevaluationofBuyXGetYdiscounts-CustomizingtheMultiBuyDiscountInfoProviderclass">Customizing the MultiBuyDiscountInfoProvider class</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881603_CustomizingevaluationofBuyXGetYdiscounts-CustomizingtheMultiBuyDiscountsEvaluatorclass">Customizing the MultiBuyDiscountsEvaluator class</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881603_customizingevaluationofbuyxgetydiscounts-howitworksbydefault">How it works by default</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881603_customizingevaluationofbuyxgetydiscounts-sourcecode">Source code</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881603_customizingevaluationofbuyxgetydiscounts-creatingacustomevaluatingprocessofbuyxgetydiscounts">Creating a custom evaluating process of Buy X Get Y discounts</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881603_customizingevaluationofbuyxgetydiscounts-customizingthemultibuydiscountinfoproviderclass">Customizing the MultiBuyDiscountInfoProvider class</a></p>
+</li><li class=" "><p><a href="#src-68881603_customizingevaluationofbuyxgetydiscounts-customizingthemultibuydiscountsevaluatorclass">Customizing the MultiBuyDiscountsEvaluator class</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Customizing-application-of-Buy-X-Get-Y-discounts">Customizing application of Buy X Get Y discounts</a></p>
-</li><li class=" "><p   
->  <a   href="Working-with-Buy-X-Get-Y-discounts">Working with Buy X Get Y discounts</a></p>
-</li><li class=" "><p   
->  <a   href="Discounts">Discounts</a></p>
-</li><li class=" "><p   
->  <a   href="E-commerce-customization-model">E-commerce customization model</a></p>
-</li><li class=" "><p   
->  <a   href="Customizing-providers">Customizing providers</a></p>
+<ul class=" "><li class=" "><p><a href="customizing-application-of-buy-x-get-y-discounts">Customizing application of Buy X Get Y discounts</a></p>
+</li><li class=" "><p><a href="working-with-buy-x-get-y-discounts">Working with Buy X Get Y discounts</a></p>
+</li><li class=" "><p><a href="discounts">Discounts</a></p>
+</li><li class=" "><p><a href="e-commerce-customization-model">E-commerce customization model</a></p>
+</li><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h4 id="src-68881603_CustomizingevaluationofBuyXGetYdiscounts-Sourcecode" class="heading "><span>Source code</span></h4>
     <div class="scroll-expand-container collapsed">
         <div class="scroll-expand-control">
@@ -245,7 +214,7 @@
             <span class="scroll-expand-control-text">See the whole source code of the class...</span>
         </div>
         <div class="scroll-expand-content">
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using System.Collections.Generic;</code></div>
 <div class="line"><code class="plain">using System.Linq;</code></div>
@@ -721,29 +690,21 @@
         </div>
     </div>
     <h3 id="src-68881603_CustomizingevaluationofBuyXGetYdiscounts-CreatingacustomevaluatingprocessofBuyXGetYdiscounts" class="heading "><span>Creating a custom evaluating process of Buy X Get Y discounts</span></h3>
-<p   
->To customize the Buy X Get Y discount evaluation:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="#src-68881603_CustomizingevaluationofBuyXGetYdiscounts-CustomizingtheMultiBuyDiscountInfoProviderclass">Override the <strong class=" ">CMS.Ecommerce.MultiBuyDiscountInfoProvider.GetMultiBuyDiscountsEvaluatorInternal</strong> method.</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881603_CustomizingevaluationofBuyXGetYdiscounts-CustomizingtheMultiBuyDiscountsEvaluatorclass">Implement a class which inherits from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class.</a></p>
+<p>To customize the Buy X Get Y discount evaluation:</p>
+<ol class=" "><li class=" "><p><a href="#src-68881603_customizingevaluationofbuyxgetydiscounts-customizingthemultibuydiscountinfoproviderclass">Override the <strong class=" ">CMS.Ecommerce.MultiBuyDiscountInfoProvider.GetMultiBuyDiscountsEvaluatorInternal</strong> method.</a></p>
+</li><li class=" "><p><a href="#src-68881603_customizingevaluationofbuyxgetydiscounts-customizingthemultibuydiscountsevaluatorclass">Implement a class which inherits from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class.</a></p>
 </li></ol>    <h4 id="src-68881603_CustomizingevaluationofBuyXGetYdiscounts-CustomizingtheMultiBuyDiscountInfoProviderclass" class="heading "><span>Customizing the MultiBuyDiscountInfoProvider class</span></h4>
-<p   
->Override the <strong class=" ">GetMultiBuyDiscountsEvaluatorInternal</strong> virtual method to be able to integrate your custom <strong class=" ">MultiBuyDiscountsEvaluator</strong> class.</p>
-<ol class=" "><li class=" "><p   
->Create a new class file in your project in Visual Studio, for example <strong class=" ">CustomMultiBuyInfoProvider</strong><strong class=" ">.cs</strong> that inherits from the <strong class=" ">MultiBuyDiscountInfoProvider</strong> class.</p>
-</li><li class=" "><p   
->Add the <strong class=" ">CMS</strong> and <strong class=" ">CMS.Ecommerce</strong> namespaces to the <i class=" ">using</i> block.</p>
-</li><li class=" "><p   
->Register the new InfoProvider class:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Override the <strong class=" ">GetMultiBuyDiscountsEvaluatorInternal</strong> virtual method to be able to integrate your custom <strong class=" ">MultiBuyDiscountsEvaluator</strong> class.</p>
+<ol class=" "><li class=" "><p>Create a new class file in your project in Visual Studio, for example <strong class=" ">CustomMultiBuyInfoProvider</strong><strong class=" ">.cs</strong> that inherits from the <strong class=" ">MultiBuyDiscountInfoProvider</strong> class.</p>
+</li><li class=" "><p>Add the <strong class=" ">CMS</strong> and <strong class=" ">CMS.Ecommerce</strong> namespaces to the <i class=" ">using</i> block.</p>
+</li><li class=" "><p>Register the new InfoProvider class:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">[assembly: RegisterCustomProvider(typeof(CustomMultiBuyInfoProvider))]</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Override the <strong class=" ">GetMultiBuyDiscountsEvaluatorInternal </strong>method with your custom (not yet existing) <strong class=" ">MultiBuyDiscountsEvaluator</strong> class:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Override the <strong class=" ">GetMultiBuyDiscountsEvaluatorInternal </strong>method with your custom (not yet existing) <strong class=" ">MultiBuyDiscountsEvaluator</strong> class:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomMultiBuyInfoProvider : MultiBuyDiscountInfoProvider</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -754,107 +715,68 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881603/creating_custommultibuyinfoprovider_class.png" alt="images/download/attachments/68881603/creating_custommultibuyinfoprovider_class.png" width="500"  />
-        <br/><span class="caption">Creating the CustomMultiBuyInfoProvider class</span>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881603/creating_custommultibuyinfoprovider_class.png" alt="images/download/attachments/68881603/creating_custommultibuyinfoprovider_class.png" width="500">
+        <br><span class="caption">Creating the CustomMultiBuyInfoProvider class</span>
     </p>
-</li></ol><p   
->The system now returns yet non-existing <strong class=" ">CustomMultiBuyEvaluator</strong> when evaluating Buy X Get Y discounts. Continue with the next steps to achieve the desired functionality.</p>
+</li></ol><p>The system now returns yet non-existing <strong class=" ">CustomMultiBuyEvaluator</strong> when evaluating Buy X Get Y discounts. Continue with the next steps to achieve the desired functionality.</p>
     <h4 id="src-68881603_CustomizingevaluationofBuyXGetYdiscounts-CustomizingtheMultiBuyDiscountsEvaluatorclass" class="heading "><span>Customizing the MultiBuyDiscountsEvaluator class</span></h4>
-<p   
->Implement a class inheriting from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class to provide your custom logic of evaluating Buy X Get Y discounts.</p>
-<ol class=" "><li class=" "><p   
->Create a new class file in your project in Visual Studio, for example <strong class=" ">CustomMultiBuyEvaluator.cs</strong> that inherits from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class.</p>
-</li><li class=" "><p   
->Add the <strong class=" ">CMS</strong> and <strong class=" ">CMS.Ecommerce</strong> namespaces to the <i class=" ">using</i> block.</p>
-</li><li class=" "><p   
->Assign the inheritance from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class to the <strong class=" ">CustomMultiBuyEvaluator</strong> class:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Implement a class inheriting from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class to provide your custom logic of evaluating Buy X Get Y discounts.</p>
+<ol class=" "><li class=" "><p>Create a new class file in your project in Visual Studio, for example <strong class=" ">CustomMultiBuyEvaluator.cs</strong> that inherits from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class.</p>
+</li><li class=" "><p>Add the <strong class=" ">CMS</strong> and <strong class=" ">CMS.Ecommerce</strong> namespaces to the <i class=" ">using</i> block.</p>
+</li><li class=" "><p>Assign the inheritance from the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class to the <strong class=" ">CustomMultiBuyEvaluator</strong> class:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomMultiBuyEvaluator : MultiBuyDiscountsEvaluator</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Create a suitable constructor. The constructor of the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class needs the <i class=" ">IEnumerable&lt;ShoppingCartItemInfo</i> object. For example:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Create a suitable constructor. The constructor of the <strong class=" ">MultiBuyDiscountsEvaluator</strong> class needs the <i class=" ">IEnumerable&lt;ShoppingCartItemInfo</i> object. For example:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> CustomMultiBuyEvaluator(IEnumerable&lt;ShoppingCartItemInfo&gt; cartItems)</code></div>
 <div class="line"><code class="plain">    : base(cartItems)</code></div>
 <div class="line"><code class="plain">{ }</code></div>
 </div>
     </div>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881603/creating_custommultibuyevaluator_class.png" alt="images/download/attachments/68881603/creating_custommultibuyevaluator_class.png" width="500"  />
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881603/creating_custommultibuyevaluator_class.png" alt="images/download/attachments/68881603/creating_custommultibuyevaluator_class.png" width="500">
     </p>
-</li><li class=" "><p   
->Override the methods you want to change. The <strong class=" ">MultiBuyDiscountsEvaluator</strong> class contains the following virtual methods:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">protected virtual void Reset()</strong> &ndash; Resets the evaluator to its initial state.</p>
-</li><li class=" "><p   
-><strong class=" ">protected virtual void PrepareItemsForDiscount(IMultiBuyDiscount discount)</strong> &ndash; Ensures that the shopping cart items from the <strong class=" ">SortedItems</strong> sorted list are prioritized according to the given Buy X Get Y discount.</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">IMultiBuyDiscount discount</i> &ndash; Discount which prioritizes the sorted shopping cart items.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">protected virtual bool FindItemsToBaseDiscountOn(IMultiBuyDiscount discount, IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBaseDiscountOn) </strong>&ndash; Finds items required by &quot;buy&quot; conditions of the given Buy X Get Y discount. Returns true if the found items fully satisfy discount requirement &quot;buy&quot; conditions.</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">IMultiBuyDiscount discount</i> &ndash; Discount with the specified required items.</p>
-</li><li class=" "><p   
-><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBaseDiscountOn</i> &ndash; Empty dictionary. Found items are placed here with their counts.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">protected virtual bool FindItemsToBeDiscounted(IMultiBuyDiscount discount, IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBaseDiscountOn, IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBeDiscounted) </strong>&ndash; Finds items to be discounted with the given discount based on the given items. Returns true when at least one discounted item was found.</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">IMultiBuyDiscount discount</i> &ndash; Discount with the specific &quot;get&quot; conditions.</p>
-</li><li class=" "><p   
-><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBaseDiscountOn</i> &ndash; Shopping cart items used for requirement &quot;buy&quot; conditions.</p>
-</li><li class=" "><p   
-><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBeDiscounted</i> &ndash; Shopping cart items found to be discounted by this discount.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">protected virtual bool CanBeDiscounted(ShoppingCartItemInfo item, IMultiBuyDiscount discount, IDictionary&lt;ShoppingCartItemInfo, int&gt; basedOnItems, IDictionary&lt;ShoppingCartItemInfo, int&gt; alreadyDiscountedItems) </strong>&ndash; Checks if the given item can be discounted using the given discount. Returns true if the given discount is applicable on the given items.</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">ShoppingCartItemInfo item</i> &ndash; Discounted item to be checked.</p>
-</li><li class=" "><p   
-><i class=" ">IMultiBuyDiscount discount</i> &ndash; Discount, which discounts the item, to be checked.</p>
-</li><li class=" "><p   
-><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; basedOnItems</i> &ndash; Shopping cart items with the count of the items found as the satisfying items for the given discount.</p>
-</li><li class=" "><p   
-><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; alreadyDiscountedItems</i> &ndash; Shopping cart items with the count of items already found as suitable for applying the discount for the given discount.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">protected virtual bool CanBaseDiscountOn(ShoppingCartItemInfo item, IMultiBuyDiscount discount, IDictionary&lt;ShoppingCartItemInfo, int&gt; alreadyBasedOnItems) </strong>&ndash; Checks if the given item can be used to fulfill discount &quot;buy&quot; conditions. Returns true if the shopping cart contains enough units for the discount.</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">ShoppingCartItemInfo item</i> &ndash; Item to be checked.</p>
-</li><li class=" "><p   
-><i class=" ">IMultiBuyDiscount discount</i> &ndash; Discount to be checked.</p>
-</li><li class=" "><p   
-><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; alreadyBasedOnItems</i> &ndash; Items with the count of the item units already found as fulfilling the requirements of the &quot;buy&quot; conditions of the given discount.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">protected virtual void ApplyDiscount(IMultiBuyDiscount discount, ShoppingCartItemInfo itemToBeDiscounted, int units) </strong>&ndash; Applies the Buy X Get Y discount to the given number of units of the given shopping cart item.</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">IMultiBuyDiscount discount</i> &ndash; Discount which is applied.</p>
-</li><li class=" "><p   
-><i class=" ">ShoppingCartItemInfo itemToBeDiscounted</i> &ndash; Shopping cart item to apply the discount on.</p>
-</li><li class=" "><p   
-><i class=" ">int units</i> &ndash; Number of units to be discounted.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">protected virtual void RememberUsedItems(IEnumerable&lt;KeyValuePair&lt;ShoppingCartItemInfo, int&gt;&gt; discountingItemsCounts, IEnumerable&lt;KeyValuePair&lt;ShoppingCartItemInfo, int&gt;&gt; discountedItemsCounts) </strong>&ndash; Makes a record that the given items in the given number of units were used for the given discount.</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">IEnumerable&lt;KeyValuePair&lt;ShoppingCartItemInfo, int&gt;&gt; discountingItemsCounts</i> &ndash; Shopping cart items used for the requirement &quot;buy&quot; conditions. The value is the number of units used for discount.</p>
-</li><li class=" "><p   
-><i class=" ">IEnumerable&lt;KeyValuePair&lt;ShoppingCartItemInfo, int&gt;&gt; discountedItemsCounts</i> &ndash; Shopping cart items used for the &quot;get&quot; conditions (the discounted items). The value is the number of units used for discount.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">protected virtual int GetUnusedNonFreeUnits(ShoppingCartItemInfo item)</strong> &ndash; Returns the number of units not used for any discount (neither as the requirement &quot;buy&quot; conditions items nor as the &quot;get&quot; conditions items &ndash; the discounted items).</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">ShoppingCartItemInfo item</i> &ndash; Item to get number of units for.</p>
-</li></ul></li></ul>    <div  class="confbox admonition admonition-tip">
+</li><li class=" "><p>Override the methods you want to change. The <strong class=" ">MultiBuyDiscountsEvaluator</strong> class contains the following virtual methods:</p>
+<ul class=" "><li class=" "><p><strong class=" ">protected virtual void Reset()</strong> – Resets the evaluator to its initial state.</p>
+</li><li class=" "><p><strong class=" ">protected virtual void PrepareItemsForDiscount(IMultiBuyDiscount discount)</strong> – Ensures that the shopping cart items from the <strong class=" ">SortedItems</strong> sorted list are prioritized according to the given Buy X Get Y discount.</p>
+<ul class=" "><li class=" "><p><i class=" ">IMultiBuyDiscount discount</i> – Discount which prioritizes the sorted shopping cart items.</p>
+</li></ul></li><li class=" "><p><strong class=" ">protected virtual bool FindItemsToBaseDiscountOn(IMultiBuyDiscount discount, IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBaseDiscountOn) </strong>– Finds items required by "buy" conditions of the given Buy X Get Y discount. Returns true if the found items fully satisfy discount requirement "buy" conditions.</p>
+<ul class=" "><li class=" "><p><i class=" ">IMultiBuyDiscount discount</i> – Discount with the specified required items.</p>
+</li><li class=" "><p><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBaseDiscountOn</i> – Empty dictionary. Found items are placed here with their counts.</p>
+</li></ul></li><li class=" "><p><strong class=" ">protected virtual bool FindItemsToBeDiscounted(IMultiBuyDiscount discount, IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBaseDiscountOn, IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBeDiscounted) </strong>– Finds items to be discounted with the given discount based on the given items. Returns true when at least one discounted item was found.</p>
+<ul class=" "><li class=" "><p><i class=" ">IMultiBuyDiscount discount</i> – Discount with the specific "get" conditions.</p>
+</li><li class=" "><p><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBaseDiscountOn</i> – Shopping cart items used for requirement "buy" conditions.</p>
+</li><li class=" "><p><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; itemsToBeDiscounted</i> – Shopping cart items found to be discounted by this discount.</p>
+</li></ul></li><li class=" "><p><strong class=" ">protected virtual bool CanBeDiscounted(ShoppingCartItemInfo item, IMultiBuyDiscount discount, IDictionary&lt;ShoppingCartItemInfo, int&gt; basedOnItems, IDictionary&lt;ShoppingCartItemInfo, int&gt; alreadyDiscountedItems) </strong>– Checks if the given item can be discounted using the given discount. Returns true if the given discount is applicable on the given items.</p>
+<ul class=" "><li class=" "><p><i class=" ">ShoppingCartItemInfo item</i> – Discounted item to be checked.</p>
+</li><li class=" "><p><i class=" ">IMultiBuyDiscount discount</i> – Discount, which discounts the item, to be checked.</p>
+</li><li class=" "><p><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; basedOnItems</i> – Shopping cart items with the count of the items found as the satisfying items for the given discount.</p>
+</li><li class=" "><p><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; alreadyDiscountedItems</i> – Shopping cart items with the count of items already found as suitable for applying the discount for the given discount.</p>
+</li></ul></li><li class=" "><p><strong class=" ">protected virtual bool CanBaseDiscountOn(ShoppingCartItemInfo item, IMultiBuyDiscount discount, IDictionary&lt;ShoppingCartItemInfo, int&gt; alreadyBasedOnItems) </strong>– Checks if the given item can be used to fulfill discount "buy" conditions. Returns true if the shopping cart contains enough units for the discount.</p>
+<ul class=" "><li class=" "><p><i class=" ">ShoppingCartItemInfo item</i> – Item to be checked.</p>
+</li><li class=" "><p><i class=" ">IMultiBuyDiscount discount</i> – Discount to be checked.</p>
+</li><li class=" "><p><i class=" ">IDictionary&lt;ShoppingCartItemInfo, int&gt; alreadyBasedOnItems</i> – Items with the count of the item units already found as fulfilling the requirements of the "buy" conditions of the given discount.</p>
+</li></ul></li><li class=" "><p><strong class=" ">protected virtual void ApplyDiscount(IMultiBuyDiscount discount, ShoppingCartItemInfo itemToBeDiscounted, int units) </strong>– Applies the Buy X Get Y discount to the given number of units of the given shopping cart item.</p>
+<ul class=" "><li class=" "><p><i class=" ">IMultiBuyDiscount discount</i> – Discount which is applied.</p>
+</li><li class=" "><p><i class=" ">ShoppingCartItemInfo itemToBeDiscounted</i> – Shopping cart item to apply the discount on.</p>
+</li><li class=" "><p><i class=" ">int units</i> – Number of units to be discounted.</p>
+</li></ul></li><li class=" "><p><strong class=" ">protected virtual void RememberUsedItems(IEnumerable&lt;KeyValuePair&lt;ShoppingCartItemInfo, int&gt;&gt; discountingItemsCounts, IEnumerable&lt;KeyValuePair&lt;ShoppingCartItemInfo, int&gt;&gt; discountedItemsCounts) </strong>– Makes a record that the given items in the given number of units were used for the given discount.</p>
+<ul class=" "><li class=" "><p><i class=" ">IEnumerable&lt;KeyValuePair&lt;ShoppingCartItemInfo, int&gt;&gt; discountingItemsCounts</i> – Shopping cart items used for the requirement "buy" conditions. The value is the number of units used for discount.</p>
+</li><li class=" "><p><i class=" ">IEnumerable&lt;KeyValuePair&lt;ShoppingCartItemInfo, int&gt;&gt; discountedItemsCounts</i> – Shopping cart items used for the "get" conditions (the discounted items). The value is the number of units used for discount.</p>
+</li></ul></li><li class=" "><p><strong class=" ">protected virtual int GetUnusedNonFreeUnits(ShoppingCartItemInfo item)</strong> – Returns the number of units not used for any discount (neither as the requirement "buy" conditions items nor as the "get" conditions items – the discounted items).</p>
+<ul class=" "><li class=" "><p><i class=" ">ShoppingCartItemInfo item</i> – Item to get number of units for.</p>
+</li></ul></li></ul>    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->See the complete default source code   <a   href="#src-68881603_CustomizingevaluationofBuyXGetYdiscounts-Sourcecode">above</a>.</p>
+<p>See the complete default source code <a href="#src-68881603_customizingevaluationofbuyxgetydiscounts-sourcecode">above</a>.</p>
         </div>
     </div>
-</li></ol><p   
->The Buy X Get Y discounts are now evaluated according to your changes.</p>
+</li></ol><p>The Buy X Get Y discounts are now evaluated according to your changes.</p>
         </div>
 
     </article>
@@ -875,5 +797,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

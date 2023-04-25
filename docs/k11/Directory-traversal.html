@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Directory traversal - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,12 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This type of attack is also known as path traversal. The main goal is to show content of a file or directory via an application. Applications read data from the file system in many cases. Paths to these files or directories are often taken from input. If a user&#39;s input is not handled carefully, users can read data from the root directory of the server&#39;s file system.</p>
-    <h3 id="src-68881115_Directorytraversal-Exampleofdirectorytraversal" class="heading "><span>Example of directory traversal</span></h3>
-<p   
->Let&#39;s inspect the following code:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>This type of attack is also known as path traversal. The main goal is to show content of a file or directory via an application. Applications read data from the file system in many cases. Paths to these files or directories are often taken from input. If a user's input is not handled carefully, users can read data from the root directory of the server's file system.</p><h3 id="src-68881115_Directorytraversal-Exampleofdirectorytraversal" class="heading "><span>Example of directory traversal</span></h3><p>Let's inspect the following code:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;strong&gt;Absolute path e:\\: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs = Directory.GetDirectories(</code><code class="string">"e:\\"</code><code class="plain">);</code></div>
@@ -163,29 +156,29 @@
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br /&gt;&lt;strong&gt;Read e:\\StorageHelper.cs with absolute path: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(File.ReadAllText(</code><code class="string">"e:\\StorageHelper.cs"</code><code class="plain">) + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br /&gt;&lt;strong&gt;Root path of C: taken by ./../../../: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs2 = Directory.GetDirectories(</code><code class="string">"./../../../"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">foreach</code><code class="plain"> (</code><code class="keyword">string</code><code class="plain"> dir </code><code class="keyword">in</code><code class="plain"> dirs2)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br/&gt;&lt;strong&gt;Read c:\\StorageHelper.cs with ./../../../: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(File.ReadAllText(</code><code class="string">"./../../../StorageHelper.cs"</code><code class="plain">) + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br /&gt;&lt;strong&gt;Directory with application: taken by ServerMapPath(\"~/../\"): &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs3 = Directory.GetDirectories(Server.MapPath(</code><code class="string">"~/../"</code><code class="plain">));</code></div>
 <div class="line"><code class="keyword">foreach</code><code class="plain"> (</code><code class="keyword">string</code><code class="plain"> dir </code><code class="keyword">in</code><code class="plain"> dirs3)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">//This code throws an exception - but the security is poor here</code></div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"Directory with application: taken by /../: &lt;br/&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs4 = Directory.GetDirectories(Server.MapPath(</code><code class="string">"/../."</code><code class="plain">));</code></div>
@@ -193,7 +186,7 @@
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">   			Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br /&gt;&lt;strong&gt;Directory with application: taken by Server.MapPath(\"/\") + \"../: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs5 = Directory.GetDirectories(Server.MapPath(</code><code class="string">"/"</code><code class="plain">) + </code><code class="string">"../"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">foreach</code><code class="plain"> (</code><code class="keyword">string</code><code class="plain"> dir </code><code class="keyword">in</code><code class="plain"> dirs5)</code></div>
@@ -201,55 +194,38 @@
 <div class="line"><code class="plain">            Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
 </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881115_Directorytraversal-Exampleofdirectorytraversal">Example of directory traversal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881115_Directorytraversal-Whatcandirectorytraversalattacksdo">What can directory traversal attacks do</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881115_Directorytraversal-Findingdirectorytraversalvulnerabilities">Finding directory traversal vulnerabilities</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881115_Directorytraversal-Avoidingdirectorytraversal">Avoiding directory traversal</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881115_directorytraversal-exampleofdirectorytraversal">Example of directory traversal</a></p>
+</li><li class=" "><p><a href="#src-68881115_directorytraversal-whatcandirectorytraversalattacksdo">What can directory traversal attacks do</a></p>
+</li><li class=" "><p><a href="#src-68881115_directorytraversal-findingdirectorytraversalvulnerabilities">Finding directory traversal vulnerabilities</a></p>
+</li><li class=" "><p><a href="#src-68881115_directorytraversal-avoidingdirectorytraversal">Avoiding directory traversal</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-<p   
->The result of this code will look like this:</p>
-<p   
-><strong class=" ">Absolute path e:\:</strong><br/>e:\$RECYCLE.BIN<br/>e:\ASP.NET_TEMP<br/>e:\AzureSLN</p>
-<p   
-><strong class=" ">Read e:\StorageHelper.cs with absolute path:</strong><br/>************ Some code 2 ************</p>
-<p   
-><strong class=" ">Root path of C: taken by ./../../../:</strong><br/>./../../../$Recycle.Bin<br/>./../../../Backup<br/>./../../../Boot</p>
-<p   
-><strong class=" ">Read c:\StorageHelper.cs with ./../../../:</strong><br/>*************************** Some code StorageHelper.cs<br/>***************************</p>
-<p   
-><strong class=" ">Directory with application: taken by ServerMapPath(&quot;~/../&quot;):</strong><br/>C:\inetpub\wwwroot\3855_10914<br/>C:\inetpub\wwwroot\3889_32518<br/>C:\inetpub\wwwroot\3968_07397</p>
-<p   
-><strong class=" ">Directory with application: taken by Server.MapPath(&quot;/&quot;) + &quot;../:</strong><br/>C:\inetpub\wwwroot\../AdminScripts<br/>C:\inetpub\wwwroot\../custerr<br/>C:\inetpub\wwwroot\../history</p>
-<p   
->These are listings from one particular hard disk. The exact paths or listings aren&#39;t important, the important thing is that you can simply read any file or list any directory. And you can either use a relative or an absolute path. In this case, it is even a more severe vulnerability called full path disclosure. This bug enables the attacker to see a full path in an error message. The attacker finds out your directory structure and can effectively exploit a directory traversal vulnerability.</p>
+    </div></div>
+<p>The result of this code will look like this:</p>
+<p><strong class=" ">Absolute path e:\:</strong><br>e:\$RECYCLE.BIN<br>e:\ASP.NET_TEMP<br>e:\AzureSLN</p>
+<p><strong class=" ">Read e:\StorageHelper.cs with absolute path:</strong><br>************ Some code 2 ************</p>
+<p><strong class=" ">Root path of C: taken by ./../../../:</strong><br>./../../../$Recycle.Bin<br>./../../../Backup<br>./../../../Boot</p>
+<p><strong class=" ">Read c:\StorageHelper.cs with ./../../../:</strong><br>*************************** Some code StorageHelper.cs<br>***************************</p>
+<p><strong class=" ">Directory with application: taken by ServerMapPath("~/../"):</strong><br>C:\inetpub\wwwroot\3855_10914<br>C:\inetpub\wwwroot\3889_32518<br>C:\inetpub\wwwroot\3968_07397</p>
+<p><strong class=" ">Directory with application: taken by Server.MapPath("/") + "../:</strong><br>C:\inetpub\wwwroot\../AdminScripts<br>C:\inetpub\wwwroot\../custerr<br>C:\inetpub\wwwroot\../history</p>
+<p>These are listings from one particular hard disk. The exact paths or listings aren't important, the important thing is that you can simply read any file or list any directory. And you can either use a relative or an absolute path. In this case, it is even a more severe vulnerability called full path disclosure. This bug enables the attacker to see a full path in an error message. The attacker finds out your directory structure and can effectively exploit a directory traversal vulnerability.</p>
     <h3 id="src-68881115_Directorytraversal-Whatcandirectorytraversalattacksdo" class="heading "><span>What can directory traversal attacks do</span></h3>
-<p   
->The first dangerous thing is that the attacker knows your directory structure. And if there are any sensitive information in files in your application directory, the attacker can simply download these files. A worse case is when your application enables the attacker to read files. The attacker can then read your configuration files (e.g., the connection string in web.config file) or the configuration files of the whole system (if the application is used by a highly privileged user).</p>
+<p>The first dangerous thing is that the attacker knows your directory structure. And if there are any sensitive information in files in your application directory, the attacker can simply download these files. A worse case is when your application enables the attacker to read files. The attacker can then read your configuration files (e.g., the connection string in web.config file) or the configuration files of the whole system (if the application is used by a highly privileged user).</p>
     <h3 id="src-68881115_Directorytraversal-Findingdirectorytraversalvulnerabilities" class="heading "><span>Finding directory traversal vulnerabilities</span></h3>
-<p   
->Search for parts of your application where the application reads files and directories. Then try to change the input parameters to get content from a place outside of the application directory. In code, you can search for these strings:</p>
-<ul class=" "><li class=" "><p   
->ServerMapPath</p>
-</li><li class=" "><p   
->FileStream</p>
-</li><li class=" "><p   
->StreamReader</p>
+<p>Search for parts of your application where the application reads files and directories. Then try to change the input parameters to get content from a place outside of the application directory. In code, you can search for these strings:</p>
+<ul class=" "><li class=" "><p>ServerMapPath</p>
+</li><li class=" "><p>FileStream</p>
+</li><li class=" "><p>StreamReader</p>
 </li></ul>    <h3 id="src-68881115_Directorytraversal-Avoidingdirectorytraversal" class="heading "><span>Avoiding directory traversal</span></h3>
-<p   
->Validate user inputs, check for absolute paths for sequences of &quot;../&quot;, and so on. Also, if you read a file, check if the file is within the application path. The application should never read data from a random path on a hard disk.</p>
+<p>Validate user inputs, check for absolute paths for sequences of "../", and so on. Also, if you read a file, check if the file is within the application path. The application should never read data from a random path on a hard disk.</p>
         </div>
 
     </article>
@@ -270,5 +246,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

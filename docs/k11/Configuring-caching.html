@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Configuring caching - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,145 +148,87 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Cache is a storage space that duplicates previously requested data, and allows faster access to the data in the future. Correctly using caching can significantly improve the performance of your website.</p>
-<p   
->Caching the content of web pages provides two primary benefits:</p>
-<ul class=" "><li class=" "><p   
->Quicker loading of data (retrieving data from the cache avoids communication with slower storage spaces, such as the website&#39;s SQL database and file system)</p>
-</li><li class=" "><p   
->Reduction of unnecessary page processing on repeated requests</p>
-</li></ul><p   
->The built-in caching mechanisms of Kentico work primarily on the server side, and utilize the application&#39;s memory to store data. The system saves data into the cache in the form of <i class=" "><strong class=" ">cache keys</strong></i>. Cache keys have unique names that exactly identify the cached content. Each key stores the cached data itself (depending on the type of the cache), as well as other information such as the expiration time or   <a   href="Setting-cache-dependencies">dependencies</a>.</p>
-    <h3 id="src-68881957_Configuringcaching-Cachetypes" class="heading "><span>Cache types</span></h3>
-<p   
->Kentico provides the following types of caching:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="Caching-page-output">Output cache (full page)</a> - caches the full HTML output of pages.</p>
-</li><li class="confluence-link "><p   
->  <a   href="Caching-page-output#src-68881966_Cachingpageoutput-Cachingportionsofthepageoutput">Partial output cache</a> - caches the HTML output of individual page components (web parts).</p>
-</li><li class="confluence-link "><p   
->  <a   href="Caching-files-and-resources">File cache</a> - stores files and resources, such as images, CSS stylesheets or JavaScript files. Supports both server and client-side caching.</p>
-</li><li class=" "><p   
->  <a   href="Caching-the-data-of-page-components">Content cache</a> - stores structured data loaded by web parts and controls (for data sources, repeaters, etc.).</p>
-</li><li class=" "><p   
->  <a   href="#src-68881957_Configuringcaching-Pageinfocaching">Page info cache</a> - stores basic information about pages.</p>
-</li><li class=" "><p   
->  <a   href="Caching-in-custom-code">Custom code cache</a> - allows developers to cache data used in custom code.</p>
-</li></ul>    <div  class="confbox admonition admonition-info">
+<div class="section-left"><p>Cache is a storage space that duplicates previously requested data, and allows faster access to the data in the future. Correctly using caching can significantly improve the performance of your website.</p><p>Caching the content of web pages provides two primary benefits:</p><ul class=" "><li class=" "><p>Quicker loading of data (retrieving data from the cache avoids communication with slower storage spaces, such as the website's SQL database and file system)</p>
+</li><li class=" "><p>Reduction of unnecessary page processing on repeated requests</p>
+</li></ul><p>The built-in caching mechanisms of Kentico work primarily on the server side, and utilize the application's memory to store data. The system saves data into the cache in the form of <i class=" "><strong class=" ">cache keys</strong></i>. Cache keys have unique names that exactly identify the cached content. Each key stores the cached data itself (depending on the type of the cache), as well as other information such as the expiration time or <a href="setting-cache-dependencies">dependencies</a>.</p><h3 id="src-68881957_Configuringcaching-Cachetypes" class="heading "><span>Cache types</span></h3><p>Kentico provides the following types of caching:</p><ul class=" "><li class=" "><p><a href="caching-page-output">Output cache (full page)</a> - caches the full HTML output of pages.</p>
+</li><li class="confluence-link "><p><a href="caching-page-output#src-68881966_cachingpageoutput-cachingportionsofthepageoutput">Partial output cache</a> - caches the HTML output of individual page components (web parts).</p>
+</li><li class="confluence-link "><p><a href="caching-files-and-resources">File cache</a> - stores files and resources, such as images, CSS stylesheets or JavaScript files. Supports both server and client-side caching.</p>
+</li><li class=" "><p><a href="caching-the-data-of-page-components">Content cache</a> - stores structured data loaded by web parts and controls (for data sources, repeaters, etc.).</p>
+</li><li class=" "><p><a href="#src-68881957_configuringcaching-pageinfocaching">Page info cache</a> - stores basic information about pages.</p>
+</li><li class=" "><p><a href="caching-in-custom-code">Custom code cache</a> - allows developers to cache data used in custom code.</p>
+</li></ul><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->You can also configure external caching approaches for your web application, such as <a  class="external-link" href="http://www.iis.net/learn/manage/managing-performance-settings/configure-iis-7-output-caching">IIS Output caching</a>, Content delivery network or Proxy caching. These are completely separate from the caching mechanisms in Kentico and are <strong class=" ">applicable to any content</strong> the application provides. See   <a   href="Caching-page-output#src-68881966_Cachingpageoutput-Usingexternalcachingapproaches">Caching page output</a> for more information on using external caching with Kentico.</p>
+<p>You can also configure external caching approaches for your web application, such as <a class="external-link" href="http://www.iis.net/learn/manage/managing-performance-settings/configure-iis-7-output-caching">IIS Output caching</a>, Content delivery network or Proxy caching. These are completely separate from the caching mechanisms in Kentico and are <strong class=" ">applicable to any content</strong> the application provides. See <a href="caching-page-output#src-68881966_cachingpageoutput-usingexternalcachingapproaches">Caching page output</a> for more information on using external caching with Kentico.</p>
         </div>
-    </div>
-<p   
->The following diagram shows the order in which the cache types are checked when handling requests (from top to bottom). If the required content is found in one of the cache layers, the system stops processing the request and sends the response without executing the page code or accessing the database. The cache types shown at the top of the diagram provide the best performance &mdash; the page response time and processing costs increase as the request progresses through the cache layers.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881957/Caching_Diagram.png" alt="images/download/attachments/68881957/Caching_Diagram.png" width="600"  />
-        <br/><span class="caption">Cache types available in Kentico</span>
-    </p>
-    <div  class="confbox panel">
+    </div><p>The following diagram shows the order in which the cache types are checked when handling requests (from top to bottom). If the required content is found in one of the cache layers, the system stops processing the request and sends the response without executing the page code or accessing the database. The cache types shown at the top of the diagram provide the best performance — the page response time and processing costs increase as the request progresses through the cache layers.</p><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881957/Caching_Diagram.png" alt="images/download/attachments/68881957/Caching_Diagram.png" width="600">
+        <br><span class="caption">Cache types available in Kentico</span>
+    </p></div>
+
+
+    
+
+    
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881957_Configuringcaching-Cachetypes">Cache types</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881957_Configuringcaching-Generalrecommendationsforconfiguringcaching">General recommendations for configuring caching</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881957_Configuringcaching-Pageinfocaching">Page info caching</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881957_Configuringcaching-Clearingthecache">Clearing the cache</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881957_configuringcaching-cachetypes">Cache types</a></p>
+</li><li class=" "><p><a href="#src-68881957_configuringcaching-generalrecommendationsforconfiguringcaching">General recommendations for configuring caching</a></p>
+</li><li class=" "><p><a href="#src-68881957_configuringcaching-pageinfocaching">Page info caching</a></p>
+</li><li class=" "><p><a href="#src-68881957_configuringcaching-clearingthecache">Clearing the cache</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Caching-in-custom-code">Caching in custom code</a></p>
-</li><li class=" "><p   
->  <a   href="Caching-the-results-of-macros">Caching the results of macros</a></p>
+<ul class=" "><li class=" "><p><a href="caching-in-custom-code">Caching in custom code</a></p>
+</li><li class=" "><p><a href="caching-the-results-of-macros">Caching the results of macros</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
+    
     <h3 id="src-68881957_Configuringcaching-Generalrecommendationsforconfiguringcaching" class="heading "><span>General recommendations for configuring caching</span></h3>
-<p   
->We recommended configuring caching based on the character of the website and amount of the content so that too much memory isn&rsquo;t taken by the cache.</p>
-<p   
->Take the following recommendations of caching configuration as typical ones, but you should still consider altering them based on the project specifics.</p>
+<p>We recommended configuring caching based on the character of the website and amount of the content so that too much memory isn’t taken by the cache.</p>
+<p>Take the following recommendations of caching configuration as typical ones, but you should still consider altering them based on the project specifics.</p>
     <h4 id="src-68881957_Configuringcaching-Amountofdatavs.cacheduration" class="heading "><span>Amount of data vs. cache duration</span></h4>
-<p   
->If the memory footprint of the application is generally high, the caching interval may be too high.</p>
-<p   
->Combining   <a   href="#">all levels</a> of caching with the same interval doesn&rsquo;t provide value. Higher (closer to client) levels of caching should use smaller intervals than the lower levels. This allows the lower levels to pick up and save at least some overhead when higher level cache is not available.</p>
+<p>If the memory footprint of the application is generally high, the caching interval may be too high.</p>
+<p>Combining <a href="#">all levels</a> of caching with the same interval doesn’t provide value. Higher (closer to client) levels of caching should use smaller intervals than the lower levels. This allows the lower levels to pick up and save at least some overhead when higher level cache is not available.</p>
     <h4 id="src-68881957_Configuringcaching-Usingdistributedcacheproviders" class="heading "><span>Using distributed cache providers</span></h4>
-<p   
->Kentico currently does not support distributed cache instead of its native in-memory cache. You can use distributed cache for your custom objects, but not for native Kentico objects.</p>
+<p>Kentico currently does not support distributed cache instead of its native in-memory cache. You can use distributed cache for your custom objects, but not for native Kentico objects.</p>
     <h4 id="src-68881957_Configuringcaching-Debuggingcacheaccess" class="heading "><span>Debugging cache access</span></h4>
-<p   
->Kentico provides native   <a   href="Debugging-cache">cache access debugging</a> that you can use to verify if the system works as expected with the current cache configuration.</p>
+<p>Kentico provides native <a href="debugging-cache">cache access debugging</a> that you can use to verify if the system works as expected with the current cache configuration.</p>
     <h4 id="src-68881957_Configuringcaching-Progressivecaching" class="heading "><span>Progressive caching</span></h4>
-<p   
->  <a   href="Reference---Cache-settings">Progressive caching</a> is an automated feature of Kentico which helps to reduce load and contention of first loads even when caching is disabled. It acts as a minimum possible period cache at the given moment. Keep it enabled unless you experience some issues with cache behavior (which may be introduced by incorrectly using   <a   href="Caching-in-custom-code">caching in custom code</a>).</p>
+<p><a href="reference---cache-settings">Progressive caching</a> is an automated feature of Kentico which helps to reduce load and contention of first loads even when caching is disabled. It acts as a minimum possible period cache at the given moment. Keep it enabled unless you experience some issues with cache behavior (which may be introduced by incorrectly using <a href="caching-in-custom-code">caching in custom code</a>).</p>
     <h3 id="src-68881957_Configuringcaching-Pageinfocaching" class="heading "><span>Page info caching</span></h3>
-<p   
->When a visitor requests an uncached page, the system queries the database for basic information about the page, including the following:</p>
-<ul class=" "><li class=" "><p   
->alias path</p>
-</li><li class=" "><p   
->ID and name</p>
-</li><li class=" "><p   
->page metadata and other properties</p>
-</li><li class=" "><p   
->SKU information (for products)</p>
-</li><li class=" "><p   
->workflow information</p>
-</li></ul><p   
->The <i class=" "><strong class=" ">Page info cache</strong></i> stores the retrieved information in the application&#39;s memory, which allows quicker access on subsequent requests. The system reuses the information multiple times during the processing of a single page, so page info caching is an important factor in the website&#39;s performance. Page info caching cannot cause sites to display outdated information. The system automatically clears the cache for pages that are modified.</p>
-<p   
->You can change the expiration time of the page info cache:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Settings</strong> application.</p>
-</li><li class=" "><p   
->Expand the <strong class=" ">System -&gt; Performance</strong> category.</p>
-</li><li class=" "><p   
->Type a number of minutes into the <strong class=" ">Cache page info (minutes)</strong> setting. Do NOT set the value lower than 10 minutes.<br/><strong class=" ">Recommended settings:</strong><br/></p>
-<ul class=" "><li class=" "><p   
->Smaller sites - 60 minutes to 1 day (1440 minutes).</p>
-</li><li class=" "><p   
->Larger sites - 10 to 60 minutes.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Save</strong> the settings.</p>
-</li></ol><p   
->When a user requests a page, the basic information stays in the cache for the specified number of minutes, or until someone modifies the related page.</p>
-    <div  class="confbox admonition admonition-tip">
+<p>When a visitor requests an uncached page, the system queries the database for basic information about the page, including the following:</p>
+<ul class=" "><li class=" "><p>alias path</p>
+</li><li class=" "><p>ID and name</p>
+</li><li class=" "><p>page metadata and other properties</p>
+</li><li class=" "><p>SKU information (for products)</p>
+</li><li class=" "><p>workflow information</p>
+</li></ul><p>The <i class=" "><strong class=" ">Page info cache</strong></i> stores the retrieved information in the application's memory, which allows quicker access on subsequent requests. The system reuses the information multiple times during the processing of a single page, so page info caching is an important factor in the website's performance. Page info caching cannot cause sites to display outdated information. The system automatically clears the cache for pages that are modified.</p>
+<p>You can change the expiration time of the page info cache:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Settings</strong> application.</p>
+</li><li class=" "><p>Expand the <strong class=" ">System -&gt; Performance</strong> category.</p>
+</li><li class=" "><p>Type a number of minutes into the <strong class=" ">Cache page info (minutes)</strong> setting. Do NOT set the value lower than 10 minutes.<br><strong class=" ">Recommended settings:</strong><br></p>
+<ul class=" "><li class=" "><p>Smaller sites - 60 minutes to 1 day (1440 minutes).</p>
+</li><li class=" "><p>Larger sites - 10 to 60 minutes.</p>
+</li></ul></li><li class=" "><p><strong class=" ">Save</strong> the settings.</p>
+</li></ol><p>When a user requests a page, the basic information stays in the cache for the specified number of minutes, or until someone modifies the related page.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: You can view the cache keys that store page info through the   <a   href="Debugging-cache">cache debugging interface</a>. The names of page info cache keys begin with <i class=" ">pageinfo</i> or <i class=" ">pageinfobyurl</i>.</p>
+<p><strong class=" ">Tip</strong>: You can view the cache keys that store page info through the <a href="debugging-cache">cache debugging interface</a>. The names of page info cache keys begin with <i class=" ">pageinfo</i> or <i class=" ">pageinfobyurl</i>.</p>
         </div>
     </div>
     <h3 id="src-68881957_Configuringcaching-Clearingthecache" class="heading "><span>Clearing the cache</span></h3>
-<p   
->To delete all data from the application&#39;s cache:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">System</strong> application.</p>
-</li><li class=" "><p   
->On the <strong class=" ">General</strong> tab, click <strong class=" ">Clear cache</strong>.</p>
-</li></ol><p   
->The system removes all cached content managed by Kentico.</p>
+<p>To delete all data from the application's cache:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">System</strong> application.</p>
+</li><li class=" "><p>On the <strong class=" ">General</strong> tab, click <strong class=" ">Clear cache</strong>.</p>
+</li></ol><p>The system removes all cached content managed by Kentico.</p>
         </div>
 
     </article>
@@ -309,5 +249,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

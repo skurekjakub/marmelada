@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sending REST requests from code - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,19 +148,13 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->By sending requests to the   <a   href="Kentico-REST-service">Kentico REST service</a>, you can   <a   href="Getting-data-using-REST">get data</a> from the system or   <a   href="Manipulating-data-using-REST">manipulate pages and objects</a>.</p>
-<p   
->The following example demonstrates how to send REST requests using server-side code. The sample code is incomplete &mdash; you need to perform the following according to your requirements:</p>
-<ul class=" "><li class=" "><p   
->integrate the request sending into your custom logic or application</p>
-</li><li class=" "><p   
->supply the required values (HTTP method, request URL and data)</p>
-</li><li class=" "><p   
->process the response data</p>
-</li><li class=" "><p   
->ensure exception handling</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"></div><p>By sending requests to the <a href="kentico-rest-service">Kentico REST service</a>, you can <a href="getting-data-using-rest">get data</a> from the system or <a href="manipulating-data-using-rest">manipulate pages and objects</a>.</p>
+<p>The following example demonstrates how to send REST requests using server-side code. The sample code is incomplete — you need to perform the following according to your requirements:</p>
+<ul class=" "><li class=" "><p>integrate the request sending into your custom logic or application</p>
+</li><li class=" "><p>supply the required values (HTTP method, request URL and data)</p>
+</li><li class=" "><p>process the response data</p>
+</li><li class=" "><p>ensure exception handling</p>
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">C# example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="C# example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
@@ -170,45 +162,45 @@
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Net;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.IO;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Text;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">string</code><code class="plain"> httpMethod; </code><code class="comments">// "GET", "POST", "PUT" or "DELETE"</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> requestUrl; </code><code class="comments">// The URL of the REST request (base URL + resource path)</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> requestData; </code><code class="comments">// Data for POST or PUT requests</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">string</code><code class="plain"> responseDescription; </code><code class="comments">// Stores the description of the response status</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> responseData; </code><code class="comments">// Stores data retrieved by the request</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Creates the REST request</code></div>
 <div class="line"><code class="plain">HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Sets the HTTP method of the request</code></div>
 <div class="line"><code class="plain">request.Method = httpMethod;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Authorizes the request using Basic authentication</code></div>
 <div class="line"><code class="plain">request.Headers.Add(</code><code class="string">"Authorization: Basic YWRtaW5pc3RyYXRvcjo="</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Submits data for POST or PUT requests</code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (request.Method == </code><code class="string">"POST"</code><code class="plain"> || request.Method == </code><code class="string">"PUT"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	request.ContentType = </code><code class="string">"text/xml"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	Byte[] bytes = Encoding.GetEncoding(</code><code class="string">"utf-8"</code><code class="plain">).GetBytes(requestData);</code></div>
 <div class="line"><code class="plain">	request.ContentLength = bytes.Length;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">using</code><code class="plain"> (Stream writeStream = request.GetRequestStream())</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		writeStream.Write(bytes, 0, bytes.Length);</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets the REST response</code></div>
 <div class="line"><code class="plain">HttpWebResponse response = (HttpWebResponse)request.GetResponse();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Stores the description of the response status</code></div>
 <div class="line"><code class="plain">responseDescription = (Int32)response.StatusCode + </code><code class="string">" - "</code><code class="plain"> + response.StatusDescription;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets the response data</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> (Stream responseStream = response.GetResponseStream())</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -218,21 +210,17 @@
 <div class="line"><code class="plain">			responseData = HttpUtility.HtmlEncode(reader.ReadToEnd());</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
 </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Configuring-the-REST-service">Configuring the REST service</a></p>
-</li><li class=" "><p   
->  <a   href="Authenticating-REST-requests">Authenticating REST requests</a></p>
-</li><li class=" "><p   
->  <a   href="Getting-data-using-REST">Getting data using REST</a></p>
-</li><li class=" "><p   
->  <a   href="Manipulating-data-using-REST">Manipulating data using REST</a></p>
+<ul class=" "><li class=" "><p><a href="configuring-the-rest-service">Configuring the REST service</a></p>
+</li><li class=" "><p><a href="authenticating-rest-requests">Authenticating REST requests</a></p>
+</li><li class=" "><p><a href="getting-data-using-rest">Getting data using REST</a></p>
+</li><li class=" "><p><a href="manipulating-data-using-rest">Manipulating data using REST</a></p>
 </li></ul>        </div>
     </div>
         </div>
@@ -255,5 +243,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

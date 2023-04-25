@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Enumeration - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,126 +148,91 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Enumeration, in terms of security, is a vulnerability, which enables a potential attacker to guess some hidden system information. There are many types of enumeration threats, but we will discuss only two of them in this topic:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68881105_Enumeration-Usernameenumeration">Username enumeration</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881105_Enumeration-Fileenumeration">File enumeration</a></p>
-</li></ul>    <h3 id="src-68881105_Enumeration-Usernameenumeration" class="heading "><span>Username enumeration</span></h3>
-<p   
->The username enumeration is an activity in which an attacker tries to retrieve valid usernames from a web application. The web applications are mostly vulnerable to this type of attack on login pages, registration form pages or password reset pages.</p>
-<p   
->If the system is vulnerable to the username enumeration attack, the attacker may be able to obtain a list of existing usernames in the system by submitting input (valid and invalid user names) and analyzing the server response (error messages). The attacker can then run a dictionary attack to further exploit the obtained information.</p>
-<p   
-></p>
-    <div  class="confbox panel">
+<div class="section-left"><p>Enumeration, in terms of security, is a vulnerability, which enables a potential attacker to guess some hidden system information. There are many types of enumeration threats, but we will discuss only two of them in this topic:</p><ul class=" "><li class=" "><p><a href="#src-68881105_enumeration-usernameenumeration">Username enumeration</a></p>
+</li><li class=" "><p><a href="#src-68881105_enumeration-fileenumeration">File enumeration</a></p>
+</li></ul><h3 id="src-68881105_Enumeration-Usernameenumeration" class="heading "><span>Username enumeration</span></h3><p>The username enumeration is an activity in which an attacker tries to retrieve valid usernames from a web application. The web applications are mostly vulnerable to this type of attack on login pages, registration form pages or password reset pages.</p><p>If the system is vulnerable to the username enumeration attack, the attacker may be able to obtain a list of existing usernames in the system by submitting input (valid and invalid user names) and analyzing the server response (error messages). The attacker can then run a dictionary attack to further exploit the obtained information.</p><p></p></div>
+    
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881105_Enumeration-Usernameenumeration">Username enumeration</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881105_Enumeration-Real-worldexampleofausernameenumerationattack">Real-world example of a username enumeration attack</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881105_Enumeration-Exampleofawebapplicationusernameenumerationvulnerabilityinwebapplication">Example of a web application username enumeration vulnerability in web application</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881105_Enumeration-HowtopreventusernameenumerationattacksinKentico">How to prevent username enumeration attacks in Kentico</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68881105_Enumeration-Fileenumeration">File enumeration</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881105_Enumeration-Summary">Summary</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881105_enumeration-usernameenumeration">Username enumeration</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881105_enumeration-real-worldexampleofausernameenumerationattack">Real-world example of a username enumeration attack</a></p>
+</li><li class=" "><p><a href="#src-68881105_enumeration-exampleofawebapplicationusernameenumerationvulnerabilityinwebapplication">Example of a web application username enumeration vulnerability in web application</a></p>
+</li><li class=" "><p><a href="#src-68881105_enumeration-howtopreventusernameenumerationattacksinkentico">How to prevent username enumeration attacks in Kentico</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881105_enumeration-fileenumeration">File enumeration</a></p>
+</li><li class=" "><p><a href="#src-68881105_enumeration-summary">Summary</a></p>
+</li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h4 id="src-68881105_Enumeration-Real-worldexampleofausernameenumerationattack" class="heading "><span>Real-world example of a username enumeration attack</span></h4>
-<p   
->There was one well-known username enumeration vulnerability related to previous versions of Apache web server. Some distributions contained a misconfiguration, which enabled potential attackers to identify existing usernames.</p>
-<p   
->When an attacker submits an HTTP request for a possible user&#39;s home page, <i class=" ">http://www.example.com/~&lt;username&gt;</i>, the server responses differently depending on whether the username exists or not:</p>
-<ul class=" "><li class=" "><p   
->If the username exists and does not have a homepage, the server responses with     <span style="color: #000000;">
-HTTP result code 403, and the server message &quot;<i class=" ">You don&#39;t have permission to access /~username on this server.</i>&quot;    </span>
+<p>There was one well-known username enumeration vulnerability related to previous versions of Apache web server. Some distributions contained a misconfiguration, which enabled potential attackers to identify existing usernames.</p>
+<p>When an attacker submits an HTTP request for a possible user's home page, <i class=" ">http://www.example.com/~&lt;username&gt;</i>, the server responses differently depending on whether the username exists or not:</p>
+<ul class=" "><li class=" "><p>If the username exists and does not have a homepage, the server responses with     <span style="color: #000000;">
+HTTP result code 403, and the server message "<i class=" ">You don't have permission to access /~username on this server.</i>"    </span>
 </p>
-</li><li class=" "><p   
->    <span style="color: #000000;">
+</li><li class=" "><p>    <span style="color: #000000;">
 If the username does not exist, the server responses with     <span style="color: #000000;">
-HTTP result code 404 and the message &quot;<i class=" ">The requested URL /~username was not found on this server.</i>&quot;    </span>
+HTTP result code 404 and the message "<i class=" ">The requested URL /~username was not found on this server.</i>"    </span>
     </span>
 </p>
-</li></ul><p   
->    <span style="color: #000000;">
+</li></ul><p>    <span style="color: #000000;">
     <span style="color: #000000;">
 Because the server responses differently in these cases, the potential attacker can test and enumerate existing usernames. The attacker can then exploit this data for further attacks on the server.    </span>
     </span>
 </p>
     <h4 id="src-68881105_Enumeration-Exampleofawebapplicationusernameenumerationvulnerabilityinwebapplication" class="heading "><span>Example of a web application username enumeration vulnerability in web application</span></h4>
-<p   
->    <span style="color: #000000;">
+<p>    <span style="color: #000000;">
     <span style="color: #000000;">
-When you create a web part in your web application, which enables users to log in, do not reveal information about existing usernames:<br/>    </span>
+When you create a web part in your web application, which enables users to log in, do not reveal information about existing usernames:<br>    </span>
     </span>
 </p>
-    <div  class="confbox admonition admonition-warning has-no-icon">
+    <div class="confbox admonition admonition-warning has-no-icon">
                     <p class="title">Wrong</p>
                         <div class="admonition-body">
-<p   
->If the submitted username is incorrect:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If the submitted username is incorrect:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">Entered login does not exist.</code></div>
 </div>
     </div>
-<p   
->If the submitted username exists, but the password is incorrect:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If the submitted username exists, but the password is incorrect:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">Entered password is incorrect.</code></div>
 </div>
     </div>
         </div>
     </div>
-<p   
->This way, the attacker can learn, which usernames exist in the system and which do not.</p>
+<p>This way, the attacker can learn, which usernames exist in the system and which do not.</p>
     <h4 id="src-68881105_Enumeration-HowtopreventusernameenumerationattacksinKentico" class="heading "><span>How to prevent username enumeration attacks in Kentico</span></h4>
-<p   
->The default configuration of Kentico is protected against this type of attack.</p>
-<p   
->If you plan to create a custom login web part, be sure to <strong class=" ">show only generic error messages</strong>:</p>
-    <div  class="confbox admonition admonition-tip has-no-icon">
+<p>The default configuration of Kentico is protected against this type of attack.</p>
+<p>If you plan to create a custom login web part, be sure to <strong class=" ">show only generic error messages</strong>:</p>
+    <div class="confbox admonition admonition-tip has-no-icon">
                     <p class="title">Correct</p>
                         <div class="admonition-body">
-<p   
->In both situations (username does not exist or the password is incorrect):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>In both situations (username does not exist or the password is incorrect):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">Authentication failed. </code></div>
 </div>
     </div>
         </div>
     </div>
-<p   
->This way, the attacker cannot distinguish between valid and invalid usernames.</p>
-<p   
->In registration web parts, you cannot completely eliminate this vulnerability, because you have to check (and tell the user) if the submitted username already exists. Therefore, <strong class=" ">always include CAPTCHA </strong>in these web parts<strong class=" "> </strong>to prevent automatic collecting of the data by scripts.</p>
+<p>This way, the attacker cannot distinguish between valid and invalid usernames.</p>
+<p>In registration web parts, you cannot completely eliminate this vulnerability, because you have to check (and tell the user) if the submitted username already exists. Therefore, <strong class=" ">always include CAPTCHA </strong>in these web parts<strong class=" "> </strong>to prevent automatic collecting of the data by scripts.</p>
     <h3 id="src-68881105_Enumeration-Fileenumeration" class="heading "><span>File enumeration</span></h3>
-<p   
->In this type of enumeration attack, the attacker tries to guess the file names on the server and manage to gain access to them.</p>
-<p   
->In Kentico, the attacker can for example try to guess the name of an export file. The export files are generally located in the <i class=" ">&lt;web project&gt;\CMSSiteUtils<strong class=" ">\</strong>Export</i> folder. The attacker can learn the structure of the file name and eventually guess an existing one (for example, by trying out different time stamps).</p>
-<p   
->To protect your servers against this type of attack, <strong class=" ">forbid access to sensitive directories</strong> in the <i class=" ">web.config</i> file. See   <a   href="Restricting-access-to-directories">Restricting access to directories</a>.</p>
+<p>In this type of enumeration attack, the attacker tries to guess the file names on the server and manage to gain access to them.</p>
+<p>In Kentico, the attacker can for example try to guess the name of an export file. The export files are generally located in the <i class=" ">&lt;web project&gt;\CMSSiteUtils<strong class=" ">\</strong>Export</i> folder. The attacker can learn the structure of the file name and eventually guess an existing one (for example, by trying out different time stamps).</p>
+<p>To protect your servers against this type of attack, <strong class=" ">forbid access to sensitive directories</strong> in the <i class=" ">web.config</i> file. See <a href="restricting-access-to-directories">Restricting access to directories</a>.</p>
     <h3 id="src-68881105_Enumeration-Summary" class="heading "><span>Summary</span></h3>
-<ul class=" "><li class=" "><p   
->Do not reveal username and password details on your web pages (how long the username/password should be, which characters it should contain, etc.)</p>
-</li><li class=" "><p   
->Show only generic error messages (<i class=" ">Login failed.</i> / <i class=" ">The combination of username and password is invalid.</i>) in custom login web parts.</p>
-</li><li class=" "><p   
->Use CAPTCHA in registration forms.</p>
-</li><li class=" "><p   
->Forbid access from the outside to directories, whose names could be guessed by potential attackers.</p>
+<ul class=" "><li class=" "><p>Do not reveal username and password details on your web pages (how long the username/password should be, which characters it should contain, etc.)</p>
+</li><li class=" "><p>Show only generic error messages (<i class=" ">Login failed.</i> / <i class=" ">The combination of username and password is invalid.</i>) in custom login web parts.</p>
+</li><li class=" "><p>Use CAPTCHA in registration forms.</p>
+</li><li class=" "><p>Forbid access from the outside to directories, whose names could be guessed by potential attackers.</p>
 </li></ul>        </div>
 
     </article>
@@ -290,5 +253,6 @@ When you create a web part in your web application, which enables users to log i
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

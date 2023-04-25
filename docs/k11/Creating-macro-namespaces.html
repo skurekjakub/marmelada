@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating macro namespaces - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,19 +148,15 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Macro namespaces serve as containers for static macro methods and fields. Users can access the members of namespaces when writing macro expressions, for example <i class=" ">{% Math.Pi %}</i> or <i class=" ">{% <i class=" ">Math.Log(x)</i> %}</i>. Namespaces also appear in the macro autocomplete help. The system uses several default namespaces such as <i class=" ">Math</i>, <i class=" ">String</i> or <i class=" ">Util</i>, and you can create your own namespaces for custom macros.</p>
-<p   
->To add a custom macro namespace:</p>
-<ol class=" "><li class=" "><p   
->Create a class inheriting from <strong class=" ">MacroNamespace&lt;Namespace type&gt;</strong>. In <i class=" ">web site</i> projects, you can either add the class as part of a custom assembly (recommended) or into the <strong class=" ">App_Code</strong> folder.</p>
-</li><li class=" "><p   
->Register macro fields or methods into the namespace &ndash; add <strong class=" ">Extension</strong> attributes to the class, with the types of the appropriate container classes as parameters.</p>
-</li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"></div><p>Macro namespaces serve as containers for static macro methods and fields. Users can access the members of namespaces when writing macro expressions, for example <i class=" ">{% Math.Pi %}</i> or <i class=" ">{% <i class=" ">Math.Log(x)</i> %}</i>. Namespaces also appear in the macro autocomplete help. The system uses several default namespaces such as <i class=" ">Math</i>, <i class=" ">String</i> or <i class=" ">Util</i>, and you can create your own namespaces for custom macros.</p>
+<p>To add a custom macro namespace:</p>
+<ol class=" "><li class=" "><p>Create a class inheriting from <strong class=" ">MacroNamespace&lt;Namespace type&gt;</strong>. In <i class=" ">web site</i> projects, you can either add the class as part of a custom assembly (recommended) or into the <strong class=" ">App_Code</strong> folder.</p>
+</li><li class=" "><p>Register macro fields or methods into the namespace – add <strong class=" ">Extension</strong> attributes to the class, with the types of the appropriate container classes as parameters.</p>
+</li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.MacroEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[Extension(</code><code class="keyword">typeof</code><code class="plain">(CustomMacroFields))]</code></div>
 <div class="line"><code class="plain">[Extension(</code><code class="keyword">typeof</code><code class="plain">(CustomMacroMethods))]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomMacroNamespace : MacroNamespace&lt;CustomMacroNamespace&gt;</code></div>
@@ -170,55 +164,41 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
->See   <a   href="Registering-custom-macro-methods">Registering custom macro methods</a> and   <a   href="Adding-custom-macro-fields">Adding custom macro fields</a> to learn about creating container classes for macro fields and methods.</p>
-<p   
-><br/></p>
-    <div  class="confbox panel">
+<p>See <a href="registering-custom-macro-methods">Registering custom macro methods</a> and <a href="adding-custom-macro-fields">Adding custom macro fields</a> to learn about creating container classes for macro fields and methods.</p>
+<p><br></p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Registering-custom-macro-methods">Registering custom macro methods</a></p>
-</li><li class=" "><p   
->  <a   href="Adding-custom-macro-fields">Adding custom macro fields</a></p>
+<ul class=" "><li class=" "><p><a href="registering-custom-macro-methods">Registering custom macro methods</a></p>
+</li><li class=" "><p><a href="adding-custom-macro-fields">Adding custom macro fields</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882640_Creatingmacronamespaces-Registeringmacronamespaces" class="heading "><span>Registering macro namespaces</span></h3>
-<p   
->Once you have defined the macro namespace class, you need to register the namespace as a source into a macro resolver (typically the global resolver).</p>
-<p   
->We recommend registering your macro namespaces at the beginning of the application&#39;s life cycle (during initialization). The following steps describe how to register a macro namespace into the global resolver:</p>
-<ol class=" "><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-</li></ul>    <div  class="confbox admonition admonition-info">
+<p>Once you have defined the macro namespace class, you need to register the namespace as a source into a macro resolver (typically the global resolver).</p>
+<p>We recommend registering your macro namespaces at the beginning of the application's life cycle (during initialization). The following steps describe how to register a macro namespace into the global resolver:</p>
+<ol class=" "><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+</li></ul>    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+<p>For basic execution of initialization code, you only need to register a "code-only" module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method.</p>
-</li><li class=" "><p   
->Call the <strong class=" ">SetNamedSourceData</strong> method for the global resolver with the following parameters:</p>
-<ul class=" "><li class=" "><p   
->A string that sets the visible name of the namespace (used in macro syntax).</p>
-</li><li class=" "><p   
->An instance of your macro namespace class.</p>
-</li><li class=" "><p   
->(Optional) By default, the registered namespace appears in the high priority section of the autocomplete help and macro tree. To add namespaces with normal priority, add <strong class=" ">false</strong> as the third parameter.</p>
-</li></ul></li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method.</p>
+</li><li class=" "><p>Call the <strong class=" ">SetNamedSourceData</strong> method for the global resolver with the following parameters:</p>
+<ul class=" "><li class=" "><p>A string that sets the visible name of the namespace (used in macro syntax).</p>
+</li><li class=" "><p>An instance of your macro namespace class.</p>
+</li><li class=" "><p>(Optional) By default, the registered namespace appears in the high priority section of the autocomplete help and macro tree. To add namespaces with normal priority, add <strong class=" ">false</strong> as the third parameter.</p>
+</li></ul></li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.MacroEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomMacroModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomMacroModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomMacros"</code></div>
@@ -226,36 +206,32 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomMacros"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Registers "CustomNamespace" into the macro engine</code></div>
 <div class="line"><code class="plain">		MacroContext.GlobalResolver.SetNamedSourceData(</code><code class="string">"CustomNamespace"</code><code class="plain">, CustomMacroNamespace.Instance);</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
->The system registers your custom macro namespace when the application starts. Users can access the namespace&#39;s members when writing macro expressions.</p>
+<p>The system registers your custom macro namespace when the application starts. Users can access the namespace's members when writing macro expressions.</p>
     <h4 id="src-68882640_Creatingmacronamespaces-Registeringnamespacesasanonymoussources" class="heading "><span>Registering namespaces as anonymous sources</span></h4>
-<p   
->By registering a macro namespace as an anonymous source, you can allow users to access the namespace&#39;s members directly without writing the namespace as a prefix. For example, <i class=" ">{% Field %}</i> instead of <i class=" ">{% Namespace.Field %}</i>.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>By registering a macro namespace as an anonymous source, you can allow users to access the namespace's members directly without writing the namespace as a prefix. For example, <i class=" ">{% Field %}</i> instead of <i class=" ">{% Namespace.Field %}</i>.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Registers "CustomNamespace" as an anonymous macro source</code></div>
 <div class="line"><code class="plain">MacroContext.GlobalResolver.AddAnonymousSourceData(CustomMacroNamespace.Instance);</code></div>
 </div>
     </div>
-<p   
->You can register the same namespace as both a named and anonymous source. If you only register a namespace as an anonymous source, users cannot access the members using the prefix notation, and the namespace does not appear in the macro autocomplete help.</p>
-    <div  class="confbox admonition admonition-note">
+<p>You can register the same namespace as both a named and anonymous source. If you only register a namespace as an anonymous source, users cannot access the members using the prefix notation, and the namespace does not appear in the macro autocomplete help.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Data items registered through anonymous macro sources do NOT appear in the macro autocomplete help. As a result, the autocomplete help only displays namespace members when using the prefix notation, even when the namespace is registered as both a named and anonymous source.</p>
+<p><strong class=" ">Note</strong>: Data items registered through anonymous macro sources do NOT appear in the macro autocomplete help. As a result, the autocomplete help only displays namespace members when using the prefix notation, even when the namespace is registered as both a named and anonymous source.</p>
         </div>
     </div>
         </div>
@@ -278,5 +254,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

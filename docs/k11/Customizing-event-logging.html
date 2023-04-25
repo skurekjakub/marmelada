@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customizing event logging - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,60 +148,44 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->By   <a   href="Handling-global-events">handling events</a>, you can customize how the system logs records into its   <a   href="Working-with-the-system-event-log">Event log</a>.</p>
-<p   
->The system raises the following types of related events:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">EventLogEvents.LogEvent.Before</strong> - allows you to customize the data logged for events or cancel logging for certain types of events.</p>
-</li><li class=" "><p   
-><strong class=" ">EventLogEvents.LogEvent.After</strong> - allows you to perform custom actions after events are successfully logged, for example duplicate certain types of events into a custom log.</p>
-</li></ul>    <div  class="confbox admonition admonition-note">
+<div class="section-left"></div><p>By <a href="handling-global-events">handling events</a>, you can customize how the system logs records into its <a href="working-with-the-system-event-log">Event log</a>.</p>
+<p>The system raises the following types of related events:</p>
+<ul class=" "><li class=" "><p><strong class=" ">EventLogEvents.LogEvent.Before</strong> - allows you to customize the data logged for events or cancel logging for certain types of events.</p>
+</li><li class=" "><p><strong class=" ">EventLogEvents.LogEvent.After</strong> - allows you to perform custom actions after events are successfully logged, for example duplicate certain types of events into a custom log.</p>
+</li></ul>    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Performing demanding operations during event logging can have a negative impact on the performance of the website (particularly on sites under heavy load where a large number of events is logged).</p>
+<p><strong class=" ">Note</strong>: Performing demanding operations during event logging can have a negative impact on the performance of the website (particularly on sites under heavy load where a large number of events is logged).</p>
         </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Working-with-the-system-event-log">Working with the system event log</a></p>
-</li><li class=" "><p   
->  <a   href="Handling-global-events">Handling global events</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---Global-system-events">Reference - Global system events</a></p>
+<ul class=" "><li class=" "><p><a href="working-with-the-system-event-log">Working with the system event log</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
+</li><li class=" "><p><a href="reference---global-system-events">Reference - Global system events</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882265_Customizingeventlogging-Example" class="heading "><span>Example</span></h3>
-<p   
->The following example demonstrates how to disable logging for events of a specific type and modify the <i class=" ">Description</i> text for certain events.</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler method to the <strong class=" ">EventLogEvents.LogEvent.Before</strong> event.</p>
-</li><li class=" "><p   
->Perform the required actions within the handler method.</p>
-<ul class=" "><li class=" "><p   
->Access the data of the logged event through the <strong class=" ">Event</strong> property of the handler&#39;s <strong class=" ">LogEventArgs</strong> parameter.</p>
-</li><li class=" "><p   
->To cancel the logging of an event, call the <strong class=" ">Cancel</strong> method of the handler&#39;s <strong class=" ">LogEventArgs</strong> parameter.</p>
-</li></ul></li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example demonstrates how to disable logging for events of a specific type and modify the <i class=" ">Description</i> text for certain events.</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign a handler method to the <strong class=" ">EventLogEvents.LogEvent.Before</strong> event.</p>
+</li><li class=" "><p>Perform the required actions within the handler method.</p>
+<ul class=" "><li class=" "><p>Access the data of the logged event through the <strong class=" ">Event</strong> property of the handler's <strong class=" ">LogEventArgs</strong> parameter.</p>
+</li><li class=" "><p>To cancel the logging of an event, call the <strong class=" ">Cancel</strong> method of the handler's <strong class=" ">LogEventArgs</strong> parameter.</p>
+</li></ul></li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.EventLog;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomInitializationModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomInitializationModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomInit"</code></div>
@@ -211,21 +193,21 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomInit"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the LogEvent.Before event</code></div>
 <div class="line"><code class="plain">		EventLogEvents.LogEvent.Before += LogEvent_Before;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> LogEvent_Before(</code><code class="keyword">object</code><code class="plain"> sender, LogEventArgs e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets an object representing the event that is being logged</code></div>
 <div class="line"><code class="plain">		EventLogInfo eventLogRecord = e.Event;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Cancels logging for events with the "CREATEOBJ" or "UPDATEOBJ" event codes.</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Disables event log records notifying about the creation or update of objects in the system,</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// but still allows events related to object deletion.</code></div>
@@ -234,7 +216,7 @@
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			e.Cancel();</code></div>
 <div class="line"><code class="plain">		}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Adds a custom message to the Description field for events of the Information type</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (eventLogRecord.EventType.EqualsCSafe(</code><code class="string">"I"</code><code class="plain">))</code></div>
 <div class="line"><code class="plain">		{</code></div>
@@ -264,5 +246,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

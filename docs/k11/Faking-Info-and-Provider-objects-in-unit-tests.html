@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Faking Info and Provider objects in unit tests - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,45 +148,35 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When creating   <a   href="Writing-automated-tests">automated tests</a>, we recommend using unit tests whenever possible. Unit tests are able to run without external resources, such as a database. They have the fastest execution speed (compared with other types of automated tests) and are the easiest to integrate into your development process.</p>
-<p   
->A common problem with unit tests is that code needs to connect to a database, either directly or indirectly through external dependencies. Unit tests where this problem occurs throw the following exception upon execution:</p>
-<p   
-><strong class=" ">&quot;System.InvalidOperationException: The ConnectionString property has not been initialized&quot;</strong></p>
-<p   
->In many cases, you can solve the problem by preparing faked data for your unit tests.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"></div><p>When creating <a href="writing-automated-tests">automated tests</a>, we recommend using unit tests whenever possible. Unit tests are able to run without external resources, such as a database. They have the fastest execution speed (compared with other types of automated tests) and are the easiest to integrate into your development process.</p>
+<p>A common problem with unit tests is that code needs to connect to a database, either directly or indirectly through external dependencies. Unit tests where this problem occurs throw the following exception upon execution:</p>
+<p><strong class=" ">"System.InvalidOperationException: The ConnectionString property has not been initialized"</strong></p>
+<p>In many cases, you can solve the problem by preparing faked data for your unit tests.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you cannot fake the data required for a test, you need to create an integration or isolated integration test instead. Integration tests can work with a database, but have significantly slower execution speed. See:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="Creating-integration-tests-with-a-connection-string">Creating integration tests with a connection string</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-isolated-integration-tests">Creating isolated integration tests</a></p>
+<p>If you cannot fake the data required for a test, you need to create an integration or isolated integration test instead. Integration tests can work with a database, but have significantly slower execution speed. See:</p>
+<ul class=" "><li class=" "><p><a href="creating-integration-tests-with-a-connection-string">Creating integration tests with a connection string</a></p>
+</li><li class=" "><p><a href="creating-isolated-integration-tests">Creating isolated integration tests</a></p>
 </li></ul>        </div>
     </div>
     <div class="section section-1" id="src-68882280_FakingInfoandProviderobjectsinunittests-Fakingdata">
         <h1 class="heading "><span>Faking data</span></h1>
-<p   
->The Kentico API uses <i class=" ">Info</i> and <i class=" ">Provider</i> classes to manage the data stored in database tables. See the   <a   href="Database-table-API">Database table API</a> page for more information.</p>
-<p   
->To create fake data for your unit tests, call the <strong class=" ">Fake</strong> method from the <strong class=" ">UnitTests</strong> base class (must be inherited by all unit test classes using the <i class=" ">CMS.Tests</i> library). The method prepares a faked instance of a specific Provider class with data. You can then use the given Provider&#39;s methods to <strong class=" ">get</strong>, <strong class=" ">create</strong> or <strong class=" ">update</strong> data in your unit tests.</p>
-    <div  class="confbox admonition admonition-note">
+<p>The Kentico API uses <i class=" ">Info</i> and <i class=" ">Provider</i> classes to manage the data stored in database tables. See the <a href="database-table-api">Database table API</a> page for more information.</p>
+<p>To create fake data for your unit tests, call the <strong class=" ">Fake</strong> method from the <strong class=" ">UnitTests</strong> base class (must be inherited by all unit test classes using the <i class=" ">CMS.Tests</i> library). The method prepares a faked instance of a specific Provider class with data. You can then use the given Provider's methods to <strong class=" ">get</strong>, <strong class=" ">create</strong> or <strong class=" ">update</strong> data in your unit tests.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Faked providers do NOT allow you to use methods that <strong class=" ">delete data</strong>. If you need to test methods that delete data, use   <a   href="Creating-isolated-integration-tests">isolated integration tests</a>.</p>
+<p><strong class=" ">Note</strong>: Faked providers do NOT allow you to use methods that <strong class=" ">delete data</strong>. If you need to test methods that delete data, use <a href="creating-isolated-integration-tests">isolated integration tests</a>.</p>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example (NUnit)</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example (NUnit)" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Tests;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> NUnit.Framework;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[TestFixture]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> MyUnitTests : UnitTests</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -204,7 +192,7 @@
 <div class="line"><code class="plain">				UserNickName = </code><code class="string">"FakeUser"</code></div>
 <div class="line"><code class="plain">			});</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	[Test]</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> MyTest()</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -214,41 +202,32 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
->In the example, <i class=" ">UserInfoProvider</i> is faked with specific data.     <span style="color: #262524;">
+<p>In the example, <i class=" ">UserInfoProvider</i> is faked with specific data.     <span style="color: #262524;">
 Calling <i class=" ">UserInfoProvider</i> methods to get <i class=" ">UserInfo</i> objects within tests then returns the faked data instead of accessing the database. The code in the example behaves as if there were a single user named <i class=" ">FakeUser</i> in the database.    </span>
 </p>
-<p   
->You do <strong class=" ">not need to clean up the faked data before or after running tests</strong>. Tests inherited from the <strong class=" ">UnitTests </strong>base class automatically reset all faked data upon initialization and cleanup.</p>
+<p>You do <strong class=" ">not need to clean up the faked data before or after running tests</strong>. Tests inherited from the <strong class=" ">UnitTests </strong>base class automatically reset all faked data upon initialization and cleanup.</p>
     <div class="section section-2" id="src-68882280_FakingInfoandProviderobjectsinunittests-Fakingpagedata">
         <h2 class="heading "><span>Faking page data</span></h2>
-<p   
->Use the following approach if you need to fake page data in unit tests:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="Generating-classes-for-Kentico-objects">Generate</a> a strongly-typed class for the page type that you wish to test.</p>
-</li><li class=" "><p   
->Add the generated class into your test project.</p>
-</li><li class=" "><p   
->In your test&#39;s <i class=" ">SetUp</i> method, register and fake the given page type by calling the following methods:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">DocumentGenerator.RegisterDocumentType&lt;TGeneratedItemClass&gt;</strong></p>
-</li><li class=" "><p   
-><strong class=" ">Fake().DocumentType&lt;TGeneratedItemClass&gt;</strong></p>
-</li></ul></li><li class=" "><p   
->In your test methods, create pages of the registered type and perform any required assertions.</p>
-</li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Use the following approach if you need to fake page data in unit tests:</p>
+<ol class=" "><li class=" "><p><a href="generating-classes-for-kentico-objects">Generate</a> a strongly-typed class for the page type that you wish to test.</p>
+</li><li class=" "><p>Add the generated class into your test project.</p>
+</li><li class=" "><p>In your test's <i class=" ">SetUp</i> method, register and fake the given page type by calling the following methods:</p>
+<ul class=" "><li class=" "><p><strong class=" ">DocumentGenerator.RegisterDocumentType&lt;TGeneratedItemClass&gt;</strong></p>
+</li><li class=" "><p><strong class=" ">Fake().DocumentType&lt;TGeneratedItemClass&gt;</strong></p>
+</li></ul></li><li class=" "><p>In your test methods, create pages of the registered type and perform any required assertions.</p>
+</li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example (NUnit)</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example (NUnit)" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Tests;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> Tests.DocumentEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> NUnit.Framework;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Namespace used by the 'CustomPageType' generated page type class</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine.Types.Custom;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[TestFixture]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> MyUnitTests : UnitTests</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -258,11 +237,11 @@ Calling <i class=" ">UserInfoProvider</i> methods to get <i class=" ">UserInfo</
 <div class="line"><code class="plain">        </code><code class="comments">// Registers the page type class</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// The 'CustomPageType' class is generated for a page type from the Kentico Page types application</code></div>
 <div class="line"><code class="plain">        DocumentGenerator.RegisterDocumentType&lt;CustomPageType&gt;(CustomPageType.CLASS_NAME);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Fakes the page type to allow creation of fake page data</code></div>
 <div class="line"><code class="plain">        Fake().DocumentType&lt;CustomPageType&gt;(CustomPageType.CLASS_NAME);</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    [Test]</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> MyTest()</code></div>
 <div class="line"><code class="plain">    {</code></div>
@@ -273,7 +252,7 @@ Calling <i class=" ">UserInfoProvider</i> methods to get <i class=" ">UserInfo</
 <div class="line"><code class="plain">            p.DocumentCulture = </code><code class="string">"en-US"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">            p.SetValue(</code><code class="string">"CustomTextField"</code><code class="plain">, </code><code class="string">"Test_Value"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        });</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Tests the value of a custom field within the page type</code></div>
 <div class="line"><code class="plain">        Assert.AreEqual(</code><code class="string">"Test_Value"</code><code class="plain">, page.GetValue(</code><code class="string">"CustomTextField"</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">    }</code></div>
@@ -283,17 +262,15 @@ Calling <i class=" ">UserInfoProvider</i> methods to get <i class=" ">UserInfo</
     </div>
     <div class="section section-2" id="src-68882280_FakingInfoandProviderobjectsinunittests-FakingInfometadata">
         <h2 class="heading "><span>Faking Info metadata</span></h2>
-<p   
->Calling the constructor of an <i class=" ">Info</i> class requires access to metadata stored in the database. If your unit tests do not require faked Providers with data prepared in advance, but directly create new instances of Info classes, you can fake only the Info metadata.</p>
-<p   
->To prepare faked metadata for an Info class, call the <strong class=" ">Fake</strong> method with a single generic type parameter matching the given Info class.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Calling the constructor of an <i class=" ">Info</i> class requires access to metadata stored in the database. If your unit tests do not require faked Providers with data prepared in advance, but directly create new instances of Info classes, you can fake only the Info metadata.</p>
+<p>To prepare faked metadata for an Info class, call the <strong class=" ">Fake</strong> method with a single generic type parameter matching the given Info class.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example (NUnit)</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example (NUnit)" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Tests;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> NUnit.Framework;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[TestFixture]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> MyUnitTests : UnitTests</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -303,7 +280,7 @@ Calling <i class=" ">UserInfoProvider</i> methods to get <i class=" ">UserInfo</
 <div class="line"><code class="plain">		</code><code class="comments">// Sets up faked metadata for UserInfo</code></div>
 <div class="line"><code class="plain">		Fake&lt;UserInfo&gt;();</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	[Test]</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> MyTest()</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -335,5 +312,6 @@ Calling <i class=" ">UserInfoProvider</i> methods to get <i class=" ">UserInfo</
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

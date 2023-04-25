@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Excluding content from staging and integration - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,92 +148,66 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->  <a   href="Handling-global-events">Event handlers</a> allow you to disable   <a   href="Content-staging">content staging</a> and   <a   href="Using-the-integration-bus">integration bus synchronization</a> for certain pages or objects. The system provides two types of events that you can use:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68882269_Excludingcontentfromstagingandintegration-Excludingcontentbyhandlingpageorobjectchanges">Handling the changes of pages or objects</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882269_Excludingcontentfromstagingandintegration-Excludingcontentbyhandlingsynchronizationtasks">Handling the creation of staging or integration tasks</a></p>
-</li></ul>    <h3 id="src-68882269_Excludingcontentfromstagingandintegration-Excludingcontentbyhandlingpageorobjectchanges" class="heading "><span>Excluding content by handling page or object changes</span></h3>
-<p   
->When changes are made to pages and objects (such as creating, editing or deleting), the system logs the change data.   <a   href="Content-staging">Content staging</a> and the   <a   href="Using-the-integration-bus">integration bus</a> use the data to create synchronization tasks, which then transfer the changes to the target server or application.</p>
-<p   
->To completely prevent the system from starting the staging or integration process, handle the following events:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">DocumentEvents.LogChange.Before</strong></p>
-</li><li class=" "><p   
-><strong class=" ">ObjectEvents.LogChange.Before </strong>(or <strong class=" ">&lt;name&gt;Info.TYPEINFO.Events</strong> for specific object types)</p>
-</li></ul><p   
->You can use two different approaches to disable staging or integration inside the event handlers:</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"><p><a href="handling-global-events">Event handlers</a> allow you to disable <a href="content-staging">content staging</a> and <a href="using-the-integration-bus">integration bus synchronization</a> for certain pages or objects. The system provides two types of events that you can use:</p><ul class=" "><li class=" "><p><a href="#src-68882269_excludingcontentfromstagingandintegration-excludingcontentbyhandlingpageorobjectchanges">Handling the changes of pages or objects</a></p>
+</li><li class=" "><p><a href="#src-68882269_excludingcontentfromstagingandintegration-excludingcontentbyhandlingsynchronizationtasks">Handling the creation of staging or integration tasks</a></p>
+</li></ul><h3 id="src-68882269_Excludingcontentfromstagingandintegration-Excludingcontentbyhandlingpageorobjectchanges" class="heading "><span>Excluding content by handling page or object changes</span></h3><p>When changes are made to pages and objects (such as creating, editing or deleting), the system logs the change data. <a href="content-staging">Content staging</a> and the <a href="using-the-integration-bus">integration bus</a> use the data to create synchronization tasks, which then transfer the changes to the target server or application.</p><p>To completely prevent the system from starting the staging or integration process, handle the following events:</p><ul class=" "><li class=" "><p><strong class=" ">DocumentEvents.LogChange.Before</strong></p>
+</li><li class=" "><p><strong class=" ">ObjectEvents.LogChange.Before </strong>(or <strong class=" ">&lt;name&gt;Info.TYPEINFO.Events</strong> for specific object types)</p>
+</li></ul><p>You can use two different approaches to disable staging or integration inside the event handlers:</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Set the properties of the event handler&#39;s <strong class=" ">LogDocumentChangeArgs/LogObjectChangeArgs</strong> parameter:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Set the properties of the event handler's <strong class=" ">LogDocumentChangeArgs/LogObjectChangeArgs</strong> parameter:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">e.Settings.LogStaging = </code><code class="keyword">false</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">e.Settings.LogIntegration = </code><code class="keyword">false</code><code class="plain">;</code></div>
 </div>
     </div>
-<p   
->Directly switches off logging of staging or integration tasks. The properties can be changed later during the execution of the <i class=" ">LogChange</i> event.</p>
+<p>Directly switches off logging of staging or integration tasks. The properties can be changed later during the execution of the <i class=" ">LogChange</i> event.</p>
         </div>
-    </div>
-<p   
-><strong class=" ">OR</strong></p>
-    <div  class="confbox admonition admonition-info">
+    </div><p><strong class=" ">OR</strong></p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Call the <strong class=" ">Using</strong> method of the event handler&#39;s <strong class=" ">LogDocumentChangeArgs/LogObjectChangeArgs</strong> parameter with a new <strong class=" ">CMSActionContext</strong> object as the parameter. Set the <strong class=" ">LogSynchronization</strong> or <strong class=" ">LogIntegration</strong> properties in the <i class=" ">CMSActionContext</i> constructor.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Call the <strong class=" ">Using</strong> method of the event handler's <strong class=" ">LogDocumentChangeArgs/LogObjectChangeArgs</strong> parameter with a new <strong class=" ">CMSActionContext</strong> object as the parameter. Set the <strong class=" ">LogSynchronization</strong> or <strong class=" ">LogIntegration</strong> properties in the <i class=" ">CMSActionContext</i> constructor.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">e.Using(</code><code class="keyword">new</code><code class="plain"> CMSActionContext() {LogSynchronization = </code><code class="keyword">false</code><code class="plain">, LogIntegration = </code><code class="keyword">false</code><code class="plain">} );</code></div>
 </div>
     </div>
-<p   
->Disables logging of staging or integration tasks within the entire context of the <i class=" ">LogChange</i> event.</p>
+<p>Disables logging of staging or integration tasks within the entire context of the <i class=" ">LogChange</i> event.</p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+
+
+
+    
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882269_Excludingcontentfromstagingandintegration-Excludingcontentbyhandlingpageorobjectchanges">Excluding content by handling page or object changes</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882269_Excludingcontentfromstagingandintegration-Excludingcontentbyhandlingsynchronizationtasks">Excluding content by handling synchronization tasks</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882269_excludingcontentfromstagingandintegration-excludingcontentbyhandlingpageorobjectchanges">Excluding content by handling page or object changes</a></p>
+</li><li class=" "><p><a href="#src-68882269_excludingcontentfromstagingandintegration-excludingcontentbyhandlingsynchronizationtasks">Excluding content by handling synchronization tasks</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Content-staging">Content staging</a></p>
-</li><li class=" "><p   
->  <a   href="Using-the-integration-bus">Using the integration bus</a></p>
-</li><li class=" "><p   
->  <a   href="Handling-global-events">Handling global events</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---Global-system-events">Reference - Global system events</a></p>
+<ul class=" "><li class=" "><p><a href="content-staging">Content staging</a></p>
+</li><li class=" "><p><a href="using-the-integration-bus">Using the integration bus</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
+</li><li class=" "><p><a href="reference---global-system-events">Reference - Global system events</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h4 id="src-68882269_Excludingcontentfromstagingandintegration-Example" class="heading "><span>Example</span></h4>
-<p   
->The following example demonstrates how to use <strong class=" ">LogChange</strong> handlers to disable content staging and integration for the <i class=" ">/Archive</i> section of a website.</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-</li></ul></li><li class=" "><p  class="confluence-link" 
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign handlers to the <strong class=" ">DocumentEvents.LogChange.Before</strong> and <strong class=" ">PageTemplateInfo.TYPEINFO.Events.LogChange.Before</strong> events.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example demonstrates how to use <strong class=" ">LogChange</strong> handlers to disable content staging and integration for the <i class=" ">/Archive</i> section of a website.</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+</li></ul></li><li class=" "><p class="confluence-link">Override the module's <strong class=" ">OnInit</strong> method and assign handlers to the <strong class=" ">DocumentEvents.LogChange.Before</strong> and <strong class=" ">PageTemplateInfo.TYPEINFO.Events.LogChange.Before</strong> events.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
@@ -243,10 +215,10 @@
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.PortalEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(LogChangeHandlerModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> LogChangeHandlerModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "LogChangeHandlers"</code></div>
@@ -254,16 +226,16 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"LogChangeHandlers"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the DocumentEvents.LogChange.Before event</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// This event occurs when pages are modified, before the system starts logging the changes</code></div>
 <div class="line"><code class="plain">		DocumentEvents.LogChange.Before += LogDocumentChange_Before;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the LogChange.Before event for PageTemplateInfo objects</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// This event occurs when page templates are modified, before the system starts logging the changes</code></div>
 <div class="line"><code class="plain">		PageTemplateInfo.TYPEINFO.Events.LogChange.Before += LogPageTemplateObjectChange_Before;</code></div>
@@ -271,16 +243,15 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Define the handler methods (inside the custom module class):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Define the handler methods (inside the custom module class):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Disables logging of staging and outgoing integration tasks for the content of pages in the /Archive section of the website</code></div>
 <div class="line"><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> LogDocumentChange_Before(</code><code class="keyword">object</code><code class="plain"> sender, LogDocumentChangeEventArgs e)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Gets the synchronized page</code></div>
 <div class="line"><code class="plain">	TreeNode page = e.Settings.Node;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Excludes pages under the "/Archive" path from content staging and integration bus synchronization</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">if</code><code class="plain"> (page.NodeAliasPath.StartsWith(</code><code class="string">"/Archive"</code><code class="plain">))</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -292,13 +263,13 @@
 <div class="line"><code class="plain">		);</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Disables 'Create' and 'Update' staging/integration tasks for ad-hoc page templates of pages in the excluded /Archive section</code></div>
 <div class="line"><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> LogPageTemplateObjectChange_Before(</code><code class="keyword">object</code><code class="plain"> sender, LogObjectChangeEventArgs e)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Gets the synchronized object</code></div>
 <div class="line"><code class="plain">	GeneralizedInfo obj = e.Settings.InfoObj;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">if</code><code class="plain"> (obj != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Continues only for ad-hoc templates</code></div>
@@ -308,7 +279,7 @@
 <div class="line"><code class="plain">			</code><code class="keyword">var</code><code class="plain"> nodeQuery = DocumentHelper.GetDocuments()</code></div>
 <div class="line"><code class="plain">											.Path(</code><code class="string">"/Archive"</code><code class="plain">, PathTypeEnum.Section)</code></div>
 <div class="line"><code class="plain">											.WhereEquals(</code><code class="string">"NodeTemplateID"</code><code class="plain">, obj.GetValue(</code><code class="string">"PageTemplateID"</code><code class="plain">));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="keyword">if</code><code class="plain"> (nodeQuery.Count &gt; 0)</code></div>
 <div class="line"><code class="plain">			{</code></div>
 <div class="line"><code class="plain">				</code><code class="comments">// Disables logging of staging and integration tasks</code></div>
@@ -320,50 +291,35 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the class.</p>
-</li></ol><p   
->The custom handlers ensure that the system does not create synchronization tasks for:</p>
-<ul class=" "><li class=" "><p   
->The content and metadata of pages in the website&#39;s <i class=" ">/Archive</i> section</p>
-</li><li class=" "><p   
->  <a   href="Creating-portal-engine-page-templates">Ad-hoc page templates</a> of the pages in the <i class=" ">/Archive</i> section (only <i class=" ">Create</i> and <i class=" ">Update</i> synchronization tasks, does not disable <i class=" ">Delete</i> tasks)</p>
+</li><li class=" "><p>Save the class.</p>
+</li></ol><p>The custom handlers ensure that the system does not create synchronization tasks for:</p>
+<ul class=" "><li class=" "><p>The content and metadata of pages in the website's <i class=" ">/Archive</i> section</p>
+</li><li class=" "><p><a href="creating-portal-engine-page-templates">Ad-hoc page templates</a> of the pages in the <i class=" ">/Archive</i> section (only <i class=" ">Create</i> and <i class=" ">Update</i> synchronization tasks, does not disable <i class=" ">Delete</i> tasks)</p>
 </li></ul>    <h3 id="src-68882269_Excludingcontentfromstagingandintegration-Excludingcontentbyhandlingsynchronizationtasks" class="heading "><span>Excluding content by handling synchronization tasks</span></h3>
-<p   
->  <a   href="Content-staging">Content staging</a> and the   <a   href="Using-the-integration-bus">integration bus</a> use synchronization tasks to transfer changes to the target server or application. You can cancel the creation of synchronization tasks during the following system events:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">StagingEvents.LogTask.Before</strong></p>
-</li><li class=" "><p   
-><strong class=" ">IntegrationEvents.LogInternalTask.Before</strong></p>
-</li></ul><p   
->Excluding content via the <i class=" ">LogTask</i> events provides the following advantages and disadvantages:</p>
-<ul class=" "><li class=" "><p   
-><img  class="emoticon emoticon-plus"  src="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/add.svg" alt="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/add.svg"   />
+<p><a href="content-staging">Content staging</a> and the <a href="using-the-integration-bus">integration bus</a> use synchronization tasks to transfer changes to the target server or application. You can cancel the creation of synchronization tasks during the following system events:</p>
+<ul class=" "><li class=" "><p><strong class=" ">StagingEvents.LogTask.Before</strong></p>
+</li><li class=" "><p><strong class=" ">IntegrationEvents.LogInternalTask.Before</strong></p>
+</li></ul><p>Excluding content via the <i class=" ">LogTask</i> events provides the following advantages and disadvantages:</p>
+<ul class=" "><li class=" "><p><img class="emoticon emoticon-plus" src="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/add.svg" alt="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/add.svg">
  Allows you to access the data of the synchronization task inside the event handler. For example, you can disable only specific types of synchronization tasks.</p>
-</li><li class=" "><p   
-><img  class="emoticon emoticon-minus"  src="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/forbidden.svg" alt="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/forbidden.svg"   />
- The system needs to prepare the synchronization data for every object/page change, which requires more overhead than when excluding content through   <a   href="#src-68882269_Excludingcontentfromstagingandintegration-Excludingcontentbyhandlingdocumentorobjectchanges">LogChange handlers</a>.</p>
+</li><li class=" "><p><img class="emoticon emoticon-minus" src="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/forbidden.svg" alt="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/forbidden.svg">
+ The system needs to prepare the synchronization data for every object/page change, which requires more overhead than when excluding content through <a href="#src-68882269_excludingcontentfromstagingandintegration-excludingcontentbyhandlingdocumentorobjectchanges">LogChange handlers</a>.</p>
 </li></ul>    <h4 id="src-68882269_Excludingcontentfromstagingandintegration-Example.1" class="heading "><span>Example</span></h4>
-<p   
->The following example demonstrates how to use the <strong class=" ">LogTask</strong> handler to disable content staging for the deletion of   <a   href="Role-management">role objects</a> and for content synchronization of certain pages.</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-</li></ul></li><li class=" "><p  class="confluence-link" 
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">StagingEvents.LogTask.Before</strong> event.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example demonstrates how to use the <strong class=" ">LogTask</strong> handler to disable content staging for the deletion of <a href="role-management">role objects</a> and for content synchronization of certain pages.</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+</li></ul></li><li class=" "><p class="confluence-link">Override the module's <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">StagingEvents.LogTask.Before</strong> event.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Synchronization;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(LogTaskHandlerModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> LogTaskHandlerModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "LogTaskHandlers"</code></div>
@@ -371,12 +327,12 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"LogTaskHandlers"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the StagingEvents.LogTask.Before event</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// This event occurs before the system creates content staging synchronization tasks</code></div>
 <div class="line"><code class="plain">		StagingEvents.LogTask.Before += LogTask_Before;</code></div>
@@ -384,9 +340,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Define the handler method (inside the custom module class):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Define the handler method (inside the custom module class):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> LogTask_Before(</code><code class="keyword">object</code><code class="plain"> sender, StagingLogTaskEventArgs e)</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -395,7 +350,7 @@
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets the synchronized document</code></div>
 <div class="line"><code class="plain">		TreeNode document = (TreeNode)e.Object;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Cancels the creation of content staging tasks for documents under the "/Archive" path</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (document.NodeAliasPath.StartsWith(</code><code class="string">"/Archive"</code><code class="plain">))</code></div>
 <div class="line"><code class="plain">		{</code></div>
@@ -407,13 +362,13 @@
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets the synchronized object</code></div>
 <div class="line"><code class="plain">		BaseInfo synchronizedObject = e.Object;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets the synchronization task</code></div>
 <div class="line"><code class="plain">		StagingTaskInfo stagingTask = e.Task;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Cancels the creation of content staging tasks for the deletion of role objects</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> ((synchronizedObject.TypeInfo.ObjectType == CMS.Membership.RoleInfo.OBJECT_TYPE)</code></div>
-<div class="line"><code class="plain">			 &amp;&amp; (stagingTask.TaskType == TaskTypeEnum.DeleteObject))</code></div>
+<div class="line"><code class="plain">			&nbsp;&amp;&amp; (stagingTask.TaskType == TaskTypeEnum.DeleteObject))</code></div>
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			e.Cancel();</code></div>
 <div class="line"><code class="plain">		}</code></div>
@@ -421,14 +376,10 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the class.</p>
-</li></ol><p   
->The handler ensures that the system does not create staging tasks:</p>
-<ul class=" "><li class=" "><p   
->For changes made to pages in the website&#39;s <i class=" ">/Archive</i> section</p>
-</li><li class=" "><p   
->When a role is deleted from the system</p>
+</li><li class=" "><p>Save the class.</p>
+</li></ol><p>The handler ensures that the system does not create staging tasks:</p>
+<ul class=" "><li class=" "><p>For changes made to pages in the website's <i class=" ">/Archive</i> section</p>
+</li><li class=" "><p>When a role is deleted from the system</p>
 </li></ul>        </div>
 
     </article>
@@ -449,5 +400,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

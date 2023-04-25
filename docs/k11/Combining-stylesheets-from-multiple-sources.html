@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Combining stylesheets from multiple sources - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,72 +148,48 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Kentico allows you to combine the content of different stylesheets by entering macros into stylesheet text. When the system resolves the macros, they are replaced by the content of the specified stylesheet. For example, this can be useful when creating a page&#8209;specific stylesheet as an extension of the main website stylesheet with additional CSS classes.</p>
-<p   
->You can link stylesheets into the code of other stylesheets by inserting   <a   href="Macro-expressions">macro expressions</a> in the following format:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">{% CSS[&ldquo;&lt;stylesheet code name&gt;&ldquo;] %}</i>, e.g. <i class=" ">{% CSS[&ldquo;CorporateSite&ldquo;] %}</i></p>
-</li><li class=" "><p   
-><i class=" ">{% CSS.Stylesheets[&ldquo;&lt;stylesheet code name&gt;&ldquo;] %}</i>, e.g. <i class=" ">{% CSS.Stylesheets[&ldquo;CorporateSite&ldquo;] %}</i></p>
-</li></ul>    <div  class="confbox panel">
+<div class="section-left"><p>Kentico allows you to combine the content of different stylesheets by entering macros into stylesheet text. When the system resolves the macros, they are replaced by the content of the specified stylesheet. For example, this can be useful when creating a page‑specific stylesheet as an extension of the main website stylesheet with additional CSS classes.</p><p>You can link stylesheets into the code of other stylesheets by inserting <a href="macro-expressions">macro expressions</a> in the following format:</p><ul class=" "><li class=" "><p><i class=" ">{% CSS[“&lt;stylesheet code name&gt;“] %}</i>, e.g. <i class=" ">{% CSS[“CorporateSite“] %}</i></p>
+</li><li class=" "><p><i class=" ">{% CSS.Stylesheets[“&lt;stylesheet code name&gt;“] %}</i>, e.g. <i class=" ">{% CSS.Stylesheets[“CorporateSite“] %}</i></p>
+</li></ul></div>
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880763_Combiningstylesheetsfrommultiplesources-DisablingresolvingofCSSmacros">Disabling resolving of CSS macros</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880763_safe-id-Q29tYmluaW5nc3R5bGVzaGVldHNmcm9tbXVsdGlwbGVzb3VyY2VzLVVzaW5ndGhlQGltcG9ydGRpcmVjdGl2ZQ">Using the @import directive</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880763_combiningstylesheetsfrommultiplesources-disablingresolvingofcssmacros">Disabling resolving of CSS macros</a></p>
+</li><li class=" "><p><a href="#src-68880763_safe-id-q29tymluaw5nc3r5bgvzagvldhnmcm9tbxvsdglwbgvzb3vyy2vzlvvzaw5ndghlqgltcg9ydgrpcmvjdgl2zq">Using the @import directive</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-<p   
->If the code name of the stylesheet does not contain any dots, you can also use the following simplified notation:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">{% CSS.&lt;stylesheetname&gt; %}</i>, e.g. <i class=" ">{% CSS.CorporateSite %}</i></p>
-</li></ul><p   
->Similarly, you can link   <a   href="Adding-CSS-to-page-components">component stylesheets</a> the following way:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">{% CSS.Containers[&ldquo;&lt;web part container code name&gt;&ldquo;] %}</i>, e.g. <i class=" ">{% CSS.Containers[&ldquo;BlackBox&ldquo;] %}</i></p>
-</li><li class=" "><p   
-><i class=" ">{% CSS.Templates[&ldquo;&lt;page template code name &gt;&ldquo;] %}</i>, e.g. <i class=" ">{% CSS.Templates[&ldquo;CorporateSite.HomePage&ldquo;] %}</i></p>
-</li><li class=" "><p   
-><i class=" ">{% CSS.WebParts[&ldquo;&lt;web part code name&gt;&ldquo;] %}</i>, e.g. <i class=" ">{% CSS.WebParts[&ldquo;AbuseReport&ldquo;] %}</i></p>
-</li><li class=" "><p   
-><i class=" ">{% CSS.WebPartLayouts[&ldquo;&lt;web part layout full name&gt;&ldquo;] %}</i>, e.g. <i class=" ">{% CSS.WebPartLayouts[&ldquo;AbuseReport.MyCustomLayout&ldquo;] %}</i></p>
-</li><li class=" "><p   
-><i class=" ">{% CSS.Transformations[&ldquo;&lt;transformation full name&gt;&ldquo;] %}</i>, e.g. <i class=" ">{% CSS.Transformations[&ldquo;CMS.Article.Default&ldquo;] %}</i></p>
-</li></ul><p   
->The simplified notation can also be used if the component name does not contain any dots (web part layouts and transformations always contain dots in their full names, so their stylesheets can only be linked using the notation above):</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">{% CSS.Containers.&lt;web part container code name&gt; %}</i>, e.g. <i class=" ">{% CSS.Containers.BlackBox %}</i></p>
-</li><li class=" "><p   
-><i class=" ">{% CSS.Templates.&lt;page template code name &gt; %}</i>, e.g. <i class=" ">{% CSS.Templates.MyTemplate %}</i></p>
-</li><li class=" "><p   
-><i class=" ">{% CSS.WebParts.&lt;web part code name&gt; %}</i>, e.g. <i class=" ">{% CSS.WebParts.AbuseReport %}</i></p>
+    </div></div>
+<p>If the code name of the stylesheet does not contain any dots, you can also use the following simplified notation:</p>
+<ul class=" "><li class=" "><p><i class=" ">{% CSS.&lt;stylesheetname&gt; %}</i>, e.g. <i class=" ">{% CSS.CorporateSite %}</i></p>
+</li></ul><p>Similarly, you can link <a href="adding-css-to-page-components">component stylesheets</a> the following way:</p>
+<ul class=" "><li class=" "><p><i class=" ">{% CSS.Containers[“&lt;web part container code name&gt;“] %}</i>, e.g. <i class=" ">{% CSS.Containers[“BlackBox“] %}</i></p>
+</li><li class=" "><p><i class=" ">{% CSS.Templates[“&lt;page template code name &gt;“] %}</i>, e.g. <i class=" ">{% CSS.Templates[“CorporateSite.HomePage“] %}</i></p>
+</li><li class=" "><p><i class=" ">{% CSS.WebParts[“&lt;web part code name&gt;“] %}</i>, e.g. <i class=" ">{% CSS.WebParts[“AbuseReport“] %}</i></p>
+</li><li class=" "><p><i class=" ">{% CSS.WebPartLayouts[“&lt;web part layout full name&gt;“] %}</i>, e.g. <i class=" ">{% CSS.WebPartLayouts[“AbuseReport.MyCustomLayout“] %}</i></p>
+</li><li class=" "><p><i class=" ">{% CSS.Transformations[“&lt;transformation full name&gt;“] %}</i>, e.g. <i class=" ">{% CSS.Transformations[“CMS.Article.Default“] %}</i></p>
+</li></ul><p>The simplified notation can also be used if the component name does not contain any dots (web part layouts and transformations always contain dots in their full names, so their stylesheets can only be linked using the notation above):</p>
+<ul class=" "><li class=" "><p><i class=" ">{% CSS.Containers.&lt;web part container code name&gt; %}</i>, e.g. <i class=" ">{% CSS.Containers.BlackBox %}</i></p>
+</li><li class=" "><p><i class=" ">{% CSS.Templates.&lt;page template code name &gt; %}</i>, e.g. <i class=" ">{% CSS.Templates.MyTemplate %}</i></p>
+</li><li class=" "><p><i class=" ">{% CSS.WebParts.&lt;web part code name&gt; %}</i>, e.g. <i class=" ">{% CSS.WebParts.AbuseReport %}</i></p>
 </li></ul>    <h3 id="src-68880763_Combiningstylesheetsfrommultiplesources-DisablingresolvingofCSSmacros" class="heading "><span>Disabling resolving of CSS macros</span></h3>
-<p   
->Resolving of CSS macros is enabled by default, but can be disabled if needed via the <strong class=" ">Resolve macros in CSS</strong> setting in <strong class=" ">Settings -&gt; System -&gt; Performance</strong> (only available if you choose <i class=" ">(global)</i> option in the <strong class=" ">Site</strong> selector).</p>
-    <div  class="confbox admonition admonition-warning">
+<p>Resolving of CSS macros is enabled by default, but can be disabled if needed via the <strong class=" ">Resolve macros in CSS</strong> setting in <strong class=" ">Settings -&gt; System -&gt; Performance</strong> (only available if you choose <i class=" ">(global)</i> option in the <strong class=" ">Site</strong> selector).</p>
+    <div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you wish to disable the <strong class=" ">Resolve macros in CSS</strong> setting, you first need to remove all occurrences of macros from your stylesheets. Unresolved macro expressions are not valid CSS code and as a result, the given stylesheets will not be processed correctly by browsers.</p>
+<p>If you wish to disable the <strong class=" ">Resolve macros in CSS</strong> setting, you first need to remove all occurrences of macros from your stylesheets. Unresolved macro expressions are not valid CSS code and as a result, the given stylesheets will not be processed correctly by browsers.</p>
         </div>
     </div>
     <h3 id="src-68880763_safe-id-Q29tYmluaW5nc3R5bGVzaGVldHNmcm9tbXVsdGlwbGVzb3VyY2VzLVVzaW5ndGhlQGltcG9ydGRpcmVjdGl2ZQ" class="heading "><span>Using the @import directive</span></h3>
-<p   
->You can alternatively load the content of other stylesheets by adding the standard <strong class=" ">@import</strong> directive to the beginning of the stylesheet code, for example:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>You can alternatively load the content of other stylesheets by adding the standard <strong class=" ">@import</strong> directive to the beginning of the stylesheet code, for example:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">@import </code><code class="value">url</code><code class="plain">(~/CMSPages/GetResource.ashx?stylesheetname=corporatesite);</code></div>
 </div>
     </div>
-<p   
->This may also be used to import external CSS stylesheets from static files in your web project, for example:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>This may also be used to import external CSS stylesheets from static files in your web project, for example:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">@import </code><code class="value">url</code><code class="plain">(~/CMSPages/GetResource.ashx?stylesheetfile=/Kentico/App_Themes/CorporateSite/Blue.css);</code></div>
 </div>
@@ -240,5 +214,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

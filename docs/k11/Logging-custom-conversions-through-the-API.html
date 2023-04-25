@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Logging custom conversions through the API - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,22 +150,20 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If you need to log custom conversions for actions that are not supported by default (see   <a   href="Logging-custom-conversions-on-your-website">Logging custom conversions on your website</a>), you can write your own custom code and use the API to log custom conversions. This allows you to monitor any type of activity performed by users on your website and to view the results using the custom conversion reports available in the   <a   href="Web-analytics">Web analytics</a> application.</p>
-<p   
->Use the following code to log custom conversions via the API:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"></div><p>If you need to log custom conversions for actions that are not supported by default (see <a href="logging-custom-conversions-on-your-website">Logging custom conversions on your website</a>), you can write your own custom code and use the API to log custom conversions. This allows you to monitor any type of activity performed by users on your website and to view the results using the custom conversion reports available in the <a href="web-analytics">Web analytics</a> application.</p>
+<p>Use the following code to log custom conversions via the API:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.WebAnalytics;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SiteProvider;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Localization;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">string</code><code class="plain"> siteName = SiteContext.CurrentSiteName;</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> aliasPath = DocumentContext.CurrentAliasPath;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Checks that web analytics are enabled in the site's settings.</code></div>
 <div class="line"><code class="comments">// Confirms that the current IP address, alias path and URL extension are not excluded from web analytics tracking.</code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (AnalyticsHelper.IsLoggingEnabled(siteName, aliasPath))</code></div>
@@ -177,54 +173,36 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
->Log custom conversions using the <strong class=" ">HitLogProvider</strong> class from the <strong class=" ">CMS.WebAnalytics</strong> namespace, specifically the following method:</p>
-<p   
-><i class=" ">LogConversions(string siteName, string culture, string objectName, int objectId, int count, double value)</i></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">siteName</strong> &ndash; sets the code name of the site for which the conversion is logged.</p>
-</li><li class=" "><p   
-><strong class=" ">culture</strong> &ndash; sets the culture code under which the conversion is logged.</p>
-</li><li class=" "><p   
-><strong class=" ">objectName</strong> &ndash; specifies the code name of the conversion that is logged.</p>
-</li><li class=" "><p   
-><strong class=" ">objectId</strong> &ndash; specifies the ID of the conversion. You can set this parameter to <i class=" ">0</i> if you specify a valid code name in the <i class=" ">objectName</i> parameter.</p>
-</li><li class=" "><p   
-><strong class=" ">count</strong> &ndash; sets the number of conversion hits that the method logs. This parameter is optional. The default value (<i class=" ">1</i>) is used if not specified.</p>
-</li><li class=" "><p   
-><strong class=" ">value</strong> &ndash; specifies the value logged for the conversion.</p>
-</li></ul><p   
->In addition to logging a general custom conversion, this method checks if the current user has passed through a page with a running   <a   href="A_B-testing-website-pages">A/B</a> or   <a   href="Multivariate-testing">Multivariate test</a>. If this is the case, the method automatically logs the conversion within the appropriate context and includes the conversion in the statistics of the given test.</p>
+<p>Log custom conversions using the <strong class=" ">HitLogProvider</strong> class from the <strong class=" ">CMS.WebAnalytics</strong> namespace, specifically the following method:</p>
+<p><i class=" ">LogConversions(string siteName, string culture, string objectName, int objectId, int count, double value)</i></p>
+<ul class=" "><li class=" "><p><strong class=" ">siteName</strong> – sets the code name of the site for which the conversion is logged.</p>
+</li><li class=" "><p><strong class=" ">culture</strong> – sets the culture code under which the conversion is logged.</p>
+</li><li class=" "><p><strong class=" ">objectName</strong> – specifies the code name of the conversion that is logged.</p>
+</li><li class=" "><p><strong class=" ">objectId</strong> – specifies the ID of the conversion. You can set this parameter to <i class=" ">0</i> if you specify a valid code name in the <i class=" ">objectName</i> parameter.</p>
+</li><li class=" "><p><strong class=" ">count</strong> – sets the number of conversion hits that the method logs. This parameter is optional. The default value (<i class=" ">1</i>) is used if not specified.</p>
+</li><li class=" "><p><strong class=" ">value</strong> – specifies the value logged for the conversion.</p>
+</li></ul><p>In addition to logging a general custom conversion, this method checks if the current user has passed through a page with a running <a href="a_b-testing-website-pages">A/B</a> or <a href="multivariate-testing">Multivariate test</a>. If this is the case, the method automatically logs the conversion within the appropriate context and includes the conversion in the statistics of the given test.</p>
     <h3 id="src-68882568_LoggingcustomconversionsthroughtheAPI-Integratingthecustomcodeintoyourwebsite" class="heading "><span>Integrating the custom code into your website</span></h3>
-<p   
->There are several possible ways to include your custom conversion code into the website&#39;s functionality:</p>
-<ul class=" "><li class=" "><p   
->When tracking conversions on a specific page, you can use a   <a   href="Adding-custom-code-to-portal-engine-page-templates">custom user control</a> or   <a   href="Developing-web-parts">web part</a> to ensure that the system executes the code as required.</p>
-</li><li class=" "><p   
->To log actions that may occur anywhere on the website, use   <a   href="Handling-global-events">global event handlers</a>.</p>
-</li></ul>    <div  class="confbox panel">
+<p>There are several possible ways to include your custom conversion code into the website's functionality:</p>
+<ul class=" "><li class=" "><p>When tracking conversions on a specific page, you can use a <a href="adding-custom-code-to-portal-engine-page-templates">custom user control</a> or <a href="developing-web-parts">web part</a> to ensure that the system executes the code as required.</p>
+</li><li class=" "><p>To log actions that may occur anywhere on the website, use <a href="handling-global-events">global event handlers</a>.</p>
+</li></ul>    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Web-analytics">Web analytics</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-logging-of-actions-as-custom-conversions">Configuring logging of actions as custom conversions</a></p>
-</li><li class=" "><p   
->  <a   href="Logging-custom-conversions-on-your-website">Logging custom conversions on your website</a></p>
+<ul class=" "><li class=" "><p><a href="web-analytics">Web analytics</a></p>
+</li><li class=" "><p><a href="configuring-logging-of-actions-as-custom-conversions">Configuring logging of actions as custom conversions</a></p>
+</li><li class=" "><p><a href="logging-custom-conversions-on-your-website">Logging custom conversions on your website</a></p>
 </li></ul>        </div>
     </div>
-<p   
-></p>
-    <div  class="confbox admonition admonition-info">
+<p></p>
+    <div class="confbox admonition admonition-info">
                     <p class="title">Kentico EMS required</p>
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+<p>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
         </div>
     </div>
-<p   
-></p>
+<p></p>
         </div>
 
     </article>
@@ -245,5 +223,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

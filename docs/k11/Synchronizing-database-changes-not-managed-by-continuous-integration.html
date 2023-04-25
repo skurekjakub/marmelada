@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Synchronizing database changes not managed by continuous integration - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,187 +149,120 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The Kentico   <a   href="Setting-up-continuous-integration">continuous integration solution</a> handles serialization of data of most objects from the database into XML files on the file system. However,   <a   href="Object-types-supported-by-continuous-integration">not all database changes</a> are supported by it. Changes to database indexes, functions, stored procedures, custom views, and so on are all unsupported by continuous integration. To keep the main database consistent across your development instances, these changes need to be handled manually. We recommend using   <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Synchronizingdatabasechangesusingmigrationscripts">migration scripts</a> to synchronize database changes not managed by the Kentico continuous integration solution.</p>
-    <h3 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Synchronizingdatabasechangesusingmigrationscripts" class="heading "><span>Synchronizing database changes using migration scripts</span></h3>
-<p   
->A migration script allows you to alter a database by changing all or part of a database. This alteration can be as simple as adding or removing a column to a table, or a complex refactoring task such as splitting tables or changing column properties in a way that could affect the data it stores.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"><p>The Kentico <a href="setting-up-continuous-integration">continuous integration solution</a> handles serialization of data of most objects from the database into XML files on the file system. However, <a href="object-types-supported-by-continuous-integration">not all database changes</a> are supported by it. Changes to database indexes, functions, stored procedures, custom views, and so on are all unsupported by continuous integration. To keep the main database consistent across your development instances, these changes need to be handled manually. We recommend using <a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-synchronizingdatabasechangesusingmigrationscripts">migration scripts</a> to synchronize database changes not managed by the Kentico continuous integration solution.</p><h3 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Synchronizingdatabasechangesusingmigrationscripts" class="heading "><span>Synchronizing database changes using migration scripts</span></h3><p>A migration script allows you to alter a database by changing all or part of a database. This alteration can be as simple as adding or removing a column to a table, or a complex refactoring task such as splitting tables or changing column properties in a way that could affect the data it stores.</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The rest of this page assumes you are using a development environment utilizing the Kentico continuous integration solution. See   <a   href="Setting-up-continuous-integration">Setting up continuous integration</a> for more information.</p>
+<p>The rest of this page assumes you are using a development environment utilizing the Kentico continuous integration solution. See <a href="setting-up-continuous-integration">Setting up continuous integration</a> for more information.</p>
         </div>
-    </div>
-    <h4 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Utilizingmigrationscriptsinacontinuousintegrationworkflow" class="heading "><span>Utilizing migration scripts in a continuous integration workflow</span></h4>
-<p   
->The Kentico continuous integration solution supports the use of migration scripts. The ~\<strong class=" ">CMS\App_Data\</strong><strong class=" ">CIRepository</strong> folder contains, in addition to serialized database object data, the following files:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">@migrations</strong> &ndash; folder for storing all created migrations connected to a particular repository. Since all migration scripts for a repository are stored in this folder, their file names need to be unique.</p>
-</li><li class=" "><p  class="auto-cursor-target" 
-><strong class=" ">Before.txt</strong> &ndash; holds the file names of all migrations applied before the <i class=" ">CIRepository</i> folder   <a   href="Restoring-continuous-integration-files-to-the-database">is restored</a> to the database. Insert only the migration file names without the .sql suffix. Each file name must be inserted on a <strong class=" ">separate line</strong>.</p>
-</li><li class=" "><p  class="auto-cursor-target" 
-><strong class=" ">After.txt </strong>&ndash;<strong class=" "> </strong>holds the file names of all migrations applied after the <i class=" ">CIRepository</i> folder is restored to the database. Insert only the migration file names without the .sql suffix. Each file name must be inserted on a <strong class=" ">separate line</strong>.</p>
-</li></ul><p   
->Additionally, the database of a Kentico instance contains a <strong class=" ">CI_Migration</strong> table, which stores the file names of migrations already executed on the database.</p>
-    <div  class="confbox panel">
+    </div><h4 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Utilizingmigrationscriptsinacontinuousintegrationworkflow" class="heading "><span>Utilizing migration scripts in a continuous integration workflow</span></h4><p>The Kentico continuous integration solution supports the use of migration scripts. The ~\<strong class=" ">CMS\App_Data\</strong><strong class=" ">CIRepository</strong> folder contains, in addition to serialized database object data, the following files:</p><ul class=" "><li class=" "><p><strong class=" ">@migrations</strong> – folder for storing all created migrations connected to a particular repository. Since all migration scripts for a repository are stored in this folder, their file names need to be unique.</p>
+</li><li class=" "><p class="auto-cursor-target"><strong class=" ">Before.txt</strong> – holds the file names of all migrations applied before the <i class=" ">CIRepository</i> folder <a href="restoring-continuous-integration-files-to-the-database">is restored</a> to the database. Insert only the migration file names without the .sql suffix. Each file name must be inserted on a <strong class=" ">separate line</strong>.</p>
+</li><li class=" "><p class="auto-cursor-target"><strong class=" ">After.txt </strong>–<strong class=" "> </strong>holds the file names of all migrations applied after the <i class=" ">CIRepository</i> folder is restored to the database. Insert only the migration file names without the .sql suffix. Each file name must be inserted on a <strong class=" ">separate line</strong>.</p>
+</li></ul><p>Additionally, the database of a Kentico instance contains a <strong class=" ">CI_Migration</strong> table, which stores the file names of migrations already executed on the database.</p></div>
+    
+
+    
+    
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Synchronizingdatabasechangesusingmigrationscripts">Synchronizing database changes using migration scripts</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Utilizingmigrationscriptsinacontinuousintegrationworkflow">Utilizing migration scripts in a continuous integration workflow</a></p>
-</li><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-RestoringthecontinuousintegrationrepositoryviaRunRestore.ps1">Restoring the continuous integration repository via RunRestore.ps1</a></p>
-</li><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Decidingwhentoexecuteamigration">Deciding when to execute a migration</a></p>
-</li><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Example-Creatingmigrationscriptstosynchronizedatabasechanges">Example - Creating migration scripts to synchronize database changes</a></p>
-</li><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Retrievingthelatestversionofyourprojectandupdatingthedatabase">Retrieving the latest version of your project and updating the database</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Rollingbackdatabasechanges">Rolling back database changes</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Example-Rollingbackchanges">Example - Rolling back changes</a></p>
-</li><li class=" "><p   
->  <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Restoringthedatabasetoaspecificpointintime">Restoring the database to a specific point in time</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-synchronizingdatabasechangesusingmigrationscripts">Synchronizing database changes using migration scripts</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-utilizingmigrationscriptsinacontinuousintegrationworkflow">Utilizing migration scripts in a continuous integration workflow</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-restoringthecontinuousintegrationrepositoryviarunrestore.ps1">Restoring the continuous integration repository via RunRestore.ps1</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-decidingwhentoexecuteamigration">Deciding when to execute a migration</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-example-creatingmigrationscriptstosynchronizedatabasechanges">Example - Creating migration scripts to synchronize database changes</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-retrievingthelatestversionofyourprojectandupdatingthedatabase">Retrieving the latest version of your project and updating the database</a></p>
+</li></ul></li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-rollingbackdatabasechanges">Rolling back database changes</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-example-rollingbackchanges">Example - Rolling back changes</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-restoringthedatabasetoaspecificpointintime">Restoring the database to a specific point in time</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Continuous-integration-repository-structure">Continuous integration repository structure</a></p>
-</li><li class=" "><p   
->  <a   href="Object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
-</li><li class=" "><p   
->  <a   href="Restoring-continuous-integration-files-to-the-database">Restoring continuous integration files to the database</a></p>
-</li><li class=" "><p   
->  <a   href="Using-continuous-integration-with-Visual-Studio">Using continuous integration with Visual Studio</a></p>
+<ul class=" "><li class=" "><p><a href="continuous-integration-repository-structure">Continuous integration repository structure</a></p>
+</li><li class=" "><p><a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
+</li><li class=" "><p><a href="restoring-continuous-integration-files-to-the-database">Restoring continuous integration files to the database</a></p>
+</li><li class=" "><p><a href="using-continuous-integration-with-visual-studio">Using continuous integration with Visual Studio</a></p>
 </li></ul>        </div>
-    </div>
-<p   
->When you need to create or modify objects not supported by continuous integration (for example table indexes, functions, or stored procedures) and you want to share these changes with your team members or commit them to a source control system (for example <a  class="external-link" href="https://www.visualstudio.com/tfs/">Team Foundation Server</a> or <a  class="external-link" href="https://git-scm.com/">Git</a>), you need to:</p>
-<ol class=" "><li class=" "><p   
->Write a migration script that applies the required change to the database. Refer to the   <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Example-Creatingmigrationscriptstosynchronizedatabasechanges">Example - Creating migration scripts to synchronize database changes</a> section for an example of the process.</p>
-</li><li class=" "><p  class="auto-cursor-target" 
->Reference the migration script in either the <i class=" ">Before.txt</i> or <i class=" ">After.txt</i> file.</p>
-    <div  class="confbox admonition admonition-tip">
+    </div></div>
+    
+<p>When you need to create or modify objects not supported by continuous integration (for example table indexes, functions, or stored procedures) and you want to share these changes with your team members or commit them to a source control system (for example <a class="external-link" href="https://www.visualstudio.com/tfs/">Team Foundation Server</a> or <a class="external-link" href="https://git-scm.com/">Git</a>), you need to:</p>
+<ol class=" "><li class=" "><p>Write a migration script that applies the required change to the database. Refer to the <a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-example-creatingmigrationscriptstosynchronizedatabasechanges">Example - Creating migration scripts to synchronize database changes</a> section for an example of the process.</p>
+</li><li class=" "><p class="auto-cursor-target">Reference the migration script in either the <i class=" ">Before.txt</i> or <i class=" ">After.txt</i> file.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you are not sure when a migration should be executed, see the   <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Decidingwhentoexecuteamigration">Deciding when to execute a migration</a> section for specific scenarios and examples.</p>
+<p>If you are not sure when a migration should be executed, see the <a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-decidingwhentoexecuteamigration">Deciding when to execute a migration</a> section for specific scenarios and examples.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Execute the migration script alongside the continuous integration repository restore on databases you want to keep synchronized.</p>
-</li></ol><p   
->You can download a sample PowerShell script automating the process here: <a   href="attachments/70451908_3_RunRestore.ps1">RunRestore.ps1</a></p>
+</li><li class=" "><p>Execute the migration script alongside the continuous integration repository restore on databases you want to keep synchronized.</p>
+</li></ol><p>You can download a sample PowerShell script automating the process here: <a href="attachments/70451908_3_RunRestore.ps1">RunRestore.ps1</a></p>
     <h4 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-RestoringthecontinuousintegrationrepositoryviaRunRestore.ps1" class="heading "><span>Restoring the continuous integration repository via RunRestore.ps1</span></h4>
-<p   
->If you use the <i class=" ">RunRestore.ps1</i> script, the database restore process consists of these steps:</p>
-<ol class=" "><li class=" "><p   
->Call the <i class=" ">RunRestore.ps1</i> script from a command-line interface. Use the full path to a Kentico instance&#39;s CMS folder as the argument.</p>
-<ul class=" "><li class=" "><p   
->For example: <i class=" ">.\RunRestore.ps1 C:\inetpub\wwwroot\Kentico11\CMS</i></p>
-</li></ul></li><li class=" "><p   
->The <i class=" ">RunRestore.ps1</i> script:</p>
-<ul class=" "><li class=" "><p   
->Retrieves the <i class=" ">CMSConnectionString</i> from the given project&#39;s web.config file.</p>
-</li><li class=" "><p   
->Creates an <i class=" ">App_Offline.htm</i> file in the directory, stopping the instance.</p>
-</li><li class=" "><p   
->Iterates through migrations referenced in <i class=" ">Before.txt</i><i class=" "> </i>and applies them to the target database if necessary. The file names of the applied migrations are recorded in the <i class=" ">CI_Migration</i> table.</p>
-</li><li class=" "><p   
->Executes &quot;<i class=" ">ContinuousIntegration.exe<strong class=" "> </strong>-r -s&quot;</i>, deserializing the objects stored in the project&#39;s <i class=" ">CIRepository</i> folder and creates, overwrites or removes corresponding data in the database (specified by the connection string in the given project&#39;s web.config file)</p>
-</li><li class=" "><p   
->Iterates through migrations referenced in <i class=" ">After.txt</i> and applies them to the target database if necessary. The file names of the applied migrations are recorded in the <i class=" ">CI_Migration</i> table.</p>
-</li><li class=" "><p   
->Removes the <i class=" ">App_Offline.htm</i> file from the directory, bringing the instance back online.</p>
-</li></ul></li></ol><p   
->The targeted project&#39;s database now contains the <i class=" ">CIRepository</i> data and modifications applied via migration scripts.</p>
+<p>If you use the <i class=" ">RunRestore.ps1</i> script, the database restore process consists of these steps:</p>
+<ol class=" "><li class=" "><p>Call the <i class=" ">RunRestore.ps1</i> script from a command-line interface. Use the full path to a Kentico instance's CMS folder as the argument.</p>
+<ul class=" "><li class=" "><p>For example: <i class=" ">.\RunRestore.ps1 C:\inetpub\wwwroot\Kentico11\CMS</i></p>
+</li></ul></li><li class=" "><p>The <i class=" ">RunRestore.ps1</i> script:</p>
+<ul class=" "><li class=" "><p>Retrieves the <i class=" ">CMSConnectionString</i> from the given project's web.config file.</p>
+</li><li class=" "><p>Creates an <i class=" ">App_Offline.htm</i> file in the directory, stopping the instance.</p>
+</li><li class=" "><p>Iterates through migrations referenced in <i class=" ">Before.txt</i><i class=" "> </i>and applies them to the target database if necessary. The file names of the applied migrations are recorded in the <i class=" ">CI_Migration</i> table.</p>
+</li><li class=" "><p>Executes "<i class=" ">ContinuousIntegration.exe<strong class=" "> </strong>-r -s"</i>, deserializing the objects stored in the project's <i class=" ">CIRepository</i> folder and creates, overwrites or removes corresponding data in the database (specified by the connection string in the given project's web.config file)</p>
+</li><li class=" "><p>Iterates through migrations referenced in <i class=" ">After.txt</i> and applies them to the target database if necessary. The file names of the applied migrations are recorded in the <i class=" ">CI_Migration</i> table.</p>
+</li><li class=" "><p>Removes the <i class=" ">App_Offline.htm</i> file from the directory, bringing the instance back online.</p>
+</li></ul></li></ol><p>The targeted project's database now contains the <i class=" ">CIRepository</i> data and modifications applied via migration scripts.</p>
     <h4 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Decidingwhentoexecuteamigration" class="heading "><span>Deciding when to execute a migration</span></h4>
-<p   
->After creating a migration script, you need to decide whether it is going to be applied before or after the   <a   href="Restoring-continuous-integration-files-to-the-database">continuous integration files are restored</a>.</p>
-<p   
->The <i class=" ">Before.txt </i>file should only contain migrations that manipulate the database before the continuous integration files are restored. These migrations can, for example:</p>
-<ul class=" "><li class=" "><p   
->Drop indexes before their tables are deleted by the restore process.</p>
-</li><li class=" "><p   
->Delete foreign key constraints before their tables are deleted by the restore process.</p>
-</li></ul><p   
->The <i class=" ">After.txt</i> file should only contain migrations that manipulate the restored database. These migrations can, for example:</p>
-<ul class=" "><li class=" "><p   
->Create new indexes.</p>
-</li><li class=" "><p   
->Create new views.</p>
-</li><li class=" "><p   
->Add foreign key constraints.</p>
-</li><li class=" "><p   
->Add or modify stored procedures.</p>
-</li></ul>    <div  class="confbox admonition admonition-note">
+<p>After creating a migration script, you need to decide whether it is going to be applied before or after the <a href="restoring-continuous-integration-files-to-the-database">continuous integration files are restored</a>.</p>
+<p>The <i class=" ">Before.txt </i>file should only contain migrations that manipulate the database before the continuous integration files are restored. These migrations can, for example:</p>
+<ul class=" "><li class=" "><p>Drop indexes before their tables are deleted by the restore process.</p>
+</li><li class=" "><p>Delete foreign key constraints before their tables are deleted by the restore process.</p>
+</li></ul><p>The <i class=" ">After.txt</i> file should only contain migrations that manipulate the restored database. These migrations can, for example:</p>
+<ul class=" "><li class=" "><p>Create new indexes.</p>
+</li><li class=" "><p>Create new views.</p>
+</li><li class=" "><p>Add foreign key constraints.</p>
+</li><li class=" "><p>Add or modify stored procedures.</p>
+</li></ul>    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong>: If you have multiple migrations, carefully consider the order in which they should be executed. The migration scripts in both the <i class=" ">Before.txt</i> and <i class=" ">After.txt</i> files are executed from the first to the last line.</p>
+<p><strong class=" ">Important</strong>: If you have multiple migrations, carefully consider the order in which they should be executed. The migration scripts in both the <i class=" ">Before.txt</i> and <i class=" ">After.txt</i> files are executed from the first to the last line.</p>
         </div>
     </div>
     <h4 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Example-Creatingmigrationscriptstosynchronizedatabasechanges" class="heading "><span>Example - Creating migration scripts to synchronize database changes</span></h4>
-<p   
->If you need to create a new index on, for example, a column <strong class=" ">OfficeName </strong>in a custom module class table <strong class=" ">CompanyOffices </strong>and want this change to be reflected in the repository, you need to:</p>
-<ol class=" "><li class=" "><p   
->Create a new migration script (for example, <strong class=" ">AddOfficeNameIndex.sql</strong>):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If you need to create a new index on, for example, a column <strong class=" ">OfficeName </strong>in a custom module class table <strong class=" ">CompanyOffices </strong>and want this change to be reflected in the repository, you need to:</p>
+<ol class=" "><li class=" "><p>Create a new migration script (for example, <strong class=" ">AddOfficeNameIndex.sql</strong>):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">AddOfficeNameIndex.sql</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="AddOfficeNameIndex.sql" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">CREATE</code><code class="plain"> </code><code class="keyword">INDEX</code><code class="plain"> IX_CompanyOffices_OfficeName </code><code class="keyword">ON</code><code class="plain"> CompanyOffices(OfficeName);</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Add the migration script to the <i class=" ">@migrations</i> folder.</p>
-</li><li class=" "><p   
->Add the migration name to a new line in the <i class=" ">After.txt<strong class=" "> </strong></i>file (the index should only be created after the database is updated).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Add the migration script to the <i class=" ">@migrations</i> folder.</p>
+</li><li class=" "><p>Add the migration name to a new line in the <i class=" ">After.txt<strong class=" "> </strong></i>file (the index should only be created after the database is updated).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">After.txt</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="After.txt" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">...</code></div>
 <div class="line"><code class="plain">AddOfficeNameIndex</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Commit your changes to your source control repository.</p>
-</li></ol><p   
->When the repository containing your changes is restored on another database, the <strong class=" ">AddOfficeNameIndex.sql</strong> migration is automatically applied (creating the <i class=" ">IX_CompanyOffices_OfficeName</i> index) during the restore process (as part of the migrations executed after the <i class=" ">CIRepository</i> folder is restored). The migration is then added to the <i class=" ">CI_Migration</i> table, marked as applied, and will not be executed again on the target database.</p>
+</li><li class=" "><p>Commit your changes to your source control repository.</p>
+</li></ol><p>When the repository containing your changes is restored on another database, the <strong class=" ">AddOfficeNameIndex.sql</strong> migration is automatically applied (creating the <i class=" ">IX_CompanyOffices_OfficeName</i> index) during the restore process (as part of the migrations executed after the <i class=" ">CIRepository</i> folder is restored). The migration is then added to the <i class=" ">CI_Migration</i> table, marked as applied, and will not be executed again on the target database.</p>
     <h4 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Retrievingthelatestversionofyourprojectandupdatingthedatabase" class="heading "><span>Retrieving the latest version of your project and updating the database</span></h4>
-<p   
->To update your local solution and database to the latest version:</p>
-<ol class=" "><li class=" "><p   
->Get the latest version of your Kentico solution and the <strong class=" ">CIRepository </strong>folder from your source control system.</p>
-</li><li class=" "><p   
->Rebuild the solution in Visual Studio.</p>
-</li><li class=" "><p   
->Launch a command-line interface.</p>
-</li><li class=" "><p   
->Execute the <strong class=" ">RunRestore.ps1</strong> script using the full path to your Kentico project&#39;s <strong class=" ">~\CMS </strong>folder location as the argument (for example: <i class=" ">.\RunRestore.ps1 C:\inetpub\wwwroot\Kentico11\CMS</i>).</p>
-</li></ol><p   
->This restores the <i class=" ">CIRepository</i> folder to the targeted database, executing all unapplied migrations specified in the <i class=" ">Before.txt</i> and <i class=" ">After.txt</i> files.</p>
+<p>To update your local solution and database to the latest version:</p>
+<ol class=" "><li class=" "><p>Get the latest version of your Kentico solution and the <strong class=" ">CIRepository </strong>folder from your source control system.</p>
+</li><li class=" "><p>Rebuild the solution in Visual Studio.</p>
+</li><li class=" "><p>Launch a command-line interface.</p>
+</li><li class=" "><p>Execute the <strong class=" ">RunRestore.ps1</strong> script using the full path to your Kentico project's <strong class=" ">~\CMS </strong>folder location as the argument (for example: <i class=" ">.\RunRestore.ps1 C:\inetpub\wwwroot\Kentico11\CMS</i>).</p>
+</li></ol><p>This restores the <i class=" ">CIRepository</i> folder to the targeted database, executing all unapplied migrations specified in the <i class=" ">Before.txt</i> and <i class=" ">After.txt</i> files.</p>
     <h3 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Rollingbackdatabasechanges" class="heading "><span>Rolling back database changes</span></h3>
-<p   
->When rolling back your changes, it is important to realize that migrations you have created and committed to source control may have already been applied to other databases. Therefore, removing your migrations from the <i class=" ">@migrations</i> folder and <i class=" ">Before.txt</i> or <i class=" ">After.txt</i> is <strong class=" ">not enough</strong>. You also need to a write a new migration that returns the structure of the database where your previous migration was already applied to their original state.</p>
+<p>When rolling back your changes, it is important to realize that migrations you have created and committed to source control may have already been applied to other databases. Therefore, removing your migrations from the <i class=" ">@migrations</i> folder and <i class=" ">Before.txt</i> or <i class=" ">After.txt</i> is <strong class=" ">not enough</strong>. You also need to a write a new migration that returns the structure of the database where your previous migration was already applied to their original state.</p>
     <h4 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Example-Rollingbackchanges" class="heading "><span>Example - Rolling back changes</span></h4>
-<p   
->The rollback process is demonstrated here by extending the   <a   href="#src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Example-Creatingmigrationscriptstosynchronizedatabasechanges">example above</a>. To revert the changes made by the <strong class=" ">AddOfficeNameIndex.sql</strong> migration, you need to:</p>
-<ol class=" "><li class=" "><p   
->Delete the migration script<strong class=" "> AddOfficeNameIndex.sql </strong>from the <i class=" ">@migrations</i> folder.</p>
-</li><li class=" "><p   
->Remove the migration name <strong class=" ">AddOfficeNameIndex</strong> from the list of migrations in the <i class=" ">After.txt </i>file.</p>
-</li><li class=" "><p   
->Create a new migration script (for example, <strong class=" ">RemoveOfficeNameIndex.sql</strong>) that removes the index (if it exists):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The rollback process is demonstrated here by extending the <a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-example-creatingmigrationscriptstosynchronizedatabasechanges">example above</a>. To revert the changes made by the <strong class=" ">AddOfficeNameIndex.sql</strong> migration, you need to:</p>
+<ol class=" "><li class=" "><p>Delete the migration script<strong class=" "> AddOfficeNameIndex.sql </strong>from the <i class=" ">@migrations</i> folder.</p>
+</li><li class=" "><p>Remove the migration name <strong class=" ">AddOfficeNameIndex</strong> from the list of migrations in the <i class=" ">After.txt </i>file.</p>
+</li><li class=" "><p>Create a new migration script (for example, <strong class=" ">RemoveOfficeNameIndex.sql</strong>) that removes the index (if it exists):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">RemoveOfficeNameIndex.sql</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="RemoveOfficeNameIndex.sql" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">IF EXISTS(</code><code class="keyword">SELECT</code><code class="plain"> * </code><code class="keyword">FROM</code><code class="plain"> sys.indexes </code><code class="keyword">WHERE</code><code class="plain"> </code><code class="keyword">name</code><code class="plain"> = </code><code class="string">'IX_CompanyOffices_OfficeName'</code><code class="plain"> </code><code class="color1">AND</code><code class="plain"> object_id = OBJECT_ID(</code><code class="string">'CompanyOffices'</code><code class="plain">))</code></div>
@@ -340,38 +271,26 @@
 <div class="line"><code class="keyword">END</code></div>
 </div>
     </div>
-</li><li class=" "><p  class="auto-cursor-target" 
->Add the migration script to the<i class=" "> @migrations</i> folder.</p>
-</li><li class=" "><p  class="auto-cursor-target" 
->Add the migration name to a new line in the <i class=" ">Before.txt</i> file (the index should be dropped before its table is deleted during the restore process):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p class="auto-cursor-target">Add the migration script to the<i class=" "> @migrations</i> folder.</p>
+</li><li class=" "><p class="auto-cursor-target">Add the migration name to a new line in the <i class=" ">Before.txt</i> file (the index should be dropped before its table is deleted during the restore process):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Before.txt</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Before.txt" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">...</code></div>
 <div class="line"><code class="plain">RemoveOfficeNameIndex</code></div>
 </div>
     </div>
-</li><li class=" "><p  class="auto-cursor-target" 
->Commit your changes to your source control repository.</p>
-</li></ol><p   
->When the repository containing your changes is restored on another database, the <i class=" ">RemoveOfficeNameIndex.sql</i> migration is automatically applied (removing the <i class=" ">IX_CompanyOffices_OfficeName</i> index, if it exists) during the restore process (as part of the migrations executed before the <i class=" ">CIRepository</i> folder is restored). The migration is then added to the <i class=" ">CI_Migration</i> table, marked as applied, and will not be executed again on the target database.</p>
+</li><li class=" "><p class="auto-cursor-target">Commit your changes to your source control repository.</p>
+</li></ol><p>When the repository containing your changes is restored on another database, the <i class=" ">RemoveOfficeNameIndex.sql</i> migration is automatically applied (removing the <i class=" ">IX_CompanyOffices_OfficeName</i> index, if it exists) during the restore process (as part of the migrations executed before the <i class=" ">CIRepository</i> folder is restored). The migration is then added to the <i class=" ">CI_Migration</i> table, marked as applied, and will not be executed again on the target database.</p>
     <h4 id="src-70451861_Synchronizingdatabasechangesnotmanagedbycontinuousintegration-Restoringthedatabasetoaspecificpointintime" class="heading "><span>Restoring the database to a specific point in time</span></h4>
-<p   
->If you need to revert your database to a specific backup, we recommend restoring the backup to a clean database to avoid possible structural database conflicts which may arise when restoring the database to an older version.</p>
-<p   
->To perform a restore on a clean database:</p>
-<ol class=" "><li class=" "><p   
->Create a blank database.</p>
-</li><li class=" "><p   
->Get the required version of your Kentico solution and the <strong class=" ">CIRepository </strong>folder from your source control system.</p>
-</li><li class=" "><p   
->Update the <strong class=" ">CMSConnectionString </strong>in the project&#39;s web.config file to point to the new database.</p>
-</li><li class=" "><p   
->Rebuild the solution in Visual Studio.</p>
-</li><li class=" "><p   
->Execute the <strong class=" ">RunRestore.ps1</strong> script using the full path to your Kentico project&#39;s <strong class=" ">~\CMS </strong>folder location as the argument (for example: <i class=" ">.\RunRestore.ps1 C:\inetpub\wwwroot\Kentico11\CMS</i>).</p>
-</li></ol><p   
->After the restore finishes, you can continue working with the restored database backup.</p>
+<p>If you need to revert your database to a specific backup, we recommend restoring the backup to a clean database to avoid possible structural database conflicts which may arise when restoring the database to an older version.</p>
+<p>To perform a restore on a clean database:</p>
+<ol class=" "><li class=" "><p>Create a blank database.</p>
+</li><li class=" "><p>Get the required version of your Kentico solution and the <strong class=" ">CIRepository </strong>folder from your source control system.</p>
+</li><li class=" "><p>Update the <strong class=" ">CMSConnectionString </strong>in the project's web.config file to point to the new database.</p>
+</li><li class=" "><p>Rebuild the solution in Visual Studio.</p>
+</li><li class=" "><p>Execute the <strong class=" ">RunRestore.ps1</strong> script using the full path to your Kentico project's <strong class=" ">~\CMS </strong>folder location as the argument (for example: <i class=" ">.\RunRestore.ps1 C:\inetpub\wwwroot\Kentico11\CMS</i>).</p>
+</li></ol><p>After the restore finishes, you can continue working with the restored database backup.</p>
         </div>
 
     </article>
@@ -392,5 +311,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

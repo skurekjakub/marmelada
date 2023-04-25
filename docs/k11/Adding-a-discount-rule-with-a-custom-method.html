@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Adding a discount rule with a custom method - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,158 +149,115 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p  class="confluence-link" 
->  <a   href="Working-with-catalog-discounts">Catalog discounts</a>,   <a   href="Working-with-order-discounts">order discounts</a>,   <a   href="Working-with-free-shipping-offers">free shipping offers</a> and   <a   href="Working-with-gift-cards">gift cards</a> provide the option of setting conditions, which limit how the given discount or offer is applied. The conditions can be built using a pre-defined set of rules. However, you can also add new rules so that store managers can offer discounts just as they want them. You can learn more basic information about adding new discount rules in   <a   href="Configuring-discount-rules">Configuring discount rules</a>.</p>
-<p   
->This page describes how to add discount rules that use a custom macro method, which developers define in the system&#39;s code. You can then create discount rules that call the custom method, and use them in the conditions of catalog discounts, order discounts, free shipping offers or gift cards.</p>
-<p   
->To create a discount rule (both order and catalog rules) that calls a custom method, you need to:</p>
-    <div  class="confbox panel">
+<div class="section-left"><p class="confluence-link"><a href="working-with-catalog-discounts">Catalog discounts</a>, <a href="working-with-order-discounts">order discounts</a>, <a href="working-with-free-shipping-offers">free shipping offers</a> and <a href="working-with-gift-cards">gift cards</a> provide the option of setting conditions, which limit how the given discount or offer is applied. The conditions can be built using a pre-defined set of rules. However, you can also add new rules so that store managers can offer discounts just as they want them. You can learn more basic information about adding new discount rules in <a href="configuring-discount-rules">Configuring discount rules</a>.</p><p>This page describes how to add discount rules that use a custom macro method, which developers define in the system's code. You can then create discount rules that call the custom method, and use them in the conditions of catalog discounts, order discounts, free shipping offers or gift cards.</p><p>To create a discount rule (both order and catalog rules) that calls a custom method, you need to:</p></div>
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881619_safe-id-QWRkaW5nYWRpc2NvdW50cnVsZXdpdGhhY3VzdG9tbWV0aG9kLUV4YW1wbGXigJNBZGRpbmdhcnVsZXRoYXRjaGVja3Nwcm9kdWN0Y2F0ZWdvcmllcw">Example &ndash; Adding a rule that checks product categories</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881619_Addingadiscountrulewithacustommethod-Creatingamacromethodcontainerclass">Creating a macro method container class</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881619_Addingadiscountrulewithacustommethod-Addinganorderrule">Adding an order rule</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881619_safe-id-qwrkaw5nywrpc2nvdw50cnvszxdpdghhy3vzdg9tbwv0ag9kluv4yw1wbgxigjnbzgrpbmdhcnvszxroyxrjagvja3nwcm9kdwn0y2f0zwdvcmllcw">Example – Adding a rule that checks product categories</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881619_addingadiscountrulewithacustommethod-creatingamacromethodcontainerclass">Creating a macro method container class</a></p>
+</li><li class=" "><p><a href="#src-68881619_addingadiscountrulewithacustommethod-addinganorderrule">Adding an order rule</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new class that inherits from the <strong class=" ">MacroMethodContainer</strong> class.</p>
-    <div  class="confbox admonition admonition-tip">
+    </div></div>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a new class that inherits from the <strong class=" ">MacroMethodContainer</strong> class.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Class location</strong></p>
-<p   
->For production sites, we recommend creating a new assembly (Class library project) in your Kentico solution and including the macro container there. You need to add the appropriate references to both the assembly and the main Kentico web project. For more information, refer to   <a   href="Best-practices-for-customization">Best practices for customization</a>.</p>
+<p><strong class=" ">Class location</strong></p>
+<p>For production sites, we recommend creating a new assembly (Class library project) in your Kentico solution and including the macro container there. You need to add the appropriate references to both the assembly and the main Kentico web project. For more information, refer to <a href="best-practices-for-customization">Best practices for customization</a>.</p>
         </div>
     </div>
-</li><li class=" "><p   
->  <a   href="Registering-custom-macro-methods#src-68882638_Registeringcustommacromethods-Registeringmacromethodcontainers">Register the custom macro container</a> for specific data types or macro namespaces using the <strong class=" ">RegisterExtension</strong> attribute.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p><a href="registering-custom-macro-methods#src-68882638_registeringcustommacromethods-registeringmacromethodcontainers">Register the custom macro container</a> for specific data types or macro namespaces using the <strong class=" ">RegisterExtension</strong> attribute.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">For order rules</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="For order rules" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using CMS;</code></div>
 <div class="line"><code class="plain">using CMS.Ecommerce;</code></div>
 <div class="line"><code class="plain">using CMS.MacroEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: RegisterExtension(typeof(CustomOrderRuleMacroMethods ), typeof(CalculatorData))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomOrderRuleMacroMethods : MacroMethodContainer</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">For catalog rules</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="For catalog rules" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using CMS;</code></div>
 <div class="line"><code class="plain">using CMS.Ecommerce;</code></div>
 <div class="line"><code class="plain">using CMS.MacroEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: RegisterExtension(typeof(CustomCatalogRuleMacroMethods ), typeof(SKUInfo))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomCatalogRuleMacroMethods : MacroMethodContainer</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->  <a   href="Registering-custom-macro-methods#src-68882638_Registeringcustommacromethods-Definingmacromethods">Define your custom macro methods</a>.</p>
-</li><li class=" "><p   
->Save the files (and build your custom class library project).</p>
-</li><li class=" "><p   
->Sign in to the Kentico administration interface and   <a   href="Configuring-discount-rules#src-68881610_Configuringdiscountrules-Addingdiscountrules">create a discount rule</a> using the custom macro methods.</p>
-</li></ol><p   
->Your store managers can now limit discounts and offers using the added discount rule. When evaluating conditions based on the rule, the system calls the created custom macro method.</p>
-    <h3 id="src-68881619_safe-id-QWRkaW5nYWRpc2NvdW50cnVsZXdpdGhhY3VzdG9tbWV0aG9kLUV4YW1wbGXigJNBZGRpbmdhcnVsZXRoYXRjaGVja3Nwcm9kdWN0Y2F0ZWdvcmllcw" class="heading "><span>Example &ndash; Adding a rule that checks product categories</span></h3>
-<p   
->The following example demonstrates how to add an   <a   href="Configuring-discount-rules">order rule</a> with a macro condition that calls a custom method. The custom discount rule checks whether   <a   href="Products">products</a> in the evaluated shopping cart or order belong to a specific   <a   href="Categorizing-pages">page category</a>. You can specify a minimum number of product units that must belong to the page category to be eligible for the discount.</p>
-    <div  class="confbox admonition admonition-info">
+</li><li class=" "><p><a href="registering-custom-macro-methods#src-68882638_registeringcustommacromethods-definingmacromethods">Define your custom macro methods</a>.</p>
+</li><li class=" "><p>Save the files (and build your custom class library project).</p>
+</li><li class=" "><p>Sign in to the Kentico administration interface and <a href="configuring-discount-rules#src-68881610_configuringdiscountrules-addingdiscountrules">create a discount rule</a> using the custom macro methods.</p>
+</li></ol><p>Your store managers can now limit discounts and offers using the added discount rule. When evaluating conditions based on the rule, the system calls the created custom macro method.</p>
+    <h3 id="src-68881619_safe-id-QWRkaW5nYWRpc2NvdW50cnVsZXdpdGhhY3VzdG9tbWV0aG9kLUV4YW1wbGXigJNBZGRpbmdhcnVsZXRoYXRjaGVja3Nwcm9kdWN0Y2F0ZWdvcmllcw" class="heading "><span>Example – Adding a rule that checks product categories</span></h3>
+<p>The following example demonstrates how to add an <a href="configuring-discount-rules">order rule</a> with a macro condition that calls a custom method. The custom discount rule checks whether <a href="products">products</a> in the evaluated shopping cart or order belong to a specific <a href="categorizing-pages">page category</a>. You can specify a minimum number of product units that must belong to the page category to be eligible for the discount.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Stand-alone SKUs</strong></p>
-<p   
->Even though the principle is the same, this specific example does not work for   <a   href="Managing-stand-alone-SKUs">stand-alone SKUs</a>. Page categories are available only for products that combine an SKU object and a page (the default approach in Kentico).</p>
+<p><strong class=" ">Stand-alone SKUs</strong></p>
+<p>Even though the principle is the same, this specific example does not work for <a href="managing-stand-alone-skus">stand-alone SKUs</a>. Page categories are available only for products that combine an SKU object and a page (the default approach in Kentico).</p>
         </div>
     </div>
-<p   
->To create a discount rule that checks a product&#39;s category:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="#src-68881619_Addingadiscountrulewithacustommethod-Creatingamacromethodcontainerclass">Create a macro method container class</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881619_Addingadiscountrulewithacustommethod-Addinganorderrule">Add an order discount rule that uses the custom method from the class</a></p>
+<p>To create a discount rule that checks a product's category:</p>
+<ol class=" "><li class=" "><p><a href="#src-68881619_addingadiscountrulewithacustommethod-creatingamacromethodcontainerclass">Create a macro method container class</a></p>
+</li><li class=" "><p><a href="#src-68881619_addingadiscountrulewithacustommethod-addinganorderrule">Add an order discount rule that uses the custom method from the class</a></p>
 </li></ol>    <h4 id="src-68881619_Addingadiscountrulewithacustommethod-Creatingamacromethodcontainerclass" class="heading "><span>Creating a macro method container class</span></h4>
-<p   
->Prepare a separate project for custom classes in your Kentico solution:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DocumentEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Ecommerce.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Helpers.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.MacroEngine.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Edit the custom project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Prepare a separate project for custom classes in your Kentico solution:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries:</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DocumentEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Ecommerce.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Helpers.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.MacroEngine.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Edit the custom project's <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </div>
-</li></ol><p   
->Continue by creating the macro method container class:</p>
-<ol class=" "><li class=" "><p   
->Create a new class named <strong class=" ">CustomEcommerceMacroMethods</strong> under the custom project.</p>
-</li><li class=" "><p   
->Add the following code to the class:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ol><p>Continue by creating the macro method container class:</p>
+<ol class=" "><li class=" "><p>Create a new class named <strong class=" ">CustomEcommerceMacroMethods</strong> under the custom project.</p>
+</li><li class=" "><p>Add the following code to the class:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Collections.Generic;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.MacroEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: RegisterExtension(</code><code class="keyword">typeof</code><code class="plain">(CustomEcommerceMacroMethods), </code><code class="keyword">typeof</code><code class="plain">(CalculatorData))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomEcommerceMacroMethods : MacroMethodContainer</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -318,23 +273,23 @@
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> 3:</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> ContainsProductsInCategory(parameters);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="keyword">default</code><code class="plain">:</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">throw</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> NotSupportedException();</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">bool</code><code class="plain"> ContainsProductsInCategory(</code><code class="keyword">object</code><code class="plain">[] parameters)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the shopping cart calculation data</code></div>
 <div class="line"><code class="plain">        CalculatorData data = (CalculatorData)parameters[0];</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the page category that is checked</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> categoryName = ValidationHelper.GetString(parameters[1], String.Empty);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the minimum required number of product units</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">int</code><code class="plain"> minItemsCount = ValidationHelper.GetInteger(parameters[2], 1);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the IDs of SKUs (products) in the shopping cart / order</code></div>
 <div class="line"><code class="plain">        List&lt;</code><code class="keyword">int</code><code class="plain">&gt; itemIds = data.Request.Items</code></div>
 <div class="line"><code class="plain">                                </code><code class="comments">// Filters out product options</code></div>
@@ -342,7 +297,7 @@
 <div class="line"><code class="plain">                                </code><code class="comments">// Ensures selection of the ID for both standard products and variants</code></div>
 <div class="line"><code class="plain">                                .Select&lt;CalculationRequestItem, </code><code class="keyword">int</code><code class="plain">&gt;(item =&gt; item.SKU.IsProductVariant ? item.SKU.SKUParentSKUID : item.SKU.SKUID)</code></div>
 <div class="line"><code class="plain">                                .ToList();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the IDs of all related product pages that belong to the specified category</code></div>
 <div class="line"><code class="plain">        List&lt;TreeNode&gt; pages = DocumentHelper.GetDocuments()</code></div>
 <div class="line"><code class="plain">                                .OnCurrentSite()</code></div>
@@ -350,117 +305,81 @@
 <div class="line"><code class="plain">                                .WhereIn(</code><code class="string">"NodeSKUID"</code><code class="plain">, itemIds)</code></div>
 <div class="line"><code class="plain">                                .Columns(</code><code class="string">"NodeSKUID"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">                                .ToList();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Counts the total number of product units that belong to the specified category</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">int</code><code class="plain"> count = 0;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">foreach</code><code class="plain"> (CalculationRequestItem item </code><code class="keyword">in</code><code class="plain"> data.Request.Items)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// Gets the ID of standard products or the main product's ID for variants</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">int</code><code class="plain"> itemId = item.SKU.IsProductVariant ? item.SKU.SKUParentSKUID : item.SKU.SKUID;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Increases the count by the number of units if the product ID matches one of the pages with the specified category</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">if</code><code class="plain"> (pages.Exists(doc =&gt; doc.NodeSKUID == itemId))</code></div>
 <div class="line"><code class="plain">            {</code></div>
 <div class="line"><code class="plain">                count += (</code><code class="keyword">int</code><code class="plain">)item.Quantity;</code></div>
 <div class="line"><code class="plain">            }</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Returns a true value if the count is higher than or equal to the required minimum</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> (minItemsCount &lt;= count);</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save all changes and <strong class=" ">Build</strong> the custom project.</p>
-</li></ol><p   
->The system now provides the custom <strong class=" ">ContainsProductsInCategory</strong> macro method for objects of the <strong class=" ">CalculatorData</strong> type (the <i class=" ">CalculatorData</i> is available within the context of order discount rules).</p>
+</li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.</p>
+</li></ol><p>The system now provides the custom <strong class=" ">ContainsProductsInCategory</strong> macro method for objects of the <strong class=" ">CalculatorData</strong> type (the <i class=" ">CalculatorData</i> is available within the context of order discount rules).</p>
     <h4 id="src-68881619_Addingadiscountrulewithacustommethod-Addinganorderrule" class="heading "><span>Adding an order rule</span></h4>
-<p   
->Follow the steps below to create an order discount macro rule that enables discounts for customers whose order contains at least a specified number of product units belonging to a selected page category.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Store configuration </strong>application if you want to create an order rule for the current site. Open the <strong class=" ">Multistore configuration</strong> application if you run multiple sites on the same Kentico instance and you want to add the rule for all the sites.<br/></p>
-    <div  class="confbox admonition admonition-tip">
+<p>Follow the steps below to create an order discount macro rule that enables discounts for customers whose order contains at least a specified number of product units belonging to a selected page category.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Store configuration </strong>application if you want to create an order rule for the current site. Open the <strong class=" ">Multistore configuration</strong> application if you run multiple sites on the same Kentico instance and you want to add the rule for all the sites.<br></p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you are not sure what to choose, see   <a   href="Choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a>. If you are not sure about specifics of configuring in these applications, see   <a   href="Configuring-e-commerce-settings-for-a-specific-site-or-globally">Configuring e-commerce settings for a specific site or globally</a>.</p>
+<p>If you are not sure what to choose, see <a href="choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a>. If you are not sure about specifics of configuring in these applications, see <a href="configuring-e-commerce-settings-for-a-specific-site-or-globally">Configuring e-commerce settings for a specific site or globally</a>.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Discount rules -&gt; Order rules</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New order rule</strong>.</p>
-<ul class=" "><li class=" "><p   
->The system opens a new page where you can specify the order rule properties and define the rule&#39;s parameters.</p>
-</li></ul></li><li class=" "><p   
->Enter the following values for the rule&#39;s properties:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Display name</strong>: Order contains products from a category</p>
-</li><li class=" "><p   
-><strong class=" ">User text</strong>: The order contains at least {number} products from the {category} category</p>
-</li><li class=" "><p  class="auto-cursor-target" 
-><strong class=" ">Condition</strong>: <tt class=" ">Data.ContainsProductsInCategory(&quot;{category}&quot;, {number})</tt></p>
-    <div  class="confbox admonition admonition-tip">
+</li><li class=" "><p>Switch to the <strong class=" ">Discount rules -&gt; Order rules</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">New order rule</strong>.</p>
+<ul class=" "><li class=" "><p>The system opens a new page where you can specify the order rule properties and define the rule's parameters.</p>
+</li></ul></li><li class=" "><p>Enter the following values for the rule's properties:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Display name</strong>: Order contains products from a category</p>
+</li><li class=" "><p><strong class=" ">User text</strong>: The order contains at least {number} products from the {category} category</p>
+</li><li class=" "><p class="auto-cursor-target"><strong class=" ">Condition</strong>: <tt class=" ">Data.ContainsProductsInCategory("{category}", {number})</tt></p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Notice that the <strong class=" ">ContainsProductsInCategory</strong> macro method defined in the custom code is now used in the order rule&#39;s condition.</p>
+<p>Notice that the <strong class=" ">ContainsProductsInCategory</strong> macro method defined in the custom code is now used in the order rule's condition.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Define the rule&#39;s parameters:<strong class=" "><br/></strong></p>
-<ol class=" "><li class=" "><p   
->Switch to the <strong class=" ">Parameters</strong> tab.</p>
-    <div  class="confbox admonition admonition-info">
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Define the rule's parameters:<strong class=" "><br></strong></p>
+<ol class=" "><li class=" "><p>Switch to the <strong class=" ">Parameters</strong> tab.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->You specified two parameters that modify the rule&#39;s condition (<i class=" ">number</i> and <i class=" ">category</i>). The system adds them automatically. You can now adjust the parameters&#39; settings.</p>
+<p>You specified two parameters that modify the rule's condition (<i class=" ">number</i> and <i class=" ">category</i>). The system adds them automatically. You can now adjust the parameters' settings.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Select <i class=" "><strong class=" ">number</strong></i> in the left panel and set the following properties:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field name</strong>: number</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Integer number</p>
-</li><li class=" "><p   
-><strong class=" ">Required</strong>: Yes (selected)</p>
-</li><li class=" "><p   
-><strong class=" ">Display field in the editing form</strong>: Yes (selected)<br/></p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: select number</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Text box<br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881619/specifying_parameter_properties_number.png" alt="images/download/attachments/68881619/specifying_parameter_properties_number.png" width="500"  />
-        <br/><span class="caption">Specifying parameter properties</span>
-    </li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Select <i class=" "><strong class=" ">category</strong></i> in the left panel and set the following properties:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field name</strong>: category</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Text</p>
-</li><li class=" "><p   
-><strong class=" ">Required</strong>: Yes (selected)</p>
-</li><li class=" "><p   
-><strong class=" ">Display field in the editing form</strong>: Yes (selected)</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: select category</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Category selector (select via the <i class=" ">(more items...)</i> option)</p>
-</li><li class=" "><p   
-><strong class=" ">Display personal categories</strong>: No (cleared)</p>
-</li><li class=" "><p   
-><strong class=" ">Display general categories</strong>: Yes (selected)</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol></li></ol><p   
->The custom order rule with two parameters is now ready. You can create or edit   <a   href="Working-with-order-discounts">order discounts</a>,   <a   href="Working-with-free-shipping-offers">free shipping offers</a> and   <a   href="Working-with-gift-cards">gift cards</a> with conditions based on the new rule.</p>
+</li><li class=" "><p>Select <i class=" "><strong class=" ">number</strong></i> in the left panel and set the following properties:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: number</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Integer number</p>
+</li><li class=" "><p><strong class=" ">Required</strong>: Yes (selected)</p>
+</li><li class=" "><p><strong class=" ">Display field in the editing form</strong>: Yes (selected)<br></p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: select number</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text box<br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881619/specifying_parameter_properties_number.png" alt="images/download/attachments/68881619/specifying_parameter_properties_number.png" width="500">
+        <br><span class="caption">Specifying parameter properties</span>
+    </li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Select <i class=" "><strong class=" ">category</strong></i> in the left panel and set the following properties:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: category</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Required</strong>: Yes (selected)</p>
+</li><li class=" "><p><strong class=" ">Display field in the editing form</strong>: Yes (selected)</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: select category</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Category selector (select via the <i class=" ">(more items...)</i> option)</p>
+</li><li class=" "><p><strong class=" ">Display personal categories</strong>: No (cleared)</p>
+</li><li class=" "><p><strong class=" ">Display general categories</strong>: Yes (selected)</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol></li></ol><p>The custom order rule with two parameters is now ready. You can create or edit <a href="working-with-order-discounts">order discounts</a>, <a href="working-with-free-shipping-offers">free shipping offers</a> and <a href="working-with-gift-cards">gift cards</a> with conditions based on the new rule.</p>
         </div>
 
     </article>
@@ -481,5 +400,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

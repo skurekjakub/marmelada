@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SSL accelerator support - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,43 +149,35 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->In some scenarios, SSL decryption and encryption may not be performed directly by your application&#39;s server. Instead, the decryption and encryption is performed via a reverse proxy, which is equipped with an SSL offload hardware (for example, an SSL accelerator). This means that requests are forwarded to the application internally using the standard HTTP protocol, even when the client accesses the page through HTTPS. If the settings for using SSL are enabled for the website, it may result in a redirection loop.</p>
-<p   
->You can solve this issue by adding custom code to the application&#39;s request handlers. It is necessary to appropriately set the <strong class=" ">IsSSL</strong> static property of the <strong class=" ">CMS.Helpers.RequestContext</strong> class. If set to <i class=" ">true</i>, the system treats all requests as secured, regardless of their URL format, and redirection to HTTPS page versions is not performed by the application. Of course, it is necessary to correctly identify which requests originally used SSL, for example by checking the request headers.</p>
-<p   
->You also need to set the <strong class=" ">SSLUrlPort</strong> property of the <strong class=" ">CMS.Helpers.URLHelper</strong> class to 443 (or any other port that you use for HTTPS requests).</p>
+<div class="section-left"></div><p>In some scenarios, SSL decryption and encryption may not be performed directly by your application's server. Instead, the decryption and encryption is performed via a reverse proxy, which is equipped with an SSL offload hardware (for example, an SSL accelerator). This means that requests are forwarded to the application internally using the standard HTTP protocol, even when the client accesses the page through HTTPS. If the settings for using SSL are enabled for the website, it may result in a redirection loop.</p>
+<p>You can solve this issue by adding custom code to the application's request handlers. It is necessary to appropriately set the <strong class=" ">IsSSL</strong> static property of the <strong class=" ">CMS.Helpers.RequestContext</strong> class. If set to <i class=" ">true</i>, the system treats all requests as secured, regardless of their URL format, and redirection to HTTPS page versions is not performed by the application. Of course, it is necessary to correctly identify which requests originally used SSL, for example by checking the request headers.</p>
+<p>You also need to set the <strong class=" ">SSLUrlPort</strong> property of the <strong class=" ">CMS.Helpers.URLHelper</strong> class to 443 (or any other port that you use for HTTPS requests).</p>
     <div class="section section-1" id="src-68881130_SSLacceleratorsupport-SettingtheIsSSLandSSLUrlPortproperties">
         <h1 class="heading "><span>Setting the IsSSL and SSLUrlPort properties</span></h1>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-    <div  class="confbox admonition admonition-info">
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+<p>For basic execution of initialization code, you only need to register a "code-only" module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p  class="confluence-link" 
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">RequestEvents.Prepare.Execute</strong> event.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul></li><li class=" "><p class="confluence-link">Override the module's <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">RequestEvents.Prepare.Execute</strong> event.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Collections.Specialized;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(SSLRequestModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> SSLRequestModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "SSLRequests"</code></div>
@@ -195,19 +185,19 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"SSLRequests"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler called before each request is processed</code></div>
 <div class="line"><code class="plain">		RequestEvents.Prepare.Execute += HandleSSLRequests;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Sets the URL port used for HTTPS requests</code></div>
 <div class="line"><code class="plain">		URLHelper.SSLUrlPort = 443;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Checks if requests are forwarded as SSL</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> HandleSSLRequests(</code><code class="keyword">object</code><code class="plain"> sender, EventArgs e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -215,11 +205,11 @@
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// Loads the request headers as a collection</code></div>
 <div class="line"><code class="plain">			NameValueCollection headers = HttpContext.Current.Request.Headers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Gets the value from the X-Forwarded-Ssl header</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">string</code><code class="plain"> forwardedSSL = headers.Get(</code><code class="string">"X-Forwarded-Ssl"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">			RequestContext.IsSSL = </code><code class="keyword">false</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Checks if the original request used HTTPS</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">if</code><code class="plain"> (String.Equals(forwardedSSL, </code><code class="string">"on"</code><code class="plain">, StringComparison.OrdinalIgnoreCase))</code></div>
 <div class="line"><code class="plain">			{</code></div>
@@ -230,17 +220,13 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ol><p   
->The example registers a custom module and overrides its <strong class=" ">OnInit()</strong> method (executed automatically when the application starts) to assign a handler that is called before each request is processed. The <strong class=" ">X-Forwarded-Ssl</strong> header is used to check if the original request was submitted via HTTPS before the SSL accelerator forwarded it to the application. If this is the case, the <strong class=" ">IsSSL</strong> property is set to <i class=" ">true</i>, so the system processes the request as if it used the HTTPS protocol. Also, the <strong class=" ">SSLUrlPort</strong> property is set to 443.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ol><p>The example registers a custom module and overrides its <strong class=" ">OnInit()</strong> method (executed automatically when the application starts) to assign a handler that is called before each request is processed. The <strong class=" ">X-Forwarded-Ssl</strong> header is used to check if the original request was submitted via HTTPS before the SSL accelerator forwarded it to the application. If this is the case, the <strong class=" ">IsSSL</strong> property is set to <i class=" ">true</i>, so the system processes the request as if it used the HTTPS protocol. Also, the <strong class=" ">SSLUrlPort</strong> property is set to 443.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong></p>
-<p   
->Your proxy device may use a different method to identify requests that were originally secured by SSL. In such cases, you need to write a condition that fits your specific scenario. For example, another typical approach is to check if the value of the <strong class=" ">X-Forwarded-Proto</strong> request header is <i class=" ">https</i>.</p>
-<p   
->You may also include additional custom code to fulfill any other security requirements, such as validation of the proxy&#39;s IP address.</p>
+<p><strong class=" ">Important</strong></p>
+<p>Your proxy device may use a different method to identify requests that were originally secured by SSL. In such cases, you need to write a condition that fits your specific scenario. For example, another typical approach is to check if the value of the <strong class=" ">X-Forwarded-Proto</strong> request header is <i class=" ">https</i>.</p>
+<p>You may also include additional custom code to fulfill any other security requirements, such as validation of the proxy's IP address.</p>
         </div>
     </div>
     </div>
@@ -264,5 +250,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

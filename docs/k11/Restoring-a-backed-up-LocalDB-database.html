@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Restoring a backed-up LocalDB database - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,56 +148,36 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Restoring a <strong class=" ">LocalDB</strong> database is similar to restoring a normal SQL database using the SQL Server Management Studio. However, you might encounter an error during the process:</p>
-<p   
-><img  class="confluence-embedded-image"  src="images/download/attachments/68882285/DB_restore_error.png" alt="images/download/attachments/68882285/DB_restore_error.png" width="500"  />
-        <br/><span class="caption">Database restore error</span>
+<div class="section-left"></div><p>Restoring a <strong class=" ">LocalDB</strong> database is similar to restoring a normal SQL database using the SQL Server Management Studio. However, you might encounter an error during the process:</p>
+<p><img class="confluence-embedded-image" src="images/download/attachments/68882285/DB_restore_error.png" alt="images/download/attachments/68882285/DB_restore_error.png" width="500">
+        <br><span class="caption">Database restore error</span>
     </p>
-<p   
-><i class=" ">&quot;Property BackupDirectory is not available for Settings &#39;Microsoft.SqlServer.Management.Smo.Settings&#39;. This property may not exist for this object or may not be retrievable due to insufficient access rights. (Microsoft.SqlServer.Smo).&quot;</i></p>
-<p   
->These steps provide a solution to this problem. We assume that you have created a backup of your database using the Hotfix and Upgrade Utility.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Registry editor</strong> and navigate to     <span style="color: #151515;">
+<p><i class=" ">"Property BackupDirectory is not available for Settings 'Microsoft.SqlServer.Management.Smo.Settings'. This property may not exist for this object or may not be retrievable due to insufficient access rights. (Microsoft.SqlServer.Smo)."</i></p>
+<p>These steps provide a solution to this problem. We assume that you have created a backup of your database using the Hotfix and Upgrade Utility.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Registry editor</strong> and navigate to     <span style="color: #151515;">
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL11E.LOCALDB\MSSQLServer    </span>
 .</p>
-</li><li class=" "><p   
->Add these three String Values with the <strong class=" ">path to your backed-up folder</strong> as a value:<br/></p>
-<ul class=" "><li class=" "><p   
->DefaultData</p>
-</li><li class=" "><p   
->DefaultLog</p>
-</li><li class=" "><p   
->BackupDirectory</p>
-</li></ul><p   
-><img  class="confluence-embedded-image"  src="images/download/attachments/68882285/Add_registry_keys.png" alt="images/download/attachments/68882285/Add_registry_keys.png" width="500"  />
-<br/><br/></p>
-</li><li class=" "><p   
->Open Microsoft SQL Server Management Studio</p>
-</li><li class=" "><p   
->Connect to the LocalDB instance, use the server name: <strong class=" ">(localdb)\Kentico</strong><br/></p>
-<img  class="confluence-embedded-image"  src="images/download/attachments/68882285/Connect_to_localDB.png" alt="images/download/attachments/68882285/Connect_to_localDB.png" width="350"  />
-        <br/><span class="caption">Connect to LocalDB</span>
-    </li><li class=" "><p   
-><strong class=" ">Delete</strong> the old database.</p>
-</li><li class=" "><p   
->Right-click the <strong class=" ">Databases</strong> folder and select <strong class=" ">Restore Database....</strong><strong class=" "><br/></strong><strong class=" "><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882285/Restore_database.png" alt="images/download/attachments/68882285/Restore_database.png" width="350"  />
-</strong><strong class=" "><br/></strong></p>
-</li><li class=" "><p   
->In the Source section, select <strong class=" ">Device</strong>.<strong class=" "><br/></strong></p>
-</li><li class=" "><p   
->Click the (<strong class=" ">...</strong>) button.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Add</strong>.</p>
-</li><li class=" "><p   
->Select the database backup file (.bak) and click <strong class=" ">OK</strong>.<br/></p>
-<img  class="confluence-embedded-image"  src="images/download/attachments/68882285/Select_database_backup_file.png" alt="images/download/attachments/68882285/Select_database_backup_file.png" width="500"  />
-        <br/><span class="caption">Select the database backup file</span>
-    </li><li class=" "><p   
->Click <strong class=" ">OK</strong> to begin the restore process.</p>
-</li></ol><p   
->The system now restores your LocalDB database.</p>
+</li><li class=" "><p>Add these three String Values with the <strong class=" ">path to your backed-up folder</strong> as a value:<br></p>
+<ul class=" "><li class=" "><p>DefaultData</p>
+</li><li class=" "><p>DefaultLog</p>
+</li><li class=" "><p>BackupDirectory</p>
+</li></ul><p><img class="confluence-embedded-image" src="images/download/attachments/68882285/Add_registry_keys.png" alt="images/download/attachments/68882285/Add_registry_keys.png" width="500">
+<br><br></p>
+</li><li class=" "><p>Open Microsoft SQL Server Management Studio</p>
+</li><li class=" "><p>Connect to the LocalDB instance, use the server name: <strong class=" ">(localdb)\Kentico</strong><br></p>
+<img class="confluence-embedded-image" src="images/download/attachments/68882285/Connect_to_localDB.png" alt="images/download/attachments/68882285/Connect_to_localDB.png" width="350">
+        <br><span class="caption">Connect to LocalDB</span>
+    </li><li class=" "><p><strong class=" ">Delete</strong> the old database.</p>
+</li><li class=" "><p>Right-click the <strong class=" ">Databases</strong> folder and select <strong class=" ">Restore Database....</strong><strong class=" "><br></strong><strong class=" "><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882285/Restore_database.png" alt="images/download/attachments/68882285/Restore_database.png" width="350">
+</strong><strong class=" "><br></strong></p>
+</li><li class=" "><p>In the Source section, select <strong class=" ">Device</strong>.<strong class=" "><br></strong></p>
+</li><li class=" "><p>Click the (<strong class=" ">...</strong>) button.</p>
+</li><li class=" "><p>Click <strong class=" ">Add</strong>.</p>
+</li><li class=" "><p>Select the database backup file (.bak) and click <strong class=" ">OK</strong>.<br></p>
+<img class="confluence-embedded-image" src="images/download/attachments/68882285/Select_database_backup_file.png" alt="images/download/attachments/68882285/Select_database_backup_file.png" width="500">
+        <br><span class="caption">Select the database backup file</span>
+    </li><li class=" "><p>Click <strong class=" ">OK</strong> to begin the restore process.</p>
+</li></ol><p>The system now restores your LocalDB database.</p>
         </div>
 
     </article>
@@ -220,5 +198,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL11E.LOCALDB\MSSQ
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

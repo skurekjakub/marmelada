@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Improving performance of MVC applications - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,103 +149,76 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-    <h3 id="src-68880517_ImprovingperformanceofMVCapplications-ConfiguringwebfarmsonMVCapplications" class="heading "><span>Configuring web farms on MVC applications</span></h3>
-<p   
->When using the   <a   href="Developing-sites-using-ASP.NET-MVC">MVC development model</a>, your MVC application and Kentico application should always be configured to run as   <a   href="Setting-up-web-farms">servers in a web farm</a> (see   <a   href="Starting-with-MVC-development">Starting with MVC development</a>). The web farm ensures that the MVC application invalidates cache according to content or setting changes made in the Kentico application and vice versa.</p>
-<p   
->The MVC application works as a web farm server, because it uses the same database as the Kentico application and performs operations through the Kentico API.</p>
-<p   
->Licensing of the web farm servers works automatically for basic scenarios &ndash; see   <a   href="Kentico-licensing-for-MVC-applications">Kentico licensing for MVC applications</a> for details.</p>
-    <div  class="confbox panel">
+    <div class="section-left"><h3 id="src-68880517_ImprovingperformanceofMVCapplications-ConfiguringwebfarmsonMVCapplications" class="heading "><span>Configuring web farms on MVC applications</span></h3><p>When using the <a href="developing-sites-using-asp.net-mvc">MVC development model</a>, your MVC application and Kentico application should always be configured to run as <a href="setting-up-web-farms">servers in a web farm</a> (see <a href="starting-with-mvc-development">Starting with MVC development</a>). The web farm ensures that the MVC application invalidates cache according to content or setting changes made in the Kentico application and vice versa.</p><p>The MVC application works as a web farm server, because it uses the same database as the Kentico application and performs operations through the Kentico API.</p><p>Licensing of the web farm servers works automatically for basic scenarios – see <a href="kentico-licensing-for-mvc-applications">Kentico licensing for MVC applications</a> for details.</p></div>
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880517_ImprovingperformanceofMVCapplications-ConfiguringwebfarmsonMVCapplications">Configuring web farms on MVC applications</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880517_ImprovingperformanceofMVCapplications-CachinginMVCapplications">Caching in MVC applications</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880517_ImprovingperformanceofMVCapplications-CachingdatainMVCapplications">Caching data in MVC applications</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880517_ImprovingperformanceofMVCapplications-CachingcontrolleractionoutputinMVCapplications">Caching controller action output in MVC applications</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880517_improvingperformanceofmvcapplications-configuringwebfarmsonmvcapplications">Configuring web farms on MVC applications</a></p>
+</li><li class=" "><p><a href="#src-68880517_improvingperformanceofmvcapplications-cachinginmvcapplications">Caching in MVC applications</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880517_improvingperformanceofmvcapplications-cachingdatainmvcapplications">Caching data in MVC applications</a></p>
+</li><li class=" "><p><a href="#src-68880517_improvingperformanceofmvcapplications-cachingcontrolleractionoutputinmvcapplications">Caching controller action output in MVC applications</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox admonition admonition-info">
+    </div></div>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Adding web farm servers to scale performance</strong></p>
-<p   
->If you wish to use a web farm to scale the site&#39;s performance, you can add further instances of the MVC application. We recommend using the following process:</p>
-<ol class=" "><li class=" "><p   
->Develop and test the site in a web farm with two servers (one MVC application, one Kentico application).</p>
-</li><li class=" "><p   
->Deploy any number of additional instances of the same MVC application. Each instance must connect to the same Kentico database.</p>
-</li></ol><p   
->The automatic web farm mode automatically registers the new instances as web farm servers and ensures correct synchronization (among all instances of the MVC application and the Kentico application).</p>
-<p   
->If you need to scale the performance of the Kentico administration interface used to manage the site content and settings, you can also run multiple instances of the Kentico application in the web farm. In this scenario, use the standard approach for   <a   href="Configuring-web-farm-servers">configuring web farm servers</a>. You need to use one of the servers as the &quot;primary&quot; Kentico instance (for example for holding files shared by the entire web farm, such as   <a   href="Using-locally-stored-search-indexes">locally stored search indexes</a>).</p>
-<p   
-><strong class=" ">Note</strong>: The above scenarios require a license that supports the additional number of web farm servers.</p>
+<p><strong class=" ">Adding web farm servers to scale performance</strong></p>
+<p>If you wish to use a web farm to scale the site's performance, you can add further instances of the MVC application. We recommend using the following process:</p>
+<ol class=" "><li class=" "><p>Develop and test the site in a web farm with two servers (one MVC application, one Kentico application).</p>
+</li><li class=" "><p>Deploy any number of additional instances of the same MVC application. Each instance must connect to the same Kentico database.</p>
+</li></ol><p>The automatic web farm mode automatically registers the new instances as web farm servers and ensures correct synchronization (among all instances of the MVC application and the Kentico application).</p>
+<p>If you need to scale the performance of the Kentico administration interface used to manage the site content and settings, you can also run multiple instances of the Kentico application in the web farm. In this scenario, use the standard approach for <a href="configuring-web-farm-servers">configuring web farm servers</a>. You need to use one of the servers as the "primary" Kentico instance (for example for holding files shared by the entire web farm, such as <a href="using-locally-stored-search-indexes">locally stored search indexes</a>).</p>
+<p><strong class=" ">Note</strong>: The above scenarios require a license that supports the additional number of web farm servers.</p>
         </div>
     </div>
     <h3 id="src-68880517_ImprovingperformanceofMVCapplications-CachinginMVCapplications" class="heading "><span>Caching in MVC applications</span></h3>
-<p   
->You can cache the data and output of controller actions in your MVC application.</p>
-<p   
-><strong class=" ">Prerequisite</strong>: For caching in your MVC application to work correctly, your Kentico and MVC applications need to be   <a   href="#src-68880517_ImprovingperformanceofMVCapplications-ConfiguringwebfarmsonMVCapplications">configured as a web farm</a>.</p>
-<p   
->Specifically, you can cache the following:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68880517_ImprovingperformanceofMVCapplications-CachingdatainMVCapplications">Data</a> you retrieve to display on individual web pages.</p>
-</li><li class=" "><p   
->  <a   href="#src-68880517_ImprovingperformanceofMVCapplications-CachingcontrolleractionoutputinMVCapplications">Output</a> of controller actions.</p>
+<p>You can cache the data and output of controller actions in your MVC application.</p>
+<p><strong class=" ">Prerequisite</strong>: For caching in your MVC application to work correctly, your Kentico and MVC applications need to be <a href="#src-68880517_improvingperformanceofmvcapplications-configuringwebfarmsonmvcapplications">configured as a web farm</a>.</p>
+<p>Specifically, you can cache the following:</p>
+<ul class=" "><li class=" "><p><a href="#src-68880517_improvingperformanceofmvcapplications-cachingdatainmvcapplications">Data</a> you retrieve to display on individual web pages.</p>
+</li><li class=" "><p><a href="#src-68880517_improvingperformanceofmvcapplications-cachingcontrolleractionoutputinmvcapplications">Output</a> of controller actions.</p>
 </li></ul>    <h4 id="src-68880517_ImprovingperformanceofMVCapplications-CachingdatainMVCapplications" class="heading "><span>Caching data in MVC applications</span></h4>
-<p   
->We recommend using caching of data, especially for data that is frequently accessed (queried from the database). For example, you may want to cache individual pages, forms and any other data that you retrieve from the Kentico database and display on the site.</p>
-<p   
->For pages, custom table data or forms, you can handle the caching in individual repositories that make use of the   <a   href="Generating-classes-for-Kentico-objects">generated providers</a>. Another approach would be using <a  class="external-link" href="https://en.wikipedia.org/wiki/Aspect-oriented_programming">AOP</a> and decorating the individual repositories &ndash; see our <a  class="external-link" href="https://github.com/Kentico/mvc">MVC demo site</a> for a reference on how to use this approach.</p>
-<p   
->Use the <strong class=" ">CacheHelper.Cache </strong>method to cache data in your code.</p>
+<p>We recommend using caching of data, especially for data that is frequently accessed (queried from the database). For example, you may want to cache individual pages, forms and any other data that you retrieve from the Kentico database and display on the site.</p>
+<p>For pages, custom table data or forms, you can handle the caching in individual repositories that make use of the <a href="generating-classes-for-kentico-objects">generated providers</a>. Another approach would be using <a class="external-link" href="https://en.wikipedia.org/wiki/Aspect-oriented_programming">AOP</a> and decorating the individual repositories – see our <a class="external-link" href="https://github.com/Kentico/mvc">MVC demo site</a> for a reference on how to use this approach.</p>
+<p>Use the <strong class=" ">CacheHelper.Cache </strong>method to cache data in your code.</p>
     <h5 id="src-68880517_ImprovingperformanceofMVCapplications-Examples" class="heading "><span>Examples</span></h5>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Notes</strong></p>
-<ul class=" "><li class=" "><p   
->To ensure consistency of the viewed data, always generate cache keys with names that include all the parameters that you use to retrieve the data. For example, a culture code variable in the cache key for page data ensures that visitors do not see cached articles displayed in an old culture after switching to a new culture.</p>
-</li><li class=" "><p   
->The examples use minimal cache dependencies. See   <a   href="Setting-cache-dependencies">Setting cache dependencies</a> for more information on how to configure cache dependencies for your scenarios.</p>
+<p><strong class=" ">Notes</strong></p>
+<ul class=" "><li class=" "><p>To ensure consistency of the viewed data, always generate cache keys with names that include all the parameters that you use to retrieve the data. For example, a culture code variable in the cache key for page data ensures that visitors do not see cached articles displayed in an old culture after switching to a new culture.</p>
+</li><li class=" "><p>The examples use minimal cache dependencies. See <a href="setting-cache-dependencies">Setting cache dependencies</a> for more information on how to configure cache dependencies for your scenarios.</p>
 </li></ul>        </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Caching the data of multiple articles</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Caching the data of multiple articles" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Collections.Generic;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SiteProvider;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> IEnumerable&lt;Article&gt; GetArticles(</code><code class="keyword">int</code><code class="plain"> count = 0)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">string</code><code class="plain"> culture = </code><code class="string">"en-us"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">string</code><code class="plain"> siteName = SiteContext.CurrentSiteName;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    Func&lt;IEnumerable&lt;Article&gt;&gt; dataLoadMethod = () =&gt; ArticleProvider.GetArticles()</code></div>
 <div class="line"><code class="plain">            .OnSite(siteName)</code></div>
 <div class="line"><code class="plain">            .Culture(culture)</code></div>
 <div class="line"><code class="plain">            .TopN(count)</code></div>
 <div class="line"><code class="plain">            .OrderByDescending(</code><code class="string">"DocumentPublishFrom"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">            .TypedResult; </code><code class="comments">// Ensures that the result of the query is saved, not the query itself</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> cacheSettings = </code><code class="keyword">new</code><code class="plain"> CacheSettings(10, </code><code class="string">"myapp|data|articles"</code><code class="plain">, siteName, culture, count)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        GetCacheDependency = () =&gt;</code></div>
@@ -257,31 +228,31 @@
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> CacheHelper.GetCacheDependency(dependencyCacheKey);</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    };</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> CacheHelper.Cache(dataLoadMethod, cacheSettings);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Caching the data of a single article</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Caching the data of a single article" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SiteProvider;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> Article GetArticle(Guid nodeGuid)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">string</code><code class="plain"> culture = </code><code class="string">"en-us"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">string</code><code class="plain"> siteName = SiteContext.CurrentSiteName;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    Func&lt;Article&gt; dataLoadMethod = () =&gt; ArticleProvider.GetArticle(nodeGuid, culture, siteName)</code></div>
 <div class="line"><code class="plain">                                                        .TopN(1)</code></div>
 <div class="line"><code class="plain">                                                        .FirstOrDefault();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> cacheSettings = </code><code class="keyword">new</code><code class="plain"> CacheSettings(10, </code><code class="string">"myapp|data|article"</code><code class="plain">, nodeGuid, culture, siteName)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        GetCacheDependency = () =&gt;</code></div>
@@ -291,28 +262,24 @@
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> CacheHelper.GetCacheDependency(dependencyCacheKey);</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    };</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> CacheHelper.Cache(dataLoadMethod, cacheSettings);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
     <h4 id="src-68880517_ImprovingperformanceofMVCapplications-CachingcontrolleractionoutputinMVCapplications" class="heading "><span>Caching controller action output in MVC applications</span></h4>
-<p   
->You can cache the output of individual controller actions using <a  class="external-link" href="https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs">ASP.NET output caching</a>. This can significantly increase your website performance. We recommend caching the output of all possible controller actions, especially on controllers that return often requested views.</p>
-<p   
->Use the <a  class="external-link" href="https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.outputcacheattribute">OutputCache</a> attribute to mark the action methods you want to cache. Set the cache duration (in seconds) and other properties of the attribute.</p>
-<p   
->When storing the output cache on the server (when the <i class=" ">OutputCache</i> attribute&#39;s <i class=" ">Location</i> property is set to <i class=" ">Server</i>), you can define cache dependencies to accommodate various scenarios with both static and dynamic content. Use the <strong class=" ">HttpContext.Response.AddCacheItemDependency()</strong> method to add dependencies in individual controller action methods.</p>
-<p   
->Controller actions can be called in situations in which the dummy cache items have not yet been created. To account for that, ensure the existence of the dummy cache item explicitly by calling <i class=" ">CacheHelper.EnsureDummyKey()</i>.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>You can cache the output of individual controller actions using <a class="external-link" href="https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs">ASP.NET output caching</a>. This can significantly increase your website performance. We recommend caching the output of all possible controller actions, especially on controllers that return often requested views.</p>
+<p>Use the <a class="external-link" href="https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.outputcacheattribute">OutputCache</a> attribute to mark the action methods you want to cache. Set the cache duration (in seconds) and other properties of the attribute.</p>
+<p>When storing the output cache on the server (when the <i class=" ">OutputCache</i> attribute's <i class=" ">Location</i> property is set to <i class=" ">Server</i>), you can define cache dependencies to accommodate various scenarios with both static and dynamic content. Use the <strong class=" ">HttpContext.Response.AddCacheItemDependency()</strong> method to add dependencies in individual controller action methods.</p>
+<p>Controller actions can be called in situations in which the dummy cache items have not yet been created. To account for that, ensure the existence of the dummy cache item explicitly by calling <i class=" ">CacheHelper.EnsureDummyKey()</i>.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Mvc;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
 <div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">[OutputCache(Duration=600, VaryByParam=</code><code class="string">"none"</code><code class="plain">, Location = OutputCacheLocation.Server)]</code></div>
@@ -329,8 +296,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
-><strong class=" ">Note</strong>: The example uses minimal cache dependencies &ndash; the cache is cleared when any of the articles the method works with is modified, deleted, or when a new article is created. See   <a   href="Setting-cache-dependencies">Setting cache dependencies</a> for more information on how to configure cache dependencies for your scenarios.</p>
+<p><strong class=" ">Note</strong>: The example uses minimal cache dependencies – the cache is cleared when any of the articles the method works with is modified, deleted, or when a new article is created. See <a href="setting-cache-dependencies">Setting cache dependencies</a> for more information on how to configure cache dependencies for your scenarios.</p>
         </div>
 
     </article>
@@ -351,5 +317,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

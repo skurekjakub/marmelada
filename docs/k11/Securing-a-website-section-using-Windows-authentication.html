@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Securing a website section using Windows authentication - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,50 +149,34 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When you set up   <a   href="Configuring-Windows-AD-authentication">Windows authentication</a>, you can use the authentication only for specific sections of the live website. This leads to the following scenario:</p>
-<ul class=" "><li class=" "><p   
->The live website is accessible anonymously, except for the specified sections that require Windows authentication</p>
-</li><li class=" "><p   
->Windows authentication is required for access to the Kentico administration interface</p>
-</li><li class=" "><p   
->The site cannot contain other sections secured using standard Forms authentication</p>
-</li></ul><p   
->The following example demonstrates how to set Windows authentication for the <strong class=" ">Products</strong> section of the sample <strong class=" ">Corporate site</strong>:</p>
+<div class="section-left"></div><p>When you set up <a href="configuring-windows-ad-authentication">Windows authentication</a>, you can use the authentication only for specific sections of the live website. This leads to the following scenario:</p>
+<ul class=" "><li class=" "><p>The live website is accessible anonymously, except for the specified sections that require Windows authentication</p>
+</li><li class=" "><p>Windows authentication is required for access to the Kentico administration interface</p>
+</li><li class=" "><p>The site cannot contain other sections secured using standard Forms authentication</p>
+</li></ul><p>The following example demonstrates how to set Windows authentication for the <strong class=" ">Products</strong> section of the sample <strong class=" ">Corporate site</strong>:</p>
     <div class="section section-1" id="src-68880382_SecuringawebsitesectionusingWindowsauthentication-ConfiguringIIS">
         <h1 class="heading "><span>Configuring IIS</span></h1>
-<ol class=" "><li class=" "><p   
->Locate your web project on the disk (typically <i class=" ">c:\Inetpub\wwwroot\&lt;web project&gt;</i>).</p>
-</li><li class=" "><p   
->Create a new directory in your web project&#39;s <strong class=" ">CMS</strong> folder, named according to the URL path of the site section that you want to secure. In this case, the path is <i class=" ">/Products</i>, so create a folder named <strong class=" ">Products</strong>.</p>
-</li><li class=" "><p   
->Open <strong class=" ">Internet Information Services (IIS) Manager</strong>.</p>
-</li><li class=" "><p   
->Locate the new <strong class=" ">Products</strong> folder in the tree and select it.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Authentication</strong> configuration.</p>
-<ul class=" "><li class=" "><p   
->Disable <strong class=" ">Anonymous Authentication</strong> for the folder</p>
-</li><li class=" "><p   
->Make sure that <strong class=" ">Windows Authentication</strong> is enabled</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880382/Disable_anonymous_authentication.png" alt="images/download/attachments/68880382/Disable_anonymous_authentication.png" width="500"  />
+<ol class=" "><li class=" "><p>Locate your web project on the disk (typically <i class=" ">c:\Inetpub\wwwroot\&lt;web project&gt;</i>).</p>
+</li><li class=" "><p>Create a new directory in your web project's <strong class=" ">CMS</strong> folder, named according to the URL path of the site section that you want to secure. In this case, the path is <i class=" ">/Products</i>, so create a folder named <strong class=" ">Products</strong>.</p>
+</li><li class=" "><p>Open <strong class=" ">Internet Information Services (IIS) Manager</strong>.</p>
+</li><li class=" "><p>Locate the new <strong class=" ">Products</strong> folder in the tree and select it.</p>
+</li><li class=" "><p>Open the <strong class=" ">Authentication</strong> configuration.</p>
+<ul class=" "><li class=" "><p>Disable <strong class=" ">Anonymous Authentication</strong> for the folder</p>
+</li><li class=" "><p>Make sure that <strong class=" ">Windows Authentication</strong> is enabled</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880382/Disable_anonymous_authentication.png" alt="images/download/attachments/68880382/Disable_anonymous_authentication.png" width="500">
 </p>
 </li></ol>    </div>
     <div class="section section-1" id="src-68880382_SecuringawebsitesectionusingWindowsauthentication-Configuringtheweb.configfile">
         <h1 class="heading "><span>Configuring the web.config file</span></h1>
-<ol class=" "><li class=" "><p   
->Edit the <i class=" ">web.config</i> file of your web project.</p>
-</li><li class=" "><p   
->Set the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section to <strong class=" ">Windows</strong>:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ol class=" "><li class=" "><p>Edit the <i class=" ">web.config</i> file of your web project.</p>
+</li><li class=" "><p>Set the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section to <strong class=" ">Windows</strong>:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;authentication mode=</code><code class="string">"Windows"</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Find the section marked with <strong class=" ">Windows authentication BEGIN</strong> and set the <strong class=" ">path</strong> parameter of the <strong class=" ">&lt;location&gt;</strong> element to the name of the created directory (<strong class=" ">Products</strong> in the example):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Find the section marked with <strong class=" ">Windows authentication BEGIN</strong> and set the <strong class=" ">path</strong> parameter of the <strong class=" ">&lt;location&gt;</strong> element to the name of the created directory (<strong class=" ">Products</strong> in the example):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;!-- Windows authentication BEGIN --&gt;</code></div>
 <div class="line"><code class="plain">&lt;location path=</code><code class="string">"Products"</code><code class="plain">&gt;</code></div>
@@ -207,29 +189,19 @@
 <div class="line"><code class="plain">&lt;!-- Windows authentication END --&gt;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
-><strong class=" ">Save</strong> the web.config file.</p>
-</li></ol><p   
->The authentication is now configured. If you try to access any of the pages placed under the <strong class=" ">Products</strong> section, the system requires <strong class=" ">Windows authentication</strong>.</p>
-<p   
->If you also want the authentication to be required for the <strong class=" ">Products</strong> main page, you need to use the following workaround:</p>
-<ol class=" "><li class=" "><p   
->Create a child under the <strong class=" ">Products</strong> page with identical content (you can use the <strong class=" ">Copy</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/clone.png" alt="images/download/attachments/68879208/clone.png"   />
-) action).<br/></p>
-<ul class=" "><li class=" "><p   
->You may need to adjust the   <a   href="Inheriting-portal-engine-page-content">page nesting</a> settings and the configuration of certain web parts to get the page to work correctly.<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Select the original <strong class=" ">Products</strong> page and open the <strong class=" ">Properties -&gt; Navigation</strong> tab.</p>
-</li><li class=" "><p   
->Select <strong class=" ">Redirect to first child</strong> in the <strong class=" ">Menu actions</strong> section.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.<br/></p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880382/Redirect_to_first_child.png" alt="images/download/attachments/68880382/Redirect_to_first_child.png" width="500" height="280" />
-        <br/><span class="caption">Making the main page of a section redirect to first child</span>
+</li><li class=" "><p><strong class=" ">Save</strong> the web.config file.</p>
+</li></ol><p>The authentication is now configured. If you try to access any of the pages placed under the <strong class=" ">Products</strong> section, the system requires <strong class=" ">Windows authentication</strong>.</p>
+<p>If you also want the authentication to be required for the <strong class=" ">Products</strong> main page, you need to use the following workaround:</p>
+<ol class=" "><li class=" "><p>Create a child under the <strong class=" ">Products</strong> page with identical content (you can use the <strong class=" ">Copy</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/clone.png" alt="images/download/attachments/68879208/clone.png">
+) action).<br></p>
+<ul class=" "><li class=" "><p>You may need to adjust the <a href="inheriting-portal-engine-page-content">page nesting</a> settings and the configuration of certain web parts to get the page to work correctly.<br><br></p>
+</li></ul></li><li class=" "><p>Select the original <strong class=" ">Products</strong> page and open the <strong class=" ">Properties -&gt; Navigation</strong> tab.</p>
+</li><li class=" "><p>Select <strong class=" ">Redirect to first child</strong> in the <strong class=" ">Menu actions</strong> section.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.<br></p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880382/Redirect_to_first_child.png" alt="images/download/attachments/68880382/Redirect_to_first_child.png" width="500" height="280">
+        <br><span class="caption">Making the main page of a section redirect to first child</span>
     </p>
-</li></ol><p   
->Because the new page is located under the <strong class=" ">Products</strong> section, windows authentication is required to access it.</p>
+</li></ol><p>Because the new page is located under the <strong class=" ">Products</strong> section, windows authentication is required to access it.</p>
     </div>
         </div>
 
@@ -251,5 +223,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

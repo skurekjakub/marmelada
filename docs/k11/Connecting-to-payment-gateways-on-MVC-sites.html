@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Connecting to payment gateways on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -153,85 +151,60 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When you build the   <a   href="Checkout-process-in-MVC">checkout process on your MVC site</a>, you may want to enable   <a   href="Customers">customers</a> to pay directly via a payment gateway (for example, PayPal or credit card) when they create an   <a   href="Orders">order</a>.</p>
-<p   
->When using   <a   href="Developing-sites-using-ASP.NET-MVC">the MVC development framework</a>, you need to   <a   href="#src-68880549_ConnectingtopaymentgatewaysonMVCsites-DevelopingpaymentgatewaysinMVCapplications">implement</a> payment gateways for the payment methods in the MVC application and   <a   href="#src-68880549_ConnectingtopaymentgatewaysonMVCsites-ConfiguringpaymentmethodsinKentico">add the related payment methods to Kentico</a>. You cannot use the default payment gateways in Kentico (PayPal and Authorize.NET).</p>
-<p   
->On this page, you can find how to work with API of the   <a   href="Installing-Kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> that deals with payment of orders. However, the specific implementation can differ for each service, and we recommend that you work closely with documentation of the implemented payment gateway provider.</p>
-    <h3 id="src-68880549_ConnectingtopaymentgatewaysonMVCsites-ConfiguringpaymentmethodsinKentico" class="heading "><span>Configuring payment methods in Kentico</span></h3>
-<p   
->Set up all payment methods, for which you want to   <a   href="#src-68880549_ConnectingtopaymentgatewaysonMVCsites-DevelopingpaymentgatewaysinMVCapplications">implement a payment gateway</a>, as manual payment methods.</p>
-    <div  class="confbox admonition admonition-tip">
+<div class="section-left"><p>When you build the <a href="checkout-process-in-mvc">checkout process on your MVC site</a>, you may want to enable <a href="customers">customers</a> to pay directly via a payment gateway (for example, PayPal or credit card) when they create an <a href="orders">order</a>.</p><p>When using <a href="developing-sites-using-asp.net-mvc">the MVC development framework</a>, you need to <a href="#src-68880549_connectingtopaymentgatewaysonmvcsites-developingpaymentgatewaysinmvcapplications">implement</a> payment gateways for the payment methods in the MVC application and <a href="#src-68880549_connectingtopaymentgatewaysonmvcsites-configuringpaymentmethodsinkentico">add the related payment methods to Kentico</a>. You cannot use the default payment gateways in Kentico (PayPal and Authorize.NET).</p><p>On this page, you can find how to work with API of the <a href="installing-kentico-integration-packages"><strong class=" ">Kentico.Ecommerce</strong> integration package</a> that deals with payment of orders. However, the specific implementation can differ for each service, and we recommend that you work closely with documentation of the implemented payment gateway provider.</p><h3 id="src-68880549_ConnectingtopaymentgatewaysonMVCsites-ConfiguringpaymentmethodsinKentico" class="heading "><span>Configuring payment methods in Kentico</span></h3><p>Set up all payment methods, for which you want to <a href="#src-68880549_connectingtopaymentgatewaysonmvcsites-developingpaymentgatewaysinmvcapplications">implement a payment gateway</a>, as manual payment methods.</p><div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->See   <a   href="Configuring-payment-methods">Configuring payment methods</a> to learn more about manual payment methods.</p>
+<p>See <a href="configuring-payment-methods">Configuring payment methods</a> to learn more about manual payment methods.</p>
         </div>
-    </div>
-<p   
->When configuring the payment method, leave the <strong class=" ">Payment gateway URL</strong> and <strong class=" ">Payment gateways provider class</strong> fields blank. The MVC application decides which payment gateway to use based on the method&#39;s   <a   href="Reference---Payment-methods">code name</a>.</p>
-<p   
-><strong class=" ">Note</strong>: Payment gateways that you implement in your MVC application cannot be used from the administration interface of the Kentico application (for example when manually creating or editing orders).<br/></p>
-    <h3 id="src-68880549_ConnectingtopaymentgatewaysonMVCsites-DevelopingpaymentgatewaysinMVCapplications" class="heading "><span>Developing payment gateways in MVC applications</span></h3>
-<p   
->In the controller action of the last checkout process step (usually   <a   href="Creating-the-preview-step-in-MVC-checkout-processes">the preview step</a>), redirect the customer to a controller that takes care of the specific payment gateway.</p>
-    <div  class="confbox admonition admonition-tip">
+    </div><p>When configuring the payment method, leave the <strong class=" ">Payment gateway URL</strong> and <strong class=" ">Payment gateways provider class</strong> fields blank. The MVC application decides which payment gateway to use based on the method's <a href="reference---payment-methods">code name</a>.</p><p><strong class=" ">Note</strong>: Payment gateways that you implement in your MVC application cannot be used from the administration interface of the Kentico application (for example when manually creating or editing orders).<br></p><h3 id="src-68880549_ConnectingtopaymentgatewaysonMVCsites-DevelopingpaymentgatewaysinMVCapplications" class="heading "><span>Developing payment gateways in MVC applications</span></h3><p>In the controller action of the last checkout process step (usually <a href="creating-the-preview-step-in-mvc-checkout-processes">the preview step</a>), redirect the customer to a controller that takes care of the specific payment gateway.</p><div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you provide multiple payment methods and you need to distinguish their payment gateways, check the cart&#39;s payment method code name. For example:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>If you provide multiple payment methods and you need to distinguish their payment gateways, check the cart's payment method code name. For example:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+
+
+    
+
+    
+
+
+    
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880549_ConnectingtopaymentgatewaysonMVCsites-ConfiguringpaymentmethodsinKentico">Configuring payment methods in Kentico</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880549_ConnectingtopaymentgatewaysonMVCsites-DevelopingpaymentgatewaysinMVCapplications">Developing payment gateways in MVC applications</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880549_connectingtopaymentgatewaysonmvcsites-configuringpaymentmethodsinkentico">Configuring payment methods in Kentico</a></p>
+</li><li class=" "><p><a href="#src-68880549_connectingtopaymentgatewaysonmvcsites-developingpaymentgatewaysinmvcapplications">Developing payment gateways in MVC applications</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Creating-the-preview-step-in-MVC-checkout-processes">Creating the preview step in MVC checkout processes</a></p>
-</li><li class=" "><p   
->  <a   href="Checkout-process-in-MVC">Checkout process in MVC</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-payment-methods">Configuring payment methods</a></p>
-</li><li class=" "><p   
->  <a   href="Working-with-payment-results">Working with payment results</a></p>
-</li><li class=" "><p   
->  <a   href="Orders">Orders</a></p>
-</li><li class=" "><p   
->  <a   href="Order-statuses">Order statuses</a></p>
+<ul class=" "><li class=" "><p><a href="creating-the-preview-step-in-mvc-checkout-processes">Creating the preview step in MVC checkout processes</a></p>
+</li><li class=" "><p><a href="checkout-process-in-mvc">Checkout process in MVC</a></p>
+</li><li class=" "><p><a href="configuring-payment-methods">Configuring payment methods</a></p>
+</li><li class=" "><p><a href="working-with-payment-results">Working with payment results</a></p>
+</li><li class=" "><p><a href="orders">Orders</a></p>
+</li><li class=" "><p><a href="order-statuses">Order statuses</a></p>
 </li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+    <div class="confbox panel">
             <div class="title panel-header">Building the checkout process in MVC</div>
             <div class="panel-content">
-<ol class=" "><li class=" "><p   
->  <a   href="#">Connecting to payment gateways on MVC sites</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-the-customer-details-step-in-MVC-checkout-processes">Creating the customer details step in MVC checkout processes</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-the-preview-step-in-MVC-checkout-processes">Creating the preview step in MVC checkout processes</a><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Connecting to payment gateways on MVC sites</strong></p>
+<ol class=" "><li class=" "><p><a href="#">Connecting to payment gateways on MVC sites</a></p>
+</li><li class=" "><p><a href="creating-the-customer-details-step-in-mvc-checkout-processes">Creating the customer details step in MVC checkout processes</a></p>
+</li><li class=" "><p><a href="creating-the-preview-step-in-mvc-checkout-processes">Creating the preview step in MVC checkout processes</a><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Connecting to payment gateways on MVC sites</strong></p>
 </li></ul></li></ol>        </div>
     </div>
-<p   
->Since most services require a different approach to connecting with them, you need to implement the connection based on their documentation.</p>
-<p   
->The payment gateway then receives a response from the service. Create a new   <a   href="Working-with-payment-results"><strong class=" ">PaymentResultInfo</strong> object</a> with information from the response. Use the <strong class=" ">SetPaymentResult</strong> method of the <strong class=" ">Order</strong> class to save the payment result to the database. For example:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
-Kentico sets the   <a   href="Order-statuses">order status</a> as   <a   href="#src-68880549_ConnectingtopaymentgatewaysonMVCsites-ConfiguringpaymentmethodsinKentico">configured in the payment method</a>.</p>
+<p>Since most services require a different approach to connecting with them, you need to implement the connection based on their documentation.</p>
+<p>The payment gateway then receives a response from the service. Create a new <a href="working-with-payment-results"><strong class=" ">PaymentResultInfo</strong> object</a> with information from the response. Use the <strong class=" ">SetPaymentResult</strong> method of the <strong class=" ">Order</strong> class to save the payment result to the database. For example:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
+Kentico sets the <a href="order-statuses">order status</a> as <a href="#src-68880549_connectingtopaymentgatewaysonmvcsites-configuringpaymentmethodsinkentico">configured in the payment method</a>.</p>
         </div>
 
     </article>
@@ -252,5 +225,6 @@ Kentico sets the   <a   href="Order-statuses">order status</a> as   <a   href="#
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

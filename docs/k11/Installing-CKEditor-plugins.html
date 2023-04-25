@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Installing CKEditor plugins - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,60 +149,43 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The   <a   href="Configuring-the-editor">editor</a> in Kentico 11 is implemented using <a  class="external-link" href="http://ckeditor.com/">CKEditor</a> version <strong class=" ">4.5.4</strong>.</p>
-<p   
->If you wish to add custom functionality to the editor, you can install CKEditor plugins. Either search for existing plugins at <a  class="external-link" href="http://ckeditor.com/addons/plugins/all">http://ckeditor.com/addons/plugins/all</a> or develop your own plugins.</p>
-    <div  class="confbox admonition admonition-note">
+<div class="section-left"></div><p>The <a href="configuring-the-editor">editor</a> in Kentico 11 is implemented using <a class="external-link" href="http://ckeditor.com/">CKEditor</a> version <strong class=" ">4.5.4</strong>.</p>
+<p>If you wish to add custom functionality to the editor, you can install CKEditor plugins. Either search for existing plugins at <a class="external-link" href="http://ckeditor.com/addons/plugins/all">http://ckeditor.com/addons/plugins/all</a> or develop your own plugins.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong>: Kentico does not guarantee compatibility with third-party CKEditor plugins that are not included in the default installation. Some plugins may not work correctly within the Kentico administration interface.</p>
+<p><strong class=" ">Important</strong>: Kentico does not guarantee compatibility with third-party CKEditor plugins that are not included in the default installation. Some plugins may not work correctly within the Kentico administration interface.</p>
         </div>
     </div>
-<p   
->Use the following process to add plugins to the Kentico CKEditor:</p>
-<ol class=" "><li class=" "><p   
->Copy the plugin&#39;s main directory into the <strong class=" ">CMS\CMSAdminControls\CKeditor\plugins</strong> folder of your Kentico project.</p>
-</li><li class=" "><p   
->Edit the <strong class=" ">config.js</strong> file in the <strong class=" ">CMS\CMSAdminControls\CKeditor</strong> folder.</p>
-</li><li class=" "><p   
->Use the following configuration to add plugins. The values added to <strong class=" ">config.plugins</strong> must match the names of the corresponding plugin folders.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Use the following process to add plugins to the Kentico CKEditor:</p>
+<ol class=" "><li class=" "><p>Copy the plugin's main directory into the <strong class=" ">CMS\CMSAdminControls\CKeditor\plugins</strong> folder of your Kentico project.</p>
+</li><li class=" "><p>Edit the <strong class=" ">config.js</strong> file in the <strong class=" ">CMS\CMSAdminControls\CKeditor</strong> folder.</p>
+</li><li class=" "><p>Use the following configuration to add plugins. The values added to <strong class=" ">config.plugins</strong> must match the names of the corresponding plugin folders.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">CKEDITOR.editorConfig = </code><code class="keyword">function</code><code class="plain"> (config) {</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/* Custom plugins */</code></div>
 <div class="line"><code class="plain">	config.plugins += </code><code class="string">',codemirror,youtube,templates'</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	... </code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Notes</strong>:</p>
-<ul class=" "><li class=" "><p   
->The standard setting for adding CKEditor plugins (<i class=" ">config.ExtraPlugins</i>) cannot be used, because it is overridden by the Kentico implementation. You need to directly add plugins to the <strong class=" ">config.plugins</strong> value instead.</p>
-</li><li class=" "><p   
->Notice the comma at the start of the <strong class=" ">config.plugins</strong> value.</p>
+<p><strong class=" ">Notes</strong>:</p>
+<ul class=" "><li class=" "><p>The standard setting for adding CKEditor plugins (<i class=" ">config.ExtraPlugins</i>) cannot be used, because it is overridden by the Kentico implementation. You need to directly add plugins to the <strong class=" ">config.plugins</strong> value instead.</p>
+</li><li class=" "><p>Notice the comma at the start of the <strong class=" ">config.plugins</strong> value.</p>
 </li></ul>        </div>
     </div>
-</li><li class=" "><p   
->If the plugin uses additional buttons on the editor toolbar, you need to add them to the toolbar sets defined in <strong class=" ">config.js</strong>.</p>
-<ul class=" "><li class=" "><p   
->See   <a   href="Personalizing-the-editor-toolbars-and-buttons">Personalizing the editor toolbars and buttons</a>.</p>
-</li><li class=" "><p   
->The button names that you need to add to the toolbar definitions usually match the plugin&#39;s <i class=" ">config.plugin</i> value and folder name.<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Add any additional <strong class=" ">config.js</strong> configuration settings required by the plugin.</p>
-</li><li class=" "><p   
->Check the plugin&#39;s dependencies and install any required plugins or components.</p>
-</li><li class=" "><p   
->Clear your browser&#39;s cache and test the editor functionality in your browser.</p>
-</li></ol><p   
->The installed plugin should now be available for all users working with the editor in Kentico (each user must clear their own browser&#39;s cache).</p>
+</li><li class=" "><p>If the plugin uses additional buttons on the editor toolbar, you need to add them to the toolbar sets defined in <strong class=" ">config.js</strong>.</p>
+<ul class=" "><li class=" "><p>See <a href="personalizing-the-editor-toolbars-and-buttons">Personalizing the editor toolbars and buttons</a>.</p>
+</li><li class=" "><p>The button names that you need to add to the toolbar definitions usually match the plugin's <i class=" ">config.plugin</i> value and folder name.<br><br></p>
+</li></ul></li><li class=" "><p>Add any additional <strong class=" ">config.js</strong> configuration settings required by the plugin.</p>
+</li><li class=" "><p>Check the plugin's dependencies and install any required plugins or components.</p>
+</li><li class=" "><p>Clear your browser's cache and test the editor functionality in your browser.</p>
+</li></ol><p>The installed plugin should now be available for all users working with the editor in Kentico (each user must clear their own browser's cache).</p>
         </div>
 
     </article>
@@ -225,5 +206,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

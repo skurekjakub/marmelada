@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Implementing the IUniPageable interface - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -153,85 +151,79 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The following is a step-by-step tutorial shows how to create a custom control that displays users and implements the <strong class=" ">IUniPageable</strong> interface. This allows the control to be paged by the   <a   href="UniPager">UniPager</a>.</p>
-<ol class=" "><li class=" "><p   
->Create a new <strong class=" ">Web User Control</strong> in your web project (the example uses the name <i class=" ">UniPageable_Repeater.ascx</i>).</p>
-</li><li class=" "><p   
->Add the following markup to the user control:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"></div><p>The following is a step-by-step tutorial shows how to create a custom control that displays users and implements the <strong class=" ">IUniPageable</strong> interface. This allows the control to be paged by the <a href="unipager">UniPager</a>.</p>
+<ol class=" "><li class=" "><p>Create a new <strong class=" ">Web User Control</strong> in your web project (the example uses the name <i class=" ">UniPageable_Repeater.ascx</i>).</p>
+</li><li class=" "><p>Add the following markup to the user control:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;asp:Repeater ID=</code><code class="string">"Repeater1"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain">&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	&lt;ItemTemplate&gt;</code></div>
 <div class="line"><code class="plain">    </code></div>
 <div class="line"><code class="plain">    &lt;div&gt;</code></div>
 <div class="line"><code class="plain">	    &lt;%# Eval(</code><code class="string">"UserName"</code><code class="plain">) %&gt;</code></div>
 <div class="line"><code class="plain">    &lt;/div&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    &lt;/ItemTemplate&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;/asp:Repeater&gt;</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->This adds a standard .NET Repeater control that will be used to display user names.</p>
+<p>This adds a standard .NET Repeater control that will be used to display user names.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Switch to the code behind of the control and add the following code.</p>
-    <div  class="confbox admonition admonition-note">
+</li><li class=" "><p>Switch to the code behind of the control and add the following code.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: The name of the class must match the name and location of your web user control.</p>
+<p><strong class=" ">Note</strong>: The name of the class must match the name and location of your web user control.</p>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> IUniPageableExample_UniPageable_Repeater : System.Web.UI.UserControl, IUniPageable</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Private variable containing the value of the PagerForceNumberOfResults property</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">int</code><code class="plain"> mPagerForceNumberOfResults = -1;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Private variable used to contain the data source of the control</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">object</code><code class="plain"> dataSource = </code><code class="keyword">null</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Private variable storing the associated UniPager object</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> UniPager mUniPagerControl = </code><code class="keyword">null</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Page_Load(</code><code class="keyword">object</code><code class="plain"> sender, EventArgs e)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Loads all users from the database into the data source</code></div>
 <div class="line"><code class="plain">        dataSource = UserInfoProvider.GetUsers();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Calls the page binding event</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (OnPageBinding != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            OnPageBinding(</code><code class="keyword">this</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Assigns the data source to the encapsulated Repeater control</code></div>
 <div class="line"><code class="plain">        Repeater1.DataSource = dataSource;</code></div>
 <div class="line"><code class="plain">        Repeater1.DataBind();</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Occurs when the control binds page data</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">event</code><code class="plain"> EventHandler&lt;EventArgs&gt; OnPageBinding;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Occurs when the pager changes the page and the current PagerMode is set to postback</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">event</code><code class="plain"> EventHandler&lt;EventArgs&gt; OnPageChanged;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Exposes the data object for the pager</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -247,7 +239,7 @@
 <div class="line"><code class="plain">            Repeater1.DataSource = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// If set, the DataSet containing paged items is not modified by the pager, </code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// but the pager itself behaves as if the amount of paged items were identical to this value.</code></div>
@@ -264,7 +256,7 @@
 <div class="line"><code class="plain">            mPagerForceNumberOfResults = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Gets or sets the pager control.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -279,7 +271,7 @@
 <div class="line"><code class="plain">            mUniPagerControl = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Evokes databinding for the control</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -294,42 +286,33 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the user control&#39;s files.</p>
-<ul class=" "><li class=" "><p   
->The control now implements the <i class=" ">IUniPageable</i> interface and is pageable by the <i class=" ">UniPager</i> control.<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Create a new <strong class=" ">Web form</strong> somewhere in your web project.</p>
-</li><li class=" "><p   
->Register your custom control on the web form:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Save the user control's files.</p>
+<ul class=" "><li class=" "><p>The control now implements the <i class=" ">IUniPageable</i> interface and is pageable by the <i class=" ">UniPager</i> control.<br><br></p>
+</li></ul></li><li class=" "><p>Create a new <strong class=" ">Web form</strong> somewhere in your web project.</p>
+</li><li class=" "><p>Register your custom control on the web form:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;%@ Register src=</code><code class="string">"~/IUniPageableExample/UniPageable_Repeater.ascx"</code><code class="plain"> tagname=</code><code class="string">"UniPageableRepeater"</code><code class="plain"> tagprefix=</code><code class="string">"asp1"</code><code class="plain"> %&gt;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Add the following code into the content area of the page (by default between the <strong class=" ">&lt;div&gt;</strong> tags inside the <strong class=" ">&lt;form&gt;</strong> element):</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Add the following code into the content area of the page (by default between the <strong class=" ">&lt;div&gt;</strong> tags inside the <strong class=" ">&lt;form&gt;</strong> element):</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;asp1:UniPageableRepeater ID=</code><code class="string">"UPRepeater1"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> /&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;cms:UniPager ID=</code><code class="string">"UniPager1"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> PageControl=</code><code class="string">"UPRepeater1"</code><code class="plain"> PageSize=</code><code class="string">"5"</code><code class="plain">&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	&lt;PageNumbersTemplate&gt;</code></div>
 <div class="line"><code class="plain">	    &lt;a href=</code><code class="string">"&lt;%# Eval("</code><code class="plain">PageURL</code><code class="string">") %&gt;"</code><code class="plain">&gt;&lt;%# Eval(</code><code class="string">"Page"</code><code class="plain">) %&gt;&lt;/a&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/PageNumbersTemplate&gt;  </code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;/cms:UniPager&gt;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the web form.</p>
-</li><li class=" "><p   
->Right-click the web form in the Solution explorer and select <strong class=" ">View in Browser</strong>.</p>
-</li></ol><p   
->The resulting page displays a list of user names with a basic pager:</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882687/image2013-3-18-11_22_41.png" alt="images/download/attachments/68882687/image2013-3-18-11_22_41.png" width="91" height="124" />
+</li><li class=" "><p>Save the web form.</p>
+</li><li class=" "><p>Right-click the web form in the Solution explorer and select <strong class=" ">View in Browser</strong>.</p>
+</li></ol><p>The resulting page displays a list of user names with a basic pager:</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882687/image2013-3-18-11_22_41.png" alt="images/download/attachments/68882687/image2013-3-18-11_22_41.png" width="91" height="124">
     </p>
         </div>
 
@@ -351,5 +334,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

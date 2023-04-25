@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Securing the Staging and REST web services - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,62 +148,43 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Kentico offers two services which provide communication and synchronization of content and objects between servers. Both services are disabled by default. Enable the services only if you plan to use them.</p>
-<ul class=" "><li class=" "><p   
->You can enable Staging in <strong class=" ">Settings -&gt; Versioning &amp; Synchronization -&gt; Staging -&gt; Enable staging service</strong>.</p>
-</li><li class=" "><p   
->You can enable REST in <strong class=" ">Settings -&gt; Integration -&gt; REST -&gt; Service enabled</strong>.</p>
-</li></ul>    <h3 id="src-68881140_SecuringtheStagingandRESTwebservices-Staging" class="heading "><span>Staging</span></h3>
-<p   
->The weakest spot of the Staging service is in the authentication process. If potential attackers obtained the user name and password for the service, they could stage the administrator and gain absolute power over the system.</p>
-<p   
->You can secure the staging service using two authentication options:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">User name and password</strong></p>
-</li><li class=" "><p   
-><strong class=" ">X.509 certificate</strong></p>
-</li></ul><p   
->The recommended option is to use the X.509 certificates for authentication, as certificates generally provide better security. See   <a   href="Using-X.509-authentication">Using X.509 authentication</a> for more details.</p>
-    <div  class="confbox panel">
+<div class="section-left"><p>Kentico offers two services which provide communication and synchronization of content and objects between servers. Both services are disabled by default. Enable the services only if you plan to use them.</p><ul class=" "><li class=" "><p>You can enable Staging in <strong class=" ">Settings -&gt; Versioning &amp; Synchronization -&gt; Staging -&gt; Enable staging service</strong>.</p>
+</li><li class=" "><p>You can enable REST in <strong class=" ">Settings -&gt; Integration -&gt; REST -&gt; Service enabled</strong>.</p>
+</li></ul><h3 id="src-68881140_SecuringtheStagingandRESTwebservices-Staging" class="heading "><span>Staging</span></h3><p>The weakest spot of the Staging service is in the authentication process. If potential attackers obtained the user name and password for the service, they could stage the administrator and gain absolute power over the system.</p><p>You can secure the staging service using two authentication options:</p><ul class=" "><li class=" "><p><strong class=" ">User name and password</strong></p>
+</li><li class=" "><p><strong class=" ">X.509 certificate</strong></p>
+</li></ul><p>The recommended option is to use the X.509 certificates for authentication, as certificates generally provide better security. See <a href="using-x.509-authentication">Using X.509 authentication</a> for more details.</p></div>
+    
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881140_SecuringtheStagingandRESTwebservices-Staging">Staging</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881140_SecuringtheStagingandRESTwebservices-REST">REST</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881140_SecuringtheStagingandRESTwebservices-Bestpractice">Best practice</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881140_securingthestagingandrestwebservices-staging">Staging</a></p>
+</li><li class=" "><p><a href="#src-68881140_securingthestagingandrestwebservices-rest">REST</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881140_securingthestagingandrestwebservices-bestpractice">Best practice</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68881140_SecuringtheStagingandRESTwebservices-REST" class="heading "><span>REST</span></h3>
-<p   
->The REST service provides access to the objects in Kentico, so a potential attacker could obtain or modify any data in the system.</p>
-<p   
->You can secure the REST service by using <strong class=" ">SSL</strong> along with Basic authentication. See   <a   href="Authenticating-REST-requests">Authenticating REST requests</a> and   <a   href="Configuring-SSL">Configuring SSL</a> for more details.</p>
-<p   
->You can also use the <strong class=" ">Hash parameter authentication</strong> for authenticating individual REST requests. You only need to generate the hash in the administration interface and add the hash to URL. This URL then serves a particular REST request without the need of further authentication.</p>
-<p   
->The REST service should optimally check the correct authentication with every request. However, because of other services in Kentico (e.g., chat), which need some HTTP context within WCF, the checks are not performed every time. You can change this behavior by changing the <i class=" ">aspNetCompatibilityEnabled</i> key to <strong class=" ">false</strong> in the <strong class=" ">&lt;system.serviceModel&gt;</strong> section of the web.config file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The REST service provides access to the objects in Kentico, so a potential attacker could obtain or modify any data in the system.</p>
+<p>You can secure the REST service by using <strong class=" ">SSL</strong> along with Basic authentication. See <a href="authenticating-rest-requests">Authenticating REST requests</a> and <a href="configuring-ssl">Configuring SSL</a> for more details.</p>
+<p>You can also use the <strong class=" ">Hash parameter authentication</strong> for authenticating individual REST requests. You only need to generate the hash in the administration interface and add the hash to URL. This URL then serves a particular REST request without the need of further authentication.</p>
+<p>The REST service should optimally check the correct authentication with every request. However, because of other services in Kentico (e.g., chat), which need some HTTP context within WCF, the checks are not performed every time. You can change this behavior by changing the <i class=" ">aspNetCompatibilityEnabled</i> key to <strong class=" ">false</strong> in the <strong class=" ">&lt;system.serviceModel&gt;</strong> section of the web.config file:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">serviceHostingEnvironment</code><code class="plain"> </code><code class="color1">aspNetCompatibilityEnabled</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-warning">
+    <div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Note that setting this key also <strong class=" ">disables the chat</strong> functionality.</p>
+<p>Note that setting this key also <strong class=" ">disables the chat</strong> functionality.</p>
         </div>
     </div>
     <h4 id="src-68881140_SecuringtheStagingandRESTwebservices-Bestpractice" class="heading "><span>Best practice</span></h4>
-<p   
->    <span style="color: #333333;">
+<p>    <span style="color: #333333;">
 The best practice with REST is to <strong class=" ">assign a dedicated user</strong> to the service, grant the user <strong class=" ">permissions only for the desired objects</strong>, configure access through <strong class=" ">SSL</strong> and disable the <strong class=" ">    <span style="color: #333333;">
 aspNetCompatibilityEnabled     </span>
 </strong>mode.    </span>
@@ -230,5 +209,6 @@ aspNetCompatibilityEnabled     </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customizing orders - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,13 +148,8 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can customize how the system creates, modifies or deletes   <a   href="Orders">orders</a>. That is suitable especially when you want to process additional actions while working with orders, or when you want to completely replace how the system works with orders.</p>
-<p   
->To customize processes that work with orders, you need to implement a   <a   href="Customizing-providers">custom provider</a> that inherits from the <strong class=" ">OrderInfoProvider</strong> class:</p>
-<ol class=" "><li class=" "><p   
->Create a new class in your project in Visual Studio (for example <strong class=" ">CustomOrderInfoProvider.cs</strong>) that inherits from the <strong class=" ">OrderInfoProvider</strong> class and   <a   href="Registering-providers-using-assembly-attributes">registers the custom InfoProvider</a>:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>You can customize how the system creates, modifies or deletes <a href="orders">orders</a>. That is suitable especially when you want to process additional actions while working with orders, or when you want to completely replace how the system works with orders.</p><p>To customize processes that work with orders, you need to implement a <a href="customizing-providers">custom provider</a> that inherits from the <strong class=" ">OrderInfoProvider</strong> class:</p><ol class=" "><li class=" "><p>Create a new class in your project in Visual Studio (for example <strong class=" ">CustomOrderInfoProvider.cs</strong>) that inherits from the <strong class=" ">OrderInfoProvider</strong> class and <a href="registering-providers-using-assembly-attributes">registers the custom InfoProvider</a>:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">[assembly: RegisterCustomProvider(</code><code class="keyword">typeof</code><code class="plain">(CustomOrderInfoProvider))]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomOrderInfoProvider : OrderInfoProvider</code></div>
@@ -164,208 +157,167 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Implement a method that overrides the default <i class=" ">OrderInfoProvider</i> method.</p>
-<ul class=" "><li class=" "><p   
->See   <a   href="#src-68881638_Customizingorders-ListofvirtualmethodsintheOrderInfoProvider">the list of all virtual methods</a> that you can override.</p>
-</li></ul></li><li class=" "><p   
->Save the file.</p>
-</li></ol><p   
->If you open your website, Kentico uses the modified <i class=" ">OrderInfoProvider</i> class with the modified methods.</p>
-    <h3 id="src-68881638_Customizingorders-ListofvirtualmethodsintheOrderInfoProvider" class="heading "><span>List of virtual methods in the OrderInfoProvider</span></h3>
-    <div  class="confbox admonition admonition-info">
+</li><li class=" "><p>Implement a method that overrides the default <i class=" ">OrderInfoProvider</i> method.</p>
+<ul class=" "><li class=" "><p>See <a href="#src-68881638_customizingorders-listofvirtualmethodsintheorderinfoprovider">the list of all virtual methods</a> that you can override.</p>
+</li></ul></li><li class=" "><p>Save the file.</p>
+</li></ol><p>If you open your website, Kentico uses the modified <i class=" ">OrderInfoProvider</i> class with the modified methods.</p><h3 id="src-68881638_Customizingorders-ListofvirtualmethodsintheOrderInfoProvider" class="heading "><span>List of virtual methods in the OrderInfoProvider</span></h3><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The following list does not contain virtual methods related to   <a   href="Configuring-e-commerce-email-notifications">email notifications</a> for orders.</p>
+<p>The following list does not contain virtual methods related to <a href="configuring-e-commerce-email-notifications">email notifications</a> for orders.</p>
         </div>
-    </div>
-    <h4 id="src-68881638_Customizingorders-GetOrderInfoInternal" class="heading "><span>GetOrderInfoInternal</span></h4>
-<p   
->Returns an order with a specified ID (<i class=" ">int orderId</i>).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    </div><h4 id="src-68881638_Customizingorders-GetOrderInfoInternal" class="heading "><span>GetOrderInfoInternal</span></h4><p>Returns an order with a specified ID (<i class=" ">int orderId</i>).</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">virtual</code><code class="plain"> OrderInfo GetOrderInfoInternal(</code><code class="keyword">int</code><code class="plain"> orderId) { }</code></div>
 </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+
+
+    
+    
+    
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-ListofvirtualmethodsintheOrderInfoProvider">List of virtual methods in the OrderInfoProvider</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-GetOrderInfoInternal">GetOrderInfoInternal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-SetOrderInfoInternal">SetOrderInfoInternal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-DeleteOrderInfoInternal">DeleteOrderInfoInternal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-GetOrdersInternal">GetOrdersInternal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-GenerateInvoiceNumberInternal">GenerateInvoiceNumberInternal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-UpdateOrderStatusHistoryInternal">UpdateOrderStatusHistoryInternal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-ProcessOrderIsPaidChangeInternal">ProcessOrderIsPaidChangeInternal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-ProcessMembershipInternal">ProcessMembershipInternal</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881638_Customizingorders-ProcessEProductInternal">ProcessEProductInternal</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68881638_safe-id-Q3VzdG9taXppbmdvcmRlcnMtRXhhbXBsZeKAk0FkZGluZ2V4dHJhY3JlZGl0YWZ0ZXJjcmVhdGluZ25ld29yZGVycw">Example &ndash; Adding extra credit after creating new orders</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881638_customizingorders-listofvirtualmethodsintheorderinfoprovider">List of virtual methods in the OrderInfoProvider</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881638_customizingorders-getorderinfointernal">GetOrderInfoInternal</a></p>
+</li><li class=" "><p><a href="#src-68881638_customizingorders-setorderinfointernal">SetOrderInfoInternal</a></p>
+</li><li class=" "><p><a href="#src-68881638_customizingorders-deleteorderinfointernal">DeleteOrderInfoInternal</a></p>
+</li><li class=" "><p><a href="#src-68881638_customizingorders-getordersinternal">GetOrdersInternal</a></p>
+</li><li class=" "><p><a href="#src-68881638_customizingorders-generateinvoicenumberinternal">GenerateInvoiceNumberInternal</a></p>
+</li><li class=" "><p><a href="#src-68881638_customizingorders-updateorderstatushistoryinternal">UpdateOrderStatusHistoryInternal</a></p>
+</li><li class=" "><p><a href="#src-68881638_customizingorders-processorderispaidchangeinternal">ProcessOrderIsPaidChangeInternal</a></p>
+</li><li class=" "><p><a href="#src-68881638_customizingorders-processmembershipinternal">ProcessMembershipInternal</a></p>
+</li><li class=" "><p><a href="#src-68881638_customizingorders-processeproductinternal">ProcessEProductInternal</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881638_safe-id-q3vzdg9taxppbmdvcmrlcnmtrxhhbxbszekak0fkzgluz2v4dhjhy3jlzgl0ywz0zxjjcmvhdgluz25ld29yzgvycw">Example – Adding extra credit after creating new orders</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Orders">Orders</a></p>
-</li><li class=" "><p   
->  <a   href="Customizing-providers">Customizing providers</a></p>
-</li><li class=" "><p   
->  <a   href="Custom-development">Custom development</a></p>
+<ul class=" "><li class=" "><p><a href="orders">Orders</a></p>
+</li><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class=" "><p><a href="custom-development">Custom development</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h4 id="src-68881638_Customizingorders-SetOrderInfoInternal" class="heading "><span>SetOrderInfoInternal</span></h4>
-<p   
->Creates or updates an order based on a specified order object (<i class=" ">OrderInfo orderObj</i>).</p>
-    <div  class="confbox admonition admonition-tip">
+<p>Creates or updates an order based on a specified order object (<i class=" ">OrderInfo orderObj</i>).</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you decide to completely override the order creation and update process without calling <i class=" ">base.SetOrderInfoInternal(orderObj)</i>, you also need to perform the following tasks</p>
-<ul class=" "><li class=" "><p   
->Assign an order date</p>
-</li><li class=" "><p   
->Assign an order status</p>
-</li><li class=" "><p   
->Set the order as paid if necessary</p>
-</li><li class=" "><p   
->Save the order by calling <i class=" ">SetInfo(orderObj)</i></p>
-</li></ul><p   
->To ensure the database&#39;s integrity, you can use transactions:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If you decide to completely override the order creation and update process without calling <i class=" ">base.SetOrderInfoInternal(orderObj)</i>, you also need to perform the following tasks</p>
+<ul class=" "><li class=" "><p>Assign an order date</p>
+</li><li class=" "><p>Assign an order status</p>
+</li><li class=" "><p>Set the order as paid if necessary</p>
+</li><li class=" "><p>Save the order by calling <i class=" ">SetInfo(orderObj)</i></p>
+</li></ul><p>To ensure the database's integrity, you can use transactions:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> (</code><code class="keyword">var</code><code class="plain"> tr = BeginTransaction())</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// ... your code ...</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">	tr.Commit();</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">virtual</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> SetOrderInfoInternal(OrderInfo orderObj) { }</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->See an example   <a   href="#src-68881638_safe-id-Q3VzdG9taXppbmdvcmRlcnMtRXhhbXBsZeKAk0FkZGluZ2V4dHJhY3JlZGl0YWZ0ZXJjcmVhdGluZ25ld29yZGVycw">below</a>.</p>
+<p>See an example <a href="#src-68881638_safe-id-q3vzdg9taxppbmdvcmrlcnmtrxhhbxbszekak0fkzgluz2v4dhjhy3jlzgl0ywz0zxjjcmvhdgluz25ld29yzgvycw">below</a>.</p>
         </div>
     </div>
     <h4 id="src-68881638_Customizingorders-DeleteOrderInfoInternal" class="heading "><span>DeleteOrderInfoInternal</span></h4>
-<p   
->Deletes an order based on a specified order object (<i class=" ">OrderInfo orderObj</i>).</p>
-    <div  class="confbox admonition admonition-tip">
+<p>Deletes an order based on a specified order object (<i class=" ">OrderInfo orderObj</i>).</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->To ensure the database&#39;s integrity, you can use transactions:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>To ensure the database's integrity, you can use transactions:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> (</code><code class="keyword">var</code><code class="plain"> tr = BeginTransaction())</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// ... your code ...</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">	tr.Commit();</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">virtual</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> DeleteOrderInfoInternal(OrderInfo orderObj) { }</code></div>
 </div>
     </div>
     <h4 id="src-68881638_Customizingorders-GetOrdersInternal" class="heading "><span>GetOrdersInternal</span></h4>
-<p   
->Returns all orders on a site specified with its ID (<i class=" ">int siteId</i>).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Returns all orders on a site specified with its ID (<i class=" ">int siteId</i>).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> virtual ObjectQuery&lt;OrderInfo&gt; GetOrdersInternal(</code><code class="keyword">int</code><code class="plain"> siteId) { }</code></div>
 </div>
     </div>
     <h4 id="src-68881638_Customizingorders-GenerateInvoiceNumberInternal" class="heading "><span>GenerateInvoiceNumberInternal</span></h4>
-<p   
->Returns an invoice number generated from a specified shopping cart.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Returns an invoice number generated from a specified shopping cart.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> virtual string GenerateInvoiceNumberInternal(ShoppingCartInfo cart) { }</code></div>
 </div>
     </div>
     <h4 id="src-68881638_Customizingorders-UpdateOrderStatusHistoryInternal" class="heading "><span>UpdateOrderStatusHistoryInternal</span></h4>
-<p   
->Updates an order status of a specified order (<i class=" ">OrderInfo orderObj</i>), which already contains the new order status, from a specified original order status <i class=" ">(int originalStatusId</i>). If the order is new (<i class=" ">bool newOrder</i>), the method does not check the original order status.</p>
-<p   
->If the original and new statuses are not the same, the system sends an email notification about the change as   <a   href="Configuring-e-commerce-email-notifications">configured</a>.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Updates an order status of a specified order (<i class=" ">OrderInfo orderObj</i>), which already contains the new order status, from a specified original order status <i class=" ">(int originalStatusId</i>). If the order is new (<i class=" ">bool newOrder</i>), the method does not check the original order status.</p>
+<p>If the original and new statuses are not the same, the system sends an email notification about the change as <a href="configuring-e-commerce-email-notifications">configured</a>.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> virtual </code><code class="keyword">void</code><code class="plain"> UpdateOrderStatusHistoryInternal(OrderInfo orderObj, </code><code class="keyword">int</code><code class="plain"> originalStatusId, bool newOrder) { }</code></div>
 </div>
     </div>
     <h4 id="src-68881638_Customizingorders-ProcessOrderIsPaidChangeInternal" class="heading "><span>ProcessOrderIsPaidChangeInternal</span></h4>
-<p   
->By default, the method is called when an order is paid (during   <a   href="#src-68881638_Customizingorders-SetOrderInfoInternal">the <strong class=" ">SetOrderInfoInternal</strong> method</a>).</p>
-<p   
->Processes order items of the   <a   href="Managing-E-commerce-memberships">membership</a> and   <a   href="Managing-E-products">e-product</a>   <a   href="Managing-product-representations">product representations</a> (see the <strong class=" ">  <a   href="#src-68881638_Customizingorders-ProcessMembershipInternal">ProcessMembershipInternal</a></strong> and   <a   href="#src-68881638_Customizingorders-ProcessEProductInternal"><strong class=" ">ProcessEProductInternal</strong></a> methods) of a specified order (<i class=" ">OrderInfo oi</i>) and then sends an email notification if the order is paid.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>By default, the method is called when an order is paid (during <a href="#src-68881638_customizingorders-setorderinfointernal">the <strong class=" ">SetOrderInfoInternal</strong> method</a>).</p>
+<p>Processes order items of the <a href="managing-e-commerce-memberships">membership</a> and <a href="managing-e-products">e-product</a> <a href="managing-product-representations">product representations</a> (see the <strong class=" "><a href="#src-68881638_customizingorders-processmembershipinternal">ProcessMembershipInternal</a></strong> and <a href="#src-68881638_customizingorders-processeproductinternal"><strong class=" ">ProcessEProductInternal</strong></a> methods) of a specified order (<i class=" ">OrderInfo oi</i>) and then sends an email notification if the order is paid.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> virtual </code><code class="keyword">void</code><code class="plain"> ProcessOrderIsPaidChangeInternal(OrderInfo oi) { }</code></div>
 </div>
     </div>
     <h4 id="src-68881638_Customizingorders-ProcessMembershipInternal" class="heading "><span>ProcessMembershipInternal</span></h4>
-<p   
->By default, the method is called when an order is paid (during   <a   href="#src-68881638_Customizingorders-ProcessOrderIsPaidChangeInternal">the <strong class=" ">ProcessOrderIsPaidChangeInternal</strong> method</a>).</p>
-<p   
->Creates or updates a record regarding a specified user (<i class=" ">UserInfo ui</i>) and a specified membership (<i class=" ">SKUInfo skui</i>) in a specified order (<i class=" ">OrderInfo oi</i>) as a specified order item (<i class=" ">OrderItemInfo oii</i>). Specify to when the membership is supposed to be prolonged (<i class=" ">DateTime now</i>).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>By default, the method is called when an order is paid (during <a href="#src-68881638_customizingorders-processorderispaidchangeinternal">the <strong class=" ">ProcessOrderIsPaidChangeInternal</strong> method</a>).</p>
+<p>Creates or updates a record regarding a specified user (<i class=" ">UserInfo ui</i>) and a specified membership (<i class=" ">SKUInfo skui</i>) in a specified order (<i class=" ">OrderInfo oi</i>) as a specified order item (<i class=" ">OrderItemInfo oii</i>). Specify to when the membership is supposed to be prolonged (<i class=" ">DateTime now</i>).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> virtual </code><code class="keyword">void</code><code class="plain"> ProcessMembershipInternal(OrderInfo oi, OrderItemInfo oii, SKUInfo skui, UserInfo ui, DateTime now)</code></div>
 </div>
     </div>
     <h4 id="src-68881638_Customizingorders-ProcessEProductInternal" class="heading "><span>ProcessEProductInternal</span></h4>
-<p   
->By default, the method is called when an order is paid (during   <a   href="#src-68881638_Customizingorders-ProcessOrderIsPaidChangeInternal">the<strong class=" "> ProcessOrderIsPaidChangeInternal</strong> method</a>).</p>
-<p   
->Enables or disables downloading files of a specified e-product (<i class=" ">SKUInfo skui</i>) contained in a specified order (<i class=" ">OrderInfo order</i>) as a specified order item (<i class=" ">OrderItemInfo item</i>) from a specified date and time (<i class=" ">DateTime now</i>). Enabling or disabling is decided based on the payment status of the order.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>By default, the method is called when an order is paid (during <a href="#src-68881638_customizingorders-processorderispaidchangeinternal">the<strong class=" "> ProcessOrderIsPaidChangeInternal</strong> method</a>).</p>
+<p>Enables or disables downloading files of a specified e-product (<i class=" ">SKUInfo skui</i>) contained in a specified order (<i class=" ">OrderInfo order</i>) as a specified order item (<i class=" ">OrderItemInfo item</i>) from a specified date and time (<i class=" ">DateTime now</i>). Enabling or disabling is decided based on the payment status of the order.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">protected</code><code class="plain"> virtual </code><code class="keyword">void</code><code class="plain"> ProcessEProductInternal(OrderInfo order, OrderItemInfo item, SKUInfo skui, DateTime now)</code></div>
 </div>
     </div>
-    <h3 id="src-68881638_safe-id-Q3VzdG9taXppbmdvcmRlcnMtRXhhbXBsZeKAk0FkZGluZ2V4dHJhY3JlZGl0YWZ0ZXJjcmVhdGluZ25ld29yZGVycw" class="heading "><span>Example &ndash; Adding extra credit after creating new orders</span></h3>
-<p   
->The following example demonstrates how to   <a   href="Managing-customers%27-credit">add extra credit</a> to the   <a   href="Configuring-customer-credit">credit account</a> of every customer who creates an order with the total price higher than 1000 in the site&#39;s   <a   href="Configuring-currencies">main currency</a>.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <h3 id="src-68881638_safe-id-Q3VzdG9taXppbmdvcmRlcnMtRXhhbXBsZeKAk0FkZGluZ2V4dHJhY3JlZGl0YWZ0ZXJjcmVhdGluZ25ld29yZGVycw" class="heading "><span>Example – Adding extra credit after creating new orders</span></h3>
+<p>The following example demonstrates how to <a href="managing-customers%27-credit">add extra credit</a> to the <a href="configuring-customer-credit">credit account</a> of every customer who creates an order with the total price higher than 1000 in the site's <a href="configuring-currencies">main currency</a>.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SiteProvider;</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">[assembly: RegisterCustomProvider(</code><code class="keyword">typeof</code><code class="plain">(CustomOrderInfoProvider))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomOrderInfoProvider : OrderInfoProvider</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> SetOrderInfoInternal(OrderInfo orderObj)</code></div>
@@ -381,7 +333,7 @@
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// Creates a new credit event</code></div>
 <div class="line"><code class="plain">            CreditEventInfo extraCredit = </code><code class="keyword">new</code><code class="plain"> CreditEventInfo();</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// Sets the credit event's general properties</code></div>
 <div class="line"><code class="plain">            extraCredit.EventName = </code><code class="keyword">string</code><code class="plain">.Format(</code><code class="string">"Credit for your order: {0}"</code><code class="plain">, orderObj.OrderID);</code></div>
 <div class="line"><code class="plain">            extraCredit.EventDate = DateTime.Now;</code></div>
@@ -421,5 +373,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

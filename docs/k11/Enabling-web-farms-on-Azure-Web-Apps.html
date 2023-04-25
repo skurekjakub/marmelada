@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Enabling web farms on Azure Web Apps - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,114 +148,74 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Microsoft Azure Web Apps allow you to scale the computing power (<i class=" ">scale up</i>) and the number of instances your application is replicated on (<i class=" ">scale out</i>), enabling you to increase the performance and throughput as necessary. Learn more about web app scaling in Microsoft Azure on <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-get-started">Get started with Autoscale in Azure</a>.</p>
-    <div  class="confbox admonition admonition-note">
+<div class="section-left"></div><p>Microsoft Azure Web Apps allow you to scale the computing power (<i class=" ">scale up</i>) and the number of instances your application is replicated on (<i class=" ">scale out</i>), enabling you to increase the performance and throughput as necessary. Learn more about web app scaling in Microsoft Azure on <a class="external-link" href="https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-get-started">Get started with Autoscale in Azure</a>.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->We only support this functionality for <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview">web hosting plans</a> with a <strong class=" ">Basic</strong> or higher <a  class="external-link" href="https://azure.microsoft.com/en-us/pricing/details/app-service/">pricing tier</a>.</p>
+<p>We only support this functionality for <a class="external-link" href="https://docs.microsoft.com/en-us/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview">web hosting plans</a> with a <strong class=" ">Basic</strong> or higher <a class="external-link" href="https://azure.microsoft.com/en-us/pricing/details/app-service/">pricing tier</a>.</p>
         </div>
     </div>
-<p   
->Continue depending on your site&#39;s development model:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68881692_EnablingwebfarmsonAzureWebApps-PortalEngine">Portal Engine</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881692_EnablingwebfarmsonAzureWebApps-MVC">MVC</a></p>
+<p>Continue depending on your site's development model:</p>
+<ul class=" "><li class=" "><p><a href="#src-68881692_enablingwebfarmsonazurewebapps-portalengine">Portal Engine</a></p>
+</li><li class=" "><p><a href="#src-68881692_enablingwebfarmsonazurewebapps-mvc">MVC</a></p>
 </li></ul>    <div class="section section-1" id="src-68881692_EnablingwebfarmsonAzureWebApps-PortalEngine">
         <h1 class="heading "><span>Portal Engine</span></h1>
-<p   
->For the <i class=" ">scale out</i> functionality to work with Kentico   <a   href="Developing-websites-using-the-Portal-engine">Portal Engine</a> sites, you need to enable automatic   <a   href="Setting-up-web-farms">Web farms</a>.</p>
-<p   
->To enable and configure Web farms in your Kentico application:</p>
-<ol class=" "><li class=" "><p   
->Open the Kentico administration interface of your web app.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Settings</strong> application and select the <strong class=" ">Versioning &amp; Synchronization -&gt; Web farm</strong> category.</p>
-</li><li class=" "><p   
->Set the <strong class=" ">Web farm mode </strong>to <strong class=" ">Automatic</strong>.<br/></p>
-<ul class=" "><li class=" "><p   
->This setting allows the system to generate and delete web farm servers dynamically according to the allocated computing instances.</p>
-</li><li class=" "><p   
->See   <a   href="Setting-up-web-farms">Setting up web farms</a> for more information.</p>
-</li></ul></li><li class=" "><p   
->Add the <i class=" ">CMSSharedFileSystem </i>key to the <i class=" ">web.config</i> file of your application. The key disables the generation of web farm tasks related to synchronization of physical files (media library items, smart search indexes, etc.). This is required since scaled App Services share physical storage. By default when synchronizing file system changes, the system creates a web farm task for every known web farm instance. For example, this occurs every time an image is uploaded or modified &ndash; an instance needs to relay information about the change to every other instance. In shared file system environments, such as the one provided when scaling Azure App Services, this can lead to deadlocks (when multiple instances attempt to concurrently access the same physical file while processing a web farm task).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>For the <i class=" ">scale out</i> functionality to work with Kentico <a href="developing-websites-using-the-portal-engine">Portal Engine</a> sites, you need to enable automatic <a href="setting-up-web-farms">Web farms</a>.</p>
+<p>To enable and configure Web farms in your Kentico application:</p>
+<ol class=" "><li class=" "><p>Open the Kentico administration interface of your web app.</p>
+</li><li class=" "><p>Open the <strong class=" ">Settings</strong> application and select the <strong class=" ">Versioning &amp; Synchronization -&gt; Web farm</strong> category.</p>
+</li><li class=" "><p>Set the <strong class=" ">Web farm mode </strong>to <strong class=" ">Automatic</strong>.<br></p>
+<ul class=" "><li class=" "><p>This setting allows the system to generate and delete web farm servers dynamically according to the allocated computing instances.</p>
+</li><li class=" "><p>See <a href="setting-up-web-farms">Setting up web farms</a> for more information.</p>
+</li></ul></li><li class=" "><p>Add the <i class=" ">CMSSharedFileSystem </i>key to the <i class=" ">web.config</i> file of your application. The key disables the generation of web farm tasks related to synchronization of physical files (media library items, smart search indexes, etc.). This is required since scaled App Services share physical storage. By default when synchronizing file system changes, the system creates a web farm task for every known web farm instance. For example, this occurs every time an image is uploaded or modified – an instance needs to relay information about the change to every other instance. In shared file system environments, such as the one provided when scaling Azure App Services, this can lead to deadlocks (when multiple instances attempt to concurrently access the same physical file while processing a web farm task).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSSharedFileSystem"</code><code class="plain"> value=</code><code class="string">"true"</code><code class="plain">/&gt;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->  <a   href="Storing-cache-and-session-state-data-in-Azure-environment">Configure storing of session state data</a>.</p>
-</li></ol><p   
->You can now increase or decrease the number of computing instances for your web app (in the Windows Azure Management Portal on the <strong class=" ">Scale out (App service plan)</strong> tab of your App service). The system generates web farm servers and synchronization tasks automatically.</p>
+</li><li class=" "><p><a href="storing-cache-and-session-state-data-in-azure-environment">Configure storing of session state data</a>.</p>
+</li></ol><p>You can now increase or decrease the number of computing instances for your web app (in the Windows Azure Management Portal on the <strong class=" ">Scale out (App service plan)</strong> tab of your App service). The system generates web farm servers and synchronization tasks automatically.</p>
     </div>
     <div class="section section-1" id="src-68881692_EnablingwebfarmsonAzureWebApps-MVC">
         <h1 class="heading "><span>MVC</span></h1>
-<p   
->For the <i class=" ">scale-out</i> functionality to work with Kentico   <a   href="Starting-with-MVC-development">MVC environments</a>, you need to:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="#src-68881692_EnablingwebfarmsonAzureWebApps-Enablingautomaticwebfarms">Enable the automatic web farms feature</a> (enabled by default on new installations)</p>
-</li><li class=" "><p   
->  <a   href="#src-68881692_EnablingwebfarmsonAzureWebApps-Settingupsharedstorageforphysicalfiles">Set up shared storage for physical files</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881692_EnablingwebfarmsonAzureWebApps-Scalingoutdeployedwebapps">Scale-out the deployed web apps using Azure</a></p>
+<p>For the <i class=" ">scale-out</i> functionality to work with Kentico <a href="starting-with-mvc-development">MVC environments</a>, you need to:</p>
+<ol class=" "><li class=" "><p><a href="#src-68881692_enablingwebfarmsonazurewebapps-enablingautomaticwebfarms">Enable the automatic web farms feature</a> (enabled by default on new installations)</p>
+</li><li class=" "><p><a href="#src-68881692_enablingwebfarmsonazurewebapps-settingupsharedstorageforphysicalfiles">Set up shared storage for physical files</a></p>
+</li><li class=" "><p><a href="#src-68881692_enablingwebfarmsonazurewebapps-scalingoutdeployedwebapps">Scale-out the deployed web apps using Azure</a></p>
 </li></ol>    <div class="section section-2" id="src-68881692_EnablingwebfarmsonAzureWebApps-Enablingautomaticwebfarms">
         <h2 class="heading "><span>Enabling automatic web farms</span></h2>
-<p   
->To run a Kentico MVC environment in Microsoft Azure, your projects need to use the <strong class=" ">Automatic</strong>   <a   href="Setting-up-web-farms">web farm</a> functionality. It is not possible to manually set up static web farm servers since server names in Azure change every time the application is recycled or a new instance spins up. Newly installed projects have automatic web farm server detection enabled by default.</p>
-<ol class=" "><li class=" "><p   
->Open the Kentico administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Settings</strong> application and select the <strong class=" ">Versioning &amp; Synchronization -&gt; Web farm</strong> category.</p>
-</li><li class=" "><p   
->Set the <strong class=" ">Web farm mode </strong>to <strong class=" ">Automatic</strong>.</p>
-</li></ol><p   
->The automatic web farm feature is enabled. The system now dynamically generates and removes web farm servers according to the number of detected active instances and generates synchronization tasks automatically.</p>
+<p>To run a Kentico MVC environment in Microsoft Azure, your projects need to use the <strong class=" ">Automatic</strong> <a href="setting-up-web-farms">web farm</a> functionality. It is not possible to manually set up static web farm servers since server names in Azure change every time the application is recycled or a new instance spins up. Newly installed projects have automatic web farm server detection enabled by default.</p>
+<ol class=" "><li class=" "><p>Open the Kentico administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">Settings</strong> application and select the <strong class=" ">Versioning &amp; Synchronization -&gt; Web farm</strong> category.</p>
+</li><li class=" "><p>Set the <strong class=" ">Web farm mode </strong>to <strong class=" ">Automatic</strong>.</p>
+</li></ol><p>The automatic web farm feature is enabled. The system now dynamically generates and removes web farm servers according to the number of detected active instances and generates synchronization tasks automatically.</p>
     </div>
     <div class="section section-2" id="src-68881692_EnablingwebfarmsonAzureWebApps-Settingupsharedstorageforphysicalfiles">
         <h2 class="heading "><span>Setting up shared storage for physical files</span></h2>
-<p   
-><a  class="external-link" href="https://docs.microsoft.com/en-us/azure/app-service/manage-scale-up">Scaled out</a> app service instances share the file system of the original application, which can cause issues with the synchronization of files in Kentico web farm environments. By default when synchronizing file system changes, the system creates a web farm task for every known web farm instance. For example, this occurs every time an image is uploaded or modified &ndash; an instance needs to relay information about the change to every other instance. In shared file system environments, such as the one provided when scaling Azure App Services, this can lead to deadlocks (when multiple instances attempt to concurrently access the same physical file while processing a web farm task).</p>
-<p   
->To avoid any potential synchronization issues, we strongly recommend you:</p>
-<ol class=" "><li class=" "><p   
->Map the following folders from <strong class=" ">both</strong> projects to   <a   href="Configuring-Azure-storage">storage</a> shared by both web apps (to ensure files are accessible from both the administration and MVC sites):</p>
-<ul class=" "><li class=" "><p   
->~/App_Data/CMSModules/SmartSearch &ndash; Contains smart search index files.</p>
-</li><li class=" "><p   
->~/##SiteFolder## &ndash; named after the site&#39;s code name. Contains primarily media library files and documents.</p>
-</li></ul><p   
->These folders contain all files Kentico synchronizes via web farms.</p>
-</li><li class=" "><p   
->Add the <i class=" ">CMSSharedFileSystem </i>key to the <i class=" ">web.config</i> of <strong class=" ">both</strong> applications. The key disables the generation of web farm tasks related to synchronization of physical files (media library items, smart search indexes, etc.).<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p><a class="external-link" href="https://docs.microsoft.com/en-us/azure/app-service/manage-scale-up">Scaled out</a> app service instances share the file system of the original application, which can cause issues with the synchronization of files in Kentico web farm environments. By default when synchronizing file system changes, the system creates a web farm task for every known web farm instance. For example, this occurs every time an image is uploaded or modified – an instance needs to relay information about the change to every other instance. In shared file system environments, such as the one provided when scaling Azure App Services, this can lead to deadlocks (when multiple instances attempt to concurrently access the same physical file while processing a web farm task).</p>
+<p>To avoid any potential synchronization issues, we strongly recommend you:</p>
+<ol class=" "><li class=" "><p>Map the following folders from <strong class=" ">both</strong> projects to <a href="configuring-azure-storage">storage</a> shared by both web apps (to ensure files are accessible from both the administration and MVC sites):</p>
+<ul class=" "><li class=" "><p>~/App_Data/CMSModules/SmartSearch – Contains smart search index files.</p>
+</li><li class=" "><p>~/##SiteFolder## – named after the site's code name. Contains primarily media library files and documents.</p>
+</li></ul><p>These folders contain all files Kentico synchronizes via web farms.</p>
+</li><li class=" "><p>Add the <i class=" ">CMSSharedFileSystem </i>key to the <i class=" ">web.config</i> of <strong class=" ">both</strong> applications. The key disables the generation of web farm tasks related to synchronization of physical files (media library items, smart search indexes, etc.).<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
-<div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSSharedFileSystem"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"true"</code><code class="plain">/&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSSharedFileSystem"</code><code class="plain">&nbsp;</code><code class="color1">value</code><code class="plain">=</code><code class="string">"true"</code><code class="plain">/&gt;</code></div>
 </div>
     </div>
-</li></ol><p   
->With this configuration, the system does not need to create web farm synchronization tasks for physical files as they are available to both instances from dedicated shared storage. This neutralizes any potential issues with web farm synchronization.</p>
+</li></ol><p>With this configuration, the system does not need to create web farm synchronization tasks for physical files as they are available to both instances from dedicated shared storage. This neutralizes any potential issues with web farm synchronization.</p>
     </div>
     <div class="section section-2" id="src-68881692_EnablingwebfarmsonAzureWebApps-Scalingoutdeployedwebapps">
         <h2 class="heading "><span>Scaling out deployed web apps</span></h2>
-<p   
->Kentico uses a dual-application environment where the front-end application serves content and receives the bulk of visitor traffic. The administration application manages and stores content and generally experiences lesser load. Therefore, when deciding how to scale-out your deployment environment, consider prioritizing the front-end application.</p>
-<p   
->To <i class=" ">scale out</i> a Web App:</p>
-<ol class=" "><li class=" "><p   
->Open the <a  class="external-link" href="https://portal.azure.com">Azure portal</a> and navigate to your Web App.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Scale out (App Service plan)</strong> tab.</p>
-</li><li class=" "><p   
->Manually set the required instance count or create a custom autoscale configuration.</p>
-</li><li class=" "><p   
->Repeat the process for the other application, if required.</p>
-</li><li class=" "><p   
->  <a   href="Storing-cache-and-session-state-data-in-Azure-environment">Configure how session data is stored</a>.</p>
-</li></ol><p   
->You have configured instance scaling for your Web Apps. Learn more about Web App scaling in Microsoft Azure in <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-get-started">Get started with Autoscale in Azure</a>.</p>
+<p>Kentico uses a dual-application environment where the front-end application serves content and receives the bulk of visitor traffic. The administration application manages and stores content and generally experiences lesser load. Therefore, when deciding how to scale-out your deployment environment, consider prioritizing the front-end application.</p>
+<p>To <i class=" ">scale out</i> a Web App:</p>
+<ol class=" "><li class=" "><p>Open the <a class="external-link" href="https://portal.azure.com">Azure portal</a> and navigate to your Web App.</p>
+</li><li class=" "><p>Open the <strong class=" ">Scale out (App Service plan)</strong> tab.</p>
+</li><li class=" "><p>Manually set the required instance count or create a custom autoscale configuration.</p>
+</li><li class=" "><p>Repeat the process for the other application, if required.</p>
+</li><li class=" "><p><a href="storing-cache-and-session-state-data-in-azure-environment">Configure how session data is stored</a>.</p>
+</li></ol><p>You have configured instance scaling for your Web Apps. Learn more about Web App scaling in Microsoft Azure in <a class="external-link" href="https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-get-started">Get started with Autoscale in Azure</a>.</p>
     </div>
     </div>
         </div>
@@ -280,5 +238,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

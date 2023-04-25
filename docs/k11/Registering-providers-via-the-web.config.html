@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Registering providers via the web.config - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,39 +148,29 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Registering custom providers, helpers or managers through your application&#39;s <strong class=" ">web.config</strong> file allows you to switch between different providers (custom or default) without having to edit the web project&#39;s code.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"></div><p>Registering custom providers, helpers or managers through your application's <strong class=" ">web.config</strong> file allows you to switch between different providers (custom or default) without having to edit the web project's code.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you do not need your provider customizations to be adjustable through the web.config file, it is more efficient to register custom providers directly via the <strong class=" ">RegisterCustomProvider</strong>,<strong class=" "> RegisterCustomHelper </strong>or <strong class=" ">RegisterCustomManager</strong> assembly attributes (as described in   <a   href="Registering-providers-using-assembly-attributes">Registering providers using assembly attributes</a>).</p>
+<p>If you do not need your provider customizations to be adjustable through the web.config file, it is more efficient to register custom providers directly via the <strong class=" ">RegisterCustomProvider</strong>,<strong class=" "> RegisterCustomHelper </strong>or <strong class=" ">RegisterCustomManager</strong> assembly attributes (as described in <a href="registering-providers-using-assembly-attributes">Registering providers using assembly attributes</a>).</p>
         </div>
     </div>
-<ol class=" "><li class=" "><p   
->Edit your web.config file and add the following section into the <strong class=" ">&lt;configSections&gt;</strong> element:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ol class=" "><li class=" "><p>Edit your web.config file and add the following section into the <strong class=" ">&lt;configSections&gt;</strong> element:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;!-- Extensibility BEGIN --&gt;</code></div>
 <div class="line"><code class="plain">  &lt;section name=</code><code class="string">"cms.extensibility"</code><code class="plain"> type=</code><code class="string">"CMS.Base.CMSExtensibilitySection, CMS.Base"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">&lt;!-- Extensibility END --&gt;</code></div>
 </div>
     </div>
-<p   
->This defines the <i class=" "><strong class=" ">cms.extensibility</strong></i> web.config section where you can register custom providers, helpers and managers.<br/></p>
-</li><li class=" "><p   
->Create the actual <strong class=" ">&lt;cms.extensibility&gt;</strong> section directly under the root level of the web.config.</p>
-</li><li class=" "><p   
->Assign your custom classes to providers, helpers or managers via <strong class=" ">&lt;add&gt;</strong> elements with the following attributes:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">name</strong> - must match the name of the provider/helper/manager class that you wish to customize.</p>
-</li><li class=" "><p   
-><strong class=" ">assembly</strong> - specifies the assembly where your custom class is located. Set the value to App_Code for classes placed in the App_Code folder (even on web application installations, where the actual name of the folder is Old_App_Code).</p>
-</li><li class=" "><p   
-><strong class=" ">type</strong> - specifies the name of your custom class (including namespaces). If the class is in the App_Code folder, the type value must match the name parameter of the <i class=" ">RegisterCustomClass</i> attribute used to load the class.</p>
-</li></ul></li></ol><p   
->You need to categorize the <strong class=" ">&lt;add&gt;</strong> elements under <strong class=" ">&lt;providers&gt;</strong>, <strong class=" ">&lt;helpers&gt;</strong> or <strong class=" ">&lt;managers&gt;</strong> sub-sections based on the type of the customized class.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>This defines the <i class=" "><strong class=" ">cms.extensibility</strong></i> web.config section where you can register custom providers, helpers and managers.<br></p>
+</li><li class=" "><p>Create the actual <strong class=" ">&lt;cms.extensibility&gt;</strong> section directly under the root level of the web.config.</p>
+</li><li class=" "><p>Assign your custom classes to providers, helpers or managers via <strong class=" ">&lt;add&gt;</strong> elements with the following attributes:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">name</strong> - must match the name of the provider/helper/manager class that you wish to customize.</p>
+</li><li class=" "><p><strong class=" ">assembly</strong> - specifies the assembly where your custom class is located. Set the value to App_Code for classes placed in the App_Code folder (even on web application installations, where the actual name of the folder is Old_App_Code).</p>
+</li><li class=" "><p><strong class=" ">type</strong> - specifies the name of your custom class (including namespaces). If the class is in the App_Code folder, the type value must match the name parameter of the <i class=" ">RegisterCustomClass</i> attribute used to load the class.</p>
+</li></ul></li></ol><p>You need to categorize the <strong class=" ">&lt;add&gt;</strong> elements under <strong class=" ">&lt;providers&gt;</strong>, <strong class=" ">&lt;helpers&gt;</strong> or <strong class=" ">&lt;managers&gt;</strong> sub-sections based on the type of the customized class.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;configuration&gt;</code></div>
 <div class="line"><code class="plain">...</code></div>
@@ -209,42 +197,32 @@
 <div class="line"><code class="plain">&lt;/configuration&gt;</code></div>
 </div>
     </div>
-<p   
->In the case of custom providers placed in a separate assembly, the registration is now complete. When using the web.config to register custom providers defined in the <strong class=" ">App_Code</strong> folder, you also need to ensure that the system can load the classes.</p>
-<p   
-></p>
-    <div  class="confbox panel">
+<p>In the case of custom providers placed in a separate assembly, the registration is now complete. When using the web.config to register custom providers defined in the <strong class=" ">App_Code</strong> folder, you also need to ensure that the system can load the classes.</p>
+<p></p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Customizing-providers">Customizing providers</a></p>
-</li><li class="confluence-link "><p   
->  <a   href="Registering-providers-using-assembly-attributes">Registering providers using assembly attributes</a></p>
+<ul class=" "><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class="confluence-link "><p><a href="registering-providers-using-assembly-attributes">Registering providers using assembly attributes</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882173_Registeringprovidersviatheweb.config-LoadingApp_Codeclasses" class="heading "><span>Loading App_Code classes</span></h3>
-<ol class=" "><li class=" "><p   
->Edit the App_Code class containing your custom provider (repeat for all classes).</p>
-</li><li class=" "><p   
->Add a <strong class=" ">RegisterCustomClass</strong> assembly attribute above the class declaration for every custom provider, helper or manager (requires a reference to the <strong class=" ">CMS.Base</strong> namespace).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ol class=" "><li class=" "><p>Edit the App_Code class containing your custom provider (repeat for all classes).</p>
+</li><li class=" "><p>Add a <strong class=" ">RegisterCustomClass</strong> assembly attribute above the class declaration for every custom provider, helper or manager (requires a reference to the <strong class=" ">CMS.Base</strong> namespace).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: RegisterCustomClass(</code><code class="string">"CustomEmailProvider"</code><code class="plain">, typeof(CustomEmailProvider))]</code></div>
 <div class="line"><code class="plain">[assembly: RegisterCustomClass(</code><code class="string">"CustomSiteInfoProvider"</code><code class="plain">, typeof(CustomSiteInfoProvider))]</code></div>
 <div class="line"><code class="plain">[assembly: RegisterCustomClass(</code><code class="string">"CustomCacheHelper"</code><code class="plain">, typeof(CustomCacheHelper))]</code></div>
 <div class="line"><code class="plain">[assembly: RegisterCustomClass(</code><code class="string">"CustomWorkflowManager"</code><code class="plain">, typeof(CustomWorkflowManager))]</code></div>
 </div>
     </div>
-</li></ol><p   
->The <strong class=" ">RegisterCustomClass</strong> attribute registers custom <strong class=" ">App_Code</strong> classes and makes them available in the system. The attribute accepts two parameters:</p>
-<ul class=" "><li class=" "><p   
->The first parameter is a string identifier representing the name of the provider. The name must match the value of the <strong class=" ">type</strong> attribute set for the corresponding add element in the web.config extensibility section.</p>
-</li><li class=" "><p   
->The second parameter specifies the type of the custom class as a <strong class=" ">System.Type</strong> object.</p>
-</li></ul><p   
->When the system requests an App_Code provider class registered through the cms.extensibility section of the web.config, the RegisterCustomClass attribute ensures that an instance of the correct class is loaded.</p>
+</li></ol><p>The <strong class=" ">RegisterCustomClass</strong> attribute registers custom <strong class=" ">App_Code</strong> classes and makes them available in the system. The attribute accepts two parameters:</p>
+<ul class=" "><li class=" "><p>The first parameter is a string identifier representing the name of the provider. The name must match the value of the <strong class=" ">type</strong> attribute set for the corresponding add element in the web.config extensibility section.</p>
+</li><li class=" "><p>The second parameter specifies the type of the custom class as a <strong class=" ">System.Type</strong> object.</p>
+</li></ul><p>When the system requests an App_Code provider class registered through the cms.extensibility section of the web.config, the RegisterCustomClass attribute ensures that an instance of the correct class is loaded.</p>
         </div>
 
     </article>
@@ -265,5 +243,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

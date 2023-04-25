@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Registering custom macro methods - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,92 +148,65 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->In addition to the   <a   href="Reference---Macro-methods">default macro methods</a>, you can also create your own methods. Users can then run custom functionality by calling the methods inside macro expressions.</p>
-<p   
->Use the following process to add macro methods into the system:</p>
-<ol class=" "><li class=" "><p   
->Define the methods inside a container class</p>
-</li><li class=" "><p   
->  <a   href="#src-68882638_Registeringcustommacromethods-Registeringmacromethodcontainers">Register your macro method container</a> for a certain object type or macro namespace</p>
-</li></ol>    <h3 id="src-68882638_Registeringcustommacromethods-Definingmacromethods" class="heading "><span>Defining macro methods</span></h3>
-<ol class=" "><li class=" "><p   
->Open your project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new class. In <i class=" ">web site</i> projects, you can either add the class into the <strong class=" ">App_Code</strong> folder or as part of a custom assembly.</p>
-</li><li class=" "><p   
->Edit the class and add a reference to the <strong class=" ">CMS.MacroEngine</strong> namespace:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>In addition to the <a href="reference---macro-methods">default macro methods</a>, you can also create your own methods. Users can then run custom functionality by calling the methods inside macro expressions.</p><p>Use the following process to add macro methods into the system:</p><ol class=" "><li class=" "><p>Define the methods inside a container class</p>
+</li><li class=" "><p><a href="#src-68882638_registeringcustommacromethods-registeringmacromethodcontainers">Register your macro method container</a> for a certain object type or macro namespace</p>
+</li></ol><h3 id="src-68882638_Registeringcustommacromethods-Definingmacromethods" class="heading "><span>Defining macro methods</span></h3><ol class=" "><li class=" "><p>Open your project in Visual Studio.</p>
+</li><li class=" "><p>Create a new class. In <i class=" ">web site</i> projects, you can either add the class into the <strong class=" ">App_Code</strong> folder or as part of a custom assembly.</p>
+</li><li class=" "><p>Edit the class and add a reference to the <strong class=" ">CMS.MacroEngine</strong> namespace:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.MacroEngine;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Make the class inherit from <strong class=" ">MacroMethodContainer</strong>:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Make the class inherit from <strong class=" ">MacroMethodContainer</strong>:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Sample MacroMethodContainer class.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomMacroMethods : MacroMethodContainer</code></div>
 <div class="line"><code class="plain">{</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Define your methods inside the container class. Macro methods must always have the following signature:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Define your methods inside the container class. Macro methods must always have the following signature:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">object</code><code class="plain"> MyMethod(EvaluationContext context, </code><code class="keyword">params</code><code class="plain"> </code><code class="keyword">object</code><code class="plain">[] parameters)</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The <strong class=" ">EvaluationContext</strong> parameter allows you to get information about the context in which the macro containing the method was resolved. For example, you can check the identity of the user in the   <a   href="Working-with-macro-signatures">macro signature</a> (for security purposes) or the values of   <a   href="Macro-syntax#src-68882641_Macrosyntax-Macroparameters">macro parameters</a>, such as the culture or case sensitivity of string comparisons.</p>
-<p   
->The <strong class=" ">parameters</strong> array stores the method&#39;s parameters. When the system resolves the method, the values of the arguments pass into the array. You need to define individual parameters via attributes (see below).</p>
+<p>The <strong class=" ">EvaluationContext</strong> parameter allows you to get information about the context in which the macro containing the method was resolved. For example, you can check the identity of the user in the <a href="working-with-macro-signatures">macro signature</a> (for security purposes) or the values of <a href="macro-syntax#src-68882641_macrosyntax-macroparameters">macro parameters</a>, such as the culture or case sensitivity of string comparisons.</p>
+<p>The <strong class=" ">parameters</strong> array stores the method's parameters. When the system resolves the method, the values of the arguments pass into the array. You need to define individual parameters via attributes (see below).</p>
         </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong></p>
-<p   
->We strongly recommend that you ensure the following in the code of your methods:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Caching</strong> &ndash; if you load data in the method&#39;s code, use the   <a   href="Caching-in-custom-code">Kentico caching API</a> to optimize the performance</p>
-</li><li class=" "><p   
-><strong class=" ">Security</strong> &ndash; you need to handle permissions and other security checks manually in the method&#39;s code to avoid security vulnerabilities. To build security conditions, get the <i class=" ">UserInfo</i> object representing the user who entered the macro from the <strong class=" ">User</strong> property of the method&#39;s <strong class=" ">EvaluationContext</strong> parameter.</p>
+<p><strong class=" ">Note</strong></p>
+<p>We strongly recommend that you ensure the following in the code of your methods:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Caching</strong> – if you load data in the method's code, use the <a href="caching-in-custom-code">Kentico caching API</a> to optimize the performance</p>
+</li><li class=" "><p><strong class=" ">Security</strong> – you need to handle permissions and other security checks manually in the method's code to avoid security vulnerabilities. To build security conditions, get the <i class=" ">UserInfo</i> object representing the user who entered the macro from the <strong class=" ">User</strong> property of the method's <strong class=" ">EvaluationContext</strong> parameter.</p>
 </li></ul>        </div>
     </div>
-</li><li class=" "><p   
->Add the <strong class=" ">MacroMethod</strong> attribute above the method declaration. Specify the following parameters for the attribute:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Type</strong> &ndash; the return type of the method.</p>
-</li><li class=" "><p   
-><strong class=" ">Comment</strong> &ndash; comment displayed for the method in the macro autocomplete help.</p>
-</li><li class=" "><p   
-><strong class=" ">Minimum parameters</strong> &ndash; the minimum number of parameters that must be specified when calling the method (minimum overload).<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Add a <strong class=" ">MacroMethodParam</strong> attribute for each of the method&#39;s parameters. For every parameter, you must specify:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Index number</strong> (sets the index of the parameter in the <i class=" ">params</i> array)</p>
-</li><li class=" "><p   
-><strong class=" ">Name</strong></p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong></p>
-</li><li class=" "><p   
-><strong class=" ">Comment</strong> (appears in the macro autocomplete)</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Add the <strong class=" ">MacroMethod</strong> attribute above the method declaration. Specify the following parameters for the attribute:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Type</strong> – the return type of the method.</p>
+</li><li class=" "><p><strong class=" ">Comment</strong> – comment displayed for the method in the macro autocomplete help.</p>
+</li><li class=" "><p><strong class=" ">Minimum parameters</strong> – the minimum number of parameters that must be specified when calling the method (minimum overload).<br><br></p>
+</li></ul></li><li class=" "><p>Add a <strong class=" ">MacroMethodParam</strong> attribute for each of the method's parameters. For every parameter, you must specify:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Index number</strong> (sets the index of the parameter in the <i class=" ">params</i> array)</p>
+</li><li class=" "><p><strong class=" ">Name</strong></p>
+</li><li class=" "><p><strong class=" ">Data type</strong></p>
+</li><li class=" "><p><strong class=" ">Comment</strong> (appears in the macro autocomplete)</p>
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.MacroEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomMacroMethods : MacroMethodContainer</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	[MacroMethod(</code><code class="keyword">typeof</code><code class="plain">(</code><code class="keyword">string</code><code class="plain">), </code><code class="string">"Combines two strings, or appends a culture suffix when called with one parameter."</code><code class="plain">, 1)]</code></div>
@@ -249,11 +220,11 @@
 <div class="line"><code class="plain">			</code><code class="keyword">case</code><code class="plain"> 1:</code></div>
 <div class="line"><code class="plain">				</code><code class="comments">// Overload with one parameter</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">return</code><code class="plain"> ValidationHelper.GetString(parameters[0], </code><code class="string">""</code><code class="plain">) + </code><code class="string">" - Resolved in culture: "</code><code class="plain"> + context.Culture;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="keyword">case</code><code class="plain"> 2:</code></div>
 <div class="line"><code class="plain">				</code><code class="comments">// Overload with two parameters</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">return</code><code class="plain"> ValidationHelper.GetString(parameters[0], </code><code class="string">""</code><code class="plain">) + </code><code class="string">" - "</code><code class="plain"> + ValidationHelper.GetString(parameters[1], </code><code class="string">""</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="keyword">default</code><code class="plain">:</code></div>
 <div class="line"><code class="plain">				</code><code class="comments">// No other overloads are supported</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">throw</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> NotSupportedException();</code></div>
@@ -262,154 +233,112 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ol>    <div  class="confbox panel">
+</li></ol></div>
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882638_Registeringcustommacromethods-Definingmacromethods">Defining macro methods</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882638_Registeringcustommacromethods-Registeringmacromethodcontainers">Registering macro method containers</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882638_Registeringcustommacromethods-Result-Callingcustommethodsinmacros">Result - Calling custom methods in macros</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882638_Registeringcustommacromethods-Macromethodcodesamples">Macro method code samples</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882638_registeringcustommacromethods-definingmacromethods">Defining macro methods</a></p>
+</li><li class=" "><p><a href="#src-68882638_registeringcustommacromethods-registeringmacromethodcontainers">Registering macro method containers</a></p>
+</li><li class=" "><p><a href="#src-68882638_registeringcustommacromethods-result-callingcustommethodsinmacros">Result - Calling custom methods in macros</a></p>
+</li><li class=" "><p><a href="#src-68882638_registeringcustommacromethods-macromethodcodesamples">Macro method code samples</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Reference---Macro-methods">Reference - Macro methods</a></p>
-</li><li class=" "><p   
->  <a   href="Macro-syntax">Macro syntax</a></p>
-</li><li class=" "><p   
->  <a   href="Creating-macro-namespaces">Creating macro namespaces</a></p>
-</li><li class=" "><p   
->  <a   href="Adding-custom-macro-fields">Adding custom macro fields</a></p>
+<ul class=" "><li class=" "><p><a href="reference---macro-methods">Reference - Macro methods</a></p>
+</li><li class=" "><p><a href="macro-syntax">Macro syntax</a></p>
+</li><li class=" "><p><a href="creating-macro-namespaces">Creating macro namespaces</a></p>
+</li><li class=" "><p><a href="adding-custom-macro-fields">Adding custom macro fields</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68882638_Registeringcustommacromethods-Registeringmacromethodcontainers" class="heading "><span>Registering macro method containers</span></h3>
-<p   
->After you   <a   href="#src-68882638_Registeringcustommacromethods-Definingmacromethods">prepare your macro methods in a container class</a>, register the container by extending an object type or macro namespace.</p>
-<ol class=" "><li class=" "><p   
->Edit the class containing your macro method container.</p>
-</li><li class=" "><p   
->Add a <strong class=" ">RegisterExtension</strong> assembly attribute above the class declaration for each type that you wish to extend (requires a reference to the <strong class=" ">CMS</strong> namespace).</p>
-</li></ol><p   
->Specify the type parameters for the <strong class=" ">RegisterExtension</strong> attribute in the following format:</p>
-<p   
-><strong class=" ">[assembly: RegisterExtension(typeof(<i class=" ">&lt;macro method container class&gt;</i>), typeof(<i class=" ">&lt;extended type&gt;</i>))]</strong></p>
-<p   
->You can extend the following types:</p>
-<ul class=" "><li class=" "><p   
->General system types (string, int, ...)</p>
-</li><li class=" "><p   
->Kentico API object types (UserInfo, TreeNode, ...)</p>
-</li><li class=" "><p   
->  <a   href="Creating-macro-namespaces">Macro namespaces</a> (SystemNamespace, StringNamespace, MathNamespace, ...)</p>
-</li><li class=" "><p   
->Custom types</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>After you <a href="#src-68882638_registeringcustommacromethods-definingmacromethods">prepare your macro methods in a container class</a>, register the container by extending an object type or macro namespace.</p>
+<ol class=" "><li class=" "><p>Edit the class containing your macro method container.</p>
+</li><li class=" "><p>Add a <strong class=" ">RegisterExtension</strong> assembly attribute above the class declaration for each type that you wish to extend (requires a reference to the <strong class=" ">CMS</strong> namespace).</p>
+</li></ol><p>Specify the type parameters for the <strong class=" ">RegisterExtension</strong> attribute in the following format:</p>
+<p><strong class=" ">[assembly: RegisterExtension(typeof(<i class=" ">&lt;macro method container class&gt;</i>), typeof(<i class=" ">&lt;extended type&gt;</i>))]</strong></p>
+<p>You can extend the following types:</p>
+<ul class=" "><li class=" "><p>General system types (string, int, ...)</p>
+</li><li class=" "><p>Kentico API object types (UserInfo, TreeNode, ...)</p>
+</li><li class=" "><p><a href="creating-macro-namespaces">Macro namespaces</a> (SystemNamespace, StringNamespace, MathNamespace, ...)</p>
+</li><li class=" "><p>Custom types</p>
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.MacroEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Makes all methods in the 'CustomMacroMethods' container class available for string objects</code></div>
 <div class="line"><code class="plain">[assembly: RegisterExtension(</code><code class="keyword">typeof</code><code class="plain">(CustomMacroMethods), </code><code class="keyword">typeof</code><code class="plain">(</code><code class="keyword">string</code><code class="plain">))]</code></div>
 <div class="line"><code class="comments">// Registers methods from the 'CustomMacroMethods' container into the "String" macro namespace</code></div>
 <div class="line"><code class="plain">[assembly: RegisterExtension(</code><code class="keyword">typeof</code><code class="plain">(CustomMacroMethods), </code><code class="keyword">typeof</code><code class="plain">(StringNamespace))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomMacroMethods : MacroMethodContainer</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">...</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong>: If your macro method container class is defined within a custom assembly, the assembly project must contain the <strong class=" ">[assembly: AssemblyDiscoverable]</strong> attribute (the recommended location is in the <i class=" ">Properties/AssemblyInfo.cs</i> file). To use the attribute, your assembly&#39;s project must contain a reference to the <i class=" ">CMS.Core.dll</i> library.</p>
+<p><strong class=" ">Important</strong>: If your macro method container class is defined within a custom assembly, the assembly project must contain the <strong class=" ">[assembly: AssemblyDiscoverable]</strong> attribute (the recommended location is in the <i class=" ">Properties/AssemblyInfo.cs</i> file). To use the attribute, your assembly's project must contain a reference to the <i class=" ">CMS.Core.dll</i> library.</p>
         </div>
     </div>
     <h3 id="src-68882638_Registeringcustommacromethods-Result-Callingcustommethodsinmacros" class="heading "><span>Result - Calling custom methods in macros</span></h3>
-<p   
->Once you have your custom macro methods implemented and registered, you can call them in macro expressions.</p>
-<p   
->Open any macro code editor in the administration interface. The autocomplete help offers the new methods for the extended types or namespaces.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882638/Custom_Macro_Method_Result.png" alt="images/download/attachments/68882638/Custom_Macro_Method_Result.png" width="500"  />
-        <br/><span class="caption">Custom macro method appearing in the autocomplete of a string property</span>
+<p>Once you have your custom macro methods implemented and registered, you can call them in macro expressions.</p>
+<p>Open any macro code editor in the administration interface. The autocomplete help offers the new methods for the extended types or namespaces.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882638/Custom_Macro_Method_Result.png" alt="images/download/attachments/68882638/Custom_Macro_Method_Result.png" width="500">
+        <br><span class="caption">Custom macro method appearing in the autocomplete of a string property</span>
     </p>
-<p   
->For example:</p>
-<ul class=" "><li class=" "><p   
->Append the method to a macro object of the data type that you extended (<i class=" ">string</i> in the sample code):</p>
-    <div  class="confbox programlisting">
+<p>For example:</p>
+<ul class=" "><li class=" "><p>Append the method to a macro object of the data type that you extended (<i class=" ">string</i> in the sample code):</p>
+    <div class="confbox programlisting">
                 <div class="content">
         <pre><code>{% CurrentUser.UserName.ConnectStrings() %}</code></pre>
         </div>
     </div>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The recommended K# syntax is to use infix notation for the first parameter of methods. You can call the method in the following forms:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">{% &quot;String1&quot;.ConnectStrings(&quot;String2&quot;) %}</strong> - recommended and supported by the   <a   href="Entering-macro-expressions">autocomplete help</a></p>
-</li><li class=" "><p   
-><strong class=" ">{% ConnectStrings(&quot;String1&quot;, &quot;String2&quot;) %}</strong></p>
+<p>The recommended K# syntax is to use infix notation for the first parameter of methods. You can call the method in the following forms:</p>
+<ul class=" "><li class=" "><p><strong class=" ">{% "String1".ConnectStrings("String2") %}</strong> - recommended and supported by the <a href="entering-macro-expressions">autocomplete help</a></p>
+</li><li class=" "><p><strong class=" ">{% ConnectStrings("String1", "String2") %}</strong></p>
 </li></ul>        </div>
     </div>
-<p   
-><br/>OR<br/><br/></p>
-</li><li class=" "><p   
->Enter the extended macro namespace, and then call the method:</p>
-    <div  class="confbox programlisting">
+<p><br>OR<br><br></p>
+</li><li class=" "><p>Enter the extended macro namespace, and then call the method:</p>
+    <div class="confbox programlisting">
                 <div class="content">
-        <pre><code>{% String.ConnectStrings(&quot;First part&quot;, &quot;Second part&quot;) %}</code></pre>
+        <pre><code>{% String.ConnectStrings("First part", "Second part") %}</code></pre>
         </div>
     </div>
 </li></ul>    <h3 id="src-68882638_Registeringcustommacromethods-Macromethodcodesamples" class="heading "><span>Macro method code samples</span></h3>
-<p   
->The Kentico installation includes code examples of custom macro method registration, which you can add directly to your web project. To access the samples:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico installation directory (by default <i class=" ">C:\Program Files\Kentico\&lt;version&gt;</i>).</p>
-</li><li class=" "><p   
->Expand the <i class=" ">CodeSamples\CustomizationSamples\</i> sub-directory.</p>
-</li><li class=" "><p   
->Copy the <strong class=" ">Macros</strong> and <strong class=" ">Modules</strong> folders into the <strong class=" ">CMS\App_Code</strong> folder of your web project.</p>
-    <div  class="confbox admonition admonition-note">
+<p>The Kentico installation includes code examples of custom macro method registration, which you can add directly to your web project. To access the samples:</p>
+<ol class=" "><li class=" "><p>Open your Kentico installation directory (by default <i class=" ">C:\Program Files\Kentico\&lt;version&gt;</i>).</p>
+</li><li class=" "><p>Expand the <i class=" ">CodeSamples\CustomizationSamples\</i> sub-directory.</p>
+</li><li class=" "><p>Copy the <strong class=" ">Macros</strong> and <strong class=" ">Modules</strong> folders into the <strong class=" ">CMS\App_Code</strong> folder of your web project.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Web application installations</strong></p>
-<p   
->If your project was installed in the web application format, copy the folders into the <strong class=" ">Old_App_Code</strong> folder instead.</p>
-<p   
->You must also manually include the sample class files into the project:</p>
-<ol class=" "><li class=" "><p   
->Open your application in Visual Studio.</p>
-</li><li class=" "><p   
->Expand the <strong class=" ">CMSApp</strong> project in the Solution Explorer.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
-</li><li class=" "><p   
->Expand the <i class=" ">Old_App_Code</i> folder, right-click the new sub-folders and select <strong class=" ">Include in Project</strong>.</p>
+<p><strong class=" ">Web application installations</strong></p>
+<p>If your project was installed in the web application format, copy the folders into the <strong class=" ">Old_App_Code</strong> folder instead.</p>
+<p>You must also manually include the sample class files into the project:</p>
+<ol class=" "><li class=" "><p>Open your application in Visual Studio.</p>
+</li><li class=" "><p>Expand the <strong class=" ">CMSApp</strong> project in the Solution Explorer.</p>
+</li><li class=" "><p>Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
+</li><li class=" "><p>Expand the <i class=" ">Old_App_Code</i> folder, right-click the new sub-folders and select <strong class=" ">Include in Project</strong>.</p>
 </li></ol>        </div>
     </div>
-</li></ol><p   
->You can find the macro method examples in the following classes:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Macros/CustomMacroMethods.cs</strong> &ndash; class containing the sample macro methods.</p>
-</li><li class=" "><p   
-><strong class=" ">Modules/SampleMacroModule.cs</strong> &ndash; initializes the custom method registration.</p>
+</li></ol><p>You can find the macro method examples in the following classes:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Macros/CustomMacroMethods.cs</strong> – class containing the sample macro methods.</p>
+</li><li class=" "><p><strong class=" ">Modules/SampleMacroModule.cs</strong> – initializes the custom method registration.</p>
 </li></ul>        </div>
 
     </article>
@@ -430,5 +359,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Developing custom marketing automation actions - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,50 +149,32 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Kentico allows you to program your own   <a   href="Adding-marketing-actions-to-automation-processes">action steps</a>, which users can then incorporate into   <a   href="Marketing-automation">automation processes</a>. You need to:</p>
-<ol class=" "><li class=" "><p   
->Write the action&#39;s code in a custom class.</p>
-</li><li class=" "><p   
->Register the class as a new action in the system.</p>
-</li></ol>    <h3 id="src-68882552_Developingcustommarketingautomationactions-Writingcustomactions" class="heading "><span>Writing custom actions</span></h3>
-<ol class=" "><li class=" "><p   
->Create a new class in your Kentico web project. You can:<br/><br/></p>
-<ul class=" "><li class=" "><p   
->Define the action step in <strong class=" ">App_Code</strong> and   <a   href="Loading-custom-classes-from-App_Code">load the class via the API</a>.</p>
-</li><li class=" "><p   
->Create a new assembly (Class library) and include the class there. You must add the appropriate references to both the assembly and the main Kentico project.<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Set the class to inherit from:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Automation.AutomationAction</strong> - for general automation actions</p>
-</li><li class=" "><p   
-><strong class=" ">CMS.ContactManagement.ContactAutomationAction</strong> - for actions that work with the contacts being handled by the process<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Override the <i class=" ">Execute()</i> method from the base class.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="section-left"><p>Kentico allows you to program your own <a href="adding-marketing-actions-to-automation-processes">action steps</a>, which users can then incorporate into <a href="marketing-automation">automation processes</a>. You need to:</p><ol class=" "><li class=" "><p>Write the action's code in a custom class.</p>
+</li><li class=" "><p>Register the class as a new action in the system.</p>
+</li></ol><h3 id="src-68882552_Developingcustommarketingautomationactions-Writingcustomactions" class="heading "><span>Writing custom actions</span></h3><ol class=" "><li class=" "><p>Create a new class in your Kentico web project. You can:<br><br></p>
+<ul class=" "><li class=" "><p>Define the action step in <strong class=" ">App_Code</strong> and <a href="loading-custom-classes-from-app_code">load the class via the API</a>.</p>
+</li><li class=" "><p>Create a new assembly (Class library) and include the class there. You must add the appropriate references to both the assembly and the main Kentico project.<br><br></p>
+</li></ul></li><li class=" "><p>Set the class to inherit from:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Automation.AutomationAction</strong> - for general automation actions</p>
+</li><li class=" "><p><strong class=" ">CMS.ContactManagement.ContactAutomationAction</strong> - for actions that work with the contacts being handled by the process<br><br></p>
+</li></ul></li><li class=" "><p>Override the <i class=" ">Execute()</i> method from the base class.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Execute()</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
->Write the code that you want the action to run into the <i class=" ">Execute</i> method&#39;s body.</p>
-    <div  class="confbox admonition admonition-info">
+<p>Write the code that you want the action to run into the <i class=" ">Execute</i> method's body.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Working with action parameters</strong></p>
-<p   
->You can use parameters to allow users to modify the behavior of your custom action. Users can edit the values of parameters when configuring specific instances of the action step in the workflow designer. If you want your action step to use parameters, you need to define the parameters as fields when registering the action in the system.</p>
-<p   
->To access the values of parameters in your code, use the <i class=" ">GetResolvedParameter&lt;ParameterType&gt;</i> method. The method accepts the following parameters:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">parameter name</strong> - the exact <strong class=" ">Field name</strong> set for the parameter in the system.</p>
-</li><li class=" "><p   
-><strong class=" ">default value</strong> - the value returned if the parameter is empty for the given action step.</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p><strong class=" ">Working with action parameters</strong></p>
+<p>You can use parameters to allow users to modify the behavior of your custom action. Users can edit the values of parameters when configuring specific instances of the action step in the workflow designer. If you want your action step to use parameters, you need to define the parameters as fields when registering the action in the system.</p>
+<p>To access the values of parameters in your code, use the <i class=" ">GetResolvedParameter&lt;ParameterType&gt;</i> method. The method accepts the following parameters:</p>
+<ul class=" "><li class=" "><p><strong class=" ">parameter name</strong> - the exact <strong class=" ">Field name</strong> set for the parameter in the system.</p>
+</li><li class=" "><p><strong class=" ">default value</strong> - the value returned if the parameter is empty for the given action step.</p>
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">GetResolvedParameter&lt;</code><code class="keyword">string</code><code class="plain">&gt;(</code><code class="string">"MessageText"</code><code class="plain">, </code><code class="keyword">string</code><code class="plain">.Empty);</code></div>
@@ -202,65 +182,46 @@
     </div>
         </div>
     </div>
-</li></ol>    <div  class="confbox panel">
+</li></ol></div>
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882552_Developingcustommarketingautomationactions-Writingcustomactions">Writing custom actions</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882552_Developingcustommarketingautomationactions-Registeringactionsinthesystem">Registering actions in the system</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882552_developingcustommarketingautomationactions-writingcustomactions">Writing custom actions</a></p>
+</li><li class=" "><p><a href="#src-68882552_developingcustommarketingautomationactions-registeringactionsinthesystem">Registering actions in the system</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Marketing-automation">Marketing automation</a></p>
-</li><li class=" "><p   
->  <a   href="Adding-marketing-actions-to-automation-processes">Adding marketing actions to automation processes</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---Field-editor">Reference - Field editor</a></p>
+<ul class=" "><li class=" "><p><a href="marketing-automation">Marketing automation</a></p>
+</li><li class=" "><p><a href="adding-marketing-actions-to-automation-processes">Adding marketing actions to automation processes</a></p>
+</li><li class=" "><p><a href="reference---field-editor">Reference - Field editor</a></p>
 </li></ul>        </div>
-    </div>
-<p   
-></p>
-    <div  class="confbox admonition admonition-info">
+    </div></div>
+    
+<p></p>
+    <div class="confbox admonition admonition-info">
                     <p class="title">Kentico EMS required</p>
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+<p>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
         </div>
     </div>
-<p   
-></p>
+<p></p>
     <h3 id="src-68882552_Developingcustommarketingautomationactions-Registeringactionsinthesystem" class="heading "><span>Registering actions in the system</span></h3>
-<p   
->Once you create the class containing the required logic, you need to register the custom action:</p>
-<ol class=" "><li class=" "><p   
->Log in to the Kentico administration interface and open the <strong class=" ">Marketing automation </strong>application.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Actions </strong>tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New action</strong>.</p>
-</li><li class=" "><p   
->Fill in the following fields:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Display name</strong> - the name of the action step used in the user interface.</p>
-</li><li class=" "><p   
-><strong class=" ">Action provider - Assembly name</strong> - specify the name of the library where the action is implemented. Select<i class=" "> (custom classes) </i>for classes defined in the application&#39;s App_Code (or Old_App_Code) folder.</p>
-</li><li class=" "><p   
-><strong class=" ">Action provider - Class name</strong> - specify the full name of the class that contains the action&#39;s code (including namespaces).<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->If the action has any parameters, switch to the <strong class=" ">Parameters</strong> tabs and define the   <a   href="Assigning-form-controls-to-fields">form fields</a> through which users can configure the action.</p>
-</li></ol><p   
->Users can now place your custom action into the automation process designer.</p>
+<p>Once you create the class containing the required logic, you need to register the custom action:</p>
+<ol class=" "><li class=" "><p>Log in to the Kentico administration interface and open the <strong class=" ">Marketing automation </strong>application.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Actions </strong>tab.</p>
+</li><li class=" "><p>Click <strong class=" ">New action</strong>.</p>
+</li><li class=" "><p>Fill in the following fields:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Display name</strong> - the name of the action step used in the user interface.</p>
+</li><li class=" "><p><strong class=" ">Action provider - Assembly name</strong> - specify the name of the library where the action is implemented. Select<i class=" "> (custom classes) </i>for classes defined in the application's App_Code (or Old_App_Code) folder.</p>
+</li><li class=" "><p><strong class=" ">Action provider - Class name</strong> - specify the full name of the class that contains the action's code (including namespaces).<br><br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>If the action has any parameters, switch to the <strong class=" ">Parameters</strong> tabs and define the <a href="assigning-form-controls-to-fields">form fields</a> through which users can configure the action.</p>
+</li></ol><p>Users can now place your custom action into the automation process designer.</p>
         </div>
 
     </article>
@@ -281,5 +242,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

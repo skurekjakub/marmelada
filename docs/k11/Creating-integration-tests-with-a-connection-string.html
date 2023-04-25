@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating integration tests with a connection string - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,19 +148,14 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Create integration tests if you need to access data from the Kentico database when writing   <a   href="Writing-automated-tests">automated tests</a>. Note that integration tests are significantly slower than   <a   href="Faking-Info-and-Provider-objects-in-unit-tests">unit tests with faked data</a>.</p>
-<p   
->All test classes with integration tests must inherit from the <strong class=" ">IntegrationTests</strong> base class (provided by the <i class=" ">CMS.Tests</i> library). The base class ensures application initialization using a specific database connection string for each test.</p>
+<div class="section-left"></div><p>Create integration tests if you need to access data from the Kentico database when writing <a href="writing-automated-tests">automated tests</a>. Note that integration tests are significantly slower than <a href="faking-info-and-provider-objects-in-unit-tests">unit tests with faked data</a>.</p>
+<p>All test classes with integration tests must inherit from the <strong class=" ">IntegrationTests</strong> base class (provided by the <i class=" ">CMS.Tests</i> library). The base class ensures application initialization using a specific database connection string for each test.</p>
     <div class="section section-1" id="src-68882279_Creatingintegrationtestswithaconnectionstring-Creatingintegrationtests">
         <h1 class="heading "><span>Creating integration tests</span></h1>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create an <strong class=" ">app.config</strong> file in your   <a   href="Creating-automated-test-projects">test project</a> (choose the <i class=" ">Application Configuration File</i> template in the Add New Item dialog box).</p>
-</li><li class=" "><p   
->Specify your testing database by adding the <strong class=" ">CMSTestConnectionString</strong> connection string to the <i class=" ">app.config</i> file.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create an <strong class=" ">app.config</strong> file in your <a href="creating-automated-test-projects">test project</a> (choose the <i class=" ">Application Configuration File</i> template in the Add New Item dialog box).</p>
+</li><li class=" "><p>Specify your testing database by adding the <strong class=" ">CMSTestConnectionString</strong> connection string to the <i class=" ">app.config</i> file.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">connectionStrings</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">clear</code><code class="plain">/&gt;</code></div>
@@ -170,13 +163,12 @@
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">connectionStrings</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Make the test class inherit from the <strong class=" ">IntegrationTests</strong> base class.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Make the test class inherit from the <strong class=" ">IntegrationTests</strong> base class.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Tests;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> NUnit.Framework;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[TestFixture]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> MyIntegrationTests : IntegrationTests</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -184,34 +176,29 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Write the required integration test methods.</p>
-</li><li class=" "><p   
->(Optional) Add a method to the test class that cleans up all objects created or updated during the execution of tests.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Write the required integration test methods.</p>
+</li><li class=" "><p>(Optional) Add a method to the test class that cleans up all objects created or updated during the execution of tests.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">[TearDown]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> MyIntegrationTestsCleanUp()</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Delete objects created during test execution</code></div>
 <div class="line"><code class="plain">	...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Return objects modified by tests to their previous state</code></div>
 <div class="line"><code class="plain">	...</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Each test class can have only one method marked with the <strong class=" ">TearDown</strong> attribute.</p>
+<p><strong class=" ">Note</strong>: Each test class can have only one method marked with the <strong class=" ">TearDown</strong> attribute.</p>
         </div>
     </div>
-</li></ol><p   
->All tests in a test class inheriting from <strong class=" ">IntegrationTests</strong> use the database specified by the <strong class=" ">CMSTestConnectionString</strong> connection string. Changes made during tests that you do not clean up in the tear down method remain in the database after the test runs finish.</p>
-<p   
-><strong class=" ">Important</strong>: Use   <a   href="Creating-isolated-integration-tests">isolated integration</a> tests if you cannot reset data modified during test execution back to its previous state (to avoid affecting other tests).</p>
+</li></ol><p>All tests in a test class inheriting from <strong class=" ">IntegrationTests</strong> use the database specified by the <strong class=" ">CMSTestConnectionString</strong> connection string. Changes made during tests that you do not clean up in the tear down method remain in the database after the test runs finish.</p>
+<p><strong class=" ">Important</strong>: Use <a href="creating-isolated-integration-tests">isolated integration</a> tests if you cannot reset data modified during test execution back to its previous state (to avoid affecting other tests).</p>
     </div>
         </div>
 
@@ -233,5 +220,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

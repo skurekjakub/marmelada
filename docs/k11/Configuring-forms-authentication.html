@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Configuring forms authentication - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,20 +148,14 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->With forms authentication, the application stores user names and passwords in the database and requires users to register to your site before they can log in. Forms authentication is the default option in Kentico.</p>
-<p   
->To allow users to register and log in on your live site, you need to add the following   <a   href="Using-and-configuring-web-parts">web parts</a> onto your site:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Registration form</strong> (see   <a   href="Using-the-Registration-form-and-Custom-registration-form-web-parts">Using the Registration form and Custom registration form web parts</a>)</p>
-</li><li class=" "><p   
-><strong class=" ">Logon form</strong> or <strong class=" ">Logon mini form</strong> (allows existing users to log in)</p>
-</li><li class=" "><p   
-><strong class=" ">Sign out button</strong> (allows users to log out, typically placed inside the content of the site&#39;s   <a   href="Creating-portal-engine-master-pages">master page</a>)</p>
+<div class="section-left"></div><p>With forms authentication, the application stores user names and passwords in the database and requires users to register to your site before they can log in. Forms authentication is the default option in Kentico.</p>
+<p>To allow users to register and log in on your live site, you need to add the following <a href="using-and-configuring-web-parts">web parts</a> onto your site:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Registration form</strong> (see <a href="using-the-registration-form-and-custom-registration-form-web-parts">Using the Registration form and Custom registration form web parts</a>)</p>
+</li><li class=" "><p><strong class=" ">Logon form</strong> or <strong class=" ">Logon mini form</strong> (allows existing users to log in)</p>
+</li><li class=" "><p><strong class=" ">Sign out button</strong> (allows users to log out, typically placed inside the content of the site's <a href="creating-portal-engine-master-pages">master page</a>)</p>
 </li></ul>    <h3 id="src-68880404_Configuringformsauthentication-Configuringformsauthenticationformultiplewebprojects" class="heading "><span>Configuring forms authentication for multiple web projects</span></h3>
-<p   
->The forms authentication uses standard ASP.NET forms authentication and its settings, which you can find in your application&#39;s <strong class=" ">web.config</strong> file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The forms authentication uses standard ASP.NET forms authentication and its settings, which you can find in your application's <strong class=" ">web.config</strong> file:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;system.web&gt;</code></div>
 <div class="line"><code class="plain"> ...</code></div>
@@ -174,26 +166,16 @@
 <div class="line"><code class="plain">&lt;system.web&gt;</code></div>
 </div>
     </div>
-<p   
->If you&#39;re running multiple web projects in virtual directories, and the projects have the same machine key defined, users logging in to one of the websites will be automatically logged in to sites running on other projects. To prevent that, add the <strong class=" ">path</strong> parameter to the above code in each project, as in the following example:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If you're running multiple web projects in virtual directories, and the projects have the same machine key defined, users logging in to one of the websites will be automatically logged in to sites running on other projects. To prevent that, add the <strong class=" ">path</strong> parameter to the above code in each project, as in the following example:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;authentication mode=</code><code class="string">"Forms"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">   &lt;forms loginUrl=</code><code class="string">"CMSPages/logon.aspx"</code><code class="plain"> defaultUrl=</code><code class="string">"Default.aspx"</code><code class="plain"> name=</code><code class="string">".ASPXFORMSAUTH"</code><code class="plain"> timeout=</code><code class="string">"60000"</code><code class="plain"> slidingExpiration=</code><code class="string">"true"</code><code class="plain"> path=</code><code class="string">"Kentico"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">&lt;/authentication&gt;</code></div>
 </div>
     </div>
-<p  class="confluence-link" 
->Additional configuration options related to user passwords may also be defined in the system, as described in the   <a   href="Securing-user-accounts-and-passwords">Securing user accounts and passwords</a>.</p>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
+<p class="confluence-link">Additional configuration options related to user passwords may also be defined in the system, as described in the <a href="securing-user-accounts-and-passwords">Securing user accounts and passwords</a>.</p>
+    
         </div>
 
     </article>
@@ -214,5 +196,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

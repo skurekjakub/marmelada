@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Caching in custom code - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -148,37 +146,28 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The Kentico API allows you to   <a   href="Configuring-caching">cache</a> data in custom code. To cache data in custom code, use the <strong class=" ">CacheHelper.Cache</strong> method.</p>
-<p   
->This type of caching is applicable to any API result and is used internally by Kentico web parts. The same caching API is also available in   <a   href="Caching-the-results-of-macros">macros</a>.</p>
-<p   
-><strong class=" ">We recommend</strong> caching in custom code if you aren&#39;t able to use   <a   href="Configuring-caching#src-68881957_Configuringcaching-Cachetypes">higher levels of caching</a> or for frequent API calls (used several times on a single page).</p>
-    <div  class="confbox panel">
+<div class="section-left"></div><p>The Kentico API allows you to <a href="configuring-caching">cache</a> data in custom code. To cache data in custom code, use the <strong class=" ">CacheHelper.Cache</strong> method.</p>
+<p>This type of caching is applicable to any API result and is used internally by Kentico web parts. The same caching API is also available in <a href="caching-the-results-of-macros">macros</a>.</p>
+<p><strong class=" ">We recommend</strong> caching in custom code if you aren't able to use <a href="configuring-caching#src-68881957_configuringcaching-cachetypes">higher levels of caching</a> or for frequent API calls (used several times on a single page).</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Configuring-caching">Configuring caching</a></p>
-</li><li class=" "><p   
->  <a   href="Debugging-cache">Debugging cache</a></p>
-</li><li class=" "><p   
->  <a   href="Setting-cache-dependencies">Setting cache dependencies</a></p>
+<ul class=" "><li class=" "><p><a href="configuring-caching">Configuring caching</a></p>
+</li><li class=" "><p><a href="debugging-cache">Debugging cache</a></p>
+</li><li class=" "><p><a href="setting-cache-dependencies">Setting cache dependencies</a></p>
 </li></ul>        </div>
     </div>
-<p   
->The following example shows the code behind of a custom user control that:</p>
-<ul class=" "><li class=" "><p   
->Loads user data from the Kentico database (with caching)</p>
-</li><li class=" "><p   
->Displays the data using a   <a   href="BasicRepeater">BasicRepeater</a> control</p>
-</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example shows the code behind of a custom user control that:</p>
+<ul class=" "><li class=" "><p>Loads user data from the Kentico database (with caching)</p>
+</li><li class=" "><p>Displays the data using a <a href="basicrepeater">BasicRepeater</a> control</p>
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Data;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CachedUsers : System.Web.UI.Page</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Page_Load(</code><code class="keyword">object</code><code class="plain"> sender, EventArgs e)</code></div>
@@ -187,7 +176,7 @@
 <div class="line"><code class="plain">		</code><code class="comments">// Uses CacheSettings that cache the data for 10 minutes under the cache key "customdatasource|..."</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Automatically checks whether the given key is already in the cache</code></div>
 <div class="line"><code class="plain">		DataSet data = CacheHelper.Cache(cs =&gt; LoadUsers(cs), </code><code class="keyword">new</code><code class="plain"> CacheSettings(10, </code><code class="string">"customdatasource|"</code><code class="plain"> + UserBasicRepeater.ClientID));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns the data to the BasicRepeater control</code></div>
 <div class="line"><code class="plain">		UserBasicRepeater.DataSource = data;</code></div>
 <div class="line"><code class="plain">		UserBasicRepeater.DataBind();        </code></div>
@@ -199,7 +188,7 @@
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Loads all user accounts from the database</code></div>
 <div class="line"><code class="plain">		DataSet result = UserInfoProvider.GetUsers();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Checks whether the data should be cached (based on the CacheSettings)</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (cs.Cached)</code></div>
 <div class="line"><code class="plain">		{</code></div>
@@ -207,31 +196,25 @@
 <div class="line"><code class="plain">			</code><code class="comments">// The data is removed from the cache if the objects represented by the dummy key are modified (all user objects in this case)</code></div>
 <div class="line"><code class="plain">			cs.CacheDependency = CacheHelper.GetCacheDependency(</code><code class="string">"cms.user|all"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">		}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> result;</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
->The <strong class=" ">Cache</strong> method checks if the key specified by the <strong class=" ">CacheSettings</strong> object is in the cache:</p>
-<ul class=" "><li class=" "><p   
->If yes, the method directly loads the data from the cache.</p>
-</li><li class=" "><p   
->If not, the code calls the custom private method (<strong class=" ">LoadUsers</strong>) with the <i class=" ">CacheSettings</i> as a parameter. The private method loads the data from the database, sets a cache dependency and saves the key into the cache for the specified number of minutes</p>
-</li></ul><p   
->You can use the caching API when handling data anywhere in your code.</p>
-    <div  class="confbox admonition admonition-tip">
+<p>The <strong class=" ">Cache</strong> method checks if the key specified by the <strong class=" ">CacheSettings</strong> object is in the cache:</p>
+<ul class=" "><li class=" "><p>If yes, the method directly loads the data from the cache.</p>
+</li><li class=" "><p>If not, the code calls the custom private method (<strong class=" ">LoadUsers</strong>) with the <i class=" ">CacheSettings</i> as a parameter. The private method loads the data from the database, sets a cache dependency and saves the key into the cache for the specified number of minutes</p>
+</li></ul><p>You can use the caching API when handling data anywhere in your code.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong></p>
-<p   
->If you do not need to access or set the <strong class=" ">CacheSettings</strong> in the method that loads the data, you can use a simplified version of the <strong class=" ">Cache</strong> method:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p><strong class=" ">Tip</strong></p>
+<p>If you do not need to access or set the <strong class=" ">CacheSettings</strong> in the method that loads the data, you can use a simplified version of the <strong class=" ">Cache</strong> method:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">DataSet data = CacheHelper.Cache(LoadUsers, </code><code class="keyword">new</code><code class="plain"> CacheSettings(10, </code><code class="string">"customkey"</code><code class="plain">));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">private</code><code class="plain"> DataSet LoadUsers()</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	...</code></div>
@@ -241,105 +224,83 @@
         </div>
     </div>
     <h3 id="src-68882161_Cachingincustomcode-CacheSettings" class="heading "><span>CacheSettings</span></h3>
-<p   
->When calling the <strong class=" ">Cache</strong> method, you need to specify a <strong class=" ">CMS.Helpers.CacheSettings</strong> object as a parameter. The settings configure the cache key that stores the data. If you set the same cache key name for multiple data loading operations, they share the same cached value.</p>
-<p   
->You can work with the following properties of the <i class=" ">CacheSettings:</i></p>
-    <div  class="tablewrap">
+<p>When calling the <strong class=" ">Cache</strong> method, you need to specify a <strong class=" ">CMS.Helpers.CacheSettings</strong> object as a parameter. The settings configure the cache key that stores the data. If you set the same cache key name for multiple data loading operations, they share the same cached value.</p>
+<p>You can work with the following properties of the <i class=" ">CacheSettings:</i></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->CacheSettings property</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>CacheSettings property</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Type</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Type</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CacheMinutes</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CacheMinutes</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->int</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>int</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The number of minutes for which the cache stores the loaded data. The default value is 10 minutes.</p>
-<p   
->We recommend using an interval of 1 to 60 minutes.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The number of minutes for which the cache stores the loaded data. The default value is 10 minutes.</p>
+<p>We recommend using an interval of 1 to 60 minutes.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CacheDependency</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CacheDependency</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMSCacheDependency</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMSCacheDependency</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Sets   <a   href="Setting-cache-dependencies">dependencies</a> for the cache key (use the <i class=" ">CacheHelper.GetCacheDependency</i> method to get the dependency object).</p>
-<p   
->Make sure you always set cache dependencies, unless the <i class=" ">CacheMinutes</i> interval is set to an extremely short time or the cached content is predominantly static.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sets <a href="setting-cache-dependencies">dependencies</a> for the cache key (use the <i class=" ">CacheHelper.GetCacheDependency</i> method to get the dependency object).</p>
+<p>Make sure you always set cache dependencies, unless the <i class=" ">CacheMinutes</i> interval is set to an extremely short time or the cached content is predominantly static.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->BoolCondition</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>BoolCondition</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->bool</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->A boolean condition that must be fulfilled (true) in order to cache the loaded data.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>A boolean condition that must be fulfilled (true) in order to cache the loaded data.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Cached</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Cached</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->bool</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Indicates whether the data should be cached (based on the cache minutes and condition).</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indicates whether the data should be cached (based on the cache minutes and condition).</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->AllowProgressiveCaching<br/>    <span style="color: #ffffff;">
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AllowProgressiveCaching<br>    <span style="color: #ffffff;">
 _______________________    </span>
 </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->bool</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Enables or disabled progressive caching, which ensures that multiple threads accessing the same code only load the data once and reuse the result.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Enables or disabled progressive caching, which ensures that multiple threads accessing the same code only load the data once and reuse the result.</p>
             </td>
         </tr>
 </tbody>        </table>
@@ -364,5 +325,6 @@ _______________________    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

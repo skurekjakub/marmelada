@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Removing old shopping carts from the database - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,146 +149,92 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When   <a   href="Customers">customers</a> add   <a   href="Products">products</a> to their shopping carts and then leave the   <a   href="Managing-sites">site</a> without finishing their purchases, the shopping cart is saved in the database along with the products in the cart. This can cause bloating of your database and in the end, it can slow down the whole website.</p>
-<p   
->To prevent bloating of the database:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="#src-68881266_Removingoldshoppingcartsfromthedatabase-Settingupafterhowmanydaysshoppingcartsareconsideredasold">Set up after how many days shopping carts are considered as old.</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881266_Removingoldshoppingcartsfromthedatabase-Configuringascheduledtaskthatdeletesoldshoppingcarts">Set a regularly launched task that removes the shopping carts from the database.</a></p>
-</li></ol>    <h3 id="src-68881266_Removingoldshoppingcartsfromthedatabase-Settingupafterhowmanydaysshoppingcartsareconsideredasold" class="heading "><span>Setting up after how many days shopping carts are considered as old</span></h3>
-<p   
->As with most of the e-commerce settings, you can set the time after the shopping carts are considered as old for   <a   href="Choosing-site-or-global-e-commerce-configuration">the current site or globally for all your sites running on the Kentico instance</a>. If you run more sites on your instance and all sites should use the same number of days, use global settings; otherwise, we recommend that you choose site settings.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Store configuration</strong> application (if you want to specify the setting for the current site) or the <strong class=" ">Multistore configuratio</strong><strong class=" ">n</strong> application (if you want to specify the setting globally).<br/></p>
-    <div  class="confbox admonition admonition-tip">
+<div class="section-left"><p>When <a href="customers">customers</a> add <a href="products">products</a> to their shopping carts and then leave the <a href="managing-sites">site</a> without finishing their purchases, the shopping cart is saved in the database along with the products in the cart. This can cause bloating of your database and in the end, it can slow down the whole website.</p><p>To prevent bloating of the database:</p><ol class=" "><li class=" "><p><a href="#src-68881266_removingoldshoppingcartsfromthedatabase-settingupafterhowmanydaysshoppingcartsareconsideredasold">Set up after how many days shopping carts are considered as old.</a></p>
+</li><li class=" "><p><a href="#src-68881266_removingoldshoppingcartsfromthedatabase-configuringascheduledtaskthatdeletesoldshoppingcarts">Set a regularly launched task that removes the shopping carts from the database.</a></p>
+</li></ol><h3 id="src-68881266_Removingoldshoppingcartsfromthedatabase-Settingupafterhowmanydaysshoppingcartsareconsideredasold" class="heading "><span>Setting up after how many days shopping carts are considered as old</span></h3><p>As with most of the e-commerce settings, you can set the time after the shopping carts are considered as old for <a href="choosing-site-or-global-e-commerce-configuration">the current site or globally for all your sites running on the Kentico instance</a>. If you run more sites on your instance and all sites should use the same number of days, use global settings; otherwise, we recommend that you choose site settings.</p><ol class=" "><li class=" "><p>Open the <strong class=" ">Store configuration</strong> application (if you want to specify the setting for the current site) or the <strong class=" ">Multistore configuratio</strong><strong class=" ">n</strong> application (if you want to specify the setting globally).<br></p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you are not sure what to choose, see   <a   href="Choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a>. If you are not sure about specifics of configuring in these applications, see   <a   href="Configuring-e-commerce-settings-for-a-specific-site-or-globally">Configuring e-commerce settings for a specific site or globally</a>.</p>
+<p>If you are not sure what to choose, see <a href="choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a>. If you are not sure about specifics of configuring in these applications, see <a href="configuring-e-commerce-settings-for-a-specific-site-or-globally">Configuring e-commerce settings for a specific site or globally</a>.</p>
         </div>
     </div>
-</li><li class=" "><p   
->In the <strong class=" ">Shopping cart </strong>category of the <strong class=" ">Store configuration -&gt; General</strong> tab, enter the following properties to the <strong class=" ">Clear content of old shopping cart after (days)</strong> field:<br/><br/></p>
-<ul class=" "><li class=" "><p   
->Clear the <i class=" ">Inherit from global settings</i> option (only if you work in the <strong class=" ">Store configuration</strong> application).</p>
-</li><li class=" "><p   
->Type the desired number of days after which shopping carts should be considered as old and should be deleted to the text box, for example <i class=" ">30</i>.<br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->The system updates the settings and   <a   href="Scheduling-tasks">scheduled tasks</a> working with this setting (not any yet) operates with the specified number of days.</p>
-    <h3 id="src-68881266_Removingoldshoppingcartsfromthedatabase-Configuringascheduledtaskthatdeletesoldshoppingcarts" class="heading "><span>Configuring a scheduled task that deletes old shopping carts</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Scheduled tasks</strong> application.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Site</strong> selector, select the desired site (if you want to create the scheduled task for a specific site) or leave the <i class=" ">(global)</i> option (if you want to create the scheduled task   <a   href="Choosing-site-or-global-e-commerce-configuration">globally</a>).<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881266/switching_to_site.png" alt="images/download/attachments/68881266/switching_to_site.png" width="333" height="269" />
-        <br/><span class="caption">Switching to a specific site</span>
-    <p   
-><br/><br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">New task</strong>.</p>
-</li><li class=" "><p   
->Enter the following properties:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Task display name</strong>: Clear content of old shopping carts</p>
-</li><li class=" "><p   
-><strong class=" ">Task provider</strong>:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">Assembly name</i>: CMS.Ecommerce</p>
-</li><li class=" "><p   
-><i class=" ">Class</i>: CMS.Ecommerce.ShoppingCartCleaner</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Task enabled</strong>: Yes (selected)<br/></p>
-</li></ul></li><li class=" "><p   
->Enter the   <a   href="Reference---scheduled-task-properties">other properties</a> according to your needs.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->The system now clears the database from the shopping carts of the unfinished purchases.</p>
-    <div  class="confbox admonition admonition-tip">
+</li><li class=" "><p>In the <strong class=" ">Shopping cart </strong>category of the <strong class=" ">Store configuration -&gt; General</strong> tab, enter the following properties to the <strong class=" ">Clear content of old shopping cart after (days)</strong> field:<br><br></p>
+<ul class=" "><li class=" "><p>Clear the <i class=" ">Inherit from global settings</i> option (only if you work in the <strong class=" ">Store configuration</strong> application).</p>
+</li><li class=" "><p>Type the desired number of days after which shopping carts should be considered as old and should be deleted to the text box, for example <i class=" ">30</i>.<br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The system updates the settings and <a href="scheduling-tasks">scheduled tasks</a> working with this setting (not any yet) operates with the specified number of days.</p><h3 id="src-68881266_Removingoldshoppingcartsfromthedatabase-Configuringascheduledtaskthatdeletesoldshoppingcarts" class="heading "><span>Configuring a scheduled task that deletes old shopping carts</span></h3><ol class=" "><li class=" "><p>Open the <strong class=" ">Scheduled tasks</strong> application.</p>
+</li><li class=" "><p>In the <strong class=" ">Site</strong> selector, select the desired site (if you want to create the scheduled task for a specific site) or leave the <i class=" ">(global)</i> option (if you want to create the scheduled task <a href="choosing-site-or-global-e-commerce-configuration">globally</a>).<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881266/switching_to_site.png" alt="images/download/attachments/68881266/switching_to_site.png" width="333" height="269">
+        <br><span class="caption">Switching to a specific site</span>
+    <p><br><br></p>
+</li><li class=" "><p>Click <strong class=" ">New task</strong>.</p>
+</li><li class=" "><p>Enter the following properties:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Task display name</strong>: Clear content of old shopping carts</p>
+</li><li class=" "><p><strong class=" ">Task provider</strong>:</p>
+<ul class=" "><li class=" "><p><i class=" ">Assembly name</i>: CMS.Ecommerce</p>
+</li><li class=" "><p><i class=" ">Class</i>: CMS.Ecommerce.ShoppingCartCleaner</p>
+</li></ul></li><li class=" "><p><strong class=" ">Task enabled</strong>: Yes (selected)<br></p>
+</li></ul></li><li class=" "><p>Enter the <a href="reference---scheduled-task-properties">other properties</a> according to your needs.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The system now clears the database from the shopping carts of the unfinished purchases.</p><div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->See the task on   <a   href="Installing-the-e-commerce-sample-sites">the sample <i class=" ">Dancing Goat</i> site</a> as an example.</p>
+<p>See the task on <a href="installing-the-e-commerce-sample-sites">the sample <i class=" ">Dancing Goat</i> site</a> as an example.</p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+
+    
+
+
+    
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881266_Removingoldshoppingcartsfromthedatabase-Settingupafterhowmanydaysshoppingcartsareconsideredasold">Setting up after how many days shopping carts are considered as old</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881266_Removingoldshoppingcartsfromthedatabase-Configuringascheduledtaskthatdeletesoldshoppingcarts">Configuring a scheduled task that deletes old shopping carts</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881266_removingoldshoppingcartsfromthedatabase-settingupafterhowmanydaysshoppingcartsareconsideredasold">Setting up after how many days shopping carts are considered as old</a></p>
+</li><li class=" "><p><a href="#src-68881266_removingoldshoppingcartsfromthedatabase-configuringascheduledtaskthatdeletesoldshoppingcarts">Configuring a scheduled task that deletes old shopping carts</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Scheduling-tasks">Scheduling tasks</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---scheduled-task-properties">Reference - scheduled task properties</a></p>
+<ul class=" "><li class=" "><p><a href="scheduling-tasks">Scheduling tasks</a></p>
+</li><li class=" "><p><a href="reference---scheduled-task-properties">Reference - scheduled task properties</a></p>
 </li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+    
+    <div class="confbox panel">
             <div class="title panel-header">Configuring the checkout process</div>
             <div class="panel-content">
-<ol class=" "><li class=" "><p   
->  <a   href="Configuring-steps-of-the-checkout-process">Configuring steps of the checkout process</a><br/></p>
-<ul class=" "><li class=" "><p   
->(Optional)   <a   href="Displaying-shopping-cart-details-on-pages">Displaying shopping cart details on pages</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---Checkout-process-web-parts">Reference - Checkout process web parts</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="Allowing-checkout-processes-for-anonymous-or-registered-customers">Allowing checkout processes for anonymous or registered customers</a></p>
-</li><li class=" "><p   
->(Optional)   <a   href="Enabling-automatic-registration-for-anonymous-customers">Enabling automatic registration for anonymous customers</a></p>
-</li><li class=" "><p   
->(Optional)   <a   href="Displaying-the-shopping-cart-preview-on-pages">Displaying the shopping cart preview on pages</a></p>
-</li><li class=" "><p   
->(Optional) <strong class=" ">Removing old shopping carts from the database</strong></p>
+<ol class=" "><li class=" "><p><a href="configuring-steps-of-the-checkout-process">Configuring steps of the checkout process</a><br></p>
+<ul class=" "><li class=" "><p>(Optional) <a href="displaying-shopping-cart-details-on-pages">Displaying shopping cart details on pages</a></p>
+</li><li class=" "><p><a href="reference---checkout-process-web-parts">Reference - Checkout process web parts</a></p>
+</li></ul></li><li class=" "><p><a href="allowing-checkout-processes-for-anonymous-or-registered-customers">Allowing checkout processes for anonymous or registered customers</a></p>
+</li><li class=" "><p>(Optional) <a href="enabling-automatic-registration-for-anonymous-customers">Enabling automatic registration for anonymous customers</a></p>
+</li><li class=" "><p>(Optional) <a href="displaying-the-shopping-cart-preview-on-pages">Displaying the shopping cart preview on pages</a></p>
+</li><li class=" "><p>(Optional) <strong class=" ">Removing old shopping carts from the database</strong></p>
 </li></ol>        </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Configuring the E-commerce Solution</div>
             <div class="panel-content">
-<ol class=" "><li class=" "><p   
->  <a   href="Choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-currencies">Configuring currencies</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-taxes">Configuring taxes</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-multilingual-stores">Configuring multilingual stores</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-product-page-types">Configuring product page types</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-products">Configuring products</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-product-pages">Configuring product pages</a></p>
-</li><li class=" "><p   
->  <a   href="Checkout-process">Checkout process</a></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Removing old shopping carts from the database</strong></p>
-</li></ul></li><li class=" "><p   
->  <a   href="Configuring-shipping-options">Configuring shipping options</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-payment-methods">Configuring payment methods</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-invoices">Configuring invoices</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-e-commerce-email-notifications">Configuring e-commerce email notifications</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-user-registration-in-stores">Configuring user registration in stores</a></p>
-</li><li class=" "><p   
->  <a   href="Configuring-e-commerce-permissions">Configuring e-commerce permissions</a></p>
+<ol class=" "><li class=" "><p><a href="choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a></p>
+</li><li class=" "><p><a href="configuring-currencies">Configuring currencies</a></p>
+</li><li class=" "><p><a href="configuring-taxes">Configuring taxes</a></p>
+</li><li class=" "><p><a href="configuring-multilingual-stores">Configuring multilingual stores</a></p>
+</li><li class=" "><p><a href="configuring-product-page-types">Configuring product page types</a></p>
+</li><li class=" "><p><a href="configuring-products">Configuring products</a></p>
+</li><li class=" "><p><a href="configuring-product-pages">Configuring product pages</a></p>
+</li><li class=" "><p><a href="checkout-process">Checkout process</a></p>
+<ul class=" "><li class=" "><p><strong class=" ">Removing old shopping carts from the database</strong></p>
+</li></ul></li><li class=" "><p><a href="configuring-shipping-options">Configuring shipping options</a></p>
+</li><li class=" "><p><a href="configuring-payment-methods">Configuring payment methods</a></p>
+</li><li class=" "><p><a href="configuring-invoices">Configuring invoices</a></p>
+</li><li class=" "><p><a href="configuring-e-commerce-email-notifications">Configuring e-commerce email notifications</a></p>
+</li><li class=" "><p><a href="configuring-user-registration-in-stores">Configuring user registration in stores</a></p>
+</li><li class=" "><p><a href="configuring-e-commerce-permissions">Configuring e-commerce permissions</a></p>
 </li></ol>        </div>
     </div>
         </div>
@@ -313,5 +257,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

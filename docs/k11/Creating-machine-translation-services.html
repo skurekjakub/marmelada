@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating machine translation services - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,119 +149,91 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->To develop a custom machine translation service, you need to define a class that inherits from <strong class=" ">AbstractMachineTranslationService</strong> (found in the <strong class=" ">CMS.TranslationServices</strong> namespace).</p>
-<p   
->The service class must override and implement the following abstract methods:</p>
-    <div  class="tablewrap">
+<div class="section-left"><p>To develop a custom machine translation service, you need to define a class that inherits from <strong class=" ">AbstractMachineTranslationService</strong> (found in the <strong class=" ">CMS.TranslationServices</strong> namespace).</p><p>The service class must override and implement the following abstract methods:</p><div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Method</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Translate</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Translate</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The main translation method which calls the appropriate web service (Google Translator, Microsoft Translator etc.) or otherwise translates the specified text from the source language into a target language.</p>
-<p   
->When a user submits a translation to the service, the system calls the <strong class=" ">Translate</strong> method for every translation unit (<i class=" ">&lt;trans-unit&gt;</i> element) in the XLIFF source data. The method&#39;s <i class=" ">text</i> parameter contains the source text of the unit.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The main translation method which calls the appropriate web service (Google Translator, Microsoft Translator etc.) or otherwise translates the specified text from the source language into a target language.</p>
+<p>When a user submits a translation to the service, the system calls the <strong class=" ">Translate</strong> method for every translation unit (<i class=" ">&lt;trans-unit&gt;</i> element) in the XLIFF source data. The method's <i class=" ">text</i> parameter contains the source text of the unit.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Detect</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Detect</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->You can use this method to call the logic of the translation service to automatically determine the language of the source text.</p>
-<p   
->Kentico does not use the <i class=" ">Detect</i> method by default, but you can implement it if you need language detection functionality in your custom API.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>You can use this method to call the logic of the translation service to automatically determine the language of the source text.</p>
+<p>Kentico does not use the <i class=" ">Detect</i> method by default, but you can implement it if you need language detection functionality in your custom API.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Speak</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Speak</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Converts text to a stream of sound using the given service&#39;s text-to-speech engine.</p>
-<p   
->Kentico does not use the <i class=" ">Speak</i> method by default, but you can implement it if you need text-to-speech functionality in your custom API. If your service does not support such an option, throw a not implemented exception.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts text to a stream of sound using the given service's text-to-speech engine.</p>
+<p>Kentico does not use the <i class=" ">Speak</i> method by default, but you can implement it if you need text-to-speech functionality in your custom API. If your service does not support such an option, throw a not implemented exception.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->IsAvailable</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IsAvailable</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Checks whether the service is appropriately configured and ready to be used. For example, you can confirm that the target service is currently online, or load any credentials and API keys required by the service from the website settings and confirm their validity.</p>
-<p   
->The system only offers the service when translating pages and resource strings if the <i class=" ">IsAvailable</i> method returns a <i class=" ">true</i> value.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Checks whether the service is appropriately configured and ready to be used. For example, you can confirm that the target service is currently online, or load any credentials and API keys required by the service from the website settings and confirm their validity.</p>
+<p>The system only offers the service when translating pages and resource strings if the <i class=" ">IsAvailable</i> method returns a <i class=" ">true</i> value.</p>
             </td>
         </tr>
 </tbody>        </table>
-            </div>
-    <div  class="confbox panel">
+            </div></div>
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882111_Creatingmachinetranslationservices-Definingmachineserviceclasses">Defining machine service classes</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882111_Creatingmachinetranslationservices-Registeringmachineservicesinthesystem">Registering machine services in the system</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882111_Creatingmachinetranslationservices-Result">Result</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882111_creatingmachinetranslationservices-definingmachineserviceclasses">Defining machine service classes</a></p>
+</li><li class=" "><p><a href="#src-68882111_creatingmachinetranslationservices-registeringmachineservicesinthesystem">Registering machine services in the system</a></p>
+</li><li class=" "><p><a href="#src-68882111_creatingmachinetranslationservices-result">Result</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-<p   
-></p>
-    <div  class="confbox admonition admonition-info">
+    </div></div>
+<p></p>
+    <div class="confbox admonition admonition-info">
                     <p class="title">Kentico EMS required</p>
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+<p>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
         </div>
     </div>
-<p   
-></p>
+<p></p>
     <h3 id="src-68882111_Creatingmachinetranslationservices-Definingmachineserviceclasses" class="heading "><span>Defining machine service classes</span></h3>
-<p   
->This example demonstrates how to write a class providing functionality for a machine translation service. The sample class does not use a real translation service, it only converts the source text to upper case. When creating your own classes, replace the code of the methods with your own translation logic or call the API of the appropriate web service.</p>
-<ol class=" "><li class=" "><p   
->Open your web project in Visual Studio.</p>
-</li><li class=" "><p   
->Add a new class into the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong><i class=" "> </i>on web application installations). For example, name the class <strong class=" ">SampleMachineTS.cs</strong>.</p>
-</li><li class=" "><p   
->Edit the class and change its code to the following:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>This example demonstrates how to write a class providing functionality for a machine translation service. The sample class does not use a real translation service, it only converts the source text to upper case. When creating your own classes, replace the code of the methods with your own translation logic or call the API of the appropriate web service.</p>
+<ol class=" "><li class=" "><p>Open your web project in Visual Studio.</p>
+</li><li class=" "><p>Add a new class into the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong><i class=" "> </i>on web application installations). For example, name the class <strong class=" ">SampleMachineTS.cs</strong>.</p>
+</li><li class=" "><p>Edit the class and change its code to the following:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using System;</code></div>
 <div class="line"><code class="plain">using System.IO;</code></div>
 <div class="line"><code class="plain"> </code></div>
 <div class="line"><code class="plain">using CMS.TranslationServices;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Sample machine translation service.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -281,7 +251,7 @@
 <div class="line"><code class="plain">        </code><code class="comments">// "Translates" the text to upper case.</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> text.ToUpper();</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Automatically attempts to detect the language of the source text.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Returns the culture code of the detected language.</code></div>
@@ -292,7 +262,7 @@
 <div class="line"><code class="plain">        </code><code class="comments">// Use your service to detect the language. This example always returns English. </code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> </code><code class="string">"en-US"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Returns a stream of sound generated by text-to-speech services (if supported).</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -303,7 +273,7 @@
 <div class="line"><code class="plain">        </code><code class="comments">// This service provider does not support Text-to-speech.</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">throw</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> NotImplementedException();</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Checks the necessary prerequisities needed for the service to work,</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// e.g. availability of credentials for connecting to the service etc.</code></div>
@@ -314,58 +284,38 @@
 <div class="line"><code class="plain">        </code><code class="comments">// any other services, therefore is always available.</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain">} </code></div>
+<div class="line"><code class="plain">}&nbsp;</code></div>
 </div>
     </div>
-<p   
->The system calls the methods of the class as needed when the given translation service is used.<br/>    <span style="color: #ffffff;">
+<p>The system calls the methods of the class as needed when the given translation service is used.<br>    <span style="color: #ffffff;">
 _    </span>
 </p>
-</li><li class=" "><p   
->Follow the instructions on the   <a   href="Loading-translation-service-classes-from-App_Code">Loading translation service classes from App_Code</a> page to ensure that the application can access the custom class.</p>
+</li><li class=" "><p>Follow the instructions on the <a href="loading-translation-service-classes-from-app_code">Loading translation service classes from App_Code</a> page to ensure that the application can access the custom class.</p>
 </li></ol>    <h3 id="src-68882111_Creatingmachinetranslationservices-Registeringmachineservicesinthesystem" class="heading "><span>Registering machine services in the system</span></h3>
-<p   
->Once you have implemented the class with the required functionality, you need to register the translation service:</p>
-<ol class=" "><li class=" "><p   
->Log in to the Kentico administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Translation services</strong> application.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New translation service</strong>.</p>
-</li><li class=" "><p   
->Enter the following values into the service&#39;s   <a   href="Reference---Translation-service-properties">properties</a>:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Display name</strong>: Sample machine service</p>
-</li><li class=" "><p   
-><strong class=" ">Code name</strong>: Leave the <i class=" ">(automatic)</i> option. The system generates the code name as <i class=" ">SampleMachineService</i> (based on the display name).</p>
-</li><li class=" "><p   
-><strong class=" ">Service provider - Assembly name</strong>: (custom classes)</p>
-</li><li class=" "><p   
-><strong class=" ">Service provider - Class</strong>: SampleMachineTS</p>
-</li><li class=" "><p   
-><strong class=" ">Is machine translation service</strong>: Yes (checked)</p>
-</li><li class=" "><p   
-><strong class=" ">Service is enabled</strong>: yes (checked)<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->The service is now ready to be used.</p>
+<p>Once you have implemented the class with the required functionality, you need to register the translation service:</p>
+<ol class=" "><li class=" "><p>Log in to the Kentico administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">Translation services</strong> application.</p>
+</li><li class=" "><p>Click <strong class=" ">New translation service</strong>.</p>
+</li><li class=" "><p>Enter the following values into the service's <a href="reference---translation-service-properties">properties</a>:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Display name</strong>: Sample machine service</p>
+</li><li class=" "><p><strong class=" ">Code name</strong>: Leave the <i class=" ">(automatic)</i> option. The system generates the code name as <i class=" ">SampleMachineService</i> (based on the display name).</p>
+</li><li class=" "><p><strong class=" ">Service provider - Assembly name</strong>: (custom classes)</p>
+</li><li class=" "><p><strong class=" ">Service provider - Class</strong>: SampleMachineTS</p>
+</li><li class=" "><p><strong class=" ">Is machine translation service</strong>: Yes (checked)</p>
+</li><li class=" "><p><strong class=" ">Service is enabled</strong>: yes (checked)<br><br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The service is now ready to be used.</p>
     <h3 id="src-68882111_Creatingmachinetranslationservices-Result" class="heading "><span>Result</span></h3>
-<p   
->When submitting pages for translation, users can select the <strong class=" ">Sample machine service</strong> as one of the translation service options. Using this option creates the new language version of the page as a copy of the original content, with all characters converted to upper case.</p>
-<p   
->Users can also call the custom translation service when localizing   <a   href="Working-with-resource-strings">resource strings</a>.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882111/Sample_Machine_Service_Strings.png" alt="images/download/attachments/68882111/Sample_Machine_Service_Strings.png" width="500"  />
-        <br/><span class="caption">'Translating' a resource string using the sample service</span>
+<p>When submitting pages for translation, users can select the <strong class=" ">Sample machine service</strong> as one of the translation service options. Using this option creates the new language version of the page as a copy of the original content, with all characters converted to upper case.</p>
+<p>Users can also call the custom translation service when localizing <a href="working-with-resource-strings">resource strings</a>.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882111/Sample_Machine_Service_Strings.png" alt="images/download/attachments/68882111/Sample_Machine_Service_Strings.png" width="500">
+        <br><span class="caption">'Translating' a resource string using the sample service</span>
     </p>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Changing the translation service icon</strong></p>
-<p   
->The system uses font icons for the graphics representing machine translation services in the localization dialog. If you wish to change the icon of your custom machine service,   <a   href="Working-with-font-icons">add a font icon</a> using a class name in the following format: <i class=" "><strong class=" ">icon-&lt;translation service code name&gt;</strong></i></p>
+<p><strong class=" ">Changing the translation service icon</strong></p>
+<p>The system uses font icons for the graphics representing machine translation services in the localization dialog. If you wish to change the icon of your custom machine service, <a href="working-with-font-icons">add a font icon</a> using a class name in the following format: <i class=" "><strong class=" ">icon-&lt;translation service code name&gt;</strong></i></p>
         </div>
     </div>
         </div>
@@ -388,5 +338,6 @@ _    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

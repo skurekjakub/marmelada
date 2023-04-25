@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Troubleshooting marketing emails - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,138 +149,90 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-    <h3 id="src-68882605_Troubleshootingmarketingemails-Issueswithemailsending" class="heading "><span>Issues with email sending</span></h3>
-<p   
->If your contacts are not correctly receiving marketing emails, please check the following:</p>
-<ul class=" "><li class=" "><p   
->The emails are sent out using a   <a   href="Scheduling-tasks">scheduled task</a> that is executed every 1 minute by default. You can check the status of the scheduled task in the <strong class=" ">Scheduled tasks </strong>application.</p>
-</li><li class=" "><p   
->Go to <strong class=" ">Settings -&gt; System -&gt; Emails</strong> or <strong class=" ">Configuration -&gt; SMTP servers</strong> and make sure your SMTP servers are configured correctly. See   <a   href="Configuring-SMTP-servers">Configuring SMTP servers</a> for details. You can try sending a test email on the <strong class=" ">Email </strong>tab of the <strong class=" ">System </strong>application.</p>
-</li><li class=" "><p   
->Go to the <strong class=" ">Email queue </strong>application. You can find an error message for individual emails that failed to send. Email queue <strong class=" ">keeps</strong> attempting to send failed emails once a minute for the first hour. After you resolve the technical issue, you can resend all failed emails by clicking <strong class=" ">Resend all failed</strong>.</p>
-</li><li class=" "><p   
->Make sure you are using correct email addresses.</p>
-</li><li class=" "><p   
->Make sure the emails are not being blocked by an anti-spam software.</p>
-</li><li class=" "><p   
->Email debugging can be helpful when solving problems with marketing emails. To enable email debugging, add the following keys to the <i class=" ">configuration/appSettings</i> <strong class=" "></strong>section of your project&#39;s <i class=" ">web.config</i> file:<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="section-left"><h3 id="src-68882605_Troubleshootingmarketingemails-Issueswithemailsending" class="heading "><span>Issues with email sending</span></h3><p>If your contacts are not correctly receiving marketing emails, please check the following:</p><ul class=" "><li class=" "><p>The emails are sent out using a <a href="scheduling-tasks">scheduled task</a> that is executed every 1 minute by default. You can check the status of the scheduled task in the <strong class=" ">Scheduled tasks </strong>application.</p>
+</li><li class=" "><p>Go to <strong class=" ">Settings -&gt; System -&gt; Emails</strong> or <strong class=" ">Configuration -&gt; SMTP servers</strong> and make sure your SMTP servers are configured correctly. See <a href="configuring-smtp-servers">Configuring SMTP servers</a> for details. You can try sending a test email on the <strong class=" ">Email </strong>tab of the <strong class=" ">System </strong>application.</p>
+</li><li class=" "><p>Go to the <strong class=" ">Email queue </strong>application. You can find an error message for individual emails that failed to send. Email queue <strong class=" ">keeps</strong> attempting to send failed emails once a minute for the first hour. After you resolve the technical issue, you can resend all failed emails by clicking <strong class=" ">Resend all failed</strong>.</p>
+</li><li class=" "><p>Make sure you are using correct email addresses.</p>
+</li><li class=" "><p>Make sure the emails are not being blocked by an anti-spam software.</p>
+</li><li class=" "><p>Email debugging can be helpful when solving problems with marketing emails. To enable email debugging, add the following keys to the <i class=" ">configuration/appSettings</i> <strong class=" "></strong>section of your project's <i class=" ">web.config</i> file:<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSLogEmails"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"true"</code><code class="plain">/&gt;</code></div>
 <div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSDebugEmails"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"true"</code><code class="plain">/&gt;</code></div>
 </div>
     </div>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMSLogEmails</strong> &ndash; logs all sent emails to the <strong class=" ">~/App_Data/logemails.log</strong> file. The log contains each email&#39;s:</p>
-<ul class=" "><li class=" "><p   
->Timestamp, identifying when the email was sent</p>
-</li><li class=" "><p   
->Recipients</p>
-</li><li class=" "><p   
->Sender</p>
-</li><li class=" "><p   
->Subject</p>
-</li><li class=" "><p   
->Custom headers inserted via the Kentico API</p>
-</li><li class=" "><p   
->Custom header encoding (UTF-8 by default)</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">CMSDebugEmails</strong> &ndash; disables sending of emails to the actual recipients. The system only logs emails into the   <a   href="Working-with-the-system-event-log">event log</a>. Helpful if you need to test the functionality, but do not want the emails to actually reach the recipients.<br/></p>
-<ul class=" "><li class=" "><p   
->To view the event log, open the <strong class=" ">Event log</strong> application.</p>
-</li><li class=" "><p   
->The emails are logged as <strong class=" ">Information</strong> type events.</p>
-</li><li class=" "><p   
->The <strong class=" ">Event code</strong> column contains the recipient&#39;s address.</p>
-</li><li class=" "><p   
->The system randomly generates <i class=" ">Sending failed for &lt;recipient&#39;s email address&gt;</i> errors to simulate sending errors.</p>
-</li></ul></li></ul><p   
-></p>
-</li></ul>    <div  class="confbox panel">
+<ul class=" "><li class=" "><p><strong class=" ">CMSLogEmails</strong> – logs all sent emails to the <strong class=" ">~/App_Data/logemails.log</strong> file. The log contains each email's:</p>
+<ul class=" "><li class=" "><p>Timestamp, identifying when the email was sent</p>
+</li><li class=" "><p>Recipients</p>
+</li><li class=" "><p>Sender</p>
+</li><li class=" "><p>Subject</p>
+</li><li class=" "><p>Custom headers inserted via the Kentico API</p>
+</li><li class=" "><p>Custom header encoding (UTF-8 by default)</p>
+</li></ul></li><li class=" "><p><strong class=" ">CMSDebugEmails</strong> – disables sending of emails to the actual recipients. The system only logs emails into the <a href="working-with-the-system-event-log">event log</a>. Helpful if you need to test the functionality, but do not want the emails to actually reach the recipients.<br></p>
+<ul class=" "><li class=" "><p>To view the event log, open the <strong class=" ">Event log</strong> application.</p>
+</li><li class=" "><p>The emails are logged as <strong class=" ">Information</strong> type events.</p>
+</li><li class=" "><p>The <strong class=" ">Event code</strong> column contains the recipient's address.</p>
+</li><li class=" "><p>The system randomly generates <i class=" ">Sending failed for &lt;recipient's email address&gt;</i> errors to simulate sending errors.</p>
+</li></ul></li></ul><p></p>
+</li></ul></div>
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882605_Troubleshootingmarketingemails-Issueswithemailsending">Issues with email sending</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882605_Troubleshootingmarketingemails-Issueswithunsubscriptionlinks">Issues with unsubscription links</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882605_Troubleshootingmarketingemails-Issueswhensendingmarketingemailstoalargenumberofrecipients">Issues when sending marketing emails to a large number of recipients</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882605_Troubleshootingmarketingemails-Openedmarketingemailsnotbeingtracked">Opened marketing emails not being tracked</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882605_Troubleshootingmarketingemails-Custommacrosinsentmarketingemailsnotresolvingcorrectly">Custom macros in sent marketing emails not resolving correctly</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882605_Troubleshootingmarketingemails-Relativelinksnotresolvingcorrectly">Relative links not resolving correctly</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882605_troubleshootingmarketingemails-issueswithemailsending">Issues with email sending</a></p>
+</li><li class=" "><p><a href="#src-68882605_troubleshootingmarketingemails-issueswithunsubscriptionlinks">Issues with unsubscription links</a></p>
+</li><li class=" "><p><a href="#src-68882605_troubleshootingmarketingemails-issueswhensendingmarketingemailstoalargenumberofrecipients">Issues when sending marketing emails to a large number of recipients</a></p>
+</li><li class=" "><p><a href="#src-68882605_troubleshootingmarketingemails-openedmarketingemailsnotbeingtracked">Opened marketing emails not being tracked</a></p>
+</li><li class=" "><p><a href="#src-68882605_troubleshootingmarketingemails-custommacrosinsentmarketingemailsnotresolvingcorrectly">Custom macros in sent marketing emails not resolving correctly</a></p>
+</li><li class=" "><p><a href="#src-68882605_troubleshootingmarketingemails-relativelinksnotresolvingcorrectly">Relative links not resolving correctly</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Configuring-SMTP-servers">Configuring SMTP servers</a></p>
-</li><li class=" "><p   
->  <a   href="Scheduling-tasks">Scheduling tasks</a></p>
-</li><li class=" "><p   
->  <a   href="Working-with-the-system-event-log">Working with the system event log</a></p>
+<ul class=" "><li class=" "><p><a href="configuring-smtp-servers">Configuring SMTP servers</a></p>
+</li><li class=" "><p><a href="scheduling-tasks">Scheduling tasks</a></p>
+</li><li class=" "><p><a href="working-with-the-system-event-log">Working with the system event log</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68882605_Troubleshootingmarketingemails-Issueswithunsubscriptionlinks" class="heading "><span>Issues with unsubscription links</span></h3>
-<p   
->If your unsubscription links are not resolving correctly, check that the <strong class=" ">Base URL</strong> property of the given email feed is set correctly according to the domain name of your website. To configure this property:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Email marketing </strong>application.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+<p>If your unsubscription links are not resolving correctly, check that the <strong class=" ">Base URL</strong> property of the given email feed is set correctly according to the domain name of your website. To configure this property:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Email marketing </strong>application.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png">
 ) the email feed and switch to the <strong class=" ">Configuration</strong> tab.</p>
-</li></ol>    <div  class="confbox admonition admonition-note">
+</li></ol>    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Marketing emails only contain valid unsubscription links when sending emails to actual recipients. Unsubscription links do not work in draft emails because the recipients are not linked to contacts in the system.</p>
+<p><strong class=" ">Note</strong>: Marketing emails only contain valid unsubscription links when sending emails to actual recipients. Unsubscription links do not work in draft emails because the recipients are not linked to contacts in the system.</p>
         </div>
     </div>
     <h3 id="src-68882605_Troubleshootingmarketingemails-Issueswhensendingmarketingemailstoalargenumberofrecipients" class="heading "><span>Issues when sending marketing emails to a large number of recipients</span></h3>
     <h4 id="src-68882605_Troubleshootingmarketingemails-Restrictingloggingofsentmarketingemails" class="heading "><span>Restricting logging of sent marketing emails</span></h4>
-<p   
->By default, the system logs an   <a   href="Working-with-the-system-event-log">event log</a> entry for every sent marketing email. When mailing out to a very large number of recipients, this may lead to a cluttered event log or even website performance problems.</p>
-<p   
->You can disable logging of marketing email changes (including send events) by adding the following key to the <i class=" ">/configuration/appSettings</i> <strong class=" "></strong>section of your project&#39;s <i class=" ">web.config</i> file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>By default, the system logs an <a href="working-with-the-system-event-log">event log</a> entry for every sent marketing email. When mailing out to a very large number of recipients, this may lead to a cluttered event log or even website performance problems.</p>
+<p>You can disable logging of marketing email changes (including send events) by adding the following key to the <i class=" ">/configuration/appSettings</i> <strong class=" "></strong>section of your project's <i class=" ">web.config</i> file:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSLogNewsletterIssueEvents"</code><code class="plain"> value=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
 </div>
     </div>
     <h3 id="src-68882605_Troubleshootingmarketingemails-Openedmarketingemailsnotbeingtracked" class="heading "><span>Opened marketing emails not being tracked</span></h3>
-<p   
->This can be caused by an incorrectly configured email feed. Make sure you double-check the   <a   href="Tracking-marketing-emails">configuration.</a></p>
-<p   
->Another cause of email feed links not being tracked is an incorrect tracking link. This can be caused by your site not being accessible without the &#39;www&#39; prefix. For example, you can access your site via <i class=" ">www.example.com</i> but not via <i class=" ">example.com</i>. To resolve this for a particular email feed:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Email marketing </strong>application.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+<p>This can be caused by an incorrectly configured email feed. Make sure you double-check the <a href="tracking-marketing-emails">configuration.</a></p>
+<p>Another cause of email feed links not being tracked is an incorrect tracking link. This can be caused by your site not being accessible without the 'www' prefix. For example, you can access your site via <i class=" ">www.example.com</i> but not via <i class=" ">example.com</i>. To resolve this for a particular email feed:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Email marketing </strong>application.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png">
 ) the email feed and switch to the<strong class=" "> Configuration</strong> tab.</p>
-</li><li class=" "><p   
->Change the <strong class=" ">Base </strong><strong class=" ">URL </strong>field to:<br/></p>
-<ul class=" "><li class=" "><p   
-><i class=" ">www.example.com</i> (use your site&#39;s domain name instead of the example)</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Change the <strong class=" ">Base </strong><strong class=" ">URL </strong>field to:<br></p>
+<ul class=" "><li class=" "><p><i class=" ">www.example.com</i> (use your site's domain name instead of the example)</p>
+</li></ul></li><li class=" "><p><strong class=" ">Save</strong>.</p>
 </li></ol>    <h3 id="src-68882605_Troubleshootingmarketingemails-Custommacrosinsentmarketingemailsnotresolvingcorrectly" class="heading "><span>Custom macros in sent marketing emails not resolving correctly</span></h3>
-<p   
->  <a   href="Registering-custom-macro-methods">Custom macros </a>used in marketing emails may not resolve correctly if they take macros dependent on subscriber context as parameters. For example, if you&#39;re using a custom macro that takes the <i class=" ">Recipient.FirstName</i> macro as an argument, you need to call the custom macro with the subscriber resolver:<br/>{% CustomMacro(SubscriberFirstName)|(resolver)subscriber %}</p>
-<p   
-><strong class=" ">Note</strong> that this inconsistency occurs only in sent emails, email previews resolve macros differently.</p>
+<p><a href="registering-custom-macro-methods">Custom macros </a>used in marketing emails may not resolve correctly if they take macros dependent on subscriber context as parameters. For example, if you're using a custom macro that takes the <i class=" ">Recipient.FirstName</i> macro as an argument, you need to call the custom macro with the subscriber resolver:<br>{% CustomMacro(SubscriberFirstName)|(resolver)subscriber %}</p>
+<p><strong class=" ">Note</strong> that this inconsistency occurs only in sent emails, email previews resolve macros differently.</p>
     <h3 id="src-68882605_Troubleshootingmarketingemails-Relativelinksnotresolvingcorrectly" class="heading "><span>Relative links not resolving correctly</span></h3>
-<p   
->When sending emails, the system automatically converts relative paths to absolute URLs for values placed into <i class=" ">href</i> and <i class=" ">src</i> attributes of HTML elements. However, other relative paths remain unchanged (for example, links inside the background-image property of an inlined CSS style).</p>
-<p   
->To manually convert relative paths to absolute URLs based on the email feed&#39;s Base URL, use the <i class=" ">EmailFeed.GetAbsoluteUrl(relativeLink)</i> macro method.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>When sending emails, the system automatically converts relative paths to absolute URLs for values placed into <i class=" ">href</i> and <i class=" ">src</i> attributes of HTML elements. However, other relative paths remain unchanged (for example, links inside the background-image property of an inlined CSS style).</p>
+<p>To manually convert relative paths to absolute URLs based on the email feed's Base URL, use the <i class=" ">EmailFeed.GetAbsoluteUrl(relativeLink)</i> macro method.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">{% EmailFeed.GetAbsoluteUrl(</code><code class="string">"/graphics/image.png"</code><code class="plain">) %}</code></div>
 </div>
@@ -307,5 +257,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

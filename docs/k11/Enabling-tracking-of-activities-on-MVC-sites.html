@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Enabling tracking of activities on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,99 +150,71 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This page provides detailed instructions on logging of activities that require additional adjustments of your MVC application.</p>
-    <h3 id="src-68880511_EnablingtrackingofactivitiesonMVCsites-Loggingmembershipactivities" class="heading "><span>Logging membership activities</span></h3>
-<p   
->To ensure that the system logs every performed <i class=" ">Membership</i> related activity, such as <i class=" ">User registration</i> and <i class=" ">User login</i>, you need to:</p>
-<ol class=" "><li class=" "><p   
->Open your MVC project in Visual Studio.</p>
-</li><li class=" "><p   
->Edit the controllers that process   <a   href="Working-with-users-on-MVC-sites">sign-ins</a> and   <a   href="User-registration-on-MVC-sites">registrations</a> (referred to as <i class=" ">MembershipController </i>in the example code below).</p>
-</li><li class=" "><p   
->Initialize a <strong class=" ">MembershipActivitiesLogger </strong>instance in the sign-in and registration controller&#39;s constructor. This enables you to log activities.</p>
-    <div  class="confbox admonition admonition-tip">
+<div class="section-left"><p>This page provides detailed instructions on logging of activities that require additional adjustments of your MVC application.</p><h3 id="src-68880511_EnablingtrackingofactivitiesonMVCsites-Loggingmembershipactivities" class="heading "><span>Logging membership activities</span></h3><p>To ensure that the system logs every performed <i class=" ">Membership</i> related activity, such as <i class=" ">User registration</i> and <i class=" ">User login</i>, you need to:</p><ol class=" "><li class=" "><p>Open your MVC project in Visual Studio.</p>
+</li><li class=" "><p>Edit the controllers that process <a href="working-with-users-on-mvc-sites">sign-ins</a> and <a href="user-registration-on-mvc-sites">registrations</a> (referred to as <i class=" ">MembershipController </i>in the example code below).</p>
+</li><li class=" "><p>Initialize a <strong class=" ">MembershipActivitiesLogger </strong>instance in the sign-in and registration controller's constructor. This enables you to log activities.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->We recommend using a   <a   href="Initializing-Kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">MembershipActivitiesLogger</i>, create a shared instance (singleton) for all requests.</p>
+<p>We recommend using a <a href="initializing-kentico-services-with-dependency-injection">dependency injection container</a> to initialize service instances. When configuring the lifetime scope for <i class=" ">MembershipActivitiesLogger</i>, create a shared instance (singleton) for all requests.</p>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Activities;</code></div>
 </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->Add code according to the activity types described below:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">User registration activity</strong> &ndash; to log the user registration activity, call the <i class=" ">LogRegisterActivity</i> method of the <i class=" ">MembershipActivitiesLogger</i> instance. Specify the user name of the newly registered user as the method&#39;s parameter.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add code according to the activity types described below:</p>
+<ul class=" "><li class=" "><p><strong class=" ">User registration activity</strong> – to log the user registration activity, call the <i class=" ">LogRegisterActivity</i> method of the <i class=" ">MembershipActivitiesLogger</i> instance. Specify the user name of the newly registered user as the method's parameter.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
-><strong class=" ">User login activity</strong> &ndash; to log the user login activity, call the <i class=" ">LogLoginActivity</i> method of the <i class=" ">MembershipActivitiesLogger</i> instance. Specify the user name of the signed in user as the method&#39;s parameter.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p><strong class=" ">User login activity</strong> – to log the user login activity, call the <i class=" ">LogLoginActivity</i> method of the <i class=" ">MembershipActivitiesLogger</i> instance. Specify the user name of the signed in user as the method's parameter.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li></ul></li></ol><p   
->After adding the code mentioned above, the<i class=" "> U</i><i class=" ">ser registration</i> activity will be logged for every user that registers as a site member, and the <i class=" ">User login</i> activity will be logged for every user that signs into the site.</p>
-    <div  class="confbox panel">
+</li></ul></li></ol><p>After adding the code mentioned above, the<i class=" "> U</i><i class=" ">ser registration</i> activity will be logged for every user that registers as a site member, and the <i class=" ">User login</i> activity will be logged for every user that signs into the site.</p></div>
+    
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880511_EnablingtrackingofactivitiesonMVCsites-Loggingmembershipactivities">Logging membership activities</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880511_EnablingtrackingofactivitiesonMVCsites-EnablingtrackingoftheExternalsearchandthePagerelatedactivitiesinMVC">Enabling tracking of the External search and the Page related activities in MVC</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880511_enablingtrackingofactivitiesonmvcsites-loggingmembershipactivities">Logging membership activities</a></p>
+</li><li class=" "><p><a href="#src-68880511_enablingtrackingofactivitiesonmvcsites-enablingtrackingoftheexternalsearchandthepagerelatedactivitiesinmvc">Enabling tracking of the External search and the Page related activities in MVC</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Logging-activities-on-MVC-sites">Logging activities on MVC sites</a></p>
-</li><li class=" "><p   
->  <a   href="Working-with-users-on-MVC-sites">Working with users on MVC sites</a></p>
+<ul class=" "><li class=" "><p><a href="logging-activities-on-mvc-sites">Logging activities on MVC sites</a></p>
+</li><li class=" "><p><a href="working-with-users-on-mvc-sites">Working with users on MVC sites</a></p>
 </li></ul>        </div>
-    </div>
-<p   
-></p>
-    <div  class="confbox admonition admonition-info">
+    </div></div>
+    
+<p></p>
+    <div class="confbox admonition admonition-info">
                     <p class="title">Kentico EMS required</p>
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+<p>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
         </div>
     </div>
-<p   
-></p>
+<p></p>
     <h3 id="src-68880511_EnablingtrackingofactivitiesonMVCsites-EnablingtrackingoftheExternalsearchandthePagerelatedactivitiesinMVC" class="heading "><span>Enabling tracking of the External search and the Page related activities in MVC</span></h3>
-<p   
->For logging of the <i class=" ">External search</i> and the <i class=" ">Page</i> related activities, you need to adjust your MVC application by registering routes that receive logging requests.</p>
-    <div  class="confbox admonition admonition-info">
+<p>For logging of the <i class=" ">External search</i> and the <i class=" ">Page</i> related activities, you need to adjust your MVC application by registering routes that receive logging requests.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Internet Explorer 8</strong> and older versions do <strong class=" ">not</strong> support this feature. Tracking of visitors using Internet Explorer 8 and older will <strong class=" ">not</strong> work.</p>
+<p><strong class=" ">Internet Explorer 8</strong> and older versions do <strong class=" ">not</strong> support this feature. Tracking of visitors using Internet Explorer 8 and older will <strong class=" ">not</strong> work.</p>
         </div>
     </div>
-<p   
->To ensure that the system logs every performed <i class=" ">External search</i>, <i class=" ">Page visit</i>, and <i class=" ">Landing page</i> activity, you need to:</p>
-<ol class=" "><li class=" "><p   
->Open your MVC project in Visual Studio.</p>
-</li><li class=" "><p   
->Make sure the <strong class=" ">Kentico.Activities.Web.Mvc </strong>NuGet   <a   href="Installing-Kentico-integration-packages">integration package</a> is installed.</p>
-</li><li class=" "><p   
->Edit the application&#39;s <i class=" ">App_Start\RouteConfig.cs</i> file.</p>
-<ol class=" "><li class=" "><p   
->Add a <i class=" ">using</i> statement for the <strong class=" ">Kentico.Activities.Web.Mvc</strong> namespace.</p>
-</li><li class=" "><p   
->Call the predefined <strong class=" ">MapActivitiesRoutes</strong> method to register routes that receive activity logging requests (typically inside the <strong class=" ">RegisterRoutes</strong> method, before you map your own custom routes).</p>
-</li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>To ensure that the system logs every performed <i class=" ">External search</i>, <i class=" ">Page visit</i>, and <i class=" ">Landing page</i> activity, you need to:</p>
+<ol class=" "><li class=" "><p>Open your MVC project in Visual Studio.</p>
+</li><li class=" "><p>Make sure the <strong class=" ">Kentico.Activities.Web.Mvc </strong>NuGet <a href="installing-kentico-integration-packages">integration package</a> is installed.</p>
+</li><li class=" "><p>Edit the application's <i class=" ">App_Start\RouteConfig.cs</i> file.</p>
+<ol class=" "><li class=" "><p>Add a <i class=" ">using</i> statement for the <strong class=" ">Kentico.Activities.Web.Mvc</strong> namespace.</p>
+</li><li class=" "><p>Call the predefined <strong class=" ">MapActivitiesRoutes</strong> method to register routes that receive activity logging requests (typically inside the <strong class=" ">RegisterRoutes</strong> method, before you map your own custom routes).</p>
+</li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Mvc;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Routing;</code></div>
@@ -253,14 +223,11 @@
 <div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Web.Mvc;</code></div>
 </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->Add the below code to your MVC website&#39;s main layout (view), so that the performed activities are logged for every page.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Add the below code to your MVC website's main layout (view), so that the performed activities are logged for every page.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li></ol><p   
->After adding the code mentioned above, the <i class=" ">External search</i> activity will be logged every time a site visitor uses an external search engine that leads them to the website. Similarly, the <i class=" ">Page visit</i> activity will be logged every time the page is visited, and the <i class=" ">Landing page</i> activity will be logged every time a visitor opens the page when first viewing the website.</p>
+</li></ol><p>After adding the code mentioned above, the <i class=" ">External search</i> activity will be logged every time a site visitor uses an external search engine that leads them to the website. Similarly, the <i class=" ">Page visit</i> activity will be logged every time the page is visited, and the <i class=" ">Landing page</i> activity will be logged every time a visitor opens the page when first viewing the website.</p>
         </div>
 
     </article>
@@ -281,5 +248,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

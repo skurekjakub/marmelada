@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Upgrading to Kentico 11 - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -148,905 +146,549 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This page provides instructions for upgrading Kentico projects from version 10 to 11.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"></div><p>This page provides instructions for upgrading Kentico projects from version 10 to 11.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Upgrading non-standard projects</strong></p>
-<ul class=" "><li class=" "><p   
->If you are upgrading a project hosted on Microsoft Azure, please follow the instructions on the   <a   href="Upgrading-Microsoft-Azure-projects">Upgrading Microsoft Azure projects</a> page.</p>
-</li><li class=" "><p   
->If you are upgrading a source code instance, see   <a   href="#src-68882766_UpgradingtoKentico11-Upgradingsourcecodeinstances">Upgrading source code instances</a> for a general outline of the recommended process.</p>
+<p><strong class=" ">Upgrading non-standard projects</strong></p>
+<ul class=" "><li class=" "><p>If you are upgrading a project hosted on Microsoft Azure, please follow the instructions on the <a href="upgrading-microsoft-azure-projects">Upgrading Microsoft Azure projects</a> page.</p>
+</li><li class=" "><p>If you are upgrading a source code instance, see <a href="#src-68882766_upgradingtokentico11-upgradingsourcecodeinstances">Upgrading source code instances</a> for a general outline of the recommended process.</p>
 </li></ul>        </div>
     </div>
-<ol class=" "><li class=" "><p   
->  <a   href="#src-68882766_UpgradingtoKentico11-Prerequisites">Check the prerequisites and Upgrade overview</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882766_UpgradingtoKentico11-Installingtheupgradeprocedure">Install the upgrade procedure</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882766_UpgradingtoKentico11-Stepsbeforeyoustarttheupgrade">Perform the required steps before the upgrade</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882766_UpgradingtoKentico11-Applyingtheupgrade">Apply the upgrade to your Kentico project</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882766_UpgradingtoKentico11-Stepsafterperformingtheupgrade">Perform the required steps after the upgrade</a></p>
-</li></ol>    <div  class="confbox admonition admonition-warning">
+<ol class=" "><li class=" "><p><a href="#src-68882766_upgradingtokentico11-prerequisites">Check the prerequisites and Upgrade overview</a></p>
+</li><li class=" "><p><a href="#src-68882766_upgradingtokentico11-installingtheupgradeprocedure">Install the upgrade procedure</a></p>
+</li><li class=" "><p><a href="#src-68882766_upgradingtokentico11-stepsbeforeyoustarttheupgrade">Perform the required steps before the upgrade</a></p>
+</li><li class=" "><p><a href="#src-68882766_upgradingtokentico11-applyingtheupgrade">Apply the upgrade to your Kentico project</a></p>
+</li><li class=" "><p><a href="#src-68882766_upgradingtokentico11-stepsafterperformingtheupgrade">Perform the required steps after the upgrade</a></p>
+</li></ol>    <div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Warning</strong></p>
-<p   
->Using the   <a   href="Exporting-and-importing-sites">Export and Import</a> features to move sites from older versions of Kentico is NOT a valid way to perform the upgrade. During such imports, you risk overwriting database objects and files with older equivalents that may not be compatible. The import may prevent your site and the system as a whole from working correctly.</p>
-<p   
->Importing of packages from older versions is supported to allow transferring of single objects or basic data, not as a way to upgrade entire sites.</p>
+<p><strong class=" ">Warning</strong></p>
+<p>Using the <a href="exporting-and-importing-sites">Export and Import</a> features to move sites from older versions of Kentico is NOT a valid way to perform the upgrade. During such imports, you risk overwriting database objects and files with older equivalents that may not be compatible. The import may prevent your site and the system as a whole from working correctly.</p>
+<p>Importing of packages from older versions is supported to allow transferring of single objects or basic data, not as a way to upgrade entire sites.</p>
         </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Upgrading-custom-code">Upgrading custom code</a></p>
-</li><li class=" "><p   
->  <a   href="Upgrading-projects-under-source-control">Upgrading projects under source control</a></p>
-</li><li class=" "><p   
->  <a   href="Best-practices-for-customization">Best practices for upgrade-friendly customization</a></p>
+<ul class=" "><li class=" "><p><a href="upgrading-custom-code">Upgrading custom code</a></p>
+</li><li class=" "><p><a href="upgrading-projects-under-source-control">Upgrading projects under source control</a></p>
+</li><li class=" "><p><a href="best-practices-for-customization">Best practices for upgrade-friendly customization</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882766_UpgradingtoKentico11-Prerequisites" class="heading "><span>Prerequisites</span></h3>
-<p   
->Before you start the upgrade, please make sure that your environment fulfills the requirements of Kentico 11. See   <a   href="Server-and-hosting-requirements">Server and hosting requirements</a> for details.</p>
-<p   
->The upgrade must be performed on a machine with a working Internet connection.</p>
-<p   
-><strong class=" ">Note</strong>: The upgrade must be applied to complete projects that use the standard folder structure (the <i class=" ">CMS</i> and <i class=" ">Lib</i> sub folders) and names of key files (the solution file, <i class=" ">csproj</i> project file, <i class=" ">web.config</i>, <i class=" ">packages.config</i>, <i class=" ">GlobalAssemblyInfo.cs</i>). You cannot directly upgrade web site deployments of the CMS folder &ndash; first upgrade the original complete project and then create a new deployment.</p>
+<p>Before you start the upgrade, please make sure that your environment fulfills the requirements of Kentico 11. See <a href="server-and-hosting-requirements">Server and hosting requirements</a> for details.</p>
+<p>The upgrade must be performed on a machine with a working Internet connection.</p>
+<p><strong class=" ">Note</strong>: The upgrade must be applied to complete projects that use the standard folder structure (the <i class=" ">CMS</i> and <i class=" ">Lib</i> sub folders) and names of key files (the solution file, <i class=" ">csproj</i> project file, <i class=" ">web.config</i>, <i class=" ">packages.config</i>, <i class=" ">GlobalAssemblyInfo.cs</i>). You cannot directly upgrade web site deployments of the CMS folder – first upgrade the original complete project and then create a new deployment.</p>
     <h3 id="src-68882766_UpgradingtoKentico11-Upgradingacrossmultipleversions" class="heading "><span>Upgrading across multiple versions</span></h3>
-<p   
->If you are upgrading from a Kentico version lower than 10, you need to go through a separate upgrade procedure for each version. Check the instructions for each upgrade version, and perform the required steps before and after the upgrade.</p>
-<p   
->For each version, you always need to <i class=" "><strong class=" ">open the upgraded website in a browser before starting the upgrade for the next version</strong> </i>and verify that the site loads correctly. During the first request after the upgrade, the system performs certain tasks required to finish the upgrade, including the import of new objects.</p>
-<p   
->The same requirement applies even if you are only updating to a newer patch version by applying a <a  class="external-link" href="https://devnet.kentico.com/download/hotfixes">hotfix</a> to the upgraded project.</p>
+<p>If you are upgrading from a Kentico version lower than 10, you need to go through a separate upgrade procedure for each version. Check the instructions for each upgrade version, and perform the required steps before and after the upgrade.</p>
+<p>For each version, you always need to <i class=" "><strong class=" ">open the upgraded website in a browser before starting the upgrade for the next version</strong> </i>and verify that the site loads correctly. During the first request after the upgrade, the system performs certain tasks required to finish the upgrade, including the import of new objects.</p>
+<p>The same requirement applies even if you are only updating to a newer patch version by applying a <a class="external-link" href="https://devnet.kentico.com/download/hotfixes">hotfix</a> to the upgraded project.</p>
     <h3 id="src-68882766_UpgradingtoKentico11-Upgradeoverview" class="heading "><span>Upgrade overview</span></h3>
-<p   
->The following is a summary of the most important changes that the upgrade performs. To learn how to replace any removed features or components that you use, see the linked documentation or the required steps before and after the upgrade on this page.</p>
-    <div  class="confbox admonition admonition-note">
+<p>The following is a summary of the most important changes that the upgrade performs. To learn how to replace any removed features or components that you use, see the linked documentation or the required steps before and after the upgrade on this page.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->This does not include all Kentico 11 features and changes &ndash; see   <a   href="Release-notes---Kentico-11">Release notes - Kentico 11</a> for a comprehensive list.</p>
+<p>This does not include all Kentico 11 features and changes – see <a href="release-notes---kentico-11">Release notes - Kentico 11</a> for a comprehensive list.</p>
         </div>
     </div>
-<ul class=" "><li class=" "><p   
->If your project uses .NET 4.5.2 or older, the upgrade sets the project&rsquo;s version to 4.6 (the minimum .NET version supported by Kentico 11).</p>
-</li><li class=" "><p   
->The upgrade integrates required third-party libraries by installing the following NuGet packages into the Kentico project (and their dependencies):</p>
-<ul class=" "><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/AjaxControlToolkit/">AjaxControlToolkit</a> 17.1.1.0</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/AjaxMin/">AjaxMin</a> 5.14.5506.26202</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/AngleSharp/">AngleSharp</a> 0.9.9</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/AWSSDK.S3/">AWSSDK.S3</a> 3.1.9</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/Castle.Windsor/">Castle.Windsor</a> 4.0.0</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/Facebook/">Facebook</a> 6.4.2</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/GlobalLink.Connect/">GlobalLink.Connect</a> 4.18.3.1</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/Microsoft.AspNet.WebApi.WebHost/">Microsoft.AspNet.WebApi.WebHost</a> 5.2.3</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/Microsoft.Azure.Search/">Microsoft.Azure.Search</a> 3.0.2</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/Microsoft.SharePointOnline.CSOM/">Microsoft.SharePointOnline.CSOM</a> 16.1.6621.1200</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/Mono.Cecil/">Mono.Cecil</a> 0.9.6.1</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/Newtonsoft.Json/">Newtonsoft.Json</a> 7.0.1</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/NuGet.Core/">NuGet.Core</a> 2.14.0</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/PayPal/">PayPal</a> 1.8.0</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/System.Data.HashFunction.CRC/">System.Data.HashFunction.CRC</a> 1.8.2.2</p>
-</li><li class=" "><p   
-><a  class="external-link" href="https://www.nuget.org/packages/WindowsAzure.Storage/">WindowsAzure.Storage</a> 7.2.0</p>
-</li></ul>    <div  class="confbox admonition admonition-info">
+<ul class=" "><li class=" "><p>If your project uses .NET 4.5.2 or older, the upgrade sets the project’s version to 4.6 (the minimum .NET version supported by Kentico 11).</p>
+</li><li class=" "><p>The upgrade integrates required third-party libraries by installing the following NuGet packages into the Kentico project (and their dependencies):</p>
+<ul class=" "><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/AjaxControlToolkit/">AjaxControlToolkit</a> 17.1.1.0</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/AjaxMin/">AjaxMin</a> 5.14.5506.26202</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/AngleSharp/">AngleSharp</a> 0.9.9</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/AWSSDK.S3/">AWSSDK.S3</a> 3.1.9</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/Castle.Windsor/">Castle.Windsor</a> 4.0.0</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/Facebook/">Facebook</a> 6.4.2</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/GlobalLink.Connect/">GlobalLink.Connect</a> 4.18.3.1</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/Microsoft.AspNet.WebApi.WebHost/">Microsoft.AspNet.WebApi.WebHost</a> 5.2.3</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/Microsoft.Azure.Search/">Microsoft.Azure.Search</a> 3.0.2</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/Microsoft.SharePointOnline.CSOM/">Microsoft.SharePointOnline.CSOM</a> 16.1.6621.1200</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/Mono.Cecil/">Mono.Cecil</a> 0.9.6.1</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/Newtonsoft.Json/">Newtonsoft.Json</a> 7.0.1</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/NuGet.Core/">NuGet.Core</a> 2.14.0</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/PayPal/">PayPal</a> 1.8.0</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/System.Data.HashFunction.CRC/">System.Data.HashFunction.CRC</a> 1.8.2.2</p>
+</li><li class=" "><p><a class="external-link" href="https://www.nuget.org/packages/WindowsAzure.Storage/">WindowsAzure.Storage</a> 7.2.0</p>
+</li></ul>    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If your Kentico project already contains a different version of one of these NuGet packages, the upgrade either updates the package to the required version (for older versions) or does not change the version (for newer versions).</p>
-<p   
->In both cases, a <a  class="external-link" href="https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/file-schema/runtime/bindingredirect-element">binding redirect</a> is automatically added to the project&#39;s <i class=" ">web.config</i> file for the related assembly (either from your old version to the required version, or from the required version to your newer version).</p>
+<p>If your Kentico project already contains a different version of one of these NuGet packages, the upgrade either updates the package to the required version (for older versions) or does not change the version (for newer versions).</p>
+<p>In both cases, a <a class="external-link" href="https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/file-schema/runtime/bindingredirect-element">binding redirect</a> is automatically added to the project's <i class=" ">web.config</i> file for the related assembly (either from your old version to the required version, or from the required version to your newer version).</p>
         </div>
     </div>
-</li><li class=" "><p   
->Custom files in the original project are transferred to the upgraded project.</p>
-</li><li class=" "><p   
->Customized Kentico files are preserved (does not apply if you choose to overwrite all files when applying the upgrade):</p>
-<ul class=" "><li class=" "><p   
->For each customized file, the upgrade creates the new Kentico 11 version (with the <i class=" ">.new</i> extension). You need to manually transfer your customizations to the new files and then replace the original ones.</p>
-</li><li class=" "><p   
->Customized files that no longer exist in Kentico 11 remain in the file system, with an added <i class=" ">.deleted</i> extension. These files are not included in the <i class=" ">CMSApp</i> project in web application projects.</p>
-</li></ul></li><li class=" "><p   
->If your Kentico project uses Windows authentication (integrated security) for its database connection, the database upgrade scripts automatically set the <i class=" ">Default schema</i> of the database user matching the current Windows account (i.e. the user who runs the upgrade utility) to the schema used by the objects in your Kentico database (<i class=" ">dbo </i>by default).</p>
-</li><li class=" "><p   
->The upgrade disables   <a   href="Setting-up-web-farms">web farm</a> and   <a   href="Setting-up-continuous-integration">continuous integration</a> functionality. You can re-enable the features after you complete the upgrade.</p>
+</li><li class=" "><p>Custom files in the original project are transferred to the upgraded project.</p>
+</li><li class=" "><p>Customized Kentico files are preserved (does not apply if you choose to overwrite all files when applying the upgrade):</p>
+<ul class=" "><li class=" "><p>For each customized file, the upgrade creates the new Kentico 11 version (with the <i class=" ">.new</i> extension). You need to manually transfer your customizations to the new files and then replace the original ones.</p>
+</li><li class=" "><p>Customized files that no longer exist in Kentico 11 remain in the file system, with an added <i class=" ">.deleted</i> extension. These files are not included in the <i class=" ">CMSApp</i> project in web application projects.</p>
+</li></ul></li><li class=" "><p>If your Kentico project uses Windows authentication (integrated security) for its database connection, the database upgrade scripts automatically set the <i class=" ">Default schema</i> of the database user matching the current Windows account (i.e. the user who runs the upgrade utility) to the schema used by the objects in your Kentico database (<i class=" ">dbo </i>by default).</p>
+</li><li class=" "><p>The upgrade disables <a href="setting-up-web-farms">web farm</a> and <a href="setting-up-continuous-integration">continuous integration</a> functionality. You can re-enable the features after you complete the upgrade.</p>
 </li></ul>    <h5 id="src-68882766_UpgradingtoKentico11-Classfields" class="heading "><span>Class fields</span></h5>
-<ul class=" "><li class=" "><p   
->The upgrade overwrites the form definitions of the default fields of system classes and their alternative forms. Custom fields from the previous version are transferred over.</p>
+<ul class=" "><li class=" "><p>The upgrade overwrites the form definitions of the default fields of system classes and their alternative forms. Custom fields from the previous version are transferred over.</p>
 </li></ul>    <h5 id="src-68882766_UpgradingtoKentico11-Defaultobjects" class="heading "><span>Default objects</span></h5>
-<ul class=" "><li class=" "><p   
->The upgrade procedure imports new versions of the following default objects (overwrites existing objects):</p>
-<ul class=" "><li class=" "><p   
->Web parts</p>
-</li><li class=" "><p   
->Web part layouts</p>
-</li><li class=" "><p   
->Widgets</p>
-</li><li class=" "><p   
->Reports</p>
-</li><li class=" "><p   
->Time zones</p>
-</li></ul></li><li class=" "><p   
->The default   <a   href="Developing-form-controls">Form control</a> objects are overwritten (both the source files and form control objects in the system).</p>
+<ul class=" "><li class=" "><p>The upgrade procedure imports new versions of the following default objects (overwrites existing objects):</p>
+<ul class=" "><li class=" "><p>Web parts</p>
+</li><li class=" "><p>Web part layouts</p>
+</li><li class=" "><p>Widgets</p>
+</li><li class=" "><p>Reports</p>
+</li><li class=" "><p>Time zones</p>
+</li></ul></li><li class=" "><p>The default <a href="developing-form-controls">Form control</a> objects are overwritten (both the source files and form control objects in the system).</p>
 </li></ul>    <h5 id="src-68882766_UpgradingtoKentico11-Emailmarketing" class="heading "><span>Email marketing</span></h5>
-<ul class=" "><li class=" "><p   
->    <span style="color: #3f3e3c;">
+<ul class=" "><li class=" "><p>    <span style="color: #3f3e3c;">
 Kentico 11 sites have a maximum limit on the number of created email feeds    </span>
-, based on the used <a  class="external-link" href="https://www.kentico.com/purchase/configure-your-license">License Edition</a> (5 newsletters for Kentico CMS Base, 10 newsletters for Kentico CMS Ultimate, unlimited newsletters and email campaigns for Kentico EMS). See the   <a   href="Email-marketing">Email marketing</a> page for detailed information.</p>
-</li><li class=" "><p   
->    <span style="color: #3f3e3c;">
+, based on the used <a class="external-link" href="https://www.kentico.com/purchase/configure-your-license">License Edition</a> (5 newsletters for Kentico CMS Base, 10 newsletters for Kentico CMS Ultimate, unlimited newsletters and email campaigns for Kentico EMS). See the <a href="email-marketing">Email marketing</a> page for detailed information.</p>
+</li><li class=" "><p>    <span style="color: #3f3e3c;">
 Kentico 11 sites have a maximum limit on the number of marketable recipients for each email feed    </span>
-, based on the used <a  class="external-link" href="https://www.kentico.com/purchase/configure-your-license">License Edition</a> (500 for Kentico CMS Base, 5000 for Kentico CMS Ultimate, unlimited for Kentico EMS).</p>
-</li><li class=" "><p   
->The upgrade does not preserve the content of existing marketing emails and email templates. The templates and emails need to be created again after the upgrade using the new   <a   href="Composing-marketing-emails">email builder</a> functionality.</p>
+, based on the used <a class="external-link" href="https://www.kentico.com/purchase/configure-your-license">License Edition</a> (500 for Kentico CMS Base, 5000 for Kentico CMS Ultimate, unlimited for Kentico EMS).</p>
+</li><li class=" "><p>The upgrade does not preserve the content of existing marketing emails and email templates. The templates and emails need to be created again after the upgrade using the new <a href="composing-marketing-emails">email builder</a> functionality.</p>
 </li></ul>    <h5 id="src-68882766_UpgradingtoKentico11-E-commerce" class="heading "><span>E-commerce</span></h5>
-<ul class=" "><li class=" "><p   
->Kentico 11 sites have a maximum limit on the number of enabled products (SKUs), based on the used <a  class="external-link" href="https://www.kentico.com/purchase/configure-your-license">License Edition</a>. Initially, the limit is 100 for <i class=" ">Kentico CMS Base</i>, 500 for <i class=" ">Kentico CMS Ultimate</i>, and unlimited for <i class=" ">Kentico EMS</i>. After evaluating feedback from partners and clients, Kentico has decided to release <a  class="external-link" href="https://devnet.kentico.com/download/hotfixes">hotfix 11.0.15</a>, which increases the limits (500 for <i class=" ">Kentico CMS Base</i>, unlimited for <i class=" ">Kentico CMS Ultimate</i> and <i class=" ">Kentico EMS</i>). See the   <a   href="Products">Products</a> page for detailed information.</p>
-</li><li class=" "><p   
->The overall customization model was changed for many types of e-commerce functionality. If your project contains e-commerce customizations, you may need to perform significant updates of your code as part of the upgrade. We recommend reading the   <a   href="#src-68882766_UpgradingtoKentico11-E-commercecustomizations">E-commerce customizations</a> section and the other related steps after the upgrade.</p>
-</li><li class=" "><p   
->  <a   href="Orders">Orders</a> in Kentico 11 use a different data structure and calculation model than in previous versions. As a result, the upgrade of existing orders is not fully supported &ndash; the final price totals of orders remain the same as before the upgrade, but you may notice inconsistencies when viewing the details of upgraded orders or the values of specific columns in the <i class=" ">COM_Order</i> or <i class=" ">COM_OrderItem</i> database tables (item prices, various subtotals, discounts, etc.). If you need to keep archives of existing orders with full details, we recommend exporting the order data to an external system or file before you perform the upgrade.</p>
-</li><li class=" "><p   
->Donation products (SKUs) are no longer supported in Kentico 11. For all existing donation products, the upgrade changes the product representation value from <i class=" ">Donation</i> to <i class=" ">Standard product</i>. Values of donation-specific properties are lost (<i class=" ">Minimum donation</i>, <i class=" ">Maximum donation</i>, <i class=" ">Allow private donation</i>). See   <a   href="Collecting-donations">Collecting donations</a> to learn about the current recommendations for managing donations.</p>
-</li><li class=" "><p   
->Flat value   <a   href="Working-with-order-discounts">order discounts</a> are no longer supported (use the new   <a   href="Working-with-gift-cards">gift cards</a> for this purpose). The upgrade procedure transforms all existing flat order discounts to percentage-based and disables them.</p>
-</li><li class=" "><p   
->The data structure and configuration of   <a   href="Working-with-product-coupons">Product coupons</a> changes significantly in Kentico 11. The upgrade transfers existing product coupon data, but skips global product coupons (no longer supported) and coupons assigned to products using the <i class=" ">All products except for these</i> option. See the   <a   href="#src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1Byb2R1Y3Rjb3Vwb25z">E-commerce - Product coupons</a> section in the steps before the upgrade.</p>
-</li><li class=" "><p   
->Kentico 11 stores the default payment gateway provider classes (  <a   href="Configuring-PayPal">PayPal</a>,   <a   href="Configuring-Authorize.NET">Authorize.NET</a>,   <a   href="Configuring-customer-credit">Customer credit</a>) in a different assembly and namespace (<i class=" ">CMS.Ecommerce</i>). The upgrade automatically updates all   <a   href="Configuring-payment-methods">payment methods</a> that use the original class locations.</p>
+<ul class=" "><li class=" "><p>Kentico 11 sites have a maximum limit on the number of enabled products (SKUs), based on the used <a class="external-link" href="https://www.kentico.com/purchase/configure-your-license">License Edition</a>. Initially, the limit is 100 for <i class=" ">Kentico CMS Base</i>, 500 for <i class=" ">Kentico CMS Ultimate</i>, and unlimited for <i class=" ">Kentico EMS</i>. After evaluating feedback from partners and clients, Kentico has decided to release <a class="external-link" href="https://devnet.kentico.com/download/hotfixes">hotfix 11.0.15</a>, which increases the limits (500 for <i class=" ">Kentico CMS Base</i>, unlimited for <i class=" ">Kentico CMS Ultimate</i> and <i class=" ">Kentico EMS</i>). See the <a href="products">Products</a> page for detailed information.</p>
+</li><li class=" "><p>The overall customization model was changed for many types of e-commerce functionality. If your project contains e-commerce customizations, you may need to perform significant updates of your code as part of the upgrade. We recommend reading the <a href="#src-68882766_upgradingtokentico11-e-commercecustomizations">E-commerce customizations</a> section and the other related steps after the upgrade.</p>
+</li><li class=" "><p><a href="orders">Orders</a> in Kentico 11 use a different data structure and calculation model than in previous versions. As a result, the upgrade of existing orders is not fully supported – the final price totals of orders remain the same as before the upgrade, but you may notice inconsistencies when viewing the details of upgraded orders or the values of specific columns in the <i class=" ">COM_Order</i> or <i class=" ">COM_OrderItem</i> database tables (item prices, various subtotals, discounts, etc.). If you need to keep archives of existing orders with full details, we recommend exporting the order data to an external system or file before you perform the upgrade.</p>
+</li><li class=" "><p>Donation products (SKUs) are no longer supported in Kentico 11. For all existing donation products, the upgrade changes the product representation value from <i class=" ">Donation</i> to <i class=" ">Standard product</i>. Values of donation-specific properties are lost (<i class=" ">Minimum donation</i>, <i class=" ">Maximum donation</i>, <i class=" ">Allow private donation</i>). See <a href="collecting-donations">Collecting donations</a> to learn about the current recommendations for managing donations.</p>
+</li><li class=" "><p>Flat value <a href="working-with-order-discounts">order discounts</a> are no longer supported (use the new <a href="working-with-gift-cards">gift cards</a> for this purpose). The upgrade procedure transforms all existing flat order discounts to percentage-based and disables them.</p>
+</li><li class=" "><p>The data structure and configuration of <a href="working-with-product-coupons">Product coupons</a> changes significantly in Kentico 11. The upgrade transfers existing product coupon data, but skips global product coupons (no longer supported) and coupons assigned to products using the <i class=" ">All products except for these</i> option. See the <a href="#src-68882766_safe-id-vxbncmfkaw5ndg9lzw50awnvmtetrs1jb21tzxjjzekak1byb2r1y3rjb3vwb25z">E-commerce - Product coupons</a> section in the steps before the upgrade.</p>
+</li><li class=" "><p>Kentico 11 stores the default payment gateway provider classes (<a href="configuring-paypal">PayPal</a>, <a href="configuring-authorize.net">Authorize.NET</a>, <a href="configuring-customer-credit">Customer credit</a>) in a different assembly and namespace (<i class=" ">CMS.Ecommerce</i>). The upgrade automatically updates all <a href="configuring-payment-methods">payment methods</a> that use the original class locations.</p>
 </li></ul>    <h3 id="src-68882766_UpgradingtoKentico11-Installingtheupgradeprocedure" class="heading "><span>Installing the upgrade procedure</span></h3>
-<ol class=" "><li class=" "><p   
->Download the <a  class="external-link" href="http://download.kentico.com/CMSUpgrades/Upgrade/Upgrade_10_0_11_0.exe">Kentico 11 upgrade</a>.</p>
-</li><li class=" "><p   
->Run <strong class=" ">Upgrade_10_0_11_0.exe</strong>.</p>
-</li><li class=" "><p   
->Install the upgrade procedure (the installer places the upgrade into the <i class=" ">C:\Program Files\Kentico\11.0\Upgrade100_110 </i>folder by default).</p>
+<ol class=" "><li class=" "><p>Download the <a class="external-link" href="http://download.kentico.com/CMSUpgrades/Upgrade/Upgrade_10_0_11_0.exe">Kentico 11 upgrade</a>.</p>
+</li><li class=" "><p>Run <strong class=" ">Upgrade_10_0_11_0.exe</strong>.</p>
+</li><li class=" "><p>Install the upgrade procedure (the installer places the upgrade into the <i class=" ">C:\Program Files\Kentico\11.0\Upgrade100_110 </i>folder by default).</p>
 </li></ol>    <h3 id="src-68882766_UpgradingtoKentico11-Stepsbeforeyoustarttheupgrade" class="heading "><span>Steps before you start the upgrade</span></h3>
     <h4 id="src-68882766_UpgradingtoKentico11-Customcodeanalysis" class="heading "><span>Custom code analysis</span></h4>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->See the   <a   href="Release-notes---Kentico-11#src-68879271_ReleasenotesKentico11-breakingApi">Release notes</a> for highlights of the breaking changes in the Kentico 11 API.</p>
+<p>See the <a href="release-notes---kentico-11#src-68879271_releasenoteskentico11-breakingapi">Release notes</a> for highlights of the breaking changes in the Kentico 11 API.</p>
         </div>
     </div>
-<p   
->If your project contains any custom code (including virtual objects such as   <a   href="Writing-transformations">transformations</a>), we strongly recommend using the <strong class=" ">Kentico code upgrade tool</strong> before you start the upgrade procedure.</p>
-<p   
->Download the tool from the <a  class="external-link" href="http://devnet.kentico.com/documentation/api-changes/kentico-11">API Changes</a> page on the DevNet portal. See   <a   href="Upgrading-custom-code">Upgrading custom code</a> to learn more.</p>
-<p   
->The tool has the following functionality:</p>
-<ul class=" "><li class=" "><p   
->Detects custom code that is no longer valid in version 11</p>
-</li><li class=" "><p   
->Provides recommendations for each occurrence of invalid code</p>
-</li><li class=" "><p   
->Can automatically convert the majority of code to the Kentico 11 API</p>
-</li></ul><p   
->The code upgrade tool&rsquo;s output will help you update your custom code after you perform the upgrade.</p>
+<p>If your project contains any custom code (including virtual objects such as <a href="writing-transformations">transformations</a>), we strongly recommend using the <strong class=" ">Kentico code upgrade tool</strong> before you start the upgrade procedure.</p>
+<p>Download the tool from the <a class="external-link" href="http://devnet.kentico.com/documentation/api-changes/kentico-11">API Changes</a> page on the DevNet portal. See <a href="upgrading-custom-code">Upgrading custom code</a> to learn more.</p>
+<p>The tool has the following functionality:</p>
+<ul class=" "><li class=" "><p>Detects custom code that is no longer valid in version 11</p>
+</li><li class=" "><p>Provides recommendations for each occurrence of invalid code</p>
+</li><li class=" "><p>Can automatically convert the majority of code to the Kentico 11 API</p>
+</li></ul><p>The code upgrade tool’s output will help you update your custom code after you perform the upgrade.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Required.NETCompilerPlatform" class="heading "><span>Required .NET Compiler Platform</span></h4>
-<p   
->Kentico 11 requires the <a  class="external-link" href="https://github.com/dotnet/roslyn">.NET Compiler Platform (&quot;Roslyn&quot;)</a> compiler to run. Installations of Kentico 10 or newer contain the <a  class="external-link" href="https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/">Microsoft.CodeDom.Providers.DotNetCompilerPlatform</a> NuGet package by default, which provides the required functionality.</p>
-<p   
->However, if your project is upgraded from Kentico 9 or older, you may be missing the package. In these cases, you need to install the package before applying the upgrade:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Right-click the main web project in the Solution Explorer and select <strong class=" ">Manage NuGet Packages</strong>.</p>
-</li><li class=" "><p   
->Install the <strong class=" ">Microsoft.CodeDom.Providers.DotNetCompilerPlatform </strong>NuGet package (version 1.0.2 or newer).</p>
+<p>Kentico 11 requires the <a class="external-link" href="https://github.com/dotnet/roslyn">.NET Compiler Platform ("Roslyn")</a> compiler to run. Installations of Kentico 10 or newer contain the <a class="external-link" href="https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/">Microsoft.CodeDom.Providers.DotNetCompilerPlatform</a> NuGet package by default, which provides the required functionality.</p>
+<p>However, if your project is upgraded from Kentico 9 or older, you may be missing the package. In these cases, you need to install the package before applying the upgrade:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Right-click the main web project in the Solution Explorer and select <strong class=" ">Manage NuGet Packages</strong>.</p>
+</li><li class=" "><p>Install the <strong class=" ">Microsoft.CodeDom.Providers.DotNetCompilerPlatform </strong>NuGet package (version 1.0.2 or newer).</p>
 </li></ol>    <h4 id="src-68882766_UpgradingtoKentico11-DeploymentmodeandSourcecontrol" class="heading "><span>Deployment mode and Source control</span></h4>
-<p   
->If your system stores virtual objects on the file system (due to enabled   <a   href="Deployment-mode-for-virtual-objects">deployment mode or source control</a> options), you need to return the files to the database before performing the upgrade.</p>
-<p   
->You can re-enable deployment mode or source control after you finish the upgrade.</p>
+<p>If your system stores virtual objects on the file system (due to enabled <a href="deployment-mode-for-virtual-objects">deployment mode or source control</a> options), you need to return the files to the database before performing the upgrade.</p>
+<p>You can re-enable deployment mode or source control after you finish the upgrade.</p>
     <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtU3RhZ2luZyxpbnRlZ3JhdGlvbmFuZGV4cG9ydHRhc2tz" class="heading "><span>Staging, integration and export tasks</span></h4>
-<p   
->If your project uses   <a   href="Content-staging">staging</a> or the   <a   href="Using-the-integration-bus">integration bus</a>, you need to synchronize all staging and integration tasks before starting the upgrade procedure. Synchronization of existing tasks from older Kentico versions may fail after you perform the upgrade. To perform the synchronization, use the <strong class=" ">Staging</strong> or <strong class=" ">Integration bus</strong> applications.</p>
-<p   
->If you have the <strong class=" ">Settings -&gt; <a  class="external-link" href="http://localhost/Kentico82_1124/CMSModules/Settings/Pages/Categories.aspx">    <span style="color: #262524;">
+<p>If your project uses <a href="content-staging">staging</a> or the <a href="using-the-integration-bus">integration bus</a>, you need to synchronize all staging and integration tasks before starting the upgrade procedure. Synchronization of existing tasks from older Kentico versions may fail after you perform the upgrade. To perform the synchronization, use the <strong class=" ">Staging</strong> or <strong class=" ">Integration bus</strong> applications.</p>
+<p>If you have the <strong class=" ">Settings -&gt; <a class="external-link" href="http://localhost/Kentico82_1124/CMSModules/Settings/Pages/Categories.aspx">    <span style="color: #262524;">
 Versioning &amp; Synchronization    </span>
- </a>-&gt; Staging -&gt; Log export tasks</strong> setting enabled, the system logs <i class=" ">delete tasks</i> when objects are deleted. These tasks can then be included in   <a   href="Exporting-and-importing-sites">export</a> packages and used to delete objects on other instances during the import. The data of logged delete tasks is NOT updated during upgrades, so existing tasks may not work correctly after you upgrade to a newer version.</p>
-<p   
->We recommend clearing all delete tasks before you start the upgrade &ndash; go to <strong class=" ">Sites -&gt; View export history -&gt; Tasks</strong> and click <strong class=" ">Delete all tasks</strong>.</p>
+ </a>-&gt; Staging -&gt; Log export tasks</strong> setting enabled, the system logs <i class=" ">delete tasks</i> when objects are deleted. These tasks can then be included in <a href="exporting-and-importing-sites">export</a> packages and used to delete objects on other instances during the import. The data of logged delete tasks is NOT updated during upgrades, so existing tasks may not work correctly after you upgrade to a newer version.</p>
+<p>We recommend clearing all delete tasks before you start the upgrade – go to <strong class=" ">Sites -&gt; View export history -&gt; Tasks</strong> and click <strong class=" ">Delete all tasks</strong>.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Objectversionhistoryandrecycledobjects" class="heading "><span>Object version history and recycled objects</span></h4>
-<p   
->The upgrade does NOT update the data of:</p>
-<ul class=" "><li class=" "><p   
->Deleted objects in the   <a   href="Objects-recycle-bin">Recycle bin</a></p>
-</li><li class=" "><p   
->Previous   <a   href="Working-with-object-versioning">versions of objects</a></p>
-</li></ul><p   
->After you perform the upgrade, it may not be possible to correctly restore or roll back certain types of objects from the recycle bin or version history. Before you start the upgrade, we recommend reviewing the content of your recycle bin and version history:</p>
-<ol class=" "><li class=" "><p   
->Recover any data that you wish to use after the upgrade.</p>
-</li><li class=" "><p   
->Permanently delete the remaining data.</p>
-</li></ol>    <div  class="confbox admonition admonition-note">
+<p>The upgrade does NOT update the data of:</p>
+<ul class=" "><li class=" "><p>Deleted objects in the <a href="objects-recycle-bin">Recycle bin</a></p>
+</li><li class=" "><p>Previous <a href="working-with-object-versioning">versions of objects</a></p>
+</li></ul><p>After you perform the upgrade, it may not be possible to correctly restore or roll back certain types of objects from the recycle bin or version history. Before you start the upgrade, we recommend reviewing the content of your recycle bin and version history:</p>
+<ol class=" "><li class=" "><p>Recover any data that you wish to use after the upgrade.</p>
+</li><li class=" "><p>Permanently delete the remaining data.</p>
+</li></ol>    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Page version history and workflow</strong></p>
-<p   
->The instructions above only apply to the version history of non-page objects.</p>
-<p   
->If your website&#39;s content uses   <a   href="Configuring-workflows">workflow</a> (or page versioning without workflow), you do NOT need to clear the version history of pages before starting the upgrade. Existing page versions and pages under workflow should work correctly after performing the upgrade.</p>
-<p   
->Note that   <a   href="Products">product pages</a> under workflow are an exception. The product-specific (SKU) data in the page version history is not handled by the upgrade.</p>
+<p><strong class=" ">Page version history and workflow</strong></p>
+<p>The instructions above only apply to the version history of non-page objects.</p>
+<p>If your website's content uses <a href="configuring-workflows">workflow</a> (or page versioning without workflow), you do NOT need to clear the version history of pages before starting the upgrade. Existing page versions and pages under workflow should work correctly after performing the upgrade.</p>
+<p>Note that <a href="products">product pages</a> under workflow are an exception. The product-specific (SKU) data in the page version history is not handled by the upgrade.</p>
         </div>
     </div>
     <h4 id="src-68882766_UpgradingtoKentico11-Macrosecurity" class="heading "><span>Macro security</span></h4>
-<p   
->To successfully complete the upgrade, you will need to re-sign all macros after applying the upgrade. The upgrade procedure also re-signs the macros within certain object types automatically.</p>
-<p   
->This can potentially be a security vulnerability, so we strongly recommend checking your system for invalid macros before you start the upgrade:</p>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">System</strong> application, select the <strong class=" ">Macros -&gt; Report</strong> tab.</p>
-</li><li class=" "><p   
->Enable <strong class=" ">Report problems</strong> and click <strong class=" ">Search</strong>.</p>
-</li></ol><p   
->If you detect any macros that have invalid signatures or are otherwise suspicious, fix or delete them. For more information, see   <a   href="Working-with-macro-signatures">Working with macro signatures</a>.</p>
+<p>To successfully complete the upgrade, you will need to re-sign all macros after applying the upgrade. The upgrade procedure also re-signs the macros within certain object types automatically.</p>
+<p>This can potentially be a security vulnerability, so we strongly recommend checking your system for invalid macros before you start the upgrade:</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">System</strong> application, select the <strong class=" ">Macros -&gt; Report</strong> tab.</p>
+</li><li class=" "><p>Enable <strong class=" ">Report problems</strong> and click <strong class=" ">Search</strong>.</p>
+</li></ol><p>If you detect any macros that have invalid signatures or are otherwise suspicious, fix or delete them. For more information, see <a href="working-with-macro-signatures">Working with macro signatures</a>.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Largedatabasetablesandtimeouts" class="heading "><span>Large database tables and timeouts</span></h4>
-<p   
->If some of your database tables contain very large amounts of data, timeout problems can occur when applying the database upgrade or during the processing of the first request after the upgrade. This may prevent the upgrade procedure from finishing successfully.</p>
-<p   
->To avoid timeout-related issues, you can either increase the timeout settings of your SQL server for the duration of the upgrade, or try to clear unnecessary data.</p>
-<p   
->For example, contact management features can generate a very large volume of   <a   href="Working-with-contacts">contact</a> and   <a   href="Tracking-contact-activities">activity</a> data on high&#8209;traffic websites (in the <i class=" ">OM_Contact</i> and <i class=" ">OM_Activity</i> tables). You can trim down the data by running   <a   href="Setting-up-automatic-deletion-of-contacts">automatic deletion of contacts</a> that meet certain conditions and are no longer relevant.</p>
+<p>If some of your database tables contain very large amounts of data, timeout problems can occur when applying the database upgrade or during the processing of the first request after the upgrade. This may prevent the upgrade procedure from finishing successfully.</p>
+<p>To avoid timeout-related issues, you can either increase the timeout settings of your SQL server for the duration of the upgrade, or try to clear unnecessary data.</p>
+<p>For example, contact management features can generate a very large volume of <a href="working-with-contacts">contact</a> and <a href="tracking-contact-activities">activity</a> data on high‑traffic websites (in the <i class=" ">OM_Contact</i> and <i class=" ">OM_Activity</i> tables). You can trim down the data by running <a href="setting-up-automatic-deletion-of-contacts">automatic deletion of contacts</a> that meet certain conditions and are no longer relevant.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Full-textsearchforKenticodatabasetables" class="heading "><span>Full-text search for Kentico database tables</span></h4>
-<p   
->If you are using full-text search catalogs for any Kentico database tables, you need to remove the catalogs before starting the upgrade. The procedure drops and recreates indexes for most tables. You can set up the full-text search again after the upgrade is complete.</p>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRW1haWxtYXJrZXRpbmfigJNFbWFpbGFuZHRlbXBsYXRlY29udGVudA" class="heading "><span>Email marketing &ndash; Email and template content</span></h4>
-<p   
->The upgrade does not preserve the content of existing marketing emails and email templates. For templates, the <i class=" ">TemplateBody</i>, <i class=" ">TemplateStylesheetText</i>, <i class=" ">TemplateHeader</i> and <i class=" ">TemplateFooter</i> columns are removed from the <i class=" ">Newsletter_EmailTemplate</i> database table and replaced by the new <i class=" ">TemplateCode</i> column.</p>
-<p   
->If you want to transfer your existing email and template content, you need to back it up before starting the upgrade. After the upgrade is complete, use the content to create new templates and emails for your   <a   href="Creating-email-campaigns">email campaigns</a> and   <a   href="Creating-newsletters">newsletters</a> (based on the new   <a   href="Composing-marketing-emails">email builder</a> functionality).</p>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1NpbmdsZXRheHBlcnByb2R1Y3QsZGVwYXJ0bWVudCxhbmRzaGlwcGluZ29wdGlvbg" class="heading "><span>E-commerce &ndash; Single tax per product, department, and shipping option</span></h4>
-<p   
->Kentico 11 allows assigning of only one tax per   <a   href="Products">product</a>,   <a   href="Departments">department</a>, and   <a   href="Configuring-shipping-options">shipping option</a>. If you have multiple taxes assigned to any of the specified objects, change your   <a   href="Configuring-taxes">tax class settings</a> so that the final tax amount corresponds with the previous state.</p>
-<p   
->For example, if you use tax <i class=" ">A</i> with the amount set to 5% and tax <i class=" ">B</i> with the amount set to 10%, both assigned to your products, create a new tax with the amount set to 15% and assign just this new tax to your products.</p>
-<p   
->If you leave multiple taxes assigned to products, departments or shipping options, the upgrade procedure leaves only one of the taxes assigned to each object and the final tax amount will be different from the original state.</p>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1Byb2R1Y3Rjb3Vwb25z" class="heading "><span>E-commerce &ndash; Product coupons</span></h4>
-<p   
->The data structure and configuration of   <a   href="Working-with-product-coupons">Product coupons</a> changes significantly in Kentico 11. The upgrade transfers existing product coupon data, but does not process <strong class=" ">global</strong> product coupons (no longer supported) and coupons assigned to products using the <strong class=" ">All products except for these</strong> option.</p>
-<p   
->To ensure that all product coupon data is preserved correctly through the upgrade, perform the following in the <strong class=" ">Product coupons</strong> application:</p>
-<ul class=" "><li class=" "><p   
->For any global product coupons, recreate the same coupon on all sites in the system.</p>
-</li><li class=" "><p   
->For any product coupons using the <strong class=" ">All products except for these</strong> option on the <strong class=" ">Products</strong> tab, switch to <strong class=" ">Only the following products</strong> and adjust the product selection correspondingly.</p>
-</li></ul><p   
-><strong class=" ">Notes</strong>:</p>
-<ul class=" "><li class=" "><p   
->For product coupons assigned to products that have   <a   href="Working-with-product-variants">variants</a>, the upgrade replaces the assigned base product with all available product variants. If necessary, you can adjust the product assignment of coupons after the upgrade.</p>
-</li><li class=" "><p   
->After the upgrade, the <i class=" ">Product coupons</i> application and the related objects require the <strong class=" ">Read discounts</strong> and <strong class=" ">Modify discounts</strong>   <a   href="Configuring-e-commerce-permissions">permissions</a> for the <i class=" ">E-commerce</i> module, instead of the <i class=" ">Read data</i> and <i class=" ">Modify data</i> permissions. Assign the given permissions to the appropriate roles to ensure that your users retain access to product coupons.</p>
+<p>If you are using full-text search catalogs for any Kentico database tables, you need to remove the catalogs before starting the upgrade. The procedure drops and recreates indexes for most tables. You can set up the full-text search again after the upgrade is complete.</p>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRW1haWxtYXJrZXRpbmfigJNFbWFpbGFuZHRlbXBsYXRlY29udGVudA" class="heading "><span>Email marketing – Email and template content</span></h4>
+<p>The upgrade does not preserve the content of existing marketing emails and email templates. For templates, the <i class=" ">TemplateBody</i>, <i class=" ">TemplateStylesheetText</i>, <i class=" ">TemplateHeader</i> and <i class=" ">TemplateFooter</i> columns are removed from the <i class=" ">Newsletter_EmailTemplate</i> database table and replaced by the new <i class=" ">TemplateCode</i> column.</p>
+<p>If you want to transfer your existing email and template content, you need to back it up before starting the upgrade. After the upgrade is complete, use the content to create new templates and emails for your <a href="creating-email-campaigns">email campaigns</a> and <a href="creating-newsletters">newsletters</a> (based on the new <a href="composing-marketing-emails">email builder</a> functionality).</p>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1NpbmdsZXRheHBlcnByb2R1Y3QsZGVwYXJ0bWVudCxhbmRzaGlwcGluZ29wdGlvbg" class="heading "><span>E-commerce – Single tax per product, department, and shipping option</span></h4>
+<p>Kentico 11 allows assigning of only one tax per <a href="products">product</a>, <a href="departments">department</a>, and <a href="configuring-shipping-options">shipping option</a>. If you have multiple taxes assigned to any of the specified objects, change your <a href="configuring-taxes">tax class settings</a> so that the final tax amount corresponds with the previous state.</p>
+<p>For example, if you use tax <i class=" ">A</i> with the amount set to 5% and tax <i class=" ">B</i> with the amount set to 10%, both assigned to your products, create a new tax with the amount set to 15% and assign just this new tax to your products.</p>
+<p>If you leave multiple taxes assigned to products, departments or shipping options, the upgrade procedure leaves only one of the taxes assigned to each object and the final tax amount will be different from the original state.</p>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1Byb2R1Y3Rjb3Vwb25z" class="heading "><span>E-commerce – Product coupons</span></h4>
+<p>The data structure and configuration of <a href="working-with-product-coupons">Product coupons</a> changes significantly in Kentico 11. The upgrade transfers existing product coupon data, but does not process <strong class=" ">global</strong> product coupons (no longer supported) and coupons assigned to products using the <strong class=" ">All products except for these</strong> option.</p>
+<p>To ensure that all product coupon data is preserved correctly through the upgrade, perform the following in the <strong class=" ">Product coupons</strong> application:</p>
+<ul class=" "><li class=" "><p>For any global product coupons, recreate the same coupon on all sites in the system.</p>
+</li><li class=" "><p>For any product coupons using the <strong class=" ">All products except for these</strong> option on the <strong class=" ">Products</strong> tab, switch to <strong class=" ">Only the following products</strong> and adjust the product selection correspondingly.</p>
+</li></ul><p><strong class=" ">Notes</strong>:</p>
+<ul class=" "><li class=" "><p>For product coupons assigned to products that have <a href="working-with-product-variants">variants</a>, the upgrade replaces the assigned base product with all available product variants. If necessary, you can adjust the product assignment of coupons after the upgrade.</p>
+</li><li class=" "><p>After the upgrade, the <i class=" ">Product coupons</i> application and the related objects require the <strong class=" ">Read discounts</strong> and <strong class=" ">Modify discounts</strong> <a href="configuring-e-commerce-permissions">permissions</a> for the <i class=" ">E-commerce</i> module, instead of the <i class=" ">Read data</i> and <i class=" ">Modify data</i> permissions. Assign the given permissions to the appropriate roles to ensure that your users retain access to product coupons.</p>
 </li></ul>    <h4 id="src-68882766_UpgradingtoKentico11-Removedwebparts" class="heading "><span>Removed web parts</span></h4>
-<p   
->The upgrade removes the following web parts:<br/></p>
-<ul class=" "><li class=" "><p   
-><i class=" ">Flash </i>(together with the <i class=" ">Flash</i> widget)</p>
-</li><li class=" "><p   
-><i class=" ">Donate</i></p>
-</li><li class=" "><p   
-><i class=" ">Donations</i></p>
-</li><li class=" "><p   
-><i class=" ">Newsletter archive</i></p>
-</li><li class=" "><p   
-><i class=" ">Quick time</i></p>
-</li><li class=" "><p   
-><i class=" ">Search engine results highlighter</i></p>
-</li><li class=" "><p   
-><i class=" ">Search accelerator (for IE8 and higher)</i></p>
-</li><li class=" "><p   
-><i class=" ">WMP video</i></p>
-</li></ul><p   
->You need to replace or remove instances of these web parts on your site&#39;s page templates. Use the following process:<br/></p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Web parts</strong> application.</p>
-</li><li class=" "><p   
->Select the given web part and view the <strong class=" ">Usage</strong> tab.<br/></p>
-</li><li class=" "><p   
->Remove or replace any occurrences of the web part on your site.</p>
-</li><li class=" "><p   
->If a web part is used by a   <a   href="Preparing-widgets-for-users">widget</a> or   <a   href="Creating-inherited-web-parts">inherited web part</a>, perform these steps for the given components (use the <strong class=" ">Widgets</strong> application for widgets).</p>
-</li></ol><p   
->After you remove or replace all occurrences of a web part, we strongly recommend that you delete it in the <strong class=" ">Web parts</strong> application.<br/></p>
-    <div  class="confbox admonition admonition-info">
+<p>The upgrade removes the following web parts:<br></p>
+<ul class=" "><li class=" "><p><i class=" ">Flash </i>(together with the <i class=" ">Flash</i> widget)</p>
+</li><li class=" "><p><i class=" ">Donate</i></p>
+</li><li class=" "><p><i class=" ">Donations</i></p>
+</li><li class=" "><p><i class=" ">Newsletter archive</i></p>
+</li><li class=" "><p><i class=" ">Quick time</i></p>
+</li><li class=" "><p><i class=" ">Search engine results highlighter</i></p>
+</li><li class=" "><p><i class=" ">Search accelerator (for IE8 and higher)</i></p>
+</li><li class=" "><p><i class=" ">WMP video</i></p>
+</li></ul><p>You need to replace or remove instances of these web parts on your site's page templates. Use the following process:<br></p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Web parts</strong> application.</p>
+</li><li class=" "><p>Select the given web part and view the <strong class=" ">Usage</strong> tab.<br></p>
+</li><li class=" "><p>Remove or replace any occurrences of the web part on your site.</p>
+</li><li class=" "><p>If a web part is used by a <a href="preparing-widgets-for-users">widget</a> or <a href="creating-inherited-web-parts">inherited web part</a>, perform these steps for the given components (use the <strong class=" ">Widgets</strong> application for widgets).</p>
+</li></ol><p>After you remove or replace all occurrences of a web part, we strongly recommend that you delete it in the <strong class=" ">Web parts</strong> application.<br></p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The upgrade procedure deletes all source files of the listed web parts, but in most cases leaves their database records. If you do not manually delete them, these non-functional web parts may remain in your database after the upgrade, with a <i class=" ">(Removed)</i> suffix added to the display name.</p>
+<p>The upgrade procedure deletes all source files of the listed web parts, but in most cases leaves their database records. If you do not manually delete them, these non-functional web parts may remain in your database after the upgrade, with a <i class=" ">(Removed)</i> suffix added to the display name.</p>
         </div>
     </div>
     <h3 id="src-68882766_UpgradingtoKentico11-Applyingtheupgrade" class="heading "><span>Applying the upgrade</span></h3>
-<p   
->We strongly recommend using the   <a   href="Kentico-Hotfix-and-Upgrade-Utility">Kentico Upgrade Utility</a> to perform the upgrade automatically.</p>
-    <div  class="confbox admonition admonition-info">
+<p>We strongly recommend using the <a href="kentico-hotfix-and-upgrade-utility">Kentico Upgrade Utility</a> to perform the upgrade automatically.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Manual upgrade<br/></strong></p>
-<p   
->If you cannot run the automatic upgrade utility, you can perform the upgrade manually. See   <a   href="Upgrading-Kentico-manually">Upgrading Kentico manually</a>.</p>
+<p><strong class=" ">Manual upgrade<br></strong></p>
+<p>If you cannot run the automatic upgrade utility, you can perform the upgrade manually. See <a href="upgrading-kentico-manually">Upgrading Kentico manually</a>.</p>
         </div>
     </div>
-<p   
-><strong class=" ">Note</strong>: Before you run the upgrade utility, close any instances of Visual Studio where the target Kentico solution is opened.</p>
-<ol class=" "><li class=" "><p   
->Open the folder where you installed the upgrade.</p>
-</li><li class=" "><p   
->Run the <strong class=" ">Kentico Upgrade Utility</strong> (<i class=" ">Upgrade.exe)</i>.</p>
-</li><li class=" "><p   
->Enter the path to your Kentico 10 web project folder (you can select a folder using the <strong class=" ">Browse</strong> button).</p>
-</li><li class=" "><p   
->Use the utility to back up your project files and/or database if you have not done so already.</p>
-</li><li class=" "><p   
->Select whether you want to upgrade files, the database or both. To successfully perform the upgrade, you need to update both the project files and the database. Only change the settings in special scenarios (for example when performing part of the process manually).</p>
-    <div  class="confbox admonition admonition-note">
+<p><strong class=" ">Note</strong>: Before you run the upgrade utility, close any instances of Visual Studio where the target Kentico solution is opened.</p>
+<ol class=" "><li class=" "><p>Open the folder where you installed the upgrade.</p>
+</li><li class=" "><p>Run the <strong class=" ">Kentico Upgrade Utility</strong> (<i class=" ">Upgrade.exe)</i>.</p>
+</li><li class=" "><p>Enter the path to your Kentico 10 web project folder (you can select a folder using the <strong class=" ">Browse</strong> button).</p>
+</li><li class=" "><p>Use the utility to back up your project files and/or database if you have not done so already.</p>
+</li><li class=" "><p>Select whether you want to upgrade files, the database or both. To successfully perform the upgrade, you need to update both the project files and the database. Only change the settings in special scenarios (for example when performing part of the process manually).</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong>: If you use a   <a   href="Separating-the-contact-management-database">separated on-line marketing database</a>, you need to disable the SQL script part of the upgrade:</p>
-<ol class=" "><li class=" "><p   
->Click <strong class=" ">Switch to advanced mode</strong>.</p>
-</li><li class=" "><p   
->Clear the <strong class=" ">SQL script</strong> checkbox.</p>
-</li></ol><p   
->Run the SQL scripts manually after the upgrade utility updates the project files (see   <a   href="#src-68882766_UpgradingtoKentico11-Upgradingseparatedon-linemarketingdatabases">Upgrading separated on-line marketing databases</a> below).</p>
+<p><strong class=" ">Important</strong>: If you use a <a href="separating-the-contact-management-database">separated on-line marketing database</a>, you need to disable the SQL script part of the upgrade:</p>
+<ol class=" "><li class=" "><p>Click <strong class=" ">Switch to advanced mode</strong>.</p>
+</li><li class=" "><p>Clear the <strong class=" ">SQL script</strong> checkbox.</p>
+</li></ol><p>Run the SQL scripts manually after the upgrade utility updates the project files (see <a href="#src-68882766_upgradingtokentico11-upgradingseparatedon-linemarketingdatabases">Upgrading separated on-line marketing databases</a> below).</p>
         </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Warning</strong>: If you enable the <strong class=" ">Overwrite all files</strong> option in <i class=" ">advanced mode</i>, the upgrade replaces all project files with the default Kentico 11 files, regardless of customizations. This includes the <strong class=" ">web.config</strong> file, which you need to configure again after applying the upgrade.</p>
+<p><strong class=" ">Warning</strong>: If you enable the <strong class=" ">Overwrite all files</strong> option in <i class=" ">advanced mode</i>, the upgrade replaces all project files with the default Kentico 11 files, regardless of customizations. This includes the <strong class=" ">web.config</strong> file, which you need to configure again after applying the upgrade.</p>
         </div>
     </div>
-</li><li class=" "><p   
->On <i class=" ">web application</i> projects, the upgrade utility rebuilds the solution at the end of the upgrade by default. If your project contains custom code that is no longer supported in Kentico 11, or has certain modules uninstalled, the rebuild will not be successful. You can disable the <strong class=" ">Rebuild web project</strong> option on customized projects, and perform the rebuild manually once you update the project after the upgrade.</p>
-</li><li class=" "><p   
->Choose a method of taking the project offline and bringing it back online.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Next</strong> to start the upgrade procedure.</p>
-</li><li class=" "><p   
->After the upgrade finishes, click <strong class=" ">Next</strong> to view any conflicts of customized files that occurred during the upgrade process. By default, the upgrade utility does not overwrite modified files in order to preserve your customizations (unless you enabled the <i class=" ">Overwrite all files</i> option in the upgrade utility):</p>
-<ul class=" "><li class=" "><p   
->For each customized file, the upgrade creates the new Kentico 11 version (with the <i class=" ">.new</i> extension). You need to manually transfer your customizations to the new files and then replace the original ones.</p>
-</li><li class=" "><p   
->Customized files that no longer exist in Kentico 11 remain in the file system, with an added <i class=" ">.deleted</i> extension. These files are not included in the <i class=" ">CMSApp</i> project in web application projects.</p>
-</li></ul></li><li class=" "><p   
->The upgrade attempts to automatically update your project&rsquo;s <strong class=" ">web.config</strong> file (unless you enabled the <i class=" ">Overwrite all files</i> option in the upgrade utility). The process may fail if your web.config contains certain types of customizations. In this case, a new web.config file is created in the web project&rsquo;s CMS folder with the <i class=" ">.new</i> extension. You need to:</p>
-<ol class=" "><li class=" "><p   
->Edit the new web.config and transfer over any customizations and the connection string from the original web.config.</p>
-</li><li class=" "><p   
->Move your original web.config to a different location.</p>
-</li><li class=" "><p   
->Rename <i class=" ">web.config.new</i> to <i class=" ">web.config</i>.</p>
-</li></ol></li></ol><p   
->Close the upgrade utility.</p>
+</li><li class=" "><p>On <i class=" ">web application</i> projects, the upgrade utility rebuilds the solution at the end of the upgrade by default. If your project contains custom code that is no longer supported in Kentico 11, or has certain modules uninstalled, the rebuild will not be successful. You can disable the <strong class=" ">Rebuild web project</strong> option on customized projects, and perform the rebuild manually once you update the project after the upgrade.</p>
+</li><li class=" "><p>Choose a method of taking the project offline and bringing it back online.</p>
+</li><li class=" "><p>Click <strong class=" ">Next</strong> to start the upgrade procedure.</p>
+</li><li class=" "><p>After the upgrade finishes, click <strong class=" ">Next</strong> to view any conflicts of customized files that occurred during the upgrade process. By default, the upgrade utility does not overwrite modified files in order to preserve your customizations (unless you enabled the <i class=" ">Overwrite all files</i> option in the upgrade utility):</p>
+<ul class=" "><li class=" "><p>For each customized file, the upgrade creates the new Kentico 11 version (with the <i class=" ">.new</i> extension). You need to manually transfer your customizations to the new files and then replace the original ones.</p>
+</li><li class=" "><p>Customized files that no longer exist in Kentico 11 remain in the file system, with an added <i class=" ">.deleted</i> extension. These files are not included in the <i class=" ">CMSApp</i> project in web application projects.</p>
+</li></ul></li><li class=" "><p>The upgrade attempts to automatically update your project’s <strong class=" ">web.config</strong> file (unless you enabled the <i class=" ">Overwrite all files</i> option in the upgrade utility). The process may fail if your web.config contains certain types of customizations. In this case, a new web.config file is created in the web project’s CMS folder with the <i class=" ">.new</i> extension. You need to:</p>
+<ol class=" "><li class=" "><p>Edit the new web.config and transfer over any customizations and the connection string from the original web.config.</p>
+</li><li class=" "><p>Move your original web.config to a different location.</p>
+</li><li class=" "><p>Rename <i class=" ">web.config.new</i> to <i class=" ">web.config</i>.</p>
+</li></ol></li></ol><p>Close the upgrade utility.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Upgradingseparatedon-linemarketingdatabases" class="heading "><span>Upgrading separated on-line marketing databases</span></h4>
-<p   
->If your project uses a   <a   href="Separating-the-contact-management-database">separated on-line marketing database</a>, you need to manually run the upgrade SQL scripts after updating the project files:</p>
-<ol class=" "><li class=" "><p   
->Open the upgrade installation directory (<i class=" ">C:\Program Files\Kentico\11.0\Upgrade100_110 </i>by default).</p>
-</li><li class=" "><p   
->Expand the <strong class=" ">SQL\Separation</strong> folder.</p>
-</li><li class=" "><p   
->Manually run the script files <i class=" ">in the following order:</i><br/></p>
-<ol class=" "><li class=" "><p   
-><strong class=" ">separated.sql</strong> (against the separated on-line marketing database)</p>
-</li><li class=" "><p   
-><strong class=" ">default.sql</strong> (against your main Kentico database)</p>
-</li></ol></li></ol>    <div  class="confbox admonition admonition-info">
+<p>If your project uses a <a href="separating-the-contact-management-database">separated on-line marketing database</a>, you need to manually run the upgrade SQL scripts after updating the project files:</p>
+<ol class=" "><li class=" "><p>Open the upgrade installation directory (<i class=" ">C:\Program Files\Kentico\11.0\Upgrade100_110 </i>by default).</p>
+</li><li class=" "><p>Expand the <strong class=" ">SQL\Separation</strong> folder.</p>
+</li><li class=" "><p>Manually run the script files <i class=" ">in the following order:</i><br></p>
+<ol class=" "><li class=" "><p><strong class=" ">separated.sql</strong> (against the separated on-line marketing database)</p>
+</li><li class=" "><p><strong class=" ">default.sql</strong> (against your main Kentico database)</p>
+</li></ol></li></ol>    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Kentico uses database objects with the <strong class=" ">dbo</strong> schema by default. If your database uses a different or no schema, you need to modify any schema occurrences in the script accordingly.</p>
+<p><strong class=" ">Note</strong>: Kentico uses database objects with the <strong class=" ">dbo</strong> schema by default. If your database uses a different or no schema, you need to modify any schema occurrences in the script accordingly.</p>
         </div>
     </div>
-<p   
->Once the databases are successfully upgraded, continue with the steps after the upgrade.</p>
+<p>Once the databases are successfully upgraded, continue with the steps after the upgrade.</p>
     <h3 id="src-68882766_UpgradingtoKentico11-Stepsafterperformingtheupgrade" class="heading "><span>Steps after performing the upgrade</span></h3>
-<p   
->After you apply the upgrade to your project, please check the following sections and perform the required actions. Go through the sections in the listed order.</p>
-    <div  class="confbox admonition admonition-warning">
+<p>After you apply the upgrade to your project, please check the following sections and perform the required actions. Go through the sections in the listed order.</p>
+    <div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong></p>
-<p   
->After you apply the upgrade, <strong class=" ">clear your browser cache</strong> before you open the website or Kentico administration interface.</p>
+<p><strong class=" ">Important</strong></p>
+<p>After you apply the upgrade, <strong class=" ">clear your browser cache</strong> before you open the website or Kentico administration interface.</p>
         </div>
     </div>
     <h4 id="src-68882766_UpgradingtoKentico11-APIchanges" class="heading "><span>API changes</span></h4>
-<p   
->You need to update your custom code according to the new API of Kentico 11, including:</p>
-<ul class=" "><li class=" "><p   
->Custom or customized code files in the web project</p>
-</li><li class=" "><p   
->Virtual objects in Kentico, such as   <a   href="Writing-transformations">transformations</a> and   <a   href="Editing-page-layouts">page layouts</a></p>
-</li></ul><p   
->Use the output of the Kentico code upgrade tool (described in   <a   href="#src-68882766_UpgradingtoKentico11-Customcodeanalysis">Custom code analysis</a>) to find occurrences of invalid code and recommendations on how to fix or replace them.</p>
-<p   
-><strong class=" ">Tip</strong>: Enable   <a   href="Deployment-mode-for-virtual-objects">Deployment mode</a> and fix the code of virtual objects in the corresponding physical files. This makes it easier to update the code of virtual objects according to the output of the code upgrade tool. Disable deployment mode to return the updated virtual objects back into the database.</p>
-<p   
->You can also search for specific API resolutions on the <a  class="external-link" href="http://devnet.kentico.com/documentation/api-changes/kentico-11">DevNet portal</a>.</p>
+<p>You need to update your custom code according to the new API of Kentico 11, including:</p>
+<ul class=" "><li class=" "><p>Custom or customized code files in the web project</p>
+</li><li class=" "><p>Virtual objects in Kentico, such as <a href="writing-transformations">transformations</a> and <a href="editing-page-layouts">page layouts</a></p>
+</li></ul><p>Use the output of the Kentico code upgrade tool (described in <a href="#src-68882766_upgradingtokentico11-customcodeanalysis">Custom code analysis</a>) to find occurrences of invalid code and recommendations on how to fix or replace them.</p>
+<p><strong class=" ">Tip</strong>: Enable <a href="deployment-mode-for-virtual-objects">Deployment mode</a> and fix the code of virtual objects in the corresponding physical files. This makes it easier to update the code of virtual objects according to the output of the code upgrade tool. Disable deployment mode to return the updated virtual objects back into the database.</p>
+<p>You can also search for specific API resolutions on the <a class="external-link" href="http://devnet.kentico.com/documentation/api-changes/kentico-11">DevNet portal</a>.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-E-commercecustomizations" class="heading "><span>E-commerce customizations</span></h4>
-<p   
->Kentico 11 introduces significant changes in the e-commerce functionality and API. You may need to update any related custom code or components after performing the upgrade.</p>
-<ul class=" "><li class=" "><p   
->The type of all API members that store or return prices and other monetary values was changed from <i class=" ">double</i> to <a  class="external-link" href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal">decimal</a> (affects object properties, method parameters and return types, etc.).</p>
-</li><li class=" "><p   
->The overall customization model was changed for many types of e-commerce functionality. Instead of inheriting from provider classes and overriding methods, you now need to create and register custom implementations of appropriate interfaces. See   <a   href="E-commerce-customization-model">E-commerce customization model</a> to learn more.</p>
-</li><li class=" "><p   
->If you perform shopping cart calculations in your custom code, you now need to explicitly call the <i class=" ">ShoppingCartInfo.Evaluate()</i> method. The <i class=" ">Evaluate()</i> method must also be called after setting <i class=" ">ShoppingCartInfo</i> properties that affect the calculation results.</p>
-</li><li class=" "><p   
->The API for implementing custom payment gateways was revised (without backward compatibility). Any custom payment gateways need to be rewritten for Kentico 11. See   <a   href="Creating-a-custom-payment-gateway">Creating a custom payment gateway</a>.<br/></p>
-</li><li class=" "><p   
->If you have customized the evaluation or application of   <a   href="Working-with-Buy-X-Get-Y-discounts">Buy X Get Y discounts</a> :<br/></p>
-<ul class=" "><li class=" "><p   
->For custom classes that inherit from <strong class=" ">MultiBuyDiscountsEvaluator</strong>, you need to perform the following:</p>
-<ul class=" "><li class=" "><p   
->Update your class&#39;s code according to the new signatures of the virtual methods in the base class.</p>
-</li><li class=" "><p   
->Register your class as the implementation of the <strong class=" ">IMultiBuyDiscountsEvaluator</strong> interface using the <strong class=" ">RegisterImplementation</strong> assembly attribute (instead of registering the class in a custom inherited <i class=" ">MultiBuyDiscountInfoProvider </i>).</p>
-</li><li class=" "><p   
->Verify that your customization works as intended with the updated e-commerce functionality.<br/></p>
-</li></ul></li><li class=" "><p   
->If you have a custom inherited <strong class=" ">MultiBuyDiscountsApplicator</strong> class, you need to revise the entire customization. In these scenarios, we recommend implementing your custom discount functionality as a separate step (<i class=" ">IShoppingCartCalculator</i> implementation) in the overall shopping cart calculation process. See   <a   href="Customizing-the-shopping-cart-calculation">Customizing the shopping cart calculation</a> for more information.<br/></p>
+<p>Kentico 11 introduces significant changes in the e-commerce functionality and API. You may need to update any related custom code or components after performing the upgrade.</p>
+<ul class=" "><li class=" "><p>The type of all API members that store or return prices and other monetary values was changed from <i class=" ">double</i> to <a class="external-link" href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal">decimal</a> (affects object properties, method parameters and return types, etc.).</p>
+</li><li class=" "><p>The overall customization model was changed for many types of e-commerce functionality. Instead of inheriting from provider classes and overriding methods, you now need to create and register custom implementations of appropriate interfaces. See <a href="e-commerce-customization-model">E-commerce customization model</a> to learn more.</p>
+</li><li class=" "><p>If you perform shopping cart calculations in your custom code, you now need to explicitly call the <i class=" ">ShoppingCartInfo.Evaluate()</i> method. The <i class=" ">Evaluate()</i> method must also be called after setting <i class=" ">ShoppingCartInfo</i> properties that affect the calculation results.</p>
+</li><li class=" "><p>The API for implementing custom payment gateways was revised (without backward compatibility). Any custom payment gateways need to be rewritten for Kentico 11. See <a href="creating-a-custom-payment-gateway">Creating a custom payment gateway</a>.<br></p>
+</li><li class=" "><p>If you have customized the evaluation or application of <a href="working-with-buy-x-get-y-discounts">Buy X Get Y discounts</a> :<br></p>
+<ul class=" "><li class=" "><p>For custom classes that inherit from <strong class=" ">MultiBuyDiscountsEvaluator</strong>, you need to perform the following:</p>
+<ul class=" "><li class=" "><p>Update your class's code according to the new signatures of the virtual methods in the base class.</p>
+</li><li class=" "><p>Register your class as the implementation of the <strong class=" ">IMultiBuyDiscountsEvaluator</strong> interface using the <strong class=" ">RegisterImplementation</strong> assembly attribute (instead of registering the class in a custom inherited <i class=" ">MultiBuyDiscountInfoProvider </i>).</p>
+</li><li class=" "><p>Verify that your customization works as intended with the updated e-commerce functionality.<br></p>
+</li></ul></li><li class=" "><p>If you have a custom inherited <strong class=" ">MultiBuyDiscountsApplicator</strong> class, you need to revise the entire customization. In these scenarios, we recommend implementing your custom discount functionality as a separate step (<i class=" ">IShoppingCartCalculator</i> implementation) in the overall shopping cart calculation process. See <a href="customizing-the-shopping-cart-calculation">Customizing the shopping cart calculation</a> for more information.<br></p>
 </li></ul></li></ul>    <h4 id="src-68882766_UpgradingtoKentico11-InfoProvidercustomizations" class="heading "><span>InfoProvider customizations</span></h4>
-<p   
->The default <i class=" ">InfoProvider</i> classes in Kentico 11 no longer contain virtual <i class=" ">GetInfoInternal, SetInfoInternal</i> and <i class=" ">DeleteInfoInternal</i> methods (in most cases). For any   <a   href="Customizing-providers">custom providers</a> inheriting from a default <i class=" ">InfoProvider</i> class that contain overrides of these methods, override the following methods instead:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">GetInfoById</i> (and/or <i class=" ">GetInfoByCodeName, GetInfoByGuid)</i></p>
-</li><li class=" "><p   
-><i class=" ">SetInfo</i></p>
-</li><li class=" "><p   
-><i class=" ">DeleteInfo</i></p>
+<p>The default <i class=" ">InfoProvider</i> classes in Kentico 11 no longer contain virtual <i class=" ">GetInfoInternal, SetInfoInternal</i> and <i class=" ">DeleteInfoInternal</i> methods (in most cases). For any <a href="customizing-providers">custom providers</a> inheriting from a default <i class=" ">InfoProvider</i> class that contain overrides of these methods, override the following methods instead:</p>
+<ul class=" "><li class=" "><p><i class=" ">GetInfoById</i> (and/or <i class=" ">GetInfoByCodeName, GetInfoByGuid)</i></p>
+</li><li class=" "><p><i class=" ">SetInfo</i></p>
+</li><li class=" "><p><i class=" ">DeleteInfo</i></p>
 </li></ul>    <h4 id="src-68882766_UpgradingtoKentico11-NuGetpackageconsolidation" class="heading "><span>NuGet package consolidation</span></h4>
-<p   
->If your project uses a higher <strong class=" ">Target framework</strong> than <i class=" ">.NET Framework 4.6</i>, we strongly recommend that you consolidate the target framework version for all installed NuGet packages:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Package Manager Console</strong> (under <strong class=" ">Tools &gt; NuGet Package Manager</strong>).</p>
-</li><li class=" "><p   
->Run the following <a  class="external-link" href="https://docs.microsoft.com/en-us/nuget/tools/ps-ref-update-package">Update-Package</a> command:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If your project uses a higher <strong class=" ">Target framework</strong> than <i class=" ">.NET Framework 4.6</i>, we strongly recommend that you consolidate the target framework version for all installed NuGet packages:</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
+</li><li class=" "><p>Open the <strong class=" ">Package Manager Console</strong> (under <strong class=" ">Tools &gt; NuGet Package Manager</strong>).</p>
+</li><li class=" "><p>Run the following <a class="external-link" href="https://docs.microsoft.com/en-us/nuget/tools/ps-ref-update-package">Update-Package</a> command:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">Update-Package -reinstall</code></div>
 </div>
     </div>
-</li></ol><p   
->The command reinstalls all NuGet packages with the appropriate target framework version for your project.</p>
+</li></ol><p>The command reinstalls all NuGet packages with the appropriate target framework version for your project.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Assemblyreferences" class="heading "><span>Assembly references</span></h4>
-<p   
->Kentico 11 brings the following assembly changes:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.DataProviderSQL.dll</strong> merged into <strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.FileSystemStorage.dll</strong> merged into <strong class=" ">CMS.IO.dll</strong></p>
-</li></ul><p   
->You need to remove any manually added references from custom projects to the old assemblies. If necessary, add new references to the assemblies into which the code was merged. The changes do not impact the related API and namespaces (<i class=" ">CMS.DataProviderSQL</i> and <i class=" ">CMS.FileSystemStorage</i>).</p>
+<p>Kentico 11 brings the following assembly changes:</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.DataProviderSQL.dll</strong> merged into <strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.FileSystemStorage.dll</strong> merged into <strong class=" ">CMS.IO.dll</strong></p>
+</li></ul><p>You need to remove any manually added references from custom projects to the old assemblies. If necessary, add new references to the assemblies into which the code was merged. The changes do not impact the related API and namespaces (<i class=" ">CMS.DataProviderSQL</i> and <i class=" ">CMS.FileSystemStorage</i>).</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Securitycodeformcontrol" class="heading "><span>Security code form control</span></h4>
-<p   
->In Kentico 11, the <strong class=" ">Security code</strong>   <a   href="Developing-form-controls">form control</a> is implemented by a class within the <strong class=" ">CMS.FormEngine.Web.UI</strong> assembly. The upgrade removes the original <i class=" ">~/CMSFormControls/Captcha/SecurityCode.ascx</i> user control file.</p>
-<p   
->If your project contains custom web forms or user controls that use the original <i class=" ">SecurityCode.ascx</i> file, you need to remove the related <strong class=" ">@ Register</strong> directives. You can continue using the <strong class=" ">&lt;cms:SecurityCode&gt;</strong> control from the <i class=" ">CMS.FormEngine.Web.UI</i> assembly.<br/></p>
-<p   
->If you have customized the <i class=" ">~/CMSFormControls/Captcha/SecurityCode.ascx</i> file, it remains in the project with the <i class=" ">.deleted</i> extension. To continue using your modified security code control, remove the <i class=" ">.deleted</i> extension and register the file as a custom form control.</p>
+<p>In Kentico 11, the <strong class=" ">Security code</strong> <a href="developing-form-controls">form control</a> is implemented by a class within the <strong class=" ">CMS.FormEngine.Web.UI</strong> assembly. The upgrade removes the original <i class=" ">~/CMSFormControls/Captcha/SecurityCode.ascx</i> user control file.</p>
+<p>If your project contains custom web forms or user controls that use the original <i class=" ">SecurityCode.ascx</i> file, you need to remove the related <strong class=" ">@ Register</strong> directives. You can continue using the <strong class=" ">&lt;cms:SecurityCode&gt;</strong> control from the <i class=" ">CMS.FormEngine.Web.UI</i> assembly.<br></p>
+<p>If you have customized the <i class=" ">~/CMSFormControls/Captcha/SecurityCode.ascx</i> file, it remains in the project with the <i class=" ">.deleted</i> extension. To continue using your modified security code control, remove the <i class=" ">.deleted</i> extension and register the file as a custom form control.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Kentico11setupfiles" class="heading "><span>Kentico 11 setup files</span></h4>
-<p   
->The upgrade converts your web projects to version 11, but does not provide the associated setup files (i.e. the Kentico program files that are separate from individual web projects). The setup files contain   <a   href="External-utilities">external utilities</a>, sample files, and allow you to install new Kentico 11 web projects.</p>
-<p   
->To obtain the installer and setup files for Kentico 11:</p>
-<ol class=" "><li class=" "><p   
->Download the <a  class="external-link" href="http://download.kentico.com/Kentico_11_0.exe">Kentico 11 installer</a>.</p>
-</li><li class=" "><p   
->Run <strong class=" ">Kentico_11_0.exe</strong>.</p>
-</li><li class=" "><p   
->Read and accept the License Terms and Conditions and click <strong class=" ">Custom installation</strong>.</p>
-</li><li class=" "><p   
->Select <strong class=" ">Install only program files</strong> and click <strong class=" ">Install</strong>.</p>
+<p>The upgrade converts your web projects to version 11, but does not provide the associated setup files (i.e. the Kentico program files that are separate from individual web projects). The setup files contain <a href="external-utilities">external utilities</a>, sample files, and allow you to install new Kentico 11 web projects.</p>
+<p>To obtain the installer and setup files for Kentico 11:</p>
+<ol class=" "><li class=" "><p>Download the <a class="external-link" href="http://download.kentico.com/Kentico_11_0.exe">Kentico 11 installer</a>.</p>
+</li><li class=" "><p>Run <strong class=" ">Kentico_11_0.exe</strong>.</p>
+</li><li class=" "><p>Read and accept the License Terms and Conditions and click <strong class=" ">Custom installation</strong>.</p>
+</li><li class=" "><p>Select <strong class=" ">Install only program files</strong> and click <strong class=" ">Install</strong>.</p>
 </li></ol>    <h4 id="src-68882766_UpgradingtoKentico11-Clearingsessionstatedata" class="heading "><span>Clearing session state data</span></h4>
-<p   
->Objects that are stored in the server-side session state may have a different structure in the upgraded version. The changes may cause errors for users who access the upgraded site with outdated session data.</p>
-<p   
->If your application uses a session state mode that preserves data through application restarts <i class=" ">(StateServer, SQLServer</i> or <i class=" ">Custom)</i>, you need to manually clear any existing session data after you perform the upgrade:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">StateServer</strong> &ndash; restart the session state service.</p>
-</li><li class=" "><p   
-><strong class=" ">SQLServer</strong> &ndash; delete the content of the session state database.</p>
-</li><li class=" "><p   
-><strong class=" ">Custom</strong> &ndash; depends on the implementation of the custom storage provider.</p>
+<p>Objects that are stored in the server-side session state may have a different structure in the upgraded version. The changes may cause errors for users who access the upgraded site with outdated session data.</p>
+<p>If your application uses a session state mode that preserves data through application restarts <i class=" ">(StateServer, SQLServer</i> or <i class=" ">Custom)</i>, you need to manually clear any existing session data after you perform the upgrade:</p>
+<ul class=" "><li class=" "><p><strong class=" ">StateServer</strong> – restart the session state service.</p>
+</li><li class=" "><p><strong class=" ">SQLServer</strong> – delete the content of the session state database.</p>
+</li><li class=" "><p><strong class=" ">Custom</strong> – depends on the implementation of the custom storage provider.</p>
 </li></ul>    <h4 id="src-68882766_UpgradingtoKentico11-Runningthewebsite-Firstrequest" class="heading "><span>Running the website - First request</span></h4>
-<p   
-><strong class=" ">Important</strong>: This step must be performed <strong class=" ">before you apply any hotfixes</strong> to the upgraded project.</p>
-<p   
->Open the upgraded website in a browser. When handling the first request (i.e. on application start), the system performs certain tasks required to finalize the upgrade. Processing of the first request may take longer than usual. The first request also includes the automatic <i class=" "><strong class=" ">import</strong> </i>of new web part, widget, report and time zone objects.</p>
-<p   
->Once the website loads, log in to the administration interface and open the <strong class=" ">Event log</strong> application. Check for the presence of any errors or exceptions between the <i class=" "><strong class=" ">Upgrade - Start</strong> </i>and <i class=" "><strong class=" ">Upgrade - Finish</strong> </i>events:</p>
-<ul class=" "><li class=" "><p   
->If you find errors related to the object import, open the <strong class=" ">Sites</strong> application, click <strong class=" ">Import site or objects</strong> <i class=" "></i>and try to import the <i class=" ">upgrade_100_110.zip</i> package manually.</p>
-</li><li class=" "><p   
->If any other errors are present or if the log does not contain the <i class=" "><strong class=" ">Upgrade - Finish</strong> </i>event at all, the upgrade may not be fully applied. Please contact <a  class="external-link" href="http://devnet.kentico.com/support">Kentico support</a> and provide the details of the errors.</p>
+<p><strong class=" ">Important</strong>: This step must be performed <strong class=" ">before you apply any hotfixes</strong> to the upgraded project.</p>
+<p>Open the upgraded website in a browser. When handling the first request (i.e. on application start), the system performs certain tasks required to finalize the upgrade. Processing of the first request may take longer than usual. The first request also includes the automatic <i class=" "><strong class=" ">import</strong> </i>of new web part, widget, report and time zone objects.</p>
+<p>Once the website loads, log in to the administration interface and open the <strong class=" ">Event log</strong> application. Check for the presence of any errors or exceptions between the <i class=" "><strong class=" ">Upgrade - Start</strong> </i>and <i class=" "><strong class=" ">Upgrade - Finish</strong> </i>events:</p>
+<ul class=" "><li class=" "><p>If you find errors related to the object import, open the <strong class=" ">Sites</strong> application, click <strong class=" ">Import site or objects</strong> <i class=" "></i>and try to import the <i class=" ">upgrade_100_110.zip</i> package manually.</p>
+</li><li class=" "><p>If any other errors are present or if the log does not contain the <i class=" "><strong class=" ">Upgrade - Finish</strong> </i>event at all, the upgrade may not be fully applied. Please contact <a class="external-link" href="http://devnet.kentico.com/support">Kentico support</a> and provide the details of the errors.</p>
 </li></ul>    <h4 id="src-68882766_UpgradingtoKentico11-Licenses" class="heading "><span>Licenses</span></h4>
-<p   
->You need to add Kentico version 11 licenses for the domains used by your sites:</p>
-<ol class=" "><li class=" "><p   
->In the Kentico administration interface, open the <strong class=" ">Licenses</strong> application.</p>
-</li><li class=" "><p   
->Delete the old version 10 licenses.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New license</strong> to add your licenses for version 11.</p>
+<p>You need to add Kentico version 11 licenses for the domains used by your sites:</p>
+<ol class=" "><li class=" "><p>In the Kentico administration interface, open the <strong class=" ">Licenses</strong> application.</p>
+</li><li class=" "><p>Delete the old version 10 licenses.</p>
+</li><li class=" "><p>Click <strong class=" ">New license</strong> to add your licenses for version 11.</p>
 </li></ol>    <h4 id="src-68882766_UpgradingtoKentico11-Macros" class="heading "><span>Macros</span></h4>
-<p   
->To ensure that macros and the administration interface work correctly after the upgrade:</p>
-<ol class=" "><li class=" "><p   
->Sign in to the Kentico administration interface as a global administrator.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">System</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Macros -&gt; Signatures</strong> tab.</p>
-</li><li class=" "><p   
->Enable the <strong class=" ">Sign all macros</strong> option.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Update macro signatures</strong>.</p>
-</li></ol><p   
->The system resigns all macros. The new security signatures of all macros contain the username of your administrator account.</p>
-<p   
->Validate that all macros in the system work correctly:</p>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">System</strong> application, select the <strong class=" ">Macros -&gt; Report</strong> tab.</p>
-</li><li class=" "><p   
->Enable <strong class=" ">Report problems</strong> and click <strong class=" ">Search</strong>.</p>
-</li></ol><p   
->For more information, see the   <a   href="Macro-expressions">Macro expressions</a> chapter.</p>
+<p>To ensure that macros and the administration interface work correctly after the upgrade:</p>
+<ol class=" "><li class=" "><p>Sign in to the Kentico administration interface as a global administrator.</p>
+</li><li class=" "><p>Open the <strong class=" ">System</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Macros -&gt; Signatures</strong> tab.</p>
+</li><li class=" "><p>Enable the <strong class=" ">Sign all macros</strong> option.</p>
+</li><li class=" "><p>Click <strong class=" ">Update macro signatures</strong>.</p>
+</li></ol><p>The system resigns all macros. The new security signatures of all macros contain the username of your administrator account.</p>
+<p>Validate that all macros in the system work correctly:</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">System</strong> application, select the <strong class=" ">Macros -&gt; Report</strong> tab.</p>
+</li><li class=" "><p>Enable <strong class=" ">Report problems</strong> and click <strong class=" ">Search</strong>.</p>
+</li></ol><p>For more information, see the <a href="macro-expressions">Macro expressions</a> chapter.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-51Degreesdevicedetection" class="heading "><span>51Degrees device detection</span></h4>
-<p   
->51Degrees device detection is no longer included in Kentico 11 by default, and is replaced by the functionality of the .NET Framework <i class=" ">HttpBrowserCapabilities</i> class. If you want to continue using   <a   href="Device-macros">device macros</a> (on the live site, in device profiles, in transformations, etc.), you have two options:</p>
-<ul class=" "><li class=" "><p   
->Utilize the system&#39;s   <a   href="Device-macros">default functionality</a> (properties of the <i class=" ">HttpBrowserCapabilities</i> class)<br/></p>
-<ul class=" "><li class=" "><p   
->Update your device macros from the <i class=" ">CurrentDevice.&lt;property&gt;</i> format to: <i class=" ">CurrentDevice.Data[&quot;&lt;property&gt;&quot;]</i></p>
-</li><li class=" "><p   
->Use properties of the <i class=" ">HttpBrowserCapabilities</i> class. Some of the original 51Degrees properties may not be available and some may be named differently.</p>
-</li></ul><p   
->&ndash; OR &ndash;</p>
-</li><li class=" "><p   
->  <a   href="Configuring-51Degrees-device-detection">Integrate</a> 51Degrees through NuGet packages<br/></p>
-<ul class=" "><li class=" "><p   
->Update your device macros from the <i class=" ">CurrentDevice.&lt;property&gt;</i> format to: <i class=" ">CurrentDevice.Data[&quot;&lt;property&gt;&quot;]</i></p>
-</li><li class=" "><p   
->Alternatively, register a   <a   href="Configuring-51Degrees-device-detection">custom</a> <i class=" ">CurrentDevice</i> class and use the original macro format.</p>
-</li></ul></li></ul><p   
->Additionally, the     <span style="color: #262524;">
-<i class=" ">Current device is mobile</i> and <i class=" ">Current device max screen size is in range</i> macro rules were removed. If you need to replace them, integrate 51Degrees and   <a   href="Creating-macro-rules">create your own custom rules</a>.    <span style="color: #16233a;">
+<p>51Degrees device detection is no longer included in Kentico 11 by default, and is replaced by the functionality of the .NET Framework <i class=" ">HttpBrowserCapabilities</i> class. If you want to continue using <a href="device-macros">device macros</a> (on the live site, in device profiles, in transformations, etc.), you have two options:</p>
+<ul class=" "><li class=" "><p>Utilize the system's <a href="device-macros">default functionality</a> (properties of the <i class=" ">HttpBrowserCapabilities</i> class)<br></p>
+<ul class=" "><li class=" "><p>Update your device macros from the <i class=" ">CurrentDevice.&lt;property&gt;</i> format to: <i class=" ">CurrentDevice.Data["&lt;property&gt;"]</i></p>
+</li><li class=" "><p>Use properties of the <i class=" ">HttpBrowserCapabilities</i> class. Some of the original 51Degrees properties may not be available and some may be named differently.</p>
+</li></ul><p>– OR –</p>
+</li><li class=" "><p><a href="configuring-51degrees-device-detection">Integrate</a> 51Degrees through NuGet packages<br></p>
+<ul class=" "><li class=" "><p>Update your device macros from the <i class=" ">CurrentDevice.&lt;property&gt;</i> format to: <i class=" ">CurrentDevice.Data["&lt;property&gt;"]</i></p>
+</li><li class=" "><p>Alternatively, register a <a href="configuring-51degrees-device-detection">custom</a> <i class=" ">CurrentDevice</i> class and use the original macro format.</p>
+</li></ul></li></ul><p>Additionally, the     <span style="color: #262524;">
+<i class=" ">Current device is mobile</i> and <i class=" ">Current device max screen size is in range</i> macro rules were removed. If you need to replace them, integrate 51Degrees and <a href="creating-macro-rules">create your own custom rules</a>.    <span style="color: #16233a;">
  You also need to update and re-save any existing macro condition fields that use the given rules.    </span>
-<br/>    </span>
+<br>    </span>
 </p>
     <h4 id="src-68882766_UpgradingtoKentico11-Webfarms" class="heading "><span>Web farms</span></h4>
-<p   
->The upgrade procedure automatically disables   <a   href="Setting-up-web-farms">web farm</a> functionality. If your Kentico instance runs on a web farm, you need to enable web farms after you complete the upgrade.</p>
-<p   
->We recommend that you enable the web farm on <strong class=" ">one server</strong> or instance and after that you add the remaining servers to the web farm.</p>
-<ol class=" "><li class=" "><p   
->In the Kentico administration interface, open the <strong class=" ">Settings</strong> application.</p>
-</li><li class=" "><p   
->Expand the <strong class=" ">Versioning &amp; Synchronization -&gt; Web farm</strong> category.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Web farm mode</strong>:</p>
-<ul class=" "><li class=" "><p   
->Automatic &ndash; if you wish to let the system handle the configuration of web farms servers.</p>
-</li><li class=" "><p   
->Manual &ndash; if you need to control the web farm manually. See   <a   href="Configuring-web-farm-servers">Configuring web farm servers</a>.</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
+<p>The upgrade procedure automatically disables <a href="setting-up-web-farms">web farm</a> functionality. If your Kentico instance runs on a web farm, you need to enable web farms after you complete the upgrade.</p>
+<p>We recommend that you enable the web farm on <strong class=" ">one server</strong> or instance and after that you add the remaining servers to the web farm.</p>
+<ol class=" "><li class=" "><p>In the Kentico administration interface, open the <strong class=" ">Settings</strong> application.</p>
+</li><li class=" "><p>Expand the <strong class=" ">Versioning &amp; Synchronization -&gt; Web farm</strong> category.</p>
+</li><li class=" "><p>Select the <strong class=" ">Web farm mode</strong>:</p>
+<ul class=" "><li class=" "><p>Automatic – if you wish to let the system handle the configuration of web farms servers.</p>
+</li><li class=" "><p>Manual – if you need to control the web farm manually. See <a href="configuring-web-farm-servers">Configuring web farm servers</a>.</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol>    <h4 id="src-68882766_UpgradingtoKentico11-UIpersonalization" class="heading "><span>UI personalization</span></h4>
-<p   
->If you have   <a   href="UI-Personalization">UI personalization</a> enabled for your site, we recommend reviewing the settings for all available roles. You may wish to enable access to new UI elements added by the upgrade (applications, tabs, etc.).</p>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk0dldHRpbmd0aGVmaW5hbHByaWNlb2ZwdXJjaGFzZXM" class="heading "><span>E-commerce &ndash; Getting the final price of purchases</span></h4>
-<p   
->After upgrading, the system stores the final price of purchases in the new <strong class=" ">GrandTotal</strong> field of shopping cart objects instead of the <i class=" ">TotalPrice</i> field. The <i class=" ">TotalPrice</i> field remains available, but does not include reductions from   <a   href="Working-with-gift-cards">gift cards</a>.</p>
-<p   
->The change affects both the API and   <a   href="Macro-expressions">macro expressions</a>. We recommend that you replace occurrences of the <i class=" ">TotalPrice</i> field with <i class=" ">GrandTotal</i> in:</p>
-<ul class=" "><li class=" "><p   
->Any custom code working with <i class=" ">ShoppingCartInfo</i> objects (use the <strong class=" ">GrandTotal</strong> property instead of <i class=" ">TotalPrice</i>)</p>
-</li><li class=" "><p   
->Macros accessing the total price from the shopping cart, for example: <i class=" ">{% EcommerceContext.CurrentShoppingCart.GrandTotal %}</i></p>
-</li><li class=" "><p   
->Macros accessing the total price in   <a   href="Configuring-invoices">invoices</a> or   <a   href="Configuring-e-commerce-email-notifications">order notification email templates</a>, for example: <i class=" ">{% GrandTotal.Format(Currency.CurrencyFormatString) %}</i></p>
-</li></ul>    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1Byb2R1Y3RwcmljZXRyYW5zZm9ybWF0aW9ucw" class="heading "><span>E-commerce &ndash; Product price transformations</span></h4>
-<p   
->Kentico 11 introduces many changes that affect the processing of product prices. After applying the upgrade, you need to check the   <a   href="Writing-transformations">transformations</a> used on your site and replace any invalid code for getting product prices and other related values.</p>
-<p   
->The supported signatures of the following <strong class=" ">ASCX</strong> transformation methods were changed. See   <a   href="Reference---Transformation-methods">Reference - Transformation methods</a> for details.</p>
-<ul class=" "><li class=" "><p   
->GetSKUPrice</p>
-</li><li class=" "><p   
->GetSKUFormattedPrice</p>
-</li><li class=" "><p   
->GetSKUListPrice</p>
-</li><li class=" "><p   
->GetSKUFormattedListPrice</p>
-</li><li class=" "><p   
->GetSKUPriceSaving</p>
-</li><li class=" "><p   
->GetSKUFormattedPriceSaving</p>
-</li></ul><p   
->Most of the methods can now only be called without parameters. The parameters from previous versions are no longer necessary &ndash; the methods always calculate with any   <a   href="Working-with-catalog-discounts">catalog discounts</a> that apply and taxes are handled according to the site&#39;s <strong class=" ">Prices include tax</strong>   <a   href="Settings---E-commerce">setting</a>. If you wish to load price values from custom columns, you need to customize the system as described in   <a   href="Customizing-product-prices">Customizing product prices</a> (the customizations apply to transformation methods).<br/></p>
-<p   
->For <strong class=" ">Text / XML</strong> type transformations, we recommend replacing occurrences of the <strong class=" ">GetPrice</strong> macro method with the <strong class=" ">GetSKUPrice</strong> method. See   <a   href="Reference---Macro-methods">Reference - Macro methods</a>.</p>
-    <div  class="confbox admonition admonition-note">
+<p>If you have <a href="ui-personalization">UI personalization</a> enabled for your site, we recommend reviewing the settings for all available roles. You may wish to enable access to new UI elements added by the upgrade (applications, tabs, etc.).</p>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk0dldHRpbmd0aGVmaW5hbHByaWNlb2ZwdXJjaGFzZXM" class="heading "><span>E-commerce – Getting the final price of purchases</span></h4>
+<p>After upgrading, the system stores the final price of purchases in the new <strong class=" ">GrandTotal</strong> field of shopping cart objects instead of the <i class=" ">TotalPrice</i> field. The <i class=" ">TotalPrice</i> field remains available, but does not include reductions from <a href="working-with-gift-cards">gift cards</a>.</p>
+<p>The change affects both the API and <a href="macro-expressions">macro expressions</a>. We recommend that you replace occurrences of the <i class=" ">TotalPrice</i> field with <i class=" ">GrandTotal</i> in:</p>
+<ul class=" "><li class=" "><p>Any custom code working with <i class=" ">ShoppingCartInfo</i> objects (use the <strong class=" ">GrandTotal</strong> property instead of <i class=" ">TotalPrice</i>)</p>
+</li><li class=" "><p>Macros accessing the total price from the shopping cart, for example: <i class=" ">{% EcommerceContext.CurrentShoppingCart.GrandTotal %}</i></p>
+</li><li class=" "><p>Macros accessing the total price in <a href="configuring-invoices">invoices</a> or <a href="configuring-e-commerce-email-notifications">order notification email templates</a>, for example: <i class=" ">{% GrandTotal.Format(Currency.CurrencyFormatString) %}</i></p>
+</li></ul>    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1Byb2R1Y3RwcmljZXRyYW5zZm9ybWF0aW9ucw" class="heading "><span>E-commerce – Product price transformations</span></h4>
+<p>Kentico 11 introduces many changes that affect the processing of product prices. After applying the upgrade, you need to check the <a href="writing-transformations">transformations</a> used on your site and replace any invalid code for getting product prices and other related values.</p>
+<p>The supported signatures of the following <strong class=" ">ASCX</strong> transformation methods were changed. See <a href="reference---transformation-methods">Reference - Transformation methods</a> for details.</p>
+<ul class=" "><li class=" "><p>GetSKUPrice</p>
+</li><li class=" "><p>GetSKUFormattedPrice</p>
+</li><li class=" "><p>GetSKUListPrice</p>
+</li><li class=" "><p>GetSKUFormattedListPrice</p>
+</li><li class=" "><p>GetSKUPriceSaving</p>
+</li><li class=" "><p>GetSKUFormattedPriceSaving</p>
+</li></ul><p>Most of the methods can now only be called without parameters. The parameters from previous versions are no longer necessary – the methods always calculate with any <a href="working-with-catalog-discounts">catalog discounts</a> that apply and taxes are handled according to the site's <strong class=" ">Prices include tax</strong> <a href="settings---e-commerce">setting</a>. If you wish to load price values from custom columns, you need to customize the system as described in <a href="customizing-product-prices">Customizing product prices</a> (the customizations apply to transformation methods).<br></p>
+<p>For <strong class=" ">Text / XML</strong> type transformations, we recommend replacing occurrences of the <strong class=" ">GetPrice</strong> macro method with the <strong class=" ">GetSKUPrice</strong> method. See <a href="reference---macro-methods">Reference - Macro methods</a>.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong>: To ensure that product prices are calculated and displayed correctly, always use the methods mentioned above rather than directly accessing values from price columns or properties (such as <i class=" ">SKUPrice</i>).</p>
+<p><strong class=" ">Important</strong>: To ensure that product prices are calculated and displayed correctly, always use the methods mentioned above rather than directly accessing values from price columns or properties (such as <i class=" ">SKUPrice</i>).</p>
         </div>
     </div>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk0ludm9pY2VhbmRlbWFpbG5vdGlmaWNhdGlvbnRlbXBsYXRlcw" class="heading "><span>E-commerce &ndash; Invoice and email notification templates</span></h4>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk0ludm9pY2VhbmRlbWFpbG5vdGlmaWNhdGlvbnRlbXBsYXRlcw" class="heading "><span>E-commerce – Invoice and email notification templates</span></h4>
     <h5 id="src-68882766_UpgradingtoKentico11-Itemtaxtransformations" class="heading "><span>Item tax transformations</span></h5>
-<p   
->Kentico 11 no longer stores or displays tax values separately for individual items in shopping carts and orders (only the total overall tax). Instead, entire sites can be configured to include taxes directly in the prices of items (using the <strong class=" ">Prices include tax</strong>   <a   href="Settings---E-commerce">setting</a> ).</p>
-<p   
->If you use custom   <a   href="Using-transformations-in-macro-expressions">transformations</a> for <strong class=" ">ContentTable</strong> data in   <a   href="Configuring-invoices">invoices</a> or   <a   href="Configuring-e-commerce-email-notifications">e-commerce email templates</a>, you may need to remove transformation code that works with tax values (the <i class=" ">UnitTotalTax, TotalTax, UnitTotalTaxInMainCurrency</i> and <i class=" ">TotalTaxInMainCurrency</i> data fields).</p>
+<p>Kentico 11 no longer stores or displays tax values separately for individual items in shopping carts and orders (only the total overall tax). Instead, entire sites can be configured to include taxes directly in the prices of items (using the <strong class=" ">Prices include tax</strong> <a href="settings---e-commerce">setting</a> ).</p>
+<p>If you use custom <a href="using-transformations-in-macro-expressions">transformations</a> for <strong class=" ">ContentTable</strong> data in <a href="configuring-invoices">invoices</a> or <a href="configuring-e-commerce-email-notifications">e-commerce email templates</a>, you may need to remove transformation code that works with tax values (the <i class=" ">UnitTotalTax, TotalTax, UnitTotalTaxInMainCurrency</i> and <i class=" ">TotalTaxInMainCurrency</i> data fields).</p>
     <h5 id="src-68882766_UpgradingtoKentico11-Taxsummaries" class="heading "><span>Tax summaries</span></h5>
-<p   
->The <strong class=" ">ContentTaxesTable</strong> and <strong class=" ">ShippingTaxesTable</strong> macro objects are no longer available in the context of   <a   href="Configuring-invoices">invoices</a> or   <a   href="Configuring-e-commerce-email-notifications">e-commerce email templates</a>.</p>
-<p   
->After upgrading, you need to update your store&#39;s invoice configuration and email templates (if custom) to use the new <strong class=" ">TaxSummary</strong> object instead. If you use custom   <a   href="Using-transformations-in-macro-expressions">transformations</a> to format the tax items, you also need to update their code to use the new properties available for the items within <i class=" ">TaxSummary</i>:</p>
-    <div  class="tablewrap">
+<p>The <strong class=" ">ContentTaxesTable</strong> and <strong class=" ">ShippingTaxesTable</strong> macro objects are no longer available in the context of <a href="configuring-invoices">invoices</a> or <a href="configuring-e-commerce-email-notifications">e-commerce email templates</a>.</p>
+<p>After upgrading, you need to update your store's invoice configuration and email templates (if custom) to use the new <strong class=" ">TaxSummary</strong> object instead. If you use custom <a href="using-transformations-in-macro-expressions">transformations</a> to format the tax items, you also need to update their code to use the new properties available for the items within <i class=" ">TaxSummary</i>:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Old property (TaxesTable)</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Old property (TaxesTable)</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->New property (TaxSummary)</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>New property (TaxSummary)</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->TaxClassDisplayName</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>TaxClassDisplayName</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Name</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Name</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->TaxSummary</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>TaxSummary</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Value</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
     <h5 id="src-68882766_UpgradingtoKentico11-ProductcouponsandBuyXGetYdiscounts" class="heading "><span>Product coupons and Buy X Get Y discounts</span></h5>
-<p   
->The <strong class=" ">DiscountCoupon</strong> macro object and <strong class=" ">OrderRelatedDiscountSummaryItems</strong> macro collection are no longer available in the context of   <a   href="Configuring-invoices">invoices</a> or   <a   href="Configuring-e-commerce-email-notifications">e-commerce email templates</a>.</p>
-<p   
->If you display detailed information about applied   <a   href="Working-with-product-coupons">product coupons</a> or   <a   href="Working-with-Buy-X-Get-Y-discounts">Buy X Get Y discounts</a>, update your store&#39;s invoice configuration and email templates to use the <strong class=" ">DiscountSummary</strong> property, which you can access in the   <a   href="Using-transformations-in-macro-expressions">transformations</a> applied to individual order items within the <strong class=" ">ContentTable</strong> data.</p>
-<p   
->The <i class=" ">DiscountSummary</i> collection contains items with <strong class=" ">Name</strong> and <strong class=" ">Value</strong> properties (the name of the applied product coupon or Buy X Get Y discounts, and its total discount value for the given order item).</p>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1Nob3BwaW5nY2FydHRvdGFscw" class="heading "><span>E-commerce &ndash; Shopping cart totals</span></h4>
-<p   
->After upgrading, the <strong class=" ">Shopping cart totals</strong> web part no longer supports the following options for its <strong class=" ">Total to display</strong> property:</p>
-<ul class=" "><li class=" "><p   
->Products excl. tax total</p>
-</li><li class=" "><p   
->Products tax total</p>
-</li><li class=" "><p   
->Shipping excl. tax total</p>
-</li><li class=" "><p   
->Shipping tax total</p>
-</li><li class=" "><p   
->Buy X Get Y and Order discounts total</p>
-</li><li class=" "><p   
->Buy X Get Y and Order discounts summary</p>
-</li><li class=" "><p   
->Discounts total</p>
-</li></ul><p   
->Any instances of the web part using the removed options will not display any content. You need to re-configure the web parts and set the <strong class=" ">Total to display</strong> property to the <i class=" "><strong class=" ">Products total</strong> </i>, <strong class=" "><i class=" ">Shipping total</i> </strong>or <i class=" "><strong class=" ">Order discounts total</strong> </i>options instead.</p>
-<p   
->The <i class=" ">Products total</i> and <i class=" ">Shipping total</i> values now automatically include tax (or not) according to the site&#39;s <strong class=" ">Prices include tax</strong>   <a   href="Settings---E-commerce">setting</a> . The web part no longer provides a way to display the product or shipping portion of the tax, only the overall <i class=" ">Tax total</i> for the entire shopping cart.</p>
-<p   
->Buy X Get Y discounts are now applied to individual shopping cart items, not the entire cart. For more information about displaying discount totals and summaries on shopping cart pages, see   <a   href="Displaying-shopping-cart-details-on-pages">Displaying shopping cart details on pages</a>.</p>
-    <div  class="confbox admonition admonition-tip">
+<p>The <strong class=" ">DiscountCoupon</strong> macro object and <strong class=" ">OrderRelatedDiscountSummaryItems</strong> macro collection are no longer available in the context of <a href="configuring-invoices">invoices</a> or <a href="configuring-e-commerce-email-notifications">e-commerce email templates</a>.</p>
+<p>If you display detailed information about applied <a href="working-with-product-coupons">product coupons</a> or <a href="working-with-buy-x-get-y-discounts">Buy X Get Y discounts</a>, update your store's invoice configuration and email templates to use the <strong class=" ">DiscountSummary</strong> property, which you can access in the <a href="using-transformations-in-macro-expressions">transformations</a> applied to individual order items within the <strong class=" ">ContentTable</strong> data.</p>
+<p>The <i class=" ">DiscountSummary</i> collection contains items with <strong class=" ">Name</strong> and <strong class=" ">Value</strong> properties (the name of the applied product coupon or Buy X Get Y discounts, and its total discount value for the given order item).</p>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1Nob3BwaW5nY2FydHRvdGFscw" class="heading "><span>E-commerce – Shopping cart totals</span></h4>
+<p>After upgrading, the <strong class=" ">Shopping cart totals</strong> web part no longer supports the following options for its <strong class=" ">Total to display</strong> property:</p>
+<ul class=" "><li class=" "><p>Products excl. tax total</p>
+</li><li class=" "><p>Products tax total</p>
+</li><li class=" "><p>Shipping excl. tax total</p>
+</li><li class=" "><p>Shipping tax total</p>
+</li><li class=" "><p>Buy X Get Y and Order discounts total</p>
+</li><li class=" "><p>Buy X Get Y and Order discounts summary</p>
+</li><li class=" "><p>Discounts total</p>
+</li></ul><p>Any instances of the web part using the removed options will not display any content. You need to re-configure the web parts and set the <strong class=" ">Total to display</strong> property to the <i class=" "><strong class=" ">Products total</strong> </i>, <strong class=" "><i class=" ">Shipping total</i> </strong>or <i class=" "><strong class=" ">Order discounts total</strong> </i>options instead.</p>
+<p>The <i class=" ">Products total</i> and <i class=" ">Shipping total</i> values now automatically include tax (or not) according to the site's <strong class=" ">Prices include tax</strong> <a href="settings---e-commerce">setting</a> . The web part no longer provides a way to display the product or shipping portion of the tax, only the overall <i class=" ">Tax total</i> for the entire shopping cart.</p>
+<p>Buy X Get Y discounts are now applied to individual shopping cart items, not the entire cart. For more information about displaying discount totals and summaries on shopping cart pages, see <a href="displaying-shopping-cart-details-on-pages">Displaying shopping cart details on pages</a>.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To find occurrences of the web part on your site&#39;s templates, open the <strong class=" ">Web parts</strong> application, select the <i class=" ">E-commerce -&gt; Checkout process -&gt; Shopping cart totals</i> web part and view the <strong class=" ">Usage</strong> tab.</p>
+<p><strong class=" ">Tip</strong>: To find occurrences of the web part on your site's templates, open the <strong class=" ">Web parts</strong> application, select the <i class=" ">E-commerce -&gt; Checkout process -&gt; Shopping cart totals</i> web part and view the <strong class=" ">Usage</strong> tab.</p>
         </div>
     </div>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk0NvdXBvbmNvZGVz" class="heading "><span>E-commerce &ndash; Coupon codes</span></h4>
-<p   
->Kentico 11 allows customers to enter multiple coupon codes when making purchases.</p>
-<p   
->The web part that allows customers to enter coupon codes on pages was renamed from <i class=" ">Discount coupon</i> to <strong class=" ">Coupon codes</strong> and now requires a   <a   href="Writing-transformations">transformation</a> to display the applied coupon codes. When upgrading sites that contain the web part, you need to:</p>
-<ol class=" "><li class=" "><p   
->Prepare a suitable transformation for displaying coupon codes according to your site&#39;s design. See   <a   href="Working-with-coupon-codes">Working with coupon codes</a> for more information.<br/></p>
-</li><li class=" "><p   
->Configure every instance of the <i class=" ">Coupon codes</i> web part and assign the transformation.<br/></p>
-</li></ol>    <div  class="confbox admonition admonition-tip">
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk0NvdXBvbmNvZGVz" class="heading "><span>E-commerce – Coupon codes</span></h4>
+<p>Kentico 11 allows customers to enter multiple coupon codes when making purchases.</p>
+<p>The web part that allows customers to enter coupon codes on pages was renamed from <i class=" ">Discount coupon</i> to <strong class=" ">Coupon codes</strong> and now requires a <a href="writing-transformations">transformation</a> to display the applied coupon codes. When upgrading sites that contain the web part, you need to:</p>
+<ol class=" "><li class=" "><p>Prepare a suitable transformation for displaying coupon codes according to your site's design. See <a href="working-with-coupon-codes">Working with coupon codes</a> for more information.<br></p>
+</li><li class=" "><p>Configure every instance of the <i class=" ">Coupon codes</i> web part and assign the transformation.<br></p>
+</li></ol>    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To find occurrences of the <i class=" ">Coupon codes</i> web part on your site&#39;s templates, open the <strong class=" ">Web parts</strong> application, select the <i class=" ">E-commerce -&gt; Checkout process -&gt; Coupon codes</i> web part and view the <strong class=" ">Usage</strong> tab.</p>
+<p><strong class=" ">Tip</strong>: To find occurrences of the <i class=" ">Coupon codes</i> web part on your site's templates, open the <strong class=" ">Web parts</strong> application, select the <i class=" ">E-commerce -&gt; Checkout process -&gt; Coupon codes</i> web part and view the <strong class=" ">Usage</strong> tab.</p>
         </div>
     </div>
-<p   
->Additionally, t he <i class=" ">ShoppingCartCouponCode</i> and <i class=" ">HasUsableCoupon</i> properties of shopping cart objects, and the <i class=" ">OrderCouponCode</i> property of order objects were removed. The change affects both the API and macro expressions. If you used these properties to display coupon codes on your site&#39;s pages, we recommend displaying the related discounts instead as described in   <a   href="Displaying-shopping-cart-details-on-pages">Displaying shopping cart details on pages</a>.</p>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1RheGNsYXNzZXNmb3Jwcm9kdWN0c3VuZGVyd29ya2Zsb3c" class="heading "><span>E-commerce &ndash; Tax classes for products under workflow</span></h4>
-<p   
->Kentico 11 allows assigning of only one tax per   <a   href="Products">product</a>.</p>
-<p   
->The upgrade procedure cannot automatically handle that tax class assignment for products under   <a   href="Using-workflows">workflow</a>, which store the related data in the page version history. The tax class may be displayed as <i class=" ">(none)</i> for such products. We recommend checking any products under workflow and manually assigning an appropriate tax class.</p>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk09yZGVyZGlzY291bnRtYWNyb2NvbmRpdGlvbnM" class="heading "><span>E-commerce &ndash; Order discount macro conditions</span></h4>
-<p   
->The upgrade makes the following changes to the default     <span style="color: #262524;">
-  <a   href="Configuring-discount-rules">order discount macro rules</a>:    </span>
+<p>Additionally, t he <i class=" ">ShoppingCartCouponCode</i> and <i class=" ">HasUsableCoupon</i> properties of shopping cart objects, and the <i class=" ">OrderCouponCode</i> property of order objects were removed. The change affects both the API and macro expressions. If you used these properties to display coupon codes on your site's pages, we recommend displaying the related discounts instead as described in <a href="displaying-shopping-cart-details-on-pages">Displaying shopping cart details on pages</a>.</p>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1RheGNsYXNzZXNmb3Jwcm9kdWN0c3VuZGVyd29ya2Zsb3c" class="heading "><span>E-commerce – Tax classes for products under workflow</span></h4>
+<p>Kentico 11 allows assigning of only one tax per <a href="products">product</a>.</p>
+<p>The upgrade procedure cannot automatically handle that tax class assignment for products under <a href="using-workflows">workflow</a>, which store the related data in the page version history. The tax class may be displayed as <i class=" ">(none)</i> for such products. We recommend checking any products under workflow and manually assigning an appropriate tax class.</p>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk09yZGVyZGlzY291bnRtYWNyb2NvbmRpdGlvbnM" class="heading "><span>E-commerce – Order discount macro conditions</span></h4>
+<p>The upgrade makes the following changes to the default     <span style="color: #262524;">
+<a href="configuring-discount-rules">order discount macro rules</a>:    </span>
 </p>
-<ul class=" "><li class=" "><p   
->    <span style="color: #262524;">
-<strong class=" ">Shopping cart contains product</strong> and <strong class=" ">Shopping cart contains products</strong> &ndash; removed. Use the new <strong class=" ">Order contains</strong>     </span>
+<ul class=" "><li class=" "><p>    <span style="color: #262524;">
+<strong class=" ">Shopping cart contains product</strong> and <strong class=" ">Shopping cart contains products</strong> – removed. Use the new <strong class=" ">Order contains</strong>     </span>
 <strong class=" ">products</strong> rule instead.</p>
-</li><li class=" "><p   
-><strong class=" ">Total weight of order is under</strong> &ndash; macro condition updated.</p>
-</li></ul><p   
->If you use the removed or updated macro rules in the conditions of existing discounts, you need to update and re-save the conditions.</p>
-<p   
->For any custom order discount rules, you need to update the <strong class=" ">Condition</strong> macro code to reflect the following changes:</p>
-<ul class=" "><li class=" "><p   
->The <strong class=" ">ShoppingCart</strong> object is no longer available when writing order discount rule conditions. Instead, the macro context directly provides properties related to the shopping cart or order calculation, such as <i class=" ">Currency</i>, <i class=" ">Customer</i>, <i class=" ">PaymentOption</i>, <i class=" ">ShippingOption</i>, <i class=" ">GrandTotal</i>, etc.</p>
-</li><li class=" "><p   
->To check whether an order contains specific products, call the <strong class=" ">Data.ContainsProducts</strong> macro method.</p>
-</li></ul>    <div  class="confbox admonition admonition-info">
+</li><li class=" "><p><strong class=" ">Total weight of order is under</strong> – macro condition updated.</p>
+</li></ul><p>If you use the removed or updated macro rules in the conditions of existing discounts, you need to update and re-save the conditions.</p>
+<p>For any custom order discount rules, you need to update the <strong class=" ">Condition</strong> macro code to reflect the following changes:</p>
+<ul class=" "><li class=" "><p>The <strong class=" ">ShoppingCart</strong> object is no longer available when writing order discount rule conditions. Instead, the macro context directly provides properties related to the shopping cart or order calculation, such as <i class=" ">Currency</i>, <i class=" ">Customer</i>, <i class=" ">PaymentOption</i>, <i class=" ">ShippingOption</i>, <i class=" ">GrandTotal</i>, etc.</p>
+</li><li class=" "><p>To check whether an order contains specific products, call the <strong class=" ">Data.ContainsProducts</strong> macro method.</p>
+</li></ul>    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For more information, see:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="Configuring-discount-rules">Configuring discount rules</a></p>
-</li><li class=" "><p   
->  <a   href="Adding-a-discount-rule-with-a-custom-method">Adding a discount rule with a custom method</a></p>
+<p>For more information, see:</p>
+<ul class=" "><li class=" "><p><a href="configuring-discount-rules">Configuring discount rules</a></p>
+</li><li class=" "><p><a href="adding-a-discount-rule-with-a-custom-method">Adding a discount rule with a custom method</a></p>
 </li></ul>        </div>
     </div>
-    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1BheVBhbHBheW1lbnRnYXRld2F5" class="heading "><span>E-commerce &ndash; PayPal payment gateway</span></h4>
-<p   
->Kentico 11 changes the functionality of the default PayPal payment provider. See   <a   href="Configuring-PayPal">Configuring PayPal</a> to learn about the new requirements, configuration steps, and settings.</p>
-<p   
->The following is a summary of the changes:</p>
-<ul class=" "><li class=" "><p   
->The provider now requires a <strong class=" ">PayPal Business account</strong> and an associated <strong class=" ">PayPal REST API app</strong> (create and manage apps in the <a  class="external-link" href="https://developer.paypal.com">PayPal Developer Portal</a>).</p>
-</li><li class=" "><p   
->Settings in <strong class=" ">Settings -&gt; E-commerce -&gt; Payment Gateways -&gt; PayPal</strong>:<br/></p>
-<ul class=" "><li class=" "><p   
->The original <strong class=" ">Business</strong> setting was removed.</p>
-</li><li class=" "><p   
->New required settings for entering the <strong class=" ">Client ID</strong> and <strong class=" ">Client secret</strong> API credentials of the PayPal REST API app.</p>
-</li><li class=" "><p   
->The <strong class=" ">Return URL</strong> and <strong class=" ">Cancel return URL</strong> settings are now always required.</p>
-</li><li class=" "><p   
->New <strong class=" ">Transaction type</strong> setting that allows you to use either direct payments or authorization with delayed capture.</p>
-</li><li class=" "><p   
->The original <strong class=" ">Notify URL</strong> setting was removed (the provider no longer utilizes Instant Payment Notification).</p>
-</li><li class=" "><p   
->To perform test payment transactions, set the new <strong class=" ">Account type</strong> setting to <i class=" ">Sandbox</i> and use Sandbox API credentials.</p>
-</li></ul></li><li class=" "><p   
->The new <strong class=" ">PayPal payment execution</strong> web part must be placed onto the page specified by the <strong class=" ">Return URL</strong> setting.</p>
-</li><li class=" "><p   
->The <strong class=" ">Payment gateway URL</strong> property no longer has any effect for   <a   href="Configuring-payment-methods">payment methods</a> that use the default PayPal provider.</p>
-</li><li class=" "><p   
->The default PayPal provider no longer utilizes Instant Payment Notification and the <i class=" ">~/CMSModules/Ecommerce/CMSPages/PayPalIPN.aspx</i> system page was removed. If you require payment notifications for any custom functionality or integrations, you need to configure the related options for your PayPal Business account and implement the required handlers (either within the Kentico web project or a custom project).</p>
-</li></ul>    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk0F1dGhvcml6ZS5OZXRwYXltZW50Z2F0ZXdheQ" class="heading "><span>E-commerce &ndash; Authorize.Net payment gateway</span></h4>
-<p   
->Kentico 11 changes the functionality of the default Authorize.Net payment provider. See   <a   href="Configuring-Authorize.NET">Configuring Authorize.NET</a> to learn about the new requirements, limitations and configuration steps.</p>
-<p   
->The following is a summary of the changes:</p>
-<ul class=" "><li class=" "><p   
->Your website must use   <a   href="Configuring-SSL">HTTPS</a> and the server (IIS) must support the <strong class=" ">TLS 1.2</strong> protocol.</p>
-</li><li class=" "><p   
->The default Authorize.Net provider can only process payments correctly for a single currency (every Authorize.Net account is configured to use one specific currency in the Authorize.Net Merchant Interface). If your store uses multiple   <a   href="Configuring-currencies">currencies</a>:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Important</strong>: The system always sends price values to Authorize.Net in the currency selected by the customer for the given order (shopping cart). If this currency is different than the one configured for your Authorize.Net account, the customer will be charged an incorrect (unconverted) amount of money.</p>
-</li><li class=" "><p   
->You can customize the system to offer the Authorize.Net payment method to customers only if they have the appropriate currency selected &ndash; follow the general approach described in   <a   href="Making-payment-methods-dependent-on-shipping-options">Making payment methods dependent on shipping options</a>.</p>
-</li></ul></li><li class=" "><p   
->You need to update the <strong class=" ">Payment gateway URL</strong> property of your Authorize.Net   <a   href="Configuring-payment-methods">payment method</a>:<br/></p>
-<ul class=" "><li class=" "><p   
->For real payments on production websites: <i class=" ">https://api.authorize.net/xml/v1/request.api</i></p>
-</li><li class=" "><p   
->For test transactions (sandbox account): <i class=" ">https://apitest.authorize.net/xml/v1/request.api</i></p>
-</li></ul></li><li class=" "><p   
->Settings in <strong class=" ">Settings -&gt; E-commerce -&gt; Payment Gateways -&gt; Authorize.NET</strong>:</p>
-<ul class=" "><li class=" "><p   
->The <strong class=" ">Use test mode</strong> setting was removed. To perform test payment transactions, use the API login and Transaction key of a <a  class="external-link" href="https://sandbox.authorize.net/">Sandbox account</a> and the appropriate <i class=" ">Payment gateway URL</i> for the payment method.</p>
-</li><li class=" "><p   
->New <strong class=" ">Transaction type</strong> setting that allows you to use either direct authorize and capture transactions or authorization with delayed capture.</p>
+    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk1BheVBhbHBheW1lbnRnYXRld2F5" class="heading "><span>E-commerce – PayPal payment gateway</span></h4>
+<p>Kentico 11 changes the functionality of the default PayPal payment provider. See <a href="configuring-paypal">Configuring PayPal</a> to learn about the new requirements, configuration steps, and settings.</p>
+<p>The following is a summary of the changes:</p>
+<ul class=" "><li class=" "><p>The provider now requires a <strong class=" ">PayPal Business account</strong> and an associated <strong class=" ">PayPal REST API app</strong> (create and manage apps in the <a class="external-link" href="https://developer.paypal.com">PayPal Developer Portal</a>).</p>
+</li><li class=" "><p>Settings in <strong class=" ">Settings -&gt; E-commerce -&gt; Payment Gateways -&gt; PayPal</strong>:<br></p>
+<ul class=" "><li class=" "><p>The original <strong class=" ">Business</strong> setting was removed.</p>
+</li><li class=" "><p>New required settings for entering the <strong class=" ">Client ID</strong> and <strong class=" ">Client secret</strong> API credentials of the PayPal REST API app.</p>
+</li><li class=" "><p>The <strong class=" ">Return URL</strong> and <strong class=" ">Cancel return URL</strong> settings are now always required.</p>
+</li><li class=" "><p>New <strong class=" ">Transaction type</strong> setting that allows you to use either direct payments or authorization with delayed capture.</p>
+</li><li class=" "><p>The original <strong class=" ">Notify URL</strong> setting was removed (the provider no longer utilizes Instant Payment Notification).</p>
+</li><li class=" "><p>To perform test payment transactions, set the new <strong class=" ">Account type</strong> setting to <i class=" ">Sandbox</i> and use Sandbox API credentials.</p>
+</li></ul></li><li class=" "><p>The new <strong class=" ">PayPal payment execution</strong> web part must be placed onto the page specified by the <strong class=" ">Return URL</strong> setting.</p>
+</li><li class=" "><p>The <strong class=" ">Payment gateway URL</strong> property no longer has any effect for <a href="configuring-payment-methods">payment methods</a> that use the default PayPal provider.</p>
+</li><li class=" "><p>The default PayPal provider no longer utilizes Instant Payment Notification and the <i class=" ">~/CMSModules/Ecommerce/CMSPages/PayPalIPN.aspx</i> system page was removed. If you require payment notifications for any custom functionality or integrations, you need to configure the related options for your PayPal Business account and implement the required handlers (either within the Kentico web project or a custom project).</p>
+</li></ul>    <h4 id="src-68882766_safe-id-VXBncmFkaW5ndG9LZW50aWNvMTEtRS1jb21tZXJjZeKAk0F1dGhvcml6ZS5OZXRwYXltZW50Z2F0ZXdheQ" class="heading "><span>E-commerce – Authorize.Net payment gateway</span></h4>
+<p>Kentico 11 changes the functionality of the default Authorize.Net payment provider. See <a href="configuring-authorize.net">Configuring Authorize.NET</a> to learn about the new requirements, limitations and configuration steps.</p>
+<p>The following is a summary of the changes:</p>
+<ul class=" "><li class=" "><p>Your website must use <a href="configuring-ssl">HTTPS</a> and the server (IIS) must support the <strong class=" ">TLS 1.2</strong> protocol.</p>
+</li><li class=" "><p>The default Authorize.Net provider can only process payments correctly for a single currency (every Authorize.Net account is configured to use one specific currency in the Authorize.Net Merchant Interface). If your store uses multiple <a href="configuring-currencies">currencies</a>:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Important</strong>: The system always sends price values to Authorize.Net in the currency selected by the customer for the given order (shopping cart). If this currency is different than the one configured for your Authorize.Net account, the customer will be charged an incorrect (unconverted) amount of money.</p>
+</li><li class=" "><p>You can customize the system to offer the Authorize.Net payment method to customers only if they have the appropriate currency selected – follow the general approach described in <a href="making-payment-methods-dependent-on-shipping-options">Making payment methods dependent on shipping options</a>.</p>
+</li></ul></li><li class=" "><p>You need to update the <strong class=" ">Payment gateway URL</strong> property of your Authorize.Net <a href="configuring-payment-methods">payment method</a>:<br></p>
+<ul class=" "><li class=" "><p>For real payments on production websites: <i class=" ">https://api.authorize.net/xml/v1/request.api</i></p>
+</li><li class=" "><p>For test transactions (sandbox account): <i class=" ">https://apitest.authorize.net/xml/v1/request.api</i></p>
+</li></ul></li><li class=" "><p>Settings in <strong class=" ">Settings -&gt; E-commerce -&gt; Payment Gateways -&gt; Authorize.NET</strong>:</p>
+<ul class=" "><li class=" "><p>The <strong class=" ">Use test mode</strong> setting was removed. To perform test payment transactions, use the API login and Transaction key of a <a class="external-link" href="https://sandbox.authorize.net/">Sandbox account</a> and the appropriate <i class=" ">Payment gateway URL</i> for the payment method.</p>
+</li><li class=" "><p>New <strong class=" ">Transaction type</strong> setting that allows you to use either direct authorize and capture transactions or authorization with delayed capture.</p>
 </li></ul></li></ul>    <h4 id="src-68882766_UpgradingtoKentico11-Browser-specificCSSstyles" class="heading "><span>Browser-specific CSS styles</span></h4>
-<p   
->The browser-related CSS classes that the system automatically assigns to the <i class=" ">&lt;body&gt;</i> element of pages work differently in Kentico 11:</p>
-<ul class=" "><li class=" "><p   
->Browser version classes are not assigned at all</p>
-</li><li class=" "><p   
->Browser type classes may be different than in previous versions (the <i class=" ">HttpBrowserCapabilities</i> class of the .NET Framework is now used for browser detection)</p>
-</li></ul><p   
->See   <a   href="Designing-websites-using-CSS#src-68880757_safe-id-RGVzaWduaW5nd2Vic2l0ZXN1c2luZ0NTUy1Ccm93c2VyYW5kbGFuZ3VhZ2XigJFzcGVjaWZpY3N0eWxlcw">Browser and language-specific styles</a> for more information.</p>
-<p   
->If your website uses custom CSS that relies on the <i class=" ">&lt;body&gt;</i> browser classes, you need to update your stylesheets.</p>
+<p>The browser-related CSS classes that the system automatically assigns to the <i class=" ">&lt;body&gt;</i> element of pages work differently in Kentico 11:</p>
+<ul class=" "><li class=" "><p>Browser version classes are not assigned at all</p>
+</li><li class=" "><p>Browser type classes may be different than in previous versions (the <i class=" ">HttpBrowserCapabilities</i> class of the .NET Framework is now used for browser detection)</p>
+</li></ul><p>See <a href="designing-websites-using-css#src-68880757_safe-id-rgvzawduaw5nd2vic2l0zxn1c2luz0ntuy1ccm93c2vyyw5kbgfuz3vhz2xigjfzcgvjawzpy3n0ewxlcw">Browser and language-specific styles</a> for more information.</p>
+<p>If your website uses custom CSS that relies on the <i class=" ">&lt;body&gt;</i> browser classes, you need to update your stylesheets.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Multi-factorauthentication" class="heading "><span>Multi-factor authentication</span></h4>
-<p   
->The multi-factor authentication in Kentico 11 no longer supports the original <i class=" ">Kentico Authenticator</i> mobile application. Instead, passcodes can be generated by any authenticator application using the <a  class="external-link" href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">Time-based One-time Password Algorithm</a> (TOTP). See   <a   href="Configuring-multi-factor-authentication">Configuring multi-factor authentication</a> for details.</p>
-<p   
->The upgrade resets the multi-factor secret key (token) of each user. If your website has users who sign-in with multi-factor authentication, inform them that they need to set up a different authenticator application for generating passcodes, for example <a  class="external-link" href="https://support.google.com/accounts/answer/1066447?hl=en">Google Authenticator</a>. The system displays a new secret key during each user&#39;s first sign-in, which can be used to initialize an authenticator application.</p>
+<p>The multi-factor authentication in Kentico 11 no longer supports the original <i class=" ">Kentico Authenticator</i> mobile application. Instead, passcodes can be generated by any authenticator application using the <a class="external-link" href="https://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">Time-based One-time Password Algorithm</a> (TOTP). See <a href="configuring-multi-factor-authentication">Configuring multi-factor authentication</a> for details.</p>
+<p>The upgrade resets the multi-factor secret key (token) of each user. If your website has users who sign-in with multi-factor authentication, inform them that they need to set up a different authenticator application for generating passcodes, for example <a class="external-link" href="https://support.google.com/accounts/answer/1066447?hl=en">Google Authenticator</a>. The system displays a new secret key during each user's first sign-in, which can be used to initialize an authenticator application.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-Translationservices" class="heading "><span>Translation services</span></h4>
     <h5 id="src-68882766_UpgradingtoKentico11-Translations.comservice" class="heading "><span>Translations.com service</span></h5>
-<p   
->When upgrading sites with an already set up translation project using the   <a   href="Human-translation-services---Translations.com">Translations.com service</a>, you need to contact a <a  class="external-link" href="http://Translations.com">Translations.com</a> representative and inform them about the upgrade to Kentico 11. <a  class="external-link" href="http://Translations.com">Translations.com</a> will update the configuration of your Project Director.</p>
+<p>When upgrading sites with an already set up translation project using the <a href="human-translation-services---translations.com">Translations.com service</a>, you need to contact a <a class="external-link" href="http://Translations.com">Translations.com</a> representative and inform them about the upgrade to Kentico 11. <a class="external-link" href="http://Translations.com">Translations.com</a> will update the configuration of your Project Director.</p>
     <h5 id="src-68882766_UpgradingtoKentico11-MicrosoftTranslatorservice" class="heading "><span>Microsoft Translator service</span></h5>
-<p   
->The authentication process for the Microsoft translator service changed, as the service moved from Microsoft DataMarket to Microsoft Azure. If your website already uses the Microsoft translator service, follow the instructions at   <a   href="Machine-translation---Microsoft-Translator">Machine translation - Microsoft Translator</a> to properly configure the service.</p>
+<p>The authentication process for the Microsoft translator service changed, as the service moved from Microsoft DataMarket to Microsoft Azure. If your website already uses the Microsoft translator service, follow the instructions at <a href="machine-translation---microsoft-translator">Machine translation - Microsoft Translator</a> to properly configure the service.</p>
     <h4 id="src-68882766_UpgradingtoKentico11-RESTauthenticationhashvalues" class="heading "><span>REST authentication hash values</span></h4>
-<p   
->Kentico 11 generates   <a   href="Authenticating-REST-requests">authentication hash</a> values differently for REST URLs containing a virtual directory. If your site&#39;s URL contains a virtual directory and you use REST requests with hash authentication, you need to generate new authentication hashes in the <strong class=" ">Settings</strong> application and replace the values in your requests.</p>
+<p>Kentico 11 generates <a href="authenticating-rest-requests">authentication hash</a> values differently for REST URLs containing a virtual directory. If your site's URL contains a virtual directory and you use REST requests with hash authentication, you need to generate new authentication hashes in the <strong class=" ">Settings</strong> application and replace the values in your requests.</p>
     <h3 id="src-68882766_UpgradingtoKentico11-Upgradingsourcecodeinstances" class="heading "><span>Upgrading source code instances</span></h3>
-<p   
->Kentico does not provide an upgrade package for source code instances. We recommend using the following process if you need to upgrade a source code project:</p>
-<ol class=" "><li class=" "><p   
->Obtain the new version of the source code solution.</p>
-</li><li class=" "><p   
->  <a   href="#src-68882766_UpgradingtoKentico11-Installingtheupgradeprocedure">Install the upgrade procedure</a>.</p>
-</li><li class=" "><p   
->Perform any relevant   <a   href="#src-68882766_UpgradingtoKentico11-Stepsbeforeyoustarttheupgrade">steps before the upgrade</a>.</p>
-</li><li class=" "><p   
->Merge all customizations from your old source code solution into the new one.</p>
-<ul class=" "><li class=" "><p   
->This mainly includes updates of custom API, verification of its relevance in the new version, and testing.</p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68882766_UpgradingtoKentico11-Applyingtheupgrade">Apply</a> the database upgrade.</p>
-</li><li class=" "><p   
->Open the upgrade installation directory (<i class=" ">C:\Program Files\Kentico\11.0\Upgrade100_110 </i>by default), and copy the <strong class=" ">CMS\CMS\CMSSiteUtils\Import\Upgrade_100_110.zip</strong> file into the <strong class=" ">CMS\CMSSiteUtils\Import</strong> folder of the new Kentico 11 project.</p>
-</li><li class=" "><p   
->Perform all relevant   <a   href="#src-68882766_UpgradingtoKentico11-Stepsafterperformingtheupgrade">steps after the upgrade</a>.</p>
+<p>Kentico does not provide an upgrade package for source code instances. We recommend using the following process if you need to upgrade a source code project:</p>
+<ol class=" "><li class=" "><p>Obtain the new version of the source code solution.</p>
+</li><li class=" "><p><a href="#src-68882766_upgradingtokentico11-installingtheupgradeprocedure">Install the upgrade procedure</a>.</p>
+</li><li class=" "><p>Perform any relevant <a href="#src-68882766_upgradingtokentico11-stepsbeforeyoustarttheupgrade">steps before the upgrade</a>.</p>
+</li><li class=" "><p>Merge all customizations from your old source code solution into the new one.</p>
+<ul class=" "><li class=" "><p>This mainly includes updates of custom API, verification of its relevance in the new version, and testing.</p>
+</li></ul></li><li class=" "><p><a href="#src-68882766_upgradingtokentico11-applyingtheupgrade">Apply</a> the database upgrade.</p>
+</li><li class=" "><p>Open the upgrade installation directory (<i class=" ">C:\Program Files\Kentico\11.0\Upgrade100_110 </i>by default), and copy the <strong class=" ">CMS\CMS\CMSSiteUtils\Import\Upgrade_100_110.zip</strong> file into the <strong class=" ">CMS\CMSSiteUtils\Import</strong> folder of the new Kentico 11 project.</p>
+</li><li class=" "><p>Perform all relevant <a href="#src-68882766_upgradingtokentico11-stepsafterperformingtheupgrade">steps after the upgrade</a>.</p>
 </li></ol>        </div>
 
     </article>
@@ -1067,5 +709,6 @@ Versioning &amp; Synchronization    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

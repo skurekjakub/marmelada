@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Testing MVC controllers - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,34 +149,24 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can test the logic of your MVC controllers that work with content items, such as articles or products, info objects as well as any other objects. This is done by providing fake representations of these objects. Using this approach, you can create the necessary objects without accessing the database.</p>
-<p   
->The recommended approach for providing fake objects is to use repositories (adapters) that, for content items, make use of   <a   href="Generating-classes-for-Kentico-objects">generated</a> classes. Repositories provide the following advantages over using   <a   href="Working-with-pages-in-the-API">document query</a> directly in controllers:</p>
-<ul class=" "><li class=" "><p   
->Your tests will work regardless of the used methods. This is important as not all document query methods are supported when creating fake objects.</p>
-</li><li class=" "><p   
->Repositories only need to contain the methods the application really needs. This allows you to make changes to the implementation in a much smaller scale than if you were using document query.</p>
-</li></ul><p   
->We also recommend writing individual controllers to use dependency injection and retrieve their dependencies via their constructors. This approach allows you to create classes with clearly defined responsibilities, which are, in turn easier to test.</p>
-<p   
->You can also use containers such as <a  class="external-link" href="http://autofac.org/">Autofac</a> (or similar container implementations) to simplify the process of creating controllers and their dependencies, as well as handling the life cycle of the dependencies.</p>
-<p   
->See also:   <a   href="Initializing-Kentico-services-with-dependency-injection">Initializing Kentico services with dependency injection</a></p>
-    <div  class="confbox admonition admonition-tip">
+<div class="section-left"></div><p>You can test the logic of your MVC controllers that work with content items, such as articles or products, info objects as well as any other objects. This is done by providing fake representations of these objects. Using this approach, you can create the necessary objects without accessing the database.</p>
+<p>The recommended approach for providing fake objects is to use repositories (adapters) that, for content items, make use of <a href="generating-classes-for-kentico-objects">generated</a> classes. Repositories provide the following advantages over using <a href="working-with-pages-in-the-api">document query</a> directly in controllers:</p>
+<ul class=" "><li class=" "><p>Your tests will work regardless of the used methods. This is important as not all document query methods are supported when creating fake objects.</p>
+</li><li class=" "><p>Repositories only need to contain the methods the application really needs. This allows you to make changes to the implementation in a much smaller scale than if you were using document query.</p>
+</li></ul><p>We also recommend writing individual controllers to use dependency injection and retrieve their dependencies via their constructors. This approach allows you to create classes with clearly defined responsibilities, which are, in turn easier to test.</p>
+<p>You can also use containers such as <a class="external-link" href="http://autofac.org/">Autofac</a> (or similar container implementations) to simplify the process of creating controllers and their dependencies, as well as handling the life cycle of the dependencies.</p>
+<p>See also: <a href="initializing-kentico-services-with-dependency-injection">Initializing Kentico services with dependency injection</a></p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->See our <a  class="external-link" href="https://github.com/Kentico/Mvc">MVC Demo site</a> for a reference on how to implement tests for your controllers.</p>
+<p>See our <a class="external-link" href="https://github.com/Kentico/Mvc">MVC Demo site</a> for a reference on how to implement tests for your controllers.</p>
         </div>
     </div>
     <div class="section section-1" id="src-68880530_TestingMVCcontrollers-Providingcontentitemsincontrollertests">
         <h1 class="heading "><span>Providing content items in controller tests</span></h1>
-<p   
->This is an example showing how the ArticleController controller and ArticleControllerTests are implemented in a similar way as on the sample <a  class="external-link" href="https://github.com/Kentico/Mvc">MVC Demo site</a>. The controller displays a list of articles and their detail. Note that the sample implementation is dependent on external libraries, such as <a  class="external-link" href="http://autofac.org/">Autofac</a>, <a  class="external-link" href="https://github.com/TestStack/TestStack.FluentMVCTesting">TestStack.FluentMVCTesting</a>, and <a  class="external-link" href="http://nsubstitute.github.io/">NSubstitute</a>.</p>
-<ol class=" "><li class=" "><p   
->Create a repository that provides access to content items using their   <a   href="Generating-classes-for-Kentico-objects">generated providers</a>. The repository only needs to contain the methods required by the application, not the data layer.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>This is an example showing how the ArticleController controller and ArticleControllerTests are implemented in a similar way as on the sample <a class="external-link" href="https://github.com/Kentico/Mvc">MVC Demo site</a>. The controller displays a list of articles and their detail. Note that the sample implementation is dependent on external libraries, such as <a class="external-link" href="http://autofac.org/">Autofac</a>, <a class="external-link" href="https://github.com/TestStack/TestStack.FluentMVCTesting">TestStack.FluentMVCTesting</a>, and <a class="external-link" href="http://nsubstitute.github.io/">NSubstitute</a>.</p>
+<ol class=" "><li class=" "><p>Create a repository that provides access to content items using their <a href="generating-classes-for-kentico-objects">generated providers</a>. The repository only needs to contain the methods required by the application, not the data layer.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">interface</code><code class="plain"> IArticleRepository</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -188,7 +176,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">sealed</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> ArticleRepository : IArticleRepository</code></div>
 <div class="line"><code class="plain">...</code></div>
@@ -199,21 +187,19 @@
 <div class="line"><code class="plain">...</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Register the repository in the container configuration. For example, the Kentico <a  class="external-link" href="https://github.com/Kentico/Mvc">MVC Demo site</a> configures the container in the application&#39;s Global.asax.cs file.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Register the repository in the container configuration. For example, the Kentico <a class="external-link" href="https://github.com/Kentico/Mvc">MVC Demo site</a> configures the container in the application's Global.asax.cs file.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">builder.Register&lt;ArticleRepository&gt;().As&lt;IArticleRepository&gt;();</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Use container and any other dependencies in the controller constructor.<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Use container and any other dependencies in the controller constructor.<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> ArticlesController : Controller</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">readonly</code><code class="plain"> IArticleRepository mArticleRepository;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> ArticlesController(IArticleRepository repository)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        mArticleRepository = repository;</code></div>
@@ -221,11 +207,9 @@
 <div class="line"><code class="plain">...</code></div>
 </div>
     </div>
-<p   
-><br/></p>
-</li><li class=" "><p   
->The controller contains a method that returns a view based on article&#39;s NodeGUID or a new instance of the <i class=" ">HttpNotFoundResult </i>class if the article doesn&#39;t exist.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p><br></p>
+</li><li class=" "><p>The controller contains a method that returns a view based on article's NodeGUID or a new instance of the <i class=" ">HttpNotFoundResult </i>class if the article doesn't exist.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// GET: Articles/Show/{guid}</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> ActionResult Show(Guid guid)</code></div>
@@ -239,9 +223,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Set up the controller test and create the controller with the required dependencies. The following example uses the <a  class="external-link" href="http://nunit.org/">NUnit</a> testing framework.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Set up the controller test and create the controller with the required dependencies. The following example uses the <a class="external-link" href="http://nunit.org/">NUnit</a> testing framework.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">[SetUp]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> SetUp()</code></div>
@@ -253,14 +236,13 @@
 <div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> article = TreeNode.New&lt;Article&gt;().With(a =&gt; a.DocumentName = </code><code class="string">"Test"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> repository = Substitute.For&lt;IArticleRepository&gt;();</code></div>
 <div class="line"><code class="plain">    repository.GetArticle(1).Returns(article);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    mController = </code><code class="keyword">new</code><code class="plain"> ArticlesController(repository);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Create individual test cases for the controller.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Create individual test cases for the controller.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">[Test]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Show_WithoutExistingArticle_ReturnsHttpNotFoundStatusCode()</code></div>
@@ -291,5 +273,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

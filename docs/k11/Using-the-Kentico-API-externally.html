@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Using the Kentico API externally - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -148,115 +146,81 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This page describes how to configure external ASP.NET applications so that they support the Kentico API. Using Kentico functionality externally allows you to create scenarios such as:</p>
-<ul class=" "><li class=" "><p   
->Separate applications integrated with your main Kentico website</p>
-</li><li class=" "><p   
->Custom websites or applications that use Kentico as a content repository</p>
-</li></ul><p   
->Start Visual Studio and open your external application&#39;s project. You need to perform the following steps:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-ConnectingtotheKenticodatabase">Connect to the Kentico database</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-IntegratingKenticoAPIlibraries">Integrate the Kentico API libraries</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-InitializingtheKenticoapplication">Initialize the Kentico application</a></p>
-</li></ol>    <div  class="confbox admonition admonition-note">
+<div class="section-left"><p>This page describes how to configure external ASP.NET applications so that they support the Kentico API. Using Kentico functionality externally allows you to create scenarios such as:</p><ul class=" "><li class=" "><p>Separate applications integrated with your main Kentico website</p>
+</li><li class=" "><p>Custom websites or applications that use Kentico as a content repository</p>
+</li></ul><p>Start Visual Studio and open your external application's project. You need to perform the following steps:</p><ol class=" "><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-connectingtothekenticodatabase">Connect to the Kentico database</a></p>
+</li><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-integratingkenticoapilibraries">Integrate the Kentico API libraries</a></p>
+</li><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-initializingthekenticoapplication">Initialize the Kentico application</a></p>
+</li></ol><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">License requirements</strong></p>
-<p   
->The Kentico API performs license checks even when running in an external application. For applications that run under a different domain than your main Kentico site (web applications, WCF services, etc.), you need to have a valid   <a   href="Managing-site-licenses">license</a> for the given domain.</p>
-<p   
->Add the license via the administration interface of the connected Kentico application &ndash; the license is available through the shared database.</p>
+<p><strong class=" ">License requirements</strong></p>
+<p>The Kentico API performs license checks even when running in an external application. For applications that run under a different domain than your main Kentico site (web applications, WCF services, etc.), you need to have a valid <a href="managing-site-licenses">license</a> for the given domain.</p>
+<p>Add the license via the administration interface of the connected Kentico application – the license is available through the shared database.</p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-ConnectingtotheKenticodatabase">Connecting to the Kentico database</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-IntegratingKenticoAPIlibraries">Integrating Kentico API libraries</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-InitializingtheKenticoapplication">Initializing the Kentico application</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-Additionalconfigurationandtips">Additional configuration and tips</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-SharingprojectfileswiththeKenticoapplication">Sharing project files with the Kentico application</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-Workingwiththeusercontext">Working with the user context</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882884_UsingtheKenticoAPIexternally-DisablingtheKenticoVirtualpathprovider">Disabling the Kentico Virtual path provider</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-connectingtothekenticodatabase">Connecting to the Kentico database</a></p>
+</li><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-integratingkenticoapilibraries">Integrating Kentico API libraries</a></p>
+</li><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-initializingthekenticoapplication">Initializing the Kentico application</a></p>
+</li><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-additionalconfigurationandtips">Additional configuration and tips</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-sharingprojectfileswiththekenticoapplication">Sharing project files with the Kentico application</a></p>
+</li><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-workingwiththeusercontext">Working with the user context</a></p>
+</li><li class=" "><p><a href="#src-68882884_usingthekenticoapiexternally-disablingthekenticovirtualpathprovider">Disabling the Kentico Virtual path provider</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Displaying-Kentico-content-in-external-applications">Displaying Kentico content in external applications</a></p>
+<ul class=" "><li class=" "><p><a href="displaying-kentico-content-in-external-applications">Displaying Kentico content in external applications</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68882884_UsingtheKenticoAPIexternally-ConnectingtotheKenticodatabase" class="heading "><span>Connecting to the Kentico database</span></h3>
-<p   
->To be able to access the Kentico database, you need to specify the appropriate connection string in your application&#39;s <strong class=" ">web.config</strong> or <strong class=" ">app.config</strong> file.</p>
-<p   
->Add the connection string into the <i class=" ">configuration/connectionStrings</i> section using an <i class=" ">&lt;add&gt;</i> element named <strong class=" ">CMSConnectionString</strong>.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>To be able to access the Kentico database, you need to specify the appropriate connection string in your application's <strong class=" ">web.config</strong> or <strong class=" ">app.config</strong> file.</p>
+<p>Add the connection string into the <i class=" ">configuration/connectionStrings</i> section using an <i class=" ">&lt;add&gt;</i> element named <strong class=" ">CMSConnectionString</strong>.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
-<div class="line"><code class="plain"> &lt;configuration&gt;</code></div>
+<div class="line"><code class="plain">&nbsp;&lt;configuration&gt;</code></div>
 <div class="line"><code class="plain">  &lt;connectionStrings&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    ...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    &lt;add name=</code><code class="string">"CMSConnectionString"</code><code class="plain"> connectionString=</code><code class="string">"Persist Security Info=False;database=Kentico;server=myserver;user id=username;password=mypassword;Current Language=English;Connection Timeout=120;"</code><code class="plain"> /&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">  &lt;/connectionStrings&gt;</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: We recommend copying the exact connection string from the web.config file of your Kentico web project.</p>
+<p><strong class=" ">Tip</strong>: We recommend copying the exact connection string from the web.config file of your Kentico web project.</p>
         </div>
     </div>
     <h3 id="src-68882884_UsingtheKenticoAPIexternally-IntegratingKenticoAPIlibraries" class="heading "><span>Integrating Kentico API libraries</span></h3>
-<p   
->Before you can use Kentico functionality in your application, you need to add the libraries containing the required code:</p>
-<ol class=" "><li class=" "><p   
->Right-click your application&#39;s project in the Visual Studio <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
-</li><li class=" "><p   
->Search for the <a  class="external-link" href="https://www.nuget.org/packages/Kentico.Libraries"><strong class=" ">Kentico.Libraries</strong></a> package.</p>
-</li><li class=" "><p   
->Install the <i class=" ">Kentico.Libraries</i> version that matches the version of the connected Kentico database.</p>
-</li><li class=" "><p   
->(Optional) If you wish to use Kentico controls or web form API in external web applications, you need to install the <strong class=" ">Kentico.Libraries.Web.UI</strong> package.</p>
-</li></ol>    <div  class="confbox admonition admonition-note">
+<p>Before you can use Kentico functionality in your application, you need to add the libraries containing the required code:</p>
+<ol class=" "><li class=" "><p>Right-click your application's project in the Visual Studio <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
+</li><li class=" "><p>Search for the <a class="external-link" href="https://www.nuget.org/packages/Kentico.Libraries"><strong class=" ">Kentico.Libraries</strong></a> package.</p>
+</li><li class=" "><p>Install the <i class=" ">Kentico.Libraries</i> version that matches the version of the connected Kentico database.</p>
+</li><li class=" "><p>(Optional) If you wish to use Kentico controls or web form API in external web applications, you need to install the <strong class=" ">Kentico.Libraries.Web.UI</strong> package.</p>
+</li></ol>    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Maintaining Kentico.Libraries</strong></p>
-<p   
->If you   <a   href="Upgrading-and-hotfixing-an-instance">upgrade or hotfix</a> the related Kentico project and its database to a newer version, you also need to update the Kentico NuGet packages to a matching version in your external application.</p>
+<p><strong class=" ">Maintaining Kentico.Libraries</strong></p>
+<p>If you <a href="upgrading-and-hotfixing-an-instance">upgrade or hotfix</a> the related Kentico project and its database to a newer version, you also need to update the Kentico NuGet packages to a matching version in your external application.</p>
         </div>
     </div>
     <h3 id="src-68882884_UsingtheKenticoAPIexternally-InitializingtheKenticoapplication" class="heading "><span>Initializing the Kentico application</span></h3>
-<p   
->You need to initialize Kentico before making calls to its API from an external project.</p>
-<p   
-><strong class=" ">Web applications</strong></p>
-<ol class=" "><li class=" "><p   
->Edit your application&#39;s <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/1xaas8a2%28v=vs.71%29.aspx">Global.asax</a> file (create the file if necessary).</p>
-</li><li class=" "><p   
->Execute the <strong class=" ">CMSApplication.Init</strong> method in the <strong class=" ">Application_BeginRequest</strong> method:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>You need to initialize Kentico before making calls to its API from an external project.</p>
+<p><strong class=" ">Web applications</strong></p>
+<ol class=" "><li class=" "><p>Edit your application's <a class="external-link" href="http://msdn.microsoft.com/en-us/library/1xaas8a2%28v=vs.71%29.aspx">Global.asax</a> file (create the file if necessary).</p>
+</li><li class=" "><p>Execute the <strong class=" ">CMSApplication.Init</strong> method in the <strong class=" ">Application_BeginRequest</strong> method:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">void</code><code class="plain"> Application_BeginRequest(</code><code class="keyword">object</code><code class="plain"> sender, EventArgs e)</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -264,42 +228,28 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ol><p   
->If you wish to load and display content from the Kentico database in an external web application, you need to perform additional steps. See   <a   href="Displaying-Kentico-content-in-external-applications">Displaying Kentico content in external applications</a>.</p>
-<p   
-><strong class=" ">Non-web applications (for example Console applications)</strong></p>
-<ol class=" "><li class=" "><p   
->Edit your application&#39;s <strong class=" ">Main</strong> method.</p>
-</li><li class=" "><p   
->Execute the <strong class=" ">CMSApplication.Init</strong> method at any point before the first call of the Kentico API.</p>
-</li></ol><p   
->You can now use the Kentico API in your external application. The Kentico API allows you to perform any action available in the standard administration interface.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ol><p>If you wish to load and display content from the Kentico database in an external web application, you need to perform additional steps. See <a href="displaying-kentico-content-in-external-applications">Displaying Kentico content in external applications</a>.</p>
+<p><strong class=" ">Non-web applications (for example Console applications)</strong></p>
+<ol class=" "><li class=" "><p>Edit your application's <strong class=" ">Main</strong> method.</p>
+</li><li class=" "><p>Execute the <strong class=" ">CMSApplication.Init</strong> method at any point before the first call of the Kentico API.</p>
+</li></ol><p>You can now use the Kentico API in your external application. The Kentico API allows you to perform any action available in the standard administration interface.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Using custom code that requires discovery</strong></p>
-<p   
->For external projects that compile into a different output type than a DLL assembly (for example Console applications), do NOT directly add any custom classes that need to be detected during the API initialization. This includes classes registered using attributes, such as generated wrapper classes for objects,   <a   href="Creating-custom-modules">custom module classes</a>, custom implementations of interfaces or providers, etc. The system is only able to discover such code within assemblies.</p>
-<p   
->Instead, add the code into a <i class=" ">Class Library</i> project with the <i class=" ">AssemblyDiscoverable</i> attribute and reference the assembly from your project.</p>
+<p><strong class=" ">Using custom code that requires discovery</strong></p>
+<p>For external projects that compile into a different output type than a DLL assembly (for example Console applications), do NOT directly add any custom classes that need to be detected during the API initialization. This includes classes registered using attributes, such as generated wrapper classes for objects, <a href="creating-custom-modules">custom module classes</a>, custom implementations of interfaces or providers, etc. The system is only able to discover such code within assemblies.</p>
+<p>Instead, add the code into a <i class=" ">Class Library</i> project with the <i class=" ">AssemblyDiscoverable</i> attribute and reference the assembly from your project.</p>
         </div>
     </div>
-<p   
-><strong class=" ">WCF services</strong></p>
-<p   
->If implementing custom WCF services within the Kentico web project, you need to initialize the Kentico application before calling the Kentico API within the service code.</p>
-<p   
->Otherwise you may encounter errors if the first request that starts the application is destined for the WCF service. The standard initialization does not occur, because WCF requests are not processed by the ASP.NET HTTP runtime. For more information, see the <a  class="external-link" href="https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/wcf-services-and-aspnet">WCF Services and ASP.NET</a> article.</p>
-<p   
->For example, you can execute the <strong class=" ">CMSApplication.Init</strong> method within the constructor of your WCF service class.</p>
+<p><strong class=" ">WCF services</strong></p>
+<p>If implementing custom WCF services within the Kentico web project, you need to initialize the Kentico application before calling the Kentico API within the service code.</p>
+<p>Otherwise you may encounter errors if the first request that starts the application is destined for the WCF service. The standard initialization does not occur, because WCF requests are not processed by the ASP.NET HTTP runtime. For more information, see the <a class="external-link" href="https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/wcf-services-and-aspnet">WCF Services and ASP.NET</a> article.</p>
+<p>For example, you can execute the <strong class=" ">CMSApplication.Init</strong> method within the constructor of your WCF service class.</p>
     <h3 id="src-68882884_UsingtheKenticoAPIexternally-Additionalconfigurationandtips" class="heading "><span>Additional configuration and tips</span></h3>
     <h4 id="src-68882884_UsingtheKenticoAPIexternally-SharingprojectfileswiththeKenticoapplication" class="heading "><span>Sharing project files with the Kentico application</span></h4>
-<p   
->If you need to call API that works with a specific folder in the Kentico project, you can map the physical path used by the Kentico API in your external application to a specific Kentico project. For example, you can use this approach if you wish to externally update or rebuild the files of   <a   href="Using-locally-stored-search-indexes">locally stored search indexes</a>.</p>
-<p   
->Set the <strong class=" ">SystemContext.WebApplicationPhysicalPath</strong> property to the path of your Kentico project&#39;s <strong class=" ">CMS</strong> folder. Map the path <i class=" ">before</i> you initialize the Kentico API (i.e. call <i class=" ">CMSApplication.Init</i>), for example in the <strong class=" ">Application_Start</strong> method of <i class=" ">Global.asax,</i> or in your application&#39;s <strong class=" ">Main</strong> method.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If you need to call API that works with a specific folder in the Kentico project, you can map the physical path used by the Kentico API in your external application to a specific Kentico project. For example, you can use this approach if you wish to externally update or rebuild the files of <a href="using-locally-stored-search-indexes">locally stored search indexes</a>.</p>
+<p>Set the <strong class=" ">SystemContext.WebApplicationPhysicalPath</strong> property to the path of your Kentico project's <strong class=" ">CMS</strong> folder. Map the path <i class=" ">before</i> you initialize the Kentico API (i.e. call <i class=" ">CMSApplication.Init</i>), for example in the <strong class=" ">Application_Start</strong> method of <i class=" ">Global.asax,</i> or in your application's <strong class=" ">Main</strong> method.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Maps the physical path used by the Kentico API in the external application to the folder of the connected Kentico project</code></div>
@@ -307,22 +257,20 @@
 </div>
     </div>
     <h4 id="src-68882884_UsingtheKenticoAPIexternally-Workingwiththeusercontext" class="heading "><span>Working with the user context</span></h4>
-<p   
->When working with the Kentico API in an external application, the default Kentico user context is not available. The standard API for getting the current user (<i class=" "><strong class=" ">CMS.Membership.MembershipContext.AuthenticatedUser</strong></i>) always returns the &quot;public&quot; user when called externally.</p>
-<p   
->To use API that relies on the context of a specific user, enclose the code into a <strong class=" ">using</strong> statement with a declared <strong class=" ">CMSActionContext</strong> instance and the appropriate <i class=" ">UserInfo</i> object as a parameter.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>When working with the Kentico API in an external application, the default Kentico user context is not available. The standard API for getting the current user (<i class=" "><strong class=" ">CMS.Membership.MembershipContext.AuthenticatedUser</strong></i>) always returns the "public" user when called externally.</p>
+<p>To use API that relies on the context of a specific user, enclose the code into a <strong class=" ">using</strong> statement with a declared <strong class=" ">CMSActionContext</strong> instance and the appropriate <i class=" ">UserInfo</i> object as a parameter.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.EventLog;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets an object representing a specific Kentico user</code></div>
 <div class="line"><code class="plain">UserInfo user = UserInfoProvider.GetUserInfo(</code><code class="string">"Andy"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Sets the context of the user</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> (</code><code class="keyword">new</code><code class="plain"> CMSActionContext(user))</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -332,40 +280,32 @@
 </div>
     </div>
     <h4 id="src-68882884_UsingtheKenticoAPIexternally-DisablingtheKenticoVirtualpathprovider" class="heading "><span>Disabling the Kentico Virtual path provider</span></h4>
-<p   
->If you have the <strong class=" ">Kentico.Libraries.Web.UI</strong> package installed, Kentico uses a <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/bhesyfec.aspx">virtual path provider</a> to load virtual objects, such as ASCX   <a   href="Writing-transformations">transformations</a> or   <a   href="Editing-page-layouts">page layouts</a>, from the database. When using the Kentico API externally in web applications, you may wish to disable the virtual path provider for the following reasons:</p>
-<ul class=" "><li class=" "><p   
->To avoid conflicts if your application has its own virtual path provider implementation</p>
-</li><li class=" "><p   
->If your external application does not use Kentico virtual objects at all (disabling the virtual path provider reduces overhead)</p>
-</li></ul><p   
->To disable the Kentico virtual path provider:</p>
-<ol class=" "><li class=" "><p   
->Edit your external application&#39;s <strong class=" ">web.config</strong> or <strong class=" ">app.config</strong> file.</p>
-</li><li class=" "><p   
->Add the <strong class=" ">&lt;appSettings&gt;</strong> element under the <i class=" ">&lt;configuration&gt;</i> section.</p>
-</li><li class=" "><p   
->Add the <strong class=" ">CMSUseVirtualPathProvider</strong> key and set the value to <i class=" ">false.</i></p>
-</li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>If you have the <strong class=" ">Kentico.Libraries.Web.UI</strong> package installed, Kentico uses a <a class="external-link" href="https://msdn.microsoft.com/en-us/library/bhesyfec.aspx">virtual path provider</a> to load virtual objects, such as ASCX <a href="writing-transformations">transformations</a> or <a href="editing-page-layouts">page layouts</a>, from the database. When using the Kentico API externally in web applications, you may wish to disable the virtual path provider for the following reasons:</p>
+<ul class=" "><li class=" "><p>To avoid conflicts if your application has its own virtual path provider implementation</p>
+</li><li class=" "><p>If your external application does not use Kentico virtual objects at all (disabling the virtual path provider reduces overhead)</p>
+</li></ul><p>To disable the Kentico virtual path provider:</p>
+<ol class=" "><li class=" "><p>Edit your external application's <strong class=" ">web.config</strong> or <strong class=" ">app.config</strong> file.</p>
+</li><li class=" "><p>Add the <strong class=" ">&lt;appSettings&gt;</strong> element under the <i class=" ">&lt;configuration&gt;</i> section.</p>
+</li><li class=" "><p>Add the <strong class=" ">CMSUseVirtualPathProvider</strong> key and set the value to <i class=" ">false.</i></p>
+</li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">configuration</code><code class="plain">&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">appSettings</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">		&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSUseVirtualPathProvider"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/</code><code class="keyword">appSettings</code><code class="plain">&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">configuration</code><code class="plain">&gt;</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-note">
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Without the virtual path provider, you cannot use ASCX transformations (or other Kentico virtual objects) to display data in external web applications. See   <a   href="Displaying-Kentico-content-in-external-applications">Displaying Kentico content in external applications</a> for more information and workarounds.</p>
+<p><strong class=" ">Note</strong>: Without the virtual path provider, you cannot use ASCX transformations (or other Kentico virtual objects) to display data in external web applications. See <a href="displaying-kentico-content-in-external-applications">Displaying Kentico content in external applications</a> for more information and workarounds.</p>
         </div>
     </div>
         </div>
@@ -388,5 +328,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Using ASP.NET Web API with Kentico - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -148,77 +146,53 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This page describes how to use <a  class="external-link" href="http://www.asp.net/web-api">ASP.NET Web API</a> within Kentico projects.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"></div><p>This page describes how to use <a class="external-link" href="http://www.asp.net/web-api">ASP.NET Web API</a> within Kentico projects.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: Kentico uses ASP.NET Web API requests for internal APIs. These internal routes are registered at the <i class=" ">/cmsapi/</i> endpoint and are not meant for public use.</p>
+<p><strong class=" ">Note</strong>: Kentico uses ASP.NET Web API requests for internal APIs. These internal routes are registered at the <i class=" ">/cmsapi/</i> endpoint and are not meant for public use.</p>
         </div>
     </div>
-<p   
->Start by adding a custom project that will contain your Web API logic:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project). The project will contain your Api Controllers.</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries (and any others that you may need in your custom code):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Edit the custom project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Start by adding a custom project that will contain your Web API logic:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project). The project will contain your Api Controllers.</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries (and any others that you may need in your custom code):</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Edit the custom project's <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Right-click your custom project in the <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
-</li><li class=" "><p   
->Install the <strong class=" ">Newtonsoft.Json</strong> package into the project. The version must be <strong class=" ">7.0.1</strong> or newer.</p>
-    <div  class="confbox admonition admonition-note">
+</li><li class=" "><p>Right-click your custom project in the <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
+</li><li class=" "><p>Install the <strong class=" ">Newtonsoft.Json</strong> package into the project. The version must be <strong class=" ">7.0.1</strong> or newer.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you install a newer version than <strong class=" ">7.0.1</strong> of the <i class=" ">Newtonsoft.Json</i> package, you also need to synchronize the version in the Kentico web project:</p>
-<ol class=" "><li class=" "><p   
->Right-click the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i> in the <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
-</li><li class=" "><p   
->Update the <strong class=" ">Newtonsoft.Json</strong> package to the same version that you installed into your Web API project.</p>
+<p>If you install a newer version than <strong class=" ">7.0.1</strong> of the <i class=" ">Newtonsoft.Json</i> package, you also need to synchronize the version in the Kentico web project:</p>
+<ol class=" "><li class=" "><p>Right-click the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i> in the <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
+</li><li class=" "><p>Update the <strong class=" ">Newtonsoft.Json</strong> package to the same version that you installed into your Web API project.</p>
 </li></ol>        </div>
     </div>
-</li><li class=" "><p   
->Install the <strong class=" ">Microsoft.AspNet.WebApi</strong> package.</p>
-</li><li class=" "><p   
->Make sure the project contains a framework reference to the <strong class=" ">System.Web</strong> assembly.</p>
-</li></ol><p   
->Now you can define Web API controllers and register routes:</p>
-<ol class=" "><li class=" "><p   
->Create Web API controllers in your custom class library project. Make the controller classes inherit from the <strong class=" ">System.Web.Http.ApiController</strong> class.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Install the <strong class=" ">Microsoft.AspNet.WebApi</strong> package.</p>
+</li><li class=" "><p>Make sure the project contains a framework reference to the <strong class=" ">System.Web</strong> assembly.</p>
+</li></ol><p>Now you can define Web API controllers and register routes:</p>
+<ol class=" "><li class=" "><p>Create Web API controllers in your custom class library project. Make the controller classes inherit from the <strong class=" ">System.Web.Http.ApiController</strong> class.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Net;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Net.Http;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Http;</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="keyword">namespace</code><code class="plain"> MyCompany.MySpace</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomWebAPIController : ApiController</code></div>
@@ -232,27 +206,24 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a> in your project.</p>
-</li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and register custom Web API routes.</p>
-    <div  class="confbox admonition admonition-note">
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a> in your project.</p>
+</li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and register custom Web API routes.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: When adding routes, make sure there are no conflicts with the default Kentico <strong class=" ">cmsapi</strong> routes or any other page paths.</p>
+<p><strong class=" ">Note</strong>: When adding routes, make sure there are no conflicts with the default Kentico <strong class=" ">cmsapi</strong> routes or any other page paths.</p>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Http;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(MyCompany.MySpace.CustomWebAPIModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">namespace</code><code class="plain"> MyCompany.MySpace</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomWebAPIModule : Module</code></div>
@@ -262,12 +233,12 @@
 <div class="line"><code class="plain">        : </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomWebAPI"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Registers a "customapi" route</code></div>
 <div class="line"><code class="plain">            GlobalConfiguration.Configuration.Routes.MapHttpRoute(</code><code class="string">"customapi"</code><code class="plain">, </code><code class="string">"customapi/{controller}/{id}"</code><code class="plain">, </code><code class="keyword">new</code><code class="plain"> { id = RouteParameter.Optional });</code></div>
 <div class="line"><code class="plain">        }</code></div>
@@ -275,11 +246,9 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Rebuild the solution.</p>
-</li></ol><p   
->You can now make Web API calls on the custom route that you registered.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Rebuild the solution.</p>
+</li></ol><p>You can now make Web API calls on the custom route that you registered.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">$http.get(</code><code class="string">"http://myserver/customapi/CustomWebAPI"</code><code class="plain">, { id: 1})</code></div>
@@ -311,5 +280,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

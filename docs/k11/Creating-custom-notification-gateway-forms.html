@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating custom notification gateway forms - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,86 +150,65 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The following diagram shows how the default <strong class=" ">Email notification gateway form</strong> is contained within the <strong class=" ">Content subscription </strong>web part.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882102/Notification_Gateway_Form_Diagram.png" alt="images/download/attachments/68882102/Notification_Gateway_Form_Diagram.png"   />
-        <br/><span class="caption">Diagram showing the components of a notification gateway form</span>
+<div class="section-left"></div><p>The following diagram shows how the default <strong class=" ">Email notification gateway form</strong> is contained within the <strong class=" ">Content subscription </strong>web part.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882102/Notification_Gateway_Form_Diagram.png" alt="images/download/attachments/68882102/Notification_Gateway_Form_Diagram.png">
+        <br><span class="caption">Diagram showing the components of a notification gateway form</span>
     </p>
-<p   
-></p>
-    <div  class="confbox panel">
+<p></p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<p   
->Developing custom notification gateways:</p>
-<ol class=" "><li class=" "><p   
->Creating custom notification gateway forms</p>
-</li><li class=" "><p   
->  <a   href="Creating-custom-notification-gateway-classes">Creating custom notification gateway classes</a></p>
-</li><li class=" "><p   
->  <a   href="Registering-custom-notification-gateways">Registering custom notification gateways</a></p>
-</li></ol><p   
->Other related pages</p>
-<ul class=" "><li class=" "><p   
->  <a   href="Setting-up-content-notifications">Setting up content notifications</a></p>
+<p>Developing custom notification gateways:</p>
+<ol class=" "><li class=" "><p>Creating custom notification gateway forms</p>
+</li><li class=" "><p><a href="creating-custom-notification-gateway-classes">Creating custom notification gateway classes</a></p>
+</li><li class=" "><p><a href="registering-custom-notification-gateways">Registering custom notification gateways</a></p>
+</li></ol><p>Other related pages</p>
+<ul class=" "><li class=" "><p><a href="setting-up-content-notifications">Setting up content notifications</a></p>
 </li></ul>        </div>
     </div>
-<p   
->To create a custom notification gateway form:</p>
-<ol class=" "><li class=" "><p   
->Create a new web user control (*.ascx) and place it into your site folder in the root of your web project.<br/></p>
-<ul class=" "><li class=" "><p   
->You can place it anywhere in your web project, the control will be included in the site&#39;s export package when in the site folder.</p>
-</li></ul></li><li class=" "><p   
->Set the control&#39;s class to inherit from the <strong class=" "><i class=" ">CMS.Notifications.Web.UI.CMSNotificationGatewayForm</i></strong> class.</p>
-</li><li class=" "><p   
->Override the following members of the base class:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">object Value</strong> - gets or sets the value from the custom inner control (e.g. gets or sets the text of the inner TextBox in the picture above).</p>
-</li><li class=" "><p   
-><strong class=" ">string Validate()</strong> &ndash; validates the inner control&#39;s value and returns an error message if the value doesn&#39;t meet the requirements of the notification gateway (e.g. the TextBox value is validated for email address format for the <strong class=" ">Email notification gateway</strong>).</p>
-</li><li class=" "><p   
-><strong class=" ">void ClearForm()</strong> &ndash; your custom code inside this method should set the inner control to the default state; example: text of the TextBox should be cleared (set to the empty string).</p>
+<p>To create a custom notification gateway form:</p>
+<ol class=" "><li class=" "><p>Create a new web user control (*.ascx) and place it into your site folder in the root of your web project.<br></p>
+<ul class=" "><li class=" "><p>You can place it anywhere in your web project, the control will be included in the site's export package when in the site folder.</p>
+</li></ul></li><li class=" "><p>Set the control's class to inherit from the <strong class=" "><i class=" ">CMS.Notifications.Web.UI.CMSNotificationGatewayForm</i></strong> class.</p>
+</li><li class=" "><p>Override the following members of the base class:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">object Value</strong> - gets or sets the value from the custom inner control (e.g. gets or sets the text of the inner TextBox in the picture above).</p>
+</li><li class=" "><p><strong class=" ">string Validate()</strong> – validates the inner control's value and returns an error message if the value doesn't meet the requirements of the notification gateway (e.g. the TextBox value is validated for email address format for the <strong class=" ">Email notification gateway</strong>).</p>
+</li><li class=" "><p><strong class=" ">void ClearForm()</strong> – your custom code inside this method should set the inner control to the default state; example: text of the TextBox should be cleared (set to the empty string).</p>
 </li></ul></li></ol>    <h4 id="src-68882102_Creatingcustomnotificationgatewayforms-Example-Emailnotificationgatewayform" class="heading "><span>Example - Email notification gateway form</span></h4>
-<p   
->The following code samples show how to implement a custom email notification gateway form:</p>
-<p   
-><strong class=" ">EmailNotificationForm.ascx</strong></p>
-    <div  class="confbox admonition admonition-note">
+<p>The following code samples show how to implement a custom email notification gateway form:</p>
+<p><strong class=" ">EmailNotificationForm.ascx</strong></p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you installed the Kentico project as a web application, you need to rename the <strong class=" ">CodeFile</strong> attribute on the first line to <strong class=" ">Codebehind.</strong></p>
+<p>If you installed the Kentico project as a web application, you need to rename the <strong class=" ">CodeFile</strong> attribute on the first line to <strong class=" ">Codebehind.</strong></p>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;%@ Control Language=</code><code class="string">"C#"</code><code class="plain"> AutoEventWireup=</code><code class="string">"true"</code><code class="plain"> CodeFile=</code><code class="string">"EmailNotificationForm.ascx.cs"</code><code class="plain"> Inherits=</code><code class="string">"CorporateSite_EmailNotificationForm"</code><code class="plain"> %&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;asp:Label ID=</code><code class="string">"lblEmail"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">&lt;asp:TextBox ID=</code><code class="string">"txtEmail"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> CssClass=</code><code class="string">"EmailNotificationForm"</code><code class="plain"> EnableViewState=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
 </div>
     </div>
-<p   
-><strong class=" ">EmailNotificationForm.ascx.cs</strong></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p><strong class=" ">EmailNotificationForm.ascx.cs</strong></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Notifications.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CorporateSite_EmailNotificationForm : CMSNotificationGatewayForm</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="preprocessor">    #region "Variables"</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">bool</code><code class="plain"> mEnableMultipleEmails = </code><code class="keyword">false</code><code class="plain">;</code></div>
 <div class="line"><code class="preprocessor">
     #endregion</code></div>
 <div class="line"><code class="preprocessor">
 
     #region "Properties"</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Gets or sets the email(s) from/to textbox.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -246,7 +223,7 @@
 <div class="line"><code class="plain">            </code><code class="keyword">this</code><code class="plain">.txtEmail.Text = ValidationHelper.GetString(value, </code><code class="string">""</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Gets or sets the value which determines whether to allow multiple emails separated with semicolon.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -262,11 +239,11 @@
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="preprocessor">    #endregion</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Page_Load(</code><code class="keyword">object</code><code class="plain"> sender, EventArgs e)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">       </code><code class="keyword">this</code><code class="plain">.lblEmail.Text = (</code><code class="keyword">this</code><code class="plain">.EnableMultipleEmails ? ResHelper.GetString(</code><code class="string">"general.emails"</code><code class="plain">) : ResHelper.GetString(</code><code class="string">"general.email"</code><code class="plain">)) + ResHelper.Colon;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Fill in the default email</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> ((!RequestHelper.IsPostBack()) &amp;&amp; (MembershipContext.AuthenticatedUser != </code><code class="keyword">null</code><code class="plain">) &amp;&amp; (!String.IsNullOrEmpty(MembershipContext.AuthenticatedUser.Email)))</code></div>
 <div class="line"><code class="plain">        {</code></div>
@@ -276,7 +253,7 @@
 <div class="line"><code class="preprocessor">
 
     #region "Public methods"</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Checks whether the input is correct email address (or multiple email addresses).</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -298,7 +275,7 @@
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> String.Empty;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Clears the email textbox field.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -331,5 +308,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

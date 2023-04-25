@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>User registration on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -152,215 +150,132 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The <strong class=" ">Kentico.Membership</strong>   <a   href="Installing-Kentico-integration-packages">integration package</a> allows you to set up registration functionality for the visitors of your   <a   href="Developing-sites-using-ASP.NET-MVC">MVC website</a>. The system stores the user data in the shared Kentico database.</p>
-<p   
->Before you start working on registration, you need to perform the following:</p>
-<ul class=" "><li class=" "><p   
->Integrate the Kentico membership implementation into your MVC project</p>
-</li><li class=" "><p   
->Set up authentication functionality</p>
-</li></ul><p   
->Both scenarios are described on the   <a   href="Working-with-users-on-MVC-sites">Working with users on MVC sites</a> page.</p>
-    <h3 id="src-68880521_UserregistrationonMVCsites-CompatibilitywithKenticoregistrationfeatures" class="heading "><span>Compatibility with Kentico registration features</span></h3>
-<p   
->Kentico features related to user registration are NOT supported by default for registrations that occur on MVC sites. For example:</p>
-<ul class=" "><li class=" "><p   
->The default Kentico functionality for email confirmation of registrations. However, you can use the integration API to set up your own solution &ndash; see the   <a   href="#src-68880521_UserregistrationonMVCsites-Addingemailconfirmationforregistration">Adding email confirmation for registration</a> section.</p>
-</li><li class=" "><p   
->Password policies - you need to define password requirements in your application&#39;s code (for example by configuring the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/microsoft.aspnet.identity.passwordvalidator%28v=vs.108%29.aspx">PasswordValidator</a> property during the initialization of <i class=" ">Kentico.Membership.UserManager</i>).</p>
-</li><li class=" "><p   
->Reserved user names (<i class=" ">Settings -&gt; Security &amp; Membership -&gt; Reserved user names</i>)</p>
-</li><li class=" "><p   
->Approval of new user accounts by administrators (<i class=" ">Settings -&gt; Security &amp; Membership -&gt; Registration requires administrator&#39;s approval</i>)</p>
-</li><li class=" "><p   
->Site prefixes for user names (<i class=" ">Settings -&gt; Security &amp; Membership -&gt; Use site prefix for user names</i>)</p>
-</li></ul><p   
->One setting that does apply to registration on MVC sites is the <strong class=" ">Password format</strong>, which you can configure within Kentico in <strong class=" ">Settings -&gt; Security &amp; Membership -&gt; Passwords</strong>. See   <a   href="Setting-the-user-password-format">Setting the user password format</a> for more information. The integration API ensures that any users registered from your MVC site have their passwords stored in the format configured for the Kentico application.</p>
-    <div  class="confbox admonition admonition-note">
+<div class="section-left"><p>The <strong class=" ">Kentico.Membership</strong> <a href="installing-kentico-integration-packages">integration package</a> allows you to set up registration functionality for the visitors of your <a href="developing-sites-using-asp.net-mvc">MVC website</a>. The system stores the user data in the shared Kentico database.</p><p>Before you start working on registration, you need to perform the following:</p><ul class=" "><li class=" "><p>Integrate the Kentico membership implementation into your MVC project</p>
+</li><li class=" "><p>Set up authentication functionality</p>
+</li></ul><p>Both scenarios are described on the <a href="working-with-users-on-mvc-sites">Working with users on MVC sites</a> page.</p><h3 id="src-68880521_UserregistrationonMVCsites-CompatibilitywithKenticoregistrationfeatures" class="heading "><span>Compatibility with Kentico registration features</span></h3><p>Kentico features related to user registration are NOT supported by default for registrations that occur on MVC sites. For example:</p><ul class=" "><li class=" "><p>The default Kentico functionality for email confirmation of registrations. However, you can use the integration API to set up your own solution – see the <a href="#src-68880521_userregistrationonmvcsites-addingemailconfirmationforregistration">Adding email confirmation for registration</a> section.</p>
+</li><li class=" "><p>Password policies - you need to define password requirements in your application's code (for example by configuring the <a class="external-link" href="https://msdn.microsoft.com/en-us/library/microsoft.aspnet.identity.passwordvalidator%28v=vs.108%29.aspx">PasswordValidator</a> property during the initialization of <i class=" ">Kentico.Membership.UserManager</i>).</p>
+</li><li class=" "><p>Reserved user names (<i class=" ">Settings -&gt; Security &amp; Membership -&gt; Reserved user names</i>)</p>
+</li><li class=" "><p>Approval of new user accounts by administrators (<i class=" ">Settings -&gt; Security &amp; Membership -&gt; Registration requires administrator's approval</i>)</p>
+</li><li class=" "><p>Site prefixes for user names (<i class=" ">Settings -&gt; Security &amp; Membership -&gt; Use site prefix for user names</i>)</p>
+</li></ul><p>One setting that does apply to registration on MVC sites is the <strong class=" ">Password format</strong>, which you can configure within Kentico in <strong class=" ">Settings -&gt; Security &amp; Membership -&gt; Passwords</strong>. See <a href="setting-the-user-password-format">Setting the user password format</a> for more information. The integration API ensures that any users registered from your MVC site have their passwords stored in the format configured for the Kentico application.</p><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Ensuring the correct password format</strong></p>
-<p   
->If your Kentico application uses custom salt values when generating password hashes, you also need to set the same values for the MVC application.</p>
-<p   
->Check the <i class=" ">appSettings</i> section of your Kentico application&#39;s web.config for the following keys:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMSPasswordSalt</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMSUserSaltColumn</strong> (obsolete key used only for backward compatibility)<strong class=" "><br/></strong></p>
-</li></ul><p   
->If either of the keys are present, copy them to the web.config of your MVC project.</p>
+<p><strong class=" ">Ensuring the correct password format</strong></p>
+<p>If your Kentico application uses custom salt values when generating password hashes, you also need to set the same values for the MVC application.</p>
+<p>Check the <i class=" ">appSettings</i> section of your Kentico application's web.config for the following keys:</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMSPasswordSalt</strong></p>
+</li><li class=" "><p><strong class=" ">CMSUserSaltColumn</strong> (obsolete key used only for backward compatibility)<strong class=" "><br></strong></p>
+</li></ul><p>If either of the keys are present, copy them to the web.config of your MVC project.</p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div>
+
+
+    
+
+
+    
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68880521_UserregistrationonMVCsites-CompatibilitywithKenticoregistrationfeatures">Compatibility with Kentico registration features</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880521_UserregistrationonMVCsites-Settingupbasicregistration">Setting up basic registration</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880521_UserregistrationonMVCsites-Addingemailconfirmationforregistration">Adding email confirmation for registration</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68880521_UserregistrationonMVCsites-UpdatinguserdetailsfromtheMVCapplication">Updating user details from the MVC application</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880521_userregistrationonmvcsites-compatibilitywithkenticoregistrationfeatures">Compatibility with Kentico registration features</a></p>
+</li><li class=" "><p><a href="#src-68880521_userregistrationonmvcsites-settingupbasicregistration">Setting up basic registration</a></p>
+</li><li class=" "><p><a href="#src-68880521_userregistrationonmvcsites-addingemailconfirmationforregistration">Adding email confirmation for registration</a></p>
+</li><li class=" "><p><a href="#src-68880521_userregistrationonmvcsites-updatinguserdetailsfromthemvcapplication">Updating user details from the MVC application</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Working-with-users-on-MVC-sites">Working with users on MVC sites</a></p>
-</li><li class=" "><p   
->  <a   href="User-registration-and-authentication">User registration and authentication in Kentico</a></p>
+<ul class=" "><li class=" "><p><a href="working-with-users-on-mvc-sites">Working with users on MVC sites</a></p>
+</li><li class=" "><p><a href="user-registration-and-authentication">User registration and authentication in Kentico</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68880521_UserregistrationonMVCsites-Settingupbasicregistration" class="heading "><span>Setting up basic registration</span></h3>
-<p   
->Use the following approach to develop actions that allow visitors to register on your website:</p>
-<p   
-></p>
-    <div  class="confbox admonition admonition-tip">
+<p>Use the following approach to develop actions that allow visitors to register on your website:</p>
+<p></p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a  class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> project. You can also run the Learning Kit website after connecting the project to a Kentico database.</p>
+<p><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> project. You can also run the Learning Kit website after connecting the project to a Kentico database.</p>
         </div>
     </div>
-<p   
-></p>
-<ol class=" "><li class=" "><p   
->Create a new controller class in your MVC project or edit an existing one.</p>
-</li><li class=" "><p   
->Prepare a property that gets an instance of the <strong class=" ">Kentico.Membership.UserManager</strong> class for the current request &ndash; call <i class=" ">HttpContext.GetOwinContext().Get&lt;UserManager&gt;()</i>.</p>
-</li><li class=" "><p   
->Implement two registration actions &ndash; one basic GET action to display the registration form and a second POST action to handle the creation of new users when the form is submitted.</p>
-</li><li class=" "><p   
->Perform the following steps within the POST action:</p>
-<ol class=" "><li class=" "><p   
->Prepare a <strong class=" ">Kentico.Membership.User</strong> object based on the posted registration data.</p>
-</li><li class=" "><p   
->Call the <strong class=" ">UserManager.CreateAsync</strong> method to create the user in the Kentico database.</p>
-</li><li class=" "><p   
->(Optional) If the registration is successful, sign in the user under the new account via the <strong class=" ">SignInAsync</strong> method of the current request&#39;s <i class=" ">SignInManager</i> instance (See   <a   href="Working-with-users-on-MVC-sites">Working with users on MVC sites</a> for more information about the <i class=" ">SignInManager).</i></p>
-</li></ol><p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p></p>
+<ol class=" "><li class=" "><p>Create a new controller class in your MVC project or edit an existing one.</p>
+</li><li class=" "><p>Prepare a property that gets an instance of the <strong class=" ">Kentico.Membership.UserManager</strong> class for the current request – call <i class=" ">HttpContext.GetOwinContext().Get&lt;UserManager&gt;()</i>.</p>
+</li><li class=" "><p>Implement two registration actions – one basic GET action to display the registration form and a second POST action to handle the creation of new users when the form is submitted.</p>
+</li><li class=" "><p>Perform the following steps within the POST action:</p>
+<ol class=" "><li class=" "><p>Prepare a <strong class=" ">Kentico.Membership.User</strong> object based on the posted registration data.</p>
+</li><li class=" "><p>Call the <strong class=" ">UserManager.CreateAsync</strong> method to create the user in the Kentico database.</p>
+</li><li class=" "><p>(Optional) If the registration is successful, sign in the user under the new account via the <strong class=" ">SignInAsync</strong> method of the current request's <i class=" ">SignInManager</i> instance (See <a href="working-with-users-on-mvc-sites">Working with users on MVC sites</a> for more information about the <i class=" ">SignInManager).</i></p>
+</li></ol><p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->We recommend creating a view model for your registration action <i class=" ">(RegisterViewModel</i> in the example above). The view model allows you to:</p>
-<ul class=" "><li class=" "><p   
->Pass parameters from the registration form (user names, email address, password and confirmation field, etc.).</p>
-</li><li class=" "><p   
->Use data annotations to define validation and formatting rules for the registration data. See <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations%28v=vs.110%29.aspx">System.ComponentModel.DataAnnotations</a> on MSDN for more information about the available data annotation attributes.</p>
-</li></ul><p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>We recommend creating a view model for your registration action <i class=" ">(RegisterViewModel</i> in the example above). The view model allows you to:</p>
+<ul class=" "><li class=" "><p>Pass parameters from the registration form (user names, email address, password and confirmation field, etc.).</p>
+</li><li class=" "><p>Use data annotations to define validation and formatting rules for the registration data. See <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations%28v=vs.110%29.aspx">System.ComponentModel.DataAnnotations</a> on MSDN for more information about the available data annotation attributes.</p>
+</li></ul><p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->Design the user interface required for registration on your website:</p>
-<ul class=" "><li class=" "><p   
->Create a view for the <i class=" ">Register</i> action and display an appropriate registration form. We recommend using a strongly typed view based on your registration view model.</p>
-</li><li class=" "><p   
->Add a registration button or link that targets the <i class=" ">Register</i> action into an appropriate location on your website.</p>
-</li></ul></li></ol><p   
->Visitors can now register new user accounts on your MVC site. Upon successful registration, the system creates a new user in the connected Kentico database. The new user is automatically enabled in Kentico and assigned to the site where the registration occurred. The user can then sign in on the website.</p>
-    <div  class="confbox admonition admonition-info">
+</li><li class=" "><p>Design the user interface required for registration on your website:</p>
+<ul class=" "><li class=" "><p>Create a view for the <i class=" ">Register</i> action and display an appropriate registration form. We recommend using a strongly typed view based on your registration view model.</p>
+</li><li class=" "><p>Add a registration button or link that targets the <i class=" ">Register</i> action into an appropriate location on your website.</p>
+</li></ul></li></ol><p>Visitors can now register new user accounts on your MVC site. Upon successful registration, the system creates a new user in the connected Kentico database. The new user is automatically enabled in Kentico and assigned to the site where the registration occurred. The user can then sign in on the website.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Kentico matches   <a   href="Managing-sites">sites</a> to MVC applications based on the <strong class=" ">Presentation URL</strong> or <strong class=" ">Domain name</strong> set for sites in the <strong class=" ">Sites</strong> application.</p>
+<p>Kentico matches <a href="managing-sites">sites</a> to MVC applications based on the <strong class=" ">Presentation URL</strong> or <strong class=" ">Domain name</strong> set for sites in the <strong class=" ">Sites</strong> application.</p>
         </div>
     </div>
     <h3 id="src-68880521_UserregistrationonMVCsites-Addingemailconfirmationforregistration" class="heading "><span>Adding email confirmation for registration</span></h3>
-<p   
->The membership integration API allows you to set up a more advanced registration process that requires email confirmation (double opt-in).</p>
-    <div  class="confbox admonition admonition-info">
+<p>The membership integration API allows you to set up a more advanced registration process that requires email confirmation (double opt-in).</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Configuring the confirmation email settings</strong></p>
-<p   
->The confirmation emails are sent by the email engine provided by the Kentico API. Configure the email settings through the administration interface of the connected Kentico application:</p>
-<ul class=" "><li class=" "><p   
->Set up SMTP servers in Kentico. See   <a   href="Configuring-SMTP-servers">Configuring SMTP servers</a> for more information.</p>
-</li><li class=" "><p   
->You can use the Kentico <strong class=" ">Email queue</strong> application to monitor the emails (if the email queue is enabled).</p>
-</li><li class=" "><p   
->Set the sender address for the confirmation emails in <strong class=" ">Settings -&gt; System -&gt; No-reply email address</strong>.</p>
+<p><strong class=" ">Configuring the confirmation email settings</strong></p>
+<p>The confirmation emails are sent by the email engine provided by the Kentico API. Configure the email settings through the administration interface of the connected Kentico application:</p>
+<ul class=" "><li class=" "><p>Set up SMTP servers in Kentico. See <a href="configuring-smtp-servers">Configuring SMTP servers</a> for more information.</p>
+</li><li class=" "><p>You can use the Kentico <strong class=" ">Email queue</strong> application to monitor the emails (if the email queue is enabled).</p>
+</li><li class=" "><p>Set the sender address for the confirmation emails in <strong class=" ">Settings -&gt; System -&gt; No-reply email address</strong>.</p>
 </li></ul>        </div>
     </div>
-<ol class=" "><li class=" "><p   
->Create a new controller class in your MVC project or edit an existing one.</p>
-</li><li class=" "><p   
->Prepare a property that gets an instance of the <strong class=" ">Kentico.Membership.UserManager</strong> class for the current request &ndash; call <i class=" ">HttpContext.GetOwinContext().Get&lt;UserManager&gt;()</i>.</p>
-</li><li class=" "><p   
->Implement two registration actions &ndash; one basic GET action to display the registration form and a second POST action to handle the creation of new users and sending of confirmation emails.</p>
-</li><li class=" "><p   
->Perform the following steps within the POST action:</p>
-<ul class=" "><li class=" "><p   
->Prepare a <strong class=" ">Kentico.Membership.User</strong> object based on the posted registration data. Leave the user disabled.</p>
-</li><li class=" "><p   
->Call the <strong class=" ">UserManager.CreateAsync</strong> method to create the user in the Kentico database.</p>
-</li><li class=" "><p   
->Generate a token for the confirmation link by calling the <strong class=" ">UserManager.GenerateEmailConfirmationTokenAsync</strong> method.</p>
-</li><li class=" "><p   
->Send the confirmation email by calling the <strong class=" ">UserManager.SendEmailAsync</strong> method. You need to specify the email subject and content through the parameters.</p>
-</li></ul></li><li class=" "><p   
->Add another action to the controller for handling of the confirmation requests. Call the <strong class=" ">UserManager.ConfirmEmailAsync</strong> method to verify and confirm user accounts.</p>
-    <div  class="confbox admonition admonition-info">
+<ol class=" "><li class=" "><p>Create a new controller class in your MVC project or edit an existing one.</p>
+</li><li class=" "><p>Prepare a property that gets an instance of the <strong class=" ">Kentico.Membership.UserManager</strong> class for the current request – call <i class=" ">HttpContext.GetOwinContext().Get&lt;UserManager&gt;()</i>.</p>
+</li><li class=" "><p>Implement two registration actions – one basic GET action to display the registration form and a second POST action to handle the creation of new users and sending of confirmation emails.</p>
+</li><li class=" "><p>Perform the following steps within the POST action:</p>
+<ul class=" "><li class=" "><p>Prepare a <strong class=" ">Kentico.Membership.User</strong> object based on the posted registration data. Leave the user disabled.</p>
+</li><li class=" "><p>Call the <strong class=" ">UserManager.CreateAsync</strong> method to create the user in the Kentico database.</p>
+</li><li class=" "><p>Generate a token for the confirmation link by calling the <strong class=" ">UserManager.GenerateEmailConfirmationTokenAsync</strong> method.</p>
+</li><li class=" "><p>Send the confirmation email by calling the <strong class=" ">UserManager.SendEmailAsync</strong> method. You need to specify the email subject and content through the parameters.</p>
+</li></ul></li><li class=" "><p>Add another action to the controller for handling of the confirmation requests. Call the <strong class=" ">UserManager.ConfirmEmailAsync</strong> method to verify and confirm user accounts.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The <strong class=" ">ConfirmEmailAsync</strong> method requires the ID of the user and matching confirmation token as parameters. Pass the required values as query string parameters of the confirmation link within the content of the emails that you send to new users.</p>
+<p>The <strong class=" ">ConfirmEmailAsync</strong> method requires the ID of the user and matching confirmation token as parameters. Pass the required values as query string parameters of the confirmation link within the content of the emails that you send to new users.</p>
         </div>
     </div>
-<p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
     </p>
-</li><li class=" "><p   
->We recommend creating a view model for your registration action. See the basic registration section above for an example (<i class=" ">RegisterViewModel</i> class).</p>
-</li><li class=" "><p   
->Design the user interface required for registration on your website:</p>
-<ul class=" "><li class=" "><p   
->Create a view for the <i class=" ">RegisterWithEmailConfirmation</i> action and display an appropriate registration form. We recommend using a strongly typed view based on your registration view model.</p>
-</li><li class=" "><p   
->Add a registration button or link that targets the <i class=" ">RegisterWithEmailConfirmation</i> action into an appropriate location on your website.</p>
-</li><li class=" "><p   
->Create a view with content that informs users about the need to confirm their newly registered account <i class=" ">(CheckYourEmail</i> view in the example).</p>
-</li><li class=" "><p   
->Create views for the <i class=" ">ConfirmUser</i> action. Display information for users who click the confirmation link (for both successful and unsuccessful confirmation).</p>
-</li></ul></li></ol><p   
->Visitors can now register new user accounts on your MVC site. Upon registration, the system creates a disabled user in the connected Kentico database (assigned to the site where the registration occurred) and sends a confirmation email to the submitted address. Upon successful confirmation, the new user becomes enabled and can sign in.</p>
+</li><li class=" "><p>We recommend creating a view model for your registration action. See the basic registration section above for an example (<i class=" ">RegisterViewModel</i> class).</p>
+</li><li class=" "><p>Design the user interface required for registration on your website:</p>
+<ul class=" "><li class=" "><p>Create a view for the <i class=" ">RegisterWithEmailConfirmation</i> action and display an appropriate registration form. We recommend using a strongly typed view based on your registration view model.</p>
+</li><li class=" "><p>Add a registration button or link that targets the <i class=" ">RegisterWithEmailConfirmation</i> action into an appropriate location on your website.</p>
+</li><li class=" "><p>Create a view with content that informs users about the need to confirm their newly registered account <i class=" ">(CheckYourEmail</i> view in the example).</p>
+</li><li class=" "><p>Create views for the <i class=" ">ConfirmUser</i> action. Display information for users who click the confirmation link (for both successful and unsuccessful confirmation).</p>
+</li></ul></li></ol><p>Visitors can now register new user accounts on your MVC site. Upon registration, the system creates a disabled user in the connected Kentico database (assigned to the site where the registration occurred) and sends a confirmation email to the submitted address. Upon successful confirmation, the new user becomes enabled and can sign in.</p>
     <h3 id="src-68880521_UserregistrationonMVCsites-UpdatinguserdetailsfromtheMVCapplication" class="heading "><span>Updating user details from the MVC application</span></h3>
-<p   
->You can add a page to your MVC application, where your users can change their personal details.</p>
-<ol class=" "><li class=" "><p   
->Create a new controller class in your MVC project or edit an existing one.</p>
-</li><li class=" "><p   
->Prepare a property that gets an instance of the <strong class=" ">Kentico.Membership.UserManager</strong> class for the current request &ndash; call <i class=" ">HttpContext.GetOwinContext().Get&lt;UserManager&gt;()</i>.</p>
-</li><li class=" "><p   
->Implement two user detail actions &ndash; one basic GET action to display the form and a second POST action to handle the changing of user details.</p>
-</li><li class=" "><p   
->Perform the following steps within the POST action:</p>
-<ul class=" "><li class=" "><p   
->Prepare a <strong class=" ">Kentico.Membership.User</strong> object based on the posted user data.</p>
-</li><li class=" "><p   
->Call the <strong class=" ">UserManager.FindByName</strong> method to find out the current user in Kentico.</p>
-</li><li class=" "><p   
->Call the <strong class=" ">UserStore.UpdateAsync</strong> method to save the changes to the database.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p>You can add a page to your MVC application, where your users can change their personal details.</p>
+<ol class=" "><li class=" "><p>Create a new controller class in your MVC project or edit an existing one.</p>
+</li><li class=" "><p>Prepare a property that gets an instance of the <strong class=" ">Kentico.Membership.UserManager</strong> class for the current request – call <i class=" ">HttpContext.GetOwinContext().Get&lt;UserManager&gt;()</i>.</p>
+</li><li class=" "><p>Implement two user detail actions – one basic GET action to display the form and a second POST action to handle the changing of user details.</p>
+</li><li class=" "><p>Perform the following steps within the POST action:</p>
+<ul class=" "><li class=" "><p>Prepare a <strong class=" ">Kentico.Membership.User</strong> object based on the posted user data.</p>
+</li><li class=" "><p>Call the <strong class=" ">UserManager.FindByName</strong> method to find out the current user in Kentico.</p>
+</li><li class=" "><p>Call the <strong class=" ">UserStore.UpdateAsync</strong> method to save the changes to the database.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li></ul></li><li class=" "><p   
->Instead of using the <i class=" ">User</i> object directly in your view, we recommend creating a view model for your action for editing user details.</p>
-</li><li class=" "><p   
->Design the user interface required for editing user details on your website:</p>
-<ul class=" "><li class=" "><p   
->Create a view for the <i class=" ">EditUser</i> action and display an appropriate form. We recommend using a strongly typed view based on your view model.</p>
-</li></ul></li></ol><p   
->Users can now change their personal details on your MVC site.</p>
+</li></ul></li><li class=" "><p>Instead of using the <i class=" ">User</i> object directly in your view, we recommend creating a view model for your action for editing user details.</p>
+</li><li class=" "><p>Design the user interface required for editing user details on your website:</p>
+<ul class=" "><li class=" "><p>Create a view for the <i class=" ">EditUser</i> action and display an appropriate form. We recommend using a strongly typed view based on your view model.</p>
+</li></ul></li></ol><p>Users can now change their personal details on your MVC site.</p>
         </div>
 
     </article>
@@ -381,5 +296,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

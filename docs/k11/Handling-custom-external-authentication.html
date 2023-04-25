@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Handling custom external authentication - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,53 +148,39 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can use   <a   href="Handling-global-events">global events</a> to integrate external user databases, and modify the authentication or authorization process. See the <strong class=" ">SecurityEvents</strong> section of the   <a   href="Reference---Global-system-events">global event reference</a> to learn more about the available options.</p>
-<p   
->To set up custom authentication, implement a handler for the <strong class=" ">SecurityEvents.Authentication.Execute</strong> event. You can access the authentication data through the event handler&#39;s <strong class=" ">AuthenticationEventArgs</strong> parameter, which provides the following properties:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">UserInfo User</strong> - an object representing the user attempting to sign in. The object is the result of the system&#39;s standard authentication check. If the default authentication failed, the User property is <i class=" ">null</i>.</p>
-</li><li class=" "><p   
-><strong class=" ">string UserName</strong> - contains the username entered during the sign-in attempt.</p>
-</li><li class=" "><p   
-><strong class=" ">string Password</strong> - contains the password entered during the sign-in attempt.</p>
-</li></ul><p   
->Once you complete the external authentication process in the handler&#39;s code, assign a matching <i class=" ">UserInfo</i> object to the <i class=" ">AuthenticationEventArgs</i> parameter&#39;s <strong class=" ">User</strong> property. If the authentication failed, set the property to <i class=" ">null</i>.</p>
-    <div  class="confbox panel">
+<div class="section-left"></div><p>You can use <a href="handling-global-events">global events</a> to integrate external user databases, and modify the authentication or authorization process. See the <strong class=" ">SecurityEvents</strong> section of the <a href="reference---global-system-events">global event reference</a> to learn more about the available options.</p>
+<p>To set up custom authentication, implement a handler for the <strong class=" ">SecurityEvents.Authentication.Execute</strong> event. You can access the authentication data through the event handler's <strong class=" ">AuthenticationEventArgs</strong> parameter, which provides the following properties:</p>
+<ul class=" "><li class=" "><p><strong class=" ">UserInfo User</strong> - an object representing the user attempting to sign in. The object is the result of the system's standard authentication check. If the default authentication failed, the User property is <i class=" ">null</i>.</p>
+</li><li class=" "><p><strong class=" ">string UserName</strong> - contains the username entered during the sign-in attempt.</p>
+</li><li class=" "><p><strong class=" ">string Password</strong> - contains the password entered during the sign-in attempt.</p>
+</li></ul><p>Once you complete the external authentication process in the handler's code, assign a matching <i class=" ">UserInfo</i> object to the <i class=" ">AuthenticationEventArgs</i> parameter's <strong class=" ">User</strong> property. If the authentication failed, set the property to <i class=" ">null</i>.</p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="User-registration-and-authentication">User registration and authentication</a></p>
-</li><li class=" "><p   
->  <a   href="Handling-global-events">Handling global events</a></p>
-</li><li class=" "><p   
->  <a   href="Reference---Global-system-events">Reference - Global system events</a></p>
+<ul class=" "><li class=" "><p><a href="user-registration-and-authentication">User registration and authentication</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
+</li><li class=" "><p><a href="reference---global-system-events">Reference - Global system events</a></p>
 </li></ul>        </div>
     </div>
     <h4 id="src-68882266_Handlingcustomexternalauthentication-Example" class="heading "><span>Example</span></h4>
-<p   
->The following example demonstrates how to integrate external user authentication by handling security events:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico web project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">SecurityEvents.Authentication.Execute</strong> event:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example demonstrates how to integrate external user authentication by handling security events:</p>
+<ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio.</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">SecurityEvents.Authentication.Execute</strong> event:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Data;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomAuthenticationModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomAuthenticationModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomAuthentication"</code></div>
@@ -204,12 +188,12 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomAuthentication"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the SecurityEvents.Authenticate.Execute event</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// This event occurs when users attempt to sign in on the website</code></div>
 <div class="line"><code class="plain">		SecurityEvents.Authenticate.Execute += OnAuthentication;</code></div>
@@ -217,9 +201,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Define the handler method within the module class:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Define the handler method within the module class:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnAuthentication(</code><code class="keyword">object</code><code class="plain"> sender, AuthenticationEventArgs e)</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -228,18 +211,18 @@
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Object representing the external user</code></div>
 <div class="line"><code class="plain">		UserInfo externalUser = </code><code class="keyword">null</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets the credentials entered during the authentication</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> username = SqlHelper.EscapeQuotes(e.UserName);</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> password = SqlHelper.EscapeQuotes(e.Password);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Path to an XML database file</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> xmlPath = HttpContext.Current.Server.MapPath(</code><code class="string">"~/userdatabase.xml"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Reads data from the external database</code></div>
 <div class="line"><code class="plain">		DataSet userData = </code><code class="keyword">new</code><code class="plain"> DataSet();</code></div>
 <div class="line"><code class="plain">		userData.ReadXml(xmlPath);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Authenticates against the external database</code></div>
 <div class="line"><code class="plain">		DataRow[] rows = userData.Tables[0].Select(</code><code class="string">"UserName = '"</code><code class="plain"> + username + </code><code class="string">"' AND Password='"</code><code class="plain"> + password + </code><code class="string">"'"</code><code class="plain">);                </code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (rows.Count() &gt; 0)		</code></div>
@@ -253,24 +236,20 @@
 <div class="line"><code class="plain">				Enabled = </code><code class="keyword">true</code></div>
 <div class="line"><code class="plain">			};</code></div>
 <div class="line"><code class="plain">		}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Passes the object representing the user (or null if external authentication failed)</code></div>
 <div class="line"><code class="plain">		e.User = externalUser;</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the class.</p>
-</li></ol><p   
->The system now performs authentication according to user data from the external source if default authentication fails.</p>
-    <div  class="confbox admonition admonition-tip">
+</li><li class=" "><p>Save the class.</p>
+</li></ol><p>The system now performs authentication according to user data from the external source if default authentication fails.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->We recommend importing all external roles into the <strong class=" ">CMS_Role</strong> table of the Kentico database. You can then configure the appropriate permissions for these roles, and fully use the built-in security model together with external users.</p>
-<p   
->If you need to implement custom security logic, create handlers for the available   <a   href="Reference---Global-system-events#src-68882268_ReferenceGlobalsystemevents-SecurityEvents">SecurityEvents</a>. You can programmatically check if a user belongs to a role by calling the <strong class=" ">IsInRole(string roleName, string siteName)</strong> method for <strong class=" ">UserInfo</strong> objects.</p>
+<p>We recommend importing all external roles into the <strong class=" ">CMS_Role</strong> table of the Kentico database. You can then configure the appropriate permissions for these roles, and fully use the built-in security model together with external users.</p>
+<p>If you need to implement custom security logic, create handlers for the available <a href="reference---global-system-events#src-68882268_referenceglobalsystemevents-securityevents">SecurityEvents</a>. You can programmatically check if a user belongs to a role by calling the <strong class=" ">IsInRole(string roleName, string siteName)</strong> method for <strong class=" ">UserInfo</strong> objects.</p>
         </div>
     </div>
         </div>
@@ -293,5 +272,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

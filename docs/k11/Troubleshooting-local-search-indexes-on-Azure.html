@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Troubleshooting local search indexes on Azure - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -148,134 +146,86 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This page describes how to troubleshoot issues related to   <a   href="Using-locally-stored-search-indexes">locally stored smart search indexes</a> when running the Kentico application on Azure. Please note that each section applies either to Web Apps, Cloud Services, or both.</p>
-    <h3 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Searchindexesarenotbeingrebuiltortherearehangingtasksinthesystem" class="heading "><span>Search indexes are not being rebuilt or there are hanging tasks in the system</span></h3>
-<p   
->If your local search <strong class=" ">indexes are not being built</strong> correctly or if many indexing <strong class=" ">tasks are stuck</strong> in the system, there is probably a conflict between the search index files located in the application&#39;s file system and files located on the blob storage. When an application is mapped to the blob storage, files in the file system cannot be modified. Therefore, the system is not able to delete the old search indexes.</p>
-<p   
->Please proceed to the section which corresponds to your Azure environment.</p>
-    <h4 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-CloudServices-removingsearchindexfiles" class="heading "><span>Cloud Services - removing search index files</span></h4>
-<p   
->Applies to: <span class="status blue " >CLOUD SERVICES</span>
-</p>
-    <h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Quickfix" class="heading "><span>Quick fix</span></h5>
-<p   
->The solution for this issue on Cloud Services is to delete all files in the <strong class=" "><i class=" ">~/App_Data/CMSModules/SmartSearch</i></strong> folder. Connect to your service through remote desktop and delete the files remotely in the file system.</p>
-    <h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Prevention" class="heading "><span>Prevention</span></h5>
-<p   
->Delete the files in the <i class=" ">~/App_Data/CMSModules/SmartSearch</i> folder and redeploy the cloud service. Also delete the files every time before you deploy your application to Cloud Services.</p>
-    <h4 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-WebApps-removingsearchindexfiles" class="heading "><span>Web Apps - removing search index files</span></h4>
-<p   
->Applies to: <span class="status green " >WEB APPS</span>
-</p>
-    <h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Quickfix.1" class="heading "><span>Quick fix</span></h5>
-<p   
->The immediate solution on Web Apps is to delete all files in the <strong class=" "><i class=" ">~/App_Data/CMSModules/SmartSearch</i></strong> folder. You can connect to your Web Apps service through FTP and delete the files in the file system.</p>
-    <h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Prevention.1" class="heading "><span>Prevention</span></h5>
-<p   
->When running Kentico on Azure Web Apps, you do not need to map the application&#39;s entire file system to the blob storage (this is optional). We recommend mapping only your media library folders to the blob storage and leaving all other files in the file system of the application.</p>
-<p   
->To map only the media library folder to the blob storage, see   <a   href="Configuring-Azure-storage">Configuring Kentico to store only media files on Azure storage</a>.</p>
-<p   
->However, if you want to connect the blob storage using the <strong class=" ">CMSExternalStorageName</strong> web.config key, which maps the whole file system of the application to the blob storage:</p>
-<ul class=" "><li class=" "><p   
->You need to delete all search index files in the application&#39;s file system.</p>
-</li></ul>    <div  class="confbox panel">
+<div class="section-left"><p>This page describes how to troubleshoot issues related to <a href="using-locally-stored-search-indexes">locally stored smart search indexes</a> when running the Kentico application on Azure. Please note that each section applies either to Web Apps, Cloud Services, or both.</p><h3 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Searchindexesarenotbeingrebuiltortherearehangingtasksinthesystem" class="heading "><span>Search indexes are not being rebuilt or there are hanging tasks in the system</span></h3><p>If your local search <strong class=" ">indexes are not being built</strong> correctly or if many indexing <strong class=" ">tasks are stuck</strong> in the system, there is probably a conflict between the search index files located in the application's file system and files located on the blob storage. When an application is mapped to the blob storage, files in the file system cannot be modified. Therefore, the system is not able to delete the old search indexes.</p><p>Please proceed to the section which corresponds to your Azure environment.</p><h4 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-CloudServices-removingsearchindexfiles" class="heading "><span>Cloud Services - removing search index files</span></h4><p>Applies to: <span class="status blue ">CLOUD SERVICES</span>
+</p><h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Quickfix" class="heading "><span>Quick fix</span></h5><p>The solution for this issue on Cloud Services is to delete all files in the <strong class=" "><i class=" ">~/App_Data/CMSModules/SmartSearch</i></strong> folder. Connect to your service through remote desktop and delete the files remotely in the file system.</p><h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Prevention" class="heading "><span>Prevention</span></h5><p>Delete the files in the <i class=" ">~/App_Data/CMSModules/SmartSearch</i> folder and redeploy the cloud service. Also delete the files every time before you deploy your application to Cloud Services.</p><h4 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-WebApps-removingsearchindexfiles" class="heading "><span>Web Apps - removing search index files</span></h4><p>Applies to: <span class="status green ">WEB APPS</span>
+</p><h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Quickfix.1" class="heading "><span>Quick fix</span></h5><p>The immediate solution on Web Apps is to delete all files in the <strong class=" "><i class=" ">~/App_Data/CMSModules/SmartSearch</i></strong> folder. You can connect to your Web Apps service through FTP and delete the files in the file system.</p><h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Prevention.1" class="heading "><span>Prevention</span></h5><p>When running Kentico on Azure Web Apps, you do not need to map the application's entire file system to the blob storage (this is optional). We recommend mapping only your media library folders to the blob storage and leaving all other files in the file system of the application.</p><p>To map only the media library folder to the blob storage, see <a href="configuring-azure-storage">Configuring Kentico to store only media files on Azure storage</a>.</p><p>However, if you want to connect the blob storage using the <strong class=" ">CMSExternalStorageName</strong> web.config key, which maps the whole file system of the application to the blob storage:</p><ul class=" "><li class=" "><p>You need to delete all search index files in the application's file system.</p>
+</li></ul></div>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Searchindexesarenotbeingrebuiltortherearehangingtasksinthesystem">Search indexes are not being rebuilt or there are hanging tasks in the system</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-CloudServices-removingsearchindexfiles">Cloud Services - removing search index files</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Quickfix">Quick fix</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Prevention">Prevention</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-WebApps-removingsearchindexfiles">Web Apps - removing search index files</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Quickfix.1">Quick fix</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Prevention.1">Prevention</a></p>
-</li></ul></li></ul></li><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Deleting.lockfiles">Deleting .lock files</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Quickfix.2">Quick fix</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Explanation">Explanation</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-Prevention.2">Prevention</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68881699_TroubleshootinglocalsearchindexesonAzure-SmartSearchWorkerroletroubleshootingonCloudServices">SmartSearchWorker role troubleshooting on Cloud Services</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-searchindexesarenotbeingrebuiltortherearehangingtasksinthesystem">Search indexes are not being rebuilt or there are hanging tasks in the system</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-cloudservices-removingsearchindexfiles">Cloud Services - removing search index files</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-quickfix">Quick fix</a></p>
+</li><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-prevention">Prevention</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-webapps-removingsearchindexfiles">Web Apps - removing search index files</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-quickfix.1">Quick fix</a></p>
+</li><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-prevention.1">Prevention</a></p>
+</li></ul></li></ul></li><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-deleting.lockfiles">Deleting .lock files</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-quickfix.2">Quick fix</a></p>
+</li><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-explanation">Explanation</a></p>
+</li><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-prevention.2">Prevention</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-smartsearchworkerroletroubleshootingoncloudservices">SmartSearchWorker role troubleshooting on Cloud Services</a></p>
+</li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Deleting.lockfiles" class="heading "><span>Deleting .lock files</span></h3>
-<p   
->Applies to: <span class="status green " >WEB APPS</span>
- <span class="status blue " >CLOUD SERVICES</span>
+<p>Applies to: <span class="status green ">WEB APPS</span>
+ <span class="status blue ">CLOUD SERVICES</span>
 </p>
     <h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Quickfix.2" class="heading "><span>Quick fix</span></h5>
-<p   
->If the search functionality is not working properly, you can try deleting files with the <strong class=" ">.lock</strong> extension on the blob storage.     <span style="color: #262524;">
-Connect to your blob storage (for example through <a  class="external-link" href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">Cloudberry for Azure</a>) and manually delete them.    </span>
+<p>If the search functionality is not working properly, you can try deleting files with the <strong class=" ">.lock</strong> extension on the blob storage.     <span style="color: #262524;">
+Connect to your blob storage (for example through <a class="external-link" href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">Cloudberry for Azure</a>) and manually delete them.    </span>
 </p>
     <h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Explanation" class="heading "><span>Explanation</span></h5>
-<p   
->A blob storage is shared between all instances of Kentico. If your Azure environment (Cloud Services or Web Apps) operates in multiple instances, it is important to prevent collisions. Therefore, to prevent multiple instances from manipulating the same index at the same time and ensure exclusive write operations, Kentico uses<strong class=" "> locking</strong>. Every time the smart search needs to manipulate a search index, it creates a special file with the <strong class=" ">.lock</strong> extension. This file indicates that a search indexer is working with the index. When the work is done, the system deletes the file from the storage.</p>
-<p   
->There are two different lock files in the blob storage:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">searchtaskindexer.lock</strong> &ndash; located in the<i class=" "> ~/App_Data/CMSModules/SmartSearch</i> directory.</p>
-</li><li class=" "><p   
-><strong class=" ">write.lock</strong> &ndash; located in the directory of specific search indexes.</p>
-</li></ul><p   
->In some cases, these lock files may not get deleted. This may happen when the process working with the search index ends unexpectedly. When this happens, processing of indexing tasks for locally stored indexes becomes stuck. The solution is to manually delete the lock files.</p>
+<p>A blob storage is shared between all instances of Kentico. If your Azure environment (Cloud Services or Web Apps) operates in multiple instances, it is important to prevent collisions. Therefore, to prevent multiple instances from manipulating the same index at the same time and ensure exclusive write operations, Kentico uses<strong class=" "> locking</strong>. Every time the smart search needs to manipulate a search index, it creates a special file with the <strong class=" ">.lock</strong> extension. This file indicates that a search indexer is working with the index. When the work is done, the system deletes the file from the storage.</p>
+<p>There are two different lock files in the blob storage:</p>
+<ul class=" "><li class=" "><p><strong class=" ">searchtaskindexer.lock</strong> – located in the<i class=" "> ~/App_Data/CMSModules/SmartSearch</i> directory.</p>
+</li><li class=" "><p><strong class=" ">write.lock</strong> – located in the directory of specific search indexes.</p>
+</li></ul><p>In some cases, these lock files may not get deleted. This may happen when the process working with the search index ends unexpectedly. When this happens, processing of indexing tasks for locally stored indexes becomes stuck. The solution is to manually delete the lock files.</p>
     <h5 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-Prevention.2" class="heading "><span>Prevention</span></h5>
-<p   
->    <span style="color: #262524;">
+<p>    <span style="color: #262524;">
 On Azure Web Apps, this problem can occur again if you store the search indexes on the blob storage. We recommend that you either:    </span>
 </p>
-<ul class=" "><li class=" "><p   
->    <span style="color: #262524;">
-  <a   href="Increasing-storage-capacity-on-Azure-Web-Apps#src-68881681_IncreasingstoragecapacityonAzureWebApps-StoringonlyspecificmedialibrariesonAzureBlobStorage">Map only media library folders to the blob storage</a> and leave all other files in the file system of the application.<br/>&ndash; OR &ndash;<br/>    </span>
+<ul class=" "><li class=" "><p>    <span style="color: #262524;">
+<a href="increasing-storage-capacity-on-azure-web-apps#src-68881681_increasingstoragecapacityonazurewebapps-storingonlyspecificmedialibrariesonazureblobstorage">Map only media library folders to the blob storage</a> and leave all other files in the file system of the application.<br>– OR –<br>    </span>
 </p>
-</li><li class=" "><p   
->    <span style="color: #262524;">
-  <a   href="Increasing-storage-capacity-on-Azure-Web-Apps#src-68881681_IncreasingstoragecapacityonAzureWebApps-StoringallfilesonAzureBlobStorage">Configure the scheduler to process the search tasks</a>.<br/>    </span>
+</li><li class=" "><p>    <span style="color: #262524;">
+<a href="increasing-storage-capacity-on-azure-web-apps#src-68881681_increasingstoragecapacityonazurewebapps-storingallfilesonazureblobstorage">Configure the scheduler to process the search tasks</a>.<br>    </span>
 </p>
 </li></ul>    <h3 id="src-68881699_TroubleshootinglocalsearchindexesonAzure-SmartSearchWorkerroletroubleshootingonCloudServices" class="heading "><span>SmartSearchWorker role troubleshooting on Cloud Services</span></h3>
-<p   
->Applies to: <span class="status blue " >CLOUD SERVICES</span>
+<p>Applies to: <span class="status blue ">CLOUD SERVICES</span>
 </p>
-<p   
->The SmartSearchWorker role is part of the Kentico Azure project designed to be used on Azure Cloud Services. If you are not running the Cloud Services or not using the SmartSearchWorker role, this section does not apply to your environment.</p>
-<p   
->When you are convinced that every setting and every configuration is correct and the worker role is running correctly, but still not processing the search tasks, you can look for an error in the   <a   href="Working-with-the-system-event-log">Event log</a>.</p>
-<p   
->    <span style="color: #262524;">
+<p>The SmartSearchWorker role is part of the Kentico Azure project designed to be used on Azure Cloud Services. If you are not running the Cloud Services or not using the SmartSearchWorker role, this section does not apply to your environment.</p>
+<p>When you are convinced that every setting and every configuration is correct and the worker role is running correctly, but still not processing the search tasks, you can look for an error in the <a href="working-with-the-system-event-log">Event log</a>.</p>
+<p>    <span style="color: #262524;">
 If you do not find anything related in the event log, try the following troubleshooting practice:    </span>
 </p>
-<ol class=" "><li class=" "><p   
-><a  class="external-link" href="https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-role-enable-remote-desktop-new-portal">Enable remote desktop for the worker role</a>.</p>
-</li><li class=" "><p   
->Connect to the worker role through the remote desktop access.</p>
-<ol class=" "><li class=" "><p   
->Switch to the <strong class=" ">Roles and Instances</strong> tab.</p>
-</li><li class=" "><p   
->Select the worker role instance.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Connect</strong>.</p>
-</li></ol></li><li class=" "><p   
->Look into the Smart search log in <i class=" ">App_Data/CMSModules/SmartSearch/workerlog.txt.</i></p>
-</li><li class=" "><p   
->Look into the Windows event log using <strong class=" ">Event viewer</strong>. Try looking for errors from around the time the worker role was starting.</p>
-</li></ol><p   
->Next steps can differ based on the error you find. But the error should provide you with enough information to start with.</p>
+<ol class=" "><li class=" "><p><a class="external-link" href="https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-role-enable-remote-desktop-new-portal">Enable remote desktop for the worker role</a>.</p>
+</li><li class=" "><p>Connect to the worker role through the remote desktop access.</p>
+<ol class=" "><li class=" "><p>Switch to the <strong class=" ">Roles and Instances</strong> tab.</p>
+</li><li class=" "><p>Select the worker role instance.</p>
+</li><li class=" "><p>Click <strong class=" ">Connect</strong>.</p>
+</li></ol></li><li class=" "><p>Look into the Smart search log in <i class=" ">App_Data/CMSModules/SmartSearch/workerlog.txt.</i></p>
+</li><li class=" "><p>Look into the Windows event log using <strong class=" ">Event viewer</strong>. Try looking for errors from around the time the worker role was starting.</p>
+</li></ol><p>Next steps can differ based on the error you find. But the error should provide you with enough information to start with.</p>
         </div>
 
     </article>
@@ -296,5 +246,6 @@ If you do not find anything related in the event log, try the following troubles
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

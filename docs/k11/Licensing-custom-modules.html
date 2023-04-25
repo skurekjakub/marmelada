@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Licensing custom modules - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,170 +148,127 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Kentico allows developers to add various types of custom functionality organized within   <a   href="Creating-custom-modules">modules</a>. You may wish to provide these features to customers for a price. One way to achieve this is via licensing.</p>
-<p   
->We provide tools and functionality necessary to implement licensing for custom Kentico modules &ndash; a license management application for the Kentico administration interface and an API for working with licenses in the code of custom modules.</p>
-<p   
->To implement licensing for custom modules, you need to:</p>
-<ul class=" "><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Constructinglicenses">Construct licenses for your custom module</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Implementinglicensechecksincustommodules">Add license checks to the implementation of your custom module</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Managinglicensesforcustommodules">Add and manage licenses on all Kentico instances using the custom module</a></p>
-</li></ul><p   
->To help you with the implementation of module licensing, the Kentico API provides the <strong class=" ">ModuleLicensesHelper</strong> class in the <i class=" ">CMS.ModuleLicenses</i> namespace.</p>
-<p   
->The <strong class=" ">ModuleLicensesHelper</strong> class exposes the following methods for working with licenses:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">void GenerateKeyPair(out string privateKey, out string publicKey)</strong><br/>Creates a new private and public key pair for generating and validating module licenses. Created keys are encoded in Base64.<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">string CreateModuleLicense(string licenseData, string privateKey)</strong><br/>Creates a module license containing license data and a signature based on the given private key.<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">IEnumerable&lt;string&gt; GetValidModuleLicenses(string moduleName, string publicKey)</strong><br/>Returns a collection of module license data with cryptographically valid signatures for a given module.<br/></p>
-</li></ul>    <div  class="confbox panel">
+<div class="section-left"><p>Kentico allows developers to add various types of custom functionality organized within <a href="creating-custom-modules">modules</a>. You may wish to provide these features to customers for a price. One way to achieve this is via licensing.</p><p>We provide tools and functionality necessary to implement licensing for custom Kentico modules – a license management application for the Kentico administration interface and an API for working with licenses in the code of custom modules.</p><p>To implement licensing for custom modules, you need to:</p><ul class=" "><li class=" "><p><a href="#src-68882260_licensingcustommodules-constructinglicenses">Construct licenses for your custom module</a></p>
+</li><li class=" "><p><a href="#src-68882260_licensingcustommodules-implementinglicensechecksincustommodules">Add license checks to the implementation of your custom module</a></p>
+</li><li class=" "><p><a href="#src-68882260_licensingcustommodules-managinglicensesforcustommodules">Add and manage licenses on all Kentico instances using the custom module</a></p>
+</li></ul><p>To help you with the implementation of module licensing, the Kentico API provides the <strong class=" ">ModuleLicensesHelper</strong> class in the <i class=" ">CMS.ModuleLicenses</i> namespace.</p><p>The <strong class=" ">ModuleLicensesHelper</strong> class exposes the following methods for working with licenses:</p><ul class=" "><li class=" "><p><strong class=" ">void GenerateKeyPair(out string privateKey, out string publicKey)</strong><br>Creates a new private and public key pair for generating and validating module licenses. Created keys are encoded in Base64.<br><br></p>
+</li><li class=" "><p><strong class=" ">string CreateModuleLicense(string licenseData, string privateKey)</strong><br>Creates a module license containing license data and a signature based on the given private key.<br><br></p>
+</li><li class=" "><p><strong class=" ">IEnumerable&lt;string&gt; GetValidModuleLicenses(string moduleName, string publicKey)</strong><br>Returns a collection of module license data with cryptographically valid signatures for a given module.<br></p>
+</li></ul></div>
+
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Constructinglicenses">Constructing licenses</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Generatingcryptographickeypairs">Generating cryptographic key pairs</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Generatinglicenses">Generating licenses</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Generatedlicenses">Generated licenses</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Implementinglicensechecksincustommodules">Implementing license checks in custom modules</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Retrievingvalidlicensedata">Retrieving valid license data</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882260_safe-id-TGljZW5zaW5nY3VzdG9tbW9kdWxlcy1FeGFtcGxl4oCTUGVyZm9ybWluZ21vZHVsZWxpY2Vuc2VjaGVja3M">Example &ndash; Performing module license checks</a></p>
-</li></ul></li><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Managinglicensesforcustommodules">Managing licenses for custom modules</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Addingalicenseforamodule">Adding a license for a module</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882260_licensingcustommodules-constructinglicenses">Constructing licenses</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882260_licensingcustommodules-generatingcryptographickeypairs">Generating cryptographic key pairs</a></p>
+</li><li class=" "><p><a href="#src-68882260_licensingcustommodules-generatinglicenses">Generating licenses</a></p>
+</li><li class=" "><p><a href="#src-68882260_licensingcustommodules-generatedlicenses">Generated licenses</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882260_licensingcustommodules-implementinglicensechecksincustommodules">Implementing license checks in custom modules</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882260_licensingcustommodules-retrievingvalidlicensedata">Retrieving valid license data</a></p>
+</li><li class=" "><p><a href="#src-68882260_safe-id-tgljzw5zaw5ny3vzdg9tbw9kdwxlcy1fegftcgxl4octugvyzm9ybwluz21vzhvszwxpy2vuc2vjagvja3m">Example – Performing module license checks</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882260_licensingcustommodules-managinglicensesforcustommodules">Managing licenses for custom modules</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882260_licensingcustommodules-addingalicenseforamodule">Adding a license for a module</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68882260_Licensingcustommodules-Constructinglicenses" class="heading "><span>Constructing licenses</span></h3>
     <h4 id="src-68882260_Licensingcustommodules-Generatingcryptographickeypairs" class="heading "><span>Generating cryptographic key pairs</span></h4>
-<p   
->Before you can construct your licenses, you need to generate a cryptographic key pair that will help secure your licenses against malicious tampering. You can generate a key pair via the <strong class=" ">GenerateKeyPair()</strong> method. For example:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Before you can construct your licenses, you need to generate a cryptographic key pair that will help secure your licenses against malicious tampering. You can generate a key pair via the <strong class=" ">GenerateKeyPair()</strong> method. For example:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ModuleLicenses;</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="comments">// A string variable for the private key component</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> privateKey = </code><code class="string">""</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// A string variable for the public key component</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> publicKey = </code><code class="string">""</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Generates the private and public key components and saves them into privateKey and publicKey respectively</code></div>
 <div class="line"><code class="plain">ModuleLicensesHelper.GenerateKeyPair(</code><code class="keyword">out</code><code class="plain"> privateKey, </code><code class="keyword">out</code><code class="plain"> publicKey);</code></div>
 </div>
     </div>
-<p   
->The <strong class=" ">privateKey</strong> and <strong class=" ">publicKey</strong> variables now contain the respective keys that can be used to   <a   href="#src-68882260_Licensingcustommodules-Generatinglicenses">generate module licenses</a>.</p>
-    <div  class="confbox admonition admonition-note">
+<p>The <strong class=" ">privateKey</strong> and <strong class=" ">publicKey</strong> variables now contain the respective keys that can be used to <a href="#src-68882260_licensingcustommodules-generatinglicenses">generate module licenses</a>.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Important</strong>: If you are implementing module licensing for multiple custom modules, we recommend generating a different cryptographic key pair for each module.</p>
+<p><strong class=" ">Important</strong>: If you are implementing module licensing for multiple custom modules, we recommend generating a different cryptographic key pair for each module.</p>
         </div>
     </div>
     <h4 id="src-68882260_Licensingcustommodules-Generatinglicenses" class="heading "><span>Generating licenses</span></h4>
-<p   
->To generate license keys for your module, use the <strong class=" "><strong class=" ">CreateModuleLicense()</strong> </strong>method. The method requires the <strong class=" ">private key</strong> generated by the   <a   href="#src-68882260_Licensingcustommodules-Generatingcryptographickeypairs">GenerateKeyPair method</a> and <strong class=" ">license data </strong>as its arguments.</p>
-<p   
-><i class=" ">License data</i> is a string containing arbitrary data used for license checks in the custom module. The license data may, for example, contain the username of the user for whom the license is intended and the license&#39;s expiration date.</p>
-    <div  class="confbox admonition admonition-tip">
+<p>To generate license keys for your module, use the <strong class=" "><strong class=" ">CreateModuleLicense()</strong> </strong>method. The method requires the <strong class=" ">private key</strong> generated by the <a href="#src-68882260_licensingcustommodules-generatingcryptographickeypairs">GenerateKeyPair method</a> and <strong class=" ">license data </strong>as its arguments.</p>
+<p><i class=" ">License data</i> is a string containing arbitrary data used for license checks in the custom module. The license data may, for example, contain the username of the user for whom the license is intended and the license's expiration date.</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Any data accessible from a Kentico instance can be used as part of the license data. For example, the <strong class=" ">SiteContext.CurrentSite</strong> property available in the <i class=" ">CMS.SiteProvider</i> namespace can be used with corresponding checks in the custom module to allow access to the module only to a user signed in to a particular site.</p>
+<p>Any data accessible from a Kentico instance can be used as part of the license data. For example, the <strong class=" ">SiteContext.CurrentSite</strong> property available in the <i class=" ">CMS.SiteProvider</i> namespace can be used with corresponding checks in the custom module to allow access to the module only to a user signed in to a particular site.</p>
         </div>
     </div>
-<p   
->License generating example:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>License generating example:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ModuleLicenses;</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="comments">// A string variable containing the generated private key</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> privateKey = </code><code class="string">"generated private key"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// A string variable containing sample license data. Username and an expiration date are used in this example.</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> licenseData = </code><code class="string">"USER:administrator\r\nEXPIRATION:12/31/2030"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Creates a module license containing the license data and a signature (hash of the license data)</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> license = ModuleLicensesHelper.CreateModuleLicense(licenseData, privateKey);</code></div>
 </div>
     </div>
-<p   
->The <strong class=" ">license</strong> variable contains a valid module license that can be   <a   href="#src-68882260_Licensingcustommodules-Addingalicenseforamodule">added to a Kentico instance</a> via the <strong class=" ">Module licenses</strong> application.</p>
+<p>The <strong class=" ">license</strong> variable contains a valid module license that can be <a href="#src-68882260_licensingcustommodules-addingalicenseforamodule">added to a Kentico instance</a> via the <strong class=" ">Module licenses</strong> application.</p>
     <h4 id="src-68882260_Licensingcustommodules-Generatedlicenses" class="heading "><span>Generated licenses</span></h4>
-<p   
->Each generated license has the following format:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">license data </strong>&ndash;<strong class=" "> </strong>a string containing arbitrary data used for license checks in the custom module.</p>
-</li><li class=" "><p   
-><strong class=" ">signature </strong>&ndash; a hash of the <i class=" ">license data</i>. Generated and appended automatically to license data upon the license creation.</p>
-</li></ul><p   
->A sample license is shown in the image below. Highlighted green is the <strong class=" ">license data</strong>, and highlighted yellow is the <strong class=" ">signature</strong>.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882260/license.png" alt="images/download/attachments/68882260/license.png" width="1100"  />
-        <br/><span class="caption">A sample generated license</span>
+<p>Each generated license has the following format:</p>
+<ul class=" "><li class=" "><p><strong class=" ">license data </strong>–<strong class=" "> </strong>a string containing arbitrary data used for license checks in the custom module.</p>
+</li><li class=" "><p><strong class=" ">signature </strong>– a hash of the <i class=" ">license data</i>. Generated and appended automatically to license data upon the license creation.</p>
+</li></ul><p>A sample license is shown in the image below. Highlighted green is the <strong class=" ">license data</strong>, and highlighted yellow is the <strong class=" ">signature</strong>.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882260/license.png" alt="images/download/attachments/68882260/license.png" width="1100">
+        <br><span class="caption">A sample generated license</span>
     </p>
     <h3 id="src-68882260_Licensingcustommodules-Implementinglicensechecksincustommodules" class="heading "><span>Implementing license checks in custom modules</span></h3>
-<p   
->After you have generated your licenses, you need to implement the appropriate license checks within your module&#39;s code. Kentico only provides an API for creating licenses and retrieving license data. Any license checking functionality on the code level must be implemented by the module&#39;s authors.</p>
+<p>After you have generated your licenses, you need to implement the appropriate license checks within your module's code. Kentico only provides an API for creating licenses and retrieving license data. Any license checking functionality on the code level must be implemented by the module's authors.</p>
     <h4 id="src-68882260_Licensingcustommodules-Retrievingvalidlicensedata" class="heading "><span>Retrieving valid license data</span></h4>
-<p   
->To retrieve valid license data belonging to a custom module, call the <strong class=" ">GetValidModuleLicenses()</strong> method.</p>
-    <div  class="confbox admonition admonition-note">
+<p>To retrieve valid license data belonging to a custom module, call the <strong class=" ">GetValidModuleLicenses()</strong> method.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: The <strong class=" ">GetValidModuleLicenses()</strong> method requires the public key as one of its arguments. We recommend declaring the public key as a constant within the code of your custom module.</p>
+<p><strong class=" ">Note</strong>: The <strong class=" ">GetValidModuleLicenses()</strong> method requires the public key as one of its arguments. We recommend declaring the public key as a constant within the code of your custom module.</p>
         </div>
     </div>
-<p   
->For example:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>For example:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ModuleLicenses;</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="comments">// A string variable containing the generated public key</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> publicKey = </code><code class="string">"generated public key"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Code name of the custom module for which you want to retrieve the license data</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> moduleCodeName = </code><code class="string">"LicensedModule"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Returns license data for the given module as a list of strings</code></div>
 <div class="line"><code class="plain">IEnumerable&lt;</code><code class="keyword">string</code><code class="plain">&gt; licenses = ModuleLicensesHelper.GetValidModuleLicenses(moduleCodeName, publicKey);</code></div>
 </div>
     </div>
-<p   
->The <strong class=" ">licenses</strong> variable contains all valid license data belonging to a given module. You can use the retrieved license data to perform license checks in your module. See the   <a   href="#src-68882260_safe-id-TGljZW5zaW5nY3VzdG9tbW9kdWxlcy1FeGFtcGxl4oCTQXV0aGVudGljYXRpbmdhdXNlcmJhc2Vkb25saWNlbnNlZGF0YQ">example below</a> for a general outline of the process.</p>
-    <h4 id="src-68882260_safe-id-TGljZW5zaW5nY3VzdG9tbW9kdWxlcy1FeGFtcGxl4oCTUGVyZm9ybWluZ21vZHVsZWxpY2Vuc2VjaGVja3M" class="heading "><span>Example &ndash; Performing module license checks</span></h4>
-<p   
->The following example outlines a possible implementation of the license checking functionality on a simple scenario &ndash; a user trying to access a licensed module. For the purpose of this example, assume the license data is in format &quot;<i class=" ">USER:username</i>&quot;:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="#src-68882260_Licensingcustommodules-Retrievingvalidlicensedata">Retrieve module license data</a> via the <strong class=" ">GetValidModuleLicenses()</strong> method.</p>
-</li><li class=" "><p   
->Create a method that iterates over the license data to find whether a license exists for the user trying to access the module.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The <strong class=" ">licenses</strong> variable contains all valid license data belonging to a given module. You can use the retrieved license data to perform license checks in your module. See the <a href="#src-68882260_safe-id-tgljzw5zaw5ny3vzdg9tbw9kdwxlcy1fegftcgxl4octqxv0agvudgljyxrpbmdhdxnlcmjhc2vkb25sawnlbnnlzgf0yq">example below</a> for a general outline of the process.</p>
+    <h4 id="src-68882260_safe-id-TGljZW5zaW5nY3VzdG9tbW9kdWxlcy1FeGFtcGxl4oCTUGVyZm9ybWluZ21vZHVsZWxpY2Vuc2VjaGVja3M" class="heading "><span>Example – Performing module license checks</span></h4>
+<p>The following example outlines a possible implementation of the license checking functionality on a simple scenario – a user trying to access a licensed module. For the purpose of this example, assume the license data is in format "<i class=" ">USER:username</i>":</p>
+<ol class=" "><li class=" "><p><a href="#src-68882260_licensingcustommodules-retrievingvalidlicensedata">Retrieve module license data</a> via the <strong class=" ">GetValidModuleLicenses()</strong> method.</p>
+</li><li class=" "><p>Create a method that iterates over the license data to find whether a license exists for the user trying to access the module.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">private</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">bool</code><code class="plain"> IsUserLicensed(IEnumerable&lt;</code><code class="keyword">string</code><code class="plain">&gt; licenses)</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -330,9 +285,8 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Call the method in places where you want to prevent access by unlicensed users (for example within the methods of the module&rsquo;s <i class=" ">InfoProvider</i> classes, or in code triggered by actions in the module&#39;s UI).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Call the method in places where you want to prevent access by unlicensed users (for example within the methods of the module’s <i class=" ">InfoProvider</i> classes, or in code triggered by actions in the module's UI).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="comments">// Verifies whether the current user has a valid license in the "Module licenses" application</code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (!IsUserLicensed(licenses))</code></div>
@@ -341,29 +295,19 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li></ol><p   
->This example is not complete and is only meant as a general outline of license check implementations.</p>
+</li></ol><p>This example is not complete and is only meant as a general outline of license check implementations.</p>
     <h3 id="src-68882260_Licensingcustommodules-Managinglicensesforcustommodules" class="heading "><span>Managing licenses for custom modules</span></h3>
-<p   
->Licenses need to be added via the <strong class=" ">Module licenses</strong> application in Kentico, which provides a single unified interface for displaying, inserting, and removing licenses for all custom modules in a Kentico instance.</p>
-<p   
->All customers using custom modules with license checks need to use the <i class=" ">Module licenses</i> application to add valid licenses.</p>
+<p>Licenses need to be added via the <strong class=" ">Module licenses</strong> application in Kentico, which provides a single unified interface for displaying, inserting, and removing licenses for all custom modules in a Kentico instance.</p>
+<p>All customers using custom modules with license checks need to use the <i class=" ">Module licenses</i> application to add valid licenses.</p>
     <h4 id="src-68882260_Licensingcustommodules-Addingalicenseforamodule" class="heading "><span>Adding a license for a module</span></h4>
-<p   
->To add a generated license for a custom module:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Module licenses </strong>application</p>
-</li><li class=" "><p   
->Click <strong class=" ">Add license</strong>.</p>
-</li><li class=" "><p   
->Select the module from the <strong class=" ">License for module</strong> drop-down list.</p>
-</li><li class=" "><p   
->Copy the license data text into the <strong class=" ">Module license</strong> text area.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->You can manage all added licenses in the <strong class=" ">Module licenses</strong> application. The <strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
-) and <strong class=" ">Delete</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/delete.png" alt="images/download/attachments/68879208/delete.png"   />
+<p>To add a generated license for a custom module:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Module licenses </strong>application</p>
+</li><li class=" "><p>Click <strong class=" ">Add license</strong>.</p>
+</li><li class=" "><p>Select the module from the <strong class=" ">License for module</strong> drop-down list.</p>
+</li><li class=" "><p>Copy the license data text into the <strong class=" ">Module license</strong> text area.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>You can manage all added licenses in the <strong class=" ">Module licenses</strong> application. The <strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png">
+) and <strong class=" ">Delete</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/delete.png" alt="images/download/attachments/68879208/delete.png">
 ) actions allow you to modify the corresponding license.</p>
         </div>
 
@@ -385,5 +329,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

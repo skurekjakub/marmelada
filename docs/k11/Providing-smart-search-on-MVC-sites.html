@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Providing smart search on MVC sites - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,109 +149,72 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Add search features onto your MVC site to allow visitors to search through   <a   href="Working-with-pages">pages</a>,   <a   href="Products">products</a> or other data. The system provides an index-based search engine (smart search). See the   <a   href="Setting-up-search-on-your-website">Setting up search on your website</a> chapter to learn more.</p>
-<p   
->To set up smart search on your MVC site:</p>
-<ol class=" "><li class=" "><p   
->  <a   href="Configuring-web-farm-servers#src-68881978_Configuringwebfarmservers-Configuringwebfarmsautomatically">Configure automatic Web farm mode</a> in Kentico.</p>
-</li><li class=" "><p   
->  <a   href="Enabling-search-indexing">Enable smart search indexing</a>.</p>
-</li><li class=" "><p   
->Create search indexes &ndash; you can use either   <a   href="Using-Azure-Search">Azure Search indexes</a> or   <a   href="Using-locally-stored-search-indexes">locally stored indexes</a>. Assign the indexes to your site and define their exact content.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"></div><p>Add search features onto your MVC site to allow visitors to search through <a href="working-with-pages">pages</a>, <a href="products">products</a> or other data. The system provides an index-based search engine (smart search). See the <a href="setting-up-search-on-your-website">Setting up search on your website</a> chapter to learn more.</p>
+<p>To set up smart search on your MVC site:</p>
+<ol class=" "><li class=" "><p><a href="configuring-web-farm-servers#src-68881978_configuringwebfarmservers-configuringwebfarmsautomatically">Configure automatic Web farm mode</a> in Kentico.</p>
+</li><li class=" "><p><a href="enabling-search-indexing">Enable smart search indexing</a>.</p>
+</li><li class=" "><p>Create search indexes – you can use either <a href="using-azure-search">Azure Search indexes</a> or <a href="using-locally-stored-search-indexes">locally stored indexes</a>. Assign the indexes to your site and define their exact content.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you want the system to process search indexing tasks at a regular interval, you need to use the Scheduler Windows service , since the standard scheduler does not run reliably when using a separate MVC application. See   <a   href="Processing-scheduled-tasks-when-developing-MVC-applications#src-68880518_ProcessingscheduledtaskswhendevelopingMVCapplications-Example-RegularlyprocessingsearchindexingtasksonMVCsites">Processing scheduled tasks when developing MVC applications</a> for more information.<br/></p>
+<p>If you want the system to process search indexing tasks at a regular interval, you need to use the Scheduler Windows service , since the standard scheduler does not run reliably when using a separate MVC application. See <a href="processing-scheduled-tasks-when-developing-mvc-applications#src-68880518_processingscheduledtaskswhendevelopingmvcapplications-example-regularlyprocessingsearchindexingtasksonmvcsites">Processing scheduled tasks when developing MVC applications</a> for more information.<br></p>
         </div>
     </div>
-</li></ol><p   
->With the <strong class=" ">Web farm</strong> service enabled and the related web farm servers showing the <i class=" ">Healthy</i> status, search indexes on MVC applications are updated automatically.</p>
-<p   
->When your indexes are ready, you need to create a suitable search interface. The implementation depends on the type of search indexes that you use (Azure Search or locally stored). See the sections below for more information.<br/></p>
-    <div  class="confbox panel">
+</li></ol><p>With the <strong class=" ">Web farm</strong> service enabled and the related web farm servers showing the <i class=" ">Healthy</i> status, search indexes on MVC applications are updated automatically.</p>
+<p>When your indexes are ready, you need to create a suitable search interface. The implementation depends on the type of search indexes that you use (Azure Search or locally stored). See the sections below for more information.<br></p>
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Starting-with-MVC-development">Starting with MVC development</a></p>
-</li><li class=" "><p   
->  <a   href="Installing-Kentico-integration-packages">Installing Kentico integration packages</a></p>
+<ul class=" "><li class=" "><p><a href="starting-with-mvc-development">Starting with MVC development</a></p>
+</li><li class=" "><p><a href="installing-kentico-integration-packages">Installing Kentico integration packages</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68880528_ProvidingsmartsearchonMVCsites-UsingAzureSearch" class="heading "><span>Using Azure Search</span></h3>
-<p   
->To build an MVC search interface for   <a   href="Using-Azure-Search">Azure Search</a> indexes:</p>
-<ul class=" "><li class=" "><p   
->Interact with your Azure Search indexes using the <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/search/search-howto-dotnet-sdk">Azure Search .NET SDK</a> (provided via the <strong class=" ">Microsoft.Azure.Search</strong> <a  class="external-link" href="https://www.nuget.org/packages/Microsoft.Azure.Search">NuGet package</a>).</p>
-</li><li class=" "><p   
->Create controllers and views according to your search requirements (to collect search input, display search results, provide filters, etc.).</p>
-</li></ul><p   
->For more detailed information, see   <a   href="Integrating-Azure-Search-into-pages">Integrating Azure Search into pages</a>. The example describes how to create a web part for a non-MVC Kentico site, but you can use the same general approach in your MVC application&#39;s controllers and views.</p>
+<p>To build an MVC search interface for <a href="using-azure-search">Azure Search</a> indexes:</p>
+<ul class=" "><li class=" "><p>Interact with your Azure Search indexes using the <a class="external-link" href="https://docs.microsoft.com/en-us/azure/search/search-howto-dotnet-sdk">Azure Search .NET SDK</a> (provided via the <strong class=" ">Microsoft.Azure.Search</strong> <a class="external-link" href="https://www.nuget.org/packages/Microsoft.Azure.Search">NuGet package</a>).</p>
+</li><li class=" "><p>Create controllers and views according to your search requirements (to collect search input, display search results, provide filters, etc.).</p>
+</li></ul><p>For more detailed information, see <a href="integrating-azure-search-into-pages">Integrating Azure Search into pages</a>. The example describes how to create a web part for a non-MVC Kentico site, but you can use the same general approach in your MVC application's controllers and views.</p>
     <h3 id="src-68880528_ProvidingsmartsearchonMVCsites-Usinglocallystoredsearchindexes" class="heading "><span>Using locally stored search indexes</span></h3>
-<p   
->To build an MVC search interface for   <a   href="Using-locally-stored-search-indexes">locally stored search indexes</a>:</p>
-<ol class=" "><li class=" "><p   
->Install the <strong class=" ">Kentico.Search </strong>  <a   href="Installing-Kentico-integration-packages">integration package</a> into your MVC project.</p>
-</li><li class=" "><p   
->Initialize the <strong class=" ">SearchService</strong> from the integration package with the indexes you want to search.</p>
-</li><li class=" "><p   
->Call the service&#39;s <strong class=" ">Search</strong> method to execute the search.</p>
-</li></ol><p   
-><img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
-    <br/></p>
-<p   
->The <i class=" ">Search</i> method returns a set of results of the <strong class=" ">SearchResult</strong> class.</p>
-<p   
->In the search result&#39;s <strong class=" ">Items</strong> property, you can find the <strong class=" ">Fields</strong> and <strong class=" ">Data</strong> properties. The <i class=" ">Fields </i>property contains fields available for all full-text search result items (such as the title or image). The <i class=" ">Data </i>property is of an abstract <i class=" ">BaseInfo </i>class. Its run-time type contains all type specific properties. For example:</p>
-<ul class=" "><li class=" "><p   
->If the search indexes users, the run-time type of a search result item&#39;s <i class=" ">Data </i>property is of the <i class=" ">UserInfo </i>class.</p>
-</li><li class=" "><p   
->If the search indexes pages, the run-time type of a search result item&#39;s <i class=" ">Data </i>property is of the <i class=" ">TreeNode </i>class. If you   <a   href="Generating-classes-for-Kentico-objects">generated classes for your page types</a>, the run-time type is of the generated class.</p>
-</li><li class=" "><p   
->If the search indexes pages representing products, the run-time type of a search result item&#39;s <i class=" ">Data </i>property is of the <i class=" ">SKUTreeNode </i>class.</p>
-</li></ul><p   
->With the <i class=" ">Data </i>property, you can access any object-specific property.</p>
-    <div  class="confbox admonition admonition-info">
+<p>To build an MVC search interface for <a href="using-locally-stored-search-indexes">locally stored search indexes</a>:</p>
+<ol class=" "><li class=" "><p>Install the <strong class=" ">Kentico.Search </strong><a href="installing-kentico-integration-packages">integration package</a> into your MVC project.</p>
+</li><li class=" "><p>Initialize the <strong class=" ">SearchService</strong> from the integration package with the indexes you want to search.</p>
+</li><li class=" "><p>Call the service's <strong class=" ">Search</strong> method to execute the search.</p>
+</li></ol><p><img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
+    <br></p>
+<p>The <i class=" ">Search</i> method returns a set of results of the <strong class=" ">SearchResult</strong> class.</p>
+<p>In the search result's <strong class=" ">Items</strong> property, you can find the <strong class=" ">Fields</strong> and <strong class=" ">Data</strong> properties. The <i class=" ">Fields </i>property contains fields available for all full-text search result items (such as the title or image). The <i class=" ">Data </i>property is of an abstract <i class=" ">BaseInfo </i>class. Its run-time type contains all type specific properties. For example:</p>
+<ul class=" "><li class=" "><p>If the search indexes users, the run-time type of a search result item's <i class=" ">Data </i>property is of the <i class=" ">UserInfo </i>class.</p>
+</li><li class=" "><p>If the search indexes pages, the run-time type of a search result item's <i class=" ">Data </i>property is of the <i class=" ">TreeNode </i>class. If you <a href="generating-classes-for-kentico-objects">generated classes for your page types</a>, the run-time type is of the generated class.</p>
+</li><li class=" "><p>If the search indexes pages representing products, the run-time type of a search result item's <i class=" ">Data </i>property is of the <i class=" ">SKUTreeNode </i>class.</p>
+</li></ul><p>With the <i class=" ">Data </i>property, you can access any object-specific property.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Currently, the <i class=" ">Kentico.Search</i> integration package supports all types of   <a   href="Creating-local-search-indexes">local search indexes</a> except for   <a   href="Creating-custom-smart-search-indexes">custom indexes</a>.</p>
+<p>Currently, the <i class=" ">Kentico.Search</i> integration package supports all types of <a href="creating-local-search-indexes">local search indexes</a> except for <a href="creating-custom-smart-search-indexes">custom indexes</a>.</p>
         </div>
     </div>
-    <h4 id="src-68880528_safe-id-UHJvdmlkaW5nc21hcnRzZWFyY2hvbk1WQ3NpdGVzLUV4YW1wbGXigJNQcm92aWRpbmdzZWFyY2hvbk1WQ3NpdGVz" class="heading "><span>Example &ndash; Providing search on MVC sites</span></h4>
-<p   
->The following search example uses an index that indexes pages (<i class=" ">TreeNode</i> objects) and products (<i class=" ">SKUTreeNode</i> objects). The example does not use pagination when displaying search result items.</p>
-<p   
-></p>
-    <div  class="confbox admonition admonition-tip">
+    <h4 id="src-68880528_safe-id-UHJvdmlkaW5nc21hcnRzZWFyY2hvbk1WQ3NpdGVzLUV4YW1wbGXigJNQcm92aWRpbmdzZWFyY2hvbk1WQ3NpdGVz" class="heading "><span>Example – Providing search on MVC sites</span></h4>
+<p>The following search example uses an index that indexes pages (<i class=" ">TreeNode</i> objects) and products (<i class=" ">SKUTreeNode</i> objects). The example does not use pagination when displaying search result items.</p>
+<p></p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a  class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> project. You can also run the Learning Kit website after connecting the project to a Kentico database.</p>
+<p><strong class=" ">Tip</strong>: To view the full code of a functional example directly in Visual Studio, download the <a class="external-link" href="https://github.com/Kentico/Mvc">Kentico MVC solution</a> from GitHub and inspect the <strong class=" ">LearningKit</strong> project. You can also run the Learning Kit website after connecting the project to a Kentico database.</p>
         </div>
     </div>
-<p   
-></p>
-<ol class=" "><li class=" "><p   
->Install the <strong class=" ">Kentico.Search</strong>   <a   href="Installing-Kentico-integration-packages">integration package</a> into your MVC project.</p>
-</li><li class=" "><p   
->Create a new model for working with search queries and search result items.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+<p></p>
+<ol class=" "><li class=" "><p>Install the <strong class=" ">Kentico.Search</strong> <a href="installing-kentico-integration-packages">integration package</a> into your MVC project.</p>
+</li><li class=" "><p>Create a new model for working with search queries and search result items.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Create a new model for the search result item (<i class=" ">SearchResultItemModel</i> in the example).</p>
-</li><li class=" "><p   
->Create a controller with a controller action for displaying the results.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
-<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Create a new model for the search result item (<i class=" ">SearchResultItemModel</i> in the example).</p>
+</li><li class=" "><p>Create a controller with a controller action for displaying the results.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
+<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Provide a search field in one of your views. For example:<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Provide a search field in one of your views. For example:<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li><li class=" "><p   
->Provide a view that displays search result items.<img  class="wysiwyg-unknown-macro"  src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png"   />
+</li><li class=" "><p>Provide a view that displays search result items.<img class="wysiwyg-unknown-macro" src="images/plugins/servlet/confluence/placeholder/unknown-macro.png" alt="images/plugins/servlet/confluence/placeholder/unknown-macro.png">
 </p>
-</li></ol><p   
->Your visitors can now search on your website with the created search field. The system displays the results based on the indexes specified in the MVC application.</p>
+</li></ol><p>Your visitors can now search on your website with the created search field. The system displays the results based on the indexes specified in the MVC application.</p>
         </div>
 
     </article>
@@ -274,5 +235,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

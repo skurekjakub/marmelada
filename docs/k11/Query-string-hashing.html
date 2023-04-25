@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Query string hashing - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,170 +148,138 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Query strings in URLs are useful and important in many ways, for example, when passing various values between pages or retrieving data from the database. In some cases though, an unauthorized user could obtain sensitive data or harm the system by entering a URL with <strong class=" ">tampered query string parameters</strong>.</p>
-<p   
->To prevent tampering with query string parameters, the system adds the result of a <strong class=" ">hash function</strong> at the end of each URL. Such URLs can look like this:</p>
-    <div  class="confbox admonition admonition-info has-no-icon">
+<div class="section-left"><p>Query strings in URLs are useful and important in many ways, for example, when passing various values between pages or retrieving data from the database. In some cases though, an unauthorized user could obtain sensitive data or harm the system by entering a URL with <strong class=" ">tampered query string parameters</strong>.</p><p>To prevent tampering with query string parameters, the system adds the result of a <strong class=" ">hash function</strong> at the end of each URL. Such URLs can look like this:</p><div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
-<p   
->http://localhost/Kentico/cms/getfile/2d003444-9a27-43c9-be97-4f5832474015/Partners_logos_silver.aspx?latestfordocid=75&amp;<strong class=" ">hash=eee41e027bd45142fd1f44d173d61950f34d6e98f4e35018fda70542322adc77&amp;chset=013bca78-6bf2-42ac-8959-b8bbbeb0a8e8</strong></p>
+<p>http://localhost/Kentico/cms/getfile/2d003444-9a27-43c9-be97-4f5832474015/Partners_logos_silver.aspx?latestfordocid=75&amp;<strong class=" ">hash=eee41e027bd45142fd1f44d173d61950f34d6e98f4e35018fda70542322adc77&amp;chset=013bca78-6bf2-42ac-8959-b8bbbeb0a8e8</strong></p>
         </div>
-    </div>
-<p   
->The part in bold is the hash parameter added to the URL. If an attacker modifies the parameters and tries to submit such a URL, the system rejects it, because the query string parameters and hash do not match.</p>
-<p   
->The hash function is calculated from the query string parameters using <a  class="external-link" href="http://en.wikipedia.org/wiki/SHA-2">SHA-2</a>. The hashing is used in various parts of the system:</p>
-<ul class=" "><li class=" "><p   
->Dialog boxes</p>
-</li><li class=" "><p   
->  <a   href="Working-with-macro-signatures">Macro signatures</a></p>
-</li><li class=" "><p   
->In links for downloading files (e.g.,     <span style="color: #333333;">
+    </div><p>The part in bold is the hash parameter added to the URL. If an attacker modifies the parameters and tries to submit such a URL, the system rejects it, because the query string parameters and hash do not match.</p><p>The hash function is calculated from the query string parameters using <a class="external-link" href="http://en.wikipedia.org/wiki/SHA-2">SHA-2</a>. The hashing is used in various parts of the system:</p><ul class=" "><li class=" "><p>Dialog boxes</p>
+</li><li class=" "><p><a href="working-with-macro-signatures">Macro signatures</a></p>
+</li><li class=" "><p>In links for downloading files (e.g.,     <span style="color: #333333;">
 getamazonfile.aspx, getazurefile.aspx or sometimes even with     </span>
     <span style="color: #333333;">
 getfile.aspx    </span>
-) &ndash; to ensure that users download only the file specified in the original URL and nothing else.</p>
-</li></ul>    <div  class="confbox panel">
+) – to ensure that users download only the file specified in the original URL and nothing else.</p>
+</li></ul></div>
+
+    
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881120_Querystringhashing-Salt">Salt</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881120_Querystringhashing-Userspecifichash">User specific hash</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881120_Querystringhashing-Customhashvalidation">Custom hash validation</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881120_querystringhashing-salt">Salt</a></p>
+</li><li class=" "><p><a href="#src-68881120_querystringhashing-userspecifichash">User specific hash</a></p>
+</li><li class=" "><p><a href="#src-68881120_querystringhashing-customhashvalidation">Custom hash validation</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Working-with-macro-signatures">Working with macro signatures</a></p>
+<ul class=" "><li class=" "><p><a href="working-with-macro-signatures">Working with macro signatures</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68881120_Querystringhashing-Salt" class="heading "><span>Salt</span></h3>
-<p   
->Protection of query string parameters using only the hash function would not be enough because attackers are able to reverse the hash function using <a  class="external-link" href="http://en.wikipedia.org/wiki/Rainbow_table">rainbow tables</a>. For this reason, the system adds a <strong class=" ">salt</strong> to the URL before hashing it.</p>
-    <div  class="confbox admonition admonition-info">
+<p>Protection of query string parameters using only the hash function would not be enough because attackers are able to reverse the hash function using <a class="external-link" href="http://en.wikipedia.org/wiki/Rainbow_table">rainbow tables</a>. For this reason, the system adds a <strong class=" ">salt</strong> to the URL before hashing it.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Hash calculation:</strong></p>
-<p   
->URL parameters + salt -&gt; all this is hashed using <a  class="external-link" href="http://en.wikipedia.org/wiki/SHA-2">SHA-2</a> and added to the original URL.</p>
+<p><strong class=" ">Hash calculation:</strong></p>
+<p>URL parameters + salt -&gt; all this is hashed using <a class="external-link" href="http://en.wikipedia.org/wiki/SHA-2">SHA-2</a> and added to the original URL.</p>
         </div>
     </div>
-<p   
->The salt is a secret string of characters, which users do not have access to. In Kentico, the default salt added to the URL is a <strong class=" ">randomly generated GUID</strong> specified by the <i class=" ">    <span style="color: #333333;">
+<p>The salt is a secret string of characters, which users do not have access to. In Kentico, the default salt added to the URL is a <strong class=" ">randomly generated GUID</strong> specified by the <i class=" ">    <span style="color: #333333;">
 CMSHashStringSalt    </span>
  </i>key in the web.config file:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSHashStringSalt"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"e68b9ad6-a461-4707-8e3e-ece73f03dd02"</code><code class="plain"> /&gt;</code></div>
 </div>
     </div>
-<p   
->You may change this value if you need to. If you delete this key completely, the system uses the connection string stored in the web.config file as the salt.</p>
-    <div  class="confbox admonition admonition-warning">
+<p>You may change this value if you need to. If you delete this key completely, the system uses the connection string stored in the web.config file as the salt.</p>
+    <div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->If you have already stored some persistent information (links for downloading files, image links, macros) in the system and you change the salt calculation, then these links and <strong class=" ">information may become broken</strong>. You will have to re-save the content to create hashes with the new salt.</p>
+<p>If you have already stored some persistent information (links for downloading files, image links, macros) in the system and you change the salt calculation, then these links and <strong class=" ">information may become broken</strong>. You will have to re-save the content to create hashes with the new salt.</p>
         </div>
     </div>
     <h3 id="src-68881120_Querystringhashing-Userspecifichash" class="heading "><span>User specific hash</span></h3>
-<p   
->Sometimes it is useful to add user-specific information to the hash. Either the user session ID or IP address (if there is no session ID) are used for this purpose. If attackers manage to eavesdrop a URL and try to exploit it to gain sensitive data, they would not succeed, as their session ID would not match the hash.</p>
-<p   
->The user specific hash is used mainly for non-persistent information, such as displaying dialog boxes.</p>
-    <div  class="confbox admonition admonition-note">
+<p>Sometimes it is useful to add user-specific information to the hash. Either the user session ID or IP address (if there is no session ID) are used for this purpose. If attackers manage to eavesdrop a URL and try to exploit it to gain sensitive data, they would not succeed, as their session ID would not match the hash.</p>
+<p>The user specific hash is used mainly for non-persistent information, such as displaying dialog boxes.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Note that if you use user specific hashing and save some content with it, users other than the one who saved the content will not be able to use it.</p>
+<p>Note that if you use user specific hashing and save some content with it, users other than the one who saved the content will not be able to use it.</p>
         </div>
     </div>
     <h3 id="src-68881120_Querystringhashing-Customhashvalidation" class="heading "><span>Custom hash validation</span></h3>
-<p   
->We recommend using hashing features when developing custom dialog boxes. The following methods are available in the Kentico API:</p>
-<p   
->    <span style="color: #333333;">
-Hash calculation:<br/>    </span>
+<p>We recommend using hashing features when developing custom dialog boxes. The following methods are available in the Kentico API:</p>
+<p>    <span style="color: #333333;">
+Hash calculation:<br>    </span>
 </p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">QueryHelper.BuildQueryWithHash</strong> - builds the entire query string with any number of parameters, automatically calculates and adds a hash parameter (with all parameters as the input).</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<ul class=" "><li class=" "><p><strong class=" ">QueryHelper.BuildQueryWithHash</strong> - builds the entire query string with any number of parameters, automatically calculates and adds a hash parameter (with all parameters as the input).</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example - BuildQueryWithHash</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example - BuildQueryWithHash" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Sample URL parameter values</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> urlParamValue1 = </code><code class="string">"value1"</code><code class="plain">;</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> urlParamValue2 = </code><code class="string">"value2"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Sample base URL</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> url = </code><code class="string">"base"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Creates a query string containing the sample parameters and the hash</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> queryString = QueryHelper.BuildQueryWithHash(</code><code class="string">"parameter1"</code><code class="plain">, urlParamValue1, </code><code class="string">"parameter2"</code><code class="plain">, urlParamValue2);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Adds the query string parameters to the URL, including the hash</code></div>
 <div class="line"><code class="plain">url += queryString;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->    <span style="color: #333333;">
+</li><li class=" "><p>    <span style="color: #333333;">
     <span style="color: #333333;">
-<strong class=" ">ValidationHelper.GetHashString</strong> - creates a SHA2 hash of a specified value. Can be used to create hashes for any values, not just query strings. The optional <i class=" ">HashSettings</i> parameter allows you to specify whether the hash is user-specific, and also add a custom salt.<br/>    </span>
+<strong class=" ">ValidationHelper.GetHashString</strong> - creates a SHA2 hash of a specified value. Can be used to create hashes for any values, not just query strings. The optional <i class=" ">HashSettings</i> parameter allows you to specify whether the hash is user-specific, and also add a custom salt.<br>    </span>
     </span>
 </p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example - GetHashString</div>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example - GetHashString" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Sample string value</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> customValue = </code><code class="string">"value"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Creates a hash for the custom value</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain"> hash = ValidationHelper.GetHashString(urlParameterValue);</code></div>
 </div>
     </div>
-<p   
->    <span style="color: #333333;">
-<br/>    </span>
+<p>    <span style="color: #333333;">
+<br>    </span>
 </p>
-</li></ul><p   
->    <span style="color: #333333;">
-Hash validation:<br/>    </span>
+</li></ul><p>    <span style="color: #333333;">
+Hash validation:<br>    </span>
 </p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">    <span style="color: #333333;">
+<ul class=" "><li class=" "><p><strong class=" ">    <span style="color: #333333;">
 QueryHelper.ValidateHash    </span>
 </strong> - works directly with the query string and can exclude individual parameters from hash validation.    <span style="color: #333333;">
     </span>
 </p>
-</li><li class=" "><p   
->    <span style="color: #333333;">
-<strong class=" ">ValidationHelper.ValidateHash</strong> - general hash validation method, can be used for macro signatures.<br/>    </span>
+</li><li class=" "><p>    <span style="color: #333333;">
+<strong class=" ">ValidationHelper.ValidateHash</strong> - general hash validation method, can be used for macro signatures.<br>    </span>
 </p>
-</li></ul><p   
->You can validate hashes on pages individually:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul><p>You can validate hashes on pages individually:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Validates a hash value</code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (QueryHelper.ValidateHash(</code><code class="string">"hash"</code><code class="plain">))</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -321,16 +287,15 @@ QueryHelper.ValidateHash    </span>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
->Or you can validate hashes automatically by including the <i class=" ">    <span style="color: #333333;">
-[HashValidation(Name=&quot;hash2&quot;)]    </span>
+<p>Or you can validate hashes automatically by including the <i class=" ">    <span style="color: #333333;">
+[HashValidation(Name="hash2")]    </span>
 </i> attribute on a page:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.UIControls;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[HashValidation(HashValidationSalts.REDIRECT_PAGE)]</code></div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSMessages_Redirect : MessagePage</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -365,5 +330,6 @@ QueryHelper.ValidateHash    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

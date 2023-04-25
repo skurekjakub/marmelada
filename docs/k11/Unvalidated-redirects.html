@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Unvalidated redirects - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,108 +148,77 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Unvalidated redirects and forwards can occur on websites that redirect users to destinations obtained from untrusted external inputs.</p>
-<p   
->A typical example of a vulnerability is a sign-in page that redirects users to a return URL specified by a query string parameter. Without sufficient protection, the following type of attack could occur:</p>
-<ol class=" "><li class=" "><p   
->An attacker creates a forged version of the site&#39;s sign-in page.</p>
-</li><li class=" "><p   
->The attacker sends out links to the legitimate sign-in page with the forged page in the return URL parameter.<br/>For example: <i class=" ">http://domain.com/SignIn?returnUrl=http://forgeddomain.com/SignIn</i><br/></p>
-</li><li class=" "><p   
->A user clicks the link, signs in, and is redirected to the forged page.</p>
-</li><li class=" "><p   
->The page informs the user that the authentication failed and requests another attempt to enter the sign-in credentials.<br/></p>
-</li><li class=" "><p   
->The user submits their authentication credentials on the forged page.</p>
-</li><li class=" "><p   
->The page redirects the user back to the home page of the original site, where the user is already signed in.</p>
-</li></ol><p   
->An attacker could obtain the authentication credentials of users without them even noticing that an attack has occurred.</p>
-<p   
-><br/></p>
-    <div  class="confbox panel">
+<div class="section-left"><p>Unvalidated redirects and forwards can occur on websites that redirect users to destinations obtained from untrusted external inputs.</p><p>A typical example of a vulnerability is a sign-in page that redirects users to a return URL specified by a query string parameter. Without sufficient protection, the following type of attack could occur:</p><ol class=" "><li class=" "><p>An attacker creates a forged version of the site's sign-in page.</p>
+</li><li class=" "><p>The attacker sends out links to the legitimate sign-in page with the forged page in the return URL parameter.<br>For example: <i class=" ">http://domain.com/SignIn?returnUrl=http://forgeddomain.com/SignIn</i><br></p>
+</li><li class=" "><p>A user clicks the link, signs in, and is redirected to the forged page.</p>
+</li><li class=" "><p>The page informs the user that the authentication failed and requests another attempt to enter the sign-in credentials.<br></p>
+</li><li class=" "><p>The user submits their authentication credentials on the forged page.</p>
+</li><li class=" "><p>The page redirects the user back to the home page of the original site, where the user is already signed in.</p>
+</li></ol><p>An attacker could obtain the authentication credentials of users without them even noticing that an attack has occurred.</p><p><br></p></div>
+
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881121_Unvalidatedredirects-HandlingofredirectsinKentico">Handling of redirects in Kentico</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68881121_Unvalidatedredirects-Performingsaferedirectsincustomcode">Performing safe redirects in custom code</a></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68881121_Unvalidatedredirects-Examples">Examples</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881121_unvalidatedredirects-handlingofredirectsinkentico">Handling of redirects in Kentico</a></p>
+</li><li class=" "><p><a href="#src-68881121_unvalidatedredirects-performingsaferedirectsincustomcode">Performing safe redirects in custom code</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881121_unvalidatedredirects-examples">Examples</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
+    </div></div>
     <h3 id="src-68881121_Unvalidatedredirects-HandlingofredirectsinKentico" class="heading "><span>Handling of redirects in Kentico </span></h3>
-<p   
->All redirects performed by default in Kentico are secured against unvalidated redirection attacks.</p>
-<p   
->Certain Kentico components do perform redirects to URLs obtained from external inputs, but the system only allows local URLs in such cases. For redirects that lead away from the website, the destination is automatically changed to the application root. If a redirect URL is set in the Kentico administration interface (a trusted source), no validation occurs and external URLs are allowed.</p>
-<p   
->For example, the built-in <strong class=" ">Logon form</strong> web part redirects users after successful sign-in. The target of the redirect can be specified in two ways:</p>
-<ul class=" "><li class=" "><p   
->The value of the <strong class=" ">returnUrl</strong> query string parameter (for example when a user is redirected to the sign-in page after they attempt to access a page that requires authentication).</p>
-</li><li class=" "><p   
->If there is no <i class=" ">returnUrl</i> query string parameter, the redirect target is taken from the web part&#39;s <strong class=" ">Default target URL</strong> property.</p>
-</li></ul><p   
->When using the <i class=" ">returnUrl</i> query string parameter, the redirection is protected and only allows local relative URLs (pages on the same website). If the entered return URL is absolute, the redirect automatically targets the application&#39;s root page instead.</p>
-<p   
->The <i class=" ">Default target URL</i> web part property can only be configured in the administration interface and is considered a trusted source. In this case, no redirect protection is present and absolute URLs with external domain names are allowed.</p>
+<p>All redirects performed by default in Kentico are secured against unvalidated redirection attacks.</p>
+<p>Certain Kentico components do perform redirects to URLs obtained from external inputs, but the system only allows local URLs in such cases. For redirects that lead away from the website, the destination is automatically changed to the application root. If a redirect URL is set in the Kentico administration interface (a trusted source), no validation occurs and external URLs are allowed.</p>
+<p>For example, the built-in <strong class=" ">Logon form</strong> web part redirects users after successful sign-in. The target of the redirect can be specified in two ways:</p>
+<ul class=" "><li class=" "><p>The value of the <strong class=" ">returnUrl</strong> query string parameter (for example when a user is redirected to the sign-in page after they attempt to access a page that requires authentication).</p>
+</li><li class=" "><p>If there is no <i class=" ">returnUrl</i> query string parameter, the redirect target is taken from the web part's <strong class=" ">Default target URL</strong> property.</p>
+</li></ul><p>When using the <i class=" ">returnUrl</i> query string parameter, the redirection is protected and only allows local relative URLs (pages on the same website). If the entered return URL is absolute, the redirect automatically targets the application's root page instead.</p>
+<p>The <i class=" ">Default target URL</i> web part property can only be configured in the administration interface and is considered a trusted source. In this case, no redirect protection is present and absolute URLs with external domain names are allowed.</p>
     <h3 id="src-68881121_Unvalidatedredirects-Performingsaferedirectsincustomcode" class="heading "><span>Performing safe redirects in custom code</span></h3>
-<p   
->If you have any custom functionality or components that perform redirects, consider the possibility of unvalidated redirection attacks. Your code may contain security vulnerabilities if the redirect URL originates from an external input (such as a query string parameter or a posted form field).</p>
-    <div  class="confbox admonition admonition-tip">
+<p>If you have any custom functionality or components that perform redirects, consider the possibility of unvalidated redirection attacks. Your code may contain security vulnerabilities if the redirect URL originates from an external input (such as a query string parameter or a posted form field).</p>
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: To find possible vulnerabilities, search your custom code for occurrences of the <strong class=" ">URLHelper.Redirect</strong> Kentico API method and the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.web.httpresponse.redirect.aspx">HttpResponse.Redirect</a> .NET method.</p>
+<p><strong class=" ">Tip</strong>: To find possible vulnerabilities, search your custom code for occurrences of the <strong class=" ">URLHelper.Redirect</strong> Kentico API method and the <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.web.httpresponse.redirect.aspx">HttpResponse.Redirect</a> .NET method.</p>
         </div>
     </div>
-<p   
->The <strong class=" ">safest approach</strong> is to completely avoid redirects to URLs obtained from untrusted inputs.</p>
-<p   
->If you cannot avoid such redirects, use the following methods from the Kentico API to perform the redirects safely:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">URLHelper.LocalRedirect(string url)</strong> &ndash; redirects to the specified URL if it is local, otherwise redirects to the application&#39;s root path.</p>
-</li><li class=" "><p   
-><strong class=" ">URLHelper.IsLocalUrl(string url)</strong> &ndash; returns a bool value indicating whether the specified URL is local. Use to create conditions before you perform redirects.</p>
-</li></ul><p   
->The methods consider URLs to be local if they are relative (starting with ~/ or /). All absolute URLs are evaluated as not local (invalid), even if the domain in the URL matches the current site&#39;s domain.</p>
-    <div  class="confbox admonition admonition-info">
+<p>The <strong class=" ">safest approach</strong> is to completely avoid redirects to URLs obtained from untrusted inputs.</p>
+<p>If you cannot avoid such redirects, use the following methods from the Kentico API to perform the redirects safely:</p>
+<ul class=" "><li class=" "><p><strong class=" ">URLHelper.LocalRedirect(string url)</strong> – redirects to the specified URL if it is local, otherwise redirects to the application's root path.</p>
+</li><li class=" "><p><strong class=" ">URLHelper.IsLocalUrl(string url)</strong> – returns a bool value indicating whether the specified URL is local. Use to create conditions before you perform redirects.</p>
+</li></ul><p>The methods consider URLs to be local if they are relative (starting with ~/ or /). All absolute URLs are evaluated as not local (invalid), even if the domain in the URL matches the current site's domain.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Unvalidated redirect protection on MVC sites</strong></p>
-<p   
->If your site has pages handled by   <a   href="Developing-sites-using-ASP.NET-MVC">MVC</a> controllers and views, use the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.web.mvc.urlhelper.islocalurl%28v=vs.118%29.aspx">System.Web.MVC.UrlHelper.IsLocalUrl</a> method to validate untrusted inputs before performing redirects.</p>
+<p><strong class=" ">Unvalidated redirect protection on MVC sites</strong></p>
+<p>If your site has pages handled by <a href="developing-sites-using-asp.net-mvc">MVC</a> controllers and views, use the <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.web.mvc.urlhelper.islocalurl%28v=vs.118%29.aspx">System.Web.MVC.UrlHelper.IsLocalUrl</a> method to validate untrusted inputs before performing redirects.</p>
         </div>
     </div>
     <h4 id="src-68881121_Unvalidatedredirects-Examples" class="heading "><span>Examples</span></h4>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> CustomRedirect()</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Gets a redirection URL from the 'returnurl' query string parameter</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">string</code><code class="plain"> returnUrl = QueryHelper.GetString(</code><code class="string">"returnurl"</code><code class="plain">, </code><code class="string">""</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Performs redirection with protection against unvalidated redirect attacks</code></div>
 <div class="line"><code class="plain">	URLHelper.LocalRedirect(returnUrl);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> CustomRedirect(</code><code class="keyword">string</code><code class="plain"> returnUrl, </code><code class="keyword">bool</code><code class="plain"> trustedUrlSource)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Verifies that the URL is local or originates from a trusted input</code></div>
@@ -287,5 +254,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

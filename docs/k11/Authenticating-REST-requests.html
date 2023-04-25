@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Authenticating REST requests - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,91 +148,64 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Every request aimed at the   <a   href="Kentico-REST-service">Kentico REST service</a> must be authenticated. Otherwise the service replies with a 403 Forbidden HTTP status code.</p>
-<p   
->You need to specify the username and password through the <strong class=" ">Authorization</strong> line in the HTTP header of every REST request. The header line consists of:</p>
-<ul class=" "><li class=" "><p   
->The authentication type (<i class=" ">Basic</i>)</p>
-</li><li class=" "><p   
->The username and password connected by a colon (<i class=" "><strong class=" ">username:password</strong></i>), encoded using the Base64 algorithm</p>
-</li></ul>    <div  class="confbox panel">
+<div class="section-left"></div><p>Every request aimed at the <a href="kentico-rest-service">Kentico REST service</a> must be authenticated. Otherwise the service replies with a 403 Forbidden HTTP status code.</p>
+<p>You need to specify the username and password through the <strong class=" ">Authorization</strong> line in the HTTP header of every REST request. The header line consists of:</p>
+<ul class=" "><li class=" "><p>The authentication type (<i class=" ">Basic</i>)</p>
+</li><li class=" "><p>The username and password connected by a colon (<i class=" "><strong class=" ">username:password</strong></i>), encoded using the Base64 algorithm</p>
+</li></ul>    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Getting-data-using-REST">Getting data using REST</a></p>
-</li><li class=" "><p   
->  <a   href="Manipulating-data-using-REST">Manipulating data using REST</a></p>
+<ul class=" "><li class=" "><p><a href="getting-data-using-rest">Getting data using REST</a></p>
+</li><li class=" "><p><a href="manipulating-data-using-rest">Manipulating data using REST</a></p>
 </li></ul>        </div>
     </div>
-<p   
->For example, the following header line uses <i class=" ">RestClient:MyPassword</i> as the authentication credentials:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>For example, the following header line uses <i class=" ">RestClient:MyPassword</i> as the authentication credentials:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">Authorization: Basic UmVzdENsaWVudDpNeVBhc3N3b3Jk</code></div>
 </div>
     </div>
-<p   
->The credentials must belong to a standard   <a   href="User-management">user</a> created in Kentico. If your website uses   <a   href="Configuring-Windows-AD-authentication">Windows Active Directory authentication</a>, you need to manually create a non-AD user for the purposes of REST authentication, with the <strong class=" ">Is external user</strong> and <strong class=" ">Is domain user</strong> properties disabled.</p>
-<p   
->Once authenticated, the system allows the REST request to perform operations depending on the specified user&#39;s   <a   href="User-management">privilege level</a> and   <a   href="Configuring-permissions">permissions</a>.</p>
-<p   
-><strong class=" ">Note</strong>: The Kentico REST service does not require Basic Authentication to be enabled in IIS. Keep Basic Authentication disabled in IIS as described in   <a   href="Configuring-the-REST-service">Configuring the REST service</a>.</p>
-    <div  class="confbox admonition admonition-note">
+<p>The credentials must belong to a standard <a href="user-management">user</a> created in Kentico. If your website uses <a href="configuring-windows-ad-authentication">Windows Active Directory authentication</a>, you need to manually create a non-AD user for the purposes of REST authentication, with the <strong class=" ">Is external user</strong> and <strong class=" ">Is domain user</strong> properties disabled.</p>
+<p>Once authenticated, the system allows the REST request to perform operations depending on the specified user's <a href="user-management">privilege level</a> and <a href="configuring-permissions">permissions</a>.</p>
+<p><strong class=" ">Note</strong>: The Kentico REST service does not require Basic Authentication to be enabled in IIS. Keep Basic Authentication disabled in IIS as described in <a href="configuring-the-rest-service">Configuring the REST service</a>.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Security</strong></p>
-<ul class=" "><li class=" "><p   
->We strongly recommend using <a  class="external-link" href="http://en.wikipedia.org/wiki/Transport_Layer_Security">SSL</a> to protect the authentication credentials in the request headers. See also:   <a   href="Configuring-SSL">Configuring SSL</a></p>
-</li><li class=" "><p   
->The REST service does not support more advanced authentication standards by default. If you have additional authentication or security requirements, we recommend creating a custom single-purpose   <a   href="Using-ASP.NET-Web-API-with-Kentico">Web API</a> endpoint to retrieve the required data and using it instead of the REST service.</p>
+<p><strong class=" ">Security</strong></p>
+<ul class=" "><li class=" "><p>We strongly recommend using <a class="external-link" href="http://en.wikipedia.org/wiki/Transport_Layer_Security">SSL</a> to protect the authentication credentials in the request headers. See also: <a href="configuring-ssl">Configuring SSL</a></p>
+</li><li class=" "><p>The REST service does not support more advanced authentication standards by default. If you have additional authentication or security requirements, we recommend creating a custom single-purpose <a href="using-asp.net-web-api-with-kentico">Web API</a> endpoint to retrieve the required data and using it instead of the REST service.</p>
 </li></ul>        </div>
     </div>
-    <div  class="confbox admonition admonition-tip">
+    <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Tip</strong>: When testing REST requests manually in a browser, you do not need to edit the HTTP header. Most browsers provide a dialog where you can type in the authentication credentials.</p>
+<p><strong class=" ">Tip</strong>: When testing REST requests manually in a browser, you do not need to edit the HTTP header. Most browsers provide a dialog where you can type in the authentication credentials.</p>
         </div>
     </div>
     <h3 id="src-68882825_AuthenticatingRESTrequests-Hashparameterauthentication" class="heading "><span>Hash parameter authentication</span></h3>
-<p   
->You can authenticate individual REST requests by adding a hash parameter to the URL. The hash parameter allows you to prepare REST requests that can be executed by unauthenticated users. Requests that contain the hash parameter ignore the credentials specified in the authentication header.</p>
-    <div  class="confbox admonition admonition-note">
+<p>You can authenticate individual REST requests by adding a hash parameter to the URL. The hash parameter allows you to prepare REST requests that can be executed by unauthenticated users. Requests that contain the hash parameter ignore the credentials specified in the authentication header.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Restrictions</strong></p>
-<ul class=" "><li class=" "><p   
->Only works for GET requests (read only data retrieval)</p>
-</li><li class=" "><p   
->You cannot use hash parameter authentication for <i class=" ">/all</i>   <a   href="Getting-data-using-REST">object retrieval requests</a> (<i class=" ">~/rest/&lt;object type&gt;/all</i>). This is an intentional security limitation that protects global data in the system.</p>
+<p><strong class=" ">Restrictions</strong></p>
+<ul class=" "><li class=" "><p>Only works for GET requests (read only data retrieval)</p>
+</li><li class=" "><p>You cannot use hash parameter authentication for <i class=" ">/all</i> <a href="getting-data-using-rest">object retrieval requests</a> (<i class=" ">~/rest/&lt;object type&gt;/all</i>). This is an intentional security limitation that protects global data in the system.</p>
 </li></ul>        </div>
     </div>
-    <div  class="confbox admonition admonition-warning">
+    <div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Warning</strong>: Only use hash parameter authentication for loading data that you want to make publicly available. REST requests with hash authentication can be executed by anyone who obtains the URL (for example by intercepting the web request).</p>
+<p><strong class=" ">Warning</strong>: Only use hash parameter authentication for loading data that you want to make publicly available. REST requests with hash authentication can be executed by anyone who obtains the URL (for example by intercepting the web request).</p>
         </div>
     </div>
-<p   
->To get the authentication hash for REST requests:</p>
-<ol class=" "><li class=" "><p   
->Prepare the URL of your REST request in advance.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Settings</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Integration -&gt; REST</strong> category.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Generate authentication hash</strong>.</p>
-</li><li class=" "><p   
->Enter the full absolute URL of the REST request, including the protocol, website domain name, virtual directory,   <a   href="Getting-data-using-REST">REST path</a>, and query string parameters. For example: <i class=" ">http://mywebsite.com/rest/content/currentsite/en-us/all/news?format=json</i></p>
-</li><li class=" "><p   
->Click <strong class=" ">Authenticate</strong>.</p>
-</li></ol><p   
->The system adds the authentication hash parameter to the URL. You can copy the URL and use it to perform the REST request without supplying an authentication header.</p>
+<p>To get the authentication hash for REST requests:</p>
+<ol class=" "><li class=" "><p>Prepare the URL of your REST request in advance.</p>
+</li><li class=" "><p>Open the <strong class=" ">Settings</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Integration -&gt; REST</strong> category.</p>
+</li><li class=" "><p>Click <strong class=" ">Generate authentication hash</strong>.</p>
+</li><li class=" "><p>Enter the full absolute URL of the REST request, including the protocol, website domain name, virtual directory, <a href="getting-data-using-rest">REST path</a>, and query string parameters. For example: <i class=" ">http://mywebsite.com/rest/content/currentsite/en-us/all/news?format=json</i></p>
+</li><li class=" "><p>Click <strong class=" ">Authenticate</strong>.</p>
+</li></ol><p>The system adds the authentication hash parameter to the URL. You can copy the URL and use it to perform the REST request without supplying an authentication header.</p>
         </div>
 
     </article>
@@ -255,5 +226,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Handling global events - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -148,74 +146,47 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Global events allow you to execute custom code whenever specific actions occur within the system. Events can be raised as a result of both user interaction and the logic of the application itself (default or custom). When you assign a method as a handler for an event, the system automatically executes the code whenever the corresponding action occurs.</p>
-<p   
->For example, when a new page is added to your website, you can use an event handler to load the page&#39;s data, send out the content by email, and use a third-party component to generate a PDF version of the page.</p>
+<div class="section-left"></div><p>Global events allow you to execute custom code whenever specific actions occur within the system. Events can be raised as a result of both user interaction and the logic of the application itself (default or custom). When you assign a method as a handler for an event, the system automatically executes the code whenever the corresponding action occurs.</p>
+<p>For example, when a new page is added to your website, you can use an event handler to load the page's data, send out the content by email, and use a third-party component to generate a PDF version of the page.</p>
     <h3 id="src-68882264_Handlingglobalevents-Assigninghandlerstoevents" class="heading "><span>Assigning handlers to events</span></h3>
-<p   
->Use code in the following format to register handlers for global events:</p>
-<p   
-><strong class=" ">&lt;event class&gt;.&lt;event action&gt;.&lt;event type&gt; += &lt;handler method name&gt;</strong></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Event class</strong> &ndash; event classes are containers of events related to groups of functionality</p>
-</li><li class=" "><p   
-><strong class=" ">Event action</strong> &ndash; represents a specific action that occurs within the system</p>
-</li><li class=" "><p   
-><strong class=" ">Event type</strong> &ndash; determines when exactly the event takes place, typically <i class=" ">Before</i> or <i class=" ">After</i> the action. Some actions only have one type: <i class=" ">Execute</i></p>
-</li></ul><p   
->For example:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Use code in the following format to register handlers for global events:</p>
+<p><strong class=" ">&lt;event class&gt;.&lt;event action&gt;.&lt;event type&gt; += &lt;handler method name&gt;</strong></p>
+<ul class=" "><li class=" "><p><strong class=" ">Event class</strong> – event classes are containers of events related to groups of functionality</p>
+</li><li class=" "><p><strong class=" ">Event action</strong> – represents a specific action that occurs within the system</p>
+</li><li class=" "><p><strong class=" ">Event type</strong> – determines when exactly the event takes place, typically <i class=" ">Before</i> or <i class=" ">After</i> the action. Some actions only have one type: <i class=" ">Execute</i></p>
+</li></ul><p>For example:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">DocumentEvents.Update.After += Document_Update_After;</code></div>
 </div>
     </div>
-<p   
->The event handlers provide parameters derived from <strong class=" ">EventArgs</strong>, which you can use to access data related to the action that occurred. The exact type of the parameter depends on the event.</p>
-    <div  class="confbox admonition admonition-info">
+<p>The event handlers provide parameters derived from <strong class=" ">EventArgs</strong>, which you can use to access data related to the action that occurred. The exact type of the parameter depends on the event.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For full information about the available event classes, actions, event types and handler parameters, see:   <a   href="Reference---Global-system-events">Reference - Global system events</a></p>
+<p>For full information about the available event classes, actions, event types and handler parameters, see: <a href="reference---global-system-events">Reference - Global system events</a></p>
         </div>
     </div>
-<p   
->You need to register event handlers at the beginning of the application&#39;s life cycle (during initialization):</p>
-<ol class=" "><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-</li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign handler methods to events.</p>
-</li></ol><p   
->For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do not need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
+<p>You need to register event handlers at the beginning of the application's life cycle (during initialization):</p>
+<ol class=" "><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+</li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign handler methods to events.</p>
+</li></ol><p>For basic execution of initialization code, you only need to register a "code-only" module through the API. You do not need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+    
     <h4 id="src-68882264_Handlingglobalevents-Example" class="heading "><span>Example</span></h4>
-<p   
->The following steps describe how to register methods as global event handlers:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
-</li></ul></li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign handler methods to the required events.</p>
-</li></ol>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following steps describe how to register methods as global event handlers:</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).</p>
+</li></ul></li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign handler methods to the required events.</p>
+</li></ol>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomInitializationModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomInitializationModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomInit"</code></div>
@@ -223,22 +194,22 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomInit"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns custom handlers to events</code></div>
 <div class="line"><code class="plain">		DocumentEvents.Insert.After += Document_Insert_After;</code></div>
 <div class="line"><code class="plain">		DocumentEvents.InsertLink.Before += Document_InsertLink_Before;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Document_Insert_After(</code><code class="keyword">object</code><code class="plain"> sender, DocumentEventArgs e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Add custom actions here</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Document_InsertLink_Before(</code><code class="keyword">object</code><code class="plain"> sender, DocumentEventArgs e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Add custom actions here</code></div>
@@ -246,8 +217,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-<p   
->See the child pages in this chapter for examples of event handling.</p>
+<p>See the child pages in this chapter for examples of event handling.</p>
         </div>
 
     </article>
@@ -268,5 +238,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

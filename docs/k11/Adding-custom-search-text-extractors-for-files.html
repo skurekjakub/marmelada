@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Adding custom search text extractors for files - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -151,87 +149,60 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Custom extractors allow you to use the   <a   href="Searching-attachment-files">attachment search</a> feature of page indexes for non-default file types.</p>
-<p   
->To define a custom search text extractor:</p>
-<ol class=" "><li class=" "><p   
->Create a class that implements the <strong class=" ">ISearchTextExtractor</strong> interface (<strong class=" ">CMS.Search</strong> namespace).</p>
-<ul class=" "><li class=" "><p   
->You can add the class into a custom assembly within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Define the <strong class=" ">ExtractContent</strong> method.</p>
-    <div  class="confbox admonition admonition-info">
+<div class="section-left"></div><p>Custom extractors allow you to use the <a href="searching-attachment-files">attachment search</a> feature of page indexes for non-default file types.</p>
+<p>To define a custom search text extractor:</p>
+<ol class=" "><li class=" "><p>Create a class that implements the <strong class=" ">ISearchTextExtractor</strong> interface (<strong class=" ">CMS.Search</strong> namespace).</p>
+<ul class=" "><li class=" "><p>You can add the class into a custom assembly within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br><br></p>
+</li></ul></li><li class=" "><p>Define the <strong class=" ">ExtractContent</strong> method.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->The ExtractContent method has the following parameters:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">BinaryData data</strong> - contains the data of the attachment file.</p>
-</li><li class=" "><p   
-><strong class=" ">ExtractionContext context</strong> - provides information about the page whose attachment is being indexed. Use the <i class=" ">context.Culture </i>property to get the culture code of the page&#39;s   <a   href="Setting-up-multilingual-websites">language version</a>.</p>
-</li></ul><p   
->The method must return an <strong class=" ">XmlData</strong> object. The system adds the object&#39;s data to page search indexes for the given attachment. Use the <strong class=" ">XmlData.SetValue</strong> method to enter values into individual search index fields.</p>
+<p>The ExtractContent method has the following parameters:</p>
+<ul class=" "><li class=" "><p><strong class=" ">BinaryData data</strong> - contains the data of the attachment file.</p>
+</li><li class=" "><p><strong class=" ">ExtractionContext context</strong> - provides information about the page whose attachment is being indexed. Use the <i class=" ">context.Culture </i>property to get the culture code of the page's <a href="setting-up-multilingual-websites">language version</a>.</p>
+</li></ul><p>The method must return an <strong class=" ">XmlData</strong> object. The system adds the object's data to page search indexes for the given attachment. Use the <strong class=" ">XmlData.SetValue</strong> method to enter values into individual search index fields.</p>
         </div>
     </div>
-</li><li class=" "><p   
->Register the extractor for a file extension by calling the <strong class=" ">SearchTextExtractorManager.RegisterExtractor</strong> method.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Register the extractor for a file extension by calling the <strong class=" ">SearchTextExtractorManager.RegisterExtractor</strong> method.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">SearchTextExtractorManager.RegisterExtractor(</code><code class="string">"extension"</code><code class="plain">, </code><code class="keyword">new</code><code class="plain"> CustomExtractorClass());</code></div>
 </div>
     </div>
-    <div  class="confbox admonition admonition-info">
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Note</strong>: You need to call the <i class=" ">RegisterExtractor</i> method on application start (when the application and modules are being initialized).</p>
+<p><strong class=" ">Note</strong>: You need to call the <i class=" ">RegisterExtractor</i> method on application start (when the application and modules are being initialized).</p>
         </div>
     </div>
-</li><li class=" "><p   
->Rebuild your page   <a   href="Creating-local-search-indexes">search indexes</a>.</p>
-</li></ol><p   
->The search uses the custom extractor to index page attachments with the specified extension.</p>
-    <div  class="confbox admonition admonition-note">
+</li><li class=" "><p>Rebuild your page <a href="creating-local-search-indexes">search indexes</a>.</p>
+</li></ol><p>The search uses the custom extractor to index page attachments with the specified extension.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
-><strong class=" ">Modifying custom extractors</strong></p>
-<p   
->The system stores the text content extracted from page attachments in the database. When rebuilding page indexes, the search loads the &quot;cached&quot; attachment text from the database. The text extraction process only runs for attachments that do not have any search content saved.</p>
-<p   
->If you change the functionality of a custom extractor, you need to clear the attachment content from the database:</p>
-<ol class=" "><li class=" "><p   
->Sign in to the Kentico administration interface and open the <strong class=" ">System</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Files -&gt; Attachments</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Clear attachment search cache</strong>.</p>
-</li></ol><p   
->You can then <strong class=" ">Rebuild</strong> your page indexes, which updates the attachment content according to your extractor&#39;s new functionality.</p>
+<p><strong class=" ">Modifying custom extractors</strong></p>
+<p>The system stores the text content extracted from page attachments in the database. When rebuilding page indexes, the search loads the "cached" attachment text from the database. The text extraction process only runs for attachments that do not have any search content saved.</p>
+<p>If you change the functionality of a custom extractor, you need to clear the attachment content from the database:</p>
+<ol class=" "><li class=" "><p>Sign in to the Kentico administration interface and open the <strong class=" ">System</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Files -&gt; Attachments</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">Clear attachment search cache</strong>.</p>
+</li></ol><p>You can then <strong class=" ">Rebuild</strong> your page indexes, which updates the attachment content according to your extractor's new functionality.</p>
         </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Searching-attachment-files">Searching attachment files</a></p>
-</li><li class=" "><p   
->  <a   href="Setting-up-search-on-your-website">Setting up search on your website</a></p>
+<ul class=" "><li class=" "><p><a href="searching-attachment-files">Searching attachment files</a></p>
+</li><li class=" "><p><a href="setting-up-search-on-your-website">Setting up search on your website</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882124_Addingcustomsearchtextextractorsforfiles-Example-Implementingasearchtextextractor" class="heading "><span>Example - Implementing a search text extractor</span></h3>
-<p   
->The following example demonstrates how to create a very basic extractor for .txt files:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a new class, for example named <strong class=" ">CustomSearchTextExtractor.cs</strong>.</p>
-<ul class=" "><li class=" "><p   
->Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Add the following <i class=" ">using</i> statements to the class:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>The following example demonstrates how to create a very basic extractor for .txt files:</p>
+<ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a new class, for example named <strong class=" ">CustomSearchTextExtractor.cs</strong>.</p>
+<ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br><br></p>
+</li></ul></li><li class=" "><p>Add the following <i class=" ">using</i> statements to the class:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Search;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Core;</code></div>
@@ -240,16 +211,14 @@
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Make the class implement the <strong class=" ">ISearchTextExtractor</strong> interface.</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Make the class implement the <strong class=" ">ISearchTextExtractor</strong> interface.</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomSearchTextExtractor : ISearchTextExtractor</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Define the <strong class=" ">ExtractContent</strong> method:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p>Define the <strong class=" ">ExtractContent</strong> method:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> XmlData ExtractContent(BinaryData data, ExtractionContext context)</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -258,39 +227,36 @@
 <div class="line"><code class="plain">		</code><code class="comments">// Reads the text file's data stream</code></div>
 <div class="line"><code class="plain">		data.Stream.Position = 0;</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> resultString = StreamReader.New(data.Stream).ReadToEnd();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Adds text into the CONTENT search index field</code></div>
 <div class="line"><code class="plain">		XmlData contentData = </code><code class="keyword">new</code><code class="plain"> XmlData();</code></div>
 <div class="line"><code class="plain">		contentData.SetValue(SearchFieldsConstants.CONTENT, resultString);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> contentData;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">null</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the <strong class=" ">CustomSearchTextExtractor.cs</strong> file.</p>
-</li><li class=" "><p   
->To register your custom extractor, create a   <a   href="Initializing-modules-to-run-custom-code">custom module class</a> in the same location.</p>
-    <div  class="confbox admonition admonition-info">
+</li><li class=" "><p>Save the <strong class=" ">CustomSearchTextExtractor.cs</strong> file.</p>
+</li><li class=" "><p>To register your custom extractor, create a <a href="initializing-modules-to-run-custom-code">custom module class</a> in the same location.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->For basic execution of initialization code, you only need to register a &quot;code-only&quot; module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+<p>For basic execution of initialization code, you only need to register a "code-only" module through the API. You do NOT need to create a new module within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
         </div>
     </div>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Search;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomSearchExtractorModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomSearchExtractorModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomSearchExtractor"</code></div>
@@ -298,26 +264,22 @@
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomSearchExtractor"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Registers the CustomSearchText extractor for the .txt extension</code></div>
 <div class="line"><code class="plain">		SearchTextExtractorManager.RegisterExtractor(</code><code class="string">"txt"</code><code class="plain">, </code><code class="keyword">new</code><code class="plain"> CustomSearchTextExtractor());</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save the module class.</p>
-</li><li class=" "><p   
->Sign in to the Kentico administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Smart search</strong> application and <strong class=" ">Rebuild</strong> your page search indexes.</p>
-</li></ol><p   
->The example is only intended as a demonstration &ndash; the system already contains a default extractor for .txt files. You can use the same approach to create extractors for other file types.</p>
+</li><li class=" "><p>Save the module class.</p>
+</li><li class=" "><p>Sign in to the Kentico administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">Smart search</strong> application and <strong class=" ">Rebuild</strong> your page search indexes.</p>
+</li></ol><p>The example is only intended as a demonstration – the system already contains a default extractor for .txt files. You can use the same approach to create extractors for other file types.</p>
         </div>
 
     </article>
@@ -338,5 +300,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Custom Email provider example - Kentico 11 Documentation</title>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">K11</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
                     <h2>Kentico 11 Documentation</h2>
@@ -150,105 +148,73 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Customizing the email provider allows you to:</p>
-<ul class=" "><li class=" "><p   
->Execute custom actions when sending emails (for example logging the sent emails for auditing purposes)</p>
-</li><li class=" "><p   
->Use third&#8209;party components for sending emails</p>
-</li></ul><p   
->Once you create and register your custom email provider, it is used to process all emails sent out by Kentico.</p>
-<p   
->The following example demonstrates how to define a custom email provider. This sample provider supports all of the default email functionality, but additionally creates an entry in the   <a   href="Working-with-the-system-event-log">Event log</a> whenever the system sends an email.</p>
-    <div  class="confbox panel">
+<div class="section-left"><p>Customizing the email provider allows you to:</p><ul class=" "><li class=" "><p>Execute custom actions when sending emails (for example logging the sent emails for auditing purposes)</p>
+</li><li class=" "><p>Use third‑party components for sending emails</p>
+</li></ul><p>Once you create and register your custom email provider, it is used to process all emails sent out by Kentico.</p><p>The following example demonstrates how to define a custom email provider. This sample provider supports all of the default email functionality, but additionally creates an entry in the <a href="working-with-the-system-event-log">Event log</a> whenever the system sends an email.</p></div>
+
+
+    <div class="section-right"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
->  <a   href="#src-68882176_CustomEmailproviderexample-Writingthecustomemailprovider">Writing the custom email provider</a></p>
-</li><li class=" "><p   
->  <a   href="#src-68882176_CustomEmailproviderexample-Result">Result</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882176_customemailproviderexample-writingthecustomemailprovider">Writing the custom email provider</a></p>
+</li><li class=" "><p><a href="#src-68882176_customemailproviderexample-result">Result</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
->  <a   href="Customizing-providers">Customizing providers</a></p>
-</li><li class=" "><p   
->  <a   href="Registering-providers-using-assembly-attributes">Registering providers using assembly attributes</a></p>
+<ul class=" "><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class=" "><p><a href="registering-providers-using-assembly-attributes">Registering providers using assembly attributes</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div>
+    
     <h3 id="src-68882176_CustomEmailproviderexample-Writingthecustomemailprovider" class="heading "><span>Writing the custom email provider</span></h3>
-<p   
->Start by preparing a separate project for custom classes in your Kentico solution:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries (and any others that you may need in your custom code):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.EmailEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.EventLog.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Edit the custom project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<p>Start by preparing a separate project for custom classes in your Kentico solution:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries (and any others that you may need in your custom code):</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.EmailEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.EventLog.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Edit the custom project's <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br></p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </div>
-</li></ol><p   
->Continue by implementing the custom provider class:</p>
-<ol class=" "><li class=" "><p   
->Add a new class under the custom project. For example, name the class <i class=" "><strong class=" ">CustomEmailProvider.cs</strong></i></p>
-</li><li class=" "><p   
->Modify the class&#39;s declaration so that it inherits from the <strong class=" ">CMS.EmailEngine.EmailProvider</strong> class.</p>
-    <div  class="confbox admonition admonition-info">
+</li></ol><p>Continue by implementing the custom provider class:</p>
+<ol class=" "><li class=" "><p>Add a new class under the custom project. For example, name the class <i class=" "><strong class=" ">CustomEmailProvider.cs</strong></i></p>
+</li><li class=" "><p>Modify the class's declaration so that it inherits from the <strong class=" ">CMS.EmailEngine.EmailProvider</strong> class.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Custom email providers must always inherit from the default <strong class=" ">EmailProvider</strong> class. This allows you to call the base methods before adding your own custom functionality.</p>
+<p>Custom email providers must always inherit from the default <strong class=" ">EmailProvider</strong> class. This allows you to call the base methods before adding your own custom functionality.</p>
         </div>
     </div>
-</li><li class=" "><p   
->  <a   href="Registering-providers-using-assembly-attributes">Register the custom provider</a> by adding the <strong class=" ">RegisterCustomProvider</strong> assembly attribute above the class declaration (requires a reference to the <strong class=" ">CMS</strong> namespace). The attribute&#39;s parameter specifies the type of the custom provider class as a <strong class=" ">System.Type</strong> object.</p>
-</li><li class=" "><p   
->Override the following methods in the class:</p>
-    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li><li class=" "><p><a href="registering-providers-using-assembly-attributes">Register the custom provider</a> by adding the <strong class=" ">RegisterCustomProvider</strong> assembly attribute above the class declaration (requires a reference to the <strong class=" ">CMS</strong> namespace). The attribute's parameter specifies the type of the custom provider class as a <strong class=" ">System.Type</strong> object.</p>
+</li><li class=" "><p>Override the following methods in the class:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.ComponentModel;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Net.Mail;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.EmailEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.EventLog;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom EmailProvider</code></div>
 <div class="line"><code class="plain">[assembly: RegisterCustomProvider(</code><code class="keyword">typeof</code><code class="plain">(CustomEmailProvider))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomEmailProvider : EmailProvider</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -260,11 +226,11 @@
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> SendEmailInternal(</code><code class="keyword">string</code><code class="plain"> siteName, MailMessage message, SMTPServerInfo smtpServer)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.SendEmailInternal(siteName, message, smtpServer);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> detail = </code><code class="keyword">string</code><code class="plain">.Format(</code><code class="string">"Email from {0} was sent via {1} (synchronously)"</code><code class="plain">, message.From.Address, smtpServer.ServerName);</code></div>
 <div class="line"><code class="plain">        EventLogProvider.LogInformation(</code><code class="string">"CMSCustom"</code><code class="plain">, </code><code class="string">"EMAIL SENDOUT"</code><code class="plain">, detail);</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Asynchronously sends an email through the SMTP server.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -275,11 +241,11 @@
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> SendEmailAsyncInternal(</code><code class="keyword">string</code><code class="plain"> siteName, MailMessage message, SMTPServerInfo smtpServer, EmailToken emailToken)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.SendEmailAsyncInternal(siteName, message, smtpServer, emailToken);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> detail = </code><code class="keyword">string</code><code class="plain">.Format(</code><code class="string">"Email from {0} was dispatched via {1} (asynchronously)"</code><code class="plain">, message.From.Address, smtpServer.ServerName);</code></div>
 <div class="line"><code class="plain">        EventLogProvider.LogInformation(</code><code class="string">"CMSCustom"</code><code class="plain">, </code><code class="string">"EMAIL SENDOUT"</code><code class="plain">, detail);</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Raises the SendCompleted event after the send is completed.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -293,23 +259,15 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-</li><li class=" "><p   
->Save all changes and <strong class=" ">Build</strong> the custom project.</p>
-</li></ol><p   
->The provider uses the customized methods to send out emails. Each method calls the base from the parent provider class and then logs an information event into the system&#39;s event log. You can use the same approach to add any type of custom functionality.</p>
+</li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.</p>
+</li></ol><p>The provider uses the customized methods to send out emails. Each method calls the base from the parent provider class and then logs an information event into the system's event log. You can use the same approach to add any type of custom functionality.</p>
     <h3 id="src-68882176_CustomEmailproviderexample-Result" class="heading "><span>Result</span></h3>
-<p   
->The system now uses the custom email provider (defined in the <strong class=" ">CustomEmailProvider</strong> class) when sending emails.</p>
-<p   
->To try out the functionality:</p>
-<ol class=" "><li class=" "><p   
->Send some emails using Kentico.</p>
-<ul class=" "><li class=" "><p   
->For example, you can use the <strong class=" ">System -&gt; Email</strong> interface to send a test email (synchronously).</p>
-</li></ul></li><li class=" "><p   
->Check the log in the <strong class=" ">Event log</strong> application.</p>
-</li></ol><p   
->The event log displays an entry for every successfully sent email, identified by the <i class=" ">CMSCustom</i><strong class=" "> Source</strong> value (two entries for emails sent asynchronously).</p>
+<p>The system now uses the custom email provider (defined in the <strong class=" ">CustomEmailProvider</strong> class) when sending emails.</p>
+<p>To try out the functionality:</p>
+<ol class=" "><li class=" "><p>Send some emails using Kentico.</p>
+<ul class=" "><li class=" "><p>For example, you can use the <strong class=" ">System -&gt; Email</strong> interface to send a test email (synchronously).</p>
+</li></ul></li><li class=" "><p>Check the log in the <strong class=" ">Event log</strong> application.</p>
+</li></ol><p>The event log displays an entry for every successfully sent email, identified by the <i class=" ">CMSCustom</i><strong class=" "> Source</strong> value (two entries for emails sent asynchronously).</p>
         </div>
 
     </article>
@@ -330,5 +288,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>
