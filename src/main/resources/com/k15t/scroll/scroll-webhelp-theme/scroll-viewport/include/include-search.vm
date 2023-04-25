@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="isSearch" content="true" />
+    <title>$space.name - $page.title</title>
+
+    $include.template("/include/include-htmlhead.vm")
+
+    ## Includes web panels from location 'k15t.scroll-viewport.viewcontent'
+    $webPanels
+
+</head>
+<body>
+
+<div id="ht-loader"></div>
+
+    $include.template("/include/include-headerbar.vm")
+
+    $include.template("/include/include-sidebar.vm")
+
+<div id="ht-wrap-container">
+    <div id="ht-sidebar-dragbar">
+        <div class="ht-sidebar-drag-handle">
+            <span class="drag-handle-1"></span>
+            <span class="drag-handle-2"></span>
+            <span class="drag-handle-3"></span>
+        </div>
+    </div>
+    <article class="ht-content">
+        <header class="ht-content-header">
+            <ul id="ht-breadcrumb">
+                <li><a href="$home.link">$space.name</a></li>
+            </ul>
+            <h1 class="search-header">Search for <em>"$userQuery"</em>
+                returned ${searchResults.total} #if (${searchResults.total} > 1) results. #else result. #end </h1>
+        </header>
+
+
+        <div id="search-results">
+            #foreach($result in $searchResults.items)
+                <section class="search-result">
+                    <header>
+                        <h2>
+                            <a href="$result.link">$result.displayTitle</a>
+                        </h2>
+                    </header>
+                    <div class="search-result-content">
+                        <p class="search-result-link">$result.absoluteLink</p>
+
+                        <p class="search-result-desc">$result.getDescription(280)</p>
+                    </div>
+                    #foreach($qualifier in $result.qualifiers)
+                        #if($qualifier.key == "scroll-versions:version-name" || $qualifier.key == "scroll-versions:variant-name")
+                            <span class="aui-lozenge aui-lozenge-subtle">$qualifier.value</span>
+                        #end
+                    #end
+                    <hr>
+                </section>
+            #end
+        </div>
+
+
+        <div style="text-align:center;">
+            #if($pager.hasPrev)
+                <a href="$pager.prevLink">Previous</a>
+            #end
+            #if($pager.hasPrev && $pager.hasNext)
+                <span> | </span>
+            #end
+            #if($pager.hasNext)
+                <a href="$pager.nextLink">Next</a>
+            #end
+        </div>
+
+
+        $include.template("/include/include-footer.vm")
+    </article>
+</div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+</body>
+</html>

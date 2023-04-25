@@ -1,0 +1,36 @@
+#macro(nav_tree $source)
+<li class="#if ($source.children.size() == 0)leaf#else#**#collapsed#end">
+    #set($link = $context.getLinkNamingStrategy().generateLinkString($source))
+    #set($link=$stringUtils.lowerCase($stringUtils.replace($link, ".html", "")))
+    <a target="_parent" class="ht-nav-page-link" data-destpageid="$source.Id" href="$link">$stringEscapeUtils.escapeHtml($source.DisplayTitle)</a>
+    #if ($source.children.size() > 0)
+        <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+            #foreach($child in $source.children)
+                 #nav_tree($child)
+            #end
+        </ul>
+    #end
+</li>
+#end
+
+<nav class="ht-pages-nav">
+    <ul class="ht-pages-nav-top">
+        #foreach($child in $context.SourceTree.Children)
+            #nav_tree($child)
+        #end
+    </ul>
+</nav>

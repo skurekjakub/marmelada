@@ -1,0 +1,14 @@
+#if($renderStart)
+    #set($level = $element.level + 1)
+    <h$level ${idAttribute} class="heading $cssClasses">#*
+        *##foreach ($annotation in $element.Annotations)#*
+            *##if ($annotation.Class.Name == "com.k15t.scroll.core.model.annotation.BookmarkAnnotation")#*
+                *#<span id="${annotation.BookmarkId}" class="scroll-bookmark"></span>#*
+            *##end#*
+            *##if ($annotation.Class.Name == "com.k15t.scroll.core.model.annotation.AnchorAnnotation")#*
+                *#<span id="${annotation.AnchorId}" class="confluence-anchor-link"></span>#*
+            *##end#*
+        *##end#*
+        *#<span>$stringEscapeUtils.escapeHtml($element.title)</span>#*
+    *#</h$level>
+#end

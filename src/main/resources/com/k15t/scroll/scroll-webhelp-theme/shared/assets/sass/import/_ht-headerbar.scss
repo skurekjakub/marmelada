@@ -1,0 +1,302 @@
+#ht-headerbar {
+  @import 'common/reset/reset';
+}
+
+#ht-headerbar {
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  right: 0px;
+  left: 305px;
+  height: 56px;
+  max-width: 100%;
+  @include translate(0px, 0px);
+
+  .ht-headerbar-left {
+    display: none;
+  }
+
+  .ht-headerbar-right {
+    min-width: 120px;
+    padding-top: 12px;
+    padding-right: 12px;
+    text-align: right;
+
+    @include max-screen($mq-tablet) {
+      padding-top: 6px;
+    }
+
+    @include max-screen($mq-mobile) {
+      padding-top: 4px;
+    }
+
+    a.ht-header-icon, #ht-search {
+      float: right;
+      display: block;
+
+      @include max-screen($mq-mobile) {
+        &.no-mobile {
+          display: none;
+        }
+      }
+    }
+
+    .ht-header-icon {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      // margin-top: 12px;
+      // margin-right:4px;
+      overflow: hidden;
+
+      img, svg {
+        width: 36px;
+        height: 36px;
+      }
+
+      svg path {
+        fill: #a2b9d0;
+      }
+
+      &:hover, &.active {
+        svg path {
+          fill: $color-secondary;
+        }
+      }
+
+      @include max-screen($mq-mobile) {
+        &.no-mobile {
+          display: none;
+        }
+
+        width: 38px;
+        height: 38px;
+        img, svg {
+          width: 38px;
+          height: 38px;
+        }
+      }
+    }
+
+    @include max-screen($mq-mobile) {
+      pointer-events: auto;
+      left: 50px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  @include max-screen($mq-tablet) {
+    top: 0px;
+    height: 48px;
+    left: 0px !important;
+
+    .ht-headerbar-right {
+      position: absolute;
+      right: 0px;
+
+      //top: 0px;
+
+      height: 48px;
+    }
+
+    .ht-headerbar-left {
+      display: block;
+
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      height: 48px;
+
+      #ht-menu-toggle {
+        position: relative;
+        left: 4px;
+        //top: 4px;
+        padding: 12px;
+
+        &:before {
+          margin-top: 8px;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+
+  @include max-screen($mq-mobile) {
+    .ht-headerbar-right {
+      left: 0px;
+      pointer-events: auto;
+    }
+
+    #ht-menu-toggle {
+      z-index: 1;
+    }
+  }
+}
+
+#ht-headerbar {
+  @import 'common/ht-dropdown';
+
+  .ht-dropdown ul {
+    padding-top: 0;
+  }
+}
+
+#ht-headerbar {
+  #ht-search {
+    display: inline-block;
+    position: static;
+    right: auto;
+    height: 36px;
+    opacity: 1;
+
+    @include max-screen($mq-mobile) {
+      .ht-dropdown {
+        -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+        -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    @include transition(width 0.25s ease-in-out);
+
+    .ht-header-icon {
+      margin: 0px;
+      @include max-screen($mq-mobile) {
+        margin-right: 0px;
+      }
+    }
+
+    #ht-search-button {
+      margin: 0px;
+      @include max-screen($mq-tablet) {
+        pointer-events: auto;
+      }
+    }
+
+    .ht-search-input {
+      pointer-events: auto;
+      position: relative;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.0);
+      @include border-radius(3px);
+      @include transition(border-color 0.25s ease-in-out);
+
+      a.ht-search-clear {
+        display: none;
+        opacity: 0;
+        width: 24px;
+        height: 36px;
+
+        @include transition(opacity 0.25s ease-in-out 0.25s, color 0.25s ease-in-out 0.0s);
+
+        &.show {
+          display: block;
+          opacity: 1;
+        }
+      }
+
+      a.ht-search-clear, a#ht-search-button, form {
+        float: right;
+      }
+
+      @include transition(width 0.25s ease-in-out, opacity 0.25s ease-in-out);
+
+      @include max-screen($mq-tablet) {
+        top: 0px;
+        margin-top: 0px;
+        right: auto;
+      }
+      @include max-screen($mq-mobile) {
+        right: auto;
+        left: auto;
+        width: auto;
+        pointer-events: auto;
+        @include transition(opacity 0.25s ease-in-out);
+      }
+
+      .search-input {
+        height: 36px;
+        width: 0px;
+        padding: 0px;
+        font-family: $font;
+        outline: 0px;
+        font-size: 14px;
+        background-repeat: no-repeat;
+        border: 0px;
+        opacity: 0;
+
+        @include transition(width 0.25s ease-in-out, opacity 0.25s ease-in-out);
+
+        @include max-screen($mq-mobile) {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+      }
+    }
+
+    .ht-dropdown {
+      position: absolute;
+      left: -1px;
+      top: 36px;
+      right: -1px;
+
+      @include max-screen($mq-mobile) {
+        // position: fixed;
+        // left: 0;
+        // right: 0px;
+        // border: 0px;
+      }
+    }
+
+    &.open {
+      pointer-events: auto;
+      opacity: 1;
+
+      @include max-screen($mq-mobile) {
+        pointer-events: auto;
+        width: auto;
+      }
+
+      a.ht-search-clear {
+        display: block;
+      }
+
+      .ht-search-input {
+        border: 1px solid $color-lines;
+      }
+
+      .search-input {
+        width: 200px;
+        opacity: 1;
+      }
+
+      #ht-search-button {
+        pointer-events: none;
+        cursor: default;
+
+        path {
+          fill: $color-lines;
+        }
+      }
+    }
+  }
+
+  .ht-search-dropdown {
+    li a {
+      text-align: left;
+    }
+  }
+
+  a.ht-search-clear {
+    display: none;
+  }
+}
+
+#ht-headerbar {
+  @include translate(0px, auto);
+  @include transition(transform 0.3s ease-in);
+}

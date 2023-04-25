@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Search - $stringEscapeUtils.escapeHtml($space.name)</title>
+
+        #if ($scrollVersions.Language.Key)
+            <meta name="scroll-content-language-key" content="$scrollVersions.Language.Key">
+        #end
+
+        #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-htmlhead.vm")
+
+        <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script>##TODO maybe this can be dropped, if no old browsers (IE) need to be supported
+
+        <script id="worker" type="javascript/worker">
+                startIndex = function() {
+                    idx = lunr.Index.load(lunrIndex);
+                    idx.pipeline.remove(lunr.stopWordFilter);
+                    postMessage({type: "setup-complete", isSearchPage: true});
+                }
+
+                onmessage = function (event) {
+                    var message = event.data;
+
+                    if ((message.type === 'setup') && message.baseUrl) {
+                        var url = message.baseUrl;
+                        importScripts(url + 'js/lunr.js');
+                        importScripts(url + 'js/lunr-extras.js');
+                        importScripts(url + 'js/lunr-index.js');
+                        importScripts(url + 'js/lunr-data.js');
+                        startIndex();
+                    }
+
+                    if (idx && (message.type === 'search-request') && message.query) {
+                        var searchWord = message.query;
+                        var results = idx.search(searchWord).map(function (result) {
+                            return lunrData.filter(function (d) {
+                                return d.id === parseInt(result.ref, 10)
+                            })[0]
+                        });
+                        postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+                    }
+                }
+        </script>
+
+    </head>
+
+    <body>
+
+        <div id="ht-loader">
+            <noscript>
+                <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.
+                </p>
+            </noscript>
+        </div>
+
+        <div>
+            #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-headerbar.vm")
+            #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-sidebar.vm")
+        </div>
+
+        <div id="ht-wrap-container">
+
+        ## ----------------------------------------------------------------------------------------------------------------------------------
+        ## Represents include-content.vm in viewport from here
+        ## ----------------------------------------------------------------------------------------------------------------------------------
+
+            #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-sidebar-drag.vm")
+
+        ## ----------------------------------------------------------------------------------------------------------------------------------
+        ## End of include-content.vm in viewport
+        ## ----------------------------------------------------------------------------------------------------------------------------------
+
+            #if ($context.ExportMode == "default")
+                <article id="html-search-results" class="ht-content" style="display: none;">
+                    <header class="ht-content-header">
+                        <div id="ht-spacetitle">
+                            <ul>
+                                <li>
+                                    <a href="$context.getLinkNamingStrategy().generateLinkString($context.sourceTree)">$stringEscapeUtils.escapeHtml($space.name)</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h1>Search results</h1>
+                    </header>
+                    <div id="search-results"></div>
+                </article>
+            #end
+
+            #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-footer.vm")
+        </div>
+
+        <div>
+            <div id="ht-mq-detect"></div>
+        </div>
+
+
+        <script src="js/lunr.js"></script>
+        <script src="js/lunr-extras.js"></script>
+        <script src="assets/js/scroll-search.js"></script>
+
+    </body>
+</html>

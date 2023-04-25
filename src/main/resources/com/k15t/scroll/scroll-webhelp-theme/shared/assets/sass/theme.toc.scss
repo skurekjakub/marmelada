@@ -1,0 +1,100 @@
+@import 'import/common/mixin';
+@import 'import/common/reset/reset';
+@import 'import/_sp-aui-icon';
+@import 'import/_theme.base';
+
+
+body {
+  margin: 0px;
+  font-family: $font;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.ht-pages-nav {
+  font-size: 0.875em;
+  margin-bottom: 20px;
+  overflow: hidden;
+
+  ul {
+    padding-left: 14px;
+
+    .ht-pages-nav-sub {
+      max-height: 0px;
+      overflow: hidden;
+
+      @include transition(max-height 0.25s ease-in-out);
+    }
+    .ht-pages-nav-toggle svg {
+      display: none;
+    }
+
+    .ht-pages-nav-toggle:before {
+      line-height: 22px;
+      content: "\f11c";
+    }
+
+    .open > ul {
+      max-height: 9000px;
+    }
+
+    .open {
+      > .ht-pages-nav-toggle:before {
+        line-height: 18px;
+        content: "\f15b";
+      }
+    }
+
+    li {
+      line-height: 1.250rem;
+      position: relative;
+      width: 100%;
+
+      .sp-aui-icon-small {
+        position: absolute;
+        cursor: pointer;
+        left: -14px;
+        top: 3px;
+        height: 22px;
+        line-height: 24px;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        .sp-aui-icon-small {
+          color: $color-gray;
+
+          &:hover {
+            color: $color-secondary;
+          }
+        }
+      }
+    }
+
+    a {
+      display: block;
+      padding: 5px 32px 5px 4px;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: $color-secondary;
+    }
+
+    a.current {
+      font-weight: bold;
+      color: $color-text;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.ht-pages-nav {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}

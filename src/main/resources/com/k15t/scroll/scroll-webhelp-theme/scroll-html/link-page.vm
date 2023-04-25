@@ -1,0 +1,6 @@
+#if($renderStart)#*
+*##set($link = $context.getLinkNamingStrategy().generateLinkString($element.getTargetSource(), $element.getTargetAnchor()))#*
+*##if($element.ParentPage.PageId == $element.TargetSource.Id)#set($link = "#" + $stringUtils.substringAfter($link,"#"))#end#*
+*##set($link=$stringUtils.lowerCase($stringUtils.replace($link, ".html", "")))#*
+*#<a ${idAttribute} ${classAttribute} href="$link">#*
+*##else</a>#end

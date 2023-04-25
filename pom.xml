@@ -1,0 +1,139 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <!-- Customize your template plugin beginning from here. -->
+
+    <!-- These should be adapted to match your company's domain and the name of the theme. -->
+    <groupId>com.kentico.scrollexport.theme</groupId>
+    <artifactId>scrollexport-kentico-theme</artifactId>
+    <version>1.0.0</version>
+    <name>Scroll Kentico Theme</name>
+    <description>Provides the Scroll WebHelp Theme for Scroll Viewport and Scroll Kentico Theme for Scroll HTML Exporter.</description>
+
+    <!-- Add your organization's details here. -->
+    <organization>
+        <name>Kentico</name>
+        <url>https://www.kentico.com/</url>
+    </organization>
+
+    <!-- Adapt this to point to your theme's remote git repository or remove it completely if you don't use a remote repository. -->
+    <!-- <scm>
+        <connection>scm:git:ssh://git@bitbucket.org/K15t/scroll-webhelp-theme.git</connection>
+        <url>https://bitbucket.org/K15t/scroll-webhelp-theme</url>
+        <tag>HEAD</tag>
+    </scm> -->
+
+
+    <!-- Don't modify anything below this line. -->
+
+
+    <packaging>atlassian-plugin</packaging>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>com/k15t/scroll/scroll-webhelp-theme/shared/assets/sass/**</exclude>
+                    <exclude>com/k15t/scroll/scroll-webhelp-theme/shared/config.rb</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-confluence-plugin</artifactId>
+                <version>6.3.15</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <compressResources>false</compressResources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v12.16.1</nodeVersion>
+                            <npmVersion>6.13.4</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm-install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>compile-sass</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run compile-sass</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <!-- This is required to load the k15t master pom, it can be removed when removing the <parent> definition. -->
+    <repositories>
+        <repository>
+            <id>k15t-releases</id>
+            <url>https://nexus.k15t.com/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>vulnerability-scan</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>7.2.0</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <skipProvidedScope>true</skipProvidedScope>
+                            <skipRuntimeScope>true</skipRuntimeScope>
+                            <skipArtifactType>license.properties</skipArtifactType>
+                            <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                            <formats>
+                                <format>junit</format>
+                                <format>html</format>
+                            </formats>
+                            <junitFailOnCVSS>7</junitFailOnCVSS>
+                            <prettyPrint>true</prettyPrint>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

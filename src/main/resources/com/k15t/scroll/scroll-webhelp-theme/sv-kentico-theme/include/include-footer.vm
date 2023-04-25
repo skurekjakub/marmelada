@@ -1,0 +1,34 @@
+#set($linkSignIn = $baseUrl + "/login.action?os_destination=" + $page.link)
+#set($linkSignOut = $baseUrl + "/logout.action")
+
+<footer id="ht-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <ul class="footer-menu">
+          <li>
+            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+          </li>
+          <li>
+            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+          </li>    
+        </ul>
+      </div>
+      <div class="col-6">
+        <div class="footer-poweredby">
+          <span id="footer-poweredby-1">Powered by </span>
+          <span id="footer-poweredby-2">
+            <a href="http://atlassian.com/software/confluence" target="_blank">Atlassian Confluence</a> and 
+            <a href="https://www.k15t.com/software" target="_blank">Scroll Add-ons</a>
+          </span>
+
+          #if($user.loggedIn)
+            <span id="signout-action"><a href="$linkSignOut">Sign out</a></span>
+          #else        
+            <span id="signin-action"><a href="$linkSignIn">Sign in</a></span>
+          #end
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

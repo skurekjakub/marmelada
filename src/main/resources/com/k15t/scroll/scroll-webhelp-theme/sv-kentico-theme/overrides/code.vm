@@ -1,0 +1,40 @@
+<div class="code panel pdl js-codePanel" >
+  ## Render header bar if the panel has title or is collapsible
+  <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+      #if ($params.title)<strong>$params.title</strong>#end
+    </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      
+      <div class="codeSwitch">
+        $include.template('include/include-dev-model-switch.vm')  
+      </div>
+
+      #if ($params.collapse)<span class="expand-control"><span class="expand-control-icon icon">&nbsp;</span><span class="expand-control-text">Expand source</span></span>#end
+    </div>
+  </div>
+  
+  ## Render the code
+  <div class="codeContent panelContent pdl#if($params.collapse) collapse#end">
+    #set($lang = $params.language)
+    
+    ## Default fallback on C#
+    #if (!$lang || $lang == "c#")
+    	#set($lang = "csharp")
+    #end
+    
+    ## Get rid of BOM if the file contains it (UTF-8)
+    #if($body.regionMatches(0, " ï»¿", 0, 4))
+    <pre><code class="js-code language-$lang">$stringEscapeUtils.escapeHtml($body.replaceFirst($body.substring(0,4), ""))</code></pre>
+    #elseif($body.regionMatches(0, "ï»¿", 0, 3))
+    <pre><code class="js-code language-$lang">$stringEscapeUtils.escapeHtml($body.replaceFirst($body.substring(0,3), ""))</code></pre>
+    #else
+    <pre><code class="js-code language-$lang">$stringEscapeUtils.escapeHtml($body)</code></pre>
+    #end
+  </div>
+</div>

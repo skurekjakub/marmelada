@@ -1,0 +1,17 @@
+#if($renderStart)
+    <div ${idAttribute} class="tablewrap">
+        <table $classAttribute.with($element.style)>
+        #if($element.Colgroup.size() > 0)
+            <colgroup>
+                #foreach($col in $element.Colgroup)
+                    <col #if($col.Width) width="${col.Width}${col.MetricHtmlSymbol}"#end/>
+                #end
+            </colgroup>
+        #end
+#else
+        </table>
+        #if($element.title)
+        <div class="caption">$stringEscapeUtils.escapeHtml($element.title)</div>
+        #end
+    </div>
+#end

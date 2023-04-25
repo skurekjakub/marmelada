@@ -1,0 +1,88 @@
+///**
+//*
+//* K15t Help Theme
+//* Mixins
+//*
+//**/
+
+@mixin transition($transitions...){
+	transition: $transitions;
+}
+
+@mixin border-radius($radius){
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin border-radius-plus($r1, $r2, $r3, $r4){
+	-webkit-border-top-left-radius: $r1;
+	-webkit-border-top-right-radius: $r2;
+	-webkit-border-bottom-right-radius: $r3;
+	-webkit-border-bottom-left-radius: $r4;
+	-moz-border-radius-topleft: $r1;
+	-moz-border-radius-topright: $r2;
+	-moz-border-radius-bottomright: $r3;
+	-moz-border-radius-bottomleft: $r4;
+	border-top-left-radius: $r1;
+	border-top-right-radius: $r2;
+	border-bottom-right-radius: $r3;
+	border-bottom-left-radius: $r4;
+}
+
+@mixin setColorAndHover($baseColor){
+	color: $baseColor;
+	&:hover {
+		color: darken($baseColor, 5%);
+	}
+
+	@include transition(color 0.25s ease-in-out);
+}
+
+@mixin setBgColorAndHover($baseColor){
+	background-color: $baseColor;
+	&:hover {
+		background-color: darken($baseColor, 5%);
+	}
+
+	@include transition(background-color 0.25s ease-in-out);
+}
+
+@mixin background-opacity($color, $opacity: 0.3) {
+	background: $color;
+
+	$red: red($color);
+	$green: green($color);
+	$blue: blue($color);
+	background: rgba($red, $green, $blue, $opacity);
+}
+
+// generic transform
+@mixin transform($transforms) {
+	transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+	 @include transform(scale($scale));
+}
+// translate
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+	     -o-transform-origin: $origin;
+	    -ms-transform-origin: $origin;
+	-webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}

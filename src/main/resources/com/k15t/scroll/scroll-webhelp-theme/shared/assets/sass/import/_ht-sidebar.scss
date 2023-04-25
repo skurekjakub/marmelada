@@ -1,0 +1,433 @@
+#ht-sidebar {
+  @import 'common/reset/reset';
+}
+
+#ht-sidebar {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  width: 295px;
+  overflow: visible;
+  z-index: 1;
+
+  @include max-screen($mq-tablet) {
+    width: 320px;
+    overflow: hidden;
+  }
+
+  @include max-screen($mq-mobile) {
+    width: 90%;
+    overflow: hidden;
+  }
+
+  .ht-sidebar-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+
+    .ht-sidebar-content-scroll-container {
+      padding: 0 15px;
+    }
+
+    .ht-sidebar-content-scroll-container iframe#ht-nav {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+  }
+
+  .ht-sidebar-header {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 30px;
+  }
+
+  h1.ht-logo {
+    width: 100%;
+    margin: 30px 0 10px;
+
+    .ht-logo-label {
+      display: none;
+    }
+
+    img {
+      @include border-radius(5px);
+
+      width: auto;
+      max-width: 120px;
+      max-height: 100px;
+    }
+
+  }
+
+  .ht-scroll-versions-widget {
+    .ht-scroll-versions-select {
+      label {
+        display: block;
+        left: 6px;
+        line-height: 32px;
+
+        @include max-screen($mq-mobile) {
+          display: none;
+        }
+      }
+
+      select {
+        position: absolute;
+        opacity: 0;
+      }
+    }
+
+    .ht-scroll-versions-select {
+      overflow: visible;
+
+      a.ht-select-button {
+        font-size: 0.875em;
+        line-height: 32px;
+        padding-bottom: 2px;
+        padding-right: 6px;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: flex;
+
+        label {
+          padding: 1px 6px;
+          cursor: pointer;
+          flex: 1;
+
+          @include max-screen($mq-tablet) {
+            display: none;
+          }
+        }
+
+        span {
+          text-overflow: ellipsis;
+          display: inline;
+          white-space: nowrap;
+          overflow: hidden;
+          width: inherit;
+          cursor: pointer;
+          align-self: center;
+
+          padding: 1px;
+
+          @include max-screen($mq-tablet) {
+            flex: 1;
+            padding: 10px 6px;
+          }
+          //IE specific styles
+          @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            flex: 4;
+            text-align: right;
+          }
+        }
+
+        svg{
+          display: inline-block;
+          flex: none;
+          align-self: center;
+          @include transition(transform 0.25s ease-in-out);
+        }
+
+        &:hover {
+          text-decoration: none;
+          background-position: right -10px;
+        }
+
+        &.active {
+          text-decoration: none;
+
+          svg{
+            @include scale(-1);
+          }
+        }
+
+        @include max-screen($mq-mobile) {
+          font-size: 1em;
+          line-height: 40px;
+        }
+      }
+
+      .ht-dropdown {
+        position: absolute;
+        margin-top: 0px;
+        width: fit-content;
+
+        li {
+          white-space: nowrap;
+          display: flex;
+          cursor: pointer;
+          &:hover {
+            background-color: $color-secondary;
+          }
+          a {
+            background-color: transparent;
+          }
+          &:hover a {
+            color: white;
+          }
+          span {
+            flex-grow: 1;
+            background-color: transparent;
+            align-self: center;
+            text-align: right;
+            margin-right: .5em;
+          }
+          &:hover span {
+            color: white;
+          }
+        }
+        @include max-screen($mq-tablet) {
+          a {
+            flex: 3;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    @import 'common/ht-dropdown';
+  }
+
+  @include max-screen($mq-desktop) {
+    .ht-scroll-versions-widget {
+      label {
+        display: none;
+      }
+      .ht-select-button {
+        text-align: left;
+      }
+
+    }
+  }
+
+  .ht-pages-nav {
+    font-size: 0.875em;
+    margin-bottom: 20px;
+    width: 100%;
+    margin-top: 40px;
+
+    @include max-screen($mq-mobile) {
+      font-size: 1em;
+    }
+
+    ul {
+      padding-left: 14px;
+
+      &.ht-pages-nav-sub {
+        max-height: 0px;
+        overflow: hidden;
+
+        @include transition(max-height 0.25s ease-in-out);
+      }
+      .ht-pages-nav-toggle svg {
+        display: none;
+      }
+
+      .ht-pages-nav-toggle:before {
+        line-height: 22px;
+        content: "\f11c";
+      }
+
+      .open > ul {
+        max-height: 9000px;
+      }
+
+      .open {
+        > .ht-pages-nav-toggle:before {
+          line-height: 18px;
+          content: "\f15b";
+        }
+      }
+
+      @include max-screen($mq-tablet) {
+
+        .open > .ht-pages-nav-toggle:before {
+          content: "";
+        }
+
+        .open > .ht-pages-nav-toggle {
+          #icon-plus {
+            display: none;
+          }
+
+          #icon-minus {
+            display: block;
+          }
+        }
+      }
+
+      li {
+        line-height: 1.250rem;
+        position: relative;
+        width: 100%;
+
+        .sp-aui-icon-small {
+          position: absolute;
+          cursor: pointer;
+          left: -14px;
+          top: 3px;
+          height: 22px;
+          line-height: 24px;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+
+        @include max-screen($mq-tablet) {
+          .ht-pages-nav-toggle {
+            font-size: 0px;
+            left: auto;
+            top: 7px;
+            right: 6px;
+            display: block;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+
+            svg {
+              position: relative;
+              top: 0px;
+            }
+
+            #icon-plus {
+              display: block;
+              top: 0px;
+            }
+
+            #icon-minus {
+              display: none;
+            }
+
+            &:before {
+              content: "";
+            }
+          }
+        }
+      }
+
+      a {
+        display: block;
+        padding: 5px 32px 5px 4px;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        @include max-screen($mq-tablet) {
+          padding: 10px 0 10px 0;
+          margin-right: 48px;
+
+          width: auto;
+          white-space: normal;
+          text-overflow: clip;
+        }
+      }
+
+      a.current {
+        font-weight: bold;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    @include max-screen($mq-tablet) {
+      .ht-pages-nav-top {
+        padding: 0px;
+      }
+    }
+
+  }
+
+  .ht-pages-nav {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+}
+
+#ht-sidebar.small {
+
+  .ht-scroll-versions-widget {
+    label {
+      display: none;
+    }
+    a.ht-select-button {
+      span {
+        flex: 1;
+        padding: 10px 6px;
+      }
+    }
+  }
+}
+
+#ht-sidebar {
+  @include max-screen($mq-tablet) {
+    @include transition(opacity 0.3s ease-in);
+    opacity: 0;
+  }
+}
+
+.show-sidebar {
+  @include max-screen($mq-tablet) {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    body {
+
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      overflow-x: hidden;
+      overflow-y: hidden;
+
+    }
+
+    #ht-sidebar {
+      @include transition(opacity 0.3s ease-out);
+      opacity: 1;
+
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #ht-wrap-container {
+
+      @include transition(transform 0.3s ease-out);
+      @include translate(320px, 0px);
+
+      @include max-screen($mq-mobile) {
+        @include translate(90%, 0px);
+      }
+    }
+
+    #ht-headerbar {
+      @include translate(320px, 0px);
+      @include transition(all 0.3s ease-out);
+      @include max-screen($mq-mobile) {
+        @include translate(90%, 0px);
+      }
+    }
+
+  }
+}
+
+@include max-screen($mq-mobile) {
+  @-moz-document url-prefix() {
+    #ht-sidebar .ht-scroll-versions-widget .ht-dropdown {
+      box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+#ht-select-version, #ht-select-language, #ht-select-variant {
+  display: none;
+}

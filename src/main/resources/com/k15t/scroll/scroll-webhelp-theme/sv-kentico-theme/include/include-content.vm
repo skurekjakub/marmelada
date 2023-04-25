@@ -1,0 +1,48 @@
+## Old version banner
+#if ($space.link.contains("/k8") || 
+		$space.link.contains("/k9") || $space.link.contains("/api9") || 
+    	$space.link.contains("/k10") || $space.link.contains("/api10") || 
+   		$space.link.contains("/k11") || $space.link.contains("/api11"))
+	#set($className = "old-version")
+	#set($oldVersion = true)
+#else
+	#set($className = "")
+	#set($oldVersion = false)
+#end
+
+<article class="ht-content $className">
+    <header class="ht-content-header">
+        ## Breadcrumbs
+      	$include.template("/include/include-breadcrumb.vm")
+      	
+        <h1>$page.title</h1>
+      	
+      	## Last updated by text
+        #parse ("/include/include-page-metadata-and-actions.vm")
+    </header>
+
+  	## Render page content
+	<div id="content" class="page">
+  	<div id="main-content" class="wiki-content article">
+    	$page.content      
+  	</div>
+	
+	<footer class="ht-content-footer">
+		## Issue collector + Jump to top
+		#if (!$oldVersion)
+			<hr />
+			<p>Was this page helpful?</p>
+			<script type="text/javascript" src="https://kentico.atlassian.net/s/2e137373f008415ee9ca2a7e995ac00c-T/en_US-x97rd/71001/41a2c06eb15ffa096a6a2b2ed8f11c5e/2.0.9/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=b7da13e8"> </script>
+		#end
+		<div id="feedback-link-container">
+			#if (!$oldVersion)
+				<a href="#" id="feedback-link">Send us feedback</a>
+			#end
+			<a href="#top" id="back-to-top">
+				<span class="icon-chevron-up"></span>
+				<span class="sr-only">Go back to top</span>
+			</a>
+		</div>
+		</div>
+	</footer>
+</article>

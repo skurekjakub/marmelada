@@ -1,0 +1,95 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+
+    <!-- Don't modify this, it is automatically filled with the data you entered in 'pom.xml' -->
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="atlassian-data-center-compatible">true</param>
+    </plugin-info>
+
+
+    <!-- Here you define your template(s), you may choose custom keys and names. -->
+
+    <!-- Scroll Help Theme for Scroll HTML Exporter, remove this if you don't want to create a Scroll HTML Exporter template. -->
+    <scroll-template key="exp-scroll-kentico-theme" name="Scroll Export Kentico Template (Plugin)">
+
+        <!-- This defines whether the default CSS files and images are included in the export or not. -->
+        <param name="copyDefaultResources">false</param>
+
+        <!-- This ensures that your template is only listed in the export dialog of the HTML exporter. -->
+        <param name="compatibleExporters">com.k15t.scroll.scroll-html:html-exporter</param>
+
+        <!--
+            These refer to velocity files that are used to render the individual export elements.
+            You can safely remove all or some of these lines in order to use the files shipped with Scroll HTML Exporter.
+            The 'copyDefaultResources' parameter does NOT influence this automatic fallback.
+        -->
+        <resource type="template-part"      name="info"                                         location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/admonition.vm"/>
+        <resource type="template-part"      name="note"                                         location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/admonition.vm"/>
+        <resource type="template-part"      name="tip"                                          location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/admonition.vm"/>
+        <resource type="template-part"      name="warning"                                      location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/admonition.vm"/>
+        <resource type="template-part"      name="linktarget"                                   location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/anchor.vm"/>
+        <resource type="template-part"      name="blockquote"                                   location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/blockquote.vm"/>
+        <resource type="template-part"      name="bookmark"                                     location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/bookmark.vm"/>
+        <resource type="template-part"      name="citation"                                     location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/citation.vm"/>
+        <resource type="template-part"      name="color"                                        location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/color.vm"/>
+        <resource type="template-part"      name="heading"                                      location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/heading.vm"/>
+        <resource type="template-part"      name="horizontalrule"                               location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/horizontal-rule.vm"/>
+        <resource type="template-part"      name="html-formatted-programlisting"                location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/html-formatted-program-listing.vm"/>
+        <resource type="template-part"      name="image"                                        location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/image.vm"/>
+        <resource type="template-part"      name="inlineimage"                                  location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/image-inline.vm"/>
+        <resource type="template-part"      name="attachmentlink"                               location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/link-attachment.vm"/>
+        <resource type="template-part"      name="documentlink"                                 location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/link-page.vm"/>
+        <resource type="template-part"      name="link"                                         location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/link-web.vm"/>
+        <resource type="template-part"      name="panel"                                        location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/panel.vm"/>
+        <resource type="template-part"      name="para"                                         location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/paragraph.vm"/>
+        <resource type="template-part"      name="pi"                                           location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/pi.vm"/>
+        <resource type="template-part"      name="programlisting"                               location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/programlisting.vm"/>
+        <resource type="template-part"      name="section"                                      location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/section.vm"/>
+        <resource type="template-part"      name="status"                                       location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/status.vm"/>
+        <resource type="template-part"      name="table"                                        location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/table.vm"/>
+        <resource type="template-part"      name="tablecell"                                    location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/table-cell.vm"/>
+        <resource type="template-part"      name="tablerow"                                     location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/table-row.vm"/>
+
+        <!-- Usually you will adapt the page.vm file in order to link to your custom CSS files, so leave this line in place. -->
+        <resource type="template-part"      name="page"                                         location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/page.vm"/>
+
+        <!--
+            Here you will need to list all CSS files, images and JavaScript.
+            The 'name' attribute contains the relative path where the file will be placed inside the exported ZIP file, so this is what you
+            need to specify in your CSS files and in page.vm
+            The 'location' attribute contains the relative path to the file within the 'src/main/resources' directory of the plugin.
+        -->
+        <resource type="static-resource"    name="assets/js/scroll-tree.js"                     location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/js/scroll-tree.js"/>
+        <resource type="static-resource"    name="assets/js/expand-macro.js"                    location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/js/expand-macro.js"/>
+        <resource type="static-resource"    name="assets/js/scroll-search.js"                   location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/js/scroll-search.js">
+            <param name="needsRendering">true</param>
+        </resource>
+        <resource type="static-resource"    name="assets/css/content-style.css"                 location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/css/content-style.css"/>
+        <resource type="static-resource"    name="assets/css/search.css"                        location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/css/search.css"/>
+        <resource type="static-resource"    name="assets/css/expand-macro.css"                  location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/css/expand-macro.css"/>
+        <resource type="static-resource"    name="assets/images/checkbox-checked.png"           location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/images/checkbox-checked.png"/>
+        <resource type="static-resource"    name="assets/images/checkbox-unchecked.png"         location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/images/checkbox-unchecked.png"/>
+
+        <resource type="static-resource"    name="assets/css/theme.colors.css"                  location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/css/theme.colors.css"/>
+        <resource type="static-resource"    name="assets/css/theme.main.css"                    location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/css/theme.main.css"/>
+        <resource type="static-resource"    name="assets/fonts/atlassian-icons.eot"             location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/fonts/atlassian-icons.eot"/>
+        <resource type="static-resource"    name="assets/fonts/atlassian-icons.svg"             location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/fonts/atlassian-icons.svg"/>
+        <resource type="static-resource"    name="assets/fonts/atlassian-icons.ttf"             location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/fonts/atlassian-icons.ttf"/>
+        <resource type="static-resource"    name="assets/fonts/atlassian-icons.woff"            location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/fonts/atlassian-icons.woff"/>
+        <resource type="static-resource"    name="assets/js/jquery.min.js"                      location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/js/jquery.min.js"/>
+        <resource type="static-resource"    name="assets/js/jquery.scrollTo.min.js"             location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/js/jquery.scrollTo.min.js"/>
+        <resource type="static-resource"    name="assets/js/theme.main.js"                      location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/js/theme.main.js"/>
+        <resource type="static-resource"    name="assets/js/translate.js"                       location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/js/translate.js"/>
+        <resource type="static-resource"    name="assets/js/iframeResizer.min.js"               location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/js/iframeResizer.min.js"/>
+        <resource type="static-resource"    name="assets/js/iframeResizer.contentWindow.min.js" location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/js/iframeResizer.contentWindow.min.js"/>
+        <resource type="static-resource"    name="search.html"                                  location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/search.html.vm"/>
+        <resource type="static-resource"    name="toc.html"                                     location="com/k15t/scroll/scroll-webhelp-theme/scroll-html/toc.vm">
+            <param name="needsRendering">true</param>
+        </resource>
+        <resource type="static-resource"    name="assets/css/theme.toc.css"                    location="com/k15t/scroll/scroll-webhelp-theme/shared/assets/css/theme.toc.css"/>
+
+    </scroll-template>
+
+</atlassian-plugin>

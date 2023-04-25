@@ -1,0 +1,31 @@
+## Kentico theme JavaScript configuration, placed first so that it's reliably available in all scripts
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/theme.custom.config.js"></script>
+
+## Set up custom jQuery instance for theme JS files:
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/jquery.scroll-tree.js"></script>
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/scroll-tree.js"></script>
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/scroll-search.js"></script>
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/clipboard.min.js"></script>
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/theme.main.js"></script>
+
+## Prism syntax highlighter scripts (configuration of whitespace normalization is in theme.custom.js)
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/theme.prism.js"></script>
+
+## Snackbar (used by theme.custom.js)
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/snackbar.js"></script>
+
+## Kentico theme JavaScript customization
+<script type="text/javascript" src="${theme.baseUrl}/assets/js/theme.custom.js"></script>
+
+## Restore jQuery from Confluence $page.resources:
+<script type="text/javascript">var jQuery_theme = jQuery.noConflict(true);</script>
+
+#if (!($isSearch || $isError || ($url.path == $viewport.link) || $viewport.link.contains("api")))
+<script type="text/javascript" async>
+    // Populates the documentation version switcher header
+    // loadVersionLinkData is located in theme.custom.js
+    $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
+</script>
+#end

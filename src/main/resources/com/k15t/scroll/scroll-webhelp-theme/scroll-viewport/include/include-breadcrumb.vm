@@ -1,0 +1,22 @@
+<div id="ht-breadcrumb">
+    <ul>
+        <li><a href="$home.link">$space.name</a></li>
+        #set( $shortcut = false )
+        #foreach($ancestor in $page.ancestors)
+            #if($velocityCount > 1) ## exclude home page
+                #if ($page.ancestors.size() > 1 && ($velocityCount == 1 || $velocityCount == $page.ancestors.size()))
+                    <li><a href="$ancestor.link">$ancestor.title</a></li>
+                #else
+                    #if ($shortcut == false)
+                        #set( $shortcut = true )
+                        <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a>
+                        </li>
+                        <li class="shortcut"><a href="$ancestor.link">$ancestor.title</a></li>
+                    #else
+                        <li class="shortcut"><a href="$ancestor.link">$ancestor.title</a></li>
+                    #end
+                #end
+            #end
+        #end
+    </ul>
+</div>

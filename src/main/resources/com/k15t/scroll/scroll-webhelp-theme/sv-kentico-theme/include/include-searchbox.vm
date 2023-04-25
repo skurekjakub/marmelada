@@ -1,0 +1,74 @@
+## Old version banner
+#if ($space.link.contains("/k8") || 
+      $space.link.contains("/k9") || $space.link.contains("/api9") || 
+      $space.link.contains("/k10") || $space.link.contains("/api10")||
+      $space.link.contains("/k11") || $space.link.contains("/api11"))
+		#set($className = "old-version")
+#else
+	#set($className = "")
+#end
+
+<div class="searchbox">
+  <div class="searchbox-graphic"></div>
+
+  <div class="searchbox-container container">
+    <h1 class="searchbox-title">$repository.name</h1>
+
+    <div class="searchbox-wrapper $className">
+      <div id="ht-search" class="open show big-search">
+        #set($search = "/search")
+        #if ($stringUtils.equals(${viewport.link}, "/") == false)
+        #set($search = "${viewport.link}/search")
+        #end
+        <div class="ht-search-input">
+          <form action="$search" method="GET" id="search">
+            <label class="big-search-field">
+              <span class="big-search-field__icon icon-magnifier"></span> 
+              <input class="big-search-field__input search-input" type="text" placeholder="Search in $repository.name" tabindex="-1" autocomplete="off" name="q" value="#if($isSearch)$searchRequest.queryString#end" />
+            </label>
+          </form>
+          <div class="ht-search-dropdown ht-dropdown">
+            <ul></ul>
+          </div>
+          <p id="search-tips-wrapper">
+            <span onclick="showHideSearchTips()"><a href="#">Search tips</a></span>
+          </p>     
+            <div id="search-tips-mask">
+              <div id="search-tips">
+                  <button id="search-tips-close" class="button button--quinary search-tips-close" onclick="hideFrontLayer();" aria-label="Close" type="button">
+                    <span class="icon-modal-close"></span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                  <ul>
+                    #if ($space.key == "XP" || $space.key == "Tutorial" || $space.key == "Api")
+                        <li>Use the present simple tense or use the feature name when searching for specific features or scenarios: <strong>Install Xperience</strong>, <strong>Page Builder</strong></li>
+                        <li>Use quotation marks when searching for pages that contain the exact phrase: <strong>"Xperience Portal"</strong></li>
+                    #else
+                        <li>Use the active "-ing" form when searching for pages about how to perform a scenario or an action: <strong>Installing Xperience</strong></li>
+                        <li>Use quotation marks when searching for pages that contain the exact phrase: <strong>"Kentico Xperience"</strong></li>
+                    #end
+                    <li>Use the - (minus) sign before the words you want to exclude from the search results. To exclude "administration": <strong>customize Xperience -administration</strong></li>
+                    <li>Use the <strong>OR</strong> operator within quotation marks when searching for pages that contain at least one of the terms: <strong>"Xperience OR system"</strong></li>
+                    <li>Use the <strong>AND</strong> operator within quotation marks when searching for pages that contain both the terms: <strong>"Macro AND syntax"</strong></li>
+                    <li>Use <strong>title:user</strong> when searching for pages with "user" in the title.</li>
+                    <li>Use the * (asterisk) wildcard character to search based on prefixes. The wildcard is substituted with any number of characters. For example, <strong>cont*</strong> yields <strong>content, continuous</strong> and <strong>contacts</strong>, among others. The wildcard selection does not work when placed at the start of the query.</li>
+                  </ul>
+              </div>    
+          </div>      
+          ## Checkbox that allows displaying of search results not filtered by the current development model, only on the search results page	  
+          #if ($isSearch && ($space.link.contains("/k12") && !$space.link.contains("api")))
+            <input type="checkbox" id="check-show-all-search-results" name="allresults" #if($searchRequest.labels.isEmpty())checked#end onclick="kenticoThemeOpenSearchResultsPage()">
+            <label for="check-show-all-search-results">Show results for all development models (MVC and Portal Engine)</label>
+          #end
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  ## Show reference tips only on main docs home page
+  ## #if ($isSearch == false && (($space.absoluteLink.contains("api") || $space.absoluteLink.contains("tutorial")) == false))
+  ##   $include.template("/include/include-reference-mostsearched.vm")
+  ## #end
+</div>

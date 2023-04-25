@@ -1,0 +1,20 @@
+<div id="ht-breadcrumb">
+    <ul>
+        <li><a href="$context.getLinkNamingStrategy().generateLinkString($context.SourceTree)">$stringEscapeUtils.escapeHtml($space.Title)</a></li>
+        #set ($breadcrumbs = $pageHierarchyHelper.getBreadcrumbs($element.PageId))
+        #set ($shortcut = false)
+        #foreach ($ancestor in $breadcrumbs)
+            #if ($velocityCount > 1 && $velocityCount < $breadcrumbs.size()) ## exclude home page and current page
+                #if ($breadcrumbs.size() > 1 && ($velocityCount == $breadcrumbs.size() - 1))
+                    <li><a href="$context.getLinkNamingStrategy().generateLinkString($ancestor)">$stringEscapeUtils.escapeHtml($ancestor.DisplayTitle)</a></li>
+                #else
+                    #if ($shortcut == false)
+                        #set($shortcut = true)
+                        <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                    #end
+                    <li class="shortcut"><a href="$context.getLinkNamingStrategy().generateLinkString($ancestor)">$stringEscapeUtils.escapeHtml($ancestor.DisplayTitle)</a></li>
+                #end
+            #end
+        #end
+    </ul>
+</div>

@@ -1,0 +1,341 @@
+@import "imports/tokens/decision/decision.less";
+@import "imports/tokens/quarks/quarks.less";
+@import "imports/variables.less";
+
+@searchbox-top-spacing: @header-height + 24px;
+@searchbox-top-spacing-sm: @header-height + 72px;
+
+@big-search-field-height: 82px;
+
+.searchbox {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: @spacing-xxxxl 0;
+    border-radius: @border-radius-m;
+    
+    color: @color-text-default-on-dark;
+    background-color: @color-gray90;
+
+    &:not(:last-child) {
+        margin-bottom: @spacing-xxxl;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .search-reference ul>li:before {
+        background-color: currentColor;
+    }
+}
+.searchbox-title {
+    .create-typography-style(@font-family-product-primary, 42px, @font-weight-bold, 1.15);
+    color: @color-text-default-on-dark;
+    text-align: center;
+
+    &:after {
+        content: '.';
+        color: @color-kentico-orange50;
+    }
+
+    &,
+    .ht-content & {
+        margin: 0;
+    }
+}
+.searchbox-graphic {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;;
+    overflow: hidden;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+
+        width: 1100px;
+        height: 1100px;
+        border: 300px solid @color-xperience-blue60;
+        border-radius: @border-radius-pill;
+        margin-top: -660px;
+        margin-left: -180px;
+    }
+}
+.searchbox-container {
+    position: relative;
+}
+
+.searchbox-wrapper {
+    max-width: 690px;
+    margin: @spacing-xxl auto 0;
+}
+
+.big-search {
+    position: relative;;
+    width: 100%;
+}
+.big-search .ht-search-input,
+.big-search .ht-search-input:hover {
+    border: none;
+    width: 100%;
+    min-height: 52px;
+}
+
+.big-search-field {
+    display: flex;
+    align-items: center;;
+    padding: @spacing-l @spacing-xxl;
+    gap: @spacing-xxl;
+    border-radius: (5 * @new-grid-unit) @big-search-field-height @big-search-field-height @big-search-field-height;
+    background: @color-white;
+}
+
+.big-search-field__icon {
+    color: @color-kentico-orange50;
+    font-size: 32px;
+}
+
+.big-search-field__input {
+    flex: 1 1 0;
+    border: none;
+    background: none;
+    .typography-styles-body-large();
+
+    &:focus {
+        outline: none;
+        box-shadow: none !important;
+    }
+}
+@media screen and (max-width: 640px) {
+  .big-search .search-input {
+      width: 90%;
+  }
+}
+/* IE only: hide cross symbol for reseting input value */
+.big-search .search-input::-ms-clear {
+    display: none;
+}
+.big-search #searchIcon {
+    position: absolute;
+    top: 16px;
+    right: 8px;
+}
+@media screen and (max-width: 640px) {
+  .big-search #searchIcon {
+      right: 6%;
+  }
+}
+.big-search .ht-dropdown {
+    position: absolute;
+    top: @big-search-field-height;
+    width: 100%;
+    color: @color-text-default-on-light;
+
+    ul {
+        width: 100%;
+    }
+
+    li {
+        a {
+            padding-right: @spacing-xxl;
+            padding-left: @spacing-xxl;
+        }
+    }
+}
+
+.big-search .ht-dropdown.open {
+    
+}
+
+// .big-search .ht-search-dropdown.open li a {
+//     padding: 8px 15px;
+//     color: #262524;
+// }
+// .big-search .ht-search-dropdown.open li a:hover {
+//     color: #ffffff;
+//     background: #00a9ac;
+// }
+// .big-search .ht-search-dropdown.open li a.hover {
+//     color: #ffffff;
+//     background: #00a9ac;
+// }
+
+#ht-search.open .ht-search-input {
+    background: none;
+}
+
+
+/*
+===================================
+=		SEARCH ICON UNDER 450px	  =
+===================================*/
+
+@media screen and (max-width: 450px) {
+
+    .big-search #searchIcon {
+    right: -16px;
+  }
+
+    .big-search .search-input {
+    width: 83%;
+  }
+}
+
+/*
+========================
+=		SEARCH TIPS    =
+========================*/
+
+#search-tips-wrapper {
+    padding-right: 6px;
+    text-align: right;
+    font-size:12px;
+}
+
+.search-tips-close {
+    float: right;
+    margin-top: (-1 * @spacing-m);
+    margin-right: (-1 * @spacing-m);
+}
+
+
+#search-tips{
+    position: absolute;
+    z-index: 1;  
+    top: 100%;
+    left: 0;
+
+    padding: @spacing-xl;
+    width: 100%;
+    color: @color-text-default-on-light;
+    visibility: hidden;
+
+    border-radius: @border-radius-l;    
+    background-color: @color-white;
+    box-shadow: @box-shadow-l;
+}
+
+#search-tips.show{
+    
+}
+
+#search-tips ul {
+    padding: 0 0 0 @spacing-l;
+    list-style-type: none;
+}
+
+#search-tips a {
+    color: #a3a2a2;
+}
+#search-tips a:hover {
+    color: #696663;
+    text-decoration:none;
+}
+
+#search-tips ul > li:before {
+    font-size: 0;
+    display: block;
+    height: 4px;
+    width: 4px;
+    background: #a3a2a2;
+    min-width: 0;
+    border-radius: 4px;
+    content: " ";
+    position: relative;
+    left: -12px;
+    top: 9px;
+    float: left;
+    margin-right: -4px;
+}
+
+@media screen and (max-width:900px) {
+    #search-tips-wrapper {
+        visibility:hidden;
+    }
+    #search-tips-mask{
+        display:none;
+    }
+    #search-tips{
+        display:none;
+    }
+}
+
+.search-tips {
+    padding: 5px;
+    text-align: right;
+}
+.search-reference {
+    clear:left;
+    overflow: hidden;
+}
+.search-reference div {
+    float: left;
+    margin: 0 20px 0 0px;
+    max-width: 300px;
+}
+.search-reference div ul li {
+    margin-left: 40px;
+}
+
+/* Sets the color and margin for the X articles found text */
+.search-results-found{
+    color: #9c9999;
+    margin-top: 6px !important;
+}
+.search-left-noresults h1 {
+    font-weight: normal;
+}
+#ht-wrap-container {
+    top: 0;
+}
+#ht-wrap-container .ht-content {
+    padding-bottom: 92px;
+}
+
+/*
+=================================
+=		SEARCH RESULT LABELS    =
+=================================*/
+
+.search-result-label {
+    .typography-styles-label-small();
+    padding: @spacing-micro @spacing-xs; 
+    border: 1px solid;
+    border-radius: @border-radius-s;
+    vertical-align: middle;
+}
+
+.mvc-result {
+    background-color: @color-navy-blue10;
+    color: @color-navy-blue50;
+    border-color: @color-navy-blue30;
+}
+
+.pe-result {
+    background-color: @color-kentico-orange10;
+    color: @color-kentico-orange50;
+    border-color: @color-kentico-orange30;
+}
+
+.dev-result {
+	.typography-styles-label-medium();
+    background-color: @color-kentico-orange10;
+    color: @color-kentico-orange50;
+    border-color: @color-kentico-orange30;
+}
+
+.business-result {
+	.typography-styles-label-medium();
+    background-color: @color-navy-blue10;
+    color: @color-navy-blue50;
+    border-color: @color-navy-blue30;
+}

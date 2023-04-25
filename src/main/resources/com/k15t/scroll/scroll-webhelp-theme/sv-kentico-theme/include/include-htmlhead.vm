@@ -1,0 +1,131 @@
+## Consents script
+## Based on the cookie level shared with .xperience.io, puts the correct GA/GTM 'consent.default' script into the htmlhead 
+#set($cookieLevel = 0)
+#foreach($cookie in $request.getCookies())
+    #if ($cookie.getName() eq "xperience.cookieconsentlevel")
+        #set($cookieLevel = $cookie.getValue())
+    #end
+#end
+
+#if($cookieLevel == 1)
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'denied',
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'security_storage': 'denied'
+            }
+        });
+    </script>
+#elseif($cookieLevel == 2)
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'granted',
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'security_storage': 'denied'
+            }
+        });
+    </script>
+#elseif($cookieLevel == 3)
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'granted',
+            'analytics_storage': 'granted',
+            'ad_storage': 'denied',
+            'security_storage': 'denied'
+            }
+        });
+    </script>
+#elseif($cookieLevel == 4)
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'granted',
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'security_storage': 'granted'
+            }
+        });
+    </script>
+#end
+
+
+## Google Tag Manager script (Analytics)
+<script type="text/javascript">
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQNPJN');
+</script>
+
+<meta name="description" content="Kentico Xperience Documentation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+##<meta name="generator" content="Created with Scroll Viewport - K15t Software">
+
+<script type="text/javascript">
+    var contextPath = '$contextPath';
+</script>
+
+## Confluence meta information
+$page.resources.meta
+
+## Custom Xperience Confluence meta information
+<meta name="confluence-space-key" content="$page.spaceKey">
+<meta name="confluence-page-title" content="$page.title">
+<meta name="confluence-page-tiny-suffix" content="">
+<meta name="confluence-user-logged-in" content="$user.loggedIn">
+<meta name="confluence-page-labels" content="$page.labels">
+
+## Avoiding JS errors due to enabled Confluence dark features (experimental, in-development stuff).
+## All enabled dark features listed here -> /admin/darkfeatures.action
+## <meta name='ajs-enabled-dark-features' content='frontend.editor.v4.compatibility,frontend.editor.v4'>
+## <meta name='ajs-user-locale' content='en-Us'>
+
+## Avoiding JS error because of a missing meta tag (remove when enabling collaborative editing)
+<meta name="ajs-synchrony-dark-enabled" content="false">
+
+## Confluence JS information
+$page.resources.js
+
+## Confluence ctx information
+$page.resources.requireForContext('viewcontent')
+
+## Confluence inline tasks information
+$page.resources.require('com.atlassian.confluence.plugins.confluence-inline-tasks:inline-tasks-styles')
+
+## Confluence CSS information
+$page.resources.css
+
+## Theme stylesheets
+<link rel="shortcut icon" href="${theme.baseUrl}/assets/img/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+<link rel="stylesheet" href="${theme.baseUrl}/assets/css/theme.main.css">
+
+## Prism syntax highlighter stylesheet
+<link rel="stylesheet" href="${theme.baseUrl}/assets/css/theme.prismhighlighter.css">
+## Lightbox 2.8.2 CSS (JS in include-bodyendscripts)
+<link rel="stylesheet" href="${theme.baseUrl}/assets/css/theme.lightbox.css">
+## Snackbar (JS in include-bodyendscripts)
+<link rel="stylesheet" href="${theme.baseUrl}/assets/css/theme.snackbar.css">
+
+## Font awesome icons (used in the DEVMODEL icons)
+#if ($space.link.contains("/k12") && !$space.link.contains("api"))
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+#end

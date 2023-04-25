@@ -1,0 +1,73 @@
+//USED BY #ht-headerbar and #ht-sidebar
+.ht-dropdown {
+  font-size: 0.875em;
+  margin-top: -3px;
+  position: relative;
+  z-index: 2;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  max-height: 0px;
+  opacity: 0;
+
+  @include transition(max-height 0.25s ease-in-out);
+
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+
+  @include max-screen($mq-mobile) {
+    border: 0px;
+    margin-top: 4px;
+
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  &.open {
+    max-height: 300px;
+    opacity: 1;
+    min-width: 100%;
+
+    @include iphone6(portrait) {
+      max-height: 252px;
+    }
+    @include max-screen($mq-mobile) {
+      max-width: 100%;
+      overflow: hidden;
+    }
+  }
+
+  @include border-radius-plus(0, 0, 3px, 3px);
+  ul {
+    padding-top: 2px;
+  }
+
+  li {
+    list-style: none;
+
+    &.search-key {
+      padding: 1px 0;
+    }
+
+    a {
+      display: block;
+      padding: 7px 10px;
+
+      -moz-transition: none;
+      -webkit-transition: none;
+      -o-transition: color 0 ease-in;
+      transition: none;
+
+      @include max-screen($mq-tablet) {
+        padding: 14px 10px;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+
+    }
+  }
+}

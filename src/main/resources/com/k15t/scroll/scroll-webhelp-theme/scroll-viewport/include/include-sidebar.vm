@@ -1,0 +1,106 @@
+<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">$repository.Key</span>
+                    <img src="$repository.logo.link" alt="">
+                </h1>
+                <a href="$home.link" class="ht-space-link">
+                    <h2>$repository.name</h2>
+                </a>
+            </header>
+
+        ## --- START --- Scroll Versions and Scroll Translations Integration -------------------------------------------
+        ##
+        ## The pickers for versions/variants/languages are only shown if either one of the three is enabled. Furthermore, if there was an
+        ## error (e.g. a page could not be found), we require the content context to be present, otherwise the pickers will not work and
+        ## there is no point in showing them.
+            #if (($versions || $variants || $languages) && (!$isError || $contentContext))
+                <section class="ht-scroll-versions-widget">
+                    <form action="">
+                        #if ($isError)
+                            <input type="hidden" name="context" value="$contentContext">
+                        #end
+
+                        #if($searchRequest)
+                            <input type="hidden" name="q" value="$userQuery"/>
+                        #end
+
+                        #if($versions)
+                            <div class="ht-scroll-versions-select">
+                                <label for="ht-select-version">Version</label>
+
+                                <div class="ht-select-container">
+                                    <select id="ht-select-version" class="sp-picker" name="scroll-versions:version-name"
+                                            tabindex="-2">
+                                        #foreach($version in $versions.available)
+                                            #if ($version.original.name)
+                                                #set ($latestVersion = $version.original.name)
+                                            #end
+                                            #if ($latestVersion == $version.name)
+                                                #set ($versionName = "$version.name (latest)")
+                                            #else
+                                                #set ($versionName = $version.name)
+                                            #end
+                                            #if ($version.value != "latest")
+                                                <option value="$version.value"
+                                                        #if($version.name == $versions.current.name) selected="selected" #end
+                                                        data-version-accessible="$version.isAccessible">$versionName#*
+                                                        *#</option>
+                                            #end
+                                        #end
+                                    </select>
+                                </div>
+                            </div>
+                        #end
+
+                        #if($variants)
+                            <div class="ht-scroll-versions-select">
+                                <label for="ht-select-variant">Variant</label>
+
+                                <div class="ht-select-container">
+                                    <select id="ht-select-variant" class="sp-picker" name="scroll-versions:variant-name"
+                                            tabindex="-3">
+                                        #foreach($variant in $variants.available)
+                                            <option value="$variant.value" #if($variant.name == $variants.current.name)
+                                                    selected="selected" #end
+                                                    data-version-accessible="$variant.isAccessible">$variant.name</option>
+                                        #end
+                                    </select>
+                                </div>
+                            </div>
+                        #end
+
+                        #if($languages)
+                            <div class="ht-scroll-versions-select">
+                                <label for="ht-select-language">Language</label>
+
+                                <div class="ht-select-container">
+                                    <select id="ht-select-language" class="sp-picker"
+                                            name="scroll-translations:language-key" tabindex="-4">
+                                        #foreach($language in $languages.available)
+                                            <option value="$language.value" #if($language.name == $languages.current.name)
+                                                    selected="selected" #end>$language.name</option>
+                                        #end
+                                    </select>
+                                </div>
+                            </div>
+                        #end
+
+                    </form>
+                </section>
+            #end
+        ## --- END -----------------------------------------------------------------------------------------------------
+
+            <nav class="ht-pages-nav">
+                <ul class="ht-pages-nav-top"
+                    data-viewport-id="$viewport.id"
+                    data-root="$tree.root.link"
+                    data-current="$page.link">
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</aside>

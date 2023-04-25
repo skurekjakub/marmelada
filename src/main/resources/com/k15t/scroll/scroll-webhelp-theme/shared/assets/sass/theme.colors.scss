@@ -1,0 +1,280 @@
+@import 'import/theme.base';
+@import 'import/common/media-queries';
+@import 'import/common/mixin';
+
+/* --- COMMON ------------------------------------------------------------------------------------------------------- */
+body {
+  color: $color-text;
+}
+
+a {
+  color: $color-secondary;
+}
+
+a, span, li, nav, ul {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* --- HEADER ------------------------------------------------------------------------------------------------------- */
+#ht-headerbar {
+  background-color: rgba(255, 255, 255, 0.9);
+
+  a {
+    @include setColorAndHover($color-secondary);
+  }
+
+  @include max-screen($mq-tablet) {
+    border-bottom: 1px solid $color-lines;
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+
+  .ht-headerbar-right {
+    .ht-header-icon {
+      svg path {
+        fill: $color-secondary;
+      }
+
+      &:hover, &.active {
+        svg path {
+          fill: $color-secondary;
+        }
+      }
+    }
+  }
+}
+
+#ht-headerbar {
+  #ht-search {
+    .ht-search-input {
+      .search-input {
+        //background-color: $color-sidebar;
+        //border: 1px solid $color-lines;
+
+        @include max-screen($mq-mobile) {
+          //border: 1px solid $color-secondary;
+        }
+      }
+
+      a.ht-search-clear {
+        @include setColorAndHover($color-lines);
+      }
+    }
+  }
+}
+
+/* --- SIDEBAR ------------------------------------------------------------------------------------------------------ */
+#ht-sidebar {
+  background-color: $color-sidebar;
+
+  .ht-sidebar-header {
+    a {
+      color: $color-secondary;
+    }
+
+    h2 a {
+      color: $color-secondary;
+    }
+  }
+
+  .ht-scroll-versions-widget {
+    border-top: 1px solid $color-lines;
+    border-bottom: 1px solid $color-lines;
+
+    .ht-scroll-versions-select {
+
+      label {
+        color: $color-text;
+      }
+
+      a.ht-select-button {
+        color: $color-text;
+
+        .ht-select-button-icon{
+          fill: $color-text;
+        }
+
+        &:hover {
+          background-color: $color-secondary;
+          color: white;
+
+          label {
+            color: white;
+          }
+
+          .ht-select-button-icon{
+            fill:white;
+          }
+
+          @include max-screen($mq-tablet) {
+            color: white;
+
+            label {
+              color: white;
+
+            }
+          }
+
+        }
+
+        &.active {
+          background-color: $color-secondary;
+          color: white;
+
+          label, span {
+            color: white;
+          }
+
+          .ht-select-button-icon{
+            fill:white;
+          }
+
+          @include max-screen($mq-tablet) {
+
+            color: white;
+
+            label {
+              color: white;
+
+            }
+          }
+        }
+      }
+
+      span.versions-select-item-restriction {
+        color: #5E6C84;
+
+        &.hover {
+          background-color: $color-secondary;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .ht-pages-nav {
+    ul {
+      li {
+
+        .sp-aui-icon-small {
+          color: $color-gray;
+
+          &:hover {
+            color: $color-secondary;
+          }
+        }
+
+        @include max-screen($mq-tablet) {
+          .ht-pages-nav-toggle {
+            border: 1px solid $color-secondary;
+            svg {
+              g {
+                fill: $color-secondary;
+              }
+            }
+          }
+        }
+      }
+
+      a {
+        color: $color-secondary;
+      }
+      a.current {
+        color: $color-text;
+      }
+    }
+  }
+}
+
+#ht-sidebar .ht-dropdown, #ht-headerbar .ht-dropdown {
+  background-color: white;
+  border: 1px solid $color-lines;
+
+  @include max-screen($mq-mobile) {
+    border-bottom: 1px solid $color-lines;
+  }
+
+  li {
+    a {
+      background-color: white;
+
+      &.hover {
+        color: white;
+        background-color: $color-secondary;
+
+        span.versions-select-item-restriction {
+          color: white;
+          background-color: $color-secondary;
+        }
+      }
+    }
+  }
+}
+
+#ht-headerbar .ht-dropdown li.search-key:nth-child(n+2) {
+  border-top: 1px solid $color-lines;
+}
+
+#ht-headerbar #ht-search.open .ht-search-input {
+  background-color: white;
+}
+
+/* --- WRAP-CONTAINER ----------------------------------------------------------------------------------------------- */
+#ht-wrap-container {
+  @include max-screen($mq-tablet) {
+    background-color: white;
+  }
+
+  #ht-sidebar-dragbar {
+    .ht-sidebar-drag-handle {
+
+      span {
+        background-color: $color-lines;
+      }
+    }
+
+    &:hover {
+      .ht-sidebar-drag-handle {
+        span {
+          background-color: $color-secondary;
+        }
+      }
+    }
+  }
+
+  #ht-post-nav {
+
+    svg {
+
+      path {
+        fill: $color-secondary;
+      }
+    }
+  }
+
+  #ht-footer {
+
+    small {
+      color: $color-lines;
+
+      a {
+        color: $color-lines;
+      }
+    }
+
+  }
+}
+
+.ht-error-page-scream {
+  color: $color-secondary;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: white;
+  background: $color-secondary;
+}
+
+::selection {
+  color: white;
+  background: $color-secondary;
+}
