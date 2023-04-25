@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating wizards on websites - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880637"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing-websites.htm">Developing websites</a></li>
+                                                                                                         <li class="shortcut"><a href="Loading-and-displaying-data-on-websites.htm">Loading and displaying data on websites</a></li>
+                                                                                     <li><a href="Displaying-data---advanced-scenarios.htm">Displaying data - advanced scenarios</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880637"> <span>Creating wizards on websites</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Kentico allows you to create <a  class="external-link" href="http://en.wikipedia.org/wiki/Wizard_%28software%29">wizards</a> &mdash; pages that guide users through a sequence of steps. A common example of a wizard is the checkout process of an on-line store. You can build wizards using the <a   href="k11/Developing-websites-using-the-Portal-engine.htm">portal engine</a> and a set of predefined <a   href="k11/Using-and-configuring-web-parts.htm">web parts</a>.</p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>You cannot use <i class=" ">ASPX templates</i> when creating a wizard or <i class=" "><a   href="k11/Setting-up-widget-zones-on-pages.htm">Portal engine sections of ASPX templates</a></i>, use only the <i class=" ">Portal engine</i>.</p>
+        </div>
+    </div>
+<p   
+>The wizard uses standard pages to define the steps. You have full control over the step content, and can leverage the features of Kentico pages for every step:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Editing-the-content-of-multilingual-websites.htm">Multilingual</a> step content</p>
+</li><li class=" "><p   
+><a   href="k11/Configuring-page-URLs.htm">Unique step URLs</a></p>
+</li><li class=" "><p   
+>Tracking of <a   href="k11/Web-analytics.htm">web analytics</a> for individual steps</p>
+</li><li class=" "><p   
+>On-line marketing features (such as <a   href="k11/Optimization-testing.htm">optimization testing </a>or <a   href="k11/Content-personalization.htm">content personalization</a>)</p>
+</li></ul>    <h3 id="src-68880637_Creatingwizardsonwebsites-Definingpagewizards" class="heading "><span>Defining page wizards</span></h3>
+<p   
+>To set up a page wizard on your website:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Pages</strong> application and select your site.</p>
+</li><li class=" "><p   
+><a   href="k11/Creating-new-pages.htm">Create a new page</a>.</p>
+</li><li class=" "><p   
+>Switch to the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p   
+>Add the <strong class=" ">Page wizard manager</strong> web part.</p>
+</li><li class=" "><p   
+>Add the <strong class=" ">Page placeholder</strong> web part.</p>
+</li></ol><p   
+>The page serves as the &quot;parent&quot; of the page wizard and provides a master page for the content of steps. The <i class=" ">Page</i><i class=" "> wizard manager</i> ensures the overall logic of the wizard. The <i class=" ">Page placeholder</i> represents the area where the wizard displays the content of individual steps.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Tip</strong>: If the parent page of your wizard does not have any content of its own, you can redirect visitors to the first wizard step:</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Pages</strong> application, open the page&#39;s <strong class=" ">Properties -&gt; Navigation</strong> tab.</p>
+</li><li class=" "><p   
+>Select <strong class=" ">Redirect to first child</strong> in the <strong class=" ">Menu actions</strong> section.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol>        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68880637_Creatingwizardsonwebsites-Definingpagewizards">Defining page wizards</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68880637_Creatingwizardsonwebsites-Addingsteps">Adding steps</a></p>
+</li></ul></li><li class=" "><p   
+><a   href="k11/#src-68880637_Creatingwizardsonwebsites-Buildingstepnavigation">Building step navigation</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880637_Creatingwizardsonwebsites-Restrictingthesteporder">Restricting the step order</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880637_Creatingwizardsonwebsites-Settingupautomaticsteptransitions">Setting up automatic step transitions</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880637_Creatingwizardsonwebsites-Validatingstepdata">Validating step data</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880637_Creatingwizardsonwebsites-Pagewizardmacros">Page wizard macros</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="k11/Connecting-web-parts-with-the-page-wizard.htm">Connecting web parts with the page wizard</a></p>
+</li><li class=" "><p   
+><a   href="k11/Checkout-process.htm">Checkout process</a></p>
+</li><li class=" "><p   
+><a   href="k11/Inheriting-portal-engine-page-content.htm">Inheriting portal engine page content</a></p>
+</li><li class=" "><p   
+><a   href="k11/Loading-page-data.htm">Loading page data</a></p>
+</li></ul>        </div>
+    </div>
+    <h4 id="src-68880637_Creatingwizardsonwebsites-Addingsteps" class="heading "><span>Adding steps</span></h4>
+<p   
+>To create the wizard steps, add child pages (or other types of pages) under the page containing the <strong class=" ">Page wizard manager</strong> web part. Build the content of steps just like any other <a   href="k11/Developing-websites-using-the-Portal-engine.htm">portal engine pages</a>.</p>
+<p   
+>You also need to configure <a   href="k11/Inheriting-portal-engine-page-content.htm">page nesting</a> for all child pages that you wish to use as steps:</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Pages</strong> application, select the page.</p>
+</li><li class=" "><p   
+>Open the <strong class=" ">Properties -&gt; Template</strong> tab.</p>
+</li><li class=" "><p   
+>Enable nesting within the parent page (and any other required levels of the website).</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+>You can choose which child pages to use as steps by configuring the <a   href="k11/Loading-page-data.htm">page filtering</a> properties of the <i class=" ">Page wizard manager</i> web part. The wizard only loads steps from the <i class=" "><strong class=" ">first level</strong></i> of direct child pages.</p>
+<p   
+>By default, the step order matches the order of the child pages in the content tree. You can use the <strong class=" ">OrderBy</strong> property of the <i class=" ">Page wizard manager</i> web part to load the steps in a different order determined by an SQL clause.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880637/WizardDocuments.png" alt="images/download/attachments/68880637/WizardDocuments.png" width="500"  />
+    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong></p>
+<p   
+>If you add, remove or reorder the steps of an existing wizard, you need to restart the application to ensure that the wizard behaves correctly. Open the <strong class=" ">System</strong> application and click <strong class=" ">Restart application</strong>.</p>
+        </div>
+    </div>
+    <h3 id="src-68880637_Creatingwizardsonwebsites-Buildingstepnavigation" class="heading "><span>Building step navigation</span></h3>
+<p   
+>Navigation allows users to move between the steps of the page wizard. Add navigation elements using the following web parts:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Web part</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page wizard button<br/>    <span style="color: #ffffff;">
+_______________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Displays a button or link that sends users to the previous/next step in the wizard. Choose whether the button leads to the next or previous step when configuring the web part&#39;s properties.</p>
+<p   
+>If you set the <strong class=" ">Final step URL</strong> property of the <strong class=" ">Page wizard manager</strong> web part, the next button also works on the last step in the wizard. When a user clicks the final next button, the wizard redirects to the specified URL.</p>
+<p   
+><strong class=" ">Note</strong>: The step transitions only work on the live site and in preview mode.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page wizard navigation</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Displays an overview of all steps in the wizard. The wizard navigation highlights the current step and allows users to move between steps.</p>
+<p   
+>You can fully customize the format of the navigation by assigning <a   href="k11/Writing-transformations.htm">transformations</a> through the web part&#39;s properties.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+>You can position the wizard navigation in two different ways:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Shared navigation for the entire wizard</strong> - place the web parts onto the wizard&#39;s parent page, around the <i class=" ">page placeholder</i> representing the step content</p>
+</li><li class=" "><p   
+><strong class=" ">Separate navigation for individual steps</strong> - add the web parts directly into the content of step pages</p>
+</li></ul><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880637/WizardNavigation.png" alt="images/download/attachments/68880637/WizardNavigation.png" width="500"  />
+        <br/><span class="caption">Wizard with navigation above the step content and Previous/Next buttons below</span>
+    </p>
+    <h3 id="src-68880637_Creatingwizardsonwebsites-Restrictingthesteporder" class="heading "><span>Restricting the step order</span></h3>
+<p   
+>If you enable the <strong class=" ">Restrict step order</strong> property of the <strong class=" ">Page wizard manager</strong> web part, the wizard forces users to progress through the steps in the defined order. The system tracks which steps individual users have passed through, and stores the information in the HTTP session.</p>
+<p   
+>Restricting the step order causes the following behavior:</p>
+<ul class=" "><li class=" "><p   
+>Users can only move forward through the wizard&#39;s steps using the <strong class=" ">Next</strong> button</p>
+</li><li class=" "><p   
+>The <strong class=" ">Page wizard navigation</strong> web part renders unvisited steps as inactive items without links</p>
+</li><li class=" "><p   
+>If a user attempts to access an unvisited step through the URL of the step page, the wizard opens the last visited step instead</p>
+</li></ul><p   
+>If the <strong class=" ">Final step URL</strong> property is filled for the <strong class=" ">Page wizard manager</strong> web part, the wizard automatically clears the history of visited steps for users who click the <strong class=" ">Next</strong> button on the last step.</p>
+    <h3 id="src-68880637_Creatingwizardsonwebsites-Settingupautomaticsteptransitions" class="heading "><span>Setting up automatic step transitions</span></h3>
+<p   
+>You can create wizards that automatically move users between steps under certain conditions:</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Pages</strong> application, select the page representing the step where you want the transition to occur.</p>
+</li><li class=" "><p   
+>Open the <strong class=" ">Design</strong> tab and add the <strong class=" ">Page wizard step action</strong> web part (anywhere on the page).</p>
+</li><li class=" "><p   
+>Choose the type of step transition in the <strong class=" ">Action type</strong> property:<br/><br/></p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Skip</strong> - continues to the next step according to the direction the user is moving in the wizard</p>
+</li><li class=" "><p   
+><strong class=" ">Next</strong> - always moves one step forward<strong class=" "><br/></strong></p>
+</li><li class=" "><p   
+><strong class=" ">Previous</strong> - always moves one step back<br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Enter the <a   href="k11/Macro-expressions.htm">macro condition</a> that triggers the step transition into the <strong class=" ">Action condition</strong> property. The condition must return a true or false value.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p   
+>When a user arrives on the step containing the web part, the system evaluates the action condition. If true, the web part immediately performs the selected step transition.</p>
+<p   
+>For example, if you have a step that requires users to log in or register, you can make the wizard skip the step for already authenticated users:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                    <div class="title">Action conditon</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Action conditon" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">CurrentUser.IsAuthenticated</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: Automatic step transitions only work on the live site and in preview mode.</p>
+        </div>
+    </div>
+    <h3 id="src-68880637_Creatingwizardsonwebsites-Validatingstepdata" class="heading "><span>Validating step data</span></h3>
+<p   
+>Validation rules are a set of conditions that must be fulfilled to successfully complete wizard steps. Validation typically occurs on steps that require users to input data.</p>
+<p   
+>The wizard performs step validation:</p>
+<ul class=" "><li class=" "><p   
+>when users move to the <strong class=" ">next</strong> step by clicking the <strong class=" ">Page wizard button</strong></p>
+</li><li class=" "><p   
+>during automatic <strong class=" ">skip</strong> transitions done by the <strong class=" ">Page wizard step action</strong> web part (if the <strong class=" ">Validate step</strong> property is enabled)</p>
+</li></ul><p   
+>The step validation requirements depend on the implementation of the web parts placed on the step. If the validation fails, the wizard cancels the step transition and the related web parts display a validation error message.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Tip</strong>: If you need to implement custom validation rules for web parts, refer to <a   href="k11/Connecting-web-parts-with-the-page-wizard.htm">Connecting web parts with the page wizard</a>.</p>
+        </div>
+    </div>
+    <h3 id="src-68880637_Creatingwizardsonwebsites-Pagewizardmacros" class="heading "><span>Page wizard macros</span></h3>
+<p   
+>You can use <a   href="k11/Macro-expressions.htm">macro expressions</a> within the context of the page wizard to load the data of steps.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The following expressions are macros, so you need to enclose them in <i class=" ">{% ... %}</i> parentheses.</p>
+        </div>
+    </div>
+<p   
+>Getting steps:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">DocumentWizard.FirstStep</strong></p>
+</li><li class=" "><p   
+><strong class=" ">DocumentWizard.CurrentStep</strong></p>
+</li><li class=" "><p   
+><strong class=" ">DocumentWizard.PreviousStep</strong></p>
+</li><li class=" "><p   
+><strong class=" ">DocumentWizard.NextStep</strong></p>
+</li><li class=" "><p   
+><strong class=" ">DocumentWizard.LastStep</strong><br/><br/></p>
+</li><li class=" "><p   
+><strong class=" ">DocumentWizard.Steps</strong> - accesses the collection of all steps in the wizard</p>
+</li><li class=" "><p   
+><strong class=" ">DocumentWizard.Steps.Count</strong> - returns the total number of steps in the wizard<strong class=" "><br/></strong></p>
+</li><li class=" "><p   
+><strong class=" ">DocumentWizard.Steps[5]</strong> - gets the 6th step</p>
+</li></ul><p   
+>Getting step data:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Step.StepIndex</strong> - gets the step&#39;s index in the page wizard step collection. The index of the first step is 0.</p>
+</li><li class=" "><p   
+><strong class=" ">Step.StepUrl</strong> - returns the relative URL of the step&#39;s page, including the virtual directory and extension. For example: <i class=" ">/Checkout/Shipping.aspx</i></p>
+</li><li class=" "><p   
+><strong class=" ">Step.StepData[&quot;NodeName&quot;]</strong> - gets the name of the step&#39;s page. You can use the <i class=" ">StepData</i> property to get the values of any other page columns.</p>
+</li></ul><p   
+>For example, you can add the following macro into the <strong class=" ">Text</strong> property of the <strong class=" ">Page wizard button</strong> web part that displays the next step button:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">{%</code></div>
+<div class="line"><code class="plain">DocumentWizard.CurrentStep == DocumentWizard.LastStep ? </code><code class="string">"Finish"</code><code class="plain"> : DocumentWizard.NextStep.StepData[</code><code class="string">"NodeName"</code><code class="plain">]</code></div>
+<div class="line"><code class="plain">%}</code></div>
+</div>
+    </div>
+<p   
+>The macro uses a <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/ty67wk28.aspx">ternary operator</a> to dynamically set the caption of the <strong class=" ">Next</strong> button:</p>
+<ul class=" "><li class=" "><p   
+>The button text is<strong class=" "> </strong><i class=" "><strong class=" ">Finish</strong></i> on the last step in the wizard (if the page wizard has a final step URL specified)</p>
+</li><li class=" "><p   
+>The button displays the name of the next step page on all other steps</p>
+</li></ul>        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Configuring Salesforce integration - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882882"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Integrating-3rd-party-systems.htm">Integrating 3rd party systems</a></li>
+                                                                                     <li><a href="Salesforce-integration.htm">Salesforce integration</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882882"> <span>Configuring Salesforce integration</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+></p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Feature retired in Kentico 11</strong></p>
+<p   
+>Salesforce integration in Kentico 11 uses Salesforce SOAP API version 23.0, which is deprecated and will be retired in 2023. For more information, see the <a  class="external-link" href="https://help.salesforce.com/s/articleView?id=000389618&amp;type=1">Salesforce Platform API Versions 21.0 through 30.0 Retirement</a> article.</p>
+<p   
+>If you wish to use Salesforce integration, you need to upgrade to Kentico Xperience 13.</p>
+        </div>
+    </div>
+<p   
+></p>
+<p   
+>You can access the Salesforce integration configuration in the <strong class=" ">Settings</strong> application in<strong class=" "> Integration -&gt; Salesforce.com</strong>. These settings allow you to authorize access to your Salesforce organization and modify how the system maps the attributes of Kentico <a   href="k11/Working-with-contacts.htm">contacts</a> to leads in Salesforce.</p>
+    <h3 id="src-68882882_ConfiguringSalesforceintegration-AuthorizingaccesstoSalesforce" class="heading "><span>Authorizing access to Salesforce</span></h3>
+<p   
+>You need to authorize access of Kentico to your organization on behalf of a specific Salesforce user. This process requires you to generate a <strong class=" ">Consumer key</strong> and <strong class=" ">Consumer secret </strong>in Salesforce itself.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Prerequisite</strong></p>
+<p   
+>To configure the Salesforce authorization, you need to have <a   href="k11/Configuring-SSL.htm">HTTPS</a> set up for your website.</p>
+<p   
+>Additionally, your server (IIS) must support the <strong class=" ">TLS 1.1</strong> protocol or newer. For more information, see the <a  class="external-link" href="https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis">IIS documentation</a>.</p>
+        </div>
+    </div>
+<ol class=" "><li class=" "><p   
+>Click<strong class=" "> Authorize</strong> next to the <strong class=" ">Organization access</strong> setting.<br/></p>
+<ul class=" "><li class=" "><p   
+>An authorization dialog opens.</p>
+</li></ul></li><li class=" "><p   
+>Log in to <a  class="external-link" href="http://www.salesforce.com/">Salesforce.com</a>.</p>
+</li><li class=" "><p   
+>Create a new remote access application in <strong class=" ">App Setup -&gt; Create -&gt; Apps</strong>.</p>
+</li><li class=" "><p   
+>In <strong class=" ">Connected Apps</strong>, click <strong class=" ">New</strong>.</p>
+</li><li class=" "><p   
+>Enter the following values for the remote access application:<br/><br/></p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Basic Information</strong></p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Connected App Name</strong>: Type a name for the application. This name allows you to identify your application as the source of the request when authorizing access to your organization.</p>
+</li><li class=" "><p   
+><strong class=" ">API Name</strong>: The application&#39;s name is filled in automatically.</p>
+</li><li class=" "><p   
+><strong class=" ">Contact Email</strong>: Enter an email address where you want to be contacted.<br/><br/></p>
+</li></ul></li><li class=" "><p   
+><strong class=" ">API (Enable OAuth Settings)<br/></strong></p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Enable OAuth Settings</strong>: Select the check box.</p>
+</li><li class=" "><p   
+><strong class=" ">Callback URL</strong>: Use the following format: <i class=" ">https://www.example.com/CMSModules/ContactManagement/Pages/Tools/SalesForce/AuthorizationSetup.aspx</i></p>
+</li><li class=" "><p   
+><strong class=" ">Use digital signatures</strong>: Do not select the check box. The Salesforce integration does not use digital signatures for logging in.</p>
+</li><li class=" "><p   
+><strong class=" ">Select OAuth Scopes</strong>:</p>
+<ul class=" "><li class=" "><p   
+><i class=" ">Perform requests on your behalf at any time (refresh_token, offline_access)</i></p>
+</li><li class=" "><p   
+><i class=" ">Full access (full)</i></p>
+</li></ul></li></ul></li></ul></li><li class=" "><p   
+>Save the form and copy the <strong class=" ">Consumer Key </strong>and <strong class=" ">Consumer Secret </strong>provided by Salesforce for your remote access application.</p>
+</li><li class=" "><p   
+>Paste your consumer values into the corresponding fields in the Kentico authorization dialog and click <strong class=" ">Authorize</strong>.</p>
+<ul class=" "><li class=" "><p   
+>A Salesforce login screen opens in the current window.</p>
+</li></ul></li><li class=" "><p   
+>Log in and click <strong class=" ">Allow</strong> to grant permission to your Kentico application.</p>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title">Security</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>The system uses the OAuth 2.0 protocol to authorize access to Salesforce. Your Salesforce login and password are never disclosed to Kentico. Access tokens are stored in encrypted format and the communication itself is encrypted using SSL.</p>
+        </div>
+    </div>
+</li><li class=" "><p   
+><strong class=" ">Save</strong> the settings to finish the authorization process.</p>
+</li></ol><p   
+>The <strong class=" ">Organization access</strong> section now shows the user and company name that the application uses to authorize access to Salesforce.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68882882_ConfiguringSalesforceintegration-AuthorizingaccesstoSalesforce">Authorizing access to Salesforce</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882882_ConfiguringSalesforceintegration-Configuringthereplicationofcontacts">Configuring the replication of contacts</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882882_ConfiguringSalesforceintegration-MappingcontactfieldstoSalesforceleadfields">Mapping contact fields to Salesforce lead fields</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68882882_ConfiguringSalesforceintegration-PreparingtheSalesforcemappingidentifierfield">Preparing the Salesforce mapping identifier field</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882882_ConfiguringSalesforceintegration-Settingupthefieldmappings">Setting up the field mappings</a></p>
+</li></ul></li><li class=" "><p   
+><a   href="k11/#src-68882882_ConfiguringSalesforceintegration-Optimizingperformance">Optimizing performance</a></p>
+</li></ul>        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="k11/Working-with-contacts.htm">Working with contacts</a></p>
+</li><li class=" "><p   
+><a   href="k11/Scoring-contacts.htm">Scoring contacts</a></p>
+</li></ul>        </div>
+    </div>
+<p   
+></p>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title">Kentico EMS required</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+        </div>
+    </div>
+<p   
+></p>
+    <h3 id="src-68882882_ConfiguringSalesforceintegration-Configuringthereplicationofcontacts" class="heading "><span>Configuring the replication of contacts </span></h3>
+<p   
+>Once the authorization is complete, you need to configure how the system replicates your contacts into Salesforce leads.</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="2">
+    <p   
+>Replication of contacts into Salesforce leads</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enabled</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enables or disables replication of contacts into Salesforce leads.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Keep Salesforce leads updated</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If checked, the replication process includes contacts that have already been replicated before. This ensures that the system updates the corresponding Salesforce leads based on the current contact data.</p>
+<p   
+>If disabled, contacts are only replicated once.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Mapping of contacts to SalesForce leads</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines how contact fields are mapped to the fields of Salesforce leads.</p>
+<p   
+>See the Mapping contacts to Salesforce leads section below for details.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Batch size</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Applications can only make a limited number of API calls to Salesforce within a 24 hour window, so the replication process handles contacts in batches. Each batch is processed using one API call. The <strong class=" ">Batch size</strong> setting specifies the maximum number of contacts that the system replicates in a single batch.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Score</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allows you to select the score that determines which contacts are replicated. The system only replicates contacts that reach a certain value in the given score (specified via the <strong class=" ">Minimum number of points for replication</strong> setting).</p>
+<p   
+>If you do not choose a score (<i class=" ">None</i>), the system replicates all contacts.</p>
+<p   
+>To learn more about scoring, refer to the <a   href="k11/Scoring-contacts.htm">Scoring contacts</a> chapter.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Minimum number of points for replication</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Specifies the amount of points that contacts must reach in the score selected through the <strong class=" ">Score </strong>setting. Once a contact reaches this value, the system marks it for replication as a Salesforce lead.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Lead description</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Defines a custom description for replicated contacts. To map the description to a specific field of Salesforce leads, select the <strong class=" ">Generated lead description</strong> source in the field mappings.</p>
+<p   
+>You can insert the values of contact fields into the description using <a   href="k11/Macro-expressions.htm">macro expressions</a>.</p>
+<p   
+>The default description adds the <strong class=" ">Last name</strong> of the contact that is being replicated:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">{% Contact.ContactLastName %}</code></div>
+</div>
+    </div>
+<p   
+>For example, to use the <strong class=" ">Business phone</strong> value instead of the last name, enter the following expression:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain"> {% Contact.ContactBusinessPhone %}</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Default company name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>All Salesforce leads require a company name value.</p>
+<p   
+>This setting allows you to specify a default company name, which the replication process uses for contacts who are not associated with any company.</p>
+<p   
+>The system attempts to retrieve the company name value from sources in Kentico in the following order:</p>
+<ol class=" "><li class=" "><p   
+>The value of the contact&#39;s <strong class=" ">Company name</strong> field</p>
+</li><li class=" "><p   
+>The name of the <a   href="k11/Organizing-contacts-into-accounts.htm">account</a> in which the contact is listed as a <i class=" ">primary contact</i></p>
+</li><li class=" "><p   
+>The account that lists the contact as a <i class=" ">secondary contact</i></p>
+</li><li class=" "><p   
+>The first account that contains the contact as a regular contact</p>
+</li><li class=" "><p   
+>The value of the <strong class=" ">Default company name</strong> setting (if none of the above steps are successful)</p>
+</li></ol>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h3 id="src-68882882_ConfiguringSalesforceintegration-MappingcontactfieldstoSalesforceleadfields" class="heading "><span>Mapping contact fields to Salesforce lead fields</span></h3>
+<p   
+>The replication process transfers data from Kentico contacts to Salesforce leads based on field mapping settings.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: You need to authorize <a   href="k11/#src-68882882_ConfiguringSalesforceintegration-AuthorizingaccesstoSalesforce">Organization access</a> before you can adjust the field mappings.</p>
+        </div>
+    </div>
+    <h4 id="src-68882882_ConfiguringSalesforceintegration-PreparingtheSalesforcemappingidentifierfield" class="heading "><span>Preparing the Salesforce mapping identifier field</span></h4>
+<p   
+>Kentico stores the bindings between Salesforce leads and contacts in a custom Salesforce field. You need to create a dedicated field for your Salesforce leads for this purpose.</p>
+<ol class=" "><li class=" "><p   
+>Log in to <a  class="external-link" href="http://www.salesforce.com/">Salesforce.com</a>.</p>
+</li><li class=" "><p   
+>Navigate to <strong class=" ">App Setup -&gt; Customize -&gt; Leads -&gt; Fields</strong>.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> in the <strong class=" ">Lead Custom Fields &amp; Relationships</strong> section.</p>
+</li><li class=" "><p   
+>Choose <strong class=" ">Text</strong> as the field type and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p   
+>In the <strong class=" ">Enter the details</strong> step, fill in the following values:<br/><br/></p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Field Label</strong>: type any label for the field, for example: <i class=" ">Kentico ID</i></p>
+</li><li class=" "><p   
+><strong class=" ">Length</strong>: 32</p>
+</li><li class=" "><p   
+><strong class=" ">Field Name</strong>: type any name for the field, for example: <i class=" ">Kentico_ID</i></p>
+</li><li class=" "><p   
+><strong class=" ">Unique</strong>: select the check box<br/></p>
+<ul class=" "><li class=" "><p   
+>Select<i class=" "> Treat &quot;ABC&quot; and &quot;abc&quot; as duplicate values (case insensitive)</i>.</p>
+</li></ul></li><li class=" "><p   
+><strong class=" ">External ID</strong>: select the check box<br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882882/creating_new_external_field_in_salesforce.png" alt="images/download/attachments/68882882/creating_new_external_field_in_salesforce.png" width="600"  />
+    </li></ul></li><li class=" "><p   
+>Fill in the rest of the information as required and finish the <strong class=" ">New Custom Field</strong> wizard.</p>
+</li><li class=" "><p   
+>In Kentico, go to <strong class=" ">Settings -&gt; Integration -&gt; Salesforce.com</strong> and click <strong class=" ">Edit</strong> below the <strong class=" ">Mapping of contacts to Salesforce leads</strong> section.</p>
+</li><li class=" "><p   
+>Select your new Salesforce lead field as the <strong class=" ">External identifier field</strong>.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">OK</strong> and <strong class=" ">Save</strong> the settings.</p>
+</li></ol><p   
+>You can now configure the mappings between the fields of Kentico contacts and Salesforce leads.</p>
+    <h4 id="src-68882882_ConfiguringSalesforceintegration-Settingupthefieldmappings" class="heading "><span>Setting up the field mappings</span></h4>
+<p   
+>To access the field mapping dialog, go to <strong class=" ">Settings -&gt; Integration -&gt; Salesforce.com</strong> and click <strong class=" ">Edit</strong> below the <strong class=" ">Mapping of contacts to Salesforce leads</strong> section.</p>
+<p   
+>The mapping dialog offers a list of all standard and custom fields defined for your Salesforce leads. You can select sources for the fields from the following sections:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Field</strong> &ndash; the fields of Kentico contacts. Only fields containing relevant data are available (internal system fields of contacts are hidden).</p>
+</li><li class=" "><p   
+><strong class=" ">Custom</strong> &ndash; related values that cannot be loaded directly from contact fields, including the following:</p>
+<ul class=" "><li class=" "><p   
+><i class=" ">Company name</i> &ndash; ensures that each contact has a company name value. See the description of the <a   href="k11/#src-68882882_ConfiguringSalesforceintegration-Configuringthereplicationofcontacts">Default company name</a> setting for details about the process.</p>
+</li><li class=" "><p   
+><i class=" ">Generated lead description</i> &ndash; loads the value of the <i class=" ">Lead description</i> setting.</p>
+</li><li class=" "><p   
+><i class=" ">Country</i> <i class=" ">name</i> &ndash; provides the name of the contact&#39;s country as a text value.</p>
+</li><li class=" "><p   
+><i class=" ">State name</i> &ndash; provides the name of the contact&#39;s state as a text value.</p>
+</li></ul></li><li class=" "><p   
+><strong class=" ">Picklist entry</strong> &ndash; allows you to select from the values predefined in Salesforce for picklist type fields.</p>
+</li></ul><p   
+>You can only select contact fields that fit the data type of the target Salesforce field. The following table shows which types of Kentico fields are supported by the available Salesforce data types:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Salesforce Data type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Supported Kentico field data types</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Checkbox</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Boolean (Yes/No)</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Currency</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><i class=" ">Replication does not support the Currency data type at this time.</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Date</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Date and time</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Date/Time</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Date and time</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Email</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text, Long text</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Number</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Decimal number, Floating point number, Integer number, Long integer number</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Percent</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Decimal number, Floating point number, Integer number, Long integer number</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Phone</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text, Long text</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Picklist</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text, Long text</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Picklist (Multi-Select)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text, Long text</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text, Long text</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text Area</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text, Long text</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text (Encrypted)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text, Long text</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>URL</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text, Long text</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-note">
+                    <p class="title">Note</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>The system may modify values during the replication process according to the parameters of the target fields in Salesforce.</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Text values</strong> &ndash; the replication process may shorten long text values (strings) to fit the maximum length of the target field.</p>
+</li><li class=" "><p   
+><strong class=" ">Decimal numbers</strong> &ndash; the fractional part of decimal numbers may be truncated based on the data type settings of the target field. For example, the number <i class=" ">2.45397</i> could be shortened to <i class=" ">2.45</i>. The same also applies to Floating point numbers.</p>
+</li><li class=" "><p   
+><strong class=" ">Large numbers</strong> &ndash; replication of large numbers may result in an error if the target field has an insufficient length. Such errors block the related contact from replication until the contact&#39;s values are updated, or the field mapping settings change.</p>
+</li></ul>        </div>
+    </div>
+<p   
+>Once you configure all field mappings as required, you can start <a   href="k11/Replicating-contacts-to-Salesforce.htm">Replicating contacts to Salesforce</a>.</p>
+    <h3 id="src-68882882_ConfiguringSalesforceintegration-Optimizingperformance" class="heading "><span>Optimizing performance</span></h3>
+<p   
+>By default, the Kentico on-line marketing features are optimized for the most common configurations (with Salesforce integration disabled). If you are using the Salesforce integration with a large number of contacts, we recommend that you optimize database operations by manually creating a <strong class=" ">database index</strong> with the following columns on the <strong class=" ">OM_Contact</strong> table:</p>
+<ol class=" "><li class=" "><p   
+>ContactSalesForceLeadID</p>
+</li><li class=" "><p   
+>ContactSalesForceLeadReplicationDisabled</p>
+</li><li class=" "><p   
+>ContactSalesForceLeadReplicationSuspensionDateTime</p>
+</li></ol><p   
+>The index should be non-clustered and non-unique. See the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/ms189280.aspx">Create Nonclustered Indexes</a> article for more information.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

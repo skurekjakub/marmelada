@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CMSTreeView - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882703"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="References.htm">References</a></li>
+                                                                                                         <li class="shortcut"><a href="Kentico-Controls.htm">Kentico Controls</a></li>
+                                                                                                         <li class="shortcut"><a href="CMS-controls.htm">CMS controls</a></li>
+                                                                                     <li><a href="CMS-controls---Navigation.htm">CMS controls - Navigation</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882703"> <span>CMSTreeView</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>The CMSTreeView control displays a multi-level tree menu based on page data from Kentico.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Derived from</strong>: <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.treeview.aspx">ASP.NET TreeView</a><strong class=" "><br/>Web part equivalent (portal engine)</strong>: Tree view</p>
+        </div>
+    </div>
+    <h3 id="src-68882703_CMSTreeView-Gettingstarted" class="heading "><span>Getting started</span></h3>
+<p   
+>The following is a step-by-step tutorial that shows how to display a tree menu based on Kentico content using the CMSTreeView control:</p>
+<ol class=" "><li class=" "><p   
+>Create a new <strong class=" ">Web form</strong> somewhere in your web project.</p>
+</li><li class=" "><p   
+>Drag the <strong class=" ">CMSTreeView</strong> control from the toolbox onto the form.</p>
+<ul class=" "><li class=" "><p   
+>The code of the CMSTreeView looks like this:</p>
+</li></ul>    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;cms:CMSTreeView ID=</code><code class="string">"CMSTreeView1"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Save the web form.</p>
+</li><li class=" "><p   
+>Right-click the web form in the Solution explorer and select <strong class=" ">View in Browser</strong>.</p>
+</li></ol><p   
+>The resulting page displays a tree menu.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882703/CMSTreeView.png" alt="images/download/attachments/68882703/CMSTreeView.png" width="284" height="348" />
+    </p>
+<p   
+></p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68882703_CMSTreeView-Gettingstarted">Getting started</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882703_CMSTreeView-Configuration">Configuration</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882703_CMSTreeView-Appearanceandstyling">Appearance and styling</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="k11/Building-website-navigation.htm">Building website navigation</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68882703_CMSTreeView-Configuration" class="heading "><span>Configuration</span></h3>
+<p   
+>You can set the following properties for the CMSTreeView control:</p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>CMSTreeView properties</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Sample value</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DisplayDocumentTypeImages</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If true, control loads the images displayed for items in the tree according to the page types of the items.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DynamicBehaviour</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If true, the control dynamically loads sub-items when their parent node is expanded.</p>
+<p   
+>This is recommended if there is a large amount of nodes in the tree, or if the content depends on other dynamic parameters.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>EncodeMenuCaption</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control HTML encodes the captions of menu items. Enable if you need to display pages whose names contain HTML code.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ExpandAllOnStartup</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether all nodes in the tree are expanded by default.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ExpandCurrentPath</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control highlights all nodes along the path to the currently selected item by default.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ExpandSubTree</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the sub-tree under the currently selected item is expanded by default.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>FixBrokenLines</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control fixes broken lines.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>HideRootNode</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the root node of the tree is hidden.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>HigLightSelectedItem</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the currently selected item is highlighted.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>IgnoreDocumentMenuAction<br/>    <span style="color: #ffffff;">
+______________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If true, the control ignores the Menu actions of pages. You can access the menu settings of individual pages in the Kentico administration interface (<strong class=" ">Pages -&gt; Edit -&gt; Properties -&gt; Navigation</strong>.</p>
+<p   
+>Enable this property to use the JavaScript action defined by the <strong class=" ">OnClickAction</strong> property.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>InactivateAllItemsInPath</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, all nodes on the path of the currently selected page are inactive (will not perform any action when clicked).</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>InactivateSelectedItem</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, the node of the currently selected page is inactive.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>InactiveNodeImage</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates if the images displayed next to nodes also perform the specified action for the given item when clicked.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>InactiveRoot</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the root node is inactive.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>NodeImageUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the path to the image that the control displays next to regular nodes in the tree.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>~/App_Themes/Site/Images/treeitem.gif</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>OnClickAction</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the JavaScript command that the control executes when a user clicks on an item in the tree. If empty, the items in the tree serve as links to the corresponding pages.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>OrderBy</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the ORDER BY clause of the SQL query that the control uses to load data.</p>
+<p   
+><strong class=" ">Important</strong>: The root of the displayed page tree (or sub-tree) must be <strong class=" ">first</strong> in the resulting order, otherwise the control may not display all pages correctly. You can ensure this by starting the Order by value with the <strong class=" ">NodeLevel</strong> column.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>&quot;NodeLevel, NodeOrder&quot;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>RootImageUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the path to the image that the control displays next to the root node of the tree.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>~/App_Themes/Site/Images/root.gif</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>RootText</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the text caption of the root node in the tree. This text is displayed instead of the page name of the item in the root of the tree.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+></p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Common navigation properties</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Sample value</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ApplyMenuDesign</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control applies <a   href="k11/Building-website-navigation.htm">page menu design settings</a>. True by default.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Columns<br/>    <span style="color: #ffffff;">
+______________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Contains the names of columns that the control loads for pages (menu items) in addition to the default columns. If you need data from other columns, type their names separated by commas.</p>
+<p   
+><strong class=" ">Note</strong>: To find a full list of the default navigation columns, use the <a   href="k11/Debugging.htm">SQL queries debugging tool</a> and inspect the query performed by your navigation control.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>&quot;DocumentPageTitle,<br/>DocumentPageKeywords&quot;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>HideControlForZeroRows</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control should be hidden when no data is loaded. Default value is False.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>HighlightAllItemsInPath</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control highlights all items on the visitor&#39;s current path.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SubmenuIndicator</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Path to an image displayed next to every menu item that contains sub-items.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>UseAlternatingStyles</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control uses alternating styles for even and odd items on the same menu level.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>UseItemImagesForHiglightedItem</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control uses the item image if the highlighted image is not specified.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>WordWrap</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether text displayed by the control uses word wrapping. If disabled, text that is too long is replaced by &#39;nbsp&#39;.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ZeroRowsText</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text shown if no records are found. This text is not visible when the control is hidden by the <strong class=" ">HideControlForZeroRows</strong> property.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>&quot;No records found.&quot;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+></p>
+<p   
+></p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   style="text-align:center;"
+>Page filtering properties</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Sample value</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CheckPermissions</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates if the control checks the permissions of the user viewing the page. If the value is <i class=" ">false</i> (default value) no permissions are checked.</p>
+<p   
+>If true, the control only loads pages for which the user viewing the page has read permissions.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ClassNames<br/>    <span style="color: #ffffff;">
+______________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Specifies which <a   href="k11/Page-types.htm">page types</a> the control loads and displays. Identify page types through their code names, separated by semicolons (;).</p>
+<p   
+>You can use the * wildcard as a substitute for any number of characters. For example <i class=" ">Product.*</i> includes the page types <i class=" ">Product.Camera</i>, <i class=" ">Product.CellPhone</i>, <i class=" ">Product.Computer</i> etc.</p>
+<p   
+>If the property is left empty, the control retrieves all page types by default. In the case of menu and navigation controls, only <i class=" ">CMS.MenuItem pages</i> are loaded by default.</p>
+<p   
+><strong class=" ">Note</strong>: If the control loads all page types (empty value), only the data from the <i class=" ">View_CMS_Tree_Joined </i>and the <i class=" ">COM_SKU</i> table (for product pages) are available in the retrieved data. The specific fields of individual page types are not included. You need to keep this in mind when writing the code of transformations, WHERE conditions, ORDER BY expressions etc.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>&quot;cms.news&quot;<br/>&quot;cms.news;cms.article&quot;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CombineWithDefaultCulture</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates whether the control loads pages from the website&#39;s default culture version if the required pages are not available in the user&#39;s selected culture.</p>
+<p   
+>Only applies if you do not set the <strong class=" ">TreeProvider</strong> property manually.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CultureCode</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Specifies the culture code of the pages that the control loads. If not specified, the control automatically uses the preferred culture of the user viewing the page.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>&quot;en-us&quot;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>DataSource</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allows you to manually assign a DataSet or DataTable containing the pages that the control displays. You do not need to set this property for standard scenarios.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>FilterOutDuplicates</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates if the control filters out duplicated (linked) pages from the data.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>MaxRelativeLevel</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Specifies the maximum number of content tree sub-levels from which the control displays pages. This number is relative, i.e. counted from the location of the page where the control is placed, not from the root of the website.</p>
+<p   
+>Enter <i class=" ">-1</i> to load all child pages.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Path</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Path of the pages that the control loads.</p>
+<p   
+><strong class=" ">See</strong>: <a   href="k11/Writing-page-path-expressions.htm">Writing page path expressions</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SelectOnlyPublished</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, the control only loads published pages.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>TreeProvider</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the <i class=" ">TreeProvider</i> object used by the control to access page data. If you do not assign a TreeProvider object, the control automatically creates a new instance.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+></p>
+<p   
+></p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>CMS Base control properties</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Sample value</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CacheDependencies<br/>    <span style="color: #ffffff;">
+______________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>List of the cache keys on which the control&#39;s cached data depends. When the specified cache items change, the control clears its cache.</p>
+<p   
+>Each item (dependency) must be on one line.</p>
+<p   
+>If you leave this property empty, the control uses default dependencies.</p>
+<p   
+><strong class=" ">See also</strong>: <a   href="k11/Setting-cache-dependencies.htm">Setting cache dependencies</a>, <a   href="k11/Configuring-caching.htm">Configuring caching</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.user|all</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CacheItemName</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the name of the cache key used to store the control&#39;s content. If you leave the value empty, the system generates a default name containing variables, such as the control ID, the selected culture and the name of the user who loaded the page.</p>
+<p   
+>The system cache is shared by all pages in your application, so cache item names representing different data must be unique globally. If you have multiple controls that load the same data, you can share the cache keys between the controls (optimizes loading of content and avoids redundant data in the cache).</p>
+<p   
+>If the content displayed by the control depends on variables, such as URL parameters, you can set a custom name dynamically in the page&#39;s code behind.</p>
+<p   
+><strong class=" ">See also</strong>: <a   href="k11/Caching-the-data-of-page-components.htm">Caching the data of page components</a>, <a   href="k11/Configuring-caching.htm">Configuring caching</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>&quot;CMSRepeaterNews&quot; +<br/>Request.QueryString[&quot;id&quot;].ToString()</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CacheMinutes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the number of minutes for which the control caches content retrieved from the database.</p>
+<ul class=" "><li class=" "><p   
+>0 indicates that control does not cache content</p>
+</li><li class=" "><p   
+>-1 indicates that the control uses the site-level content caching settings</p>
+</li></ul><p   
+>Allows you to set up caching of content so that the control doesn&#39;t have to retrieve content from the database on each request.</p>
+<p   
+>The caching mechanism uses absolute expiration time. This means that cache items expire after a specified time period even if the page containing the control wasn&#39;t requested.</p>
+<p   
+><strong class=" ">See also</strong>: <a   href="k11/Caching-the-data-of-page-components.htm">Caching the data of page components</a>, <a   href="k11/Configuring-caching.htm">Configuring caching</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>FilterControl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the filter control used to limit the data read by the control.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>FilterName</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the code name of the filter control used to limit the data read by this control.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>OrderBy</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the ORDER BY clause of the SQL query that the control uses to load data.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>&quot;NewsReleaseDate DESC&quot;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SelectedColumns</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Database table columns that the control loads for pages, separated by commas ( , ). If null or empty, the control loads all available columns.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SiteName</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Specifies the code name of the Kentico website for which the control loads data.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>StopProcessing</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If true, the control stops all processing &mdash; does not load or display any data or other HTML output.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>TopN</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Specifies the maximum number of database records that the control loads.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>WhereCondition</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets or sets the WHERE clause of the SQL query that the control uses to loads data.</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>&quot;ProductPrice &gt; 100&quot;</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+></p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The CMSTreeView inherits from the ASP.NET TreeView control, so you can also set any of the <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.treeview.aspx">base properties</a>.</p>
+        </div>
+    </div>
+    <h3 id="src-68882703_CMSTreeView-Appearanceandstyling" class="heading "><span>Appearance and styling</span></h3>
+<p   
+>You can adjust the appearance of the CMSTreeView control by setting the inherited standard properties of the <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.treeview.aspx">ASP.NET TreeView</a> control.</p>
+<p   
+>Additionally, you can modify the design of the CMSTreeView by assigning CSS classes to the following properties:</p>
+    <div  class="tablewrap">
+        <table class="confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Property name</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>InactiveItemClass</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CSS class of inactive items.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>InactiveItemStyle</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Style of inactive items.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SelectedItemClass</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CSS class of selected items.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SelectedItemStyle</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Style of selected items.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+>The recommended place to define these classes is in a Kentico <a   href="k11/Designing-websites-using-CSS.htm">stylesheet</a> using the <strong class=" ">CSS stylesheets</strong> application.</p>
+<p   
+>You can apply stylesheets to:</p>
+<ul class=" "><li class=" "><p   
+>Entire websites</p>
+</li><li class=" "><p   
+>Individual pages that contain the control</p>
+</li></ul>        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

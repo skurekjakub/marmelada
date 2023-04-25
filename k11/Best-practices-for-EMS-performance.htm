@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Best practices for EMS performance - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882592"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="On-line-marketing-features.htm">On-line marketing features</a></li>
+                                                                                     <li><a href="Configuring-and-customizing-your-on-line-marketing-features.htm">Configuring and customizing your on-line marketing features</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882592"> <span>Best practices for EMS performance</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Running the Kentico EMS on-line marketing functionality typically increases the performance requirements for websites with very heavy traffic. This page provides best practices for optimizing the performance of such websites and helps to determine the hosting requirements for EMS projects.</p>
+    <div class="section section-1" id="src-68882592_BestpracticesforEMSperformance-Projectparametersandhostingrequirements">
+        <h1 class="heading "><span>Project parameters and hosting requirements</span></h1>
+<p   
+>Kentico EMS has been tested with the following on-line marketing parameters:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Total number of stored contacts</strong>: 100 million (10<sup class=" ">8</sup>)</p>
+</li><li class=" "><p   
+><strong class=" ">Total number of logged activities</strong>: 1 billion (10<sup class=" ">9</sup>)</p>
+</li><li class=" "><p   
+><strong class=" ">Used on-line marketing features</strong>:<br/></p>
+<ul class=" "><li class=" "><p   
+>10 condition-based <a   href="k11/Segmenting-contacts-into-contact-groups.htm">contact groups</a></p>
+</li><li class=" "><p   
+>2 <a   href="k11/Scoring-contacts.htm">scores</a> for evaluating contacts</p>
+</li><li class=" "><p   
+>2 <a   href="k11/Personas.htm">personas</a></p>
+</li><li class=" "><p   
+>3 <a   href="k11/Marketing-automation.htm">marketing automation processes</a> (process triggers: 1 activity-based, 2 score-based)</p>
+</li><li class=" "><p   
+>2 running <a   href="k11/Campaigns.htm">campaigns</a></p>
+</li></ul></li></ul><p   
+>Two different hosting configurations were tested with the following <strong class=" ">traffic loads</strong>:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Hosting configuration</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Page requests per second</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Concurrent visitors</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Load balanced web farm with 4 servers (Kentico instances)</p>
+<ul class=" "><li class=" "><p   
+>1 of the servers designated to perform all recalculations of on-line marketing data</p>
+</li><li class=" "><p   
+>Session state synchronized using <a  class="external-link" href="https://azure.microsoft.com/en-us/services/cache/">Azure Redis Cache</a> (Standard C6)</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>1600 (800 from new contacts)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>25000</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>1 web server</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>600 (300 from new contacts)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>9000</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+>With the above traffic loads, the <i class=" "><strong class=" ">page load time was under 1 second</strong></i> for at least 95% of all live site web requests.</p>
+<p   
+>The following <strong class=" ">server specifications</strong> were used:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Web server</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>Processor: 2,4 GHz Intel Xeon E5-2673 v3, 8 cores</p>
+</li><li class=" "><p   
+>RAM: 28 GB</p>
+</li><li class=" "><p   
+>Drive: 400 GB, 500 IOPS</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Database server</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>Processor: 2,4 GHz Intel Xeon E5-2673 v3, 16 cores</p>
+</li><li class=" "><p   
+>RAM: 56 GB</p>
+</li><li class=" "><p   
+>Drives: 3x SSD 1024 GB, 5000 IOPS (1 for data, 2 in RAID0 for the database log file)</p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Important</strong></p>
+<ul class=" "><li class=" "><p   
+>The specifications described above assume that the environment and Kentico instances follow all <a   href="k11/#src-68882592_BestpracticesforEMSperformance-Performancebestpractices">performance best practices</a>.</p>
+</li><li class=" "><p   
+>The hosting requirements may vary based on the used on-line marketing features and their configuration.</p>
+</li></ul>        </div>
+    </div>
+<p   
+>Higher parameters may be achievable with more powerful hosting configurations. In general, the following scaling recommendations apply:</p>
+<ul class=" "><li class=" "><p   
+>To increase the supported <strong class=" ">traffic load</strong> (requests per second, new contacts per second, concurrent visitors), increase the number of servers in the web farm.</p>
+</li><li class=" "><p   
+>To increase the supported <strong class=" ">volume of on-line marketing data</strong>, increase the size and performance of the database server.</p>
+</li></ul>    </div>
+    <div class="section section-1" id="src-68882592_BestpracticesforEMSperformance-Performancebestpractices">
+        <h1 class="heading "><span>Performance best practices</span></h1>
+<p   
+>To achieve optimal performance with Kentico EMS websites, follow the recommendations in the sections below.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: In addition to the instructions listed on this page, also follow the general performance best practices for all types of websites: <a   href="k11/Optimizing-website-performance.htm">Optimizing website performance</a></p>
+        </div>
+    </div>
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-Setupawebfarmenvironment">Set up a web farm environment</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-Separatetheon-linemarketingdatabase">Separate the on-line marketing database</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-SetuptheSQLserver">Set up the SQL server</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-Optimizedatabaseindexes">Optimize database indexes</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-UseJavaScriptloggingforanalyticsandactivities">Use JavaScript logging for analytics and activities</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-Optimizesendoutofmarketingemails">Optimize send out of marketing emails</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-Setupautomaticdeletingofcontacts">Set up automatic deleting of contacts</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-Disableeventloggingforautomationandmarketingemails">Disable event logging for automation and marketing emails</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882592_BestpracticesforEMSperformance-Optimizescoringandcontactgrouprecalculation">Optimize scoring and contact group recalculation</a></p>
+</li></ul><p   
+></p>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-Setupawebfarmenvironment">
+        <h2 class="heading "><span>Set up a web farm environment</span></h2>
+<p   
+>You may need to host your website in a <a   href="k11/Setting-up-web-farms.htm">web farm</a> with multiple servers to handle high traffic loads. To learn how to set up the web farm synchronization features in Kentico, see <a   href="k11/Configuring-web-farm-servers.htm">Configuring web farm servers</a>.</p>
+<p   
+>When using a static web farm, you can optimize on-line marketing performance by having <strong class=" ">one designated server</strong> perform all recalculation of on-line marketing data (<a   href="k11/Scoring-contacts.htm">contact scores</a>, <a   href="k11/Segmenting-contacts-into-contact-groups.htm">contact groups</a>, <a   href="k11/Personas.htm">personas</a>, <a   href="k11/Marketing-automation.htm">marketing automation triggers</a>).</p>
+<p   
+>To configure recalculation on only one designated web farm server, you need to disable the recalculation on all other servers. Set the <strong class=" ">CMSCreateContactActionsLogWorker</strong> web.config key to <i class=" ">false</i> in the <i class=" ">appSettings</i> section of the <i class=" ">web.config</i> file on all servers except for the selected recalculation server:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSCreateContactActionsLogWorker"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+<p   
+>Keep in mind that you must always leave recalculation enabled on one server.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: Using one server for recalculation improves the web farm&#39;s overall performance, but you may experience longer delays between actions on the website and results in the administration interface (calculation of contacts scores, assignment of contacts to contact groups or personas, etc.).</p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-Separatetheon-linemarketingdatabase">
+        <h2 class="heading "><span>Separate the on-line marketing database</span></h2>
+<p   
+>Running the on-line marketing features on a high-traffic website places a significant load on the database server. To distribute the load of Kentico&#39;s standard and on-line marketing functionality, <a   href="k11/Separating-the-contact-management-database.htm">separate your on-line marketing database</a> to a second database server.</p>
+    </div>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-SetuptheSQLserver">
+        <h2 class="heading "><span>Set up the SQL server</span></h2>
+<p   
+>If you have the option to administer the website&#39;s database server, we recommend that you perform the following steps:</p>
+<ul class=" "><li class=" "><p   
+>Optimize the database&#39;s <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/ms189253(v=sql.120).aspx">Log and Data files</a>:<br/></p>
+<ul class=" "><li class=" "><p   
+>Set a large initial size for the data file and disable Autogrowth</p>
+</li><li class=" "><p   
+>Store the log and data files on different drives</p>
+</li><li class=" "><p   
+>Store the SQL server error log files on the same drive as the main data file</p>
+</li><li class=" "><p   
+>Store the server&#39;s <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/ms190768(v=sql.120).aspx">tempdb database</a> to the same drive as the main data file</p>
+</li></ul></li><li class=" "><p   
+><a  class="external-link" href="https://msdn.microsoft.com/en-us/library/ms190730(v=sql.120).aspx">Enable the Lock Pages in Memory Option</a> on the database server</p>
+</li></ul>    </div>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-Optimizedatabaseindexes">
+        <h2 class="heading "><span>Optimize database indexes</span></h2>
+<p   
+>By default, the Kentico database tables have indexes optimized for the most common scenarios. However, each EMS website uses a different set of on-line marketing features, with different visitor behavior, and a unique distribution of data.</p>
+<p   
+>For optimal performance, we recommend that you regularly use a tool (for example the <a  class="external-link" href="https://technet.microsoft.com/en-us/library/ms188639(v=sql.105).aspx">Database Engine Tuning Advisor</a>) to analyze your database performance. Consider the suggestions and implement any database index adjustments that are suitable for your specific project.</p>
+<p   
+>Additionally, the default database indexes are optimized for live site performance, not for operations in the Kentico administration interface. With extremely large volumes of data (millions of records), you may encounter slow performance or timeouts in object lists &ndash; for example if you change the default list ordering or when filtering according to certain fields. You can address these problems by creating custom database indexes with the corresponding columns (note that this may have a negative impact on live site performance).</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Optimizing Salesforce integration</strong></p>
+<p   
+>The default Kentico indexes are optimized without considering the <a   href="k11/Salesforce-integration.htm">Salesforce integration</a>. If you are using the Salesforce integration with a large number of contacts, we recommend that you optimize database operations by manually creating a <strong class=" ">database index</strong> with the following columns on the <strong class=" ">OM_Contact</strong> table:</p>
+<ol class=" "><li class=" "><p   
+>ContactSalesForceLeadID</p>
+</li><li class=" "><p   
+>ContactSalesForceLeadReplicationDisabled</p>
+</li><li class=" "><p   
+>ContactSalesForceLeadReplicationSuspensionDateTime</p>
+</li></ol><p   
+>The index should be non-clustered and non-unique. See the <a  class="external-link" href="https://docs.microsoft.com/en-us/sql/relational-databases/indexes/create-nonclustered-indexes">Create Nonclustered Indexes</a> article for more information.</p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-UseJavaScriptloggingforanalyticsandactivities">
+        <h2 class="heading "><span>Use JavaScript logging for analytics and activities</span></h2>
+<p   
+>For optimal performance and data accuracy, make sure that JavaScript logging is enabled for web analytics and activities:</p>
+<ol class=" "><li class=" "><p   
+>Open the<strong class=" "> Settings </strong>application in Kentico.</p>
+</li><li class=" "><p   
+>Navigate to<strong class=" "> On-line marketing -&gt; Web Analytics</strong>.</p>
+</li><li class=" "><p   
+>Enable the <strong class=" ">Log via JavaScript snippet</strong> setting.</p>
+</li><li class=" "><p   
+>Save the settings.</p>
+</li></ol><p   
+>For more information, see <a   href="k11/Enabling-web-analytics.htm">Enabling web analytics</a>.</p>
+    </div>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-Optimizesendoutofmarketingemails">
+        <h2 class="heading "><span>Optimize send out of marketing emails </span></h2>
+    <div class="section section-3" id="src-68882592_BestpracticesforEMSperformance-Optimizethenumberofmacrosinemails">
+        <h3 class="heading "><span>Optimize the number of macros in emails</span></h3>
+<p   
+>Composing <a   href="k11/Sending-marketing-emails.htm">marketing emails</a> for a large number of recipients can decrease the system&#39;s performance, particularly if the emails contain macros and use other email marketing features. Approximately <strong class=" ">5% of the email generation time</strong> is spent on <i class=" ">Tracking clicked links</i>, <i class=" ">Tracking opened emails</i>, and <i class=" ">Logging on-line marketing activities</i>, when these features are <a   href="k11/Enabling-marketing-email-tracking.htm">enabled</a>. The <strong class=" ">time spent on resolving macros grows linearly with the number of macros</strong> used in the emails, however this takes up only a small portion of the total email generation time. Note that the growth of the macro resolving time is linear only if all data is cached and no database operations are performed within the macros.</p>
+<p   
+>As a result, we recommend minimizing the number of macros in the content of your marketing emails to ensure a shorter email generation time.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">EMS email generation performance tests</strong></p>
+<p   
+>These recommendations were put together based on the results of several tests performed on Kentico EMS.</p>
+<p   
+>The marketing email send out was tested for performance in an environment with no real traffic, measuring only the generation of emails. The testing environment consisted of a web server and database server, without a separated on-line marketing database. The tested emails contained up to 50 data macros and up to 5 macros using recipient properties.</p>
+<p   
+>In addition to the information stated above, the results also show that the <strong class=" ">email generation time grows linearly with the number of email recipients</strong>.</p>
+        </div>
+    </div>
+    </div>
+    <div class="section section-3" id="src-68882592_BestpracticesforEMSperformance-DisableCSSinlining">
+        <h3 class="heading "><span>Disable CSS inlining</span></h3>
+<p   
+>Inlining of the CSS markup included in marketing email templates can have a negative influence on the performance of your system when composing emails. We recommend <a   href="k11/Preparing-email-templates.htm#src-68882600_Preparingemailtemplates-UsingCSSinemailtemplates">disabling CSS inlining</a> to reduce the email generation time.</p>
+    </div>
+    <div class="section section-3" id="src-68882592_BestpracticesforEMSperformance-Enabletheemailqueue">
+        <h3 class="heading "><span>Enable the email queue</span></h3>
+<p   
+>When generating a large amount of emails, we recommend configuring the system to <a   href="k11/Configuring-SMTP-servers.htm#src-68881948_ConfiguringSMTPservers-Configuringemailprocessing">use the email queue</a> and setting the <i class=" ">Network</i> <a   href="k11/Configuring-SMTP-servers.htm">delivery method</a> for your SMTP server. When using the <i class=" ">Network</i> delivery method with the email queue enabled, the system temporarily stores all outgoing emails in the database instead of sending them directly to the SMTP server.</p>
+    </div>
+    </div>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-Setupautomaticdeletingofcontacts">
+        <h2 class="heading "><span>Set up automatic deleting of contacts</span></h2>
+<p   
+>The contact management features create <a   href="k11/Working-with-contacts.htm">contacts</a> and log <a   href="k11/Tracking-contact-activities.htm">activities</a> for every visitor, which generates a very large amount of data on high&#8209;traffic websites. Extremely large numbers of stored contacts and activities may slow down certain operations in the system and be overwhelming for your marketers.</p>
+<p   
+>To reduce the volume of data, we recommend that you <a   href="k11/Setting-up-automatic-deletion-of-contacts.htm">configure the system to regularly delete contacts</a> that meet certain conditions and are no longer relevant.</p>
+    </div>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-Disableeventloggingforautomationandmarketingemails">
+        <h2 class="heading title"><span>Disable event logging for automation and marketing emails</span></h2>
+<p   
+>To reduce system overhead on EMS instances with a very large number of <a   href="k11/Working-with-contacts.htm">contacts</a>, we recommend that you disable <a   href="k11/Working-with-the-system-event-log.htm">event logging</a> for the following actions:</p>
+<ul class=" "><li class=" "><p   
+>Transitions between steps of <a   href="k11/Marketing-automation.htm">automation processes</a></p>
+</li><li class=" "><p   
+>Sending of marketing emails (within <a   href="k11/Email-marketing.htm">email feeds</a>)</p>
+</li></ul><p   
+>Add the following keys to the <i class=" ">appSettings</i> section of the <i class=" ">web.config</i> file:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSLogMATransitions"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSLogNewsletterIssueEvents"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+    </div>
+    <div class="section section-2" id="src-68882592_BestpracticesforEMSperformance-Optimizescoringandcontactgrouprecalculation">
+        <h2 class="heading "><span>Optimize scoring and contact group recalculation</span></h2>
+<p   
+>Recalculation of <a   href="k11/Scoring-contacts.htm">contact scores</a> and <a   href="k11/Segmenting-contacts-into-contact-groups.htm">contact groups</a> can be a resource intensive process that may reduce website performance.</p>
+<ul class=" "><li class=" "><p   
+>When scheduling score recalculations and contact group rebuilds, <strong class=" ">avoid your website&#39;s peak traffic hours</strong>.</p>
+</li><li class=" "><p   
+>If you use custom <a   href="k11/Creating-macro-rules.htm">macro rules</a> in your scoring rules or contact group conditions, <a   href="k11/Improving-custom-macro-performance-in-scoring-and-contact-groups.htm">implement translators</a> to significantly improve recalculation performance.</p>
+</li></ul>    </div>
+    </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

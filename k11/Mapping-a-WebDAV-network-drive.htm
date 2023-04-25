@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mapping a WebDAV network drive - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68879466"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Managing-website-content.htm">Managing website content</a></li>
+                                                                                                         <li class="shortcut"><a href="Configuring-the-environment-for-content-editors.htm">Configuring the environment for content editors</a></li>
+                                                                                                         <li class="shortcut"><a href="Configuring-WebDAV.htm">Configuring WebDAV</a></li>
+                                                                                     <li><a href="WebDAV-browse-mode.htm">WebDAV browse mode</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68879466"> <span>Mapping a WebDAV network drive</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Once your server meets the <a   href="k11/WebDAV-requirements-and-limitations.htm">requirements</a>, you need to map a network drive in your operation system that will be pointing to your web server. There are two ways how this can be done:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/#src-68879466_MappingaWebDAVnetworkdrive-MappinganetworkdriveinWindowscommandline">Mapping the network drive in Windows command line</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68879466_MappingaWebDAVnetworkdrive-MappingthenetworkdriveinWindows">Mapping the network drive in Windows</a></p>
+</li></ul>    <h3 id="src-68879466_MappingaWebDAVnetworkdrive-MappinganetworkdriveinWindowscommandline" class="heading "><span>Mapping a network drive in Windows command line</span></h3>
+<ol class=" "><li class=" "><p   
+>Open Windows command line (press <strong class=" ">[window]+R</strong>, type <i class=" ">cmd</i> and click <strong class=" ">OK</strong>).</p>
+</li><li class=" "><p   
+>Type the following command:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">net use x: http://&lt;your_domain&gt;/cms/files</code></div>
+</div>
+    </div>
+<p   
+><br/>The <i class=" ">x:</i> part of the command determines which letter will be used for identification of the network drive in your system. Instead of <i class=" ">x</i>, you can use any letter that is not used for another drive yet.The <i class=" ">&lt;your_domain&gt;</i> part of the command needs to be replaced with the domain name of your website. So, for example, if your website is running on <i class=" "><a  class="external-link" href="http://www.example.com">http://www.example.com</a></i>, you would need to enter &#39;<i class=" ">net use x: <a  class="external-link" href="http://www.example.com/cms/files">http://www.example.com/cms/files</a>&#39;</i>. Similarly, for <i class=" ">http://localhost/Kentico</i>, you would need to enter &#39;<i class=" ">net use x: http://localhost/Kentico/cms/files&#39;</i>.</p>
+</li></ol>    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68879466_MappingaWebDAVnetworkdrive-MappinganetworkdriveinWindowscommandline">Mapping a network drive in Windows command line</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68879466_MappingaWebDAVnetworkdrive-MappinganetworkdriveinWindows">Mapping a network drive in Windows</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68879466_MappingaWebDAVnetworkdrive-MappinganetworkplaceonWindowsVista">Mapping a network place on Windows Vista</a></p>
+</li></ul></li><li class=" "><p   
+><a   href="k11/#src-68879466_MappingaWebDAVnetworkdrive-Accessingthenetworkdrive">Accessing the network drive</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68879466_MappingaWebDAVnetworkdrive-Multiplewebsitesusingthesamedomain">Multiple websites using the same domain</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <h3 id="src-68879466_MappingaWebDAVnetworkdrive-MappinganetworkdriveinWindows" class="heading "><span>Mapping a network drive in Windows</span></h3>
+<p   
+>The following procedure is demonstrated on Windows 7. In other versions of Windows, it may be slightly different, while the principles and the entered values remain the same.</p>
+<ol class=" "><li class=" "><p   
+>Open <strong class=" ">Windows Explorer</strong>.</p>
+</li><li class=" "><p   
+>Right&#8209;click the<strong class=" "> Computer</strong> in the left menu and select <strong class=" ">Map network drive</strong>.<br/></p>
+<ul class=" "><li class=" "><p   
+>Alternatively, you can click the <strong class=" ">Computer</strong> and select the <strong class=" ">Map network drive</strong> action from the top menu.<br/><br/></p>
+</li></ul><p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/5212797/mapping_network_drive.png" alt="images/download/attachments/5212797/mapping_network_drive.png" width="500"  />
+<br/><br/></p>
+</li><li class=" "><p   
+>In the <strong class=" ">Map Network Drive</strong> dialog, adjust the following values:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Drive</strong> - select the letter that will be assigned to the network drive in Windows.</p>
+</li><li class=" "><p   
+><strong class=" ">Folder</strong> - enter a URL in format <i class=" ">http://&lt;your_domain&gt;/cms/files</i> where the <i class=" ">&lt;your_domain&gt;</i> part should be replaced with the domain name of your website.</p>
+</li><li class=" "><p   
+><strong class=" ">Reconnect at logon</strong> - leave this option enabled if you want the drive to be connected next time your start Windows.</p>
+</li><li class=" "><p   
+><strong class=" ">Connect using different credentials</strong> - use this option in case that you want to use a different user account than your current Windows account. In such case, you will be asked to enter logon credentials after clicking <strong class=" ">Finish</strong>.<br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Finish</strong> and wait until the network drive gets connected.</p>
+</li></ol>    <h4 id="src-68879466_MappingaWebDAVnetworkdrive-MappinganetworkplaceonWindowsVista" class="heading "><span>Mapping a network place on Windows Vista</span></h4>
+<p   
+>When you experience problems while mapping a network drive on Windows XP, Windows Server 2003 or Windows Vista, you can map a network place instead:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Start</strong> menu and right-click <strong class=" ">Computer</strong> and choose <strong class=" ">Map Network Drive </strong>from the context menu.</p>
+</li><li class=" "><p   
+>Click the link saying <i class=" ">Connect to a Web site that you can use to store your pages and pictures</i>. This will open the <strong class=" ">Add Network Place Wizard</strong>.</p>
+<ol class=" "><li class=" "><p   
+>In the first step of the wizard, just click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p   
+>In the second step, choose <strong class=" ">Choose another network location</strong> and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p   
+>In the third step, enter the URL in the <i class=" ">http://&lt;your_domain&gt;/cms/files</i> format and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p   
+>In the fourth step, enter a name that will be used for the network location (e.g. <i class=" ">MyNetworkPlace</i>) and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p   
+>In the final step, click <strong class=" ">Finish</strong>.</p>
+</li></ol></li></ol><p   
+>Once finished, the network place should be mapped and content of the WebDAV network drive should be accessible through it. Please note that in this case, the content will not be accessible under a drive letter (e.g. <i class=" ">X:\</i>), but <strong class=" ">under the name of the network place</strong> specified in step 4 of the wizard (e.g. <i class=" ">\\MyNetworkPlace\</i>).</p>
+    <h3 id="src-68879466_MappingaWebDAVnetworkdrive-Accessingthenetworkdrive" class="heading "><span>Accessing the network drive</span></h3>
+<p   
+>Once you have the network drive connected, it is recommended to check that you can access it. Open <strong class=" ">Windows Explorer</strong> or any other file manager that you are using. The drive should be available among other drives in your system, under the letter that you assigned to it when you mapped it.</p>
+<p   
+>If you open the drive, you should see that it contains four folders. Each of them contains different types of files stored by your website:</p>
+<ul class=" "><li class=" "><p   
+>attachments - contains page attachments and files stored in pages&#39; file fields. They can be found in folders resembling the website&#39;s content tree structure.</p>
+</li><li class=" "><p   
+>content - contains CMS.File pages stored in folders resembling the website&#39;s content tree structure.</p>
+</li><li class=" "><p   
+>media - contains a folder for each media library on the website, while each folder contains the actual content of the respective library.</p>
+</li><li class=" "><p   
+>groups - contains a folder for each group defined on the site, while each group folder contains the three folders mentioned above, containing only those attachments, content and media that belong to the particular group.</p>
+</li></ul><p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/5212797/folders_on_mapped_drive.png" alt="images/download/attachments/5212797/folders_on_mapped_drive.png" width="500"  />
+        <br/><span class="caption">Folders on a mapped drive</span>
+    </p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Unusually long response time</strong></p>
+<p   
+>If you are experience unusually long delays when opening a WebDAV drive, copying files to or from it or switching between different WebDAV drives, make sure you have the <strong class=" ">Automatically detect settings</strong> option disabled in <strong class=" ">Internet Explorer -&gt; Tools -&gt; Internet Options -&gt; Connections -&gt; LAN Settings</strong>.</p>
+<p   
+>See the following article for more details: <a  class="external-link" href="http://support.microsoft.com/kb/2445570">http://support.microsoft.com/kb/2445570</a>.</p>
+        </div>
+    </div>
+    <h3 id="src-68879466_MappingaWebDAVnetworkdrive-Multiplewebsitesusingthesamedomain" class="heading "><span>Multiple websites using the same domain</span></h3>
+<p   
+>In a typical scenario, each website running in Kentico uses a different domain. Therefore, the URL of the mapped network drive would be different for each site, letting you map a drive separately for each website.</p>
+<p   
+>However, if you have multiple websites using the same domain (typically <i class=" ">localhost</i> in a development environment), only one of these websites can be running at a time while all others are stopped. In this case, the network drive always displays content of the site that is currently running.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

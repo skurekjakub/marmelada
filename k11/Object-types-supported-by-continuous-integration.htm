@@ -1,0 +1,4154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Object types supported by continuous integration - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880577"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing-websites.htm">Developing websites</a></li>
+                                                                                                         <li class="shortcut"><a href="Preparing-your-environment-for-team-development.htm">Preparing your environment for team development</a></li>
+                                                                                     <li><a href="Setting-up-continuous-integration.htm">Setting up continuous integration</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880577"> <span>Object types supported by continuous integration</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p  class="confluence-link" 
+>Continuous integration supports the following types of Kentico objects:</p>
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68880577_Objecttypessupportedbycontinuousintegration-General">General</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880577_Objecttypessupportedbycontinuousintegration-Pagecontent">Page content</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880577_Objecttypessupportedbycontinuousintegration-On-linemarketing">On-line marketing</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880577_Objecttypessupportedbycontinuousintegration-E-commerce">E-commerce</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880577_Objecttypessupportedbycontinuousintegration-Communitygroups">Community groups</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880577_Objecttypessupportedbycontinuousintegration-Bindingobjecttypes">Binding object types</a></p>
+</li></ul><p   
+></p>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="k11/Setting-up-continuous-integration.htm">Setting up continuous integration</a></p>
+</li><li class=" "><p   
+><a   href="k11/Continuous-integration-repository-structure.htm">Continuous integration repository structure</a></p>
+</li><li class=" "><p   
+><a   href="k11/Excluding-objects-from-continuous-integration.htm">Excluding objects from continuous integration</a></p>
+</li><li class=" "><p   
+><a   href="k11/Synchronizing-database-changes-not-managed-by-continuous-integration.htm">Synchronizing database changes not managed by continuous integration</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68880577_Objecttypessupportedbycontinuousintegration-General" class="heading "><span>General</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Object type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>CI folder name</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Notes</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-alternative-forms.htm">Alternative forms</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.alternativeform</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type with the following possible parent types: <strong class=" ">Custom tables</strong>, <strong class=" ">Forms</strong>, <strong class=" ">Page types</strong>, <strong class=" ">Module classes<br/></strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Avatars.htm">Avatars</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.avatar</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Bad-words.htm">Bad words</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>badwords.word</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Badges.htm">Badges</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.badge</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The continuous integration data of user objects does not include the activity point values based on which the system assigns automatic badges. As a result, users may have different automatic badges assigned after being synchronized to different instances.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Banned-IPs.htm">Banned IPs</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.bannedip</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-canned-responses.htm">Canned responses for chat</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>chat.supportcannedresponse</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Only includes public canned responses. Personal canned responses created by individual users are not supported by the continuous integration solution.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-chat-rooms.htm">Chat rooms</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>chat.room</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Continuous integration does not track private and one-on-one chat rooms, and the serialized data does not include the enabled status of rooms. When <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> data from the <i class=" ">CIRepository</i> folder, any new chat rooms are always created with the <i class=" ">Enabled</i> status.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-consents.htm">Consents</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.consent</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes consent definitions, with all language versions of the consent texts. Continuous integration does not track consent agreements given by contacts or archived consents.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-countries.htm">Countries</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.country</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>States (cms.state)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Designing-websites-using-CSS.htm">CSS stylesheets</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.cssstylesheet</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Setting-up-a-multilingual-user-interface.htm">Cultures</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.culture</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p  class="confluence-link" 
+><a   href="k11/Custom-tables.htm">Custom tables</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.customtable<br/>    <span style="color: #ffffff;">
+_______________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes the definitions and settings of custom tables. The data records stored within the tables are represented by a separate object type for each table, named in format <i class=" ">customtableitem.&lt;table code name&gt;.</i></p>
+<p   
+>Note: If you change the code name of a custom table with existing data records, the system attempts to re-serialize all data under the new object type. If any problems occur, you may need to manually serialize all objects in the <i class=" ">Continuous integration</i> application to bring your <i class=" ">CIRepository</i> folder into the correct state.<i class=" "><br/></i></p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Creating-alternative-forms.htm">Alternative forms</a> (cms.alternativeform)</p>
+</li><li class=" "><p   
+><a   href="k11/Writing-transformations.htm">Transformations</a> (cms.transformation)</p>
+</li><li class="confluence-link "><p   
+><a   href="k11/Loading-data-using-custom-queries.htm">Queries</a> (cms.query)</p>
+</li><li class=" "><p   
+><a   href="k11/Setting-custom-table-permissions.htm">Permissions</a> (cms.classpermission)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-custom-table-data.htm">Custom table data</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>customtableitem.&lt;table code name&gt;</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Represents the data records stored within custom tables. Each custom table has a separate object type for its data, named in format <i class=" ">customtableitem.&lt;table code name&gt;</i>. For example: <i class=" ">customtableitem.customtable.sampletable</i></p>
+<p   
+>Note: The continuous integration solution does not track the data of custom tables without an <i class=" ">ItemGUID</i> field. The GUID values are used to identify custom table records and in the names of the corresponding XML files. You can add a GUID field and generate identifier values for all records by clicking <i class=" ">Create GUID</i> on the <i class=" ">Fields</i> tab of the custom table&#39;s editing interface.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-device-profiles.htm">Device profiles</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.deviceprofile</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-email-templates.htm">Email templates</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.emailtemplate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Connecting-Kentico-to-social-media.htm">Facebook apps</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>sm.facebookapplication</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Facebook pages (sm.facebookaccount)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Adding-social-media-accounts.htm">Facebook pages</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>sm.facebookaccount</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Facebook app</strong> objects.</p>
+<p   
+>The continuous integration data does not include individual Facebook posts or the statistical data (Insights) measured for Facebook pages.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Forms.htm">Forms</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.form<br/>cms.formclass</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Only includes form definitions and settings, not the data records stored by individual forms.</p>
+<p   
+>The system uses multiple object types to store the definitions and settings of forms. See the <strong class=" ">Forms</strong> section in <a   href="k11/Continuous-integration-repository-structure.htm">Continuous integration repository structure</a> for more information.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Creating-alternative-forms.htm">Alternative forms</a> (cms.alternativeform)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Developing-form-controls.htm">Form controls</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.formusercontrol</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-forum-groups.htm">Forum groups</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>forums.forumgroup</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Forums (forums.forum)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Attaching-files-to-forum-posts.htm">Forum post attachments</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>forums.forumattachment</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Forum post</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-forum-posts.htm">Forum posts</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>forums.forumpost</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Forum</strong> or <strong class=" ">Group forum</strong> objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Forum attachments (forums.forumattachment)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Forums.htm">Forums</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>forums.forum</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Forum group</strong> objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Forum posts (forums.forumpost)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Help topics for UI elements</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.helptopic</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">UI element</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-integration-connectors.htm">Integration bus connectors</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>integration.connector</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes the definitions of integration bus connectors. Outgoing and incoming integration tasks are dynamic data and are not tracked by continuous integration.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-installation-packages-for-modules.htm">Libraries (DLLs) registered for custom modules</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.resourcelibrary</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Module</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Connecting-Kentico-to-social-media.htm">LinkedIn apps</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>sm.linkedinapplication</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>LinkedIn company profiles (sm.linkedinaccount)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Adding-social-media-accounts.htm">LinkedIn company profiles</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>sm.linkedinaccount</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">LinkedIn app</strong> objects.</p>
+<p   
+>The continuous integration data does not include individual company updates (posts) or the statistical data measured for LinkedIn company profiles.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-macro-signatures.htm">Macro identities assigned to users</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.usermacroidentity</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">User</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-macro-rules.htm">Macro rules</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.macrorule</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-macro-signatures.htm">Macro signature identities</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.macroidentity</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Media-library-files.htm">Media libraries</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>media.library</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Inserting-files-into-media-libraries.htm">Media library files</a> (media.file)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Inserting-files-into-media-libraries.htm">Media library files</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>media.file</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Media library</strong> or <strong class=" ">Group media library</strong> objects.</p>
+<p   
+>Only includes media file definitions, not the binary data of individual media files. Binary data is stored in the <a   href="k11/Configuring-media-libraries.htm#src-68879365_Configuringmedialibraries-Configuringcustomstorageformedialibraries">location configured for the media library</a>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Membership-management.htm">Memberships</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.membership</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Meta files</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.metafile</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes files related to other objects. For example thumbnail images of page types or email template attachments.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-custom-modules.htm">Modules</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.resource</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Module permissions (cms.permission)</p>
+</li><li class=" "><p   
+>Libraries (DLLs) registered for custom modules (cms.resourcelibrary)</p>
+</li><li class=" "><p   
+>UI elements (cms.uielement)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Module classes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.class</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes the definitions and settings of module classes (object types).</p>
+<p   
+>If you wish to use continuous integration for the data stored by custom module classes, you need to enable continuous integration in the corresponding <a   href="k11/Setting-the-type-information-for-module-classes.htm">type information</a> code. See: <a   href="k11/Enabling-continuous-integration-for-custom-classes.htm">Enabling continuous integration for custom classes</a></p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Creating-alternative-forms.htm">Alternative forms</a> (cms.alternativeform)</p>
+</li><li class=" "><p   
+><a   href="k11/Loading-data-using-custom-queries.htm">Queries</a> (cms.query)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Module classes - Customizable</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.systemtable</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Module classes that have the <strong class=" ">Can be customized</strong> property enabled are represented by the separate <i class=" ">cms.systemtable</i> object type.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Creating-alternative-forms.htm">Alternative forms</a> (cms.alternativeform)</p>
+</li><li class=" "><p   
+><a   href="k11/Loading-data-using-custom-queries.htm">Queries</a> (cms.query)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Module permissions</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.permission</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Module</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Defining-notification-gateways.htm">Notification gateways</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>notification.gateway</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Allowing-users-to-subscribe-to-content-change-notifications.htm">Notification subscriptions</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>notification.subscription</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Notification template</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-notification-message-templates.htm">Notification templates</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>notification.template</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Notification subscriptions (notification.subscription)</p>
+</li><li class=" "><p   
+>Notification template text (notification.templatetext)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Notification template text</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>notification.templatetext</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Notification template</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-pages.htm">Page layouts (shared)</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.layout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page template categories</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.pagetemplatecategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page template scopes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.pagetemplatescope</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Page template </strong>objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-page-templates.htm">Page templates</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.pagetemplate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Page template scopes (cms.pagetemplatescope)</p>
+</li><li class=" "><p   
+>MVT combinations (om.mvtcombination)</p>
+</li><li class=" "><p   
+><a   href="k11/Multivariate-testing.htm">MVT variants</a> (om.mvtvariant)</p>
+</li><li class=" "><p   
+><a   href="k11/Content-personalization.htm">Personalization variants</a> (om.personalizationvariant)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Limiting-the-pages-users-can-create.htm">Page type scopes</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.documenttypescope</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Page-types.htm">Page types</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.documenttype</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Creating-alternative-forms.htm">Alternative forms</a> (cms.alternativeform)</p>
+</li><li class=" "><p   
+><a   href="k11/Writing-transformations.htm">Transformations</a> (cms.transformation)</p>
+</li><li class=" "><p   
+><a   href="k11/Loading-data-using-custom-queries.htm">Queries</a> (cms.query)</p>
+</li><li class=" "><p   
+><a   href="k11/Permissions-for-page-types.htm">Permissions</a> (cms.classpermission)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-permissions.htm">Permissions of classes</a> (Page types or Custom tables)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.classpermission</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type with the following possible parent types: <strong class=" ">Custom tables</strong>, <strong class=" ">Page types</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Poll answers</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>polls.pollanswer</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Poll</strong> or <strong class=" ">Group poll</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Polls.htm">Polls</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>polls.poll</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Poll answers (polls.pollanswer)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Loading-data-using-custom-queries.htm">Queries</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.query</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type with the following possible parent types: <strong class=" ">Custom tables</strong>, <strong class=" ">Page types</strong>,<strong class=" "> <strong class=" ">Module classes</strong></strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-report-categories.htm">Report categories</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>reporting.reportcategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Report graphs</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>reporting.reportgraph</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Report</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Subscribing-to-reports.htm">Report subscriptions</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>reporting.reportsubscription</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Report</strong> objects. Report subscriptions are always site-related objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Report tables</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>reporting.reporttable</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Report</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Report values</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>reporting.reportvalue</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Report</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-reports.htm">Reports</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>reporting.report</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Report graphs (reporting.reportgraph)</p>
+</li><li class=" "><p   
+><a   href="k11/Subscribing-to-reports.htm">Report subscriptions</a> (reporting.reportsubscription)</p>
+</li><li class=" "><p   
+>Report tables (reporting.reporttable)</p>
+</li><li class=" "><p   
+>Report values (reporting.reportvalue)</p>
+</li><li class=" "><p   
+><a   href="k11/Storing-data-from-reports.htm">Reports - Saved views</a> (reporting.savedreport)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Reports - Saved graph images</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>reporting.savedgraph</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Report - Saved view</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Storing-data-from-reports.htm">Reports - Saved views</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>reporting.savedreport</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Report</strong> objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Reports - Saved graph images (reporting.savedgraph)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-resource-strings.htm">Resource strings (localization)</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.resourcestring</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes the basic definitions of resource strings that are stored in the database. For strings stored within <strong class=" ">resx</strong> files in the Kentico project, use your source control system to synchronize the files directly.</p>
+<p   
+>The text values (translations) of individual strings are stored separately under the <strong class=" ">cms.resourcetranslation</strong> binding object type.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Role-management.htm">Roles</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.role</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Scheduling-tasks.htm">Scheduled tasks</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.scheduledtask</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Does not include <i class=" ">System tasks</i> (dynamically created temporary tasks that the system uses internally).</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-local-search-indexes.htm">Search indexes</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.searchindex</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>When restoring data from the <i class=" ">CIRepository</i> folder, you can configure the restore utility to automatically log rebuild tasks for any new or modified search indexes. The index rebuilds are processed when the application starts up after the restore operation.</p>
+<p   
+>See <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">Restoring continuous integration files to the database</a> for more information.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Adding-custom-website-settings.htm">Setting categories and groups</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.settingscategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The <i class=" ">cms.settingscategory</i> object type includes both setting categories and setting groups.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-settings-for-sites.htm">Settings</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.settingskey</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Settings are supported by continuous integration, but <i class=" "><strong class=" ">excluded by default</strong> </i>in the <a   href="k11/Excluding-objects-from-continuous-integration.htm">repository.config file</a>. Settings may contain sensitive data &ndash; only remove the exclusion if you agree to make setting values available within the file system used by your application and any connected source control systems. You can configure the <i class=" ">repository.config</i> file to include settings in general, but exclude individual setting keys that you consider sensitive.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-SharePoint-integration-connections.htm">SharePoint connections</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>sharepoint.sharepointconnection</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-SharePoint-libraries.htm">SharePoint libraries</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>sharepoint.sharepointlibrary</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Continuous integration does not synchronize files stored in SharePoint libraries. After <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> a new SharePoint library from the <i class=" ">CIRepository</i> folder, the system automatically synchronizes the files from the related SharePoint server.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-sites.htm">Sites</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.site</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The continuous integration data does not include the status of sites (running, stopped, etc.). When <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> data from the <i class=" ">CIRepository</i> folder, any new sites are stopped by default and need to be started manually in the <strong class=" ">Sites</strong> application.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Setting-domain-names-for-sites.htm">Site domain aliases</a> (cms.sitedomainalias)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Setting-domain-names-for-sites.htm">Site domain aliases</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.sitedomainalias</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object of <strong class=" ">Site</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-SMTP-servers.htm">SMTP servers</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.smtpserver</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes the additional servers defined in the <i class=" ">SMTP servers</i> application.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>States</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.state</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Country </strong>objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-time-zones.htm">Time zones</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.timezone</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Writing-transformations.htm">Transformations</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.transformation</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type with the following possible parent types: <strong class=" ">Custom tables</strong>, <strong class=" ">Page types</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Developing-custom-translation-services.htm">Translation services</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.translationservice</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Connecting-Kentico-to-social-media.htm">Twitter apps</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>sm.twitterapplication</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Twitter channels (sm.twitteraccount)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Adding-social-media-accounts.htm">Twitter channels</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>sm.twitteraccount</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Twitter app</strong> objects.</p>
+<p   
+>The continuous integration data does not include individual Tweets or the statistical data (Analytics) measured for Twitter channels.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Reference---Managing-UI-elements.htm">UI elements</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.uielement</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Module</strong> objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Help topics (cms.helptopic)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/User-management.htm">Users</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.user<br/>cms.usersettings</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Users in Kentico are a composite object type. The basic properties are stored within <i class=" ">cms.user</i> objects, with additional settings within child <i class=" ">cms.usersettings</i> objects. See the <strong class=" ">Users</strong> section in <a   href="k11/Continuous-integration-repository-structure.htm">Continuous integration repository structure</a> for more information.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Working-with-macro-signatures.htm">Macro identities assigned to users</a> (cms.usermacroidentity)</p>
+</li><li class=" "><p   
+><a   href="k11/Creating-personal-page-categories.htm">User categories</a> (cms.usercategory)</p>
+</li><li class=" "><p   
+>User widget zone content (cms.personalization)</p>
+</li><li class=" "><p   
+>Widget dashboard content (cms.dashboard)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User widget zone content</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.personalization</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">User</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-web-templates.htm">Web templates</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.webtemplate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Web part categories</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.webpartcategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Using-web-part-containers.htm">Web part containers</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.webpartcontainer</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Using-custom-web-part-layouts.htm">Web part layouts</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.webpartlayout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Web part </strong>objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Developing-web-parts.htm">Web parts</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.webpart</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Using-custom-web-part-layouts.htm">Web part layouts</a> (cms.webpartlayout)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Widget categories</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.widgetcategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-widget-dashboards.htm">Widget dashboard content</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.dashboard</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">User</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Preparing-widgets-for-users.htm">Widgets</a>    <span style="color: #ffffff;">
+______    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.widget</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-workflows.htm">Workflows</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.workflow</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes the definitions of workflows. Continuous integration does not track the workflow status of pages. Pages under workflow are fully stored in the repository only after they are published.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Workflow scopes (cms.workflowscope)</p>
+</li><li class=" "><p   
+>Workflow steps (cms.workflowstep)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-custom-action-workflow-steps.htm">Workflow actions</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.workflowaction</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Applying-workflows-to-pages.htm">Workflow scopes</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.workflowscope</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Workflow</strong> objects.</p>
+<p   
+>Note: Unlike other workflow objects, scopes are always related to a specific site and are stored in the corresponding subfolder in <i class=" ">CIRepository.</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Workflow steps</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.workflowstep</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Workflow</strong> objects.</p>
+<p   
+>Includes steps defined for both <a   href="k11/Defining-basic-workflow-steps.htm">basic</a> and <a   href="k11/Adding-advanced-workflow-steps.htm">advanced</a> workflows.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h3 id="src-68880577_Objecttypessupportedbycontinuousintegration-Pagecontent" class="heading "><span>Page content</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Object type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>CI folder name</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Notes</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ACL items</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.aclitem</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Page-level permission (ACL) </strong>objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-responsive-images.htm">Attachment image variants</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.attachmentvariant</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Attachment</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Page-attachments.htm">Attachments</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.attachment</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Page </strong>objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Attachment image variants (cms.attachmentvariant)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Blogs.htm">Blog comments</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>blog.comment</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Page</strong> objects.</p>
+<p   
+>Note: Only includes comments added to blog posts. Blogs and blog posts are stored as pages.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-categories.htm">Categories</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.category</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes global and site categories.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Message-boards.htm">Message boards</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>board.board</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Page</strong> objects. Includes both general message boards and boards created on the pages of <a   href="k11/Groups.htm">community groups</a>.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Message board messages (    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+board.message    </span>
+    </span>
+    </span>
+)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Message board messages</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>board.message</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Message board</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Setting-page-aliases.htm">Page aliases</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.documentalias</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Page</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Page-level-permissions-%28ACLs%29.htm">Page-level permissions</a> (ACLs)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.acl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>ACL items (    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+cms.aclitem    </span>
+    </span>
+    </span>
+)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-pages.htm">Pages</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.document</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>When using the <a   href="k11/Using-workflows.htm">page workflow</a> feature, the majority of workflow information is ignored. For more details, see <a   href="k11/Setting-up-continuous-integration.htm#src-68880572_Settingupcontinuousintegration-Usageandrelationshipwithotherfeatures">Usage and relationship with other features</a>.</p>
+<p   
+>The system uses multiple files to store page data. See the <strong class=" ">Pages </strong>section in <a   href="k11/Continuous-integration-repository-structure.htm">Continuous integration repository structure</a> for more information.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Managing-responsive-images.htm">Attachment image variants</a> (cms.attachmentvariant)</p>
+</li><li class=" "><p   
+><a   href="k11/Page-attachments.htm">Attachments</a> (    <span style="color: #1c1c1c;">
+cms.attachment    </span>
+)</p>
+</li><li class=" "><p   
+><a   href="k11/Blogs.htm">Blog comments</a> (blog.comment)</p>
+</li><li class=" "><p   
+><a   href="k11/Message-boards.htm">Message boards</a> (board.board)</p>
+</li><li class=" "><p   
+><a   href="k11/Creating-MVT-tests.htm">MVT combinations with editor widget variants</a> (om.documentmvtcombination)</p>
+</li><li class=" "><p   
+>MVT variants of editor widgets (om.documentmvtvariant)</p>
+</li><li class=" "><p   
+><a   href="k11/Setting-page-aliases.htm">Page aliases</a> (cms.documentalias)</p>
+</li><li class=" "><p   
+><a   href="k11/Content-personalization.htm">Personalization variants of editor widgets</a> (om.documentpersonalizationvariant)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Displaying-related-pages-using-named-relationships.htm">Page relationship types</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.relationshipname</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Tagging-pages.htm">Page tags and tag groups</a>     <span style="color: #ffffff;">
+__________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.taggroup</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Tag groups are represented as a separate object type (cms.taggroup). Tags are stored within the data of individual Page (cms.document) objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-personal-page-categories.htm">User categories</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.usercategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes the personal page categories created by individual users.</p>
+<p   
+>Child object type of <strong class=" ">User</strong> objects.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Unsupported page permission scenario</strong></p>
+<p   
+>Continuous integration does not support scenarios where different <a   href="k11/Page-level-permissions-%28ACLs%29.htm">page-level permissions (ACLs)</a> are applied to the same page from different sources and then synchronized.</p>
+<p   
+><strong class=" ">Developer A</strong></p>
+<ol class=" "><li class=" "><p   
+>Sets permissions for a user or a role on a page.</p>
+</li><li class=" "><p   
+>Pushes the changes to the source control system.</p>
+</li></ol><p   
+><strong class=" ">Developer B</strong></p>
+<ol class=" "><li class=" "><p   
+>Sets <strong class=" ">different</strong> permissions for the <strong class=" ">same</strong> user or role on the <strong class=" ">same</strong> page.</p>
+</li><li class=" "><p   
+>Downloads the latest version from the source control. No collisions occur, because the ACL items are represented by different files.</p>
+</li><li class=" "><p   
+><a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">Restores objects</a> from the file system to the database. Both ACL item files are processed, but only one is kept in the database, depending on the order in which they are processed.</p>
+</li></ol>        </div>
+    </div>
+    <h3 id="src-68880577_Objecttypessupportedbycontinuousintegration-On-linemarketing" class="heading "><span>On-line marketing</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Object type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>CI folder name</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Notes</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-A_B-tests-for-pages.htm">A/B tests</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.abtest</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The continuous integration data does not include the start/end dates and status of A/B tests (not started, running, finished, etc.). When <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> data from the <i class=" ">CIRepository</i> folder, any new A/B tests are always created with the <i class=" ">Not started</i> status.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>A/B test variants (om.abvariant)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>A/B test variants</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.abvariant</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">A/B test</strong> objects.</p>
+<p   
+>The data only includes the names of the variant and the path of the related page. The actual page variants are stored as standard <strong class=" ">Pages</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Organizing-contacts-into-accounts.htm">Account statuses</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.accountstatus</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Adding-custom-activity-types.htm">Activity types</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.activitytype</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Developing-custom-marketing-automation-actions.htm">Automation actions</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ma.automationaction</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Marketing-automation.htm">Automation processes</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ma.automationprocess</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Only includes the general definitions of marketing automation processes. Process states for individual contacts are dynamic live site data and are not tracked by continuous integration.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Working-with-the-automation-process-designer.htm">Automation process steps</a> (ma.automationstep)</p>
+</li><li class=" "><p   
+><a   href="k11/Setting-triggers-for-automation-processes.htm">Automation process triggers</a> (cms.objectworkflowtrigger)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-the-automation-process-designer.htm">Automation process steps</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ma.automationstep</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Automation process</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Setting-triggers-for-automation-processes.htm">Automation process triggers</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.objectworkflowtrigger</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Automation process</strong> objects.</p>
+<p   
+>Note: When <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> data from the <i class=" ">CIRepository</i> folder, process triggers of the &quot;Contact scored X or more&quot; type are created only if the related <a   href="k11/Scoring-contacts.htm">score</a> exists in the given database. To reliably use continuous integration for these types of triggers, you need to manually ensure that the required scores are present on all instances in the environment (Scores are currently not supported by continuous integration).</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Banner categories</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.bannercategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Banners.htm">Banners</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.banner</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Continuous integration data does not include the number of <i class=" ">Impressions left</i> and <i class=" ">Clicks left</i> for banners.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Campaigns.htm">Campaigns</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>analytics.campaign</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The continuous integration data does not include the status of campaigns (draft, running, etc.). When <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> data from the <i class=" ">CIRepository</i> folder, any new campaigns are always created with the <i class=" ">Draft</i> status.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Campaign assets (analytics.campaignasset)</p>
+</li><li class=" "><p   
+>Campaign conversions (analytics.campaignconversion)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Campaign assets</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>analytics.campaignasset</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Campaign</strong> objects. Represents pages or promotional emails assigned to a campaign&#39;s content inventory.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Campaign asset URLs (analytics.campaignasseturl)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Campaign asset URLs</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>analytics.campaignasseturl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Campaign asset</strong> objects. Represents page URLs assigned to a campaign&#39;s content inventory on &quot;content only&quot; (MVC) sites.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Campaign conversions</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>analytics.campaignconversion</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Campaign</strong> objects.</p>
+<p   
+>The continuous integration data of campaign conversions does not include live site statistics (the number of logged conversion hits).</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Segmenting-contacts-into-contact-groups.htm">Contact groups</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.contactgroup</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Only includes the definitions of contact groups, without information about the contacts or accounts assigned to the groups.</p>
+<p   
+>Additionally, the continuous integration data does not contain information about scheduled rebuilds for contact groups. After <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> a new condition-based contact group from the <i class=" ">CIRepository</i> folder, you need to manually rebuild the group in the <i class=" ">Contact groups</i> application.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Organizing-contacts-into-accounts.htm">Contact roles</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.contactrole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Assigning-statuses-to-contacts.htm">Contact statuses</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.contactstatus</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Logging-custom-conversions-on-your-website.htm">Custom conversions</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>analytics.conversion</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes only the definitions of custom conversions, without the count and value statistics logged for conversions.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Email-marketing.htm">Email feeds</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>newsletter.newsletter</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes the definitions and configuration of both newsletters and email campaigns.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Emails (newsletter.issue)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Preparing-email-templates.htm">Marketing email templates</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>newsletter.emailtemplate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Preparing-email-widgets.htm">Marketing email widgets</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>newsletter.emailwidget</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Marketing emails</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>newsletter.issue</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The continuous integration data does not include the send status of marketing emails or any live marketing data (the number of opened emails, clicked links, unsubscriptions, etc.). When <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> data from the <i class=" ">CIRepository</i> folder, any new emails are always created with the <i class=" ">Draft</i> status.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Email A/B tests (newsletter.abtest)</p>
+</li><li class=" "><p   
+>Email variants for A/B tests (newsletter.issuevariant)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/A_B-testing-marketing-emails.htm">Marketing email A/B tests</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>newsletter.abtest</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Email campaign email</strong> objects.</p>
+<p   
+>The continuous integration data of marketing email A/B tests does not include any data collected or specified after the emails are sent out (such as the selection of the test winner).</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/A_B-testing-marketing-emails.htm">Marketing email variants for A/B tests</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>newsletter.issuevariant</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Email campaign email</strong> objects.</p>
+<p   
+>The continuous integration data does not include the send status of marketing email variants or any live marketing data (the number of opened emails, clicked links, etc.).</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Creating-MVT-tests.htm">MVT tests</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.mvtest</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The continuous integration data does not include the following live data of MVT tests: start/end dates, status (disabled, running, finished, etc.), current conversion counts and values</p>
+<p   
+>When <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring</a> data from the <i class=" ">CIRepository</i> folder, any new MVT tests are always created with the <i class=" ">Disabled</i> status.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>MVT combinations</p>
+<p   
+>    <span style="color: #ffffff;">
+<br/>    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.mvtcombination<br/>&ndash; OR &ndash;<br/>om.documentmvtcombination</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Combinations of web parts and web part zone MVT variants are stored as <i class=" ">om.mvtcombination</i> objects     <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+(child object type of <strong class=" ">Page template</strong> objects).    </span>
+    </span>
+    </span>
+</p>
+<p   
+>    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+Combinations of editor widget MVT variants are stored as <i class=" ">om.documentmvtcombination</i> objects     <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+(child object type of <strong class=" ">Page</strong> objects).    </span>
+    </span>
+    </span>
+    </span>
+    </span>
+    </span>
+    </span>
+    </span>
+    </span>
+    </span>
+    </span>
+</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>MVT variants</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.mvtvariant<br/>&ndash; OR &ndash;<br/>om.documentmvtvariant</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+Variants of web parts and web part zones are stored as <i class=" ">om.mvtvariant</i> objects (child object type of <strong class=" ">Page template</strong> objects).    </span>
+    </span>
+    </span>
+</p>
+<p   
+>    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+Variants of editor widgets are stored as <i class=" ">om.documentmvtvariant</i> objects (child object type of <strong class=" ">Page</strong> objects).    </span>
+    </span>
+    </span>
+<br/>    </span>
+    </span>
+</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Content-personalization.htm">Personalization variants</a><br/>    <span style="color: #ffffff;">
+__________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.personalizationvariant</p>
+<p   
+>&ndash; OR &ndash;<br/>om.documentpersonalizationvariant</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+Variants of web parts and web part zones are stored as <i class=" ">om.personalizationvariant</i> objects (child object type of <strong class=" ">Page template</strong> objects).    </span>
+    </span>
+    </span>
+</p>
+<p   
+>    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+Variants of editor widgets are stored as <i class=" ">om.documentpersonalizationvariant</i> objects (child object type of <strong class=" ">Page</strong> objects).<br/>    </span>
+    </span>
+    </span>
+</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Monitoring-traffic-from-search-engines.htm">Search engines (web analytics)</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.searchengine</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h3 id="src-68880577_Objecttypessupportedbycontinuousintegration-E-commerce" class="heading "><span>E-commerce</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col  width="271.0"/>
+                                    <col  width="228.0"/>
+                                    <col  width="1242.0"/>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Object type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>CI folder name</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Notes</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-brands-and-manufacturers.htm">Brands</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.brand</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-Buy-X-Get-Y-discounts.htm">Buy X Get Y discounts</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.multibuydiscount</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class="confluence-link "><p   
+><a   href="k11/Working-with-coupon-codes.htm">Buy X Get Y and Product coupon codes</a> (ecommerce.multibuycouponcode)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-coupon-codes.htm">Buy X Get Y and Product coupon codes</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.multibuycouponcode</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Buy X Get Y discount</strong> or <strong class=" ">Product coupon</strong> objects.</p>
+<p   
+>The continuous integration data of individual coupon codes does not include the current number of redemptions (coupon code uses). New coupon codes <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restored</a> from the <i class=" ">CIRepository</i> folder are always unused.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-shipping-carriers.htm">Carriers</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.carrier</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-product-collections.htm">Collections</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.collection</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-currencies.htm">Currencies</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.currency</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Departments.htm">Departments</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.department</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Discounts:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Working-with-catalog-discounts.htm">Catalog discounts</a></p>
+</li><li class=" "><p   
+><a   href="k11/Working-with-order-discounts.htm">Order discounts</a></p>
+</li><li class=" "><p   
+><a   href="k11/Working-with-free-shipping-offers.htm">Free shipping offers</a></p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.discount</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Includes Catalog discounts, Order discounts and Free shipping offers. Volume discounts and Buy X Get Y discounts are stored as separate objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Working-with-coupon-codes.htm">Discount coupon codes</a> (ecommerce.couponcode)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-coupon-codes.htm">Discount coupon codes</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.couponcode</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Discount</strong> objects (Order discounts or Free shipping offers).</p>
+<p   
+>The continuous integration data of individual coupon codes does not include the current number of redemptions (coupon code uses). New coupon codes <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restored</a> from the <i class=" ">CIRepository</i> folder are always unused.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-exchange-rates.htm">Exchange tables</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.exchangetable</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-gift-cards.htm">Gift cards</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.giftcard</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Working-with-coupon-codes.htm">Gift card coupon codes</a> (ecommerce.giftcardcouponcode)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-coupon-codes.htm">Gift card coupon codes</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.giftcardcouponcode</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Gift card</strong> objects.</p>
+<p   
+>The continuous integration data of individual coupon codes does not include the current number of redemptions (coupon code uses). New coupon codes <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restored</a> from the <i class=" ">CIRepository</i> folder are always unused.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-brands-and-manufacturers.htm">Manufacturers</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.manufacturer</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Order-statuses.htm">Order statuses</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.orderstatus</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-payment-methods.htm">Payment methods</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.paymentoption</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-product-coupons.htm">Product coupons</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.productcoupondiscount</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class="confluence-link "><p   
+><a   href="k11/Working-with-coupon-codes.htm">Buy X Get Y and Product coupon codes</a> (ecommerce.multibuycouponcode)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Product-statuses.htm">Product internal statuses</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.internalstatus</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-product-options.htm">Product option categories</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.optioncategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Product options (ecommerce.skuoption)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-product-options.htm">Product options</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.skuoption</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Product option category</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Product-statuses.htm">Product public statuses</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.publicstatus</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product files</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.skufile</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Product</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-product-variants.htm">Product variants</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.skuvariant</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Product</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Products.htm">Products</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.sku</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Product files (    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+ecommerce.skufile    </span>
+    </span>
+)</p>
+</li><li class=" "><p   
+>Product variants (    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+ecommerce.skuvariant    </span>
+    </span>
+    </span>
+)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Shipping costs</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.shippingcost</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Shipping option</strong> objects.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-shipping-options.htm">Shipping options</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.shippingoption</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Shipping costs (    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+ecommerce.shippingcost    </span>
+    </span>
+    </span>
+    </span>
+)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Managing-suppliers.htm">Suppliers</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.supplier</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Configuring-taxes.htm">Tax classes</a><br/>    <span style="color: #ffffff;">
+__________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.taxclass</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><br/></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Working-with-volume-discounts.htm">Volume discounts</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.volumediscount</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Product</strong> objects.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h3 id="src-68880577_Objecttypessupportedbycontinuousintegration-Communitygroups" class="heading "><span>Community groups</span></h3>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Object type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>CI folder name</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Notes</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><a   href="k11/Groups.htm">Groups</a></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>community.group</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Group media libraries (media.grouplibrary)</p>
+</li><li class=" "><p   
+>Group members (community.groupmember)</p>
+</li><li class=" "><p   
+>Group roles (cms.grouprole)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group forum groups</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>forums.groupforumgroup</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Group</strong> objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Group forums (forums.groupforum)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group forums</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>forums.groupforum</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Group forum group</strong> objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Forum posts (forums.forumpost)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group media libraries</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>media.grouplibrary</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Group</strong> objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Inserting-files-into-media-libraries.htm">Media library files</a> (media.file)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group members</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>community.groupmember</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Group</strong> objects.</p>
+<p   
+>Continuous integration does not track group member invitations.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group message boards</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>board.board</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Page</strong> objects. Includes both message boards created on group pages and general message boards.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Message board messages (    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+    <span style="color: #1c1c1c;">
+board.message    </span>
+    </span>
+    </span>
+)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group polls</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>polls.grouppoll</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Group</strong> objects.</p>
+<p   
+>Supported child objects:</p>
+<ul class=" "><li class=" "><p   
+>Poll answers (polls.pollanswer)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group roles</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.grouprole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Child object type of <strong class=" ">Group</strong> objects.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h3 id="src-68880577_Objecttypessupportedbycontinuousintegration-Bindingobjecttypes" class="heading "><span>Binding object types</span></h3>
+<p   
+>In addition to the standard object types, continuous integration also supports most related bindings (i.e. objects representing relationships between the supported objects and other objects). For example, the binding objects that store how page templates or page types are assigned to sites.</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Binding</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>CI folder name</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Main object type (parent)</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Related object type</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allowed child page types</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.allowedchildclass</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page type</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page type</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Applications assigned to the default dashboard of roles</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.roleapplication</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>UI element</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Brands of Buy X Get Y and Product coupon discounts</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.multibuydiscountbrand</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Buy X Get Y discount<br/>- OR -<br/>Product coupon</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Brand</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Categories assigned to pages</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.documentcategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Category</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Collections of Buy X Get Y and Product coupon discounts</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.multibuydiscountcollection</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Buy X Get Y discount<br/>- OR -<br/>Product coupon</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Collection</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Connections between steps in advanced workflows and automation processes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.workflowtransition</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Workflow step (source)<br/>- OR -<br/>Automation process step (source)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Workflow step (target)<br/>Workflow<br/>- OR -<br/>Automation process step (target)<br/>Automation process</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Countries of tax classes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.taxclasscountry</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Tax class</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Country</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Cultures allowed for editing by users</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.userculture</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Culture<br/>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Cultures assigned to sites</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.culturesite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Culture</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Cultures of bad words</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>badwords.wordculture</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Bad word</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Culture</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Cultures of page search indexes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.searchindexculture</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Search index</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Culture</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Departments of Buy X Get Y and Product coupon discounts</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.multibuydiscountdepartment</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Buy X Get Y discount<br/>- OR -<br/>Product coupon</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Department</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Device profile layouts of page templates</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.templatedevicelayout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page template</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Device profile<br/>Page layout (optional)</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Exchange rates</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.exchangerate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Exchange table</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Currency</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group permissions assigned to roles</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>community.grouprolepermission</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Group role<br/>Permission</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Mapped page layouts of device profiles</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.deviceprofilelayout</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Device profile</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page layout (source)<br/>Page layout (target)</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Moderators (users) of forums</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>forums.forummoderator</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Forum<br/>- OR -<br/>Group forum</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Moderators (users) of message boards</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>board.moderator</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Message board</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>MVT variants in combinations</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>om.mvtcombinationvariation</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>MVT combination</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>MVT variant</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page relationships</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.relationship</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page<br/>Page relationship type</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Pages with fields containing other pages<br/>(see <a   href="k11/Advanced-content-modeling.htm">Advanced content modeling</a>)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.adhocrelationship</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page<br/>Page relationship type</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Permissions assigned to roles</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.rolepermission</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Permission<br/>(module or class)</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product bundles</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.bundle</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product options allowed for products</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.skuallowedoption</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product option</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product options of product variants</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.variantoption</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product variant</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product option</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product option categories of products</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.skuoptioncategory</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product option category</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product sections of Buy X Get Y and Product coupon discounts</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.multibuydiscounttree</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Buy X Get Y discount<br/>- OR -<br/>Product coupon</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Products of Buy X Get Y and Product coupon discounts</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.multibuydiscountsku</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Buy X Get Y discount<br/>- OR -<br/>Product coupon</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Product</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Resource string translations</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.resourcetranslation</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Resource string</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Culture</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role permissions assigned to media libraries</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>media.libraryrolepermission</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Media library<br/>- OR -<br/>Group media library</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role<br/>Permission<br/>- OR -<br/>Group role<br/>Permission</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role permissions assigned to forums</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>forums.forumrole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Forum<br/>- OR -<br/>Group forum</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role<br/>Permission<br/>- OR -<br/>Group role<br/>Permission</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Roles assigned to forms</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.formrole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Form</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Roles assigned to message boards</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>board.boardrole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Message board</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Roles assigned to polls</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>polls.pollrole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Poll<br/>- OR -<br/>Group poll</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role<br/>- OR -<br/>Group role</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Roles assigned to widgets</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.widgetrole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Widget<br/>Permission</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Roles assigned to workflow steps and automation process steps</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.workflowsteprole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Workflow step<br/>- OR -<br/>Automation process step</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Roles in memberships</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.membershiprole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Membership</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Scopes assigned to page types</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.documenttypescopeclass</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page type scope</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page type</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of CSS stylesheets</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.cssstylesheetsite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>CSS stylesheet</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of data classes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.classsite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page type<br/>Custom table</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of modules</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.resourcesite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Module</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of page templates</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.pagetemplatesite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page template</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of page relationship types</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.relationshipnamesite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page relationship type</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of polls</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>polls.pollsite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Poll</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of search indexes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.searchindexsite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Search index</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of SMTP servers</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.smtpserversite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SMTP server</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of web part containers</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.webpartcontainersite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Web part container</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sites of users</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.usersite</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Site</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>States of tax classes</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ecommerce.taxclassstate</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Tax class</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>State</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Templates assigned to email campaigns</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>newsletter.emailtemplatenewsletter</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Email campaign</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Email campaign template</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>UI elements allowed for roles (UI personalization)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.roleuielement</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>UI element</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Users assigned to workflow steps and automation process steps</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.workflowstepuser</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Workflow step<br/>- OR -<br/>Automation process step</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Users in roles</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.userrole</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Role<br/>- OR -<br/>Group role</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Users in memberships</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.membershipuser</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Membership</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Users who receive email notifications for workflows</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>cms.workflowuser</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Workflow</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

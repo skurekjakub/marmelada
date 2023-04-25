@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Configuring content staging - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68881746"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Deploying-websites.htm">Deploying websites</a></li>
+                                                                                     <li><a href="Content-staging.htm">Content staging</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68881746"> <span>Configuring content staging</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Configuration of staging consists of the following parts:</p>
+<ol class=" "><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Configuringthesourceserver">Source server configuration</a> &ndash; configuration of the server from which changes will be transferred to the target servers.</p>
+</li><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Configuringthetargetservers">Target server configuration</a> &ndash; configuration of the server to which changes will be transferred from the source servers.</p>
+</li><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Configuringserverstostagedatacontainingmacros">Configuring servers to correctly stage data with macros</a></p>
+</li></ol><p   
+>You also need to ensure that all instances use the same settings (page types, templates, web parts &hellip;), code files, and that both servers use the same version of Kentico.</p>
+    <h3 id="src-68881746_Configuringcontentstaging-Configuringthesourceserver" class="heading "><span>Configuring the source server</span></h3>
+<p   
+>To configure a Kentico instance as a source server, you first need to enable logging of staging tasks. Open the <strong class=" ">Settings</strong> application, and adjust the settings in the <strong class=" ">Versioning &amp; synchronization -&gt; Staging</strong> category.</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Log content changes</strong> &ndash; if enabled, synchronization tasks are automatically logged when content (a page) is modified.</p>
+</li><li class=" "><p   
+><strong class=" ">Log data changes </strong>&ndash; if enabled, synchronization tasks are automatically logged when custom tables data is modified.</p>
+</li><li class=" "><p   
+><strong class=" ">Log object changes</strong> &ndash; if enabled, synchronization tasks are automatically logged when supported objects are modified.</p>
+</li><li class=" "><p   
+><strong class=" ">Log staging changes</strong> &ndash; if enabled, synchronization tasks are logged for changes made by synchronization from another server to this server. See <a   href="k11/Bi-directional-content-staging.htm">Bi-directional content staging</a> for more details.</p>
+</li><li class=" "><p   
+><strong class=" ">Log export tasks</strong> &ndash; if enabled, tasks are logged for the <a   href="k11/Exporting-and-importing-sites.htm">export</a> feature when an object is deleted (incremental update support).</p>
+</li></ul><p   
+>With these settings enabled, the system logs all changes to the corresponding content as staging tasks. These tasks can then be transferred to the target servers and performed there to synchronize the content.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Configuringthesourceserver">Configuring the source server</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Definingtargetserversa0">Defining target servers</a></p>
+</li></ul></li><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Configuringthetargetservers">Configuring the target servers</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Configuringserverstostagedatacontainingmacros">Configuring servers to stage data containing macros</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Synchronizingmacrosbetweenserverswithdifferentusers">Synchronizing macros between servers with different users</a></p>
+</li></ul></li><li class=" "><p   
+><a   href="k11/#src-68881746_Configuringcontentstaging-Customizingstagingviaeventhandlers">Customizing staging via event handlers</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="k11/Excluding-content-from-staging-and-integration.htm">Excluding content from staging</a></p>
+</li><li class=" "><p   
+><a   href="k11/Deploying-objects-with-custom-ID-fields.htm">Deploying objects with custom ID fields</a></p>
+</li></ul>        </div>
+    </div>
+    <h4 id="src-68881746_Configuringcontentstaging-Definingtargetserversa0" class="heading "><span>Defining target servers</span></h4>
+<p   
+>To specify the target servers, open the <strong class=" ">Staging</strong> application and select the <strong class=" ">Servers</strong> tab.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Notes</strong>:</p>
+<ul class=" "><li class=" "><p   
+>The system only logs staging tasks if at least one target server is created and enabled.<br/><br/></p>
+</li><li class=" "><p   
+><strong class=" ">Multi-site source servers</strong> &ndash; on instances with multiple sites, you need to define target servers separately for each site whose content or objects you plan to stage. Use the site selector in the main header of the administration interface to switch between sites.<br/><br/></p>
+</li><li class=" "><p   
+><strong class=" ">Target sites running in a web farm</strong> &ndash; if the target site is running in a <a   href="k11/Setting-up-web-farms.htm">web farm environment</a>, only register one of the web farm&#39;s instances as a target server for staging. Staged changes automatically apply to all servers in the web farm due to the shared database and synchronization mechanisms. If possible, set the service URL of the staging server using a direct connection to the selected web farm server rather than the load balancer covering the entire web farm.</p>
+</li></ul>        </div>
+    </div>
+<p   
+>Add servers by clicking <strong class=" ">New server</strong>. Set the following properties for each staging server:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Staging server properties</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Display name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Name of the server displayed to users in the administration interface.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Code name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Unique identifier of the server.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Server service URL<br/>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enter the root URL of the target Kentico instance, i.e. the protocol, domain, and virtual directory (if necessary). For example: <i class=" ">http://www.targetserver.com</i></p>
+<p   
+>The system automatically builds the full service URL by appending <i class=" ">/CMSPages/Staging/syncserver.asmx</i> to the value.</p>
+<p   
+>Click<strong class=" "> </strong><strong class=" ">Check server availability</strong> to confirm whether the entered URL is available.</p>
+<p   
+><strong class=" ">Important</strong>: When defining servers on instances with multiple sites, the service URLs of each site&#39;s servers must use the domain names of the matching site on the target server.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enabled</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If checked, the system generates synchronization tasks for the server. You can temporarily disable the server by disabling this flag, for example during server maintenance.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Server authentication</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the type of authentication used to connect to the server, along with related credentials and settings. Configure according to the authentication settings of the given target server (described below).</p>
+<p   
+>When using <strong class=" ">User name / password</strong> authentication, enter the credentials configured in the staging settings of the target server. The default user name is <strong class=" ">admin</strong> and the default password is <strong class=" ">pass</strong>.</p>
+<p   
+><strong class=" ">Note</strong>: After you enter and save a password, the field always displays 8 &quot;masking&quot; characters, even if the password is longer or shorter. This measure helps protect your password.</p>
+<p   
+>If you want to use X509 authentication, see <a   href="k11/Using-X.509-authentication.htm">Using X.509 authentication</a>.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h3 id="src-68881746_Configuringcontentstaging-Configuringthetargetservers" class="heading "><span>Configuring the target servers</span></h3>
+<p   
+>On the target server, the staging service is disabled by default. You need to adjust the following settings in <strong class=" ">Settings -&gt; Versioning &amp; synchronization -&gt; Staging</strong>:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Enable staging service</strong> &ndash; enables the staging service for the given site.</p>
+</li><li class=" "><p   
+><strong class=" ">Staging service authentication</strong> &ndash; we recommend starting with <i class=" ">Username and password</i> authentication first, testing the synchronization, and then optionally configuring the site for <i class=" ">X509</i> certificates.</p>
+<ul class=" "><li class=" "><p   
+><i class=" ">USERNAME</i> - username/password authentication (fast, recommended for data without high security requirements).</p>
+</li><li class=" "><p   
+><i class=" ">X509</i> - X509 certificate authentication (more secure, slower, requires certificates). See: <a   href="k11/Using-X.509-authentication.htm">Using X.509 authentication</a></p>
+</li></ul></li><li class=" "><p   
+><strong class=" ">Staging service username </strong>and<strong class=" "> password</strong> &ndash; the username and password for <i class=" ">Username and password</i> authentication. You can set any required values (these are unrelated to users within the system).</p>
+</li><li class=" "><p   
+><strong class=" ">Server key ID </strong>and<strong class=" "> Client key ID</strong> &ndash; certificate keys for the <i class=" ">X509</i> authentication.</p>
+</li></ul>    <h3 id="src-68881746_Configuringcontentstaging-Configuringserverstostagedatacontainingmacros" class="heading "><span>Configuring servers to stage data containing macros</span></h3>
+<p   
+>The system uses signatures to ensure the security of <a   href="k11/Macro-expressions.htm">macro expressions</a>. Macro signatures contain an identifier of the macro&#39;s author and a hash of the given expression. The hash function used to create the signatures appends a <a  class="external-link" href="http://en.wikipedia.org/wiki/Salt_%28cryptography%29">salt</a> to the input. The salt value depends on the configuration of individual applications, so the signatures are only valid in the environment where the macros were originally saved.</p>
+<p   
+>To allow macros to work correctly on all staging servers, you need to assign the same custom hash salt to all servers:</p>
+<ul class=" "><li class=" "><p   
+>Set the <strong class=" ">CMSHashStringSalt</strong> key in the <i class=" ">appSettings</i> section of the web.config file to the same value on all staging servers. You can use any string as the value, but the salt should be random and at least 16 characters long. For example, a randomly generated <a  class="external-link" href="http://en.wikipedia.org/wiki/GUID">GUID</a> is a strong salt:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSHashStringSalt"</code><code class="plain"> value=</code><code class="string">"e68b9ad6-a461-4707-8e3e-ece73f03dd02"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li></ul><p   
+>The best option is to set the hash salt value before you start creating content for your website. Changing the salt causes all current hash values to become invalid. To fix existing macro expressions in the system after changing the hash salt, you need to re-sign the macros. See <a   href="k11/Working-with-macro-signatures.htm">Working with macro signatures</a> for more information.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Warning</strong>: In addition to macro signatures, the system uses the <strong class=" ">CMSHashStringSalt</strong> value for other hash functions. Changing the hash salt on a website that already has defined content may break dialog links and images on your website. If you encounter such problems, you need to re-save the given content (the system then creates the hashes using the new salt).</p>
+        </div>
+    </div>
+    <h4 id="src-68881746_Configuringcontentstaging-Synchronizingmacrosbetweenserverswithdifferentusers" class="heading "><span>Synchronizing macros between servers with different users</span></h4>
+<p   
+>You may also encounter problems with invalid macros if you do not synchronize all users between your staging servers. Macros are not valid if the user in the signature does not exist on the given instance.</p>
+<p   
+>To ensure that all macros work correctly regardless of the available users, set up <strong class=" ">macro signature identities</strong> on all of your staging servers:</p>
+<ol class=" "><li class=" "><p   
+>Find groups of users in your staging environment who require the same permissions.</p>
+</li><li class=" "><p  class="auto-cursor-target" 
+>Create a macro identity object for each group on all staging servers, with a matching <strong class=" ">Identity name</strong>. See <a   href="k11/Working-with-macro-signatures.htm">Working with macro signatures</a> for details.</p>
+</li><li class=" "><p  class="auto-cursor-target" 
+>Assign an <strong class=" ">Effective user</strong> with appropriate permissions to each macro identity. The effective user can be different on each staging server.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Tip</strong>: You can use the staging functionality to distribute macro identities across your environment. However, staging does not synchronize the <i class=" ">Effective user</i> of macro identity objects to prevent overwriting (the value may be different on each server). An administrator needs to assign the <i class=" ">Effective user</i> manually for each macro identity on all staging servers.</p>
+        </div>
+    </div>
+</li><li class=" "><p  class="auto-cursor-target" 
+>Assign the macro identity to the appropriate users in the <strong class=" ">Users</strong> application.</p>
+</li></ol><p   
+>Macros will now be signed using the assigned identities instead of user names. The identities are available on all staging servers, so you do not need to synchronize the user accounts.</p>
+<p   
+>For example, the following diagram shows a staging server with content editor users who have a shared macro signature identity. The same identity also exists on the target production server, with permissions defined via a different production-only user.</p>
+<p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/68881746/Staging_macro_identities.png" alt="images/download/attachments/68881746/Staging_macro_identities.png" width="600"  />
+        <br/><span class="caption">Content editor users with a shared macro identity on a staging server. The same identity also exists on the target production server, with permissions defined via a different production-only user.</span>
+    </p>
+    <h3 id="src-68881746_Configuringcontentstaging-Customizingstagingviaeventhandlers" class="heading "><span>Customizing staging via event handlers</span></h3>
+<p   
+>Developers can use <a   href="k11/Handling-global-events.htm">event handlers</a> to modify or extend the staging functionality. See the following pages for more information:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Reference---Global-system-events.htm#src-68882268_ReferenceGlobalsystemevents-StagingEvents">Reference - Staging events</a></p>
+</li><li class=" "><p   
+><a   href="k11/Excluding-content-from-staging-and-integration.htm">Excluding content from staging and integration</a></p>
+</li><li class=" "><p   
+><a   href="k11/Customizing-staging-of-child-and-binding-objects.htm">Customizing staging of child and binding objects</a></p>
+</li><li class=" "><p   
+><a   href="k11/Automatically-synchronizing-staging-and-integration-tasks.htm">Automatically synchronizing staging and integration tasks</a></p>
+</li></ul>        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

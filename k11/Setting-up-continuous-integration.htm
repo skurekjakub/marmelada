@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Setting up continuous integration - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880572"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing-websites.htm">Developing websites</a></li>
+                                                                                     <li><a href="Preparing-your-environment-for-team-development.htm">Preparing your environment for team development</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880572"> <span>Setting up continuous integration</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Kentico provides a <a  class="external-link" href="http://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a> solution that allows you to serialize the data of objects from the database into XML files on the file system. You can then add the files to a <a  class="external-link" href="http://en.wikipedia.org/wiki/Revision_control">source control system</a> (for example <a  class="external-link" href="https://www.visualstudio.com/en-us/products/tfs-overview-vs.aspx">Team Foundation Server</a> or <a  class="external-link" href="http://git-scm.com/">Git</a>) and use them to synchronize database data between team members. The system ensures that the XML data of matching objects is always identical and consistent (including element and attribute order), even when serialized on different instances of Kentico.</p>
+<p   
+>The system stores the XML files containing the serialized data of objects in the project&#39;s <strong class=" ">CMS\App_Data\CIRepository</strong> folder. For details about the folder and file structure, see <a   href="k11/Continuous-integration-repository-structure.htm">Continuous integration repository structure</a>.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>If you need to work with the continuous integration files in a different location, use one of the approaches described in <a   href="k11/#src-68880572_Settingupcontinuousintegration-Storingthecontinuousintegrationfilesinacustomlocation">Storing the continuous integration files in a custom location</a>.</p>
+        </div>
+    </div>
+    <h3 id="src-68880572_Settingupcontinuousintegration-Continuousintegrationoverview" class="heading "><span>Continuous integration overview</span></h3>
+<p   
+>The continuous integration solution is usable in the following environment:</p>
+<ul class=" "><li class=" "><p   
+>Multiple development instances, each with its own project files and database<br/>&ndash; AND &ndash;</p>
+</li><li class=" "><p   
+>A central source control system that provides change management and version control for files</p>
+</li></ul><p   
+>To start developing sites using the continuous integration solution:</p>
+<ol class=" "><li class=" "><p   
+>Set up your development environment and continuous integration according to the instructions in:<br/></p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/#src-68880572_Settingupcontinuousintegration-Preparingthedevelopmentenvironment">Preparing the development environment</a></p>
+</li><li class=" "><p   
+><a   href="k11/Excluding-objects-from-continuous-integration.htm">Excluding objects from continuous integration</a></p>
+</li></ul></li><li class=" "><p   
+>Establish a process for transferring objects back into the database from the <i class=" ">CIRepository</i> XML files. See <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">Restoring continuous integration files to the database</a> and <a   href="k11/Synchronizing-database-changes-not-managed-by-continuous-integration.htm">Synchronizing database changes not managed by continuous integration</a>.</p>
+</li><li class=" "><p   
+>Begin development. We strongly recommend following the best practices described in <a   href="k11/Using-continuous-integration-with-Visual-Studio.htm">Using continuous integration with Visual Studio</a>. The page primarily focuses on using Visual Studio in combination with a <i class=" ">Team Foundation Version Control</i> or <i class=" ">Git</i> source control repository, but many of the recommendations also apply generally to any source control system.</p>
+</li></ol><p   
+><br/></p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="k11/Continuous-integration-repository-structure.htm">Continuous integration repository structure</a></p>
+</li><li class=" "><p   
+><a   href="k11/Object-types-supported-by-continuous-integration.htm">Object types supported by continuous integration</a></p>
+</li><li class=" "><p   
+><a   href="k11/Excluding-objects-from-continuous-integration.htm">Excluding objects from continuous integration</a></p>
+</li><li class=" "><p   
+><a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">Restoring continuous integration files to the database</a></p>
+</li><li class=" "><p   
+><a   href="k11/Using-continuous-integration-with-Visual-Studio.htm">Using continuous integration with Visual Studio</a></p>
+</li><li class=" "><p   
+><a   href="k11/Serializing-objects-to-XML-using-the-API.htm">Serializing objects to XML using the API</a></p>
+</li><li class=" "><p   
+><a   href="k11/Synchronizing-database-changes-not-managed-by-continuous-integration.htm">Synchronizing database changes not managed by continuous integration</a></p>
+</li></ul>        </div>
+    </div>
+    <h4 id="src-68880572_Settingupcontinuousintegration-Usageandrelationshipwithotherfeatures" class="heading "><span>Usage and relationship with other features</span></h4>
+<p   
+>Continuous integration is designed to allow synchronization and version control of database data <i class=" "><strong class=" ">during development</strong> </i>(through an external source control system).</p>
+<p   
+>Continuous integration has a <i class=" "><strong class=" ">negative impact on site performance</strong></i>. The impact is not significant for development instances with a low number of users, but continuous integration should not be enabled on production sites. For more information about deployment options, see the <a   href="k11/#src-68880572_Settingupcontinuousintegration-Deployingdatatoproductionsites">Deploying data to production sites</a> section.</p>
+<p   
+>Additionally, we do not recommend using continuous integration together with the other team development and versioning features in Kentico:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/Working-with-object-locking.htm">Object locking</a></p>
+</li><li class=" "><p   
+><a   href="k11/Working-with-object-versioning.htm">Object versioning</a> (including the <a   href="k11/Objects-recycle-bin.htm">Recycle bin for objects</a> and <a   href="k11/Deleting-pages.htm">Pages</a>)</p>
+</li><li class=" "><p   
+><a   href="k11/Editing-object-code-externally.htm">External editing of code</a> (and <a   href="k11/Deployment-mode-for-virtual-objects.htm">Deployment mode for virtual objects</a>)</p>
+</li></ul><p   
+>Continuous integration always works with the main version of each object in the database. Older or deleted versions of objects and non-published versions of pages (including their child objects) are ignored. For example:</p>
+<ul class=" "><li class=" "><p   
+>If you use the <a   href="k11/Working-with-object-versioning.htm">object versioning</a> feature, continuous integration ignores all versions of objects except for the latest. If you roll back an object to an older version, the object is updated in the <i class=" ">CIRepository</i> folder.</p>
+</li><li class=" "><p   
+>If you delete an object or page to the recycle bin, continuous integration fully removes the corresponding XML file. If you restore the object, an XML file is added as if a completely new object were created.</p>
+</li><li class=" "><p   
+>If you edit an object&#39;s code externally (e.g. the code of a CSS stylesheet), changes are ignored by continuous integration until you synchronize the code back into the database. You can still synchronize the code without the continuous integration solution by including the external file in your source control.</p>
+</li></ul><p   
+><strong class=" ">Page workflow</strong></p>
+<p   
+>When using the <a   href="k11/Configuring-workflows.htm">page workflow</a> feature, the majority of workflow information is not tracked by continuous integration. This includes moving pages to different workflow steps and using the <a   href="k11/Content-locking.htm">check-in/check-out</a> functionality. Pages under workflow are fully stored in the repository only after they are published. When creating a new page, the page data is stored without <a   href="k11/Object-types-supported-by-continuous-integration.htm#src-68880577_Objecttypessupportedbycontinuousintegration-Pagecontent">its child objects</a>. If you make changes to the content of a page, <a   href="k11/Configuring-and-using-page-versioning.htm">non-versioned page data</a> is stored immediately while versioned page data is stored only when the page is published.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The workflow functionality itself (including <a   href="k11/Content-locking.htm">Content locking</a> and <a   href="k11/Configuring-and-using-page-versioning.htm">Page versioning</a>) is not affected when used together with continuous integration. For example, your content editors can use basic and advanced workflows to manage life cycles of pages on a single Kentico instance. When pages reach the <i class=" ">Published</i> step, the page content is stored in the repository.</p>
+        </div>
+    </div>
+    <h4 id="src-68880572_Settingupcontinuousintegration-Limitations" class="heading "><span>Limitations</span></h4>
+<p   
+>Continuous integration currently has the following limitations:</p>
+<ul class=" "><li class=" "><p   
+>Continuous integration only tracks object changes made through the Kentico administration interface or API. Changes made directly in the database or by external tools that modify the database are not tracked. After making such changes, you need to manually serialize all objects in the <i class=" ">Continuous integration</i> application to synchronize the database with the file system repository. For example, continuous integration does not track roles imported by the <a   href="k11/Kentico-AD-Import-Utility.htm">AD import</a> external utility.</p>
+</li><li class=" "><p   
+>You <i class=" "><strong class=" ">cannot</strong> </i>reliably use continuous integration in environments where the <i class=" ">CIRepository</i> folder is located on a <i class=" "><strong class=" ">shared file system</strong> </i>(multiple Kentico instances with separate databases connected to the same file system repository). Common examples of shared file systems are external storage providers, such as <a   href="k11/Configuring-Azure-storage.htm">Azure storage</a> or <a   href="k11/Configuring-Amazon-S3.htm">Amazon S3</a>.</p>
+</li><li class=" "><p   
+>Object types that represent live site data or are strictly related to specific instances are not supported. See <a   href="k11/Object-types-supported-by-continuous-integration.htm">Object types supported by continuous integration</a> for a complete list of supported object types.</p>
+</li></ul>    <h3 id="src-68880572_Settingupcontinuousintegration-Preparingthedevelopmentenvironment" class="heading "><span>Preparing the development environment</span></h3>
+<p   
+>Before you can use the continuous integration solution, you need to set up Kentico instances for your development team.</p>
+<p   
+>Start by preparing an initial instance:</p>
+<ol class=" "><li class=" "><p   
+>Either <a   href="k11/Installing-Kentico---custom-installation.htm">install</a> a new instance of Kentico or select an existing instance as a starting point.</p>
+</li><li class=" "><p   
+>Enable continuous integration on the given instance (see <a   href="k11/#src-68880572_Settingupcontinuousintegration-Enablingcontinuousintegration">Enabling continuous integration</a> for details).</p>
+</li><li class=" "><p   
+>Create a backup of the instance&#39;s database.</p>
+</li><li class=" "><p   
+>Add the <i class=" "><strong class=" ">entire</strong> </i>Kentico solution to your source control (adding only the <i class=" ">CIRepository</i> folder may lead to problems and is not recommended).</p>
+</li></ol><p   
+>To add development instances into your environment, perform the following steps for each instance:</p>
+<ol class=" "><li class=" "><p   
+>Connect to the source control from the development machine and load the latest version of the solution files onto the local file system.</p>
+<ul class=" "><li class=" "><p   
+>Decide how to handle source control for the project&#39;s <strong class=" ">web.config</strong> file. Each development machine needs to have a connection string to a different database, but you may want to synchronize other parts of the web.config.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>See <a  class="external-link" href="https://weblog.west-wind.com/posts/2013/Feb/27/Sql-Connection-Strings-in-Config-Files-vs-Source-Control">https://weblog.west-wind.com/posts/2013/Feb/27/Sql-Connection-Strings-in-Config-Files-vs-Source-Control</a> for possible solutions.</p>
+        </div>
+    </div>
+</li></ul></li><li class=" "><p   
+>If you use IIS to run your development sites, register the project as an application in IIS:<br/></p>
+<ol class=" "><li class=" "><p   
+>Open <i class=" ">Internet Information Services (IIS) Manager</i>.</p>
+</li><li class=" "><p   
+>Add a new application under your IIS web site and map the <i class=" ">Physical path</i> to the project&#39;s <i class=" ">CMS</i> folder.</p>
+</li><li class=" "><p   
+>Create a new application pool for the application (or use an existing application pool).</p>
+</li></ol></li><li class=" "><p   
+>Create (restore) a copy of the initial database on your SQL server.</p>
+</li><li class=" "><p   
+>Connect the instance to the new copy of the database (set the appropriate connection string in the project&#39;s web.config).</p>
+</li></ol><p   
+>After you complete the process, all development machines will contain their own Kentico project files connected to a separate copy of the database. You can start using your source control system to synchronize project files between the instances. The continuous integration solution serializes database data onto the file system and you can include it in your source control, just like any other files.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>The process described above ensures that objects have identical GUID values (globally unique identifiers) across your entire development environment. If you perform a separate database installation for each development instance, you will need to manually resolve a large number of <a   href="k11/Using-continuous-integration-with-Visual-Studio.htm#src-68880573_UsingcontinuousintegrationwithVisualStudio-Resolvingobjectconflicts">GUID conflicts</a> when synchronizing data through the continuous integration solution.</p>
+        </div>
+    </div>
+<p   
+>If you need to add further instances later (after development with continuous integration starts), use the same process. However, you need to make sure the database is synchronized with the rest of the development environment. Use one of the following approaches:</p>
+<ul class=" "><li class=" "><p   
+>Maintain a central database connected to the mainline source control and always create an up-to-date backup for new developers.<br/>&ndash; OR &ndash;</p>
+</li><li class=" "><p   
+>Use the original database backup and then get the latest data:<br/></p>
+<ol class=" "><li class=" "><p   
+>Restore the current object status from the continuous integration repository into the database. See <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">Restoring continuous integration files to the database</a>.</p>
+</li><li class=" "><p   
+>Manually transfer changes made to the data of object types not supported by continuous integration (maintain documentation of such changes). You can use the <a   href="k11/Exporting-and-importing-sites.htm">export and import</a> feature.</p>
+</li></ol></li></ul>    <h4 id="src-68880572_Settingupcontinuousintegration-Enablingcontinuousintegration" class="heading "><span>Enabling continuous integration</span></h4>
+<p   
+>To configure a Kentico instance to use the continuous integration solution, perform the following steps:</p>
+<ol class=" "><li class=" "><p   
+>Disable running of <a   href="k11/Scheduling-tasks.htm">scheduled tasks</a> (using the <strong class=" ">Settings -&gt; System -&gt; Scheduled tasks enabled</strong> setting).</p>
+</li><li class=" "><p   
+>Open the <strong class=" ">Continuous integration</strong> application in the Kentico administration interface.</p>
+</li><li class=" "><p   
+>Select the <strong class=" ">Enable continuous integration</strong> checkbox.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Serialize all objects</strong>.</p>
+</li><li class=" "><p   
+>Wait until the serialization process finishes and then re-enable scheduled tasks.</p>
+</li></ol><p   
+>The project&#39;s <strong class=" ">CMS\App_Data\CIRepository</strong> folder now contains XML files storing the serialized data of all supported objects from the database. The system also tracks create, update and delete operations for the given objects and automatically transfers the changes to the serialized data on the file system.</p>
+    <h4 id="src-68880572_Settingupcontinuousintegration-Configuringinstancestosynchronizemacros" class="heading "><span>Configuring instances to synchronize macros</span></h4>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>For detailed information, see: <a   href="k11/Working-with-macro-signatures.htm">Working with macro signatures</a></p>
+        </div>
+    </div>
+<p   
+>To ensure that <a   href="k11/Macro-expressions.htm">macro expressions</a> work correctly when synchronizing objects using the continuous integration solution, all development instances must use the same hash salt value.</p>
+<p   
+>If your development instances do not all start with the same web.config file, you need to set a matching value for the <strong class=" ">CMSHashStringSalt</strong> key in the <i class=" ">appSettings</i> section on all instances. The best option is the hash salt used by the starting instance that you used to create your initial database backup. You can use any string as the value, but the salt should be random and at least 16 characters long. For example, a randomly generated <a  class="external-link" href="http://en.wikipedia.org/wiki/GUID">GUID</a> is a strong salt:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSHashStringSalt"</code><code class="plain"> value=</code><code class="string">"e68b9ad6-a461-4707-8e3e-ece73f03dd02"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+<p   
+>The salt value is used as part of the input for the hash function that creates the security signatures of macros. Having the same hash salt value on all instances is necessary to ensure that macro signatures are valid when transferring data between instances.</p>
+<p   
+>The best option is to set the hash salt value before you start development. Changing the salt causes all current hash values to become invalid. To fix existing macro expressions in the system after changing the hash salt, you need to re-sign the macros.</p>
+    <h5 id="src-68880572_Settingupcontinuousintegration-Synchronizingmacrosbetweeninstanceswithdifferentusers" class="heading "><span>Synchronizing macros between instances with different users</span></h5>
+<p   
+>You may also encounter problems with invalid macros if you do not synchronize all users between the instances in your environment. Macros are not valid if the user in the signature does not exist on the given instance.</p>
+<p   
+>To ensure that all macros work correctly regardless of the available users, set up <strong class=" ">macro signature identities</strong>:</p>
+<ol class=" "><li class=" "><p   
+>Find groups of users in your environment who require the same permissions.</p>
+</li><li class=" "><p  class="auto-cursor-target" 
+>In the <strong class=" ">System</strong> application, create a macro identity object for each group on all instances, with a matching <strong class=" ">Identity name</strong>.</p>
+</li><li class=" "><p  class="auto-cursor-target" 
+>Assign an <strong class=" ">Effective user</strong> with appropriate permissions to each macro identity. The effective user can be different on each instance.</p>
+</li><li class=" "><p  class="auto-cursor-target" 
+>Assign the macro identity to the appropriate users in the <strong class=" ">Users</strong> application.</p>
+</li></ol><p   
+>Macros will now be signed using the assigned identities instead of user names. The identities are available on all instances, so you do not need to synchronize the user accounts.</p>
+    <h3 id="src-68880572_Settingupcontinuousintegration-Deployingdatatoproductionsites" class="heading "><span>Deploying data to production sites</span></h3>
+<p   
+>Deployment of content and data to instances that host live websites is not the primary purpose of the continuous integration solution. Instead, we recommend using the <a   href="k11/Content-staging.htm">Staging</a> functionality for deployment:</p>
+<ol class=" "><li class=" "><p   
+>Set up one of the instances in your continuous integration environment as a source server for staging.<br/></p>
+</li><li class=" "><p   
+>After <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restoring continuous integration data</a> on the given instance, synchronize the changes via staging tasks to any required target servers.</p>
+</li></ol><p   
+>If you use staging to deploy pages, we also recommend setting the <strong class=" ">CMSStagingUseAutomaticOrdering</strong> key to <i class=" ">false</i> in the <i class=" ">appSettings</i> section of the <i class=" ">web.config</i> file on all <i class=" "><strong class=" ">target servers</strong></i>.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSStagingUseAutomaticOrdering"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+<p   
+>The key ensures that the order of pages in the content tree remains consistent after staging. If you leave automatic ordering enabled on the target staging servers, the <strong class=" ">Content -&gt; Content management -&gt; New page ordering</strong> setting of each site may override the original page order created by the continuous integration restore process.</p>
+    <h4 id="src-68880572_Settingupcontinuousintegration-Deployingviacontinuousintegration" class="heading "><span>Deploying via continuous integration</span></h4>
+<p   
+>If you do decide to deploy data to a live production site via the continuous integration <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restore functionality</a>, use the following process:</p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Warning</strong></p>
+<p   
+>Restoring data through continuous integration <i class=" "><strong class=" ">deletes</strong> </i>any pages and supported objects that are missing in the <i class=" ">CIRepository</i> folder. You may lose content created directly on the production instance through standard editing or live site interaction.</p>
+<p   
+>For example, the following scenario is possible:</p>
+<ul class=" "><li class=" "><p   
+>You prepare a content update in your development environment and copy the <i class=" ">CIRepository</i> folder to the production instance.</p>
+</li><li class=" "><p   
+>Live site users meanwhile create new pages via <a   href="k11/User-contributions.htm">user contributions</a>.</p>
+</li><li class=" "><p   
+>You restore the <i class=" ">CIRepository</i> content to the database.</p>
+</li><li class=" "><p   
+>The pages added by the live site users are deleted, because they are not included in the restored data.</p>
+</li></ul><p   
+>Optionally, you can <a   href="k11/Excluding-objects-from-continuous-integration.htm">configure the repository.config file</a> on the production instance to exclude any object types that you do not wish to update and overwrite on the live site.</p>
+        </div>
+    </div>
+<ol class=" "><li class=" "><p   
+>Leave continuous integration disabled on your production instance of Kentico (the setting in the <i class=" ">Continuous integration</i> application). Continuous integration has a <i class=" "><strong class=" ">negative impact on site performance</strong> </i>and should not be enabled on production sites.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Important</strong>: You can restore data even when continuous integration is disabled.</p>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Upload the <i class=" ">CIRepository</i> folder containing the required data into the <i class=" ">CMS\App_Data</i> folder of your production instance.</p>
+</li><li class=" "><p   
+>Restore the <i class=" ">CIRepository</i> content to the production database &ndash; see <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">Restoring continuous integration files to the database</a>.</p>
+<ul class=" "><li class=" "><p   
+>We strongly recommend performing the restore process at a time when the site has minimal traffic and no editing is taking place.</p>
+</li><li class=" "><p   
+>The restore process may take longer than usual when continuous integration is disabled.</p>
+</li></ul></li><li class=" "><p   
+>Restart the application (if not done automatically by your restore process). Open the <i class=" ">System</i> application and click <i class=" ">Restart application</i> on the <i class=" ">General</i> tab.</p>
+</li></ol><p   
+>The data is now deployed to the production database. Keep in mind that any changes made in the administration interface or on the live site will not be tracked and reflected in the <i class=" ">CIRepository</i> folder.</p>
+    <h3 id="src-68880572_Settingupcontinuousintegration-Upgradingprojectsthatusecontinuousintegration" class="heading "><span>Upgrading projects that use continuous integration</span></h3>
+<p   
+>If you need to apply a <a   href="k11/Upgrading-and-hotfixing-an-instance.htm">hotfix or upgrade</a> to an instance that has continuous integration enabled, use the following procedure:</p>
+<ol class=" "><li class=" "><p   
+><a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">Restore objects from the continuous integration repository to your database</a>.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>You can skip the restore if you are sure that your database is synchronized with the current status of your <i class=" ">CIRepository</i> folder.</p>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Apply the hotfix or upgrade.</p>
+</li><li class=" "><p   
+>Run complete serialization for all objects to recreate the content of the <i class=" ">CIRepository</i> folder:</p>
+<ol class=" "><li class=" "><p   
+>Disable running of <a   href="k11/Scheduling-tasks.htm">scheduled tasks</a> (using the <strong class=" ">Settings -&gt; System -&gt; Scheduled tasks enabled</strong> setting).</p>
+</li><li class=" "><p   
+>Open the <strong class=" ">Continuous integration</strong> application in the Kentico administration interface.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Serialize all objects</strong>.</p>
+</li><li class=" "><p   
+>Wait until the serialization process finishes and then re-enable scheduled tasks.</p>
+</li></ol></li></ol><p   
+>This approach ensures that your <i class=" ">CIRepository</i> folder contains all object changes made by the hotfix or upgrade and that the serialization process itself runs according to the new version.</p>
+<p   
+>For hotfixes, you need to apply the update separately for each development instance. After one developer commits the hotfixed changes to the source control, other developers CANNOT commit or load changes until they apply the hotfix to their own instance.</p>
+<p   
+>For major upgrades, it may be more efficient to upgrade only one instance and then set up your environment again according to the process described in <a   href="k11/#src-68880572_Settingupcontinuousintegration-Preparingthedevelopmentenvironment">Preparing the development environment</a>.</p>
+    <h3 id="src-68880572_Settingupcontinuousintegration-Storingthecontinuousintegrationfilesinacustomlocation" class="heading "><span>Storing the continuous integration files in a custom location</span></h3>
+<p   
+>After you set up and enable continuous integration, the system serializes database data into XML and stores the results on the file system.</p>
+<p   
+>By default, the files are created in the Kentico project&#39;s <strong class=" ">CMS\App_Data\CIRepository</strong> folder. If your development environment requires a different location for the continuous integration files, you can use one of the following approaches:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/#src-68880572_Settingupcontinuousintegration-Creatingajunctionpoint">Create a file system junction point</a><br/>&ndash; OR &ndash;</p>
+</li><li class=" "><p   
+><a   href="k11/#src-68880572_Settingupcontinuousintegration-Usingacustomstorageprovider">Use a custom Kentico storage provider</a></p>
+</li></ul>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Important<br/></strong></p>
+<p   
+>We recommend keeping the default <i class=" ">CIRepository</i> folder within the <i class=" ">App_Data</i> folder of the Kentico web project and having the entire Kentico solution included within your source control. This setup allows you to easily synchronize all types of related project files together with the database data tracked by the continuous integration solution.</p>
+<p   
+>If you do decide to change the <i class=" ">CIRepository</i> location, do NOT use the new folder as the root of your source control repository. Always add it as a subfolder under a different root folder. The continuous integration solution <strong class=" ">deletes all folders</strong> within <i class=" ">CIRepository</i> when storing all objects. If the folder is the root of your source control repository, you may encounter errors or other problems when using source control systems that utilize custom folders in the root.</p>
+        </div>
+    </div>
+    <h4 id="src-68880572_Settingupcontinuousintegration-Creatingajunctionpoint" class="heading "><span>Creating a junction point</span></h4>
+<p   
+>By defining a file system <a  class="external-link" href="https://en.wikipedia.org/wiki/NTFS_junction_point">Junction point</a>, you can redirect the <i class=" ">CIRepository</i> folder to a different location.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Limitation</strong>: The target location must be on a local drive or volume (network locations cannot be used).</p>
+        </div>
+    </div>
+<ol class=" "><li class=" "><p   
+>If you have already enabled continuous integration and serialized objects, you need to:</p>
+<ol class=" "><li class=" "><p   
+>(Optional) Back up your <i class=" ">repository.config</i> and the data files in <i class=" ">CIRepository</i>.</p>
+</li><li class=" "><p   
+>Delete the <i class=" ">CIRepository</i> folder in your Kentico project (it is not possible to create a junction point for an existing folder).</p>
+</li></ol></li><li class=" "><p   
+>Create the target folder where you wish to store the continuous integration files.</p>
+</li><li class=" "><p   
+>Open the Windows command prompt and run the <strong class=" ">mklink /J</strong> command:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">mklink /J &lt;CIRepository folder path&gt; &lt;target folder path&gt;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">For example:</code></div>
+<div class="line"><code class="plain">mklink /J C:\inetpub\wwwroot\Kentico\CMS\App_Data\CIRepository C:\ExternalSourceControl\CIRepository</code></div>
+</div>
+    </div>
+</li></ol><p   
+>When serializing object data to the file system, the Kentico continuous integration solution now creates the files in the specified target folder. You can add the target folder into your source control system.</p>
+    <h4 id="src-68880572_Settingupcontinuousintegration-Usingacustomstorageprovider" class="heading "><span>Using a custom storage provider</span></h4>
+<p   
+>You can use a <a   href="k11/Configuring-file-system-providers.htm">custom storage provider</a> to change the path of the <i class=" ">CIRepository</i> folder. The target location can be a local drive, or any network location for which the application has sufficient permissions.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Limitations</strong></p>
+<ul class=" "><li class=" "><p   
+>The target location always includes the full <i class=" ">~/App_Data/CIRepository</i> folder structure, starting from a specified root directory.</p>
+</li><li class=" "><p   
+>After you define the custom storage provider, the <i class=" ">CIRepository</i> folder can no longer be accessed within the original location (unlike when using a junction point).</p>
+</li></ul>        </div>
+    </div>
+<p   
+>To register a storage provider, you need to run custom code during the initialization of the application. For example, the following steps demonstrate how to change the <i class=" ">CIRepository</i> path using a custom module:</p>
+<p   
+><strong class=" ">Important</strong>: The code must be added into a custom project within the Kentico solution. Customizations defined directly within the Kentico web project (e.g. in the <i class=" ">App_Code</i> folder) cannot be detected by the external utility used to <a   href="k11/Restoring-continuous-integration-files-to-the-database.htm">restore continuous integration data</a>.</p>
+<ol class=" "><li class=" "><p   
+>Open the Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p   
+>Create a new <i class=" ">Class Library</i> project (assembly) in the solution or reuse an existing custom project.</p>
+</li><li class=" "><p   
+>Add references to the required Kentico libraries (DLLs) for the project:<br/></p>
+<ul class=" "><li class=" "><p   
+>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p   
+>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p   
+>Add references to the following libraries:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p   
+><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p   
+><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p   
+><strong class=" ">CMS.IO.dll</strong></p>
+</li></ul></li></ul></li><li class=" "><p   
+>Add a reference from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i> to the custom project.</p>
+</li><li class=" "><p   
+>Edit the project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).<br/></p>
+</li><li class=" "><p   
+>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
+<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Create a new <a   href="k11/Initializing-modules-to-run-custom-code.htm">module class</a> under the custom project.</p>
+</li><li class=" "><p   
+>Override the module&#39;s <strong class=" ">OnInit</strong> method and map the <i class=" ">CIRepository</i> folder to a custom location.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                    <div class="title">Example</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.IO;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="comments">// Registers the custom module into the system</code></div>
+<div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomCIStorageModule))]</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomCIStorageModule : Module</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomCIStorage"</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> CustomCIStorageModule()</code></div>
+<div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomCIStorage"</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">	{</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
+<div class="line"><code class="plain">	{</code></div>
+<div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">		</code><code class="comments">// Maps the 'App_Data/CIRepository' folder in the Kentico project to a custom location</code></div>
+<div class="line"><code class="plain">		</code><code class="comments">// The 'UseLocalFileSystemForPath' method internally creates a custom StorageProvider instance,</code></div>
+<div class="line"><code class="plain">		</code><code class="comments">// and maps the specified Kentico directory (first parameter) to a different location based on a root path (second parameter)</code></div>
+<div class="line"><code class="plain">		StorageHelper.UseLocalFileSystemForPath(</code><code class="string">"~/App_Data/CIRepository"</code><code class="plain">, </code><code class="string">@"C:\ExternalSourceControl"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Save all changes and rebuild the Kentico solution.</p>
+</li></ol><p   
+>When serializing object data to the file system, the Kentico continuous integration solution now uses the <i class=" ">CIRepository</i> folder located under the mapped root folder. You can add the folder into your source control system.</p>
+    <h3 id="src-68880572_Settingupcontinuousintegration-Configuringthecharacterencodingforrepositoryfiles" class="heading "><span>Configuring the character encoding for repository files</span></h3>
+<p   
+>By default, the continuous integration solution generates non-binary files in the <i class=" ">CIRepository</i> folder using <a  class="external-link" href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> character encoding.</p>
+<p   
+>If you need to use a different encoding type for the repository files (for example due to requirements of a file comparison tool), add the <strong class=" ">CMSCIEncoding</strong> key to the <i class=" ">appSettings</i> section of your project&#39;s <strong class=" ">web.config</strong> file. For example:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSCIEncoding"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"utf-16"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+<p   
+>The <i class=" ">CMSCIEncoding</i> key supports values matching the encoding names listed in the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.text.encoding%28v=vs.110%29.aspx#Remarks">Encoding Class</a> article.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong></p>
+<p   
+>Changing the value of the <i class=" ">CMSCIEncoding</i> key does not update the encoding type of existing files in the <i class=" ">CIRepository</i> folder. To fully update the encoding of the repository content, you need to:</p>
+<ul class=" "><li class=" "><p   
+>Run complete serialization for all objects.</p>
+</li><li class=" "><p   
+>Manually update the encoding type of your <i class=" ">repository.config</i> file.</p>
+</li></ul>        </div>
+    </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

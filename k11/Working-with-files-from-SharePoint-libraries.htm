@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Working with files from SharePoint libraries - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882845"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Integrating-3rd-party-systems.htm">Integrating 3rd party systems</a></li>
+                                                                                                         <li class="shortcut"><a href="Integrating-SharePoint.htm">Integrating SharePoint</a></li>
+                                                                                     <li><a href="Managing-SharePoint-libraries.htm">Managing SharePoint libraries</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882845"> <span>Working with files from SharePoint libraries</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>The<strong class=" "> SharePoint</strong> application allows you to manage files contained in available SharePoint libraries. Using this application, you can:</p>
+<ul class=" "><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-AccessingfilesfromSharePointlibraries">Access files from SharePoint libraries</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-InsertingfilesintoSharePointlibraries">Insert files into SharePoint libraries</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-UpdatingfilesinSharePointlibraries">Update files in SharePoint libraries</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-DeletingfilesfromSharePointlibraries">Delete files from SharePoint libraries</a></p>
+</li></ul><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882845/files_in_library.png" alt="images/download/attachments/68882845/files_in_library.png" width="500"  />
+        <br/><span class="caption">Files available in a SharePoint library</span>
+    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>In the <strong class=" ">SharePoint</strong> application, you can work with files that are:</p>
+<ul class=" "><li class=" "><p   
+>allowed in SharePoint<br/>- AND -</p>
+</li><li class=" "><p   
+>allowed in Kentico, as specified in <strong class=" ">Settings -&gt; System -&gt; Files</strong>.</p>
+</li></ul><p   
+>Working with locked or checked-out files, same as with files under a workflow is not supported.</p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-AccessingfilesfromSharePointlibraries">Accessing files from SharePoint libraries</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-Viewingimages">Viewing images</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-Downloadingfiles">Downloading files</a></p>
+</li></ul></li><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-InsertingfilesintoSharePointlibraries">Inserting files into SharePoint libraries</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-UpdatingfilesinSharePointlibraries">Updating files in SharePoint libraries</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-DeletingfilesfromSharePointlibraries">Deleting files from SharePoint libraries</a></p>
+</li><li class=" "><p   
+><a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-DisplayingSharePointfilesonyourwebsite">Displaying SharePoint files on your website</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="k11/Managing-SharePoint-libraries.htm">Managing SharePoint libraries</a><br/></p>
+</li><li class=" "><p   
+><a   href="k11/Displaying-SharePoint-data-in-Kentico.htm">Displaying SharePoint data in Kentico</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68882845_WorkingwithfilesfromSharePointlibraries-AccessingfilesfromSharePointlibraries" class="heading "><span>Accessing files from SharePoint libraries</span></h3>
+<p   
+>You can access files from SharePoint libraries in Kentico after the system finishes downloading content of these libraries from SharePoint. For each SharePoint library, the download of the contained files to Kentico starts when you add the library to the <strong class=" ">SharePoint </strong>application.</p>
+<p   
+>Later on, the system periodically checks if changes have been made to the libraries in SharePoint and reflects these changes in Kentico.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>You can change the period when the system automatically checks the current state of the libraries in SharePoint and reflects the changes in Kentico.</p>
+<p   
+>You can also get the system to reflect in Kentico any changes made to the libraries in SharePoint instantly.</p>
+<p   
+>See <a   href="k11/Managing-SharePoint-libraries.htm">Managing SharePoint libraries</a> for more details.</p>
+        </div>
+    </div>
+<p   
+>When the system finishes downloading the files from SharePoint, you can download any of the files to your computer or mobile device. Besides, you can view images (if available).</p>
+    <h4 id="src-68882845_WorkingwithfilesfromSharePointlibraries-Viewingimages" class="heading "><span>Viewing images</span></h4>
+<p   
+>To view images from available SharePoint libraries:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">SharePoint</strong> application.</p>
+</li><li class=" "><p   
+><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+) a library.<br/></p>
+<ul class=" "><li class=" "><p   
+>The system opens the library on the <strong class=" ">Files</strong> tab and displays available files.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">View</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/open_live_site.png" alt="images/download/attachments/68879208/open_live_site.png"   />
+) next to a selected image to view the image.</p>
+<ul class=" "><li class=" "><p   
+>The action is available only for image files.</p>
+</li></ul></li></ol><p   
+>The system displays the image.</p>
+    <h4 id="src-68882845_WorkingwithfilesfromSharePointlibraries-Downloadingfiles" class="heading "><span>Downloading files</span></h4>
+<p   
+>To download files from available SharePoint libraries to your computer or mobile device:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">SharePoint</strong> application.</p>
+</li><li class=" "><p   
+><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+) a library.</p>
+<ul class=" "><li class=" "><p   
+>The system opens the library on the <strong class=" ">Files</strong> tab and displays available files.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Download</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/download.png" alt="images/download/attachments/68879208/download.png"   />
+) next to a selected file to download the file to your computer or mobile device.</p>
+</li></ol><p   
+>If you now modify the file, you can <a   href="k11/#src-68882845_WorkingwithfilesfromSharePointlibraries-UpdatingfilesinSharePointlibraries">replace</a> its existing version with the current version in the library.</p>
+    <h3 id="src-68882845_WorkingwithfilesfromSharePointlibraries-InsertingfilesintoSharePointlibraries" class="heading "><span>Inserting files into SharePoint libraries</span></h3>
+<p   
+>To insert files into a selected SharePoint library using the Kentico administration interface:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">SharePoint</strong> application.</p>
+</li><li class=" "><p   
+><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+) a library.</p>
+<ul class=" "><li class=" "><p   
+>The system opens the library on the <strong class=" ">Files</strong> tab, showing a list of all available files.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Add files</strong>.</p>
+<ul class=" "><li class=" "><p   
+>This opens a standard file selection dialog.</p>
+</li></ul></li><li class=" "><p   
+>Select one or more files.</p>
+<ul class=" "><li class=" "><p   
+>You need to select files of supported types, i.e. documents and images.</p>
+</li><li class=" "><p   
+>Selecting files of unsupported types results in a failure during upload of the files.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Open</strong>.</p>
+</li></ol><p   
+>The system starts uploading the files to SharePoint. When the upload to SharePoint is finished, the files are available in the library in both SharePoint and Kentico.</p>
+    <h3 id="src-68882845_WorkingwithfilesfromSharePointlibraries-UpdatingfilesinSharePointlibraries" class="heading "><span>Updating files in SharePoint libraries</span></h3>
+<p   
+>To update files in SharePoint libraries:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">SharePoint</strong> application.</p>
+</li><li class=" "><p   
+><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+) a library.</p>
+<ul class=" "><li class=" "><p   
+>The system opens the library on the <strong class=" ">Files</strong> tab, showing a list of all available files.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Update</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/update.png" alt="images/download/attachments/68879208/update.png"   />
+) next to a selected file.<br/></p>
+<ul class=" "><li class=" "><p   
+>This opens a standard file selection dialog.</p>
+</li></ul></li><li class=" "><p   
+>Select the current version of the file, or a different file.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p   
+>The system starts uploading the selected file to SharePoint. When the upload to SharePoint is finished, the file is available in the library in both SharePoint and Kentico.</p>
+    <h3 id="src-68882845_WorkingwithfilesfromSharePointlibraries-DeletingfilesfromSharePointlibraries" class="heading "><span>Deleting files from SharePoint libraries</span></h3>
+<p   
+>To delete a file from a selected SharePoint library using the Kentico administration interface:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">SharePoint</strong> application.</p>
+</li><li class=" "><p   
+><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+) a library.</p>
+<ul class=" "><li class=" "><p   
+>The system opens the library on the <strong class=" ">Files</strong> tab, showing a list of all available files.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Delete</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/delete.png" alt="images/download/attachments/68879208/delete.png"   />
+) next to a selected file.<br/></p>
+<ul class=" "><li class=" "><p   
+>This opens a confirmation dialog.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p   
+>The system deletes the file from the library in both Kentico and SharePoint, where it is moved to the recycle bin. This means you can later restore the file in SharePoint.</p>
+<p   
+>If you restore the file from the recycle bin in SharePoint, it is instantly available in SharePoint. However, in Kentico it is available only after <a   href="k11/Managing-SharePoint-libraries.htm#src-68882842_ManagingSharePointlibraries-SynchronizingSharePointlibraries">synchronization</a> with SharePoint, i.e. with delay.</p>
+    <h3 id="src-68882845_WorkingwithfilesfromSharePointlibraries-DisplayingSharePointfilesonyourwebsite" class="heading "><span>Displaying SharePoint files on your website</span></h3>
+<p   
+>To learn how to use files from SharePoint libraries on the pages of your website (for example display images, file download links, etc.), see <a   href="k11/Displaying-SharePoint-data-in-Kentico.htm">Displaying SharePoint data in Kentico</a>.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Separating the contact management database - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.htm" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882593"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.htm">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="On-line-marketing-features.htm">On-line marketing features</a></li>
+                                                                                     <li><a href="Configuring-and-customizing-your-on-line-marketing-features.htm">Configuring and customizing your on-line marketing features</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882593"> <span>Separating the contact management database</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>When using contact management on high&#8209;traffic websites, the system needs to store a very large volume of data in order to keep records of all contacts, their activities and other related information. This may complicate database administration and make it difficult to perform regular backups. For these reasons, Kentico provides a way to move all tables and database objects associated with contact management to a separate database (including the currently stored data). Doing so allows easier management of the application&#39;s main database, without the need to deal with the contact data.</p>
+<p   
+>There can only be one separated contact management database for the entire system, even when hosting multiple websites. It is not possible to create a different database for each site.</p>
+    <h4 id="src-68882593_safe-id-U2VwYXJhdGluZ3RoZWNvbnRhY3RtYW5hZ2VtZW50ZGF0YWJhc2UtV2hlbnNob3VsZHlvdXVzZWFzZXBhcmF0ZWNvbnRhY3RtYW5hZ2VtZW50ZGF0YWJhc2U_" class="heading "><span>When should you use a separate contact management database?</span></h4>
+<ul class=" "><li class=" "><p   
+>When the amount of data stored in the contact management tables is too large to back up in the same interval as the main database.</p>
+</li></ul>    <h4 id="src-68882593_safe-id-U2VwYXJhdGluZ3RoZWNvbnRhY3RtYW5hZ2VtZW50ZGF0YWJhc2UtV2hlbm5vdHRvdXNlYXNlcGFyYXRlY29udGFjdG1hbmFnZW1lbnRkYXRhYmFzZT8" class="heading "><span>When not to use a separate contact management database?</span></h4>
+<ul class=" "><li class=" "><p   
+>If you don&#39;t store a large amount of data in the contact management database tables.</p>
+</li><li class=" "><p   
+>If you don&#39;t plan on backing up your main database in frequent intervals.</p>
+</li></ul>    <h4 id="src-68882593_Separatingthecontactmanagementdatabase-Tablesaffectedbycontactmanagementdatabaseseparation" class="heading "><span>Tables affected by contact management database separation</span></h4>
+<p   
+>The separation procedure affects the following database tables:</p>
+<ul class=" "><li class=" "><p   
+>CMS_Consent</p>
+</li><li class=" "><p   
+>CMS_ConsentArchive</p>
+</li><li class=" "><p   
+>CMS_ConsentAgreement</p>
+</li><li class=" "><p   
+>Newsletter_ClickedLinks</p>
+</li><li class=" "><p   
+>Newsletter_IssueContactGroup</p>
+</li><li class=" "><p   
+>Newsletter_Link</p>
+</li><li class=" "><p   
+>Newsletter_OpenedEmail</p>
+</li><li class=" "><p   
+>OM_Account</p>
+</li><li class=" "><p   
+>OM_AccountContact</p>
+</li><li class=" "><p   
+>OM_AccountStatus</p>
+</li><li class=" "><p   
+>OM_Activity</p>
+</li><li class=" "><p   
+>OM_ActivityRecalculationQueue</p>
+</li><li class=" "><p   
+>OM_ActivityType</p>
+</li><li class=" "><p   
+>OM_Contact</p>
+</li><li class=" "><p   
+>OM_ContactGroup</p>
+</li><li class=" "><p   
+>OM_ContactGroupMember</p>
+</li><li class=" "><p   
+>OM_ContactChangeRecalculationQueue</p>
+</li><li class=" "><p   
+>OM_ContactRole</p>
+</li><li class=" "><p   
+>OM_ContactStatus</p>
+</li><li class=" "><p   
+>OM_Membership</p>
+</li><li class=" "><p   
+>OM_Rule</p>
+</li><li class=" "><p   
+>OM_Score</p>
+</li><li class=" "><p   
+>OM_ScoreContactRule</p>
+</li><li class=" "><p   
+>OM_VisitorToContact</p>
+</li><li class=" "><p   
+>Personas_Persona</p>
+</li><li class=" "><p   
+>Personas_PersonaContactHistory</p>
+</li></ul>    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+><a   href="k11/Rejoining-the-contact-management-database.htm">Rejoining the contact management database</a></p>
+</li></ul>        </div>
+    </div>
+<p   
+></p>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title">Kentico EMS required</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+        </div>
+    </div>
+<p   
+></p>
+    <h3 id="src-68882593_Separatingthecontactmanagementdatabase-Runningthedatabaseseparation" class="heading "><span>Running the database separation</span></h3>
+<p   
+>Use the following steps to separate the system&#39;s contact management data into a different database.</p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Warning</strong><br/></p>
+<ul class=" "><li class=" "><p   
+>It is strongly recommended to back up your database before starting the separation.</p>
+</li><li class=" "><p   
+>The database will be unavailable while the separation is being carried out, so you should run the process at a time when no visitors or editors are accessing the websites in the system.</p>
+</li><li class=" "><p   
+>You cannot perform database separation if you use Integrated Windows authentication on your SQL Server.</p>
+</li></ul>        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Database separation on Amazon RDS</strong><br/></p>
+<p   
+>Separating the contact management database on Amazon RDS is not supported.</p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Database separation on Microsoft Azure</strong></p>
+<p   
+>If your SQL database is hosted on Microsoft Azure, you need to manually perform some parts of the procedure:</p>
+<ul class=" "><li class=" "><p   
+>Create a new database before you launch the separation. The process cannot automatically create the separated database.</p>
+</li><li class=" "><p   
+>Move data to the separated database. The process does not move the data, it only creates the database structure.</p>
+</li><li class=" "><p   
+>Delete the separated tables from the original database.</p>
+</li><li class=" "><p   
+><a   href="k11/Configuring-Kentico-Azure-projects-for-Cloud-Services.htm#src-68881729_ConfiguringKenticoAzureprojectsforCloudServices-AddingapplicationsettingsinanAzureproject">Configure your Azure project</a> to contain a connection string to the separated database. You can either:</p>
+<ul class=" "><li class=" "><p   
+>Add a new <i class=" ">&lt;Setting name=&quot;CMSOMConnectionString&quot; value=&quot;...&quot; /&gt;</i> setting to your project&#39;s <i class=" ">ServiceConfiguration.Cloud.csdef</i> file.<br/>&ndash; or &ndash;</p>
+</li><li class=" "><p   
+>Add a new <i class=" ">&lt;add name=&quot;CMSOMConnectionString&quot; connectionString=&quot;...&quot; /&gt;</i> key to your project&#39;s <i class=" ">web.config</i> file.</p>
+</li></ul></li></ul>        </div>
+    </div>
+<ol class=" "><li class=" "><p   
+>Open the<strong class=" "> System</strong> application.</p>
+</li><li class=" "><p   
+>Select the <strong class=" ">DB separation</strong> tab and click <strong class=" ">Separate contact management database</strong>.</p>
+<ul class=" "><li class=" "><p   
+>This starts the database separation wizard.</p>
+</li></ul></li><li class=" "><p   
+>Specify the SQL server to which you wish to transfer the contact management database and enter the connection credentials.</p>
+<ul class=" "><li class=" "><p   
+>You can identify the server through its name or IP address.</p>
+</li><li class=" "><p   
+>It is possible to use a different server than the one containing the main database.</p>
+</li><li class=" "><p   
+>The separated database may be hosted on all server types <a   href="k11/Server-and-hosting-requirements.htm">supported by Kentico</a>.</p>
+</li></ul><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882593/specifying_server.png" alt="images/download/attachments/68882593/specifying_server.png" width="500"  />
+        <br/><span class="caption">Specifying a server that will host the separated database</span>
+    </p>
+</li><li class=" "><p   
+>Continue by clicking <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p   
+>In Step 2, choose to either:</p>
+<ul class=" "><li class=" "><p   
+>Create a new database for the contact management DB objects and data</p>
+</li><li class=" "><p   
+>Import the DB objects and data into an existing database on the server specified in the previous step.</p>
+<ul class=" "><li class=" "><p   
+>Make sure the existing database does not contain any of the tables that are included in the separation. See the top of the topic for a list.</p>
+</li><li class=" "><p   
+>Make sure the existing database is case insensitive.</p>
+</li></ul></li></ul></li><li class=" "><p   
+>Type the name of the target database into the appropriate field.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Disable tasks</strong>.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>You need to prevent all <a   href="k11/Scheduling-tasks.htm">scheduled tasks</a> in the system from running, because the database will be unavailable during the separation process. If a task is currently being executed when you click the button, the disabling action waits until the task is finished. The tasks will automatically be enabled again when the separation is completed.</p>
+        </div>
+    </div>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882593/specifying_database.png" alt="images/download/attachments/68882593/specifying_database.png" width="500"  />
+        <br/><span class="caption">Specifying a database to separate into</span>
+    </p>
+</li><li class=" "><p   
+>Click <strong class=" ">Next</strong> to begin the separation.</p>
+<ul class=" "><li class=" "><p   
+>The wizard displays a log while the database operations are being performed.</p>
+</li><li class=" "><p   
+>During this stage, all websites in the system are temporarily switched to <a   href="k11/Switching-sites-to-off-line-mode.htm">Off-line mode</a>.</p>
+</li><li class=" "><p   
+>Any regular visitors who arrive at this time see a message informing that the site is down due to maintenance. For users with the Global administrator <a   href="k11/User-management.htm">privilege level</a>, the system shows the current state of the separation wizard.</p>
+</li></ul>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>When the process is completed, all contact management data is transferred to the new database. If you view your application&#39;s web.config file, you can notice that an additional connection string for the new contact management database is now present in the &lt;connectionStrings&gt; section:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add name=</code><code class="string">"CMSOMConnectionString"</code><code class="plain"> connectionString=</code><code class="string">"..."</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Click <strong class=" ">Finish</strong> in the final step of the wizard.</p>
+<ul class=" "><li class=" "><p   
+>The on-line marketing data is removed from the application&#39;s main database (including the database table structure and other related objects).</p>
+</li><li class=" "><p   
+>The system brings all websites back on-line and enables the inactive scheduled tasks.</p>
+</li></ul></li></ol>    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Database separation on web farms</strong></p>
+<p   
+>If your application is running on multiple servers in a <a   href="k11/Setting-up-web-farms.htm">Web farm environment</a>, you need to manually copy the <strong class=" ">CMSOMConnectionstring</strong> key into the <i class=" ">web.config</i> files of all other servers, otherwise they will not be functional.</p>
+        </div>
+    </div>
+    <h4 id="src-68882593_Separatingthecontactmanagementdatabase-Result" class="heading "><span>Result</span></h4>
+<p   
+>The new database status is reflected on the <strong class=" ">General</strong> tab of the <strong class=" ">System </strong>application, in the <strong class=" ">Database information</strong> section.</p>
+<p   
+>All functionality of the website and administration interface remains the same as before the separation.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>If you wish to reverse the process and return everything back to a single database, follow the instructions in <a   href="k11/Rejoining-the-contact-management-database.htm">Rejoining the contact management database</a>.</p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Querying data from separated databases on Azure SQL</strong></p>
+<p   
+>If you are using a <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-technical-overview">Microsoft Azure SQL database</a> and wish to run <a   href="k11/Loading-data-using-custom-queries.htm">custom queries</a> that load data from a separated database, you need to utilize <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-query-overview">elastic queries</a> (cross-database querying):</p>
+<ol class=" "><li class=" "><p   
+>Set up a database scoped master key and credentials.</p>
+</li><li class=" "><p   
+>Define an external data source for the separated database.</p>
+</li><li class=" "><p   
+>Create external tables for every table that you wish to use in your queries.</p>
+</li><li class=" "><p   
+>Load data from the appropriate external tables in the code of your queries.</p>
+</li></ol><p   
+>For detailed information, see the <a  class="external-link" href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-query-vertical-partitioning">Query across cloud databases</a> article.</p>
+        </div>
+    </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>
