@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Marketing automation - Documentation Updates</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="56787478">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">DU</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Documentation-Updates-Home.html" class="ht-space-link">
+                    <h2>Documentation Updates</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=124330827"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Documentation-Updates-Home.html">Documentation Updates</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Welcome-to-Kentico-Xperience-13.html">Welcome to Kentico Xperience 13</a></li>
+                                                                                     <li><a href="Business-tutorial.html">Business tutorial</a></li>
+                                                            </ul>
+</div>            <h1 id="src-124330827"> <span>Marketing automation</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Marketing automation helps you keep your customers happy and engaged. Processes can remind them about their incomplete checkouts or send them highly personalized content at the right moment in their customer journey. Marketing automation can also help marketers on the backend, for example, by keeping their contact database up-to-date by running automated sorts and cleanups.</p>
+<p   
+>Kentico Xperience comes with a built-in application you can use to automate various marketing processes.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Implementing personalized messaging via marketing automation helped <a  class="external-link" href="https://xperience.io/discover/case-studies/lucrf-super">LUCRF Super increase the appointment request by 193%</a> compared with their previous website.</p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Business tutorial</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="children "></ul><p   
+></p>
+        </div>
+    </div>
+    <h3 id="src-124330827_safe-id-TWFya2V0aW5nYXV0b21hdGlvbi1Ib3dkb2VzbWFya2V0aW5nYXV0b21hdGlvbndvcms_" class="heading "><span>How does marketing automation work?</span></h3>
+<p   
+>Decide which tasks you want to automate and what conditions will trigger the process, and then use the <strong class=" ">Marketing automation</strong> application to set it up.</p>
+<p   
+>The processes are built as series of steps that provide various functionality, such as &quot;send email&quot; or &quot;wait for a specific time interval&quot;. You can fully customize not only the processes on your website, but with the help of developers, you can even add new custom step types. Kentico Xperience can start the processes automatically using condition-based <a   href="http://localhost:8090/display/13/Setting+triggers+for+automation+processes">triggers</a>, or you can<a   href="http://localhost:8090/display/13/Manually+running+automation+processes"> start the processes manually</a> if that fits your user scenarios better.</p>
+<p   
+>Kentico Xperience runs all the enabled processes in the backend and constantly checks their trigger conditions against your contact database. When the system finds a contact that matches the conditions, it automatically starts the process for this contact.</p>
+    <h3 id="src-124330827_safe-id-TWFya2V0aW5nYXV0b21hdGlvbi1Ib3djYW55b3VzdGFydGF1dG9tYXRpbmd5b3VycHJvY2Vzc2VzPw" class="heading "><span>How can you start automating your processes?</span></h3>
+    <h4 id="src-124330827_Marketingautomation-1.Decidewhatyouwanttoautomate" class="heading "><span>1. Decide what you want to automate</span></h4>
+<p   
+>Identify the most time-consuming tasks you do by hand that can be automated, such as setting a specific contact property, sending personalized messages at a specific time, or creating a contact group that will collect all contacts that reached a specific score.</p>
+<p   
+>Here are a few ideas for using marketing automation:</p>
+<ul class=" "><li class=" "><p   
+>Running <a  class="external-link" href="https://en.wikipedia.org/wiki/Drip_marketing">drip campaigns</a> to nurture your leads.</p>
+</li><li class=" "><p   
+>Reminding customers of their abandoned shopping cart.</p>
+</li><li class=" "><p   
+>Onboarding your new partners, users, and membership owners.</p>
+</li><li class=" "><p   
+>Sending after-purchase sequences about related products or &ldquo;time to re-stock&rdquo; reminders.</p>
+</li><li class=" "><p   
+>Teaching your customers to make use of their new product or service.</p>
+</li><li class=" "><p   
+>Including automated processes into your marketing campaigns &ndash; from replying to submitted forms to sending a series of emails to shape your prospect&#39;s experience.</p>
+</li><li class=" "><p   
+>Organizing your contacts into groups based on their action in different stages of their customer journey.</p>
+</li><li class=" "><p   
+>Running time-specific campaigns for seasonal offerings.</p>
+</li><li class=" "><p   
+>Sorting contacts in the database based on their properties and past actions.</p>
+</li></ul>    <h4 id="src-124330827_Marketingautomation-2.Createtheprocess" class="heading "><span>2. Create the process</span></h4>
+<p   
+>There are two ways to create a new process &ndash; <i class=" ">from scratch</i> or using an existing <i class=" ">template</i>. Making the process from scratch gives you a blank canvas. Using a template gives you a head start and can significantly speed up your work.</p>
+<p   
+>Marketing automation templates can contain effective processes that your customers best responded to. Using <i class=" ">notes</i>, you can describe the purpose of the process to your team members and remind them about specific steps they need to adjust when they use this template.</p>
+<p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/124330827/kx13-creating-new-process-from-template.gif" alt="images/download/attachments/124330827/kx13-creating-new-process-from-template.gif" width="750"  />
+    </p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Save your most successful processes as templates, re-use them or share them with your team.</p>
+        </div>
+    </div>
+    <h4 id="src-124330827_Marketingautomation-3.Setuptriggerconditions" class="heading "><span>3. Set up trigger conditions</span></h4>
+<p   
+>In Kentico Xperience, almost anything can become a trigger that you can use to start the automation process. When you&rsquo;re setting the trigger, specify for which contacts or contact segments the process should run using the built-in macro condition builder.</p>
+<p   
+>The two most common situations that trigger a process are when:</p>
+<ol class=" "><li class=" "><p   
+>A contact performs some activity.</p>
+<ul class=" "><li class=" "><p   
+>It can be any activity on your site, like visiting a specific page or submitting an online form, or off-site, like opening a marketing email. Here&rsquo;s how you can <a   href="http://localhost:8090/display/13/Setting+triggers+for+automation+processes">set the trigger</a>:<br/>Your browser does not support the HTML5 video element</p>
+</li></ul></li><li class=" "><p   
+>A specific moment in time appears.</p>
+<ul class=" "><li class=" "><p   
+>Be it the &ldquo;the time of the year&rdquo; to run a campaign for seasonal goods, time to clean your contact database, or a particular moment on your contacts&#39; journey appears that will qualify them into a solid lead. Identify that moment in time &ndash; and keep your customers engaged! Here&rsquo;s how you can <a   href="http://localhost:8090/display/13/Setting+triggers+for+automation+processes">set a time-based trigger</a>:<br/>Your browser does not support the HTML5 video element</p>
+</li></ul></li></ol>    <h4 id="src-124330827_Marketingautomation-4.Buildtheprocessworkflow" class="heading "><span>4. Build the process workflow</span></h4>
+<p   
+>Marketing automation processes are easy to build. <a   href="http://localhost:8090/display/13/Managing+automation+process+steps">Drag and drop the flow steps or actions</a> onto the board and adjust their properties. Check out how you can add a marketing email from an existing email feed:<br/>Your browser does not support the HTML5 video element</p>
+<p   
+></p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Learn how to <strong class=" ">create marketing emails</strong> in the <a   href="email-marketing">Email marketing</a> section of the Kentico Xperience Business tutorial.</p>
+        </div>
+    </div>
+<p   
+>With the <strong class=" ">Wait</strong> step, you can set when the process will continue. For example, you can make the process wait for a week &ndash; and then continue on the following Wednesday.</p>
+<p   
+>Your browser does not support the HTML5 video element</p>
+<p   
+></p>
+    <h4 id="src-124330827_Marketingautomation-5.Enabletheprocess" class="heading "><span>5. Enable the process</span></h4>
+<p   
+>Before you start the process, connect all the steps together in the correct order. Then click the <strong class=" ">Enable</strong> button.</p>
+<p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/124330827/kx-13-ma-connect-steps-enable-process.gif" alt="images/download/attachments/124330827/kx-13-ma-connect-steps-enable-process.gif" width="750"  />
+    </p>
+<p   
+>After you enable the process, Kentico Xperience takes care of the rest and starts the process for any contact that matches the conditions you specified in the trigger.</p>
+    <h4 id="src-124330827_Marketingautomation-6.Analyzeandoptimizetheperformanceofyourprocess" class="heading "><span>6. Analyze and optimize the performance of your process</span></h4>
+<p   
+>The <strong class=" ">Marketing automation</strong> application brings all the performance data into one place &ndash; all your email reports, which contacts are in the process, or where they come from. You can find all the details about contacts that the process is running for on the <strong class=" ">Contacts</strong> tab. <a   href="http://localhost:8090/display/13/Viewing+marketing+automation+analytics">Analyze the data</a> and optimize your processes to deliver the best customer experiences.</p>
+<p   
+>Your browser does not support the HTML5 video element</p>
+<p   
+></p>
+    <h3 id="src-124330827_Marketingautomation-Trycreatingaprocessfromatemplateforyourself" class="heading "><span>Try creating a process from a template for yourself</span></h3>
+<p   
+>Let&rsquo;s send every contact that has their birthday today a discount code using a new process with the <i class=" ">Send birthday messages</i> template.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Get the hosted trial</strong></p>
+<p   
+>You will work on the Xperience Dancing Goat Core website hosted on Kentico Xperience servers. Before you dive in, request a <a  class="external-link" href="https://xperience.io/get-started/hosted-trial">hosted trial of Kentico Xperience</a>.</p>
+        </div>
+    </div>
+    <h4 id="src-124330827_Marketingautomation-Addabirthdaydatetoacontact" class="heading "><span>Add a birthday date to a contact</span></h4>
+<p   
+>First, let&#39;s prepare a contact to send the birthday message to.</p>
+<ol class=" "><li class=" "><p   
+>Navigate to the <strong class=" ">Contact management</strong> application.</p>
+</li><li class=" "><p   
+>Search for <i class=" ">Monica King</i> contact (<i class=" ">monica.king@localhost.local</i>) in the list and <strong class=" ">View (ICON) </strong>the contact.</p>
+</li><li class=" "><p   
+>On the contact <strong class=" ">Profile</strong> tab, check if the <strong class=" ">Birthday date </strong>field matches the current date.</p>
+</li><li class=" "><p   
+>If not, click the <strong class=" ">Edit</strong> button to adjust the Monica King contact&rsquo;s properties.</p>
+<ul class=" "><li class=" "><p   
+>In the <strong class=" ">Birthday</strong> field, click the <strong class=" ">Today</strong> button to add today&rsquo;s date.</p>
+</li><li class=" "><p   
+><strong class=" ">Save</strong> your changes.</p>
+</li></ul></li></ol>    <h4 id="src-124330827_Marketingautomation-Createthenewprocess" class="heading "><span>Create the new process</span></h4>
+<ol class=" "><li class=" "><p   
+>Switch to the <strong class=" ">Marketing automation</strong> application.</p>
+</li><li class=" "><p   
+>Create a <strong class=" ">New process</strong>:</p>
+<ul class=" "><li class=" "><p   
+>Use the <i class=" ">Send birthday message</i> template.</p>
+</li></ul></li><li class=" "><p   
+>In the <strong class=" ">Design</strong> tab within the process:</p>
+<ul class=" "><li class=" "><p   
+>Click on the <strong class=" ">Send birthday email with coupon </strong>step to edit its parameters:</p>
+<ol class=" "><li class=" "><p   
+>Select the <i class=" ">Marketing engagement email </i><strong class=" ">Email feed</strong><i class=" ">.</i></p>
+</li><li class=" "><p   
+>Select the <i class=" ">Happy Birthday email with coupon </i><strong class=" ">Email</strong>.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Apply</strong> to save your changes.</p>
+</li></ol></li><li class=" "><p   
+>Click on the<strong class=" "> Add to birthday success group </strong>step to edit it&#39;s parameters:</p>
+<ol class=" "><li class=" "><p   
+><strong class=" ">Select</strong> the <i class=" ">Birthday success group</i> from the available <strong class=" ">Contact groups</strong>.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Apply</strong> to save your changes.</p>
+</li></ol></li><li class=" "><p   
+>Click the <strong class=" ">Enable</strong> button to activate the process.</p>
+</li></ul></li></ol><p   
+>And that&rsquo;s it! You&rsquo;ve just created a new process, set its flow, and enabled it. What does this mean? When there&rsquo;s a contact that matches the trigger conditions, Kentico Xperience will trigger the process.</p>
+<p   
+>Let&rsquo;s see the process in action. The <i class=" ">Dancing Goat</i> demo website is set to evaluate birthday triggers once a day using a scheduled task. To test the process, you can run the task manually from the <strong class=" ">Scheduled tasks</strong> application:</p>
+<ol class=" "><li class=" "><p   
+>Switch to the <strong class=" ">Scheduled tasks</strong> application and navigate to the <strong class=" ">System</strong> <strong class=" ">tasks</strong> tabs.</p>
+</li><li class=" "><p   
+>Click the <strong class=" ">Execute (ICON)</strong> button for the <i class=" ">Automation time-based trigger &#39;Contact has birthday&#39;</i> task to check the contact database for any new contacts that match the starting conditions.</p>
+</li></ol>    <h4 id="src-124330827_Marketingautomation-Viewcontactsintheprocess" class="heading "><span>View contacts in the process</span></h4>
+<p   
+>Kentico Xperience Marketing automation gives you reports for contacts for which the process is running. Let&rsquo;s take a look.</p>
+<ol class=" "><li class=" "><p   
+>Switch to the <strong class=" ">Marketing automation</strong> application and <strong class=" ">Edit</strong> (<strong class=" ">ICON</strong>) your newly created process.</p>
+<ul class=" "><li class=" "><p   
+>Look for a process with the &quot;<i class=" ">Send birthday message</i>&quot; name. (You can always change the name of your process on its <strong class=" ">General</strong> tab.)</p>
+</li></ul></li><li class=" "><p   
+>Switch to the <strong class=" ">Contacts</strong> tab.</p>
+<ul class=" "><li class=" "><p   
+>You&rsquo;ll see which contacts are in the process. You should also see the one contact whose birth date date you&rsquo;ve updated.</p>
+</li></ul></li></ol>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>You can also add contacts to the process manually. Just click the <strong class=" ">Add contacts</strong> button, select any contact from the database and Xperience will trigger the process immediately.</p>
+        </div>
+    </div>
+    <h3 id="src-124330827_Marketingautomation-Conclusion" class="heading "><span>Conclusion</span></h3>
+<p   
+>You&rsquo;ve learned about Kentico Xperience Marketing automation and how you can build and trigger a process for contact. If you want to learn more about how to use the integrated marketing automation feature to the fullest, you can take our <a  class="external-link" href="https://xperience.io/services/training/marketer-training-courses/xperience-mvc-for-marketers-and-editors">training course for editors and marketers</a>, or <strong class=" "><a   href="business-tutorial#src-124330802_businesstutorial-marketing">continue with the Business tutorial</a></strong>.</p>
+<p   
+>If you&#39;ve seen all pages of the Business tutorial, see what <a  class="external-link" href="https://docs.xperience.io/display/DU/Next+steps"><strong class=" ">Next steps</strong></a> you can take in mastering Kentico Xperience.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>
