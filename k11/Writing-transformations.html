@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Writing transformations - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880597"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing-websites.html">Developing websites</a></li>
+                                                                                     <li><a href="Loading-and-displaying-data-on-websites.html">Loading and displaying data on websites</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880597"> <span>Writing transformations</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Transformations are a crucial part of the process used to display pages and other data in Kentico. A transformation is a code template that determines how listing web parts and controls render content. Data sources provide a collection of items containing raw data, and transformations convert the data into appropriately formatted page output code (HTML).</p>
+<p   
+>The functionality of transformations is very similar to that of item templates used by standard ASP.NET list controls, such as the Repeater. The main difference is that the system stores transformations as virtual objects in the database, and you can easily reuse transformations for different components.</p>
+<p   
+>Transformations are categorized under the objects whose data they display. You can manage transformations for:</p>
+<ul class=" "><li class=" "><p   
+>  <a   href="Page-types">Page types</a> (<strong class=" ">Page types -&gt; Edit a page type -&gt; Transformations</strong>)</p>
+<ul class=" "><li class=" "><p   
+>  <a   href="Creating-container-page-types">Container page types</a> do not represent actual objects on the website, but only serve as containers for transformations. Use container page types to store transformations that you want to share among multiple page types.</p>
+</li></ul></li><li class=" "><p   
+>  <a   href="Custom-tables">Custom tables</a> (<strong class=" ">Custom tables -&gt; Edit a table -&gt; Transformations</strong>)</p>
+</li></ul><p   
+>To assign transformations to listing web parts or controls, use the available <strong class=" ">Transformation</strong> properties. Transformations are supported by all data listing web parts, as well as by   <a   href="CMS-controls">listing controls</a> that are designed to work with Kentico pages. The full name that identifies transformations is in format <i class=" "><strong class=" ">&lt;parent object code name&gt;.&lt;transformation name&gt;</strong></i>.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Note that transformation names can not contain the dot &#39;.&#39; character. Including dots in transformation names could cause unwanted system behavior.</p>
+        </div>
+    </div>
+<p   
+>The Kentico sample sites include many transformations for all built-in page types.</p>
+    <h3 id="src-68880597_Writingtransformations-Transformationtypes" class="heading "><span>Transformation types</span></h3>
+<p   
+>You can use several different approaches when writing the code of transformations. The following transformation types are available:</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68880597_Writingtransformations-Transformationtypes">Transformation types</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880597_Writingtransformations-Transformationexample">Transformation example</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880597_Writingtransformations-AddingCSSstylestotransformations">Adding CSS styles to transformations</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">In this section</div>
+            <div class="panel-content">
+<p   
+></p>
+<p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Adding-custom-methods-to-transformations">Adding custom methods to transformations</a><br/></p>
+</li></ul>        </div>
+    </div>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Transformation type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ASCX<br/>    <span style="color: #ffffff;">
+______________________    </span>
+</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The code of the transformation supports ASCX markup, i.e. the same syntax that you would use to edit standard web forms or user controls. This includes:</p>
+<ul class=" "><li class=" "><p   
+>Embedded controls (user controls or   <a   href="Kentico-Controls">server controls</a>, see the   <a   href="#src-68880597_Writingtransformations-Transformationexample">Transformation example</a>)</p>
+</li><li class=" "><p   
+>Inline code (Kentico API, standard ASP.NET data binding expressions, special methods designed for use in transformations)</p>
+</li></ul><p   
+>To access the fields of the transformed page or custom table, use data binding expressions in format: <i class=" ">&lt;%# Eval(&quot;ColumnName&quot;) %&gt;</i></p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Notes</strong></p>
+<ul class=" "><li class=" "><p   
+>For security reasons, only users who have the <strong class=" ">Edit ASCX</strong> code   <a   href="Configuring-design-permissions">permission</a> for the <strong class=" ">Design</strong> module may edit the code of ASCX transformations. This permission can only be assigned by users with the Global administrator   <a   href="User-management">privilege level</a>.</p>
+</li><li class=" "><p   
+>ASCX transformations need to be compiled, so you cannot create or edit them on   <a   href="Publishing-projects-from-Visual-Studio">precompiled </a>applications.</p>
+</li><li class=" "><p   
+>ASCX transformations do NOT support   <a   href="Macro-expressions">macro expressions</a>.</p>
+</li><li class=" "><p   
+>We do NOT recommend using web parts within the code of transformations. This could lead to poor performance and certain web parts may not work correctly within transformations due to their life cycle.</p>
+</li></ul>        </div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text/XML</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The system processes the code of <i class=" ">Text/XML</i> transformations as basic HTML. ASCX markup (controls or inline code) does not work. You can use Kentico   <a   href="Macro-expressions">macro expressions</a> and methods to insert dynamic values into the content.</p>
+<p   
+>To access the fields of the transformed page, custom table item or object, use expressions in format: <i class=" ">{% ColumnName %}</i></p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Tip</strong>: If a field of the transformed data object contains characters that conflict with the   <a   href="Macro-syntax">macro syntax</a> (for example when using an XML data source), use the <i class=" ">DataItem</i> macro object and indexing to access the field value.</p>
+<p   
+>For example: <i class=" ">{% DataItem[&quot;column-name&quot;] %}</i></p>
+        </div>
+    </div>
+<p   
+>Text transformations have the following advantages:</p>
+<ul class=" "><li class=" "><p   
+>No compilation required. You can create and edit text transformations even in environments where compilation of virtual objects is not possible, for example on   <a   href="Publishing-projects-from-Visual-Studio">precompiled</a> websites.</p>
+</li><li class=" "><p   
+>Text transformations do not allow users to execute inline code, so they cannot be used to compromise the security of the website.</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>HTML</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Work the same way as <strong class=" ">Text/XML</strong> transformations, but you edit the content through the   <a   href="Configuring-the-editor">WYSIWYG editor</a>. The editor shows the rendered output of the transformation&#39;s HTML code.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>XSLT</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Use XSL elements to render the data. The code must be in valid XML format.</p>
+<p   
+>When creating XSLT transformations for displaying pages, set the <strong class=" ">match</strong> attribute of the <strong class=" ">&lt;xsl:template&gt;</strong> element to <i class=" "><strong class=" ">Table</strong></i>.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">xsl</code><code class="plain">:stylesheet </code><code class="color1">xmlns:xsl</code><code class="plain">=</code><code class="string">"http://www.w3.org/1999/XSL/Transform"</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">"1.0"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">xsl</code><code class="plain">:output </code><code class="color1">method</code><code class="plain">=</code><code class="string">"xml"</code><code class="plain"> </code><code class="color1">omit-xml-declaration</code><code class="plain">=</code><code class="string">"yes"</code><code class="plain"> /&gt;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">xsl</code><code class="plain">:template </code><code class="color1">match</code><code class="plain">=</code><code class="string">"Table"</code><code class="plain">&gt;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">xsl</code><code class="plain">:template&gt;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">xsl</code><code class="plain">:stylesheet&gt;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>jQuery</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Provide a way to define the jQuery templates used by:</p>
+<ul class=" "><li class=" "><p   
+>The   <a   href="Chat">Chat</a> application</p>
+</li><li class=" "><p   
+>Integrated   <a   href="Strands-Recommender-integration">Strands recommendations</a></p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h3 id="src-68880597_Writingtransformations-Transformationexample" class="heading "><span>Transformation example</span></h3>
+<p   
+>The following is the code of the <strong class=" ">CorporateSite.Transformations.ProductList</strong> ASCX transformation, which displays lists of products on the sample Corporate Site:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                    <div class="title">ASCX transformation code</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="ASCX transformation code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;%@ Register Src="~/CMSModules/Ecommerce/Controls/ProductOptions/ShoppingCartItemSelector.ascx" TagName="CartItemSelector" TagPrefix="uc1" %&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductPreview"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductBox"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	##editbuttons##</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductImage"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">		&lt;</code><code class="keyword">a</code><code class="plain"> href="&lt;%# GetDocumentUrl() %&gt;" style="display:block;"&gt;</code></div>
+<div class="line"><code class="plain">			&lt;</code><code class="keyword">img</code><code class="plain"> src="&lt;%# GetSKUImageUrl(200) %&gt;" alt="&lt;%# EvalText("SKUName", true) %&gt;" /&gt;</code></div>
+<div class="line"><code class="plain">		&lt;/</code><code class="keyword">a</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">a</code><code class="plain"> href="&lt;%# GetDocumentUrl() %&gt;"&gt;</code></div>
+<div class="line"><code class="plain">		&lt;</code><code class="keyword">span</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductTitle textContent"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">			&lt;%# EvalText("SKUName", true) %&gt;</code></div>
+<div class="line"><code class="plain">		&lt;/</code><code class="keyword">span</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;/</code><code class="keyword">a</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductFooter"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">		&lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"productPrice"</code><code class="plain">&gt;&lt;%# GetSKUFormattedPrice() %&gt;&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">		&lt;</code><code class="keyword">uc1</code><code class="plain">:CartItemSelector </code><code class="color1">id</code><code class="plain">=</code><code class="string">"cartItemSelector"</code><code class="plain"> </code><code class="color1">runat</code><code class="plain">=</code><code class="string">"server"</code><code class="plain"> SKUID='&lt;%# EvalInteger("SKUID") %&gt;' SKUEnabled='&lt;%# EvalBool("SKUEnabled") %&gt;' AddToCartImageButton="~/App_Themes/CorporateSite/Images/btn_addToShoppingCart.png" /&gt;</code></div>
+<div class="line"><code class="plain">	&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+<p   
+>When assigned to a listing web part or control that has products (SKUs) in its data source, the output HTML code of individual products contains values returned by the methods and data binding expressions, like in the following example (part of the code is omitted to save space):</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                    <div class="title">HTML output</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="HTML output" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductPreview"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductBox"</code><code class="plain">&gt;    </code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductImage"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"/8.0_4822.32562/Products/Smartphones/Apple-iPhone-4.aspx"</code><code class="plain"> </code><code class="color1">style</code><code class="plain">=</code><code class="string">"display:block;"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">img</code><code class="plain"> </code><code class="color1">src</code><code class="plain">=</code><code class="string">"/8.0_4822.32562/getmetafile/9ee206cd-ff8b-4ae2-a218-a10f91801c55/iphone4_product.aspx?maxsidesize=200"</code><code class="plain"> </code><code class="color1">alt</code><code class="plain">=</code><code class="string">"Apple iPhone 4 with inscription"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">      &lt;/</code><code class="keyword">a</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"/8.0_4822.32562/Products/Smartphones/Apple-iPhone-4.aspx"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">span</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductTitle textContent"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        Apple iPhone 4 with inscription</code></div>
+<div class="line"><code class="plain">      &lt;/</code><code class="keyword">span</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">a</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"ProductFooter"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">      &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"productPrice"</code><code class="plain">&gt;$759.99&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">          </code></div>
+<div class="line"><code class="plain">	  ...      </code></div>
+<div class="line"><code class="plain">            </code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">div</code><code class="plain">&gt;        </code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+<p   
+>The final output of the product on the website then looks like this:</p>
+<p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/68880597/image2013-3-29-13_7_7.png" alt="images/download/attachments/68880597/image2013-3-29-13_7_7.png"   />
+        <br/><span class="caption">A product displayed on a page</span>
+    </p>
+    <h3 id="src-68880597_Writingtransformations-AddingCSSstylestotransformations" class="heading "><span>Adding CSS styles to transformations</span></h3>
+<p   
+>You can define the CSS classes used in transformation code either in the   <a   href="Designing-websites-using-CSS">stylesheets of the website</a> or individual pages, or add them directly to the transformation object (we only recommend this approach for testing purposes).</p>
+<p   
+>To add styles to transformations:</p>
+<ol class=" "><li class=" "><p   
+>Edit the transformation on the<strong class=" "> General</strong> tab.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Add CSS styles</strong> below the code editor. The <strong class=" ">CSS styles</strong> field appears, where you can add any required CSS classes.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+>If the styles require any additional files (such as images), you can add them on the <strong class=" ">Theme</strong> tab.</p>
+<p   
+>For more information about page component CSS styles, see   <a   href="Adding-CSS-to-page-components">Adding CSS to page components</a>.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

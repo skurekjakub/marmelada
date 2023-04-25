@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Posting to social media - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880943"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Community-features.html">Community features</a></li>
+                                                                                     <li><a href="Integrating-social-media.html">Integrating social media</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880943"> <span>Posting to social media</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Kentico allows you to post to social media and see your entries within the Kentico user interface. For posting and updating content, Kentico supports:</p>
+<ul class=" "><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-PostingtoFacebook">Facebook</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-PostingtoTwitter">Twitter</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-SendingcompanyupdatestoLinkedIn">LinkedIn</a></p>
+</li></ul>    <h3 id="src-68880943_Postingtosocialmedia-Prerequisites" class="heading "><span>Prerequisites</span></h3>
+<p   
+>Before you can post to any of the supported social media:</p>
+<ol class=" "><li class=" "><p   
+>  <a   href="Connecting-Kentico-to-social-media">Create an App and register it in Kentico.</a></p>
+</li><li class=" "><p   
+>  <a   href="Adding-social-media-accounts">Register a social media account (Facebook page or Twitter channel).</a></p>
+</li></ol>    <h3 id="src-68880943_Postingtosocialmedia-PostingtoFacebook" class="heading "><span>Posting to Facebook</span></h3>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Important</strong>: The Facebook publishing functionality in Kentico 11 no longer works due to changes in the Facebook API and updated security requirements. To use the functionality, upgrade to Kentico 12 (Service Pack) and apply the latest hotfix.</p>
+        </div>
+    </div>
+    <h3 id="src-68880943_Postingtosocialmedia-PostingtoTwitter" class="heading "><span>Posting to Twitter</span></h3>
+<ol class=" "><li class=" "><p   
+>Open the<strong class=" "> Twitter</strong> Kentico application.</p>
+</li><li class=" "><p   
+>On the <strong class=" ">Tweets</strong> tab, click <strong class=" ">New tweet</strong>.</p>
+</li><li class=" "><p   
+>Select a <strong class=" ">Twitter channel</strong> you want to tweet to.</p>
+<ul class=" "><li class=" "><p   
+>If there are no channels to choose from,   <a   href="Adding-social-media-accounts">register</a> one first on the <strong class=" ">Channels</strong> tab.</p>
+</li></ul></li><li class=" "><p   
+>Write the tweet text.</p>
+</li><li class=" "><p   
+>(<i class=" ">Optional</i>) Select a <strong class=" ">URL shortener</strong>.</p>
+<ul class=" "><li class=" "><p   
+>If you don&#39;t see your favorite shortener here, see   <a   href="Setting-up-URL-shorteners">Setting up URL shorteners</a>.</p>
+</li></ul></li><li class=" "><p   
+>(<i class=" ">Optional</i>) Enter a <strong class=" ">Publishing time</strong> to schedule the publishing of the tweet for a later time.</p>
+</li><li class=" "><p   
+>(<i class=" ">Optional</i>) Select a   <a   href="Campaigns">campaign</a> to which the tweet belongs.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+>The system publishes your tweet to the selected page. If you chose to publish the tweet later, you can <strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+) the tweet before the system publishes it.</p>
+<p   
+>To check if your tweet was published, view the list of tweets. The list shows the publishing time next to each tweet.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Kentico allows you to analyze the impact of your tweets and success of your account. See   <a   href="Viewing-Twitter-analytics">Viewing Twitter analytics</a>.</p>
+        </div>
+    </div>
+    <h3 id="src-68880943_Postingtosocialmedia-SendingcompanyupdatestoLinkedIn" class="heading "><span>Sending company updates to LinkedIn</span></h3>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The Kentico 11 functionality for managing LinkedIn company profiles no longer works after May 1, 2019 (due to changes in the LinkedIn API, see the <a  class="external-link" href="https://engineering.linkedin.com/blog/2018/12/developer-program-updates">Developer Program Updates</a> announcement for details). If you wish to use this functionality, you need to upgrade to the latest version of Kentico.</p>
+        </div>
+    </div>
+    <h3 id="src-68880943_Postingtosocialmedia-Changingexistingsocialmediapostsandcontentupdates" class="heading "><span>Changing existing social media posts and content updates</span></h3>
+    <h4 id="src-68880943_Postingtosocialmedia-ChangingTwitterandFacebookposts" class="heading "><span>Changing Twitter and Facebook posts</span></h4>
+<p   
+>You cannot edit existing posts or tweets from within Kentico once they have been published. If a post or tweet hasn&#39;t been published yet, you can <strong class=" ">Edit</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+) it from the list of posts or tweets.</p>
+<p   
+>To delete a post or tweet, view the list of posts or tweets and click <strong class=" ">Delete</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/delete.png" alt="images/download/attachments/68879208/delete.png"   />
+) next to the item that you want to delete. This action deletes both the record in Kentico and the post on the particular social media.</p>
+    <h3 id="src-68880943_Postingtosocialmedia-Requiredpermissionsforpostingtosocialmedia" class="heading "><span>Required permissions for posting to social media</span></h3>
+<p   
+>To post to social media from Kentico, an administrator must give you permissions for the Social media module. You need either <strong class=" ">Modify</strong> or <strong class=" ">Modify posts</strong>.</p>
+    <h3 id="src-68880943_Postingtosocialmedia-Advancedconfigurationofpostscheduling" class="heading "><span>Advanced configuration of post scheduling</span></h3>
+<p   
+>If you schedule a post for later publishing, the system creates a   <a   href="Scheduling-tasks">scheduled task</a> for the post. By default, the scheduler in Kentico executes tasks when a user makes a request to the application. Periods of inactivity on the website and in the administration interface will cause posts to be published later than scheduled, i.e. when someone requests a page in the system or on the website.</p>
+<p   
+>To solve this issue, and increase the performance of the system at the same time, use the   <a   href="Installing-the-Scheduler-Windows-service">external scheduler service</a>, which runs independently of the main Kentico web application, or use   <a   href="Configuring-scheduled-task-execution#src-68881906_Configuringscheduledtaskexecution-AutomaticMode">automatic scheduler mode</a>.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-Prerequisites">Prerequisites</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-PostingtoFacebook">Posting to Facebook</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-PostingtoTwitter">Posting to Twitter</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-SendingcompanyupdatestoLinkedIn">Sending company updates to LinkedIn</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-Changingexistingsocialmediapostsandcontentupdates">Changing existing social media posts and content updates</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-ChangingTwitterandFacebookposts">Changing Twitter and Facebook posts</a></p>
+</li></ul></li><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-Requiredpermissionsforpostingtosocialmedia">Required permissions for posting to social media</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880943_Postingtosocialmedia-Advancedconfigurationofpostscheduling">Advanced configuration of post scheduling</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ol class=" "><li class=" "><p   
+>  <a   href="Connecting-Kentico-to-social-media">Connecting Kentico to social media</a></p>
+</li><li class=" "><p   
+>  <a   href="Adding-social-media-accounts">Adding social media accounts</a><strong class=" "></strong></p>
+</li><li class=" "><p   
+><strong class=" ">Posting to social media</strong></p>
+</li></ol>        </div>
+    </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

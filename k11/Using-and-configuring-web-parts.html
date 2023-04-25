@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Using and configuring web parts - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880718"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing-websites.html">Developing websites</a></li>
+                                                                                     <li><a href="Developing-websites-using-the-Portal-engine.html">Developing websites using the Portal engine</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880718"> <span>Using and configuring web parts</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>You can use web parts on both   <a   href="Creating-portal-engine-page-templates">portal page templates</a> and   <a   href="Developing-websites-using-ASPX-templates">ASPX templates</a>. However, with ASPX page templates, you lose the browser&#8209;based interface &mdash; the web parts need to be added and configured in Visual Studio as standard user controls.<br/></p>
+<p   
+>This page describes how to work with web parts when editing page templates through the portal engine.</p>
+    <div  class="confbox admonition admonition-warning">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Only users who have   <a   href="Configuring-design-permissions">design permissions</a> (<strong class=" ">Design web site</strong> for the <i class=" ">Design</i> module) can use web parts.</p>
+        </div>
+    </div>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Pages</strong> application and select your website.</p>
+</li><li class=" "><p   
+>Select any page in the content tree and switch to the <strong class=" ">Design</strong> tab (in <strong class=" ">Edit</strong> mode).</p>
+</li></ol><p   
+>The Design tab allows you to view the structure of the page&#39;s template and manage the template&#39;s web parts.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880718/Design_Mode.png" alt="images/download/attachments/68880718/Design_Mode.png" width="500"  />
+        <br/><span class="caption">Editing a page in Design mode (with the web part toolbar)</span>
+    </p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Impacts of modifying page templates</strong></p>
+<p   
+>The system applies all web part modifications immediately and reflects the changes on the live site. Page templates are not connected to the page&#39;s   <a   href="Configuring-workflows">workflow</a>. However, you can use   <a   href="Using-object-versioning">object versioning</a> to keep track of the changes made to a template, including its web part content (and roll back to previous versions if necessary).</p>
+<p   
+>When you edit the web parts on a re-usable page template that is shared by several pages, the changes affect all of the pages. If you only wish to modify the design for one of the pages, you need to   <a   href="Creating-portal-engine-page-templates#src-68880740_Creatingportalenginepagetemplates-Creatingpagetemplatesbasedonexistingtemplates">clone the template</a> as an ad-hoc template or save it as a new page template.</p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68880718_Usingandconfiguringwebparts-Addingwebparts">Adding web parts</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880718_Usingandconfiguringwebparts-Configuringwebparts">Configuring web parts</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880718_Usingandconfiguringwebparts-Movingwebparts">Moving web parts</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880718_Usingandconfiguringwebparts-Copyingwebparts">Copying web parts</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880718_Usingandconfiguringwebparts-Removingwebparts">Removing web parts</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880718_Usingandconfiguringwebparts-Findingwherespecificwebpartsorwidgetsareused">Finding where specific web parts or widgets are used</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880718_Usingandconfiguringwebparts-Configuringwebpartsviaon-siteediting">Configuring web parts via on-site editing</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880718_Usingandconfiguringwebparts-Resolvingwebparterrors">Resolving web part errors</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Working-with-web-part-properties">Working with web part properties</a></p>
+</li><li class=" "><p   
+>  <a   href="Developing-web-parts">Developing web parts</a></p>
+</li><li class=" "><p   
+>  <a   href="Loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68880718_Usingandconfiguringwebparts-Addingwebparts" class="heading "><span>Adding web parts</span></h3>
+    <h4 id="src-68880718_Usingandconfiguringwebparts-Fromthewebparttoolbar" class="heading "><span>From the web part toolbar</span></h4>
+<p   
+>The most direct way to add a new web part to the template is provided by the <i class=" ">web part toolbar</i>, which appears on the right side of the <strong class=" ">Design</strong> tab:</p>
+<ol class=" "><li class=" "><p   
+>Find the required web part in the toolbar&#39;s list &mdash; you can use two approaches:</p>
+<ul class=" "><li class=" "><p   
+>Type the name of the web part or its part into the search box. The toolbar searches for both individual web parts and entire categories.</p>
+</li><li class=" "><p   
+>Select a web part category at the top of the toolbar.<br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Drag the web part from the toolbar and drop it into the desired location in one of the template&#39;s web part zones.</p>
+</li></ol>    <h4 id="src-68880718_Usingandconfiguringwebparts-Usingzoneactions" class="heading "><span>Using zone actions</span></h4>
+<p   
+>If you do not wish to use the toolbar, you can add new web parts into specific zones:</p>
+<ol class=" "><li class=" "><p   
+>Right-click the header of the required zone, or click the zone&#39;s menu icon (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/menu.png" alt="images/download/attachments/68879208/menu.png"   />
+).</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Add new web part</strong> in the menu.</p>
+</li></ol><p   
+>The <strong class=" ">Select web part</strong> dialog opens, which contains a catalog of all available web parts. Locate specific web parts by browsing through the category tree or using the search. Click <strong class=" ">Select</strong> to confirm your selection.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880718/Web_Part_Catalog.png" alt="images/download/attachments/68880718/Web_Part_Catalog.png" width="500"  />
+        <br/><span class="caption">Selecting a web part from the web part catalog</span>
+    </p>
+    <h3 id="src-68880718_Usingandconfiguringwebparts-Configuringwebparts" class="heading "><span>Configuring web parts</span></h3>
+<p   
+>When you add a new web part instance into a zone, using either the toolbar or the zone action buttons, the <strong class=" ">Web part properties</strong> dialog opens. Here you can set up the behavior of the web part by entering values into its properties.</p>
+    <div  class="confbox admonition admonition-note">
+                    <p class="title">Note</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Web parts can skip the initial configuration dialog when users add new instances. To enable this behavior for a web part:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Web parts</strong> application.</p>
+</li><li class=" "><p   
+>Select the web part in the tree catalog.</p>
+</li><li class=" "><p   
+>Check <strong class=" ">Skip initial configuration</strong> on the <strong class=" ">General</strong> tab.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol>        </div>
+    </div>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880718/Web_Part_Properties.png" alt="images/download/attachments/68880718/Web_Part_Properties.png" width="500"  />
+        <br/><span class="caption">Configuring the properties of a web part</span>
+    </p>
+<p   
+>To open the configuration dialog for existing web part instances, double-click the web part&#39;s header on the <strong class=" ">Design</strong> tab or open the web part&#39;s menu (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/menu.png" alt="images/download/attachments/68879208/menu.png"   />
+) and select <strong class=" ">Configure</strong>. You can also edit properties for entire <i class=" ">Web part zones</i> by double-clicking their header.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Macros in web part properties</strong></p>
+<p   
+>All web part properties support   <a   href="Macro-expressions">macro expressions</a>. Macros allow you to insert dynamic values instead of constants. The system evaluates macros at run-time, so the web parts can work based on context-dependent values.</p>
+<p   
+>For web part properties that do not have text values (such as checkboxes), insert macro expressions by clicking <strong class=" ">Edit value</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit_value.png" alt="images/download/attachments/68879208/edit_value.png"   />
+) next to the given property. This opens a dialog where you can write the required macro.</p>
+<p   
+>See   <a   href="Entering-macro-expressions#src-68882642_Enteringmacroexpressions-Addingmacrovaluesintowebpartproperties">Adding macro values into web part properties</a> for additional details.</p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Loading values from the properties of other web parts</strong></p>
+<p   
+>Macro expressions allow you to connect the functionality or content of multiple web parts. By adding the following macros into properties, you can set up web parts that automatically adjust their behavior based on the configuration of other web parts or zones.</p>
+<p   
+><strong class=" ">Note</strong>: The connected web parts or zones must be placed on the same page template.</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">{% WebPart.GetValue(&quot;WebPartControlID&quot;,&quot;PropertyFieldName&quot;) %}</strong> - gets the value of a web part&#39;s property. To identify the property, fill in the <i class=" ">Web part control ID</i> of the source web part and the <i class=" ">Field name</i> of the given property. You can find the field names of properties by editing web parts on the <i class=" ">Properties</i> tab in the <i class=" ">Web parts</i> application.<br/><strong class=" "><br/>Tip</strong>: To get the value of a property of the current web part, use only: <i class=" ">{% PropertyFieldName %}<br/><br/></i></p>
+</li><li class=" "><p   
+><strong class=" ">{% WebPartZone.GetValue(&quot;ZoneId&quot;,&quot;PropertyColumnName&quot;) %}</strong> - gets the value of a zone&#39;s property. To identify the property, fill in the <i class=" ">ZoneID</i> of the web part zone and the column name of the given property. You can find the IDs of zones in the template&#39;s   <a   href="Editing-page-layouts">Page layout</a> code, and the column names of zone properties in the XML files in <i class=" ">~\App_Data\CMSModules\PortalEngine\Properties\WebPartZone</i>.</p>
+</li></ul><p   
+>When the system displays the page, the macros resolve into the values of the specified properties.</p>
+        </div>
+    </div>
+    <h3 id="src-68880718_Usingandconfiguringwebparts-Movingwebparts" class="heading "><span>Moving web parts</span></h3>
+<p   
+>To relocate a web part to different positions or to other zones, drag the web part&#39;s header to the desired location.</p>
+<p   
+>Alternatively:</p>
+<ol class=" "><li class=" "><p   
+>Right-click the web part&#39;s header.</p>
+</li><li class=" "><p   
+>Hover over <strong class=" ">Move to</strong>.</p>
+</li><li class=" "><p   
+>Select one of the options to move the web part up/down in the current zone, or to one of the other zones on the template.</p>
+</li></ol><p   
+><img  class="confluence-embedded-image confluence-thumbnail confluence-content-image-border"  src="images/download/thumbnails/68880718/web_part_menu.png" alt="images/download/thumbnails/68880718/web_part_menu.png" width="300"  />
+        <br/><span class="caption">Opening the action menu of a web part (right-click)</span>
+    </p>
+<p   
+>To move all web parts in a specific zone:</p>
+<ol class=" "><li class=" "><p   
+>Right-click the header of the zone.</p>
+</li><li class=" "><p   
+>Hover over <strong class=" ">Move web parts to</strong>.</p>
+</li><li class=" "><p   
+>Select the target web part zone.</p>
+</li></ol>    <h3 id="src-68880718_Usingandconfiguringwebparts-Copyingwebparts" class="heading "><span>Copying web parts</span></h3>
+<p   
+>Copying allows you to duplicate web parts and paste them into any web part zone, including the <i class=" "><strong class=" ">templates of other pages </strong></i>on the same website.</p>
+<p   
+>You can copy:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Individual web parts</strong> - right-click the web part&#39;s header, click <strong class=" ">Copy<br/></strong></p>
+</li><li class=" "><p   
+><strong class=" ">All web parts in a zone</strong> - right-click the header of the zone, click <strong class=" ">Copy all</strong></p>
+</li></ul><p   
+>The system saves the web parts and their configuration into an internal component clipboard. To paste the copied web parts into a zone, choose the target location:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">At the end of the zone</strong> - right-click the header of the zone, click <strong class=" ">Paste</strong><strong class=" "><br/></strong></p>
+</li><li class=" "><p   
+><strong class=" ">Directly below a specific web part</strong> - right-click the given web part&#39;s header, click <strong class=" ">Paste<br/></strong></p>
+</li></ul><p   
+>You can paste the web parts any number of times. Copying different web parts (or   <a   href="Preparing-widgets-for-users">widgets</a>) overwrites the clipboard content. Every user in the system has their own separate clipboard.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Copy limitations</strong></p>
+<p   
+>When copying web parts, the system does NOT carry over:</p>
+<ul class=" "><li class=" "><p   
+>The content of editable web parts (<i class=" ">Editable text</i>, <i class=" ">Editable image</i>). Editable content is unique for every page.</p>
+</li><li class=" "><p   
+>  <a   href="Multivariate-testing">Multivariate testing</a> and   <a   href="Content-personalization">Content personalization</a> variants. When you copy a web part with variants, the system only transfers the original web part.</p>
+</li><li class=" "><p   
+>Content placed inside the child zones of   <a   href="Working-with-layout-web-parts">layout web parts</a>. You need to copy the web parts of individual child zones manually through additional <i class=" ">Copy all web parts</i> operations.</p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68880718_Usingandconfiguringwebparts-Removingwebparts" class="heading "><span>Removing web parts</span></h3>
+<p   
+>To remove existing web part instances from the page template:</p>
+<ul class=" "><li class=" "><p   
+>Right-click the header of a specific web part and select <strong class=" ">Remove</strong>.</p>
+</li><li class=" "><p   
+>To remove all web parts in a zone, right-click the zone header and select <strong class=" ">Remove all web parts</strong>.</p>
+</li></ul>    <h3 id="src-68880718_Usingandconfiguringwebparts-Findingwherespecificwebpartsorwidgetsareused" class="heading "><span>Finding where specific web parts or widgets are used</span></h3>
+<p   
+>You can see which objects use a specific web part or a widget. The objects are:</p>
+<p   
+><strong class=" ">Web parts</strong></p>
+<ul class=" "><li class=" "><p   
+>  <a   href="Managing-page-templates">Page templates</a></p>
+</li><li class=" "><p   
+>  <a   href="#">Web parts</a> - for inheriting web parts</p>
+</li><li class=" "><p   
+>  <a   href="Preparing-widgets-for-users">Widgets</a> - for inheriting widgets</p>
+</li><li class=" "><p   
+>  <a   href="Multivariate-testing">MVT variants</a></p>
+</li><li class=" "><p   
+>  <a   href="Content-personalization">Personalization variants</a></p>
+</li></ul><p   
+><strong class=" ">Widgets</strong></p>
+<ul class=" "><li class=" "><p   
+>  <a   href="Managing-page-templates">Page templates</a></p>
+</li><li class=" "><p   
+>  <a   href="Working-with-pages">Pages</a> (editor widgets)</p>
+</li><li class=" "><p   
+>  <a   href="Customizing-group-pages-using-widgets">Group pages</a> (group widgets)</p>
+</li><li class=" "><p   
+>  <a   href="Configuring-and-using-page-versioning">Last version of page</a> - on pages that are under a   <a   href="Configuring-workflows">workflow</a></p>
+</li><li class=" "><p   
+>  <a   href="Multivariate-testing">MVT variants</a></p>
+</li><li class=" "><p   
+>  <a   href="Content-personalization">Personalization variants</a></p>
+</li><li class=" "><p   
+>  <a   href="Working-with-widget-dashboards">Dashboards</a></p>
+</li><li class=" "><p   
+>User widget personalized pages</p>
+</li></ul>    <h4 id="src-68880718_Usingandconfiguringwebparts-Tofindspecificwebpartorwidgetusage" class="heading "><span>To find specific web part or widget usage</span></h4>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Web parts</strong> (or <strong class=" ">Widgets</strong>) application.</p>
+</li><li class=" "><p   
+>Select a specific web part (or widget).</p>
+</li><li class=" "><p   
+>Switch to the <strong class=" ">Usage </strong>tab.</p>
+</li><li class=" "><p   
+>Here, you can see listed the objects that use the web part.<br/>You can find out which pages use a specific page template on the <strong class=" ">Pages </strong>tab of a specific page template in the <strong class=" ">Page templates </strong>application.</p>
+</li></ol><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880718/listing_webpart_usage_in_page_templates.png" alt="images/download/attachments/68880718/listing_webpart_usage_in_page_templates.png" width="500"  />
+    </p>
+    <h3 id="src-68880718_Usingandconfiguringwebparts-Configuringwebpartsviaon-siteediting" class="heading "><span>Configuring web parts via on-site editing</span></h3>
+<p   
+>Users with   <a   href="Configuring-design-permissions">design permissions</a> can use   <a   href="Enabling-on-site-editing">on-site editing</a> to configure the properties of web parts directly while browsing the website.</p>
+<ol class=" "><li class=" "><p   
+>Open the website in on-side editing mode.</p>
+</li><li class=" "><p   
+>Highlight web parts by moving the mouse over the corresponding part of the page.</p>
+<ul class=" "><li class=" "><p   
+>The page encloses highlighted web parts in a dotted outline, with an additional box displaying the web part&#39;s title.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Configure</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/configure.png" alt="images/download/attachments/68879208/configure.png"   />
+) next to the web part title.</p>
+</li></ol><p   
+>The web part properties dialog opens just like when configuring web parts on the <strong class=" ">Design</strong> tab of the Pages application.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880718/OnSite_WebParts.png" alt="images/download/attachments/68880718/OnSite_WebParts.png" width="500"  />
+        <br/><span class="caption">Configuring a web part in on-site editing mode</span>
+    </p>
+<p   
+>To view the entire web part structure of a page, enable the <strong class=" ">Highlight</strong> action on the on-site editing toolbar. This highlights all web parts placed on the given page.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong></p>
+<p   
+>Because of   <a   href="Creating-portal-engine-master-pages">master pages</a> and   <a   href="Inheriting-portal-engine-page-content">page nesting</a>, the content displayed by a page on the live website may often be loaded from several different page templates.</p>
+<p   
+>On-site editing mode does not differentiate between templates, so you can configure any web parts displayed on the current page, even those that actually belong to ancestor pages.</p>
+        </div>
+    </div>
+    <h4 id="src-68880718_Usingandconfiguringwebparts-Editinghiddenwebparts" class="heading "><span>Editing hidden web parts</span></h4>
+<p   
+>Some web parts may not have any visible output at the time when you are viewing the page. For example, pages only display paging web parts if the connected listing contains a sufficiently large number of items.</p>
+<p   
+>You cannot find such web parts directly on the page in on-site editing mode. However, you can still access their properties by clicking <strong class=" ">Hidden</strong> on the toolbar and configuring (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/configure.png" alt="images/download/attachments/68879208/configure.png"   />
+) the appropriate item in the drop-down.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The <strong class=" ">Hidden</strong> list only includes web parts that have the potential to affect the appearance of the page. Instances of invisible web parts that only perform background functionality need to be configured in the administration interface through the <strong class=" ">Pages</strong> application.</p>
+        </div>
+    </div>
+    <h3 id="src-68880718_Usingandconfiguringwebparts-Resolvingwebparterrors" class="heading "><span>Resolving web part errors</span></h3>
+<p   
+>In rare cases, web part errors may prevent the <strong class=" ">Design</strong> tab of a page from working correctly. For example due to invalid configuration of a web part or when testing custom web parts.</p>
+<p   
+>You can fix the page by manually editing the web part XML source of the page template:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Page templates</strong> application.</p>
+</li><li class=" "><p   
+>Edit the given page&#39;s template.</p>
+</li><li class=" "><p   
+>Open the <strong class=" ">Web parts</strong> tab.</p>
+</li><li class=" "><p   
+>Remove the source of the error by editing the XML data.</p>
+<ul class=" "><li class=" "><p   
+>You can modify the values of properties for all web parts on the template.</p>
+</li><li class=" "><p   
+>You can remove web parts from the template by deleting entire <i class=" ">&lt;web part&gt;</i> elements.<br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol>        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

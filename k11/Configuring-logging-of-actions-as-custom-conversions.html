@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Configuring logging of actions as custom conversions - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882572"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="On-line-marketing-features.html">On-line marketing features</a></li>
+                                                                                                         <li class="shortcut"><a href="Configuring-and-customizing-your-on-line-marketing-features.html">Configuring and customizing your on-line marketing features</a></li>
+                                                                                     <li><a href="Configuring-web-analytics.html">Configuring web analytics</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882572"> <span>Configuring logging of actions as custom conversions</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>  <a   href="Web-analytics">Web analytics</a> provide a way to track actions performed by your website&#39;s visitors and record them as custom <i class=" ">conversions</i>. This is typically done for desired events that somehow benefit the website, such as registrations of new users, product orders, and subscriptions to newsletters.</p>
+<p   
+>You can configure the system to log custom conversions through various parts of the Kentico administration interface. When assigning custom conversions to actions, two possible types of fields are available.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882572/Conversion_Fields.png" alt="images/download/attachments/68882572/Conversion_Fields.png" width="500" height="92" />
+        <br/><span class="caption">Conversion tracking fields</span>
+    </p>
+<p   
+>The <strong class=" ">Track conversion name </strong>field is a custom conversion selector. You can either enter the <i class=" ">code name</i> of a custom conversion into the text box or click <strong class=" ">Select</strong> to choose from a list of custom conversions defined for the current site. If you type a name that does not match any conversion in the system, the system automatically creates a custom conversion with this name.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>The <strong class=" ">New</strong> and <strong class=" ">Edit</strong> buttons allow you to create a new custom conversion or modify the properties of the selected conversion directly from the given part of the user interface.</p>
+        </div>
+    </div>
+<p   
+>The <strong class=" ">Conversion value</strong> field is optional and provides a way to set a number that will be recorded along with the custom conversion when the tracked action is performed. For example, you can use values to indicate the relative importance of the conversion, the profit generated by a single conversion hit or similar. The values are cumulative, i.e. when a conversion hit is logged, the system adds the specified value to the total sum previously recorded for the conversion. You may insert a   <a   href="Macro-expressions">Macro expression</a> into this field to dynamically retrieve a value from the current site context. For examples of conversion value macros, please see the sections below dedicated to individual types of actions.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68882572_Configuringloggingofactionsascustomconversions-Webpartandwidgetactions">Web part and widget actions</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882572_Configuringloggingofactionsascustomconversions-E-commerceactions">E-commerce actions</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882572_Configuringloggingofactionsascustomconversions-Loggingcustomconversionsforcustomactions">Logging custom conversions for custom actions</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Logging-custom-conversions-on-your-website">Logging custom conversions on your website</a></p>
+</li><li class=" "><p   
+>  <a   href="Logging-custom-conversions-through-the-API">Logging custom conversions through the API</a></p>
+</li></ul>        </div>
+    </div>
+<p   
+></p>
+    <div  class="confbox admonition admonition-info">
+                    <p class="title">Kentico EMS required</p>
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+        </div>
+    </div>
+<p   
+></p>
+    <h3 id="src-68882572_Configuringloggingofactionsascustomconversions-Webpartandwidgetactions" class="heading "><span>Web part and widget actions</span></h3>
+<p   
+>Many of the default   <a   href="Using-and-configuring-web-parts">web parts</a> and   <a   href="Adding-page-content-through-widgets">widgets</a> in Kentico allow users to perform important actions. Such components come with built-in support for custom conversion tracking. To configure a specific web part or widget instance to log actions as custom conversions, open its properties dialog and enter the appropriate values into the <strong class=" ">Track conversion name</strong> and <strong class=" ">Conversion value</strong> properties.The following table lists all types of actions that you can track as custom conversions through web parts:</p>
+<p   
+><br/></p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Action</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Web parts</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>User registration</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The system logs the conversion when a visitor successfully completes their registration using the given web part.</p>
+<p   
+>There are multiple web parts that allow users to register on the website:</p>
+<ul class=" "><li class=" "><p   
+><i class=" ">Registration form</i></p>
+</li><li class=" "><p   
+><i class=" ">Custom registration form</i></p>
+</li><li class=" "><p   
+><i class=" ">Facebook Connect logon</i> and <i class=" ">Facebook Connect required data</i></p>
+</li><li class=" "><p   
+><i class=" ">LinkedIn logon</i> and <i class=" ">LinkedIn required data</i></p>
+</li><li class=" "><p   
+><i class=" ">Windows LiveID</i> and <i class=" ">LiveID required data</i></p>
+</li><li class=" "><p   
+><i class=" ">OpenID logon </i>and <i class=" ">OpenID required data</i></p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Newsletter subscription</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Newsletter subscriptions can be tracked as custom conversions through the<strong class=" "> Newsletter subscription </strong>or <strong class=" ">Custom subscription</strong> <strong class=" ">form</strong> web part.</p>
+<p   
+>You can also track custom conversions for the widgets based on these web parts.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Filling in an on&#8209;line form</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Logs a custom conversion when users submit a form displayed by the <strong class=" ">On&#8209;line form</strong> web part.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Voting in a poll</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The <strong class=" ">Poll </strong>web part can log custom conversions whenever users vote in the displayed poll.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Checkout process</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The <strong class=" ">Checkout process</strong> web part may be used to track two types of events:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Registration</strong> &ndash;<strong class=" "> </strong>occurs when a customer registers on the website through the shopping cart.</p>
+</li><li class=" "><p   
+><strong class=" ">Order</strong> &ndash; logged when a customer successfully completes an order.</p>
+</li></ul><p   
+>You can assign custom conversions to these actions for specific instances of the shopping cart web part through the corresponding <strong class=" ">conversion name</strong> properties. You can also configure conversion values for these events for the entire website via the e-commerce settings.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>The <strong class=" ">Checkout process</strong> web part is obsolete. Use a   <a   href="Checkout-process">web-part based checkout process</a> instead, see   <a   href="#src-68882572_Configuringloggingofactionsascustomconversions-E-commerceactions">E-commerce actions</a> below.</p>
+        </div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Entering conversion value macros into web part properties</strong></p>
+<p   
+>The <strong class=" ">Conversion value</strong> properties of web parts only support numeric (decimal) values, so you cannot enter macro expressions directly. However, you can insert macros via the <strong class=" ">Edit value</strong> dialog, which you can open by clicking the <img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit_value.png" alt="images/download/attachments/68879208/edit_value.png"   />
+ icon next to the given property.</p>
+<p   
+>In the case of widgets, the system never resolves macros entered by users into properties. If necessary, macro expressions can be pre-set as the default values of widget properties by administrators. To do this, edit the given widget in the <strong class=" ">Widgets</strong> application on the <strong class=" ">Properties</strong> tab.</p>
+        </div>
+    </div>
+    <h3 id="src-68882572_Configuringloggingofactionsascustomconversions-E-commerceactions" class="heading "><span>E-commerce actions</span></h3>
+<p   
+>Custom conversions may be configured for   <a   href="E-commerce-features">e-commerce</a> actions that occur on the entire website using the settings in <strong class=" ">Settings -&gt; E-commerce</strong>. The following types of events can be tracked:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Order</strong> &ndash; logged when a customer successfully places a product order.</p>
+</li><li class=" "><p   
+><strong class=" ">Add to shopping cart</strong> &ndash; occurs when a user adds a product to a shopping cart on the website.</p>
+</li></ul><p   
+>You can assign a different custom conversion and value to each of these actions through the related <strong class=" ">conversion name</strong> and <strong class=" ">conversion value</strong> settings. The registration and order conversion name settings can be overridden for individual instances of the shopping cart web part through their corresponding properties.</p>
+<p   
+>If you wish to log the custom conversion value dynamically based on item prices, you may use macro expressions, for example:</p>
+<p   
+><strong class=" ">Order conversion value</strong>: <i class=" ">{% EcommerceContext.CurrentShoppingCart.GrandTotal %}</i></p>
+<p   
+>This macro is resolved into the total price of all items contained in the order, including discounts, tax and shipping. With this configuration, each <i class=" ">Order</i> custom conversion automatically stores the price of the given order as its value.</p>
+<p   
+><strong class=" ">Add to shopping cart conversion value</strong>: <i class=" ">{% ShoppingCartItem.UnitPrice %}</i></p>
+<p   
+>With this macro as the conversion value, the <i class=" ">Add to shopping cart</i> custom conversion logs the price of the specific product that was added to the shopping cart.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882572/Ecommerce_Conversion_Setting.png" alt="images/download/attachments/68882572/Ecommerce_Conversion_Setting.png" width="630"  />
+        <br/><span class="caption">E-commerce conversion tracking settings</span>
+    </p>
+<p   
+>The settings described above allow you to track entire   <a   href="Orders">orders</a>, but you can also log a separate conversion hit every time a product of a specific type is purchased:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Products</strong> application.</p>
+</li><li class=" "><p   
+>Select a product in the tree.</p>
+</li><li class=" "><p   
+>On the <strong class=" ">General</strong> tab, assign a conversion through the <strong class=" ">Conversion name</strong> field.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save.</strong></p>
+</li></ol><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882572/Product_Conversion.png" alt="images/download/attachments/68882572/Product_Conversion.png" width="630" height="397" />
+        <br/><span class="caption">Assigning a conversion to a specific product</span>
+    </p>
+<p   
+>The <strong class=" ">Conversion value</strong> field can be used to specify an appropriate value that will be recorded for each conversion hit. In addition to numeric values, you may enter   <a   href="Macro-expressions">macro expressions</a> here, for example, <i class=" ">{% ShoppingCartItem.UnitPrice %}.</i> This macro allows the custom conversion to log the price of the given product as its value. The advantage of a macro is that it retrieves the price dynamically, including any potential discounts applied by the given customer.</p>
+<p   
+>You can also use the same approach to configuring different custom conversion settings for individual   <a   href="Working-with-product-options">product options</a> (via <strong class=" ">Product options -&gt; edit a category -&gt; Options -&gt; edit a product option</strong>).</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Custom conversion properties are not available for global products since each site has its own separate set of custom conversions.</p>
+        </div>
+    </div>
+    <h3 id="src-68882572_Configuringloggingofactionsascustomconversions-Loggingcustomconversionsforcustomactions" class="heading "><span>Logging custom conversions for custom actions</span></h3>
+<p   
+>Developers can write custom code that logs custom conversions through the API. This allows you to track any other types of actions in addition to the options listed above. Custom conversion logging requires knowledge of programming and the Kentico API.</p>
+<p   
+>See   <a   href="Logging-custom-conversions-through-the-API">Logging custom conversions through the API</a> for more information.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

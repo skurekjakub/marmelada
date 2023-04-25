@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Configuring search assistance features for local indexes - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68881993"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Configuring-Kentico.html">Configuring Kentico</a></li>
+                                                                                                         <li class="shortcut"><a href="Setting-up-search-on-your-website.html">Setting up search on your website</a></li>
+                                                                                     <li><a href="Using-locally-stored-search-indexes.html">Using locally stored search indexes</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68881993"> <span>Configuring search assistance features for local indexes</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>When using the search functionality of   <a   href="Using-locally-stored-search-indexes">locally stored indexes</a>, you can leverage several features that can help users find relevant results.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The features described on this page are only available when using   <a   href="Using-locally-stored-search-indexes">locally stored search indexes</a>.</p>
+        </div>
+    </div>
+    <h3 id="src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Settingthesearchmode" class="heading "><span>Setting the search mode</span></h3>
+<p   
+>The search mode determines how the search handles expressions with multiple words. The following options are available:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Any word</strong> &ndash; finds items that contain at least one of the words in the search expression.</p>
+</li><li class=" "><p   
+><strong class=" ">Any word or synonyms</strong> &ndash; works like <i class=" ">Any word</i> mode, but also finds items that contain synonyms of at least one word in the search expression. Only works for English by default. See   <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Configuringthesynonymsearch">Configuring the synonym search</a> for more information.</p>
+</li><li class=" "><p   
+><strong class=" ">All words</strong> &ndash; finds only items that contain all of the words in the search expression (anywhere in the text).</p>
+</li><li class=" "><p   
+><strong class=" ">Exact phrase</strong> &ndash; finds items that contain the exact search expression, including word order.</p>
+</li></ul><p   
+>To set the search mode, you can either:</p>
+<ul class=" "><li class=" "><p   
+>Assign a fixed <strong class=" ">Search mode</strong> for your <i class=" ">Smart search box</i> or <i class=" ">Smart search dialog</i>  <a   href="Building-a-search-interface-for-local-indexes"> web parts</a></p>
+</li><li class=" "><p   
+>Allow users to select the search mode for every search request (available for the <i class=" ">Smart search dialog</i> if the <strong class=" ">Show search mode</strong> property is enabled)</p>
+</li></ul><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881993/search_mode.png" alt="images/download/attachments/68881993/search_mode.png" width="448" height="157" />
+        <br/><span class="caption">Selecting the search mode in a Smart search dialog</span>
+    </p>
+    <h3 id="src-68881993_safe-id-Q29uZmlndXJpbmdzZWFyY2hhc3Npc3RhbmNlZmVhdHVyZXNmb3Jsb2NhbGluZGV4ZXMtRW5hYmxpbmd0eXBvLXRvbGVyYW50c2VhcmNoKGZ1enp5c2VhcmNoaW5nKQ" class="heading "><span>Enabling typo-tolerant search (fuzzy searching)</span></h3>
+<p   
+>You can configure the smart search to return results for words that are only approximate matches. Typo-tolerant searching allows users to get correct results even if there are misspelled words in the search expression.     <span style="color: #000000;">
+For example, searching for <i class=" ">code</i> also matches words such as <i class=" ">core</i> or <i class=" ">node</i>.    </span>
+</p>
+<p   
+>The system evaluates approximate matches based on <a  class="external-link" href="http://en.wikipedia.org/wiki/Levenshtein_distance">Edit Distance</a> (the number of required character substitutions, insertions or deletions).</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>:</p>
+<ul class=" "><li class=" "><p   
+>The typo-tolerant search only works for search requests that use the <i class=" ">Any word</i> <strong class=" ">Search mode</strong>.</p>
+</li><li class=" "><p   
+>Typo-tolerant search may prevent   <a   href="Smart-search-syntax">advanced search syntax</a> from working correctly (for example field search). When using typo-tolerant search, we recommend setting the <strong class=" ">Search options</strong> property of the search result web part to <strong class=" ">None</strong>.</p>
+</li></ul>        </div>
+    </div>
+<p   
+>To enable the typo-tolerant search:</p>
+<ol class=" "><li class=" "><p   
+>Configure the   <a   href="Building-a-search-interface-for-local-indexes">web part</a> that you use to get and display search results (<strong class=" ">Smart search dialog with results </strong>or <strong class=" ">Smart search results</strong>).</p>
+</li><li class=" "><p   
+>Check <strong class=" ">Typo tolerant search</strong> in the <strong class=" ">Search settings</strong> category.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p   
+>The search now finds words that are similar in spelling to the search terms.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Settingthesearchmode">Setting the search mode</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881993_safe-id-Q29uZmlndXJpbmdzZWFyY2hhc3Npc3RhbmNlZmVhdHVyZXNmb3Jsb2NhbGluZGV4ZXMtRW5hYmxpbmd0eXBvLXRvbGVyYW50c2VhcmNoKGZ1enp5c2VhcmNoaW5nKQ">Enabling typo-tolerant search (fuzzy searching)</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Configuringthesynonymsearch">Configuring the synonym search</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Settingtherelevanceofsynonyms">Setting the relevance of synonyms</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Enablingsynonymsearchfornon-Englishlanguages">Enabling synonym search for non-English languages</a></p>
+</li></ul></li><li class=" "><p   
+>  <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Settingupsubstringsearchandwordstemming">Setting up substring search and word stemming</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Substringsearch">Substring search</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Wordstemming">Word stemming</a></p>
+</li></ul></li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Building-a-search-interface-for-local-indexes">Building a search interface for local indexes</a></p>
+</li><li class=" "><p   
+>  <a   href="Creating-local-search-indexes">Creating local search indexes</a></p>
+</li><li class=" "><p   
+>  <a   href="Setting-up-predictive-search-using-local-indexes">Setting up predictive search using local indexes</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Configuringthesynonymsearch" class="heading "><span>Configuring the synonym search</span></h3>
+<p   
+>Search requests that use the <strong class=" ">Any word or synonyms</strong>   <a   href="#src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Settingthesearchmode">search mode</a> allow users to find a wider set of results based on synonyms.</p>
+<p   
+>The synonym search works by expanding all words in the search expression into a list of synonyms. For example, when searching for the words <strong class=" ">&quot;search assistance&quot;</strong>, the synonym search expands the expression to:<i class=" "> &quot;<strong class=" ">search</strong> explore hunt hunting look lookup research seek <strong class=" ">assistance</strong> aid assist help&quot;</i></p>
+<p   
+>The system looks up the synonyms inside index files stored in the <i class=" ">~\App_Data\CMSModules\SmartSearch\_Synonyms</i> folder. By default, Kentico contains a synonym index for English based on the <a  class="external-link" href="http://wordnet.princeton.edu">WordNet</a> lexical database.</p>
+    <h4 id="src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Settingtherelevanceofsynonyms" class="heading "><span>Setting the relevance of synonyms</span></h4>
+<p   
+>You can change the relevance (result score) that the search assigns to items found through the synonym search. Add the <strong class=" ">CMSSearchSynonymsWeight</strong> key into the <i class=" ">appSettings</i> section of your application&#39;s <i class=" ">web.config</i> file, for example:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSSearchSynonymsWeight"</code><code class="plain"> value=</code><code class="string">"0.8"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+<p   
+>The key&#39;s value must be a decimal number ranging from 0 to 1. A larger number assigns higher relevance to synonyms. If you set 1, the score of synonyms is equal to words in the original unexpanded search expression. The default value is 0.9.</p>
+    <h4 id="src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Enablingsynonymsearchfornon-Englishlanguages" class="heading "><span>Enabling synonym search for non-English languages</span></h4>
+<p   
+>To extend the synonym search for languages other than English, you need to create a Lucene search index containing the synonym data. You can use the following approach:</p>
+<ol class=" "><li class=" "><p   
+>Obtain a WordNet synonym database for the required language. The database must be in Prolog format.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>You can find a list of WordNet projects at <a  class="external-link" href="http://globalwordnet.org/?page_id=38">http://globalwordnet.org/</a>.</p>
+<p   
+>For many languages, the synonym database may not be available in Prolog format. In these cases, you need to convert the database manually.</p>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Download the <a  class="external-link" href="http://www.apache.org/dist/lucenenet/">Lucene.Net Source</a> (Apache-Lucene.Net-3.0.3-RC2.src.zip).</p>
+</li><li class=" "><p   
+>Unzip the Lucene.Net package.</p>
+</li><li class=" "><p   
+>Use the <strong class=" ">src\contrib\WordNet\Syns2Index\Syns2Index.cs</strong> class to generate the synonym index.</p>
+<ul class=" "><li class=" "><p   
+>You can run the class by debugging in Visual Studio, or using the <strong class=" ">Visual Studio Command Prompt</strong>.</p>
+</li><li class=" "><p   
+>Specify the Prolog database file (<i class=" ">.pl</i> extension) and the output directory for the index files as parameters, for example:</p>
+    <div  class="confbox programlisting">
+                <div class="content">
+        <pre><code>Syns2Index wn_s.pl IndexOutput</code></pre>
+        </div>
+    </div>
+</li></ul></li><li class=" "><p   
+>Compress the synonym index files into a zip archive.<br/></p>
+<ul class=" "><li class=" "><p   
+>The name of the zip file must match the culture code of the given language. You can use neutral culture codes to represent languages in general (such as <i class=" ">fr</i>) or the codes of specific countries/regions (such as <i class=" ">fr-FR</i>).<br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Place the synonym index zip file into the <i class=" ">~\App_Data\CMSModules\SmartSearch\_Synonyms</i> folder in your Kentico web project.</p>
+</li></ol><p   
+>The search expands words into synonyms according to the website&#39;s   <a   href="Multilingual-websites">culture</a> (language). The supported languages depend on the synonym index files that are present in your web project.</p>
+    <h3 id="src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Settingupsubstringsearchandwordstemming" class="heading "><span>Setting up substring search and word stemming</span></h3>
+<p   
+>Substring search and word stemming are assistance features that allow users to find results for:</p>
+<ul class=" "><li class=" "><p   
+>Words that contain the search terms</p>
+</li><li class=" "><p   
+>Closely related words</p>
+</li></ul><p   
+>To enable word stemming or substring search, you need to index content using the appropriate analyzers. The smart search uses analyzers to divide text into <i class=" ">searchable tokens</i>. Every   <a   href="Creating-local-search-indexes">smart search index</a> has its own analyzer. The analyzers process both the indexed content and the search expressions entered by users. The search classifies words in the search expression as a match if they share at least one token with the indexed content.</p>
+<p   
+>To change the analyzer type of a search index:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Smart search</strong> application.</p>
+</li><li class=" "><p   
+>Select the <strong class=" ">Local indexes</strong> tab.</p>
+</li><li class=" "><p   
+>Edit (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png"   />
+) the index.</p>
+</li><li class=" "><p   
+>On the <strong class=" ">General</strong> tab, select the <strong class=" ">Analyzer type</strong>.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p   
+><strong class=" ">Rebuild</strong> the index.</p>
+</li></ol>    <h4 id="src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Substringsearch" class="heading "><span>Substring search</span></h4>
+<p   
+>If you create your   <a   href="Creating-local-search-indexes">search indexes</a> using substring analyzers, the search returns results for items that contain the search terms inside larger words or text sequences. Select one of the following analyzer types:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Analyzer type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Subset</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indexes with subset analyzers return results for all words that contain the search term (the analyzer creates tokens for all possible substrings in words).</p>
+<p   
+>For example, searching for <i class=" ">net</i> matches words such as <i class=" ">net</i>, <i class=" ">Internet</i>, <i class=" ">network</i> or <i class=" ">kinetic</i>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Starts with</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allows searching for all words that start with the search term (creates tokens for all prefixes contained in words, including the whole word).</p>
+<p   
+>For example, searching for <i class=" ">test</i> matches words such as <i class=" ">test</i>, <i class=" ">tests</i>, <i class=" ">tester</i>...</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+>The <strong class=" ">Subset</strong> and <strong class=" ">Starts with</strong> analyzers use the following steps to process text:</p>
+<ol class=" "><li class=" "><p   
+>Divide text into &quot;words&quot;</p>
+</li><li class=" "><p   
+>Create search tokens for the substrings inside the words (according to the analyzer type)</p>
+</li></ol><p   
+>By default, the words created in the first step may contain the following characters:</p>
+<ul class=" "><li class=" "><p   
+>word characters (upper and lower case letters, numbers, underscores)</p>
+</li><li class=" "><p   
+>at symbols (@)</p>
+</li><li class=" "><p   
+>periods ( . )</p>
+</li></ul><p   
+>Any other characters split the text into separate words. This allows the analyzers to correctly create substring search tokens for text entities such as e-mail addresses and internet domain names.</p>
+<p   
+>To customize how the analyzers separate text into words:</p>
+<ol class=" "><li class=" "><p   
+>Write a <a  class="external-link" href="http://en.wikipedia.org/wiki/Regular_expression">regular expression</a> matching all characters that you want to allow inside words.</p>
+</li><li class=" "><p   
+>Add the <strong class=" ">CMSSubsetAnalyzerWordRegex</strong> key into the <i class=" ">appSettings</i> section of your application&#39;s <i class=" ">web.config</i> file, and set the regular expression as the value, for example:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSSubsetAnalyzerWordRegex"</code><code class="plain"> value=</code><code class="string">"(\w|@|\.|\$)+"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+</li></ol><p   
+>The sample expression above allows the dollar sign in addition to the default characters. As a result, search indexes with <i class=" ">Subset</i> or <i class=" ">Starts with</i> analyzers can now find expressions such as: <i class=" ">$Var</i></p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: After changing the value of the CMSSubsetAnalyzerWordRegex key, you need to <strong class=" ">Rebuild</strong> your search indexes that use <i class=" ">Subset</i> or <i class=" ">Starts with</i> analyzers.</p>
+        </div>
+    </div>
+    <h4 id="src-68881993_Configuringsearchassistancefeaturesforlocalindexes-Wordstemming" class="heading "><span>Word stemming</span></h4>
+<p   
+>Stemming is the removal of suffixes from words. If you create your   <a   href="Creating-local-search-indexes">search indexes</a> using stemming analyzers, the search matches words that have the same basic meaning, but different inflection. For example, users can find:</p>
+<ul class=" "><li class=" "><p   
+>Inflected words when searching for a stem <i class=" ">(program -&gt; programs, programming)</i></p>
+</li><li class=" "><p   
+>Word stems when searching for inflected words <i class=" ">(trusted, trusting -&gt; trust)</i></p>
+</li><li class=" "><p   
+>Any words that share the same stem as the search terms <i class=" ">(conditional -&gt; conditions)</i></p>
+</li></ul>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Stemming does not find matches for all words that share the same morphological root &mdash; only words that have an identical or very similar meaning. For example, the words &quot;flawed&quot; and &quot;flawless&quot; do not have the same stem. Please keep in mind that word stemming does not work perfectly for all word combinations.</p>
+<p   
+>The smart search stemming analyzers are based on the <a  class="external-link" href="http://tartarus.org/%7Emartin/PorterStemmer/index.html">Porter Stemming Algorithm</a>.</p>
+        </div>
+    </div>
+<p   
+>The stemming analyzers process text in two steps:</p>
+<ol class=" "><li class=" "><p   
+>Divide text into tokens (words) using a base analyzer.</p>
+</li><li class=" "><p   
+>Reduce the tokens into their stem form.</p>
+</li></ol><p   
+>You can select three variations of stemming analyzers, each with a different base analyzer:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Analyzer type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Base analyzer description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Simple with stemming</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Divides text into tokens at non-letter characters.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Stop words with stemming</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Uses a predefined collection of stop words to divide text.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>White space with stemming</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Divides text at whitespace characters.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+>When users search for text using an index with a stemming analyzer, the analyzer also processes the search expression. As a result, the search finds all items containing words that share the same stem.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The default stemming analyzers only work for English text.</p>
+        </div>
+    </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

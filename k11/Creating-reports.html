@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating reports - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882045"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Configuring-Kentico.html">Configuring Kentico</a></li>
+                                                                                     <li><a href="Working-with-system-reports.html">Working with system reports</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882045"> <span>Creating reports</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>To watch the activity in the system and on websites, you need to create reports. Then you can add components to the report to display the collected data, such as graphs, tables and values.</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Reporting</strong> application.</p>
+</li><li class=" "><p   
+>Select a category in the tree.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New report</strong>.</p>
+</li><li class=" "><p   
+>Type in the<strong class=" "> Report display name</strong>.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+<ul class=" "><li class=" "><p   
+>The <strong class=" ">General</strong> tab of the report editing interface opens.</p>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">General tab properties</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Report display name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the name of the report displayed in the administration interface.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Report code name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>A unique name that serves as an identifier of the report, for example in the API or URLs.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Report category</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Shows the category under which the report belongs. You can move the report to a different category by selecting one from the drop-down.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Connection string</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the database connection string used by the report&#39;s components (graphs, tables and values) when loading data. You can override this value for individual components by editing their details.</p>
+<p   
+>Only users who have the <strong class=" ">Set connection string</strong> permission for the <i class=" ">Reporting</i> module are allowed to change this property&#39;s value.</p>
+<p   
+>The system retrieves the list of connection strings from the <i class=" ">&lt;connectionStrings&gt;</i> section of the application&#39;s web.config file. The <i class=" ">(default)</i> option represents the <i class=" ">CMSConnectionString</i> added by the application&#39;s initial database installer.</p>
+<p   
+>You can check the <strong class=" ">Inherit</strong> box to load the value from the <strong class=" ">Default report connection string</strong> setting configured in <strong class=" ">Settings -&gt; Security &amp; Membership</strong>.</p>
+<p   
+>You can use reporting connection strings for the following scenarios:</p>
+<ul class=" "><li class=" "><p   
+>Retrieving data from a   <a   href="Separating-the-contact-management-database">Separated on-line marketing database</a></p>
+</li><li class=" "><p   
+>Restricting the database-level permissions of reporting queries via a connection string with a limited database user</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allow public users to see this report</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates if the report should be visible by public users if it is published on the website using a reporting web part.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enable subscription</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p  class="confluence-link" 
+>If enabled, users with the <i class=" ">Subscribe</i> permission for the <i class=" ">Reporting</i> module are allowed to   <a   href="Subscribing-to-reports">subscribe to the report </a>and its components (graphs, tables or values).</p>
+<p   
+>This setting is also available when configuring the details of individual components. Subscribing to specific components is only possible if both settings are enabled.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+</li></ul></li><li class=" "><p   
+>Define the <strong class=" ">Layout</strong> of the report using the WYSIWYG editor. To retrieve and display information from the Kentico database, add the following objects into the report&#39;s layout:</p>
+<ul class=" "><li class=" "><p   
+>  <a   href="#src-68882045_Creatingreports-Creatingtablesinreports">Tables</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882045_Creatingreports-Creatinggraphsinreports">Graphs</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882045_Creatingreports-CreatingHTMLgraphsinreports">HTML graphs</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882045_Creatingreports-Creatingvaluesinreports">Values</a></p>
+</li></ul></li></ol><p   
+>Additionally,   <a   href="Macro-expressions">macro expressions</a> are supported in the report layout.</p>
+<p   
+>You can view the output of the report on the <strong class=" ">View</strong> tab.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Localizing strings in reports</strong></p>
+<p   
+>If you need to create a single report in multiple languages, follow the instructions given in   <a   href="Working-with-resource-strings">Working with resource strings</a>.</p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68882045_Creatingreports-Creatingtablesinreports">Creating tables in reports</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882045_Creatingreports-Creatinggraphsinreports">Creating graphs in reports</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882045_Creatingreports-CreatingHTMLgraphsinreports">Creating HTML graphs in reports</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882045_Creatingreports-Creatingvaluesinreports">Creating values in reports</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Creating-report-categories">Creating report categories</a></p>
+</li><li class=" "><p   
+>  <a   href="Example---creating-a-simple-report">Example - creating a simple report</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68882045_Creatingreports-Creatingtablesinreports" class="heading "><span>Creating tables in reports</span></h3>
+<p   
+>Tables allow you to retrieve data from the Kentico database using an SQL query.</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Reporting</strong> application, edit a report on the <strong class=" ">General</strong> tab.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> in the <strong class=" ">Tables</strong> section below the layout editor.</p>
+</li><li class=" "><p   
+>Define the properties of the new table:</p>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Report table properties</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+><strong class=" ">Default</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Display name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The name of the table shown in the user interface.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Code name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Name used in your code.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enable export</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, users who view the table are able to export the displayed data to external files using the Microsoft Excel (XLSX), CSV or XML format. The data export feature may be accessed by right&#8209;clicking the table in the report, which opens a menu with possible export actions.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enable subscription</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, users will be able to subscribe to the currently edited report table. To allow subscriptions, it is also necessary to have the <strong class=" ">Enable subscription</strong> box checked on the <strong class=" ">General</strong> tab of the given report.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+><strong class=" ">Query</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Query</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Here you can add the SQL query used to retrieve data to be displayed by the table.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Is stored procedure</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates if the query is a stored procedure or not.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Connection string</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the database connection string used by the table&#39;s query.</p>
+<p   
+>Only users who have the <strong class=" ">Set connection string</strong> permission for the <i class=" ">Reporting</i> module are allowed to change this value.</p>
+<p   
+>The system loads the list of connection strings from the <i class=" ">&lt;connectionStrings&gt;</i> section of the application&#39;s web.config file. The <i class=" ">(default)</i> option represents the <i class=" ">CMSConnectionString</i> added by the application&#39;s initial database installer.</p>
+<p   
+>You can check the <strong class=" ">Inherit</strong> box to load the <strong class=" ">Connection string</strong> value set for the parent report.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>No record text</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text to be displayed if the query doesn&#39;t return any data.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+><strong class=" ">Skin</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Skin ID</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>ID of the .NET skin (stored in the <i class=" ">.skin</i> files in <i class=" ">~/AppThemes/&lt;theme name&gt;</i>) which will be used for the table.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+><strong class=" ">Paging</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enable paging</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, paging will be enabled when the report table is displayed. The paging can be configured by the two properties below.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Page size</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Number of table rows per page.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Paging mode</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Type of paging controls displayed below the table. The following options are available:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Previous-next buttons</strong> - displays buttons leading to the previous and next page</p>
+</li><li class=" "><p   
+><strong class=" ">Page numbers</strong> - displays page numbers leading to the corresponding pages</p>
+</li><li class=" "><p   
+><strong class=" ">Previous-next-first-last buttons</strong> - displays buttons leading to the first, last, previous and next page</p>
+</li><li class=" "><p   
+><strong class=" ">Page numbers-first-last buttons</strong> - displays page numbers leading to the corresponding pages and buttons leading to the first and last page</p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li><li class=" "><p   
+>Place the cursor in the layout editor where you want to put the table.</p>
+</li><li class=" "><p   
+>Select the defined table from the list in the <strong class=" ">Tables</strong> section.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Insert</strong>.</p>
+<ul class=" "><li class=" "><p   
+>Tables are entered into the report layout editor as an expression in the following format: <i class=" ">%%control:ReportTable?&lt;report code name&gt;.&lt;table code name&gt;%%</i>.<br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882045/Reporting_Table.png" alt="images/download/attachments/68882045/Reporting_Table.png" width="500"  />
+        <br/><span class="caption">Example of a report table</span>
+    </p>
+<p   style="margin-left:30px;"
+><i class=" "><strong class=" "><br/></strong></i></p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Writing queries for tables</strong></p>
+<p   
+>The queries you write for tables are standard SQL queries that pull data from the Kentico database. For information about pages, you can use the <i class=" ">View_CMS_Tree_Joined</i> table that returns published versions of all pages.</p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Table column names</strong></p>
+<p   
+>The table column names use the same names as the column names from the returned data set. If you need to use user friendly names, you can use the following syntax in the query:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">SELECT</code><code class="plain"> PageTemplateDisplayName </code><code class="keyword">AS</code><code class="plain"> [Template </code><code class="keyword">Name</code><code class="plain">], ...</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <h3 id="src-68882045_Creatingreports-Creatinggraphsinreports" class="heading "><span>Creating graphs in reports</span></h3>
+<p   
+>Graphs allow you to retrieve data from the Kentico database and display it in various types of visual formats.</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Reporting</strong> application, edit a report on the <strong class=" ">General</strong> tab.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> in the <strong class=" ">Graphs</strong> section below the layout editor.</p>
+</li><li class=" "><p   
+>Define the properties of the new graph:</p>
+<p   
+><strong class=" ">Report graph properties:</strong></p>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Default</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Display name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Display name of the graph shown in the user interface.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Code name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Code name of the graph.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enable export</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, users who view the graph are able to export the displayed data to external files using the Microsoft Excel (XLSX), CSV or XML format. The data export feature may be accessed by right&#8209;clicking the graph in the report, which opens a context menu with possible export actions.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enable subscription</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, users will be able to subscribe to the currently edited report graph. To allow subscriptions, it is also necessary to have the <strong class=" ">Enable subscription</strong> box checked on the <strong class=" ">General</strong> tab of the given report.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Query</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Query</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Database query that extracts the data that will be displayed in the graph. It must return at least two columns: first one for categories, the other columns are used for values.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Is stored procedure</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates if the specified query is a stored procedure.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Connection string</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the database connection string used by the graph&#39;s query.</p>
+<p   
+>Only users who have the <strong class=" ">Set connection string</strong> permission for the <i class=" ">Reporting</i> module are allowed to change this value.</p>
+<p   
+>The system loads the list of connection strings from the <i class=" ">&lt;connectionStrings&gt;</i> section of the application&#39;s web.config file. The <i class=" ">(default)</i> option represents the <i class=" ">CMSConnectionString</i> added by the application&#39;s initial database installer.</p>
+<p   
+>You can check the <strong class=" ">Inherit</strong> box to load the <strong class=" ">Connection string</strong> value set for the parent report.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>No record text</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Text to be displayed if the query doesn&#39;t return any data.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Chart type</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Graph type</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The following graph types are available:</p>
+<p   
+><strong class=" ">Bar chart</strong> - bar graph, accepts multiple values and displays them next to each other.</p>
+<p   
+><strong class=" ">Bar stacked chart</strong> - bar graph, accepts multiple values and displays them on top of each other.</p>
+<p   
+><strong class=" ">Pie chart</strong> - pie graph, accepts only one column for values.</p>
+<p   
+><strong class=" ">Line chart</strong> - line graph, accepts multiple values and displays them as separate lines.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Drawing style</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The following chart styles are available:</p>
+<p   
+><strong class=" ">Bar chart</strong>:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Bar</strong> - uses rectangular column bars<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_44_33.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_44_33.png" width="100"  />
+    </li></ul><ul class=" "><li class=" "><p   
+><strong class=" ">Cylinder</strong> - uses cylinders<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_44_59.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_44_59.png" width="100"  />
+    </li></ul><p   
+><strong class=" ">Bar stacked chart</strong>:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Bar</strong> - uses rectangular bars<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_45_19.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_45_19.png" width="100"  />
+    </li></ul><ul class=" "><li class=" "><p   
+><strong class=" ">Cylinder</strong> - uses cylinders<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_45_40.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_45_40.png" width="100"  />
+    </li></ul><ul class=" "><li class=" "><p   
+><strong class=" ">Area</strong> - uses a line chart with the space under the lines filled with the respective color<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_45_52.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_45_52.png" width="100"  />
+    </li></ul><p   
+><strong class=" ">Pie Chart</strong>:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Pie</strong> - uses a standard circular chart divided into sectors<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_46_4.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_46_4.png" width="100"  />
+    </li></ul><ul class=" "><li class=" "><p   
+><strong class=" ">Doughnut</strong> - uses a circular chart with a blank center<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_46_16.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_46_16.png" width="100"  />
+    </li></ul><p   
+><strong class=" ">Line chart</strong>:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Line</strong> - uses straight lines to connect values<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_46_28.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_46_28.png" width="100"  />
+    </li></ul><ul class=" "><li class=" "><p   
+><strong class=" ">SpLine</strong> - uses smooth curved lines<br/></p>
+<img  class="confluence-embedded-image confluence-thumbnail"  src="images/download/thumbnails/68882045/image2013-2-26-8_46_38.png" alt="images/download/thumbnails/68882045/image2013-2-26-8_46_38.png" width="100"  />
+    </li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Overlay</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, charts with multiple values display them behind each other with the lower values in the front. Only available for <strong class=" ">Bar charts</strong> displayed in 3D.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>100% stacked</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, values are displayed as a percentage of their category&#39;s column. Only available for <strong class=" ">Bar stacked charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Orientation</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines if bars are displayed horizontally or vertically. Only available for <strong class=" ">Bar</strong> and <strong class=" ">Bar stacked charts</strong> with the <strong class=" ">Bar</strong> drawing style.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Drawing design</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the aesthetic design of <strong class=" ">Pie charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Label style</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the style of &#39;pie piece&#39; descriptions for <strong class=" ">Pie charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Doughnut radius</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the width of <strong class=" ">Doughnut</strong> style <strong class=" ">Pie charts</strong>. Larger numbers decrease the size of the center. Only available for <strong class=" ">Pie charts</strong> with the <strong class=" ">Doughnut</strong> drawing style.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Collect pie slices</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Items that represent a smaller percentage of the <strong class=" ">Pie chart</strong> than the value entered here will be added together and displayed as a single item labeled <i class=" ">Others</i>. This ensures that pie charts remain legible, even if there are many items with very small values.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Show as 3D</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, charts are displayed in 3D.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Rotate X</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Rotates the chart around its X axis. Accepts values from -90 to 90. Only available if <strong class=" ">Show as 3D</strong> is enabled.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Rotate Y</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Rotates the chart around its Y axis. Accepts values from -180 to 180. Only available if <strong class=" ">Show as 3D</strong> is enabled.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Width</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the width of the chart image.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Height</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the height of the chart image.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Show Grid</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Shows a thin dotted line grid in the graph chart, Not available for <strong class=" ">Pie charts.</strong></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Title</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title of the chart.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title font</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines font properties of the chart title.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the color of the chart title. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title position</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the position of the chart title.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Legend</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Background color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the background color of the legend. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the border color of the legend. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border size</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the size of the legend border.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border style</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the style of the legend border.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Position</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the position of the legend in the chart.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Legend inside</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, the legend is displayed inside the chart area.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Fixed legend</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Allows a custom description to be set for the value in the legend that will be used instead of the name of the source column. This field is only usable for charts that display one type of series, i.e. each item has a single value. It also cannot be used for <strong class=" ">Pie charts</strong>.</p>
+<p   
+>It is possible to enter static text or use a macro that resolves into the currently selected value of a   <a   href="Defining-report-parameters">report parameter</a> in format <strong class=" ">{%&lt;parameter name&gt;%}</strong>.</p>
+<p   
+>For example, if the report has a parameter named <i class=" ">CampaignName</i> that allows users to display the statistics of a selected marketing campaign, <i class=" ">{%CampaignName%}</i> could be entered into this field, and the legend value description would automatically contain the name of the currently displayed campaign.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Legend title</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the text caption of the legend.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">X-axis</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>X axis title</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title of the horizontal axis in the chart.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the color of the X axis title. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>X axis angle</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the declination angle of X axis descriptions. Setting this parameter to 90 causes upright descriptions. Accepts values from -90 to 90.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>X axis format</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Can be used to specify the format of item descriptions on the X axis that are in numerical or date&#8209;time format.</p>
+<p   
+><strong class=" ">Numeric formatting</strong>:</p>
+<p   
+>Numbers can be formatted using .NET <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/0c899ak8.aspx">Custom numeric format strings</a> enclosed in curly brackets.</p>
+<p   
+>Examples:<i class=" "><br/></i></p>
+<p   
+><i class=" ">{Item #}</i> - X axis descriptions will be displayed as <i class=" ">Item 1</i>, <i class=" ">Item 2</i> etc.</p>
+<p   
+><i class=" ">{0.00}</i> - numeric X axis descriptions will be displayed with precision of two decimal places.</p>
+<p   
+><strong class=" ">Date and time formatting</strong>:</p>
+<p   
+>The format can be set using single&#8209;letter .NET <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/az4se3k1.aspx">Standard date and time format specifiers</a> without quotes.</p>
+<p   
+>In addition, any custom formatting can be defined using expressions enclosed in curly brackets. For example, <i class=" ">{yyyy - MM - dd - hh:mm}</i> would specify a date and time format like:<br/>2010 - 08 - 19 - 12:30</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title font</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines font properties of the X axis title.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Position</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the position of the X axis title.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Axis label font</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines font properties of X axis descriptions.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>X axis interval</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the interval between X axis descriptions.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Use X axis sorting</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, values are connected in the order they appear in on the X axis, otherwise they are connected in the order they have in the returned dataset. Only used by <strong class=" ">Line charts</strong> and <strong class=" ">Bar Stacked</strong> charts with the <strong class=" ">Area</strong> drawing style.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Y-axis</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Y axis title</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title of the vertical axis in the chart.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the color of the Y axis title. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Y axis angle</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the declination angle of Y axis descriptions. Setting this parameter to 90 causes upright descriptions. Accepts values from -90 to 90.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Y axis format</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Can be used to specify the format of value descriptions on the Y axis that are in numerical or date-time format. The same formatting options can be used as in the <strong class=" ">X axis format</strong> field described above.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Use X axis settings</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, X axis settings are used for the <strong class=" ">Title font</strong>, <strong class=" ">Position</strong> and <strong class=" ">Axis label font</strong> properties.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title font</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines font properties of the Y axis title.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Position</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the position of the Y axis title.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Axis label font</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines font properties of Y axis descriptions.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Series</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Primary background color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the primary color of series items in the chart. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used. Not available for <strong class=" ">Line charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Secondary background color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the secondary color of series items in the chart. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used. Not available for <strong class=" ">Line charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gradient</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gradient of the colors of the series items in the chart. Transitions from <strong class=" ">Primary</strong> to <strong class=" ">Secondary background colors</strong>. Not used when displayed in 3D. Not available for <strong class=" ">Line charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the border color for series items in the chart. Not available for <strong class=" ">Line charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border size</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the border size for series items in the chart. Not available for <strong class=" ">Line charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border style</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the border style for series items in the chart. Not available for <strong class=" ">Line charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Display item value</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, values are displayed above series items.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Item value format</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the format of the text displaying the values of series items in the chart. This overrides the <strong class=" ">Display item value</strong> property.</p>
+<p   
+>Standard <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/dd456687.aspx">MS chart keywords</a> can be placed into this field, such as for example:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">#VALX</strong> - displays the current value of the X axis.</p>
+</li><li class=" "><p   
+><strong class=" ">#VALY</strong> - displays the current value of the Y axis.</p>
+</li><li class=" "><p   
+><strong class=" ">#AXISLABEL</strong> - displays the current X axis label.</p>
+</li><li class=" "><p   
+><strong class=" ">#INDEX</strong> - displays a number determined by the order of the series item on the X axis, starting from 0.</p>
+</li><li class=" "><p   
+><strong class=" ">#SER</strong> - displays the name of the current series, i.e. the type of the value.</p>
+</li></ul><p   
+>If the current value is numerical, the displayed format can be modified by adding the following parameters after the keyword:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">{P}</strong> - displays the number as a percentage.</p>
+</li><li class=" "><p   
+><strong class=" ">{C}</strong> - displays the number as a monetary amount in the currency of the current language culture. specified in the browser; please be aware that this does <strong class=" ">not</strong> convert the value, it only influences the format.</p>
+</li><li class=" "><p   
+><strong class=" ">{F}</strong> - displays the number with a floating point, this is the default parameter.</p>
+</li><li class=" "><p   
+><strong class=" ">{E}</strong> - displays the number in exponential format.</p>
+</li></ul><p   
+>The number of digits after the decimal point can be specified within the curly brackets.</p>
+<p   
+>For example <strong class=" ">#VALY{F2}</strong> displays Y axis values with a floating point and a precision of 2 decimal places.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Line color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the line color used in <strong class=" ">Line charts</strong>. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Line size</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the line size used in <strong class=" ">Line charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Line style</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the style used in <strong class=" ">Line charts</strong>. Not used when displayed in 3D.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Symbols</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the symbols used for values in <strong class=" ">Line charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Item tooltip</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the content and format of the tooltip that is displayed when hovering over a series item in the chart. This field supports both Kentico   <a   href="Macro-expressions">macro expressions</a> and standard MS chart keywords as described in the <strong class=" ">Item value format</strong> property.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Item link</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Causes the series items in the chart to serve as links to the specified URL when clicked. The same macro expressions and keywords as described in the <strong class=" ">Item tooltip</strong> property can be used here as well.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Values as percent</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If checked, graphs with multiple types of series (several values per item) will convert item values into a percentage out of the sum of all values for that item.</p>
+<p   
+>For example, if an item has two values, <i class=" ">3</i> and <i class=" ">9</i>, they would be converted to <i class=" ">25</i> and <i class=" ">75</i> respectively.</p>
+<p   
+>When using this setting, it is necessary to set the <strong class=" ">Chart Area -&gt; Scale max</strong> property to at least <i class=" ">100</i> to ensure that all types of data are displayed correctly.</p>
+<p   
+>Not available for <strong class=" ">Pie charts</strong>, since these already display one type of value as a percentage.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Chart area</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Primary background color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the primary background color of the chart area. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Secondary background color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the secondary background color of the chart area. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gradient</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gradient of the chart area background colors. Transitions from <strong class=" ">Primary</strong> to <strong class=" ">Secondary background colors</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the border color of the chart area. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border size</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the size of the chart area border.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border style</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the style of the chart area border.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Scale min</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the minimum Y axis value that is required for an X axis category to be displayed. Not used by <strong class=" ">Pie charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Scale max</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the maximum value that is displayed on the Y axis. Not used by <strong class=" ">Pie charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Ten powers</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If large values are present in the chart, they are divided by appropriate ten powers and the division ratio is displayed with the y-axis title. Not used by <strong class=" ">Pie charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Reverse Y axis</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, the vertical axis is reversed. Not used by <strong class=" ">Pie charts</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border skin style</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the skin of the chart area border.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Plot area</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Primary background color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the primary background color of the plot area. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Secondary background color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the secondary background color of the plot area. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gradient</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gradient of the plot area background colors. Transitions from <strong class=" ">Primary</strong> to <strong class=" ">Secondary background colors</strong>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border color</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the border color of the plot area. Accepts standard HTML color names and hexadecimal color codes or the color selector can be used.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border size</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the size of the plot area border.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Border style</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Determines the style of the plot area border.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li><li class=" "><p   
+>Place the cursor in the layout editor where you want to put the graph.</p>
+</li><li class=" "><p   
+>Select the defined graph from the list in the <strong class=" ">Graphs</strong> section.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Insert</strong>.</p>
+<ul class=" "><li class=" "><p   
+>Graphs are entered into the report layout editor as an expression in the following format:<i class=" "> %%control:ReportGraph?&lt;report code name&gt;.&lt;graph code name&gt;%%.</i><br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882045/Report_Graph.png" alt="images/download/attachments/68882045/Report_Graph.png" width="500"  />
+        <br/><span class="caption">Example of a report graph</span>
+    </p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Writing queries for pie charts</strong></p>
+<p   
+>The queries for pie chart graphs must return two columns: the item categories and their values. The graph automatically calculates the displayed size of the given category.</p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Writing queries for bar graphs</strong></p>
+<p   
+>The queries for bar chart graphs must return at least two columns: the item categories and their values. If you specify more than two columns, the additional columns will be displayed side-by-side (<strong class=" ">Bar charts</strong>), in front of each other (<strong class=" ">Bar charts</strong> with the <strong class=" ">Overlay</strong> setting enabled), on top of each other (<strong class=" ">Bar stacked charts</strong>) or they will divide one column by percentage (<strong class=" ">Bar stacked charts</strong> with the <strong class=" ">100% stacked</strong> setting enabled).</p>
+        </div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Writing queries for line charts</strong></p>
+<p   
+>The queries for line chart graphs must return at least two columns: the item categories and their values. If you specify more than two columns, the additional columns will be displayed as separate lines.</p>
+        </div>
+    </div>
+    <h3 id="src-68882045_Creatingreports-CreatingHTMLgraphsinreports" class="heading "><span>Creating HTML graphs in reports</span></h3>
+<p   
+>In addition to the image-based graphs, data can be visually represented in HTML graphs. Graphs of this type are composed purely out of HTML code (table and DIV elements). As a result, they can be dynamically scaled according to the amount of data that needs to be displayed, unlike an image with a predefined size.</p>
+<p   
+>HTML graphs always use a horizontal bar layout, which can easily be extended to display any number of items. In most cases where scaling is not an issue, it is recommended to use standard graphs, since they offer more customization options and graphical flexibility.</p>
+<p   
+>Like other reporting tools, HTML graphs retrieve the data to be displayed using queries. The queries must return at least two columns: the first column is used for items and the others for their values. If more than two columns are specified, the values of these additional columns are displayed below each other as differently colored bars.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882045/HTML_Graph.png" alt="images/download/attachments/68882045/HTML_Graph.png" width="500"  />
+        <br/><span class="caption">Example of an HTML graph</span>
+    </p>
+<p   
+>By default, data is displayed in descending order, i.e. with the newest items at the top of the graph. To create a HTML graph:</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Reporting</strong> application, edit a report on the <strong class=" ">General</strong> tab.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> in the <strong class=" ">HTML graphs</strong> section below the layout editor.</p>
+</li><li class=" "><p   
+>Define the properties of the new HTML graph:</p>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">HTML graph properties</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="3">
+    <p   
+>Default</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Display name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Display name of the graph shown in the user interface.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Code name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Code name of the graph.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Enable export</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, users who view the graph are able to export the displayed data to external files using the Microsoft Excel (XLSX), CSV or XML format. The data export feature may be accessed by right&#8209;clicking the graph in the report, which opens a context menu with possible export actions.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Enable subscription</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, users will be able to subscribe to the currently edited HTML graph. To allow subscriptions, it is also necessary to have the <strong class=" ">Enable subscription</strong> box checked on the <strong class=" ">General</strong> tab of the given report.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="3">
+    <p   
+>Query</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Query</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Database query that extracts the data that will be displayed in the graph. It must return at least two columns: first one for categories, the other columns are used for values.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Is stored procedure</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Indicates if the specified query is a stored procedure.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Connection string</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Sets the database connection string used by the graph&#39;s query.</p>
+<p   
+>Only users who have the <strong class=" ">Set connection string</strong> permission for the <i class=" ">Reporting</i> module are allowed to change this value.</p>
+<p   
+>The system loads the list of connection strings from the <i class=" ">&lt;connectionStrings&gt;</i> section of the application&#39;s web.config file. The <i class=" ">(default)</i> option represents the <i class=" ">CMSConnectionString</i> added by the application&#39;s initial database installer.</p>
+<p   
+>You can check the <strong class=" ">Inherit</strong> box to load the <strong class=" ">Connection string</strong> value set for the parent report.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>No record text</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Text to be displayed if the query doesn&#39;t return any data.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="3">
+    <p   
+>Title</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Title</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Sets the title of the graph.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="3">
+    <p   
+>Legend</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Legend title</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Sets the text caption of the legend.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Display legend</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Indicates if the legend should be displayed.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="3">
+    <p   
+>Series</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Item name format</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Can be used to specify the format of item descriptions on the X axis that are in numerical or date&#8209;time format.</p>
+<p   
+><strong class=" ">Numeric formatting</strong>:</p>
+<p   
+>Numbers can be formatted using .NET <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/0c899ak8.aspx">Custom numeric format strings</a>.</p>
+<p   
+>Examples:</p>
+<p   
+><i class=" ">Item #</i> - X axis descriptions will be displayed as <i class=" ">Item 1</i>, <i class=" ">Item 2</i> etc.</p>
+<p   
+><i class=" ">{0.00}</i> - numeric X axis descriptions will be displayed with precision of two decimal places.</p>
+<p   
+><strong class=" ">Date and time formatting</strong>:</p>
+<p   
+>The format can be set using single&#8209;letter <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/az4se3k1.aspx">Standard date and time format specifiers</a> without quotes.</p>
+<p   
+>In addition, any custom formatting can be defined. For example, <i class=" ">yyyy - MM - dd - hh:mm</i> would specify a date and time format like: 2010 - 08 - 19 - 12:30</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Item value format</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Sets the format of the text displaying the values of series items on the Y axis of the graph.</p>
+<p   
+>This field supports all types of Kentico   <a   href="Macro-expressions">macro expressions</a>. The following macros should be used most frequently:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">{%ser%}</strong> - resolves into the name of the current item&#39;s series, i.e. the type of the value.</p>
+</li><li class=" "><p   
+><strong class=" ">{%xval%}</strong> - resolves into the X axis value of the current item.</p>
+</li><li class=" "><p   
+><strong class=" ">{%yval%}</strong> - resolves into the Y axis value of the current item.</p>
+</li><li class=" "><p   
+><strong class=" ">{%pval%}</strong> - resolves into the percentage that the value of the current item represents out of the sum of all values in the graph. If there are multiple types of Y axis values, they are all included in the total sum.</p>
+</li></ul><p   
+><strong class=" ">Examples</strong>:</p>
+<ul class=" "><li class=" "><p   
+><i class=" ">{% ser %} = {% yval %}</i> - displays the name of the series and its value (e.g. <i class=" ">Visits = 287</i>).</p>
+</li><li class=" "><p   
+><i class=" ">{% Format(ToDouble(pval), &quot;{0:0.0}%&quot;) %}</i> - displays the item&#39;s percentage value rounded to one decimal place (e.g. <i class=" ">5.1%</i>).</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Item tooltip</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Determines the content and format of the tooltip that is displayed when hovering over a series item in the graph. The macro expressions described in the <strong class=" ">Item value format</strong> property can also be used in this field.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Item link</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+>Causes the series items in the graph to serve as links to the specified URL when clicked. The macro expressions described in the <strong class=" ">Item value format</strong> property can also be used in this field.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li><li class=" "><p   
+>Place the cursor in the layout editor where you want to put the HTML graph.</p>
+</li><li class=" "><p   
+>Select the defined HTML graph from the list in the <strong class=" ">HTML graphs</strong> section.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Insert</strong>.</p>
+<ul class=" "><li class=" "><p   
+>HTML graphs are entered into the report layout editor as an expression in the following format:<i class=" "> <i class=" ">%%control:ReportHtmlGraph?&lt;report code name&gt;.&lt;graph code name&gt;%%</i>.</i><br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+><br/></p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">HTML graphs on the live site</strong></p>
+<p   
+>Because of the way they are constructed, HTML graphs are only displayed correctly in the administration interface. The necessary styles will not be applied on the live site.</p>
+<p   
+>Therefore, it is recommended to avoid publishing reports containing HTML graphs on your website (you can find more information about this process in   <a   href="Displaying-reports-on-websites">Displaying reports on websites</a>).</p>
+        </div>
+    </div>
+    <h3 id="src-68882045_Creatingreports-Creatingvaluesinreports" class="heading "><span>Creating values in reports</span></h3>
+<p   
+>A value is an object that you can place into the layout of a report, which can be used to display a single scalar value returned by a query in a specified string format.</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Reporting</strong> application, edit a report on the <strong class=" ">General</strong> tab.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> in the <strong class=" ">Values</strong> section below the layout editor.</p>
+</li><li class=" "><p   
+>Define the properties of the new value:</p>
+    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Report value properties</span>
+        </div>
+        <div class="scroll-expand-content">
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+><strong class=" ">Default</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Display name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The name of the item in the list</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Code name</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Name used in your code</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Enable subscription</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>If enabled, users will be able to subscribe to the currently edited report value. To allow subscriptions, it is also necessary to have the <strong class=" ">Enable subscription</strong> box checked on the <strong class=" ">General</strong> tab of the given report.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+><strong class=" ">Query</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Query</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Here you can add the SQL query used to retrieve data to be displayed by the value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Is stored procedure</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Indicates if the query is a stored procedure or not.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Connection string</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Sets the database connection string used by the value&#39;s query.</p>
+<p   
+>Only users who have the <strong class=" ">Set connection string</strong> permission for the <i class=" ">Reporting</i> module are allowed to change this value.</p>
+<p   
+>The system loads the list of connection strings from the <i class=" ">&lt;connectionStrings&gt;</i> section of the application&#39;s web.config file. The <i class=" ">(default)</i> option represents the <i class=" ">CMSConnectionString</i> added by the application&#39;s initial database installer.</p>
+<p   
+>You can check the <strong class=" ">Inherit</strong> box to load the <strong class=" ">Connection string</strong> value set for the parent report.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="2">
+    <p   
+><strong class=" ">Format</strong></p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Formatting string</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>You can format the displayed value using standard .NET expressions. For example:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">{0}</strong> - displays the value</p>
+</li><li class=" "><p   
+><strong class=" ">{0:F1}</strong> - displays the value as a floating point number with one digit displayed after the decimal point</p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li><li class=" "><p   
+>Place the cursor in the layout editor where you want to put the value.</p>
+</li><li class=" "><p   
+>Select the defined value from the drop-down list in the <strong class=" ">Values</strong> section.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Insert</strong>.</p>
+<ul class=" "><li class=" "><p   
+>Values are entered into the report layout editor as an expression in the following format:<i class=" "> <i class=" ">%%control:ReportValue?&lt;report code name&gt;.&lt;value code name&gt;%%</i>.</i><br/><br/></p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.<br/><br/></p>
+</li></ol>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Writing queries for scalar value</strong></p>
+<p   
+>The queries for scalar values may return any number of columns and rows, but the only value that will be displayed is the value in the first column of the first row of the result set.</p>
+        </div>
+    </div>
+<p   
+>See   <a   href="Example---creating-a-simple-report">Example - creating a simple report</a> for an example on how to create a report with a table, graph and a value.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

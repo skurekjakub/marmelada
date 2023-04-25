@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Session protection - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68881164"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Securing-websites.html">Securing websites</a></li>
+                                                                                                         <li class="shortcut"><a href="Designing-secure-websites.html">Designing secure websites</a></li>
+                                                                                     <li><a href="Securing-and-protecting-the-system.html">Securing and protecting the system</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68881164"> <span>Session protection</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>We use sessions, because web is running on HTTP, which is a stateless protocol. However, in many web applications, we need to keep some state information, some context. This is the purpose of sessions. When a user opens a browser and navigates to some website, the web server of that website generates a session ID for this user. The session ID is sent with every request and it is a key for any session data (session data = state/context). These data are stored on the server.</p>
+<p   
+>The session ID can be passed to the requests in two ways:</p>
+<ul class=" "><li class=" "><p   
+>via a URL parameter,</p>
+</li><li class=" "><p   
+>or using a cookie.</p>
+</li></ul>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>It is recommended to use cookies for passing the session ID. You can disable the cookieless sessions by changing the cookieless attribute of the form element on the <strong class=" ">&lt;system.web&gt;</strong> section of the web.config file:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">authentication</code><code class="plain"> </code><code class="color1">mode</code><code class="plain">=</code><code class="string">"Forms"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">forms</code><code class="plain"> </code><code class="color1">cookieless</code><code class="plain">=</code><code class="string">"UseCookies"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+<p   
+>The session ends (in a typical case) after the user closes the browser or after the user is inactive for a specified amount of time.</p>
+<p   
+>There are basically three types of session attacks:</p>
+<ul class=" "><li class=" "><p   
+>Session stealing</p>
+</li><li class=" "><p   
+>Session prediction</p>
+</li><li class=" "><p   
+>Session fixation</p>
+</li></ul>    <h3 id="src-68881164_Sessionprotection-Sessionstealing" class="heading "><span>Session stealing</span></h3>
+<p   
+>A session can be stolen by stealing a session ID. When an attacker steals a user&#39;s session ID, he can get access to all of the session data. Because all these session IDs can be read by JavaScript, the most popular method for this type of attack is   <a   href="Cross-site-scripting-%28XSS%29">XSS</a>. An attacker can send a crafted link to a victim with a malicious JavaScript. When the victim clicks on the link, the JavaScript runs and sends the cookie value of the current session to the attacker.</p>
+    <h3 id="src-68881164_Sessionprotection-Sessionprediction" class="heading "><span>Session prediction</span></h3>
+<p   
+>Can an attacker simply guess some random session ID? Most implementations of session IDs are long strings and guessing a correct session ID in linear time is impossible. But there are also bad implementations when an attacker can generate session IDs from known values. This technique is called session prediction. For example, a session ID can be a user name encoded in base64. Fortunately, in ASP.NET, session ID is a 120bit random number represented by a 20-character string. So, it is relatively safe.</p>
+    <h3 id="src-68881164_Sessionprotection-Sessionfixation" class="heading "><span>Session fixation</span></h3>
+<p   
+>In this case, the attacker lets the server generate a session ID. Then the attacker sets a user&#39;s session ID to the generated ID. This is quite easy when the session ID is given in a URL parameter. After that, the user and the attacker share the same session. For example, when the user gets authenticated, the attacker is also authenticated as the user.</p>
+<p   
+>The goal of all kinds of session attacks is the same &ndash; to get the user&#39;s session data or achieve identity forgery. This page focuses mainly on <strong class=" ">session fixation</strong>, as   <a   href="Cross-site-scripting-%28XSS%29">XSS</a> is explained on a different page and we cannot influence how session IDs are generated. But generally, the implications of all three session attacks and the protective measures against them are similar.</p>
+<p   
+><br/></p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68881164_Sessionprotection-Sessionstealing">Session stealing</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881164_Sessionprotection-Sessionprediction">Session prediction</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881164_Sessionprotection-Sessionfixation">Session fixation</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68881164_Sessionprotection-Exampleofasessionfixation">Example of a session fixation</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881164_Sessionprotection-Whatcansessionfixationattacksdo">What can session fixation attacks do</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881164_Sessionprotection-Findingsessionfixationvulnerabilities">Finding session fixation vulnerabilities</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881164_Sessionprotection-Avoidingsessionfixation">Avoiding session fixation</a></p>
+</li></ul></li></ul><p   
+></p>
+        </div>
+    </div>
+    <h4 id="src-68881164_Sessionprotection-Exampleofasessionfixation" class="heading "><span>Example of a session fixation</span></h4>
+<p   
+>Let&#39;s have a simple .aspx page which saves a value to a session and also shows it:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;asp:Literal runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"ltlSession"</code><code class="plain">&gt;&lt;/asp:Literal&gt;</code></div>
+<div class="line"><code class="plain">&lt;asp:TextBox runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"txtValue"</code><code class="plain">&gt;&lt;/asp:TextBox&gt;</code></div>
+<div class="line"><code class="plain">&lt;asp:Button runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"btnSend"</code><code class="plain"> Text=</code><code class="string">"Save"</code><code class="plain"> /&gt; </code></div>
+</div>
+    </div>
+<p   
+>In the code behind, we handle the OnClick() event of the button:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">Session[</code><code class="string">"MyPrivateData"</code><code class="plain">] = txtValue.Text;</code></div>
+</div>
+    </div>
+<p   
+>On page load, we display the value via the literal:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">ltlSession.Text = </code><code class="string">"My private Data:"</code><code class="plain"> + CMS.Helpers.SessionHelper.GetValue(</code><code class="string">"MyPrivateData"</code><code class="plain">) + </code><code class="string">"&lt;br/&gt;"</code><code class="plain">;</code></div>
+</div>
+    </div>
+<p   
+>How the attack is executed:</p>
+<ol class=" "><li class=" "><p   
+>The attacker forges a link to this page with a session ID and sends the link to the user.</p>
+</li><li class=" "><p   
+>The user, unaware of the forgery, clicks the link.</p>
+</li><li class=" "><p   
+>The user sees the page normally and does not register anything unusual.</p>
+</li><li class=" "><p   
+>When the user saves some private data now, the attacker will be able to access it.</p>
+</li></ol>    <h4 id="src-68881164_Sessionprotection-Whatcansessionfixationattacksdo" class="heading "><span>What can session fixation attacks do</span></h4>
+<p   
+>The main goal of the attacker is to read and manipulate session data or forge their identity. In both cases, the risks depend on the implementation of individual applications. If the application stores sensitive data to sessions (for example, user passwords in plain text) and allows this data to be displayed or changed, the damage cane be severe.</p>
+    <h4 id="src-68881164_Sessionprotection-Findingsessionfixationvulnerabilities" class="heading "><span>Finding session fixation vulnerabilities</span></h4>
+<p   
+>In Kentico, session fixation is possible, depending on the application settings. You have to ensure that you do not store any sensitive information in sessions. The best way is to determine which variables are stored in sessions. Then, check how you can manipulate with them (read/change) and think about the risks &ndash; what damage can the attacker do by manipulating them. You can find these risks just from the user perspective by inspecting application reactions, parameters and so on.</p>
+<p   
+>However, we still recommend code inspection. You can simply find all manipulations with session data by searching for <strong class=" ">SessionHelper</strong> and the <strong class=" ">Session[]</strong> array.</p>
+    <h4 id="src-68881164_Sessionprotection-Avoidingsessionfixation" class="heading "><span>Avoiding session fixation</span></h4>
+<p   
+>First of all, there is no native support for protecting against session fixation in ASP.NET. The best practice for protecting your application against session fixation is to regenerate the session ID after a user logs on. You can achieve this by changing the session ID to an empty string and letting ASP.NET generate a new one. However, this action causes loss of session data.</p>
+<p   
+>In Kentico, you can include the <strong class=" ">CMSRenewSessionAuthChange</strong> key in the <strong class=" ">appSettings</strong> section of your web.config file, which enforces a change of the session ID when a user logs in or out. If you enable this setting, users will not be able to preserve their session data after logging in or out:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSRenewSessionAuthChange"</code><code class="plain"> value=</code><code class="string">"true"</code><code class="plain"> /&gt;</code></div>
+</div>
+    </div>
+<p   
+>It is still possible for attackers to manipulate non-user session data. You need to ensure that you <strong class=" ">do not save sensitive and critical information in sessions</strong>.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

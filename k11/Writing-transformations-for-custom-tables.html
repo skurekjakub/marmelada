@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Writing transformations for custom tables - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68880600"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Developing-websites.html">Developing websites</a></li>
+                                                                                                         <li class="shortcut"><a href="Loading-and-displaying-data-on-websites.html">Loading and displaying data on websites</a></li>
+                                                                                     <li><a href="Writing-transformations.html">Writing transformations</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68880600"> <span>Writing transformations for custom tables</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>When displaying data from custom tables on your website, use   <a   href="Writing-transformations">transformations</a> to define the format of the output.<br/></p>
+<p   
+>The scenario below shows examples of transformations applied to custom table data.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Example prerequisites</strong></p>
+<p   
+>To follow the example, you need to:</p>
+<ul class=" "><li class=" "><p   
+>Create the <strong class=" ">People</strong> custom table according to the instructions in   <a   href="Creating-custom-tables">Creating custom tables</a></p>
+</li><li class=" "><p   
+>Add data to the table as described in   <a   href="Managing-custom-table-data">Managing custom table data</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68880600_Writingtransformationsforcustomtables-Settingupthecustomtablewebpart" class="heading "><span>Setting up the custom table web part</span></h3>
+<p   
+>Start by preparing a page that loads and renders data from the custom table:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p   
+>Select the page where you want to display the custom table data.</p>
+</li><li class=" "><p   
+>Open the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p   
+>  <a   href="Using-and-configuring-web-parts">Add</a> the <strong class=" ">Custom table repeater</strong> web part onto the page.</p>
+</li><li class=" "><p   
+>Set the following properties for the web part:<br/><br/></p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Custom table</strong>: People</p>
+</li><li class=" "><p   
+><strong class=" ">Selected item querystring key</strong>: itemid</p>
+</li><li class=" "><p   
+><strong class=" ">Selected item database column name</strong>: ItemID</p>
+</li><li class=" "><p   
+><strong class=" ">Selected item validation type</strong>: Validation by number</p>
+</li><li class=" "><p   
+><strong class=" ">HTML envelope -&gt; Content before</strong>:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">table</code><code class="plain"> </code><code class="color1">border</code><code class="plain">=</code><code class="string">"1"</code><code class="plain"> </code><code class="color1">cellpadding</code><code class="plain">=</code><code class="string">"4"</code><code class="plain"> </code><code class="color1">style</code><code class="plain">=</code><code class="string">"border-collapse:collapse"</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+><strong class=" ">HTML envelope -&gt; Content after</strong>:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">table</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p   
+>The web part does not display any data for now, because you have not assigned transformations. The <strong class=" ">HTML envelope</strong> properties add a table element around the web part. The transformations created in the next sections will fill the content of the table.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>To learn more about setting up custom table web parts, see   <a   href="Displaying-data-from-custom-tables">Displaying data from custom tables</a>.</p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68880600_Writingtransformationsforcustomtables-Settingupthecustomtablewebpart">Setting up the custom table web part</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880600_Writingtransformationsforcustomtables-Writingthelisttransformation">Writing the list transformation</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68880600_Writingtransformationsforcustomtables-Writingthedetailtransformation">Writing the detail transformation</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Displaying-data-from-custom-tables">Displaying data from custom tables</a></p>
+</li><li class=" "><p   
+>  <a   href="Custom-tables">Custom tables</a></p>
+</li><li class=" "><p   
+>  <a   href="Writing-transformations">Writing transformations</a></p>
+</li></ul>        </div>
+    </div>
+    <h3 id="src-68880600_Writingtransformationsforcustomtables-Writingthelisttransformation" class="heading "><span>Writing the list transformation</span></h3>
+<p   
+>The purpose of list transformations is to display multiple items on the same page. The Custom table repeater applies the list transformation to every record loaded from the specified custom table. In this example, the &quot;list&quot; is composed of table rows.</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Pages</strong> application, configure (double-click) the <i class=" ">Custom table repeater</i> web part (on the <strong class=" ">Design</strong> tab).</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> next to the <strong class=" ">Transformation </strong>property. The <strong class=" ">New transformation</strong> dialog opens.<strong class=" "><br/></strong></p>
+</li><li class=" "><p   
+>Change the <strong class=" ">Class type</strong> to <i class=" ">Custom table </i>and select <i class=" ">People</i> as the<strong class=" "> Custom table</strong> value.</p>
+</li><li class=" "><p   
+>Type <i class=" "><strong class=" ">ListItem</strong></i> as the <strong class=" ">Transformation name</strong>.</p>
+</li><li class=" "><p   
+>Change the <strong class=" ">Transformation type</strong> to <i class=" "><strong class=" ">Text / XML</strong></i>.</p>
+</li><li class=" "><p   
+>Copy the following code into the transformation editor:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">tr</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">td</code><code class="plain">&gt;{% ItemID %}&lt;/</code><code class="keyword">td</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">td</code><code class="plain">&gt;{% FirstName %} {% LastName %}&lt;/</code><code class="keyword">td</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">td</code><code class="plain">&gt;&lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"?itemid={% ItemID %}"</code><code class="plain">&gt;View information&lt;/</code><code class="keyword">a</code><code class="plain">&gt;&lt;/</code><code class="keyword">td</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">tr</code><code class="plain">&gt; </code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong> and close the dialog.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">OK</strong> to confirm and close the <strong class=" ">Web part properties</strong> dialog.</p>
+</li></ol><p   
+>The transformation defines a table row, which the repeater renders for every record in the <strong class=" ">People</strong> custom table. If you view the page on the live site, you can see the custom table&#39;s data.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880600/CustomTable_List.png" alt="images/download/attachments/68880600/CustomTable_List.png" width="272" height="100" />
+        <br/><span class="caption">A table containing records from the 'People' custom table</span>
+    </p>
+    <h3 id="src-68880600_Writingtransformationsforcustomtables-Writingthedetailtransformation" class="heading "><span>Writing the detail transformation</span></h3>
+<p   
+>To allow users to view more information about individual people from the custom table, you need to create a second transformation for the detail view:</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Pages</strong> application, configure (double-click) the <i class=" ">Custom table repeater</i> web part again.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> next to the <strong class=" ">Selected item transformation</strong> property. The <strong class=" ">New transformation</strong> dialog opens.<strong class=" "><br/></strong></p>
+</li><li class=" "><p   
+>Change the <strong class=" ">Class type</strong> to <i class=" ">Custom table </i>and select <i class=" ">People</i> as the<strong class=" "> Custom table</strong> value.</p>
+</li><li class=" "><p   
+>Type <i class=" "><strong class=" ">ItemDetails </strong></i>as the <strong class=" ">Transformation name</strong>.</p>
+</li><li class=" "><p   
+>Change the <strong class=" ">Transformation type</strong> to <i class=" "><strong class=" ">Text / XML</strong></i>.</p>
+</li><li class=" "><p   
+>Copy the following code into the transformation editor:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;tr&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;&lt;strong&gt;First name&lt;/strong&gt;&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td style=</code><code class="string">"width:250px;"</code><code class="plain">&gt;{% FirstName %}&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">&lt;/tr&gt;</code></div>
+<div class="line"><code class="plain">&lt;tr&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;&lt;strong&gt;Last name&lt;/strong&gt;&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;{% LastName %}&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">&lt;/tr&gt;</code></div>
+<div class="line"><code class="plain">&lt;tr&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;&lt;strong&gt;Date of birth&lt;/strong&gt;&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;{% DateOfBirth.ToShortDateString() %}&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">&lt;/tr&gt;</code></div>
+<div class="line"><code class="plain">&lt;tr&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;&lt;strong&gt;ID&lt;/strong&gt;&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;{% ItemID %}&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">&lt;/tr&gt;</code></div>
+<div class="line"><code class="plain">&lt;tr&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;&lt;strong&gt;Last modified&lt;/strong&gt;&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;{% ItemModifiedWhen %}&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">&lt;/tr&gt;</code></div>
+<div class="line"><code class="plain">&lt;tr&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;&lt;strong&gt;Personal GUID&lt;/strong&gt;&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td&gt;{% ItemGUID %}&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">&lt;/tr&gt;</code></div>
+<div class="line"><code class="plain">&lt;tr&gt;</code></div>
+<div class="line"><code class="plain">	&lt;td colspan=</code><code class="string">"2"</code><code class="plain"> style=</code><code class="string">"text-align:center;"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">		&lt;a href=</code><code class="string">"{% CurrentDocument.RelativeURL %}"</code><code class="plain">&gt;Back to list&lt;/a&gt;</code></div>
+<div class="line"><code class="plain">	&lt;/td&gt;</code></div>
+<div class="line"><code class="plain">&lt;/tr&gt;</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+><strong class=" ">Save</strong> the transformation and close the dialog.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">OK</strong> to confirm and close the <strong class=" ">Web part properties</strong> dialog.</p>
+</li></ol><p   
+>The Custom table repeater applies the detail transformations when a single record is selected via a URL parameter.</p>
+<p   
+>On the live site, you can now click the <u class=" ">View information</u> link next to individual people in the list. The table changes and displays the data of the selected person.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68880600/CustomTable_Detail.png" alt="images/download/attachments/68880600/CustomTable_Detail.png" width="388" height="203" />
+        <br/><span class="caption">Detail view showing the values of a specific custom table record</span>
+    </p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Tip - previewing transformations</strong></p>
+<p   
+>When editing the code of transformations that are already assigned to a web part, you can   <a   href="Previewing-design-changes">preview the output directly</a>. Click <strong class=" ">Preview</strong> in the dialog header. The editor opens a split view, where you can see how the content displayed by the web part changes when you save the transformation code.</p>
+<p   
+><img  class="confluence-embedded-image confluence-thumbnail confluence-content-image-border"  src="images/download/thumbnails/68880600/Transformation_Preview.png" alt="images/download/thumbnails/68880600/Transformation_Preview.png" width="300"  />
+        <br/><span class="caption">Previewing a transformation's output on the page</span>
+    </p>
+        </div>
+    </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

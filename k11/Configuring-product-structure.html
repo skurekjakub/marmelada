@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Configuring product structure - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68881315"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="E-commerce-features.html">E-commerce features</a></li>
+                                                                                                         <li class="shortcut"><a href="Configuring-your-store.html">Configuring your store</a></li>
+                                                                                     <li><a href="Configuring-products.html">Configuring products</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68881315"> <span>Configuring product structure</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>During the   <a   href="Configuring-your-store">store configuration</a>, you need to specify what   <a   href="Working-with-pages">page</a> is the main page of the store (in other words, where the   <a   href="Products">product tree</a> starts) and we recommend that you define category structure of your products. Defining of the product structure will help you later when you   <a   href="Importing-products">import your products</a> to the system.</p>
+<p   
+>To configure product page structure:</p>
+<ol class=" "><li class=" "><p   
+>  <a   href="#src-68881315_Configuringproductstructure-Specifyingtheproducttreemainpage">Specify the product tree main page.</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881315_Configuringproductstructure-Definingtheproductstructure">Define the product structure.</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881315_Configuringproductstructure-Limitingtheproductsuserscancreate">Consider limiting the products users can create.</a></p>
+</li></ol>    <h3 id="src-68881315_Configuringproductstructure-Specifyingtheproducttreemainpage" class="heading "><span>Specifying the product tree main page</span></h3>
+<p   
+>When you specify the product tree main page, the <strong class=" ">Products</strong> application displays just products. To specify the main page of the tree:</p>
+<ol class=" "><li class=" "><p   
+>Create a page in the <strong class=" ">Pages</strong> application.<br/><br/>Find detailed information in   <a   href="Creating-new-pages">Creating new pages</a>. In a nutshell:<br/></p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/41484305/new.png" alt="images/download/attachments/41484305/new.png"   />
+) to create a page.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Page (menu item)</strong>.<br/>    <span style="color: #ffffff;">
+_    </span>
+<br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881315/selecting_page_type.png" alt="images/download/attachments/68881315/selecting_page_type.png" width="500"  />
+        <br/><span class="caption">Selecting a page type</span>
+    <p   
+><br/>    <span style="color: #ffffff;">
+_    </span>
+</p>
+</li><li class=" "><p   
+>Type a name of the page to the <strong class=" ">Page name</strong> field (for example <i class=" ">Products</i>).</p>
+</li><li class=" "><p   
+>Choose a template according to your needs.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+>The system creates a new page.<br/>    <span style="color: #ffffff;">
+_    </span>
+<br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881315/created_new_page.png" alt="images/download/attachments/68881315/created_new_page.png"   />
+        <br/><span class="caption">A new page</span>
+    <p   
+><br/>    <span style="color: #ffffff;">
+_    </span>
+</p>
+</li><li class=" "><p   
+>Set the main page of the product tree.<br/><br/></p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Store configuration</strong> if you want to set the product tree on the current site or open the <strong class=" ">Multistore configuration</strong> if you want to set the tree   <a   href="Choosing-site-or-global-e-commerce-configuration">globally</a>.</p>
+<p   
+></p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>If you are not sure what to choose, see   <a   href="Choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a>. If you are not sure about specifics of configuring in these applications, see   <a   href="Configuring-e-commerce-settings-for-a-specific-site-or-globally">Configuring e-commerce settings for a specific site or globally</a>.</p>
+        </div>
+    </div>
+<p   
+></p>
+</li><li class=" "><p   
+>On the <strong class=" ">Store settings -&gt; General</strong> tab, configure   <a   href="Settings---E-commerce">the <strong class=" ">Display tree of product sections</strong> field</a>.</p>
+<ol class=" "><li class=" "><p   
+>If you work in the <strong class=" ">Store configuration</strong> application, clear the <i class=" ">    <span style="color: #262524;">
+Inherit from global settings    </span>
+</i> field.</p>
+</li><li class=" "><p   
+>Select the check-box below to display the product section tree.<br/></p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Clear the field if you plan to use   <a   href="Managing-stand-alone-SKUs">stand-alone SKUs</a> and you do not want to place the products into any logical sections.</p>
+        </div>
+    </div>
+<p   
+><br/></p>
+</li></ol></li><li class=" "><p   
+>Configure   <a   href="Settings---E-commerce">the <strong class=" ">Products starting path</strong> field</a>.</p>
+<ol class=" "><li class=" "><p   
+>If you work in the <strong class=" ">Store configuration</strong> application, clear the <i class=" ">    <span style="color: #262524;">
+Inherit from global settings    </span>
+</i> field.<br/>    <span style="color: #ffffff;">
+_    </span>
+<br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881315/clearing_inheriting.png" alt="images/download/attachments/68881315/clearing_inheriting.png" width="500" height="249" />
+        <br/><span class="caption">Clearing the inheriting property</span>
+    <p   
+><br/>    <span style="color: #ffffff;">
+_    </span>
+</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Select</strong> in the <strong class=" ">Products starting path</strong> field.</p>
+</li><li class=" "><p   
+>In the <strong class=" ">Select path</strong> dialog, select the page created in the previous step and click <strong class=" ">Select</strong>.<br/>    <span style="color: #ffffff;">
+_    </span>
+<br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881315/selecting_path.png" alt="images/download/attachments/68881315/selecting_path.png" width="500" height="317" />
+        <br/><span class="caption">Selecting path of the product tree main page</span>
+    <p   
+><br/>    <span style="color: #ffffff;">
+_    </span>
+</p>
+</li></ol></li><li class=" "><p   
+>    <span style="color: #003366;">
+Configure   <a   href="Settings---E-commerce">the <strong class=" ">Display products in sections tree</strong> field</a>.    </span>
+</p>
+<ol class=" "><li class=" "><p   
+>    <span style="color: #003366;">
+If you work in the <strong class=" ">Store configuration</strong> application, clear the <i class=" ">    <span style="color: #262524;">
+Inherit from global settings    </span>
+</i> field.<br/>    </span>
+</p>
+</li><li class=" "><p   
+>Select the <strong class=" ">Display products in sections tree</strong>    <span style="color: #003366;">
+     </span>
+check-box to display products in the section tree.</p>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Clear the field if you do not want to see the products in the product tree in the <strong class=" ">Products</strong> application but only in the listing of each section.</p>
+        </div>
+    </div>
+<p   
+>    <span style="color: #003366;">
+<br/>    </span>
+</p>
+</li></ol></li><li class=" "><p   
+><strong class=" ">Save</strong> the store configuration.</p>
+</li></ol></li></ol><p   
+>The system sets the main page of the product tree. If you now open the <strong class=" ">Products </strong>application, you will see that the main page is the page you just selected.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881315/products_main_page.png" alt="images/download/attachments/68881315/products_main_page.png" width="394" height="239" />
+        <br/><span class="caption">The main page of the Products application</span>
+    </p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68881315_Configuringproductstructure-Specifyingtheproducttreemainpage">Specifying the product tree main page</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881315_Configuringproductstructure-Definingtheproductstructure">Defining the product structure</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68881315_Configuringproductstructure-Defininganewstoresection">Defining a new store section</a></p>
+</li></ul></li><li class=" "><p   
+>  <a   href="#src-68881315_Configuringproductstructure-Limitingtheproductsuserscancreate">Limiting the products users can create</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Creating-new-pages">Creating new pages</a></p>
+</li><li class=" "><p   
+>  <a   href="Products">Products</a></p>
+</li></ul>        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Configuring the E-commerce Solution</div>
+            <div class="panel-content">
+<ol class=" "><li class=" "><p   
+>  <a   href="Choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-currencies">Configuring currencies</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-taxes">Configuring taxes</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-multilingual-stores">Configuring multilingual stores</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-product-page-types">Configuring product page types</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-products">Configuring products</a></p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Configuring product structure</strong></p>
+</li></ul></li><li class=" "><p   
+>  <a   href="Configuring-product-pages">Configuring product pages</a></p>
+</li><li class=" "><p   
+>  <a   href="Checkout-process">Checkout process</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-shipping-options">Configuring shipping options</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-payment-methods">Configuring payment methods</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-invoices">Configuring invoices</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-e-commerce-email-notifications">Configuring e-commerce email notifications</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-user-registration-in-stores">Configuring user registration in stores</a></p>
+</li><li class=" "><p   
+>  <a   href="Configuring-e-commerce-permissions">Configuring e-commerce permissions</a></p>
+</li></ol>        </div>
+    </div>
+    <h3 id="src-68881315_Configuringproductstructure-Definingtheproductstructure" class="heading "><span>Defining the product structure</span></h3>
+<p   
+>Create the product structure to easily import products into the desired position in the product tree. Repeat the following steps to achieve the structure you want.</p>
+    <h4 id="src-68881315_Configuringproductstructure-Defininganewstoresection" class="heading "><span>Defining a new store section</span></h4>
+<p   
+>To define a new store section:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Products</strong> application.</p>
+</li><li class=" "><p   
+>Navigate to the section in which you want to create a new sub-section.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New</strong> (<img  class="confluence-embedded-image"  src="images/download/attachments/68879208/new.png" alt="images/download/attachments/68879208/new.png"   />
+).</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Page (menu item)</strong>.<br/>    <span style="color: #ffffff;">
+_    </span>
+<br/></p>
+<img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881315/selecting_new_section.png" alt="images/download/attachments/68881315/selecting_new_section.png" width="500"  />
+        <br/><span class="caption">Selecting a section type</span>
+    <p   
+><br/>    <span style="color: #ffffff;">
+_    </span>
+</p>
+</li><li class=" "><p   
+>Type a <strong class=" ">section name</strong>.</p>
+</li><li class=" "><p   
+>(Optional) Enter when the section will be published to the <strong class=" ">Published from</strong> and <strong class=" ">Published to</strong> fields.</p>
+<ul class=" "><li class=" "><p   
+>Leave the fields blank to permanent publishing.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong> (or <strong class=" ">Save and create another</strong> if you want to immediately create another section).</p>
+</li></ol><p   
+>The system creates a new sub-section in the selected section.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68881315/created_new_section.png" alt="images/download/attachments/68881315/created_new_section.png" width="424" height="256" />
+        <br/><span class="caption">The newly created section</span>
+    </p>
+    <h3 id="src-68881315_Configuringproductstructure-Limitingtheproductsuserscancreate" class="heading "><span>Limiting the products users can create</span></h3>
+<p   
+>You can set page types that can be used for child pages based on the product tree structure of your online store.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>You can also set page types that can be used for child pages based on the used page type for the parent page. See more information in   <a   href="Configuring-product-page-types">Configuring product page types</a>.</p>
+        </div>
+    </div>
+<p   
+>Use this setting, for example, when you want to set that only pages of the <strong class=" ">Brewers</strong> page type can be created in <i class=" ">/Store/Brewers</i>.</p>
+<p   
+>To limit child pages according to the product tree structure:</p>
+<ol class=" "><li class=" "><p   
+>Open the <strong class=" ">Page types</strong> application.</p>
+</li><li class=" "><p   
+>Switch to the <strong class=" ">Scopes</strong> tab.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">New scope</strong>.</p>
+</li><li class=" "><p   
+>In <strong class=" ">This scope covers</strong>, click <strong class=" ">Select</strong>.</p>
+<ul class=" "><li class=" "><p   
+>This opens the <strong class=" ">Select path </strong>dialog.</p>
+</li></ul></li><li class=" "><p   
+>Select the path which will be then limited, and click <strong class=" ">Select</strong>.</p>
+</li><li class=" "><p   
+>In <strong class=" ">Page types</strong> category, click <strong class=" ">Add page types</strong>.</p>
+<ul class=" "><li class=" "><p   
+>This opens the <strong class=" ">Select page types</strong> dialog.</p>
+</li></ul></li><li class=" "><p   
+>Select the page types which will be allowed under the specified page, and click <strong class=" ">Select</strong>.</p>
+</li><li class=" "><p   
+>(Optional) Enter the other properties according to your requirements.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p   
+>On the specific page, users are now able to create only pages of the selected page type.</p>
+    <div  class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>See more detailed information about limiting the pages users can create in   <a   href="Limiting-the-pages-users-can-create">Limiting the pages users can create</a>.</p>
+        </div>
+    </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

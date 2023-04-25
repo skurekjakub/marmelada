@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Displaying local index search results using transformations - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68881992"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Configuring-Kentico.html">Configuring Kentico</a></li>
+                                                                                                         <li class="shortcut"><a href="Setting-up-search-on-your-website.html">Setting up search on your website</a></li>
+                                                                                     <li><a href="Using-locally-stored-search-indexes.html">Using locally stored search indexes</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68881992"> <span>Displaying local index search results using transformations</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: The information on this page applies to search results retrieved from   <a   href="Using-locally-stored-search-indexes">locally stored indexes</a>. To learn how to display search results from   <a   href="Using-Azure-Search">Azure Search indexes</a>, see   <a   href="Integrating-Azure-Search-into-pages">Integrating Azure Search into pages.</a></p>
+        </div>
+    </div>
+<p   
+>You can use the following default   <a   href="Writing-transformations">transformations</a> to display search results using the <strong class=" ">Smart search dialog with results </strong>and <strong class=" ">Smart search results</strong> web parts:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">CMS.Root.SmartSearchResults</strong></p>
+</li><li class=" "><p   
+><strong class=" ">CMS.Root.SmartSearchResultsWithImages</strong></p>
+</li></ul><p   
+>The system returns search results in a <strong class=" ">search dataset</strong>. No matter how the fields are named in the found objects, the search dataset always contains the following fields that are automatically mapped to the corresponding object fields:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Search result field</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>score</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Expresses the relevance of the search result item as a numeric value. Higher values indicate higher relevance.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>title</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Mapped to the field selected as the <strong class=" ">Title field</strong> on the <strong class=" ">Search fields</strong> tab for the given object type.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>content</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Mapped to the field selected as the <strong class=" ">Content field</strong> on the <strong class=" ">Search fields</strong> tab for the given object type.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>created</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Mapped to the field selected as the <strong class=" ">Date field</strong> on the <strong class=" ">Search fields</strong> tab for the given object type.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>image</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Mapped to the field selected as the <strong class=" ">Image field</strong> on the <strong class=" ">Search fields</strong> tab for the given object type.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>index</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>The code name of the   <a   href="Creating-local-search-indexes">search index</a> where the given result was found.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>documentExtensions</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Available for page search results. Contains the extension of pages that represent files (typically CMS.File pages).</p>
+<p   
+>For example, you can use the field to display MIME type font icons for file pages in your search results &ndash; call the <i class=" ">GetFileIconClass</i> transformation method to get the appropriate CSS class for the extension:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">i</code><code class="plain"> class="&lt;%# GetFileIconClass(Eval&lt;string&gt;("documentExtensions")) %&gt;"&gt;&lt;/</code><code class="keyword">i</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+>In the code of ASCX transformations, you can get the values from the dataset by using the <strong class=" ">Eval(&quot;&lt;field name&gt;&quot;)</strong> method: <i class=" ">Eval(&quot;score&quot;)</i>, <i class=" ">Eval(&quot;title&quot;)</i>, etc.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68881992_Displayinglocalindexsearchresultsusingtransformations-Example">Example</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68881992_Displayinglocalindexsearchresultsusingtransformations-Searchtransformationmethods">Search transformation methods</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Creating-local-search-indexes">Creating local search indexes</a></p>
+</li><li class=" "><p   
+>  <a   href="Reference---Transformation-methods">Reference - Transformation methods</a></p>
+</li></ul>        </div>
+    </div>
+<p   
+>To learn how to configure search fields for different object types, see the following pages:</p>
+<ul class=" "><li class=" "><p   
+>  <a   href="Defining-local-page-indexes#src-68882020_Defininglocalpageindexes-Configuringsearchsettingsforpagefields">Configuring search settings for page fields</a></p>
+</li><li class=" "><p   
+>  <a   href="Defining-custom-table-indexes#src-68882023_Definingcustomtableindexes-Configuringsearchsettingsforcustomtablefields">Configuring search settings for custom table fields</a></p>
+</li><li class=" "><p   
+>  <a   href="Defining-on-line-form-indexes#src-68882018_Definingonlineformindexes-Configuringsearchsettingsforformfields">Configuring search settings for form fields</a></p>
+</li><li class=" "><p   
+>  <a   href="Defining-user-indexes#src-68882030_Defininguserindexes-Configuringsearchsettingsforuserfields">Configuring search settings for user fields</a></p>
+</li><li class=" "><p   
+>  <a   href="Defining-local-general-indexes">Configuring search settings for other objects using general indexes</a></p>
+</li></ul>    <h3 id="src-68881992_Displayinglocalindexsearchresultsusingtransformations-Example" class="heading "><span>Example</span></h3>
+<p   
+>The following example shows how to create a basic ASCX transformation for displaying smart search results and configure it for the search web part. For more information about creating transformations, see   <a   href="Creating-transformations-for-pages">Creating transformations for pages</a>.</p>
+<ol class=" "><li class=" "><p   
+>In the <strong class=" ">Pages</strong> application, open web part properties of the smart search web part, i.e., <strong class=" ">Smart search dialog with results </strong>or <strong class=" ">Smart search results</strong>.</p>
+</li><li class=" "><p   
+>In the <strong class=" ">Transformations</strong> section, click <strong class=" ">New</strong> to create a transformation.<br/></p>
+<ol class=" "><li class=" "><p   
+>Assign the new transformation to a specific page type or custom table.</p>
+</li><li class=" "><p   
+>Fill in the transformation definition.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                    <div class="title">Smart search result ASCX transformation example</div>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Smart search result ASCX transformation example" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;</code><code class="keyword">a</code><code class="plain"> href="&lt;%# SearchResultUrl() %&gt;"&gt;&lt;%# Eval("Title") %&gt;&lt;/</code><code class="keyword">a</code><code class="plain">&gt; (&lt;%# Eval("Created") %&gt;) &lt;</code><code class="keyword">br</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	&lt;%#</code></div>
+<div class="line"><code class="plain">		// Applies keyword highlight to the text of the 'Content' field stripped of HTML tags and limited to 200 characters</code></div>
+<div class="line"><code class="plain">		SearchHighlight(LimitLength(HTMLHelper.StripTags(Eval&lt;</code><code class="keyword">string</code><code class="plain">&gt;("Content")), 200), "&lt;</code><code class="keyword">strong</code><code class="plain">&gt;", "&lt;/</code><code class="keyword">strong</code><code class="plain">&gt;")</code></div>
+<div class="line"><code class="plain">	%&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.<br/><br/></p>
+</li></ol></li><li class=" "><p   
+>Click <strong class=" ">Save &amp; Close</strong> to apply the web part setting.</p>
+</li></ol><p   
+>The format of the smart search result items now corresponds to the selected transformation definition.</p>
+<p   
+>For more advanced examples of smart search transformations, see the default transformations for pages and products used on our   <a   href="Creating-new-sites-from-templates">sample sites</a>:</p>
+<ul class=" "><li class=" "><p   
+>CMS.Root.SmartSearchResults</p>
+</li><li class=" "><p   
+>CMS.Root.SmartSearchResultsWithImages</p>
+</li><li class=" "><p   
+>DancingGoat.Transformations.SmartSearchProductList</p>
+</li><li class=" "><p   
+>DancingGoat.Transformations.SmartSearchResults</p>
+</li><li class=" "><p   
+>EcommerceSite.Transformations.SearchResults</p>
+</li></ul>    <h3 id="src-68881992_Displayinglocalindexsearchresultsusingtransformations-Searchtransformationmethods" class="heading "><span>Search transformation methods</span></h3>
+<p   
+>You can also use the following methods in your ASCX transformations:</p>
+<p   
+></p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Method</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Parameters</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description and examples</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SearchResultUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool absolute</i>    </span>
+</p>
+</li><li class=" "><p   
+>    <span style="color: #999999;">
+<i class=" ">bool addLangParameter</i>    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the page containing the details of the search result.</p>
+<ul class=" "><li class=" "><p   
+>The optional &#39;absolute&#39; parameter indicates if the returned URL is absolute.</p>
+<ul class=" "><li class=" "><p   
+>False by default.</p>
+</li></ul></li><li class=" "><p   
+>The optional &#39;addLangParameter&#39; indicates if a culture specific query should be added to the URL.</p>
+<ul class=" "><li class=" "><p   
+>True by default. Note that clicking a link leading to a different culture changes the visitor&#39;s site culture.</p>
+</li></ul></li></ul><p   
+>&lt;%# SearchResultUrl(true, false) %&gt;</p>
+<p   
+><strong class=" ">Note</strong>: The <strong class=" ">SearchResultUrl</strong> method does not return valid URLs for search results produced by   <a   href="Defining-local-general-indexes">general indexes</a>, since the indexed objects are not pages and there is no default page to display the object details. You need to write and use a   <a   href="Adding-custom-methods-to-transformations">custom transformation method</a> to generate the correct URL of a custom page displaying the appropriate information.<br/><br/><strong class=" ">Combine with default culture</strong></p>
+<p   
+>When the   <a   href="Editing-the-content-of-multilingual-websites#src-68880867_Editingthecontentofmultilingualwebsites-Usingthedefaultlanguageversionforuntranslatedpages">Combine with default culture</a> setting is enabled, visitors will see pages in the default culture if they aren&#39;t translated to their current culture.</p>
+<ul class=" "><li class=" "><p   
+>If the <i class=" ">addLangParameter</i> is set to false, the site culture will NOT change once visitors click the link leading to the page in the default culture. That is, they keep on browsing the site in the culture they made the search in.</p>
+</li><li class=" "><p   
+>If the <i class=" ">addLangParameter </i>is set to true, the site culture will change once visitors click the link leading to the page in the default culture. That is, they keep on browsing the site in the default culture afterwards.</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>SearchHighlight</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string text</p>
+</li><li class=" "><p   
+>string startTag</p>
+</li><li class=" "><p   
+>string endTag<i class=" ">    <span style="color: #999999;">
+    </span>
+</i></p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Wraps the text of the first parameter into the tags specified by the other two parameters.</p>
+<p   
+>&lt;%# SearchHighlight(SearchResultUrl(),&quot;&lt;strong&gt;&quot;,&quot;&lt;/strong&gt;&quot;)%&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSearchImageUrl</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string noImageUrl</p>
+</li><li class=" "><p   
+>int maxSideSize    <span style="color: #999999;">
+    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the URL of the current search result&#39;s image.</p>
+<p   
+>The first parameter specifies the URL used if no image is found &ndash; enter either the full relative path starting from the application root (~/), or a partial path starting from the <i class=" ">~/App_Themes/&lt;skin_folder&gt;/Images/</i> directory. The second parameter specifies the maximum side size to which the method resizes the image.</p>
+<p   
+>&lt;%# GetSearchImageUrl(&quot;~/App_Themes/Default/Images/CMSModules/CMS_SmartSearch/no_image.gif&quot;, 90) %&gt;</p>
+<p   
+>&lt;%# GetSearchImageUrl(&quot;/CMSModules/CMS_SmartSearch/no_image.gif&quot;, 90) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSearchValue</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string columnName<br/>    <span style="color: #ffffff;">
+_____________________    </span>
+</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns the value of the specified field for the current search result. Allows you to access both the general fields of the given objects type (page, custom table etc.) and any other fields included in the search index.</p>
+<p   
+>&lt;%# GetSearchValue(&quot;DocumentName&quot;) %&gt;</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>GetSearchedContent</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p   
+>string content</p>
+</li></ul>            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Parses the searched content as XML if required, and removes dynamic controls and macro expressions.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p   
+></p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kentico Service Manager - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882321"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                     <li><a href="External-utilities.html">External utilities</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882321"> <span>Kentico Service Manager</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Kentico Service Manager is an external Windows utility which allows you to manage external Windows services used by Kentico. Using the utility, you can</p>
+<ul class=" "><li class=" "><p   
+>install,</p>
+</li><li class=" "><p   
+>uninstall,</p>
+</li><li class=" "><p   
+>start,</p>
+</li><li class=" "><p   
+>stop and</p>
+</li><li class=" "><p   
+>restart <strong class=" ">Windows services</strong> for individual instances of Kentico.</p>
+</li></ul><p   
+>You can perform the installation and uninstallation of Windows services from the command line and stop and restart them from Windows Service manager (<i class=" ">services.msc</i>). However, this utility integrates these tasks into a single tool, where you can manage Kentico services separately from other services running in Windows.</p>
+    <h4 id="src-68882321_KenticoServiceManager-Launchingtheutility" class="heading "><span>Launching the utility</span></h4>
+<p   
+>Kentico Service Manager comes automatically with Kentico installation. You can launch the Kentico Service Manager in two ways.</p>
+    <h6 id="src-68882321_KenticoServiceManager-FromWindows" class="heading "><span>From Windows</span></h6>
+<ol class=" "><li class=" "><p   
+>Launch the <strong class=" ">Kentico Service Manager</strong> from Windows Start menu.</p>
+</li><li class=" "><p   
+>Select the root of the Kentico instance, whose services you want to manage, in the <strong class=" ">Browse For Folder</strong> dialog box.</p>
+</li><li class=" "><p   
+>Click <strong class=" ">OK</strong>.</p>
+</li></ol>    <h6 id="src-68882321_KenticoServiceManager-FromKIM" class="heading "><span>From KIM</span></h6>
+<ol class=" "><li class=" "><p   
+>Run   <a   href="Kentico-Installation-Manager">Kentico Installation Manager</a>.</p>
+</li><li class=" "><p   
+>Select an instance of Kentico.</p>
+</li><li class=" "><p   
+>Click the <strong class=" ">Services</strong> button on the toolbar.</p>
+</li></ol>    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68882321_KenticoServiceManager-Launchingtheutility">Launching the utility</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68882321_KenticoServiceManager-FromWindows">From Windows</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882321_KenticoServiceManager-FromKIM">From KIM</a></p>
+</li></ul></li><li class=" "><p   
+>  <a   href="#src-68882321_KenticoServiceManager-UsingtheutilitytomanageKenticoservices">Using the utility to manage Kentico services</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882321_KenticoServiceManager-DefiningcustomservicesinthedefinitionXMLfile">Defining custom services in the definition XML file</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882321_KenticoServiceManager-Problemswithrequiredweb.configkeys">Problems with required web.config keys</a></p>
+</li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Kentico-Installation-Manager">Kentico Installation Manager</a></p>
+</li><li class=" "><p   
+>  <a   href="Health-monitoring">Health monitoring</a></p>
+</li><li class=" "><p   
+>  <a   href="Scheduling-tasks">Scheduling tasks</a></p>
+</li><li class=" "><p   
+>  <a   href="Installing-the-Scheduler-Windows-service">Installing the Scheduler Windows service</a></p>
+</li></ul>        </div>
+    </div>
+    <h4 id="src-68882321_KenticoServiceManager-UsingtheutilitytomanageKenticoservices" class="heading "><span>Using the utility to manage Kentico services</span></h4>
+<p   
+>After launching the utility (and successful selection of the managed Kentico instance when launched from Start menu), available services are listed in the main area. The following information is listed for each services:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Name</strong> - name of the Windows service in format <strong class=" ">&lt;service name&gt; (&lt;CMSApplicationName web.config key value&gt;)</strong>.</p>
+</li><li class=" "><p   
+><strong class=" ">Installed</strong> - shows if the service is installed or not.</p>
+</li><li class=" "><p   
+><strong class=" ">Status</strong> - shows if the service is running or stopped, or intermediate statuses when the service is being started, stopped or restarted.</p>
+</li></ul><p   
+>If you select a service in the listing, the following management actions are available in the top toolbar. The same actions are also available in a context menu accessible by right-clicking a service.</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Install</strong> - installs the selected service. Only available if the service is not installed.</p>
+</li><li class=" "><p   
+><strong class=" ">Uninstall</strong> - uninstalls the selected service. Only available if the service is installed.</p>
+</li><li class=" "><p   
+><strong class=" ">Start</strong> - starts the selected service. Only available if the service is installed and not running.</p>
+</li><li class=" "><p   
+><strong class=" ">Stop</strong> - stops the selected service. Only available if the service is installed and running.</p>
+</li><li class=" "><p   
+><strong class=" ">Restart</strong> - restarts the selected service. Only available if the service is installed and running.</p>
+</li></ul><p   
+><img  class="confluence-embedded-image"  src="images/download/attachments/68882321/Kentico_service_manager.png" alt="images/download/attachments/68882321/Kentico_service_manager.png" width="500"  />
+        <br/><span class="caption">Kentico Service Manager toolbar</span>
+    </p>
+    <h4 id="src-68882321_KenticoServiceManager-DefiningcustomservicesinthedefinitionXMLfile" class="heading "><span>Defining custom services in the definition XML file</span></h4>
+<p   
+>All Windows services that can be managed by Kentico Service Manager are defined in <i class=" ">~/App_Data/CMSModules/WinServices/services.xml </i>file. If you want to add a custom service, which should work with the respective Kentico instance, you have to define it in this file.</p>
+<p   
+>The XML has a root <strong class=" ">&lt;Services&gt;</strong> element containing any number of <strong class=" ">&lt;Service&gt;</strong> elements, each of which represents a single Windows service. Each <strong class=" ">&lt;Service&gt;</strong> element contains the following sub-elements:</p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">&lt;basename&gt;</strong> - identifying name of the service, the same for all instances of Kentico.</p>
+</li><li class=" "><p   
+><strong class=" ">&lt;name&gt;</strong> - the same as <i class=" ">&lt;basename&gt;</i>, with the {0} part appended. The {0} part gets replaced with the value of the <i class=" ">CMSApplicationName</i> or alternatively <i class=" ">CMSApplicationGuid</i><i class=" ">web.config</i> keys to differentiate services of particular Kentico instances.</p>
+</li><li class=" "><p   
+><strong class=" ">&lt;displayname&gt;</strong> - name of the Windows service in friendly format, displayed in user interfaces of Windows Services manager (<i class=" ">services.msc</i>) and Kentico Service Manager.</p>
+</li><li class=" "><p   
+><strong class=" ">&lt;description&gt;</strong> - text describing the functionality provided by the service.</p>
+</li><li class=" "><p   
+><strong class=" ">&lt;assemblyname&gt;</strong> - name of the service&#39;s executable file stored inside the <i class=" ">bin</i> folder in the application root.</p>
+</li></ul><p   
+>Here you can see the default content of the <i class=" ">services.xml</i> file with the   <a   href="Health-monitoring">Health monitoring</a> and  <a   href="Scheduling-tasks"> Scheduler</a> services defined.</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;?xml version=</code><code class="string">"1.0"</code><code class="plain">?&gt;</code></div>
+<div class="line"><code class="plain">&lt;Services&gt;</code></div>
+<div class="line"><code class="plain">  &lt;Service&gt;</code></div>
+<div class="line"><code class="plain">    &lt;basename&gt;KenticoCMSHealthMonitor&lt;/basename&gt;</code></div>
+<div class="line"><code class="plain">    &lt;name&gt;KenticoCMSHealthMonitor{</code><code class="value">0</code><code class="plain">}&lt;/name&gt;</code></div>
+<div class="line"><code class="plain">    &lt;displayname&gt;Kentico Health Monitor ({</code><code class="value">0</code><code class="plain">})&lt;/displayname&gt;</code></div>
+<div class="line"><code class="plain">   </code></div>
+<div class="line"><code class="plain"> &lt;description&gt;Registers categories with counters where information</code></div>
+<div class="line"><code class="plain"> will be subsequently stored. Then it gets data from the database (e.g. </code></div>
+<div class="line"><code class="plain">the number of e-mails in the e-mail queue, the number of tasks in the </code></div>
+<div class="line"><code class="plain">queue, etc.) and stores it in the respective </code></div>
+<div class="line"><code class="plain">counters.&lt;/description&gt;</code></div>
+<div class="line"><code class="plain">    &lt;assemblyname&gt;HealthMonitoringService.exe&lt;/assemblyname&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/Service&gt;</code></div>
+<div class="line"><code class="plain">  &lt;Service&gt;</code></div>
+<div class="line"><code class="plain">    &lt;basename&gt;KenticoCMSScheduler&lt;/basename&gt;</code></div>
+<div class="line"><code class="plain">    &lt;name&gt;KenticoCMSScheduler{</code><code class="value">0</code><code class="plain">}&lt;/name&gt;</code></div>
+<div class="line"><code class="plain">    &lt;displayname&gt;Kentico Scheduler ({</code><code class="value">0</code><code class="plain">})&lt;/displayname&gt;</code></div>
+<div class="line"><code class="plain">   </code></div>
+<div class="line"><code class="plain"> &lt;description&gt;Processes Kentico scheduled tasks that have the </code></div>
+<div class="line"><code class="string">'Use external service'</code><code class="plain"> option enabled. Processing is performed </code></div>
+<div class="line"><code class="plain">in regular intervals and only tasks with the mentioned option enabled </code></div>
+<div class="line"><code class="plain">are processed by the service.&lt;/description&gt;</code></div>
+<div class="line"><code class="plain">    &lt;assemblyname&gt;SchedulerService.exe&lt;/assemblyname&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/Service&gt;</code></div>
+<div class="line"><code class="plain">&lt;/Services&gt;</code></div>
+</div>
+    </div>
+    <h4 id="src-68882321_KenticoServiceManager-Problemswithrequiredweb.configkeys" class="heading "><span>Problems with required web.config keys</span></h4>
+<p   
+>Kentico Windows services require the <strong class=" ">CMSApplicationName</strong> or <strong class=" ">CMSApplicationGuid</strong> keys to be added in the <i class=" ">appSettings</i> section of the <i class=" ">web.config</i> file. The values of these keys are used in the names of the Windows services and for identification of the Kentico instance. These keys are included in the <i class=" ">web.config</i> by default. If neither of the two keys is present in the <i class=" ">web.config</i> of the selected instance (after being removed manually), you will encounter an error message with two options.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882321/KSM_App_Key_Error.png" alt="images/download/attachments/68882321/KSM_App_Key_Error.png" width="413" height="185" />
+        <br/><span class="caption">Error message about missing application keys</span>
+    </p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Yes</strong> - the Service Manager adds the keys to the <i class=" ">web.config</i> so that services can work with the selected Kentico instance.</p>
+</li><li class=" "><p   
+><strong class=" ">No</strong> - services cannot be managed for the selected instance. In this case, you can select another instance after clicking <strong class=" ">Select</strong> on the toolbar.</p>
+</li></ul>        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>

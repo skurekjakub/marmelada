@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Developing layout web parts - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15" />
+                    <input type="submit" style="display:none" tabindex="-4"/>
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo" />
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882208"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="Custom-development.html">Custom development</a></li>
+                                                                                                         <li class="shortcut"><a href="Developing-web-parts.html">Developing web parts</a></li>
+                                                                                     <li><a href="Advanced-web-part-development-scenarios.html">Advanced web part development scenarios</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882208"> <span>Developing layout web parts</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<p   
+>Kentico provides multiple   <a   href="Working-with-layout-web-parts">layout web parts</a> that you can use out&#8209;of&#8209;the&#8209;box, but it is also possible to customize the default layout web parts or develop completely new ones. This allows you to define layouts that exactly match your specific requirements.</p>
+<p   
+>The development process is similar as with standard web parts, but there are several important differences demonstrated by the example below.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>All layout web parts must inherit from the <strong class=" ">CMSAbstractLayoutWebPart</strong> base class (instead of the standard <i class=" ">CMSAbstractWebPart</i>).</p>
+<p   
+>The members that web parts inherit from this base class allow you to implement the layout functionality. You can find the base class in the <strong class=" ">CMS.PortalEngine.Web.UI</strong> namespace.</p>
+        </div>
+    </div>
+    <h3 id="src-68882208_Developinglayoutwebparts-Example-Creatingacustomlayoutwebpart" class="heading "><span>Example - Creating a custom layout web part</span></h3>
+<p   
+>The following example demonstrates how to develop a custom layout web part. For the sake of simplicity, this sample layout only provides a single web part zone with a configurable width and height. The sample layout is only intended for demonstration purposes and not for practical use. For further inspiration, you can view the code of the more advanced built-in layout web parts in the <strong class=" ">~/CMSWebParts/Layouts</strong> folder of your web project.</p>
+    <div  class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p   
+></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68882208_Developinglayoutwebparts-Example-Creatingacustomlayoutwebpart">Example - Creating a custom layout web part</a></p>
+<ul class="toc-indentation "><li class=" "><p   
+>  <a   href="#src-68882208_Developinglayoutwebparts-Writingthelayoutcode">Writing the layout code</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882208_Developinglayoutwebparts-Registeringthelayoutwebpart">Registering the layout web part</a></p>
+</li><li class=" "><p   
+>  <a   href="#src-68882208_Developinglayoutwebparts-Result">Result</a></p>
+</li></ul></li></ul><p   
+></p>
+        </div>
+    </div>
+    <div  class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p   
+>  <a   href="Working-with-layout-web-parts">Working with layout web parts</a></p>
+</li><li class=" "><p   
+>  <a   href="Developing-web-parts">Developing web parts</a></p>
+</li></ul>        </div>
+    </div>
+    <h4 id="src-68882208_Developinglayoutwebparts-Writingthelayoutcode" class="heading "><span>Writing the layout code</span></h4>
+<ol class=" "><li class=" "><p   
+>Open your web project in Visual Studio.</p>
+</li><li class=" "><p   
+>Create a <strong class=" ">Web User Control</strong> named <i class=" ">CustomZone.ascx</i> in the <strong class=" ">CMSWebparts/Layouts</strong> folder.</p>
+</li><li class=" "><p   
+>Edit the control&#39;s code behind file (<i class=" ">CustomZone.ascx.cs</i>).</p>
+</li><li class=" "><p   
+>Add the following references and set the control to inherit from the <strong class=" ">CMSAbstractLayoutWebPart</strong> base class:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.PortalEngine;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.PortalEngine.Web.UI;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSWebParts_Layouts_CustomZone : CMSAbstractLayoutWebPart</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+</li><li class=" "><p   
+>Define two properties in the class according to the following code:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="comments">/// Property used to access the value of the Width property of the web part.</code></div>
+<div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> Width</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">get</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> ValidationHelper.GetString(</code><code class="keyword">this</code><code class="plain">.GetValue(</code><code class="string">"Width"</code><code class="plain">), </code><code class="string">""</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">set</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.SetValue(</code><code class="string">"Width"</code><code class="plain">, value);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+<div class="line"> </div>
+<div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="comments">/// Property used to access the value of the Height property of the web part.</code></div>
+<div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> Height</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">get</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> ValidationHelper.GetString(</code><code class="keyword">this</code><code class="plain">.GetValue(</code><code class="string">"Height"</code><code class="plain">), </code><code class="string">""</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">set</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.SetValue(</code><code class="string">"Height"</code><code class="plain">, value);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>The <strong class=" ">Width</strong> and <strong class=" ">Height</strong> public properties handle the corresponding properties of the web part that will be registered in the system. The properties use the string type, since the width/height is assigned as a CSS style text value.</p>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Add a method named <i class=" ">insertZone</i> to the class:</p>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="comments">/// Adds the layout's web part zone and envelope.</code></div>
+<div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> insertZone()</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Stores the Width and Height properties of the layout as a CSS style value</code></div>
+<div class="line"><code class="plain">    string style = </code><code class="keyword">null</code><code class="plain">;</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Sets the Width of the zone.       </code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!String.IsNullOrEmpty(Width))</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        style += </code><code class="string">" width: "</code><code class="plain"> + Width + </code><code class="string">";"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Sets the Height of the zone</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!String.IsNullOrEmpty(Height))</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        style += </code><code class="string">" height: "</code><code class="plain"> + Height + </code><code class="string">";"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">   </code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Adds a DIV element that encapsulates the layout's web part zone</code></div>
+<div class="line"><code class="plain">    Append(</code><code class="string">"&lt;div"</code><code class="plain">);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Defines the DIV element's id attribute used to identify the zone's envelope in Design mode</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (IsDesign)</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        Append(</code><code class="string">" id=\""</code><code class="plain">, ShortClientID, </code><code class="string">"_zoneEnvelope\""</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Defines the style attribute of the zone's envelope</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!String.IsNullOrEmpty(style))</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        Append(</code><code class="string">" style=\""</code><code class="plain">, style, </code><code class="string">"\""</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    Append(</code><code class="string">"&gt;"</code><code class="plain">);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Adds the web part zone</code></div>
+<div class="line"><code class="plain">    CMSWebPartZone zone = AddZone(</code><code class="keyword">this</code><code class="plain">.ID + </code><code class="string">"_zone"</code><code class="plain">, </code><code class="keyword">this</code><code class="plain">.ID);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    Append(</code><code class="string">"&lt;/div&gt;"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>The <i class=" ">InsertZone()</i> method defines the layout&#39;s web part zone and surrounding code that allows users to configure the width and height.</p>
+<p   
+>The code uses the following members inherited from the base class:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Member</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><strong class=" ">Append(params string[] text)</strong></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Method<br/>(void)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Builds the output code that defines the web part layout. When called, the method adds the content of the parameters to the end of the current layout code. You can specify any number of string parameters.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><strong class=" ">AddZone(string id, string title)<br/>     <span style="color: #ffffff;">
+___________________________    </span>
+</strong></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Method<br/>(returns <i class=" ">CMSWebPartZone</i>)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Creates a new web part zone, adds it to the layout and passes it back as the return value.</p>
+<p   
+>If the layout is added as a widget, this method automatically creates the zones in the layout as widget zones of the same type as the parent zone.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><strong class=" ">IsDesign</strong></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Property<br/>(bool)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>True if the web part is currently being viewed on the <strong class=" ">Design</strong> tab (in the <strong class=" ">Pages</strong> or <strong class=" ">Page templates</strong> application).</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Override the <i class=" ">PrepareLayout</i> virtual method:</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+><strong class=" ">Note</strong>: Every layout web part must override the <strong class=" ">PrepareLayout</strong> method. The method generates the output code of the layout.</p>
+        </div>
+    </div>
+    <div  class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="comments">/// Builds the output code that will generate the desired layout on the page.</code></div>
+<div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="keyword">protected</code><code class="plain"> override </code><code class="keyword">void</code><code class="plain"> PrepareLayout()</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="comments">// Starts building the layout code</code></div>
+<div class="line"><code class="plain">    StartLayout();</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Wraps the layout into a table with additional content if the web part is edited in Design mode</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (IsDesign)</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        Append(</code><code class="string">"&lt;table class=\"LayoutTable\" cellspacing=\"0\"&gt;"</code><code class="plain">);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (PortalContext.IsDesignMode(</code><code class="keyword">this</code><code class="plain">.ViewMode))</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            Append(</code><code class="string">"&lt;tr&gt;&lt;td class=\"LayoutHeader\" colspan=\"2\"&gt;"</code><code class="plain">);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">            </code><code class="comments">// Adds a header container.</code></div>
+<div class="line"><code class="plain">            AddHeaderContainer();</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">            Append(</code><code class="string">"&lt;/td&gt;&lt;/tr&gt;"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        Append(</code><code class="string">"&lt;tr&gt;&lt;td&gt;"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Calls the private method that adds the web part zone</code></div>
+<div class="line"><code class="plain">    insertZone();</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Closes the Design mode table</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (IsDesign)</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        Append(</code><code class="string">"&lt;/td&gt;"</code><code class="plain">);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        </code><code class="comments">// Generates dynamic resizers for the zone if the Allow design mode property of the web part is enabled</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (AllowDesignMode)</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Adds a horizontal resizer.</code></div>
+<div class="line"><code class="plain">            Append(</code><code class="string">"&lt;td class=\"HorizontalResizer\" onmousedown=\""</code><code class="plain">, GetHorizontalResizerScript(</code><code class="string">"zoneEnvelope"</code><code class="plain">, </code><code class="string">"Width"</code><code class="plain">), </code><code class="string">" return false;\"&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;"</code><code class="plain">);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">            </code><code class="comments">// Adds a vertical resizer.</code></div>
+<div class="line"><code class="plain">            Append(</code><code class="string">"&lt;td class=\"VerticalResizer\" onmousedown=\""</code><code class="plain">, GetVerticalResizerScript(</code><code class="string">"zoneEnvelope"</code><code class="plain">, </code><code class="string">"Height"</code><code class="plain">), </code><code class="string">" return false;\"&gt;&amp;nbsp;&lt;/td&gt;"</code><code class="plain">);</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">            </code><code class="comments">// Adds a combined horizontal and vertical resizer to the corner where both resizer types intersect. </code></div>
+<div class="line"><code class="plain">            Append(</code><code class="string">"&lt;td class=\"BothResizer\" onmousedown=\""</code><code class="plain">, GetHorizontalResizerScript(</code><code class="string">"zoneEnvelope"</code><code class="plain">, </code><code class="string">"Width"</code><code class="plain">), </code><code class="string">" "</code><code class="plain">, GetVerticalResizerScript(</code><code class="string">"zoneEnvelope"</code><code class="plain">, </code><code class="string">"Height"</code><code class="plain">), </code><code class="string">" return false;\"&gt;&amp;nbsp;&lt;/td&gt;"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">        Append(</code><code class="string">"&lt;/tr&gt;&lt;/table&gt;"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"> </div>
+<div class="line"><code class="plain">    </code><code class="comments">// Saves the current status of the layout code and ensures that it is rendered on the page</code></div>
+<div class="line"><code class="plain">    FinishLayout();</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>The <i class=" ">PrepareLayout</i> method initializes the layout code, calls the method created in the previous step and then finalizes the output.</p>
+<p   
+>In addition, the method adds a table element around the web part zone, which is displayed when the layout web part is viewed in design mode. If the <strong class=" ">Allow design mode</strong> property of the web part is enabled, this table also includes elements that users can drag to directly resize the layout&#39;s zone.</p>
+<p   
+>The code uses the following members inherited from the base class:</p>
+    <div  class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col />
+                                    <col />
+                                    <col />
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Member</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Type</p>
+            </td>
+                <td  class="confluenceTh" rowspan="1" colspan="1">
+    <p   
+>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><strong class=" ">StartLayout()</strong></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Method<br/>(void)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Initializes the building of the layout code. You must call StartLayout() before you start using the <i class=" ">Append()</i> method.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><strong class=" ">GetHorizontalResizerScript<br/>(string elementId, string widthPropertyName)<br/>     <span style="color: #ffffff;">
+__________________________________________    </span>
+ <br/>    <span style="color: #ffffff;">
+___________________________    </span>
+</strong></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Method<br/>(returns <i class=" ">string</i>)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a script that adds the functionality of a dynamic width resizer.</p>
+<ul class=" "><li class=" "><p   
+>The first parameter specifies the ID of the element that will be resized.</p>
+</li><li class=" "><p   
+>The parameter second sets the property that the web part modifies when the width is changed via the resizer.</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><strong class=" ">GetVerticalResizerScript<br/>(string elementId, string heightPropertyName)</strong></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Method<br/>(returns <i class=" ">string</i>)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Returns a script that adds the functionality of a dynamic height resizer.</p>
+<ul class=" "><li class=" "><p   
+>The first parameter specifies the ID of the element that will be resized.</p>
+</li><li class=" "><p   
+>The parameter second sets the property that the web part modifies when the width is changed via the resizer.</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><strong class=" ">FinishLayout()</strong></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Method<br/>(returns <i class=" ">string</i>)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Finalizes the layout code of the web part.</p>
+<p   
+>Run this method after the last modification of the layout. After you call FinishLayout(), the <i class=" ">Append()</i> method will no longer work correctly.</p>
+            </td>
+        </tr>
+    <tr>
+            <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+><strong class=" ">AllowDesignMode</strong></p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Property<br/>(bool)</p>
+            </td>
+                <td  class="confluenceTd" rowspan="1" colspan="1">
+    <p   
+>Gets/sets the values of the <strong class=" ">Allow design mode</strong> property of the web part in the system.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+    </div>
+</li><li class=" "><p   
+>Save the user control&#39;s files.</p>
+</li><li class=" "><p   
+>If your Kentico project was installed as a web application, you must also <strong class=" ">Build</strong> the project.</p>
+</li></ol>    <h4 id="src-68882208_Developinglayoutwebparts-Registeringthelayoutwebpart" class="heading "><span>Registering the layout web part</span></h4>
+<p   
+>Now you need to register the layout web part in Kentico.</p>
+<ol class=" "><li class=" "><p   
+>In the administration interface, open the <strong class=" ">Web parts</strong> application.</p>
+</li><li class=" "><p   
+>Select the <strong class=" ">Layouts</strong> category and click <strong class=" ">New web part</strong>.</p>
+</li><li class=" "><p   
+>Specify the following values:<br/><br/></p>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Web part</strong>: Create a new</p>
+</li><li class=" "><p   
+><strong class=" ">Display name</strong>: Custom zone layout</p>
+</li><li class=" "><p   
+><strong class=" ">Code files</strong>: Use existing file</p>
+</li><li class=" "><p   
+><strong class=" ">File path</strong>: ~/CMSWebParts/Layouts/CustomZone.ascx</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p   
+>On the <strong class=" ">General</strong> tab, select the <i class=" ">Layout</i> <strong class=" ">Type</strong>.</p>
+<ul class=" "><li class=" "><p   
+>All layout web parts must use the Layout type in order to function correctly.</p>
+</li></ul></li><li class=" "><p   
+>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p  class="auto-cursor-target" 
+>Switch to the <strong class=" ">Properties</strong> tab and add three properties (click <strong class=" ">New field</strong>) according to the information below.</p>
+    <div  class="confbox admonition admonition-note">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>Click <strong class=" ">Save</strong> for each property before moving on to the next one.</p>
+        </div>
+    </div>
+<ul class=" "><li class=" "><p   
+><strong class=" ">Field name</strong>: Width</p>
+</li><li class=" "><p   
+><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p   
+><strong class=" ">Size</strong>: 100</p>
+</li><li class=" "><p   
+><strong class=" ">Field caption</strong>: Zone width</p>
+</li><li class=" "><p   
+><strong class=" ">Form control</strong>: Text box</p>
+</li></ul><ul class=" "><li class=" "><p   
+><strong class=" ">Field name</strong>: Height</p>
+</li><li class=" "><p   
+><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p   
+><strong class=" ">Size</strong>: 100</p>
+</li><li class=" "><p   
+><strong class=" ">Field caption</strong>: Zone height</p>
+</li><li class=" "><p   
+><strong class=" ">Form control</strong>: Text box</p>
+</li></ul><ul class=" "><li class=" "><p   
+><strong class=" ">Field name</strong>: AllowDesignMode</p>
+</li><li class=" "><p   
+><strong class=" ">Data type</strong>: Boolean (Yes/No)</p>
+</li><li class=" "><p   
+><strong class=" ">Default value</strong>: yes (checked)</p>
+</li><li class=" "><p   
+><strong class=" ">Field caption</strong>: Allow resizing in design mode</p>
+</li><li class=" "><p   
+><strong class=" ">Form control</strong>: Check box</p>
+</li></ul>    <div  class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p   
+>These properties will be available in the web part&#39;s configuration dialog. The user control implementing the web part handles the values through the corresponding properties in the code.</p>
+        </div>
+    </div>
+</li></ol>    <h4 id="src-68882208_Developinglayoutwebparts-Result" class="heading "><span>Result</span></h4>
+<p   
+>The custom layout web part is now complete and ready to be used. You can try out the functionality by adding the <strong class=" ">Custom zone layout</strong> web part onto one of your pages on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application.</p>
+<p   
+><img  class="confluence-embedded-image confluence-content-image-border"  src="images/download/attachments/68882208/Custom_Layout_WebPart.png" alt="images/download/attachments/68882208/Custom_Layout_WebPart.png" width="500" height="327" />
+        <br/><span class="caption">Adding the resizable zone onto a page</span>
+    </p>
+<p   
+>You can use a similar approach (with more advanced layout code) to implement a custom web part to generate any required layout.</p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+</body>
+</html>
