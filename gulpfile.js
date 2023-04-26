@@ -26,8 +26,8 @@ function fixExport(spaceKey)
                     if (!stats.isDirectory())
                     {
 
-                        removeInThisSectionPanel(renamedFilePath);
-                        fixRelatedPagesAndOnThisPagePanels(renamedFilePath);
+                        //removeInThisSectionPanel(renamedFilePath);
+                        //fixTwoColumnPageLayout(renamedFilePath);
 
                         generateHelpServiceRedirectHandler(renamedFilePath);
                     }
@@ -51,7 +51,7 @@ function removeInThisSectionPanel(filePath)
     fs.writeFileSync(filePath, $.html());
 }
 
-function fixRelatedPagesAndOnThisPagePanels(filePath)
+function fixTwoColumnPageLayout(filePath)
 {
     console.log('Fixing "On this page" and "Related pages" two-column layout.');
 
@@ -60,11 +60,16 @@ function fixRelatedPagesAndOnThisPagePanels(filePath)
     const RIGHTCOLUMNMARKUP = '<div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"></div>';
     const LEFTCOLUMN = ".sp-grid-cell.sp-grid-60";
     const LEFTCOLUMNMARKUP = '<div class="sp-grid-cell sp-grid-60"></div>';
+    // TODO
+    const BOTTOMSECTIONMARKUP = '<div class="sp-grid-cell sp-grid-100"></div>';
+    const BOTTOMSECTION = '.sp-grid-cell.sp-grid-100'
+    const SECTIONMARKUP = '<div class="sp-grid-section"></div>';
+    const SECTION = '.sp-grid-section';
 
     // Parse the HTML using Cheerio
     const $ = cheerio.load(html);
     // Skip if already processed
-    if ($(LEFTCOLUMN).length) return;
+    if ($(SECTION).length) return;
 
     // Find the first occurrence of the HTML code to be wrapped
     const onThisPage = $('.confbox.panel .title.panel-header:contains("On this page")').first().parent();
@@ -106,21 +111,6 @@ function longToByteArray(long) {
     }
     return byteArray;
 };
-
-
-// Encodes provided page id in Base-64
-function pageIdToB64(pageId) {
-    return btoa(
-        longToByteArray(pageId)
-            .map(String.fromCharCode)
-            .map(function (s) {
-                return s[0];
-            })
-            .join("")
-      )
-      .replace(/=/g,"");
-};
-
 
 // Generates a Confluence page identifier from the provided B-64 encoded page id
 // Taken directly from Confluence Server 7.2 source code
@@ -165,7 +155,15 @@ function generateTinyId(btoadId) {
 
 function getTinyIdentifier(pageId)
 {
-    return generateTinyId(pageIdToB64(pageId))
+    return generateTinyId(btoa(
+        longToByteArray(pageId)
+            .map(String.fromCharCode)
+            .map(function (s) {
+                return s[0];
+            })
+            .join("")
+      )
+      .replace(/=/g,""))
 }
 
 function generateHelpServiceRedirectHandler(filePath)
@@ -179,15 +177,14 @@ function generateHelpServiceRedirectHandler(filePath)
     const tinyId = getTinyIdentifier(pageId);
 
     console.log(`PageId ${pageId} -> tinyId ${tinyId}`);  
-    const pagePath = filePath.replace(`${__dirname}\\docs`, "")  
+    const pagePath = filePath.replace(`${__dirname}\\docs`, "");
 
     const redirectHandler = `<!DOCTYPE html>
     <html lang="en-US">
       <meta charset="utf-8">
       <title>Redirecting&hellip;</title>
       <link rel="canonical" href="..${pagePath}">
-      <script>location="..${pagePath}"</script>
-      <meta http-equiv="refresh" content="0; url=..${pagePath}">
+      <meta http-equiv="refresh" content="0; url=\'..${pagePath}\'">
       <meta name="robots" content="noindex">
       <h1>Redirecting&hellip;</h1>
       <a href="..${pagePath}">Click here if you are not redirected.</a>

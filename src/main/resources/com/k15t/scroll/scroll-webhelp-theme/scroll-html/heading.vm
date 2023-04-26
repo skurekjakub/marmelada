@@ -1,6 +1,7 @@
 #if($renderStart)
     #set($level = $element.level + 1)
-    <h$level $stringUtils.lowerCase(${idAttribute}) class="heading $cssClasses">#*
+    #set($idattr = $stringUtils.lowerCase($idAttribute))
+    <h$level $idattr class="heading $cssClasses">#*
         *##foreach ($annotation in $element.Annotations)#*
             *##if ($annotation.Class.Name == "com.k15t.scroll.core.model.annotation.BookmarkAnnotation")#*
                 *#<span id="${annotation.BookmarkId}" class="scroll-bookmark"></span>#*
