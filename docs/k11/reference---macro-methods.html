@@ -1,0 +1,3055 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Reference - Macro methods - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260" elementpageid="68882649">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo">
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882649"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                     <li><a href="Macro-expressions.html">Macro expressions</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882649"> <span>Reference - Macro methods</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<div class="sp-grid-cell sp-grid-60"><p><span id="src-68882649_ReferenceMacromethods-MacroMethodsTop"></span>Macro expressions allow you to use a large variety of methods. The following categories list the methods according to the type of provided functionality:</p><p></p><ul class="toc-indentation "><li class=" "><p><a href="#src-68882649_referencemacromethods-datamanipulation">Data manipulation</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-dataconversion">Data conversion</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-textmanipulation">Text manipulation</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-advancedtextprocessing">Advanced text processing</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-dateandtimemodification">Date and time modification</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-mathematicaloperations">Mathematical operations</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-e-commerce">E-commerce</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882649_referencemacromethods-basicproductmethods">Basic product methods</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-relatedmethods">Related methods</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-urls">URLs</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-googletagmanagere-commercedata">Google tag manager e-commerce data</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882649_referencemacromethods-usermembershipandpermissions">User membership and permissions</a></p>
+</li><li class=" "><p><a href="#src-68882649_referencemacromethods-transformations">Transformations</a></p>
+</li></ul><p></p><div class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>Keep in mind that the recommended macro syntax is to use infix notation for the first parameter of methods.</p>
+<p>For example: <i class=" "><strong class=" ">{% "word".ToUpper() %}</strong> </i>instead of <strong class=" "><i class=" ">{% ToUpper("word") %}</i></strong></p>
+        </div>
+    </div></div>
+
+
+    
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="macro-syntax">Macro syntax</a></p>
+</li><li class=" "><p><a href="registering-custom-macro-methods">Registering custom macro methods</a></p>
+</li><li class=" "><p><a href="reference---transformation-methods">Reference - Transformation methods</a></p>
+</li></ul>        </div>
+    </div></div>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Data manipulation</span></h3>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetValue</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>ISimpleDataContainer container</p>
+</li><li class=" "><p>string column</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object defaultValue</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Gets the value of the specified data column of an object that implements the ISimpleDataContainer interface. You can specify a default value used if the requested data is null.</p>
+<p>Example: <i class=" ">{% CurrentDocument.GetValue("NewsTitle") %}</i></p>
+<p><br></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetProperty</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IHierarchicalObject object</p>
+</li><li class=" "><p>string property</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object defaultValue</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Gets the value of the specified property of an IHierarchicalObject object. You can specify a default value used if the requested property is null.</p>
+<p>Example: <i class=" ">{% CurrentDocument.GetProperty("NewsTitle") %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetItem</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable collection</p>
+</li><li class=" "><p>int index</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object defaultValue</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Gets the object at the specified index of a collection. You can specify a default value used if the requested object is null.</p>
+<p>Example: <i class=" ">{% GlobalObjects.Users.GetItem(0).UserName %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>OrderBy</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IInfoObjectCollection</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IInfoObjectCollection collection</p>
+</li><li class=" "><p>string orderBy</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the collection of objects, with the order defined by the specified SQL ORDER BY clause.</p>
+<p>If the macro is saved by a user without the Administrator <a href="user-management">privilege level</a>, the method only allows the following SQL syntax:</p>
+<ul class=" "><li class=" "><p>one or more column names (separated by commas)</p>
+</li><li class=" "><p>the ASC and DESC keywords</p>
+</li></ul><p>Example: <i class=" ">{% GlobalObjects.Users.OrderBy("UserCreated DESC").FirstItem.UserName %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Where</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IInfoObjectCollection</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IInfoObjectCollection collection</p>
+</li><li class=" "><p>string where</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filters a collection of objects according to the specified SQL Where condition.</p>
+<p>If the macro is saved by a user without the Administrator <a href="user-management">privilege level</a>, the method only allows the following SQL syntax in the where condition:</p>
+<ul class=" "><li class=" "><p>column names, values and basic operators: =, !=, &gt;, &lt;</p>
+</li><li class=" "><p>AND &amp; OR operators, parentheses</p>
+</li><li class=" "><p><i class=" ">column</i> BETWEEN <i class=" ">value</i> AND <i class=" ">value</i></p>
+</li><li class=" "><p><i class=" ">column</i> LIKE <i class=" ">value</i></p>
+</li><li class=" "><p><i class=" ">column</i> IN <i class=" ">(values)</i></p>
+</li><li class=" "><p><i class=" ">column</i> IS NULL</p>
+</li><li class=" "><p>NOT keyword for the above expressions (NOT BETWEEN, NOT LIKE, NOT IN, IS NOT NULL)</p>
+</li></ul><p>Other expressions and SQL functions are not supported.</p>
+<p>Example: <i class=" ">{% GlobalObjects.Users.Where("Email LIKE '%@localhost.local'").FirstItem.UserName %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>TopN</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IInfoObjectCollection</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IInfoObjectCollection collection</p>
+</li><li class=" "><p>int topn</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns only the specified number of objects in the collection.</p>
+<p>Example: <i class=" ">{% GlobalObjects.Users.TopN(1).FirstItem.UserName %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Columns</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IInfoObjectCollection</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IInfoObjectCollection collection</p>
+</li><li class=" "><p>string columns</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the collection of objects containing only the specified data columns.</p>
+<p>If the macro is saved by a user without the Administrator <a href="user-management">privilege level</a>, the method only allows the following SQL syntax:</p>
+<ul class=" "><li class=" "><p>one or more column names (separated by commas)</p>
+</li><li class=" "><p>SQL aliases for columns defined using the AS keyword (must be upper case)</p>
+</li></ul><p>Example: <i class=" ">{% GlobalObjects.Users.Columns("UserName, Email").FirstItem.UserName %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IList</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable collection</p>
+</li><li class=" "><p>MacroExpression condition</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filters a collection of objects according to the specified macro condition.</p>
+<p>Example: <i class=" ">{% GlobalObjects.Users.Filter(UserID == 53).FirstItem.UserName %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ClassNames</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>TreeNodeCollection</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>TreeNodeCollection collection</p>
+</li><li class=" "><p>string classNames</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filters a TreeNodeCollection of pages according to the specified <a href="page-types">page types</a>. The second parameter must contain a list of allowed page type code names, separated by semicolons.</p>
+<p>Example: <i class=" ">{% Documents.ClassNames("cms.menuitem;cms.news").Count %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>InList</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object object</p>
+</li><li class=" "><p>IEnumerable collection</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a true value if the object exists within the specified collection.</p>
+<p>Example: <i class=" ">{% CurrentDocument.ClassName.InList("cms.menuitem,cms.root".Split(",")) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>All</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable collection</p>
+</li><li class=" "><p>MacroExpression condition</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a true value if all of the objects in the collection match the given condition. Specify the condition as a macro expression.</p>
+<p>Example: <i class=" ">{% GlobalObjects.Users.All(UserEnabled == true) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Any</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable collection</p>
+</li><li class=" "><p>    <span style="color: #808080;">
+MacroExpression<i class=" "> condition</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a true value if at least one object in the collection matches the given condition. Specify the condition as a macro expression.</p>
+<p>If you leave out the condition parameter, the method returns true if the collection contains at least one object.</p>
+<p>Throws an exception if the collection is null.</p>
+<p>Example: <i class=" ">{% GlobalObjects.Users.Any(UserEnabled == false) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Exists</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable collection</p>
+</li><li class=" "><p>    <span style="color: #808080;">
+    <span style="color: #808080;">
+MacroExpression    </span>
+<i class=" "> condition</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a true value if at least one object in the collection matches the given condition. Specify the condition as a macro expression.</p>
+<p>If you leave out the condition parameter, the method returns true if the collection contains at least one object.</p>
+<p>Returns false if the collection is null.</p>
+<p>Example: <i class=" ">{% GlobalObjects.Users.Exists(UserEnabled == false) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>RandomSelection</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IList</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable items</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int numberOfItems    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns randomly selected objects from the collection. You can optionally specify the number of items.</p>
+<p>Example: <i class=" ">{% GlobalObjects.Users.RandomSelection().UserName %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>SelectInterval</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IList</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable items</p>
+</li><li class=" "><p>int lowerBound</p>
+</li><li class=" "><p>int upperBound</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the specified interval of objects from the collection.</p>
+<p>Example: <i class=" ">{% Documents.SelectInterval(0,9) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Cache</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object expression</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">int cacheMinutes</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">bool condition</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string cacheItemName</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string cacheItemNameParts</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">CMSCacheDependency cacheDependency</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Evaluates the specified macro expressions and stores the result in the server-side application cache. The system only evaluates the expression if the result is not found in the cache.</p>
+<p>See also: <a href="caching-the-results-of-macros">Caching the results of macros</a></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetCacheDependency<br>    <span style="color: #ffffff;">
+___________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMSCacheDependency<br>    <span style="color: #ffffff;">
+_____________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string[] dependencies</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a CMSCacheDependency object based on the specified dummy cache keys (one or more string parameters).</p>
+<p>See also:</p>
+<ul class=" "><li class=" "><p><a href="setting-cache-dependencies">Setting cache dependencies</a></p>
+</li><li class=" "><p><a href="caching-the-results-of-macros">Caching the results of macros</a></p>
+</li></ul>            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Data conversion</span></h3>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col width="173.0">
+                                    <col width="189.0">
+                                    <col width="193.0">
+                                    <col width="1002.0">
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToString<br>    <span style="color: #ffffff;">
+___________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string<br>    <span style="color: #ffffff;">
+_____________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string defaultValue</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string culture</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string format</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to a string. Returns the optional default value if the conversion is not possible.</p>
+<p>You can also specify the culture context and a formatting string used for the conversion.</p>
+<p>Examples:</p>
+<ul class=" "><li class=" "><p><i class=" ">{% DocumentName.ToString() %}</i></p>
+</li><li class=" "><p><i class=" ">{% DocumentName.ToString("defaultValue") %}</i></p>
+</li><li class=" "><p><i class=" ">{% DocumentName.ToString("defaultValue", "en-US") %}</i></p>
+</li><li class=" "><p><i class=" ">{% DocumentName.ToString("defaultValue", DocumentCulture, "Document name is: {0}") %}</i></p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToInt</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>int</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int defaultValue    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to an integer number. Returns the optional default value if the conversion is not possible.</p>
+<p>Example: <i class=" ">{% DocumentID.ToInt() %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToBool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+bool defaultValue    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to a boolean value. Returns the optional default value if the conversion is not possible.</p>
+<p>Example: <i class=" ">{% DocumentShowInSiteMap.ToBool() %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToDecimal</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>decimal</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+decimal defaultValue    </span>
+</i></p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string culture</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to a decimal number. Returns the optional default value if the conversion is not possible.</p>
+<p>You can also specify a culture code to determine the formatting of the decimal number.</p>
+<p>Examples:</p>
+<ul class=" "><li class=" "><p><i class=" ">{% DocumentID.ToDecimal() %}</i></p>
+</li><li class=" "><p><i class=" ">{% DocumentID.ToDecimal("0.0", DocumentCulture) %}</i></p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToDouble</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+double defaultValue    </span>
+</i></p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string culture</i><br>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to a double number. Returns the optional default value if the conversion is not possible.</p>
+<p>You can also specify a culture code to determine the formatting of the double number.</p>
+<p>Examples:</p>
+<ul class=" "><li class=" "><p><i class=" ">{% DocumentID.ToDouble() %}</i></p>
+</li><li class=" "><p><i class=" ">{% DocumentID.ToDouble("0.0", DocumentCulture) %}</i></p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToGuid</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>guid</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+Guid defaultValue    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to a <a class="external-link" href="http://en.wikipedia.org/wiki/Guid">GUID value</a>. Returns the optional default value if the conversion is not possible.</p>
+<p>Example: <i class=" ">{% DocumentGUID.ToGuid() %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToDateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+DateTime defaultValue    </span>
+</i></p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string culture</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to a DateTime value. Returns the optional default value if the conversion is not possible.</p>
+<p>You can also specify a culture code to determine the date format.</p>
+<p>Example: <i class=" ">{% ToDateTime(<i class=" ">"12/31/2017 11:59 PM"</i>) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>FromOADate</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double value</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts a double representation of a date and time value (OLE Automation Date) to a DateTime object.</p>
+<p>Example: <i class=" ">{% FromOADate(43100.999305556) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToTimeSpan</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>TimeSpan</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to a TimeSpan value. Returns null if the conversion is not possible.</p>
+<p>Example: <i class=" ">{% ToTimeSpan("1:00:00") %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToBaseInfo</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>BaseInfo</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object value</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+BaseInfo defaultValue    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts an object to a BaseInfo — the general type for Kentico system objects and pages. Returns the optional default value if the conversion is not possible.</p>
+<p>Example: <i class=" ">{% CurrentUser.ToBaseInfo() %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>List</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ArrayList</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object items</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts a list of objects to an ArrayList.</p>
+<p>Example: <i class=" ">{% List("Apple", "Orange", "Banana") %}</i></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Text manipulation</span></h3>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Contains</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string search</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a true value if the string specified by the second parameter occurs within the first string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>EndsWith</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string findText</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indicates whether the string specified by the second parameter occurs at the end of the first string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Format</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string value</p>
+</li><li class=" "><p>string format</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Replaces all formatting expressions in a string using the text equivalents specified in the second parameter.</p>
+<p>Based on <a class="external-link" href="http://msdn.microsoft.com/library/txafckwd%28v=vs.110%29.aspx">composite formatting</a>.<br></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>FormatNotEmpty</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string value</p>
+</li><li class=" "><p>string format</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string emptyResult</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If the first parameter is not empty or null, replaces all formatting expressions in the string using the text equivalents specified in the second parameter. Returns the optional third parameter if the value is null or empty.<br></p>
+<p>Based on <a class="external-link" href="http://msdn.microsoft.com/library/txafckwd%28v=vs.110%29.aspx">composite formatting</a>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetMatch</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string regex</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Matches the string value to the specified regular expression and returns the match.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IndexOf</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>int</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string searchFor</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the index of the first occurrence of the second string within the first string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>LastIndexOf</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>int</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string searchFor</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the index of the last occurrence of the second string within the first string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>LimitLength</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>int length</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string padString</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">bool wholeWords</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Limits the length of the string to the specified number of characters.</p>
+<p>The <i class=" ">padString</i> parameter allows you to set a string that the method appends to the end of the limited result. The length of the parameter is included in the maximum length.</p>
+<p>If you set the <i class=" ">wholeWords</i> parameter to true, the method preserves the last word in the string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>LoremIpsum</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">int length</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Generates <a class="external-link" href="http://en.wikipedia.org/wiki/Lorem_ipsum">lorem Ipsum</a> text. You can specify the number of generated characters (1000 by default).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Matches</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string regex</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indicates whether the string matches the specified regular expression.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>NotContains</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string search</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a true value if the string specified by the second parameter does NOT occur within the first string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>PadLeft</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>int length</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+string paddingString    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds leading characters to the string until the total length matches the second parameter.</p>
+<p>By default, the method uses spaces as the padding character, but you can optionally specify a different character.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>PadRight</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>int length</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+string paddingString    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds trailing characters to the string until the total length matches the second parameter.</p>
+<p>By default, the method uses spaces as the padding character, but you can optionally specify a different character.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>RegexReplace</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string regex</p>
+</li><li class=" "><p>string replacement</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Replaces strings that match the regular expression pattern within the first string using the replacement string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Remove</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>int position</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">int length</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Deletes characters from the string, starting at the specified index. By default, the method removes all remaining characters from the specified position. You can optionally specify the number of characters to be removed.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Replace</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string replace</p>
+</li><li class=" "><p>string replacement</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Replaces all occurrences of the second string within the first string using the replacement string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Split</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string[]</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string delimiters</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">bool removeEmpty</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Separates the string into an array of substrings according to the specified delimiting characters. If the optional third parameter is true, the method removes empty substrings from the result.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>StartsWith</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>string findText</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indicates whether the string specified by the second parameter occurs at the start of the first string.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Substring</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>int index</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">int length</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a substring starting at the specified index. By default, the method returns all remaining characters from the specified index. You can optionally specify the number of characters to be returned.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToLower</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts the entire string to lower case.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToUpper</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts the entire string to upper case.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Trim</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string charsToTrim</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Removes all leading and trailing occurrences of characters from the string. By default, the method trims white space characters, but you can optionally specify a different set of characters (as a string).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>TrimEnd</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string charsToTrim</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Removes all trailing occurrences of characters from the string. By default, the method trims white space characters, but you can optionally specify a different set of characters (as a string).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>TrimStart<br>    <span style="color: #ffffff;">
+___________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string<br>    <span style="color: #ffffff;">
+_____________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string charsToTrim</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Removes all leading occurrences of characters from the string. By default, the method trims white space characters, but you can optionally specify a different set of characters (as a string).</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p><strong class=" ">Tips</strong>: To perform lexicographical comparison of strings, use the basic comparison operators (==, &lt;, &gt;, &lt;=, &gt;=). Add <a href="macro-syntax#src-68882641_macrosyntax-macroparameters">macro parameters</a> to specify case sensitivity and the culture context of text operations.</p>
+        </div>
+    </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Advanced text processing</span></h3>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetResourceString</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string<br>    <span style="color: #ffffff;">
+____________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string resourceStringKey</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string culture</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Translates the specified <a href="working-with-resource-strings">resource (localization) string</a>. By default, the target language of the localization depends on the current culture. You can specify the target language using the optional parameter.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>JSEscape</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Escapes the string for safe usage in JavaScript. Adds the \ escape character before special characters used by JavaScript (quotes, etc.).</p>
+<p>Note: The <i class=" ">JSEscape</i> method is not available when resolving macros in an external application using the <i class=" ">Kentico.Libraries</i> NuGet package.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Localize</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string inputText</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string culture</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Resolves <a href="localizing-text-fields">localization expressions</a> within the specified text. By default, the target language of the localization depends on the current culture. You can specify the target language using the optional parameter.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>MapPath</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string path</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the physical file path that matches the specified virtual path.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ResolveBBCode</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Resolves BBCode tags in the specified text, for example:</p>
+<p><i class=" ">{% ResolveBBCode("[quote]Sample text[/quote]") %}</i>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ResolveMacroExpressions</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string expression</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Resolves the specified macro expression (without the <i class=" ">{% %}</i> parentheses).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ResolveMacros</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string inputText</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Resolves all macros within the specified text.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ResolveUrl</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string url</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts relative URLs starting with ~/ to relative URLs containing the current application path (so they can be resolved by clients). Absolute URLs remain unchanged.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>StripTags</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Removes all HTML tags from the specified text.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>SQLEscape</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string text</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Escapes the string for safe usage in SQL commands (to avoid SQL injection).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>UnresolveUrl</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string url</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts relative URLs containing the application path to relative URLs starting with ~/. Absolute URLs remain unchanged.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>UrlEncode</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string url</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Applies URL encoding to the specified string.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Date and time modification</span></h3>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AddMilliseconds</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li><li class=" "><p>int milliseconds</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds the specified number of milliseconds to a DateTime value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AddSeconds</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li><li class=" "><p>int seconds</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds the specified number of seconds to a DateTime value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AddMinutes</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li><li class=" "><p>int minutes</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds the specified number of minutes to a DateTime value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AddHours</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li><li class=" "><p>int hours</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds the specified number of hours to a DateTime value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AddDays</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li><li class=" "><p>int days</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds the specified number of days to a DateTime value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AddWeeks</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li><li class=" "><p>int weeks</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds the specified number of weeks to a DateTime value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AddMonths</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li><li class=" "><p>int months</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds the specified number of months to a DateTime value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AddYears</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DateTime</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li><li class=" "><p>int years</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds the specified number of years to a DateTime value.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToShortDateString</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts the value of the DateTime parameter to an equivalent short date string representation.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ToShortTimeString<br>    <span style="color: #ffffff;">
+________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string<br>    <span style="color: #ffffff;">
+____________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>DateTime datetime</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Converts the value of the DateTime parameter to an equivalent short time string representation.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Mathematical operations</span></h3>
+    <div class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>The <a href="entering-macro-expressions">macro autocomplete help</a> only shows the mathematical methods as members of the <strong class=" ">Math</strong> namespace, for example <i class=" ">{% Math.Abs(-2) %}</i>. However, the system resolves the methods even without the namespace.</p>
+        </div>
+    </div>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Abs</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The absolute value of the specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Acos</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The angle whose cosine is the specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Asin</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The angle whose sine is the specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Atan</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The angle whose tangent is the specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Average</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>InfoObjectCollection collection</p>
+</li><li class=" "><p>string columnName</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The average of all numbers in the specified data column of the objects in the collection.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Ceiling</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The smallest whole number greater than or equal to the specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Cos</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The cosine of the specified angle.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Cosh</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The hyperbolic cosine of the specified angle.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Exp</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">e</strong> raised to the specified power.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Floor</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The largest whole number lesser than or equal to the specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetRandomInt<br>    <span style="color: #ffffff;">
+________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>int<br>    <span style="color: #ffffff;">
+____________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int minValue    </span>
+</i></p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int maxValue    </span>
+</i></p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int seed    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Generates a random positive integer. You can use the optional parameters to specify the range of possible numbers, and the seed number for the generator.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetRandomDouble</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int minValue    </span>
+</i></p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int maxValue    </span>
+</i></p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int seed    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Generates a random positive decimal number. You can use the optional parameters to specify the range of possible numbers, and the seed number for the generator.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IsOdd</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a true value if the specified number is odd.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IsEven</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a true value if the specified number is even.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Log</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The base <strong class=" ">e</strong> logarithm of a specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Log10</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The base 10 logarithm of a specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Max</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double parameters</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The maximum from the given list of numbers.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Maximum</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>InfoObjectCollection collection</p>
+</li><li class=" "><p>string columnName</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The maximum of all numbers in the specified data column of the objects in the collection.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Min</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double parameters</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The minimum from the given list of numbers.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Minimum</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><br></p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>InfoObjectCollection collection</p>
+</li><li class=" "><p>string columnName</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The minimum of all numbers in the specified data column of the objects in the collection.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Modulo</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>int</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int left</p>
+</li><li class=" "><p>int right</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The modulo of two integer numbers.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Pow</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double base</p>
+</li><li class=" "><p>double exp</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The number raised to the specified power.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Percent</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double percent</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Multiples the specified number by 0.01.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Round</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+int digits    </span>
+</i></p>
+</li><li class=" "><p><i class=" ">    <span style="color: #999999;">
+string mode    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The number nearest to the specified value.</p>
+<p>The optional second parameter sets the number of fractional digits in the rounded value.</p>
+<p>You can use the third parameter to set the rounding mode for numbers half-way between two other numbers. Supported variants are:</p>
+<ul class=" "><li class=" "><p>AwayFromZero - rounds to the nearest number away from zero</p>
+</li><li class=" "><p>ToEven - rounds toward the nearest even number</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sign</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a value indicating the sign of a number:</p>
+<ul class=" "><li class=" "><p>-1 (the number is less than zero)</p>
+</li><li class=" "><p>0 (the number is zero)</p>
+</li><li class=" "><p>1 (the number is greater than zero)</p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sin</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The sine of the specified angle.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sinh</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The hyperbolic sine of the specified angle.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sqrt</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The square root of a specified number.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sum</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>InfoObjectCollection collection</p>
+</li><li class=" "><p>string columnName</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The sum of all numbers in the specified data column of the objects in the collection.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Tan</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The tangent of the specified angle.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Tanh</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>double</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double number</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The hyperbolic tangent of the specified angle.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>E-commerce</span></h3>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Basic product methods</span></h4>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetSKUPrice</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (int) skuId</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p class="auto-cursor-target">Returns the price of the specified <a href="products">product</a> (<i class=" ">object skuId</i>). The price includes any <a href="working-with-catalog-discounts">catalog discounts</a> that apply.</p>
+<p>Example: <i class=" ">{% FormatPrice(GetSKUPrice(SKUID), true) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetSKUOriginalPrice</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (int) skuId</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the <i class=" ">greater</i> of the following price options for the specified <a href="products">product</a> (<i class=" ">object skuId</i>):</p>
+<ul class=" "><li class=" "><p>The product's list price (from the <i class=" ">SKURetailPrice</i> column)<br>– OR –</p>
+</li><li class=" "><p>The product's price (from the <i class=" ">SKUPrice</i> column) without any discounts applied<br></p>
+</li></ul><p>If both prices are equal to the standard product price with discounts (i.e. the product's list price is equal to the price and no discounts apply), the method returns <i class=" ">0</i>. The price is in the current user's <a href="checkout-process">shopping cart</a> currency.</p>
+<p>Example: <i class=" ">{% FormatPrice(GetSKUOriginalPrice(SKUID), true) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetSKUPriceSaving</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (int) skuId<br><i class=" ">     <span style="color: #ffffff;">
+_________________________    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the amount of money saved on the price of the specified <a href="products">product</a> (<i class=" ">object skuId</i>).</p>
+<p>The savings are calculated based on the difference between the product's price (from the <i class=" ">SKUPrice</i> column, including any <a href="working-with-catalog-discounts">catalog discounts</a> that apply) and the <i class=" ">greater</i> of the following options:</p>
+<ul class=" "><li class=" "><p>The product's list price (from the <i class=" ">SKURetailPrice</i> column)<br>– OR –</p>
+</li><li class=" "><p>The product's price (from the <i class=" ">SKUPrice</i> column) without any discounts applied</p>
+</li></ul><p>If the product's price is greater than the list price and no discounts apply, the method returns <i class=" ">0</i>. The result is in the current user's <a href="checkout-process">shopping cart</a> currency.</p>
+<p>Example: <i class=" ">{% GetSKUPriceSaving(SKUID) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetSKUTax</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (int) skuId</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Depending on the site's <strong class=" ">Prices include tax</strong> <a href="settings---e-commerce">setting</a>, returns either:</p>
+<ul class=" "><li class=" "><p>The tax value that will be added to the price of the specified <a href="products">product</a> (<i class=" ">object skuId</i>) during checkout (if prices do not include tax)<br>– OR –</p>
+</li><li class=" "><p>The tax portion of the specified product's price (if prices already include tax)</p>
+</li></ul><p>For example:</p>
+<ul class=" "><li class=" "><p>Prices do not include tax, the product price is 50 and the applied tax rate is 5% – returns <strong class=" ">2.5</strong></p>
+</li><li class=" "><p>Prices include tax, the product price is 55 and the applied tax rate is 10% – returns <strong class=" ">5</strong></p>
+</li></ul><p>Example: <i class=" ">{% FormatPrice(GetSKUTax(SKUID), false) %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IsOptionUsedInVariants</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int skuId</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns true if the <a href="working-with-product-options">product option</a> with the specified ID (<i class=" ">int skuID</i>) is used in any existing <a href="working-with-product-variants">product variant</a>.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Related methods</span></h4>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col width="221.0">
+                                    <col width="181.0">
+                                    <col width="341.0">
+                                    <col width="1059.0">
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetFormattedWeight</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>double weight</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns formatted weight (<i class=" ">double weight</i>) based on the <a href="settings---e-commerce">mass unit format configuration in the settings</a>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetManufacturer</p>
+<p>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object<br>    <span style="color: #ffffff;">
+____________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int id</p>
+</li><li class=" "><p>string column</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns an object from the specified column (<i class=" ">string column</i>) of the <a href="managing-brands-and-manufacturers">manufacturer</a> with the specified ID (<i class=" ">int id</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetDepartment</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int id</p>
+</li><li class=" "><p>string column</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns an object from the specified column (<i class=" ">string column</i>) of the <a href="departments">department</a> with the specified ID (<i class=" ">int <i class=" ">id</i> </i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetSupplier</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int id</p>
+</li><li class=" "><p>string column</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns an object from the specified column (<i class=" ">string column</i>) of the <a href="managing-suppliers">supplier</a> with the specified ID (<i class=" ">int <i class=" ">id</i> </i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetInternalStatus</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int id</p>
+</li><li class=" "><p>string column</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns an object from the specified column (<i class=" ">string column</i>) of the <a href="product-statuses">internal status</a> with the specified ID (<i class=" ">int <i class=" ">id</i> </i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetPublicStatus</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>object</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int id</p>
+</li><li class=" "><p>string column</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns an object from the specified column (<i class=" ">string column</i>) of the public status with the specified ID (<i class=" ">int <i class=" ">id</i> </i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetMainSiteCurrency</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CurrencyInfo</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int siteID</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the <a href="configuring-currencies">currency</a> used on the site with the specified ID (<i class=" ">int siteID</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetShoppingCartItemsCount</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>int</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">    <span style="color: #ffffff;">
+________________________________________    </span>
+</i></p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the number of <a href="products">products</a> in the current <a href="checkout-process">shopping cart</a>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetCouponsMessage</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (DiscountInfo) Discount</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns an information message about the redemption count of <a href="working-with-coupon-codes">coupon codes</a> belonging to the specified <a href="discounts">discount</a> (<i class=" ">object Discount</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetMultiBuyCouponsMessage</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (MultiBuyDiscountInfo) MultiBuyDiscount</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns an information message about the redemption count of <a href="working-with-coupon-codes">coupon codes</a> belonging to the specified <a href="working-with-buy-x-get-y-discounts">Buy X Get Y discount</a> or <a href="working-with-product-coupons">Product coupon</a> (<i class=" ">object MultiBuyDiscount</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetGiftCardCouponsMessage</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (GiftCardInfo) GiftCard</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns an information message containing the total redeemed and remaining amount for all <a href="working-with-coupon-codes">coupon codes</a> belonging to the specified <a href="working-with-gift-cards">Gift card</a> (<i class=" ">object GiftCard</i>). The amount values are in the site's <a href="configuring-currencies">main currency</a>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetMassUnit</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><br></p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the <a href="settings---e-commerce">mass unit</a> of the Kentico instance.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>FormatPrice</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>decimal price</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #c0c0c0;">
+bool round    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the price (<i class=" ">decimal price</i>) formatted according to the <a href="configuring-currencies">currency</a> used by the current shopping cart. The optional parameter determines whether the price is rounded based on the current site's settings (<i class=" ">bool round</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>FormatPriceForCart</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>decimal price</p>
+</li><li class=" "><p>int cartID</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #c0c0c0;">
+bool round    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the price (<i class=" ">decimal price</i>) formatted according to the <a href="configuring-currencies">currency</a> used by the specified shopping cart (<i class=" ">int cartID</i>). The optional parameter determines whether the price is rounded based on the settings of the shopping cart's site (<i class=" ">bool round</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>FormatPriceInMainCurrency</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>decimal price</p>
+</li><li class=" "><p><i class=" ">    <span style="color: #c0c0c0;">
+bool round    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the price (<i class=" ">decimal price</i>) formatted according to the current site's main <a href="configuring-currencies">currency</a>. The optional parameter determines whether the price is rounded based on the current site's settings (<i class=" ">bool round</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ShoppingCartProducts</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IEnumerable<br>&lt;ShoppingCartItemInfo&gt;</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (Guid) cartGUID</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the products (shopping cart items) in the specified shopping cart (<i class=" ">object cartGUID</i>).</p>
+<p>Bundle items and product options are excluded from the list.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>URLs</span></h4>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetAddToWishListLink</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (int) productId<br><i class=" ">     <span style="color: #ffffff;">
+____________________    </span>
+</i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a HTML link (&lt;a&gt; tag) with a URL that adds the specified product (<i class=" ">object productId</i>) to the current user's wishlist.</p>
+<p>Additionally, an image is rendered before the link tag (using the <i class=" ">~/CMSModules/CMS_Ecommerce/addtowishlist.png</i> file).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetRemoveFromWishListLink</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (string) productId</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the URL for removing the specified product (<i class=" ">object productId</i>) from the current user's wishlist.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ShoppingCartURL</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string siteName</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object (string) cartGUID</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the URL of the current user's shopping cart set up in the <a href="configuring-steps-of-the-checkout-process#src-68881255_configuringstepsofthecheckoutprocess-configuringthecheckoutprocesssettings">checkout process settings</a> on the specified site (<i class=" ">string siteName</i>). You can specify a shopping cart's GUID (object cartGUID), which is added to the URL's query string, to restore products in the shopping cart (for example, when sending an email reminder of an abandoned shopping cart).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>WishlistURL</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>string siteName</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the URL of the current user's wishlist on the specified site (<i class=" ">string siteName</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetProductUrl</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (int, string) skuId</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the URL of the product specified by the identifier (<i class=" ">object SKUID</i>), which is the primary key.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetProductUrlForFeed</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (Guid) skuGUID</p>
+</li><li class=" "><p>object (string) skuName</p>
+</li><li class=" "><p>object (string) siteName</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the URL of the specified product (<i class=" ">object skuGUID</i>) with the specified name (<i class=" ">object skuName</i>) with the feed query string parameter in the URL for the feed on the specified site (<i class=" ">object siteName</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetEproductUrl</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>Guid fileToken</p>
+</li><li class=" "><p>string fileName</p>
+</li><li class=" "><p>int siteId</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the URL for downloading an <a href="managing-e-products">e-product</a> specified with a unique download URL (<i class=" ">Guid </i><i class=" ">fileToken</i>), a file name (<i class=" ">string fileName</i>), and an ID of the site on which the order with the e-product took place (<i class=" ">int siteId</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetProductUrlByGUID</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (Guid) skuGuid</p>
+</li><li class=" "><p>object (string) skuName</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object (string) siteName</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the user-friendly URL of the product specified by the <a href="linking-pages-and-files">GUID</a> (<i class=" ">object skuGuid</i>) and name (<i class=" ">object skuName</i>) of the product. You can specify the site name of the product's site (<i class=" ">object siteName</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetProductImage</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (string) imageUrl</p>
+</li><li class=" "><p>object (string) alt</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object (int) maxSideSize</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object (int) width</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object (int) height</i>    </span>
+<i class=" "></i></p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the complete HTML code of the URL of the specified product image (<i class=" ">object imageURL</i>) on the current site with the alternative text (<i class=" ">object alt</i>). You can specify the maximum width (<i class=" ">object maxSideSize</i>), or the required width (<i class=" ">object width</i>) and height (<i class=" ">object height</i>).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetAddToShoppingCartLink<br>(obsolete)</p>
+<p>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+<p>    <span style="color: #ffffff;">
+____________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object (int) productId</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">object (bool) enabled</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Note: This method is obsolete, and only works if the site's shopping cart page (specified by the <i class=" ">Shopping cart URL</i> setting) contains the <i class=" ">Checkout process (obsolete)</i> web part.</p>
+<p>Returns a HTML link (&lt;a&gt; tag) with a URL that adds the specified <a href="products">product</a> (<i class=" ">object productId</i>) to the current user's <a href="checkout-process">shopping cart</a>. Use the optional <i class=" ">enabled</i> parameter if you wish to dynamically set whether the method returns the link (based on the status of individual products).</p>
+<p>Additionally, an image is rendered before the link tag (using the <i class=" ">~/CMSModules/CMS_Ecommerce/addorder.png</i> file).</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Google tag manager e-commerce data</span></h4>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetGtmProductJson</p>
+<p>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+<p>    <span style="color: #ffffff;">
+____________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>int skuId</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string additionalDataJson</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string purpose</i><br>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p class="auto-cursor-target">Returns a JSON string containing the data of a specified <a href="products">product</a> (<i class=" ">int skuId</i>), in a format suitable for use with the Google Tag Manager and Universal Analytics Enhanced Ecommerce features.</p>
+<p>For more information, see <a href="integrating-google-analytics-enhanced-ecommerce">Integrating Google Analytics Enhanced Ecommerce</a>.</p>
+<p>The optional <i class=" ">additionalDataJson</i> parameter allows you to extend the returned JSON string (custom fields and values).</p>
+<p>The optional <i class=" ">purpose</i> parameter can be processed in <a href="customizing-e-commerce-data-for-google-analytics">code customizations of the product data creation process</a>, if you need to return different JSON data for various scenarios.</p>
+<p>Example: <i class=" ">{% GetGtmProductJson(SKUID), "{ 'list' : 'Search Results'}", "searchImpressions") %}</i></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetGtmPurchaseJson</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string additionalDataJson</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string purpose</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a JSON string containing the data of a completed order (purchase), in a format suitable for use with the Google Tag Manager and Universal Analytics Enhanced Ecommerce features.</p>
+<p>Only works on the page that you display to customers after they go through your website's <a href="configuring-steps-of-the-checkout-process">checkout process</a> (the page specified by the <strong class=" ">Final step URL</strong> property of your site's <strong class=" ">Page wizard manager</strong> web part, typically a payment page or "thank you" page).</p>
+<p>For more information, see <a href="integrating-google-analytics-enhanced-ecommerce">Integrating Google Analytics Enhanced Ecommerce</a>.</p>
+<p>The optional <i class=" ">additionalDataJson</i> parameter allows you to extend the returned JSON string (custom fields and values).</p>
+<p>The optional <i class=" ">purpose</i> parameter can be processed in <a href="customizing-e-commerce-data-for-google-analytics">code customizations of the purchase data creation process</a>, if you need to return different JSON data for various scenarios.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetGtmShoppingCartItemsJson</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string additionalDataJson</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string purpose</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns a JSON string containing the data of all products in the current shopping cart, in a format suitable for use with the Google Tag Manager and Universal Analytics Enhanced Ecommerce features.</p>
+<p>For more information, see <a href="integrating-google-analytics-enhanced-ecommerce">Integrating Google Analytics Enhanced Ecommerce</a>.</p>
+<p>The optional <i class=" ">additionalDataJson</i> parameter allows you to extend the returned JSON string (custom fields and values).</p>
+<p>The optional <i class=" ">purpose</i> parameter can be processed in <a href="customizing-e-commerce-data-for-google-analytics">code customizations of the product data creation process</a>, if you need to return different JSON data for various scenarios.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>User membership and permissions</span></h3>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CheckPrivilegeLevel</p>
+<p>    <span style="color: #ffffff;">
+_________________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object user (UserInfo)</p>
+</li><li class=" "><p>UserPrivilegeLevelEnum privilegeLevel</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Checks the user's <a href="user-management">privilege level</a>. Returns a true value if the user's privilege level matches the required <i class=" ">UserPrivilegeLevelEnum</i> value or is higher.</p>
+<p>You can check the following levels:</p>
+<ul class=" "><li class="line number1 index0 alt2 "><p><i class=" ">{% CurrentUser.CheckPrivilegeLevel(UserPrivilegeLevelEnum.Editor) %}</i></p>
+</li><li class="line number1 index0 alt2 "><p><i class=" ">{% CurrentUser.CheckPrivilegeLevel(UserPrivilegeLevelEnum.Admin) %}</i></p>
+</li><li class="line number2 index1 alt1 "><p><i class=" ">{% CurrentUser.CheckPrivilegeLevel(UserPrivilegeLevelEnum.GlobalAdmin) %}</i></p>
+</li></ul>            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>GetFormattedUserName</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object user (UserInfo)</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">bool isLiveSite</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Returns the formatted username of the specified user object. The default format is <i class=" ">&lt;full name&gt; (&lt;nickname&gt;)</i> if the user has a nickname, otherwise <i class=" ">&lt;full name&gt; (&lt;username&gt;)</i>.</p>
+<p>The <strong class=" ">isLiveSite</strong> parameter determines whether the macro displays the username on the live website.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>HasAnyMembership</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object user (UserInfo)</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Checks whether the user belongs to any <a href="membership-management">membership</a> in the system.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>HasMembership</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object user (UserInfo)</p>
+</li><li class=" "><p>string userMemberships</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">bool allMemberships</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Checks if a user belongs to the specified <a href="membership-management">memberships</a>.</p>
+<p>Enter the code names of memberships through the <strong class=" ">userMemberships</strong> parameter. When checking multiple memberships, use semicolons (;) to separate the code names. If the <strong class=" ">allMemberships</strong> parameter is true, the user must belong to all specified memberships for the check to succeed.</p>
+<p>To check whether the user belongs to a membership on a global level, add the period character (.) prefix before the membership code name.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IsAuthorizedPerResource</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object user (UserInfo)</p>
+</li><li class=" "><p>string resource</p>
+</li><li class=" "><p>string permission</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Evaluates whether a user has a specific <a href="configuring-permissions">permission</a> for a resource (module). Use code names to identify the resource and permission.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IsAuthorizedPerUIElement</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object user (UserInfo)</p>
+</li><li class=" "><p>string resource</p>
+</li><li class=" "><p>string elementName</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Evaluates whether a user is allowed to access a specific UI element of a resource (module). Use code names to identify the resource and element.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IsInGroup</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object user (UserInfo)</p>
+</li><li class=" "><p>string userGroup</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Checks if a user belongs to a <a href="groups">group</a> (community or workgroup).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>IsInRole<br>    <span style="color: #ffffff;">
+________________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool<br>    <span style="color: #ffffff;">
+____________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>object user (UserInfo)</p>
+</li><li class=" "><p>string userRole</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">bool allRoles<br>    <span style="color: #ffffff;">
+____________________    </span>
+</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Checks if a user belongs to the specified roles.</p>
+<p>Enter the code names of roles through the <strong class=" ">userRole</strong> parameter. When checking multiple roles, use semicolons (;) to separate the code names. If the <strong class=" ">allRoles</strong> parameter is true, the user must belong to all specified roles for the check to succeed.</p>
+<p>To check whether the user belongs to a role on a global level, add the period character (.) prefix before the role code name.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Transformations</span></h3>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Method</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Return type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Parameters</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ApplyTransformation</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable collection</p>
+</li><li class=" "><p>string transformationName</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string contentBeforeTransformationName</i>    </span>
+</p>
+</li><li class=" "><p>    <span style="color: #999999;">
+<i class=" ">string contentAfterTransformationName</i>    </span>
+</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Applies <strong class=" ">Text / XML</strong> <a href="writing-transformations">transformations</a> to a collection of items.</p>
+<p>See also: <a href="using-transformations-in-macro-expressions">Using transformations in macro expressions</a></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Transform</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>string</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p>IEnumerable collection</p>
+</li><li class=" "><p>string transformationText</p>
+</li></ul>            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Applies ad-hoc transformation code (Text / XML type) to a collection of items, or a single item.</p>
+<p>Note: To keep the macro syntax valid, you need to break all <i class=" ">%}</i> closing macro tags within the ad-hoc transformation code into separate strings.</p>
+<p>Example: <i class=" ">{% CurrentUser.Transform("&lt;strong&gt;{%FullName%" + "}&lt;/strong&gt;") %}</i></p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+    <div class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>When writing <strong class=" ">Text / XML</strong> transformations, you can use most <a href="reference---transformation-methods">ASCX transformation methods</a> inside macro expressions.</p>
+<p>Outside of transformations, the macro autocomplete only offers the methods under the <strong class=" ">Transformation</strong> namespace, for example <i class=" ">Transformation.GetDocumentUrl().</i> However, you can manually enter the methods even without the namespace.</p>
+        </div>
+    </div>
+<p><a href="#src-68882649_referencemacromethods-macromethodstop">&gt; Back to the list of macro method categories</a></p>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>

@@ -25,9 +25,9 @@ function fixExport(spaceKey)
                     const stats = fs.statSync(renamedFilePath)
                     if (!stats.isDirectory())
                     {
-                        
-                        //removeInThisSectionPanel(renamedFilePath);
-                        //fixRelatedPagesAndOnThisPagePanels(renamedFilePath);
+
+                        removeInThisSectionPanel(renamedFilePath);
+                        fixRelatedPagesAndOnThisPagePanels(renamedFilePath);
 
                         generateHelpServiceRedirectHandler(renamedFilePath);
                     }

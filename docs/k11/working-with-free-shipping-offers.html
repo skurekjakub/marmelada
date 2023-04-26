@@ -1,0 +1,469 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Working with free shipping offers - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260" elementpageid="68881397">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo">
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68881397"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="E-commerce-features.html">E-commerce features</a></li>
+                                                                                                         <li class="shortcut"><a href="Managing-your-store.html">Managing your store</a></li>
+                                                                                     <li><a href="Discounts.html">Discounts</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68881397"> <span>Working with free shipping offers</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<div class="sp-grid-cell sp-grid-60"><p>You can use free shipping offers to provide free shipping to your selected <a href="customers">customers</a>.</p><p>For example, use this discount when you want to give free shipping:</p><ul class=" "><li class=" "><p>to customers who buy goods for more than a specific price, e.g., 100 USD;</p>
+</li><li class=" "><p>to customers who have their purchased products sent to somewhere where you want to increase sales, e.g., to Texas;</p>
+</li><li class=" "><p>because of the current season, e.g., Christmas.</p>
+</li></ul><p>You can configure free shipping offers in detail to apply only if specified rules (macro conditions) are fulfilled. These rules use properties of the shopping cart, and can include shopping cart content, billing/shipping address, <a href="orders">order</a> currency, order amount, etc. You can also specify periods of validity for free shipping offers.</p><div class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>The system binds free shipping offers to specific sites, for example, to the sample <i class=" ">E-commerce Site</i>.</p>
+<p>If you run <a href="choosing-site-or-global-e-commerce-configuration">multiple sites</a> and want to use free shipping offers, you thus need to define dedicated free shipping offers for each site.</p>
+        </div>
+    </div><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding and editing free shipping offers</span></h3><p>You can add or edit free shipping offers in the <strong class=" ">Free shipping offers</strong> application.</p><ul class=" "><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-freeshippingofferslimitedbyperiodsofvalidity">Free shipping offers limited by periods of validity</a></p>
+</li><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-freeshippingofferstargetedatselectedcustomers">Free shipping offers targeted at selected customers</a></p>
+</li><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-freeshippingofferslimitedbyconditions">Free shipping offers limited by conditions</a></p>
+</li></ul><div class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>You can combine the free shipping offer limitations.</p>
+<p>For example, you can provide free shipping to all your registered US customers who placed their orders throughout January.</p>
+        </div>
+    </div><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Free shipping offers limited by periods of validity</span></h4><p>To add or to edit free shipping offers limited by periods of validity:</p><ol class=" "><li class=" "><p>To add a new offer, click<strong class=" "> New Free shipping offer</strong>. To edit an existing offer, click <strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png">
+) at the desired offer.</p>
+</li><li class=" "><p>Type a <strong class=" ">Name</strong> for the discount.</p>
+</li><li class=" "><p>Enter the free shipping offer properties in the <strong class=" ">Duration</strong> category.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Valid from</strong> – specifies the start of the period of validity.</p>
+</li><li class=" "><p><strong class=" ">Valid to</strong> – specifies the end of the period of validity.</p>
+    <div class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>Leave both fields empty for permanent validity.</p>
+        </div>
+    </div>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The system saves the free shipping offer. The system now provides free shipping only during the offer's period of validity (if the offer is running).</p></div>
+
+
+    
+    
+
+    
+    
+
+
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-addingandeditingfreeshippingoffers">Adding and editing free shipping offers</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-freeshippingofferslimitedbyperiodsofvalidity">Free shipping offers limited by periods of validity</a></p>
+</li><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-freeshippingofferstargetedatselectedcustomers">Free shipping offers targeted at selected customers</a></p>
+</li><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-freeshippingofferslimitedbyconditions">Free shipping offers limited by conditions</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-displayingtheremainingamounttoreceivefreeshippingonpages">Displaying the remaining amount to receive free shipping on pages</a></p>
+</li><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-displayingtheshippingcostsininvoices">Displaying the shipping costs in invoices</a></p>
+</li><li class=" "><p><a href="#src-68881397_workingwithfreeshippingoffers-reference">Reference</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="example---redeeming-a-free-shipping-offer">Example - Redeeming a free shipping offer</a></p>
+</li><li class=" "><p><a href="working-with-coupon-codes">Working with coupon codes</a></p>
+</li><li class=" "><p><a href="configuring-discount-rules">Configuring discount rules</a></p>
+</li><li class=" "><p class="with-breadcrumbs"><a href="adding-a-discount-rule-with-a-custom-method">Example&nbsp;- Adding an order rule</a></p>
+</li><li class=" "><p class="with-breadcrumbs"><a href="example---applying-a-coupon-code-to-receive-free-shipping">Example&nbsp;- Applying a coupon code to receive free shipping</a></p>
+</li></ul>        </div>
+    </div></div>
+    
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Free shipping offers targeted at selected customers</span></h4>
+<p>To add or to edit free shipping offers targeted at selected customers:<strong class=" "><br></strong></p>
+<ol class=" "><li class=" "><p>To add a new offer, click<strong class=" "> New Free shipping offer</strong>. To edit an existing offer, click <strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png">
+) at the desired offer.</p>
+</li><li class=" "><p>Type a <strong class=" ">Name</strong> for the discount.</p>
+</li><li class=" "><p>Change the value of the <strong class=" ">Available for</strong> property in the <strong class=" ">Target customers</strong> category</p>
+<ul class=" "><li class=" "><p><strong class=" ">All visitors</strong> – all customers are eligible for the discount; the default option.</p>
+</li><li class=" "><p><strong class=" ">Registered users</strong> – only registered customers are eligible for the discount.</p>
+</li><li class=" "><p><strong class=" ">Registered users in selected roles</strong> – only registered customers in selected <a href="role-management">roles</a> are eligible for the discount.</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The system saves the free shipping offer and returns you to the list of all free shipping offers. The system provides free shipping only to the selected customers.</p>
+    <div class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>If you need to add free shipping offers targeted at custom groups of customers, for example, on selected users, contact groups, etc., please refer to <a href="configuring-discount-rules">Configuring discount rules</a>.</p>
+        </div>
+    </div>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Free shipping offers limited by conditions</span></h4>
+<p>To add or to edit basic free shipping offers limited by conditions:</p>
+<ol class=" "><li class=" "><p>To add a new offer, click<strong class=" "> New Free shipping offer</strong>. To edit an existing offer, click <strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png" alt="images/download/attachments/68879208/edit.png">
+) at the desired offer.</p>
+</li><li class=" "><p>Type a <strong class=" ">Name</strong> for the discount.</p>
+</li><li class=" "><p>Specify <strong class=" ">Minimum order amount</strong> in your on-line store <a href="configuring-currencies">main currency</a>.</p>
+</li><li class=" "><p>Click <strong class=" ">Edit</strong> to set the discount rules and their parameters</p>
+<ol class=" "><li class=" "><p>In <strong class=" ">Edit macro condition</strong> dialog that opens, select the required rule in the right part of the dialog.</p>
+</li><li class=" "><p>Use drag &amp; drop, or double-click, or click <strong class=" ">Add rule</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/left.png" alt="images/download/attachments/68879208/left.png">
+) button to add the rule.</p>
+</li><li class=" "><p>Click the underlined parts of the rule in the left part of the dialog to open the <strong class=" ">Set parameter value</strong> dialog.</p>
+</li><li class=" "><p>Select the desired parameter.<br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881397/specifying_rule_parameters.png" alt="images/download/attachments/68881397/specifying_rule_parameters.png" width="500">
+        <br><span class="caption">Specifying the rule parameters</span>
+    </li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li><li class=" "><p>(Optional) Repeat editing to set all discount rules and all their parameters you want.</p>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li></ol></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The system saves the free shipping offer. The system now applies the offer only if the specified conditions are fulfilled (if the offer is running).</p>
+<p></p>
+    <div class="confbox admonition admonition-info">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p><strong class=" ">Effects of discount modification on already existing orders</strong></p>
+<p>If you edit or delete a discount, existing orders do not change and remain with the original discount. To update existing orders according to the new rules, you need to edit the orders manually.</p>
+        </div>
+    </div>
+<p></p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Displaying the remaining amount to receive free shipping on pages</span></h3>
+<p>The Kentico E-commerce Solution allows you to configure the pages to display the amount that remains for the customers to receive free shipping for their orders (if eligible).</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Select the required page in the content tree.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Edit -&gt; Design</strong> tab.</p>
+</li><li class=" "><p>Add the <strong class=" ">Remaining amount for free shipping </strong><a href="using-and-configuring-web-parts">web part</a> to the selected web part zone.</p>
+</li><li class=" "><p>Enter the web part properties as required.</p>
+    <div class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>The web part's <strong class=" ">Text for remaining amount</strong> property allows you to specify text that the system displays if the customers need to spend more to receive free shipping.</p>
+<p>Use<i class=" "> {0}</i> instead of the remaining amount, for example <i class=" ">Add product items for at least {0} to receive free shipping</i>.</p>
+        </div>
+    </div>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li></ol><p>The system adds the <strong class=" ">Remaining amount for free shipping </strong>web part to the page. If your customers add products to their shopping carts, the system informs them how much more they need to spend for the products to receive free shipping (if eligible).</p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Displaying the shipping costs in invoices</span></h3>
+<p>To display the total shipping costs in <a href="configuring-invoices">invoices</a>:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Store configuration </strong>application.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Invoice</strong> tab.</p>
+</li><li class=" "><p>Add the following macro code into your invoice template:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">{% TotalShipping.Format(Currency.CurrencyFormatString) %}</code></div>
+</div>
+    </div>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>If you now review an existing order on the<strong class=" "> Invoice</strong> tab in the <strong class=" ">Orders</strong> application, you can see that the invoice includes information about the shipping costs. The value is <i class=" ">0</i> if no shipping is charged for the selected shipping option, or if free shipping is provided to the customer.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881397/invoice_free_shipping_offer_applied.png" alt="images/download/attachments/68881397/invoice_free_shipping_offer_applied.png" width="500">
+        <br><span class="caption">Viewing shipping costs in an invoice</span>
+    </p>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Reference</span></h3>
+    <div class="tablewrap">
+        <table class="confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="highlight-grey confluenceTd" rowspan="1" colspan="2">
+        <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>General</span></h5>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Name</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The name of the free shipping offer used throughout the administration interface, e.g., in free shipping offer lists.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Code name</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The unique identifier of the free shipping offer (for example used by developers in code).</p>
+<p>Unless there is a reason to set a particular value, you can leave the default <i class=" ">(automatic)</i> option, and the system generates an appropriate code name automatically.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>To make the free shipping offer easier to use and maintain, you can add an explanation about the scenarios for which the offer is intended, etc. The description doesn't have any functionality, it's just for better orientation.</p>
+<p>You can add an explanation about the scenarios for which the free shipping offer is intended. The description does not affect the offer's functionality, apart from providing information to store managers working in the <i class=" ">Free shipping offers</i> application.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Enabled</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indicates whether the offer is available for use by customers. While calculating the shipping costs of orders, the system skips disabled free shipping offers.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="2">
+        <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Free shipping conditions </span></h5>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Minimum order amount</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Specifies the minimum price total that orders must have for the free shipping offer to be applicable. The price is evaluated <strong class=" ">after</strong> calculating all other types of <a href="discounts">discounts</a>, but <strong class=" ">before</strong> adding <a href="configuring-taxes">taxes</a> to the order total.</p>
+<p>Set the value in the site's <a href="configuring-currencies">main currency</a>.</p>
+<p>If you leave an empty value, all orders are eligible unless limited by the <strong class=" ">Further conditions</strong> field.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Further conditions</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Adds further conditions that must be fulfilled to apply the free shipping offer.</p>
+<p>Click <strong class=" ">Edit </strong>to open the<strong class=" "> Edit macro condition</strong> dialog, which allows you to add rules through a graphical interface.<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881397/specifying_discount_rules.png" alt="images/download/attachments/68881397/specifying_discount_rules.png" width="500">
+</p>
+<ul class=" "><li class=" "><p>To add rules to the condition, double-click rules on the right or click <strong class=" ">Add rule</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/left.png" alt="images/download/attachments/68879208/left.png">
+).</p>
+</li><li class=" "><p>To remove a rule from the condition, select it and click <strong class=" ">Delete</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/delete_cross.png" alt="images/download/attachments/68879208/delete_cross.png">
+). Click <strong class=" ">Clear all rules</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/clear.png" alt="images/download/attachments/68879208/clear.png">
+) to remove all added rules.</p>
+</li><li class=" "><p>Click on underlined words in the rule text to configure various rule options.</p>
+</li></ul>    <div class="scroll-expand-container collapsed">
+        <div class="scroll-expand-control">
+            <span class="scroll-expand-control-icon">&nbsp;</span>
+            <span class="scroll-expand-control-text">Example...</span>
+        </div>
+        <div class="scroll-expand-content">
+<p><i class=" ">Shipping option <u class=" ">is</u> <u class=" ">Shipping</u></i></p>
+<p><u class=" "><i class=" ">and</i></u></p>
+<p><i class=" ">Shipping address state <u class=" ">is</u> <u class=" ">Texas</u></i></p>
+<p><br></p>
+<p>The condition ensures that the free shipping offer is only applied if the customer selects shipping as shipping option, and have their purchased products sent to Texas.</p>
+        </div>
+    </div>
+<p>You can also edit macros on the <strong class=" ">Code</strong> tab in the <strong class=" ">Edit macro condition</strong> dialog. For details about available macro options and syntax, please refer to <a href="macro-expressions">Macro expressions</a>.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="2">
+        <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Coupons</span></h5>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Customer has to redeem a coupon to get Free shipping</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If selected, only customers who enter a valid coupon code are able to apply the discount.</p>
+<p>You can set coupon codes on the<strong class=" "> Coupons</strong> tab in the left menu. After enabling the field and saving the discount, you will be redirected there automatically.</p>
+<p>To learn more, see: <a href="working-with-coupon-codes">Working with coupon codes</a></p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="2">
+        <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Duration</span></h5>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Valid from</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Specifies the time and date from which the offer can be applied. If you leave the value empty, the offer can be applied at any time before the <strong class=" ">Valid to</strong> date.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Valid to</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Specifies the time and date until which the offer can be applied. If you leave the value empty, the offer is valid permanently (starting from the <strong class=" ">Valid from</strong> date).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="2">
+        <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Target customers</span></h5>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Available for</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Determines which types of users are able to use the offer:</p>
+<ul class=" "><li class=" "><p><strong class=" ">All visitors</strong> – all customers are eligible for the offer.</p>
+</li><li class=" "><p><strong class=" ">Registered users</strong> – only registered customers are eligible for the offer.</p>
+</li><li class=" "><p><strong class=" ">Registered users in selected roles</strong> – only registered customers in selected <a href="role-management">roles</a> are eligible for the offer. To add roles:<br></p>
+<ol class=" "><li class=" "><p>Click<strong class=" "> Select</strong> to open the <strong class=" ">Select roles</strong> dialog.</p>
+</li><li class=" "><p>Select the required roles.</p>
+</li><li class=" "><p>Click <strong class=" ">Select</strong>.</p>
+</li></ol></li></ul>    <div class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p>You can add registered customers to roles in the <strong class=" ">Customers</strong> application while editing a selected customer on the <strong class=" ">Roles</strong> tab.</p>
+        </div>
+    </div>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>

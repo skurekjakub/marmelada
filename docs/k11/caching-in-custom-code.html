@@ -1,0 +1,330 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Caching in custom code - Kentico 11 Documentation</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+            <meta name="scroll-content-language-key" content="">
+    
+    <meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+<link rel="stylesheet" href="assets/css/theme.colors.css">
+
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body pageid="68879260" elementpageid="68882161">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+    <div class="ht-headerbar-left">
+        <a href="" id="ht-menu-toggle" class="sp-aui-icon-small sp-aui-iconfont-appswitcher"></a>
+    </div>
+    <div class="ht-headerbar-right">
+            <div class="sp-aui-icon-small ht-search-index-loader ht-header-icon"></div>
+
+        <div id="ht-search">
+            <div class="ht-search-input" style="display: none;">
+              	<a href="#" class="sp-aui-icon-small sp-aui-iconfont-remove ht-search-clear"></a>
+
+                <form action="#" method="GET" id="search">
+                    <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
+                </form>
+
+                <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
+                                        <svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path d="M29.572,28.802 L28.801,29.571 C28.515,29.857 28.187,30 27.816,30 C27.445,30 27.116,29.857 26.831,29.571 L21.392,24.134 C20.193,24.762 18.908,25.076 17.538,25.076 C15.396,25.076 13.605,24.348 12.163,22.892 C10.721,21.436 10,19.651 10,17.538 C10,15.397 10.721,13.605 12.163,12.163 C13.605,10.721 15.396,10 17.538,10 C19.651,10 21.434,10.721 22.89,12.163 C24.347,13.605 25.075,15.397 25.075,17.538 C25.075,18.937 24.761,20.222 24.132,21.393 L29.572,26.832 C29.857,27.118 30,27.446 30,27.817 C30,28.188 29.857,28.517 29.572,28.802 L29.572,28.802 Z M13.662,21.414 C14.732,22.485 16.024,23.02 17.538,23.02 C19.051,23.02 20.343,22.485 21.413,21.414 C22.484,20.344 23.019,19.052 23.019,17.538 C23.019,16.025 22.484,14.733 21.413,13.662 C20.343,12.592 19.051,12.056 17.538,12.056 C16.024,12.056 14.732,12.592 13.662,13.662 C12.591,14.733 12.056,16.025 12.056,17.538 C12.056,19.052 12.591,20.344 13.662,21.414 L13.662,21.414 Z"></path>
+                        </g>
+                    </svg>
+              	</a>
+
+                <div class="ht-search-dropdown ht-dropdown">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>   	<aside id="ht-sidebar">
+    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            <header class="ht-sidebar-header">
+                <h1 class="ht-logo">
+                    <span class="ht-logo-label">K11</span>
+                    <img class="space-logo" src="global.logo">
+                </h1>
+                <a href="Kentico-11-Documentation-Home.html" class="ht-space-link">
+                    <h2>Kentico 11 Documentation</h2>
+                </a>
+            </header>
+                            <iframe id="ht-nav" src="toc.html?pageId=68882161"></iframe>
+                <script>
+                    $('iframe#ht-nav').iFrameResize(
+                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
+                </script>
+                    </div>
+    </div>
+
+</aside></div>
+
+<div id="ht-wrap-container">
+
+            
+    <div id="ht-sidebar-dragbar">
+    <div class="ht-sidebar-drag-handle">
+        <span class="drag-handle-1"></span>
+        <span class="drag-handle-2"></span>
+        <span class="drag-handle-3"></span>
+    </div>
+</div>
+    <article id="ht-content" class="ht-content">
+        <header class="ht-content-header">
+            <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="Kentico-11-Documentation-Home.html">Kentico 11 Documentation</a></li>
+                                                                                     <li><a href="Custom-development.html">Custom development</a></li>
+                                                            </ul>
+</div>            <h1 id="src-68882161"> <span>Caching in custom code</span></h1>
+        </header>
+
+        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<div class="sp-grid-cell sp-grid-60"><p>The Kentico API allows you to <a href="configuring-caching">cache</a> data in custom code. To cache data in custom code, use the <strong class=" ">CacheHelper.Cache</strong> method.</p><p>This type of caching is applicable to any API result and is used internally by Kentico web parts. The same caching API is also available in <a href="caching-the-results-of-macros">macros</a>.</p><p><strong class=" ">We recommend</strong> caching in custom code if you aren't able to use <a href="configuring-caching#src-68881957_configuringcaching-cachetypes">higher levels of caching</a> or for frequent API calls (used several times on a single page).</p></div>
+
+
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="configuring-caching">Configuring caching</a></p>
+</li><li class=" "><p><a href="debugging-cache">Debugging cache</a></p>
+</li><li class=" "><p><a href="setting-cache-dependencies">Setting cache dependencies</a></p>
+</li></ul>        </div>
+    </div></div>
+<p>The following example shows the code behind of a custom user control that:</p>
+<ul class=" "><li class=" "><p>Loads user data from the Kentico database (with caching)</p>
+</li><li class=" "><p>Displays the data using a <a href="basicrepeater">BasicRepeater</a> control</p>
+</li></ul>    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> System.Data;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CachedUsers : System.Web.UI.Page</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Page_Load(</code><code class="keyword">object</code><code class="plain"> sender, EventArgs e)</code></div>
+<div class="line"><code class="plain">	{</code></div>
+<div class="line"><code class="plain">		</code><code class="comments">// Ensures loading and caching of data</code></div>
+<div class="line"><code class="plain">		</code><code class="comments">// Uses CacheSettings that cache the data for 10 minutes under the cache key "customdatasource|..."</code></div>
+<div class="line"><code class="plain">		</code><code class="comments">// Automatically checks whether the given key is already in the cache</code></div>
+<div class="line"><code class="plain">		DataSet data = CacheHelper.Cache(cs =&gt; LoadUsers(cs), </code><code class="keyword">new</code><code class="plain"> CacheSettings(10, </code><code class="string">"customdatasource|"</code><code class="plain"> + UserBasicRepeater.ClientID));</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">		</code><code class="comments">// Assigns the data to the BasicRepeater control</code></div>
+<div class="line"><code class="plain">		UserBasicRepeater.DataSource = data;</code></div>
+<div class="line"><code class="plain">		UserBasicRepeater.DataBind();        </code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">    </code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Method that loads the required data</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Called only if the data doesn't already exist in the cache</code></div>
+<div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> DataSet LoadUsers(CacheSettings cs)</code></div>
+<div class="line"><code class="plain">	{</code></div>
+<div class="line"><code class="plain">		</code><code class="comments">// Loads all user accounts from the database</code></div>
+<div class="line"><code class="plain">		DataSet result = UserInfoProvider.GetUsers();</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">		</code><code class="comments">// Checks whether the data should be cached (based on the CacheSettings)</code></div>
+<div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (cs.Cached)</code></div>
+<div class="line"><code class="plain">		{</code></div>
+<div class="line"><code class="plain">			</code><code class="comments">// Sets a cache dependency for the data</code></div>
+<div class="line"><code class="plain">			</code><code class="comments">// The data is removed from the cache if the objects represented by the dummy key are modified (all user objects in this case)</code></div>
+<div class="line"><code class="plain">			cs.CacheDependency = CacheHelper.GetCacheDependency(</code><code class="string">"cms.user|all"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">		}</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> result;</code></div>
+<div class="line"><code class="plain">	}</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+<p>The <strong class=" ">Cache</strong> method checks if the key specified by the <strong class=" ">CacheSettings</strong> object is in the cache:</p>
+<ul class=" "><li class=" "><p>If yes, the method directly loads the data from the cache.</p>
+</li><li class=" "><p>If not, the code calls the custom private method (<strong class=" ">LoadUsers</strong>) with the <i class=" ">CacheSettings</i> as a parameter. The private method loads the data from the database, sets a cache dependency and saves the key into the cache for the specified number of minutes</p>
+</li></ul><p>You can use the caching API when handling data anywhere in your code.</p>
+    <div class="confbox admonition admonition-tip">
+                            <span class="admonition-icon confluence-information-macro-icon"></span>
+                <div class="admonition-body">
+<p><strong class=" ">Tip</strong></p>
+<p>If you do not need to access or set the <strong class=" ">CacheSettings</strong> in the method that loads the data, you can use a simplified version of the <strong class=" ">Cache</strong> method:</p>
+    <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">DataSet data = CacheHelper.Cache(LoadUsers, </code><code class="keyword">new</code><code class="plain"> CacheSettings(10, </code><code class="string">"customkey"</code><code class="plain">));</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">private</code><code class="plain"> DataSet LoadUsers()</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	...</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </div>
+        </div>
+    </div>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>CacheSettings</span></h3>
+<p>When calling the <strong class=" ">Cache</strong> method, you need to specify a <strong class=" ">CMS.Helpers.CacheSettings</strong> object as a parameter. The settings configure the cache key that stores the data. If you set the same cache key name for multiple data loading operations, they share the same cached value.</p>
+<p>You can work with the following properties of the <i class=" ">CacheSettings:</i></p>
+    <div class="tablewrap">
+        <table class="wrapped confluenceTable">
+                    <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                            </colgroup>
+        <thead class=" ">    <tr>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>CacheSettings property</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Type</p>
+            </td>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
+            </td>
+        </tr>
+</thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CacheMinutes</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>int</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The number of minutes for which the cache stores the loaded data. The default value is 10 minutes.</p>
+<p>We recommend using an interval of 1 to 60 minutes.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CacheDependency</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMSCacheDependency</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sets <a href="setting-cache-dependencies">dependencies</a> for the cache key (use the <i class=" ">CacheHelper.GetCacheDependency</i> method to get the dependency object).</p>
+<p>Make sure you always set cache dependencies, unless the <i class=" ">CacheMinutes</i> interval is set to an extremely short time or the cached content is predominantly static.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>BoolCondition</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>A boolean condition that must be fulfilled (true) in order to cache the loaded data.</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Cached</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indicates whether the data should be cached (based on the cache minutes and condition).</p>
+            </td>
+        </tr>
+    <tr>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AllowProgressiveCaching<br>    <span style="color: #ffffff;">
+_______________________    </span>
+</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>bool</p>
+            </td>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Enables or disabled progressive caching, which ensures that multiple threads accessing the same code only load the data once and reuse the result.</p>
+            </td>
+        </tr>
+</tbody>        </table>
+            </div>
+        </div>
+
+    </article>
+
+
+               
+            
+    <footer id="ht-footer">
+    <a href="#" id="ht-jump-top" class="sp-aui-icon-small sp-aui-iconfont-arrows-up"></a>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>
