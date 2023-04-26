@@ -37,6 +37,8 @@ function fixExport(spaceKey)
 
 function removeInThisSectionPanel(filePath)
 {
+    console.log('Removing "In this section panels."');
+
     const html = fs.readFileSync(filePath, 'utf8');
 
     // Parse the HTML using Cheerio
@@ -50,6 +52,8 @@ function removeInThisSectionPanel(filePath)
 
 function fixRelatedPagesAndOnThisPagePanels(filePath)
 {
+    console.log('Fixing "On this page" and "Related pages" two-column layout.');
+
     const html = fs.readFileSync(filePath, 'utf8');
     const RIGHTCOLUMN = ".sp-grid-cell.sp-grid-40.sp-grid-sidebar";
     const RIGHTCOLUMNMARKUP = '<div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"></div>';
