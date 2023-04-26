@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>The Kentico <a href="setting-up-continuous-integration">continuous integration solution</a> handles serialization of data of most objects from the database into XML files on the file system. However, <a href="object-types-supported-by-continuous-integration">not all database changes</a> are supported by it. Changes to database indexes, functions, stored procedures, custom views, and so on are all unsupported by continuous integration. To keep the main database consistent across your development instances, these changes need to be handled manually. We recommend using <a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-synchronizingdatabasechangesusingmigrationscripts">migration scripts</a> to synchronize database changes not managed by the Kentico continuous integration solution.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Synchronizing database changes using migration scripts</span></h3><p>A migration script allows you to alter a database by changing all or part of a database. This alteration can be as simple as adding or removing a column to a table, or a complex refactoring task such as splitting tables or changing column properties in a way that could affect the data it stores.</p><div class="confbox admonition admonition-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-60"><p>The Kentico <a href="setting-up-continuous-integration">continuous integration solution</a> handles serialization of data of most objects from the database into XML files on the file system. However, <a href="object-types-supported-by-continuous-integration">not all database changes</a> are supported by it. Changes to database indexes, functions, stored procedures, custom views, and so on are all unsupported by continuous integration. To keep the main database consistent across your development instances, these changes need to be handled manually. We recommend using <a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-synchronizingdatabasechangesusingmigrationscripts">migration scripts</a> to synchronize database changes not managed by the Kentico continuous integration solution.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Synchronizing database changes using migration scripts</span></h3><p>A migration script allows you to alter a database by changing all or part of a database. This alteration can be as simple as adding or removing a column to a table, or a complex refactoring task such as splitting tables or changing column properties in a way that could affect the data it stores.</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p>The rest of this page assumes you are using a development environment utilizing the Kentico continuous integration solution. See <a href="setting-up-continuous-integration">Setting up continuous integration</a> for more information.</p>
@@ -157,7 +157,7 @@
     </div><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Utilizing migration scripts in a continuous integration workflow</span></h4><p>The Kentico continuous integration solution supports the use of migration scripts. The ~\<strong class=" ">CMS\App_Data\</strong><strong class=" ">CIRepository</strong> folder contains, in addition to serialized database object data, the following files:</p><ul class=" "><li class=" "><p><strong class=" ">@migrations</strong> – folder for storing all created migrations connected to a particular repository. Since all migration scripts for a repository are stored in this folder, their file names need to be unique.</p>
 </li><li class=" "><p class="auto-cursor-target"><strong class=" ">Before.txt</strong> – holds the file names of all migrations applied before the <i class=" ">CIRepository</i> folder <a href="restoring-continuous-integration-files-to-the-database">is restored</a> to the database. Insert only the migration file names without the .sql suffix. Each file name must be inserted on a <strong class=" ">separate line</strong>.</p>
 </li><li class=" "><p class="auto-cursor-target"><strong class=" ">After.txt </strong>–<strong class=" "> </strong>holds the file names of all migrations applied after the <i class=" ">CIRepository</i> folder is restored to the database. Insert only the migration file names without the .sql suffix. Each file name must be inserted on a <strong class=" ">separate line</strong>.</p>
-</li></ul><p>Additionally, the database of a Kentico instance contains a <strong class=" ">CI_Migration</strong> table, which stores the file names of migrations already executed on the database.</p><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+</li></ul><p>Additionally, the database of a Kentico instance contains a <strong class=" ">CI_Migration</strong> table, which stores the file names of migrations already executed on the database.</p><div class="sp-grid-section"></div><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -180,7 +180,30 @@
 </li><li class=" "><p><a href="restoring-continuous-integration-files-to-the-database">Restoring continuous integration files to the database</a></p>
 </li><li class=" "><p><a href="using-continuous-integration-with-visual-studio">Using continuous integration with Visual Studio</a></p>
 </li></ul>        </div>
-    </div></div></div>
+    </div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-synchronizingdatabasechangesusingmigrationscripts">Synchronizing database changes using migration scripts</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-utilizingmigrationscriptsinacontinuousintegrationworkflow">Utilizing migration scripts in a continuous integration workflow</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-restoringthecontinuousintegrationrepositoryviarunrestore.ps1">Restoring the continuous integration repository via RunRestore.ps1</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-decidingwhentoexecuteamigration">Deciding when to execute a migration</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-example-creatingmigrationscriptstosynchronizedatabasechanges">Example - Creating migration scripts to synchronize database changes</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-retrievingthelatestversionofyourprojectandupdatingthedatabase">Retrieving the latest version of your project and updating the database</a></p>
+</li></ul></li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-rollingbackdatabasechanges">Rolling back database changes</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-example-rollingbackchanges">Example - Rolling back changes</a></p>
+</li><li class=" "><p><a href="#src-70451861_synchronizingdatabasechangesnotmanagedbycontinuousintegration-restoringthedatabasetoaspecificpointintime">Restoring the database to a specific point in time</a></p>
+</li></ul></li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="continuous-integration-repository-structure">Continuous integration repository structure</a></p>
+</li><li class=" "><p><a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
+</li><li class=" "><p><a href="restoring-continuous-integration-files-to-the-database">Restoring continuous integration files to the database</a></p>
+</li><li class=" "><p><a href="using-continuous-integration-with-visual-studio">Using continuous integration with Visual Studio</a></p>
+</li></ul>        </div>
+    </div></div></div><div class="sp-grid-section"></div>
     
 
     

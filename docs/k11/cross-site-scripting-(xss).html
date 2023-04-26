@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Cross site scripting happens when somebody (an attacker) inserts a malicious input into a form (for example, a piece of HTML code). Depending on what happens after that, we divide XSS attacks into these types:</p><ul class=" "><li class=" "><p><strong class=" ">Persistent XSS</strong> - a web application (like an instance of Kentico) stores the malicious input in the database. Then, on some other page, the input is rendered. A browser renders the attacker's malicious input as a part of the page's HTML and this is the spot, where the input can cause problems.</p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-60"><p>Cross site scripting happens when somebody (an attacker) inserts a malicious input into a form (for example, a piece of HTML code). Depending on what happens after that, we divide XSS attacks into these types:</p><ul class=" "><li class=" "><p><strong class=" ">Persistent XSS</strong> - a web application (like an instance of Kentico) stores the malicious input in the database. Then, on some other page, the input is rendered. A browser renders the attacker's malicious input as a part of the page's HTML and this is the spot, where the input can cause problems.</p>
 </li><li class=" "><p><strong class=" ">Non-persistent XSS</strong> - the main difference is that a web application doesn't store the malicious input in the database. Instead, the application renders the input directly as a part of the page's response.<br></p>
 <ul class=" "><li class=" "><p>A special case of non-persistent XSS is called <strong class=" ">DOM-based XSS</strong> - this type of attack is done without sending any requests to the web server. The attacker injects JavaScript code directly.</p>
 </li></ul></li></ul><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Types of XSS attacks</span></h3><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Persistent XSS</span></h4><p>In this example, we have a standard .aspx page with a textbox, a label and a button:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -157,7 +157,7 @@
 <div class="line"><code class="plain">&lt;asp:Button runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"btnGetMeNameOfUser"</code><code class="plain"> Text=</code><code class="string">"Get me name of user"</code><code class="plain"> onclick=</code><code class="string">"btnGetMeNameOfUser_Click"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">&lt;asp:Label runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"lblUser"</code><code class="plain">&gt;&lt;/asp:Label&gt;</code></div>
 </div>
-    </div><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+    </div><div class="sp-grid-section"></div><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <ul class="toc-indentation "><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktvhlwzxnvzlhtu2f0dgfja3m">Types of XSS attacks</a></p>
@@ -170,7 +170,20 @@
 <ul class="toc-indentation "><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktrxhhbxbszxnvznnlcnzlci1zawrlchjvdgvjdglvbmzyb21yu1n2dwxuzxjhymlsaxrpzxm">Examples of server-side protection from XSS vulnerabilities</a></p>
 </li></ul></li><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktu3vtbwfyeq">Summary</a></p>
 </li></ul>        </div>
-    </div></div></div>
+    </div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktvhlwzxnvzlhtu2f0dgfja3m">Types of XSS attacks</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktugvyc2lzdgvudfhtuw">Persistent XSS</a></p>
+</li><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuykttm9ulxblcnnpc3rlbnryu1m">Non-persistent XSS</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktre9nlwjhc2vkwfnt">DOM-based XSS</a></p>
+</li></ul></li></ul></li><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktv2hhdgnhblhtu2f0dgfja3nkbw">What can XSS attacks do</a></p>
+</li><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktrmluzgluz1htu3z1bg5lcmfiawxpdgllcw">Finding XSS vulnerabilities</a></p>
+</li><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktqxzvawrpbmdyu1npbktlbnrpy28">Avoiding XSS in Kentico</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktrxhhbxbszxnvznnlcnzlci1zawrlchjvdgvjdglvbmzyb21yu1n2dwxuzxjhymlsaxrpzxm">Examples of server-side protection from XSS vulnerabilities</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktu3vtbwfyeq">Summary</a></p>
+</li></ul>        </div>
+    </div></div></div><div class="sp-grid-section"></div>
     
     
 

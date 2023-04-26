@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
 const cheerio = require('cheerio');
+const browserSync = require('browser-sync');
+
+const server = browserSync.create('local');
 
 function fixExport(spaceKey)
 {
@@ -67,6 +70,9 @@ function fixTwoColumnPageLayout(filePath)
 
     // Parse the HTML using Cheerio
     const $ = cheerio.load(html);
+
+    // Already processed, return
+    if($('#main-content .sp-grid-section').length) return;
 
     // Find the first occurrence of the HTML code to be wrapped
     const onThisPage = $('.confbox.panel .title.panel-header:contains("On this page")').first().parent();
@@ -215,6 +221,12 @@ async function fixK11(cb)
     return cb;
 }
 
+async function fixDu(cb)
+{
+    fixExport("du");
+    return cb;
+}
+
 async function fixK10(cb)
 {
     fixExport("k10");
@@ -228,8 +240,35 @@ function isItWorking(cb)
     return cb();
 }
 
+async function browsersyncWatch(cb)
+{
+    server.init({
+        server: {
+            baseDir: './docs/',
+            serveStaticOptions: {
+             extensions: ["html"]
+            }},
+        ghostMode: false, // Toggle to mirror clicks, reloads etc (performance)
+        logFileChanges: true,
+        logLevel: 'debug',
+        open: true,
+    });
+
+    gulp.watch(('./docs/**/*.*'), browsersync_reload)
+
+    return cb;
+}
+
+async function browsersync_reload(callback)
+{
+    server.reload();
+    return callback;
+}
+
 
 // -----------------Runnable tasks-------------------
 exports.default = isItWorking;
 
-exports.fixExport = gulp.series(fixK11);
+exports.fixExport = gulp.series(fixK11, fixDu);
+
+exports.watch = browsersyncWatch;

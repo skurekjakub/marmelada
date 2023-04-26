@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customization best practices update - Documentation Updates</title>
@@ -65,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="56787478">
+<body pageid="56787478" elementpageid="62718884">
 
 <div id="ht-loader">
     <noscript>
@@ -87,8 +85,8 @@
 
                 <form action="#" method="GET" id="search">
                     <input class="search-input" type="text" placeholder="Search" tabindex="-1" autocomplete="off" name="q" value="">
-                    <input type="hidden" name="max" value="15" />
-                    <input type="submit" style="display:none" tabindex="-4"/>
+                    <input type="hidden" name="max" value="15">
+                    <input type="submit" style="display:none" tabindex="-4">
                 </form>
 
                 <a href="#" id="ht-search-button" class="ht-header-icon ht-header-icon-svg">
@@ -111,7 +109,7 @@
             <header class="ht-sidebar-header">
                 <h1 class="ht-logo">
                     <span class="ht-logo-label">DU</span>
-                    <img class="space-logo" src="global.logo" />
+                    <img class="space-logo" src="global.logo">
                 </h1>
                 <a href="Documentation-Updates-Home.html" class="ht-space-link">
                     <h2>Documentation Updates</h2>
@@ -141,304 +139,209 @@
         <header class="ht-content-header">
             <div id="ht-breadcrumb">
     <ul>
-        <li><a href="Documentation-Updates-Home.html">Documentation Updates</a></li>
-                                                                                     <li><a href="Performing-upgrade-ready-customizations.html">Performing upgrade-ready customizations</a></li>
+        <li><a href="documentation-updates-home.html">Documentation Updates</a></li>
+                                                                                     <li><a href="performing-upgrade-ready-customizations.html">Performing upgrade-ready customizations</a></li>
                                                             </ul>
 </div>            <h1 id="src-62718884"> <span>Customization best practices update</span></h1>
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-    <div  class="confbox admonition admonition-info">
+    <div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"></div></div><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Based on notes from consultants and support.</p>
+<p>Based on notes from consultants and support.</p>
         </div>
     </div>
     <div class="section section-1" id="src-62718884_Customizationbestpracticesupdate-Databasemodifications">
         <h1 class="heading "><span>Database modifications</span></h1>
-<ul class=" "><li class=" "><p   
->modification of <strong class=" ">system tables</strong> (add, remove fields)</p>
-<ul class=" "><li class=" "><p   
->modify only classes which are &#39;customizable&#39;</p>
-</li><li class=" "><p   
->when you need to modify <strong class=" ">not customizable classes</strong> - how to do that?</p>
-<ul class=" "><li class=" "><p   
->SAFE WAY: create a custom table (<strong class=" ">custom module class</strong>) and <strong class=" ">reference extra fields/data via a reference key</strong> (e.g. RoleID, RoleGUID)</p>
-<ul class=" "><li class=" "><p   
->What happens during synchronization between environments with staging or import/export)?</p>
-<ul class=" "><li class=" "><p   
->If this extended table is a custom module class table and TYPEINFO is properly defined, staging &amp; import/export should work just fine with the reference keys/fields</p>
-</li></ul></li><li class=" "><p   
->NOTE: You might need to implement custom API (e.g. object query) in custom &lt;&gt;InfoProvider to retrieve/work with data from both the original class and custom class and always call this method. If not possible, you can as well override the original class &lt;&gt;InfoProvider and add extra functionality.</p>
-    <div  class="confbox admonition admonition-note">
+<ul class=" "><li class=" "><p>modification of <strong class=" ">system tables</strong> (add, remove fields)</p>
+<ul class=" "><li class=" "><p>modify only classes which are 'customizable'</p>
+</li><li class=" "><p>when you need to modify <strong class=" ">not customizable classes</strong> - how to do that?</p>
+<ul class=" "><li class=" "><p>SAFE WAY: create a custom table (<strong class=" ">custom module class</strong>) and <strong class=" ">reference extra fields/data via a reference key</strong> (e.g. RoleID, RoleGUID)</p>
+<ul class=" "><li class=" "><p>What happens during synchronization between environments with staging or import/export)?</p>
+<ul class=" "><li class=" "><p>If this extended table is a custom module class table and TYPEINFO is properly defined, staging &amp; import/export should work just fine with the reference keys/fields</p>
+</li></ul></li><li class=" "><p>NOTE: You might need to implement custom API (e.g. object query) in custom &lt;&gt;InfoProvider to retrieve/work with data from both the original class and custom class and always call this method. If not possible, you can as well override the original class &lt;&gt;InfoProvider and add extra functionality.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Candidate to add to best practices! For adding fields to classes that are not customizable.</p>
+<p>Candidate to add to best practices! For adding fields to classes that are not customizable.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->FAST WAY (not officially supported)</p>
-<ul class=" "><li class=" "><p   
->modify the class directly by enabling the customizable option and make note(s) about your changes.</p>
-</li></ul></li></ul></li></ul></li><li class=" "><p   
->changing <strong class=" ">size and type of system fields</strong> (e.g. increasing size of NodeAliasPath, RoleDisplayName, varchar to char leading into TRUNCATE issues)</p>
-<ul class=" "><li class=" "><p   
->Look for <strong class=" ">alternative solution</strong> (e.g. using DocumentURLPath instead of NodeAliasPath if looking for longer field) since hardcoded things are in many cases impossible to modify without source code version.</p>
-    <div  class="confbox admonition admonition-info">
+</li></ul></li><li class=" "><p>FAST WAY (not officially supported)</p>
+<ul class=" "><li class=" "><p>modify the class directly by enabling the customizable option and make note(s) about your changes.</p>
+</li></ul></li></ul></li></ul></li><li class=" "><p>changing <strong class=" ">size and type of system fields</strong> (e.g. increasing size of NodeAliasPath, RoleDisplayName, varchar to char leading into TRUNCATE issues)</p>
+<ul class=" "><li class=" "><p>Look for <strong class=" ">alternative solution</strong> (e.g. using DocumentURLPath instead of NodeAliasPath if looking for longer field) since hardcoded things are in many cases impossible to modify without source code version.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Candidate - mention searching for alternative solutions / contact support.</p>
+<p>Candidate - mention searching for alternative solutions / contact support.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->changing <strong class=" ">database schema</strong> (e.g. dbo)</p>
-<ul class=" "><li class=" "><p   
->This should not be an issue at all as long as they ensure proper permissions / unified schema for the SQL account used in Kentico&#39;s connection string, so we allow customers to change DB schema of DB objects (tables, views etc.). It seems like we are using setting &quot;CMSDBObjectOwner&quot; for <strong class=" ">online forms</strong> and generally when creating a <strong class=" ">new class</strong> (page type, custom module class and custom table).</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>changing <strong class=" ">database schema</strong> (e.g. dbo)</p>
+<ul class=" "><li class=" "><p>This should not be an issue at all as long as they ensure proper permissions / unified schema for the SQL account used in Kentico's connection string, so we allow customers to change DB schema of DB objects (tables, views etc.). It seems like we are using setting "CMSDBObjectOwner" for <strong class=" ">online forms</strong> and generally when creating a <strong class=" ">new class</strong> (page type, custom module class and custom table).</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Add info about dbo schema - based on connections string / setting. - find out info and add</p>
+<p>Add info about dbo schema - based on connections string / setting. - find out info and add</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->customization of <strong class=" ">database properties</strong> (collation etc.)</p>
-<ul class=" "><li class=" "><p   
->Do not modify collation</p>
-</li><li class=" "><p   
->Everything else is up to customer, since there are so many options how to configure DB. For example, if they set isolation level to something that performs way better from performance perspective (ReadUncommitted), they they will need to live with the fact that the data might not be 100% accurate which could cause some possible issues in Kentico. Best practice would be to validate they DB properties changes with our tech.support. Ideally when in communication with technical support, provide them also with customizations to DB properties.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>customization of <strong class=" ">database properties</strong> (collation etc.)</p>
+<ul class=" "><li class=" "><p>Do not modify collation</p>
+</li><li class=" "><p>Everything else is up to customer, since there are so many options how to configure DB. For example, if they set isolation level to something that performs way better from performance perspective (ReadUncommitted), they they will need to live with the fact that the data might not be 100% accurate which could cause some possible issues in Kentico. Best practice would be to validate they DB properties changes with our tech.support. Ideally when in communication with technical support, provide them also with customizations to DB properties.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->yes - isolation level etc. Add mention (somewhere) to ask Kentico support if their configuration is compatible.</p>
+<p>yes - isolation level etc. Add mention (somewhere) to ask Kentico support if their configuration is compatible.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->adding <strong class=" ">foreign keys for custom tables</strong> (possible SYNC issue(s))</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Use module classes</strong> instead when you need foreign keys, unless you need to get fast access to UI which custom tables module has.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>adding <strong class=" ">foreign keys for custom tables</strong> (possible SYNC issue(s))</p>
+<ul class=" "><li class=" "><p><strong class=" ">Use module classes</strong> instead when you need foreign keys, unless you need to get fast access to UI which custom tables module has.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->add note to best practices that foreign keys are supported only for custom module classes</p>
+<p>add note to best practices that foreign keys are supported only for custom module classes</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->using <strong class=" ">not supported field data type</strong> (for example XML)</p>
-<ul class=" "><li class=" "><p   
->There should be an option to add custom data type in general by calling DataTypeManager.RegisterDataTypes, but this is not described in the documentation. This would the the best practice compared to changing data type directly on DB level. This is of course not-transferable between different Kentico instances, so all instances would need to contain this customization.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>using <strong class=" ">not supported field data type</strong> (for example XML)</p>
+<ul class=" "><li class=" "><p>There should be an option to add custom data type in general by calling DataTypeManager.RegisterDataTypes, but this is not described in the documentation. This would the the best practice compared to changing data type directly on DB level. This is of course not-transferable between different Kentico instances, so all instances would need to contain this customization.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Research and add a page to the documentation describing the scenario. (basic info + example from consultants)</p>
-<p   
->Separate page, link from the general customization best practices.</p>
+<p>Research and add a page to the documentation describing the scenario. (basic info + example from consultants)</p>
+<p>Separate page, link from the general customization best practices.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->adding <strong class=" ">new fields</strong> with <strong class=" ">required flag</strong> (&#39;not null&#39;) running into SYNCH issues + having <strong class=" ">different field data type</strong> (int and string) <strong class=" ">in different environments</strong> (STG, PROD) for the <strong class=" ">same object </strong>(possible SYNC issue(s))<br/></p>
-<ul class=" "><li class=" "><p   
->When table already contains some data and you are adding a new field, best practice is to always make this field not required -&gt; allow null.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>adding <strong class=" ">new fields</strong> with <strong class=" ">required flag</strong> ('not null') running into SYNCH issues + having <strong class=" ">different field data type</strong> (int and string) <strong class=" ">in different environments</strong> (STG, PROD) for the <strong class=" ">same object </strong>(possible SYNC issue(s))<br></p>
+<ul class=" "><li class=" "><p>When table already contains some data and you are adding a new field, best practice is to always make this field not required -&gt; allow null.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Import/Export, Staging doc note, not in customization best practices.</p>
+<p>Import/Export, Staging doc note, not in customization best practices.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->have <strong class=" ">unique prefix</strong> in general (custom fields, custom tables / objects) <img  class="emoticon emoticon-tick"  src="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/check.svg" alt="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/check.svg"   />
+</li></ul></li><li class=" "><p>have <strong class=" ">unique prefix</strong> in general (custom fields, custom tables / objects) <img class="emoticon emoticon-tick" src="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/check.svg" alt="images/s/-jbxav7/8804/1w4vbtj/_/images/icons/emoticons/check.svg">
 </p>
-</li><li class=" "><p   
-><strong class=" ">adding/removing/updating</strong> data via <strong class=" ">SQL</strong></p>
-<ul class=" "><li class=" "><p   
->modification of <strong class=" ">system table&#39;s data</strong> (e.g.UI elements)<strong class=" "> - avoid in all cases</strong></p>
-</li><li class=" "><p   
->Best practice would be to use Kentico API (might be slow for large amount of data). Speed up API processing with CMSActionContext object.</p>
-    <div  class="confbox admonition admonition-note">
+</li><li class=" "><p><strong class=" ">adding/removing/updating</strong> data via <strong class=" ">SQL</strong></p>
+<ul class=" "><li class=" "><p>modification of <strong class=" ">system table's data</strong> (e.g.UI elements)<strong class=" "> - avoid in all cases</strong></p>
+</li><li class=" "><p>Best practice would be to use Kentico API (might be slow for large amount of data). Speed up API processing with CMSActionContext object.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Add a new page / subject to the Performance optimization section &ndash; <strong class=" ">Importing / Managing large volumes of Kentico data</strong></p>
-<p   
->- Use the Kentico API if possible, use CMSActionsContext to disable additional tasks (staging, event logging, continuous synchronization)</p>
-<p   
->- Bulk insert API? <a  class="external-link" href="https://kentico.atlassian.net/wiki/display/CON/Bulk+Insert+feature">https://kentico.atlassian.net/wiki/display/CON/Bulk+Insert+feature</a></p>
+<p>Add a new page / subject to the Performance optimization section – <strong class=" ">Importing / Managing large volumes of Kentico data</strong></p>
+<p>- Use the Kentico API if possible, use CMSActionsContext to disable additional tasks (staging, event logging, continuous synchronization)</p>
+<p>- Bulk insert API? <a class="external-link" href="https://kentico.atlassian.net/wiki/display/CON/Bulk+Insert+feature">https://kentico.atlassian.net/wiki/display/CON/Bulk+Insert+feature</a></p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->list all of the built-in system page types (for example CMS.Blog*)</p>
-<ul class=" "><li class=" "><p   
->do not modify system page types</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>list all of the built-in system page types (for example CMS.Blog*)</p>
+<ul class=" "><li class=" "><p>do not modify system page types</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Extend/check the list of &quot;system objects&quot; in the best practices. For example the <strong class=" ">CMS.Blog*</strong> page type.</p>
-<p   
->+ check other &quot;hardcoded&quot; system objects in the solution</p>
+<p>Extend/check the list of "system objects" in the best practices. For example the <strong class=" ">CMS.Blog*</strong> page type.</p>
+<p>+ check other "hardcoded" system objects in the solution</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->IDEAS</p>
-<ul class=" "><li class=" "><p   
->define <strong class=" ">diagrams explaining database structure</strong> for a specific module</p>
-<ul class=" "><li class=" "><p   
->rather than understanding database structure, they should be interested in API, specifically references between classes, assemblies / DLLs etc. which you can get in VS by generating <strong class=" ">UML class diagram</strong>.</p>
-    <div  class="confbox admonition admonition-info">
+</li></ul></li><li class=" "><p>IDEAS</p>
+<ul class=" "><li class=" "><p>define <strong class=" ">diagrams explaining database structure</strong> for a specific module</p>
+<ul class=" "><li class=" "><p>rather than understanding database structure, they should be interested in API, specifically references between classes, assemblies / DLLs etc. which you can get in VS by generating <strong class=" ">UML class diagram</strong>.</p>
+    <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Consultants will try to prepare a solution to generate diagrams for specific modules (e.g. blogs). TWs then need to integrate the results into the docs.</p>
-<p   
->Related to the Object tree reference project, but that is still pretty far off.</p>
+<p>Consultants will try to prepare a solution to generate diagrams for specific modules (e.g. blogs). TWs then need to integrate the results into the docs.</p>
+<p>Related to the Object tree reference project, but that is still pretty far off.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->missing <strong class=" ">list</strong> of all <strong class=" ">web.config keys</strong></p>
-<ul class=" "><li class=" "><p   
->what is not published/listed in documentation should not be provided to customers since it might be a prototype or something that we might remove in a future / is not tested.</p>
-</li><li class=" "><p   
->NOTE: You can store settings in web.config, could.config or on database level in CMS_SettingsKey table. The priority is not deterministic, depends from case to case.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>missing <strong class=" ">list</strong> of all <strong class=" ">web.config keys</strong></p>
+<ul class=" "><li class=" "><p>what is not published/listed in documentation should not be provided to customers since it might be a prototype or something that we might remove in a future / is not tested.</p>
+</li><li class=" "><p>NOTE: You can store settings in web.config, could.config or on database level in CMS_SettingsKey table. The priority is not deterministic, depends from case to case.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Add note to web.config reference or general customization practices. Remove old web.config keys that are not documented - try to look for an equivalent setting in the Settings application</p>
-<p   
->*source control requirement for setting history? solution - use continuous integration for settings</p>
+<p>Add note to web.config reference or general customization practices. Remove old web.config keys that are not documented - try to look for an equivalent setting in the Settings application</p>
+<p>*source control requirement for setting history? solution - use continuous integration for settings</p>
         </div>
     </div>
 </li></ul></li></ul></li></ul>    </div>
     <div class="section section-1" id="src-62718884_Customizationbestpracticesupdate-Filesystemmodifications">
         <h1 class="heading "><span>File system modifications</span></h1>
-<ul class=" "><li class=" "><p   
->modification of <strong class=" ">system files</strong> (e.g.g CKEditor, PortalTemplate.aspx) in case there is no customization option / extension point for such module/feature/functionality. <strong class=" ">Create</strong> a copy or <strong class=" ">modify</strong> system file?</p>
-<ul class=" "><li class=" "><p   
->if copy, then hotfix/upgrade will overwrite the original file, but not your custom file, so you don&#39;t know what was changed unless yo have a note about your customization?</p>
-</li><li class=" "><p   
->if original, then you know what was hotfixed/upgraded</p>
-<ul class=" "><li class=" "><p   
->maybe keep a copy of the original file with extension .old82_15 (version 8.2, hotfix 15)</p>
-</li><li class=" "><p   
->what if source control is used?</p>
-<ul class=" "><li class=" "><p   
->maybe just keep comments in the code and when Kentico creates the .new file, then you can compare</p>
-</li></ul></li><li class=" "><p   
->if you completely change the original file, it might be better to have the copy of original.</p>
-    <div  class="confbox admonition admonition-note">
+<ul class=" "><li class=" "><p>modification of <strong class=" ">system files</strong> (e.g.g CKEditor, PortalTemplate.aspx) in case there is no customization option / extension point for such module/feature/functionality. <strong class=" ">Create</strong> a copy or <strong class=" ">modify</strong> system file?</p>
+<ul class=" "><li class=" "><p>if copy, then hotfix/upgrade will overwrite the original file, but not your custom file, so you don't know what was changed unless yo have a note about your customization?</p>
+</li><li class=" "><p>if original, then you know what was hotfixed/upgraded</p>
+<ul class=" "><li class=" "><p>maybe keep a copy of the original file with extension .old82_15 (version 8.2, hotfix 15)</p>
+</li><li class=" "><p>what if source control is used?</p>
+<ul class=" "><li class=" "><p>maybe just keep comments in the code and when Kentico creates the .new file, then you can compare</p>
+</li></ul></li><li class=" "><p>if you completely change the original file, it might be better to have the copy of original.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Note - For small customizations, it may be better to edit Kentico project files directly (try to update the customization best practices in a clear way)</p>
+<p>Note - For small customizations, it may be better to edit Kentico project files directly (try to update the customization best practices in a clear way)</p>
         </div>
     </div>
-</li></ul></li></ul></li><li class=" "><p   
-><strong class=" ">API changes</strong>, some methods are removed and there is no replacement or not published online</p>
-<ul class=" "><li class=" "><p   
->In past there was some API that was public and should not be, which is our fault.</p>
-</li></ul></li><li class=" "><p   
->modification of <strong class=" ">codebehind and/or codefile</strong> of custom <strong class=" ">web part layout</strong></p>
-<ul class=" "><li class=" "><p   
->when customizing web part markup (.ascx) do you recommend to create a virtual layout of modify the file on a file system?</p>
-</li><li class=" "><p   
->Use custom layout <strong class=" ">only</strong> to reorganize layout, not to write a custom code (e.g. &lt;script runat=&quot;server&quot;&gt; ... &lt;/script&gt;)</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li></ul></li><li class=" "><p><strong class=" ">API changes</strong>, some methods are removed and there is no replacement or not published online</p>
+<ul class=" "><li class=" "><p>In past there was some API that was public and should not be, which is our fault.</p>
+</li></ul></li><li class=" "><p>modification of <strong class=" ">codebehind and/or codefile</strong> of custom <strong class=" ">web part layout</strong></p>
+<ul class=" "><li class=" "><p>when customizing web part markup (.ascx) do you recommend to create a virtual layout of modify the file on a file system?</p>
+</li><li class=" "><p>Use custom layout <strong class=" ">only</strong> to reorganize layout, not to write a custom code (e.g. &lt;script runat="server"&gt; ... &lt;/script&gt;)</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->No use of inline code in web part layouts - add to web part documentation + best practices</p>
-<p   
->In these cases, create a custom web part (link)</p>
+<p>No use of inline code in web part layouts - add to web part documentation + best practices</p>
+<p>In these cases, create a custom web part (link)</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->best practices for using <strong class=" ">Bootstrap</strong>? - Ondra Vasil, then add customization BPs (similar to jQuery best practices)<br/>use of <strong class=" ">PortalContext.ViewMode</strong> in custom code to prevent <strong class=" ">conflicts of Kentico UI with custom CSS and/or JS</strong></p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>best practices for using <strong class=" ">Bootstrap</strong>? - Ondra Vasil, then add customization BPs (similar to jQuery best practices)<br>use of <strong class=" ">PortalContext.ViewMode</strong> in custom code to prevent <strong class=" ">conflicts of Kentico UI with custom CSS and/or JS</strong></p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Avoid problems with Kentico UI styles conflicting with site styles</p>
-<p   
->Try to avoid conflicts, or if necessary use PortalContext.ViewMode conditions (macros or custom code) to add styles/JS files</p>
+<p>Avoid problems with Kentico UI styles conflicting with site styles</p>
+<p>Try to avoid conflicts, or if necessary use PortalContext.ViewMode conditions (macros or custom code) to add styles/JS files</p>
         </div>
     </div>
-</li><li class=" "><p   
->not calling <strong class=" ">base implementation of built-in methods</strong> when <strong class=" ">customizing</strong> some <strong class=" ">provider</strong></p>
-<ul class=" "><li class=" "><p   
->developer needs to know what he is doing, if he does not know what the base class is doing, it is better to call the base implementation and then add custom code.</p>
-    <div  class="confbox admonition admonition-note">
+</li><li class=" "><p>not calling <strong class=" ">base implementation of built-in methods</strong> when <strong class=" ">customizing</strong> some <strong class=" ">provider</strong></p>
+<ul class=" "><li class=" "><p>developer needs to know what he is doing, if he does not know what the base class is doing, it is better to call the base implementation and then add custom code.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Provider customization - call the base method unless you require complete customization or you know exactly what you are doing.</p>
+<p>Provider customization - call the base method unless you require complete customization or you know exactly what you are doing.</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->Custom <strong class=" ">class in App_Code</strong> (OLD_App_Code) vs. <strong class=" ">custom DLL</strong>?</p>
-<ul class=" "><li class=" "><p   
->Why is custom DLL preferred according to the documentation?</p>
-<ul class=" "><li class=" "><p   
->the main benefits are performance, test-ability, transfer-ability (e.g. it is included in a custom module, nuget package)</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>Custom <strong class=" ">class in App_Code</strong> (OLD_App_Code) vs. <strong class=" ">custom DLL</strong>?</p>
+<ul class=" "><li class=" "><p>Why is custom DLL preferred according to the documentation?</p>
+<ul class=" "><li class=" "><p>the main benefits are performance, test-ability, transfer-ability (e.g. it is included in a custom module, nuget package)</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Consider adding the reasons/benefits to the best practices. Performance/compiling etc.</p>
+<p>Consider adding the reasons/benefits to the best practices. Performance/compiling etc.</p>
         </div>
     </div>
-</li></ul></li></ul></li><li class=" "><p   
->where to <strong class=" ">store custom files</strong> in folders like CMSWebParts etc. or in completely custom location like MyProject/MyWebParts etc.</p>
-<ul class=" "><li class=" "><p   
->follow the documentation for custom modules and keep custom files under module recommended location. If you do not have a custom module, create one. Global location is not recommended, because in a future everything should be considered a module and for example some web part will always belong to only one module, not to multiple modules, so it makes sense to keep in in module recommended location.</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li></ul></li><li class=" "><p>where to <strong class=" ">store custom files</strong> in folders like CMSWebParts etc. or in completely custom location like MyProject/MyWebParts etc.</p>
+<ul class=" "><li class=" "><p>follow the documentation for custom modules and keep custom files under module recommended location. If you do not have a custom module, create one. Global location is not recommended, because in a future everything should be considered a module and for example some web part will always belong to only one module, not to multiple modules, so it makes sense to keep in in module recommended location.</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Add files to a custom sub-folder when possible, then use the structure underneath.</p>
-<p   
->If possible create a custom module and use the module structure</p>
-<p   
->+ exceptions for special cases (web parts, form controls)</p>
+<p>Add files to a custom sub-folder when possible, then use the structure underneath.</p>
+<p>If possible create a custom module and use the module structure</p>
+<p>+ exceptions for special cases (web parts, form controls)</p>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
->how to <strong class=" ">upgrade</strong> customers with <strong class=" ">source code</strong>? (not supported)</p>
-    <div  class="confbox admonition admonition-note">
+</li></ul></li><li class=" "><p>how to <strong class=" ">upgrade</strong> customers with <strong class=" ">source code</strong>? (not supported)</p>
+    <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
-<p   
->Consider adding a quick process for source code upgrades - merge source code versions, upgrade the database. Add note to upgrade instructions.</p>
+<p>Consider adding a quick process for source code upgrades - merge source code versions, upgrade the database. Add note to upgrade instructions.</p>
         </div>
     </div>
-</li><li class=" "><p   
->use <strong class=" ">custom storage provider</strong> to change which <strong class=" ">file is loaded</strong> by system (file1.aspx vs file2.aspx)</p>
-<ul class=" "><li class=" "><p   
->this is not a best practice, because this could be an issue due to .NET handling the file (e.g. precompilation).</p>
-</li></ul></li><li class=" "><p   
->IDEAS</p>
-<ul class=" "><li class=" "><p   
->have a list of web parts that were removed and replacement / option</p>
-</li><li class=" "><p   
->can we list all of the loaded custom providers, classes etc. on application start in the event log or simply show in the system application?</p>
-</li><li class=" "><p   
->system application could tell you if you are using web app, web site, azure project or precompiled web site</p>
-</li><li class=" "><p   
->define optimization web.config keys (e.g. disable Mobi 51Degrees)</p>
-</li><li class=" "><p   
->importing data/files from old versions to new one, can overwrite changes</p>
-</li><li class=" "><p   
->upgrade with opened VS, could this cause an issue(s)?</p>
-</li><li class=" "><p   
->resign macros after import/export or synchronization with staging in certain cases</p>
-</li><li class=" "><p   
->when cloning some objects (e.g. page template), be aware that import/export / staging can overwrite your objects because it uses the same GUID</p>
+</li><li class=" "><p>use <strong class=" ">custom storage provider</strong> to change which <strong class=" ">file is loaded</strong> by system (file1.aspx vs file2.aspx)</p>
+<ul class=" "><li class=" "><p>this is not a best practice, because this could be an issue due to .NET handling the file (e.g. precompilation).</p>
+</li></ul></li><li class=" "><p>IDEAS</p>
+<ul class=" "><li class=" "><p>have a list of web parts that were removed and replacement / option</p>
+</li><li class=" "><p>can we list all of the loaded custom providers, classes etc. on application start in the event log or simply show in the system application?</p>
+</li><li class=" "><p>system application could tell you if you are using web app, web site, azure project or precompiled web site</p>
+</li><li class=" "><p>define optimization web.config keys (e.g. disable Mobi 51Degrees)</p>
+</li><li class=" "><p>importing data/files from old versions to new one, can overwrite changes</p>
+</li><li class=" "><p>upgrade with opened VS, could this cause an issue(s)?</p>
+</li><li class=" "><p>resign macros after import/export or synchronization with staging in certain cases</p>
+</li><li class=" "><p>when cloning some objects (e.g. page template), be aware that import/export / staging can overwrite your objects because it uses the same GUID</p>
 </li></ul></li></ul>    </div>
         </div>
 
@@ -460,5 +363,6 @@
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

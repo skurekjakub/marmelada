@@ -148,13 +148,13 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>If you already have a Kentico website or web application project hosted on a traditional web server or prepared for deployment, you can decide to move your project to Azure Web Apps.</p><p>This scenario expects that you have a Kentico website or web application project installed in a local file system, connected to a standard Microsoft SQL database. If you want to move your project to Azure Web Apps, you need to:</p><ol class=" "><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-part1-deployingthedatabasetoazure">Deploy your database to Azure SQL</a> (if you want to have the whole project on Azure, otherwise it is not necessary)</p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-60"><p>If you already have a Kentico website or web application project hosted on a traditional web server or prepared for deployment, you can decide to move your project to Azure Web Apps.</p><p>This scenario expects that you have a Kentico website or web application project installed in a local file system, connected to a standard Microsoft SQL database. If you want to move your project to Azure Web Apps, you need to:</p><ol class=" "><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-part1-deployingthedatabasetoazure">Deploy your database to Azure SQL</a> (if you want to have the whole project on Azure, otherwise it is not necessary)</p>
 </li><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-part2-creatingazurewebappsfromvisualstudio">Create a new Azure Web Apps application</a>.</p>
 </li><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-part3-deployingprojectstoazurewebapps">Deploy the project files through Visual Studio</a>. Alternatively, you can also <a href="setting-up-kentico-in-azure-web-apps#src-68881682_settingupkenticoinazurewebapps-uploadingkenticotoazurewebappsoverftp">deploy your project over FTP</a>.</p>
 </li></ol><p>However, please read the <strong class=" ">Possible issues</strong> section first and adjust your project according to the recommendations.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Possible issues</span></h3><p>The following issues present problems which you should be aware of during the process of deploying an existing project to an Azure Web Apps project. Please assess whether they apply to your project and adjust your project according to the recommendations.</p><ul class=" "><li class=" "><p>If you have set up a <strong class=" ">web farm</strong> in your project, the system may contain unnecessary web farm servers in the database. Therefore, we recommend that you delete the old web farm servers in the UI to ensure that a licensing error does not occur. And configure the web farms to generate web farm servers automatically.</p>
 </li><li class=" "><p>If you are deploying a <strong class=" ">web application</strong> project and you <strong class=" ">store virtual objects</strong> (form layouts, page layouts, transformations, etc.) in the file system (when the <strong class=" ">System -&gt; Virtual objects -&gt; Store all virtual objects in file system</strong> option is enabled), the virtual objects may not be deployed together with the project. Either move the objects back to the database or include the object files in the project (as described in <a href="deployment-mode-for-virtual-objects#src-68881741_deploymentmodeforvirtualobjects-deploymentmodeonwebapplicationprojects">Deployment mode on web application projects</a>) before deploying your project to the Azure platform. Kentico web site projects do not require any actions in this regard.</p>
 </li><li class=" "><p>Your <strong class=" ">database</strong> may contain custom database objects that are not supported on Azure SQL. Because of this limitation of the Azure platform, you might not be able to migrate your database to Azure SQL without modifications. You might encounter issues when deploying your database to Azure if you have somehow customized your database (stored procedures, indexes, access to tables) or if you have developed custom modules.</p>
-</li></ul><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+</li></ul><div class="sp-grid-section"></div><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -166,7 +166,19 @@
 </li><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-configuringwebfarmsforazurewebapps">Configuring web farms for Azure Web Apps</a></p>
 </li></ul><p></p>
         </div>
-    </div></div></div>
+    </div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-possibleissues">Possible issues</a></p>
+</li><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-part1-deployingthedatabasetoazure">Part 1 - Deploying the database to Azure</a></p>
+</li><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-part2-creatingazurewebappsfromvisualstudio">Part 2 - Creating Azure Web Apps from Visual Studio</a></p>
+</li><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-part3-deployingprojectstoazurewebapps">Part 3 - Deploying projects to Azure Web Apps</a></p>
+</li><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-increasingstoragecapacityonazurewebapps">Increasing storage capacity on Azure Web Apps</a></p>
+</li><li class=" "><p><a href="#src-68881689_deployingexistingkenticoprojectstoazurewebapps-configuringwebfarmsforazurewebapps">Configuring web farms for Azure Web Apps</a></p>
+</li></ul><p></p>
+        </div>
+    </div></div></div><div class="sp-grid-section"></div>
 
 
     
