@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882095">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The CMS.IO library allows you to customize Kentico to support a file system of your choice. As described in the <a href="working-with-physical-files-using-the-api">Overview page</a>, you can achieve this by developing a custom provider based on the classes contained within CMS.IO.</p><h3 id="src-68882095_Writingacustomfilesystemprovider-Preparation" class="heading "><span>Preparation</span></h3><p>To implement a custom file system provider, you need to add a new assembly to the Kentico solution:</p><ol class="conf-macro output-inline "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+<div class="sp-grid-cell sp-grid-60"><p>The CMS.IO library allows you to customize Kentico to support a file system of your choice. As described in the <a href="working-with-physical-files-using-the-api">Overview page</a>, you can achieve this by developing a custom provider based on the classes contained within CMS.IO.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Preparation</span></h3><p>To implement a custom file system provider, you need to add a new assembly to the Kentico solution:</p><ol class="conf-macro output-inline "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
 </li><li class=" "><p>Add a new <strong class=" ">Class Library</strong> project to the Kentico solution, for example named <i class=" ">CustomFileSystemProvider</i>.</p>
 </li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
 <ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
@@ -163,7 +163,7 @@
 </li></ol></div>
     
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -184,7 +184,7 @@
 </li><li class=" "><p>Select the new files while holding the <strong class=" ">Ctrl</strong> key.</p>
 </li><li class=" "><p>Right-click one of the files and select <strong class=" ">Include in Project</strong>.</p>
 </li></ol></li><li class=" "><p>Edit the copied files and rename the namespaces to <strong class=" ">exactly</strong> match the assembly name of your custom project (<i class=" ">CustomFileSystemProvider</i> in this example).</p>
-</li></ol>    <h3 id="src-68882095_Writingacustomfilesystemprovider-Implementation" class="heading "><span>Implementation</span></h3>
+</li></ol>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Implementation</span></h3>
 <p>If you choose to take advantage of the prepared classes, go through all files contained in the project and replace the <strong class=" ">NotImplementedExceptions</strong> inside methods with your implementation, and implement property and method overrides. You can consult the following steps for reference or if you wish to create a provider from scratch.</p>
 <ol class=" "><li class=" "><p>Create two separate classes that inherit from the following abstract classes:</p>
 <ul class=" "><li class=" "><p>CMS.IO.AbstractDirectory</p>
@@ -245,13 +245,13 @@
 <p><strong class=" ">Note</strong>: The custom file system provider classes must be placed into a namespace that <strong class=" ">exactly</strong> matches the name of the given assembly.</p>
         </div>
     </div>
-    <h3 id="src-68882095_Writingacustomfilesystemprovider-Configuration" class="heading "><span>Configuration</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Configuration</span></h3>
 <p>Perform the following configuration steps to start using your custom file system provider:</p>
 <ol class=" "><li class=" "><p>Add the <strong class=" ">CMSStorageProviderAssembly</strong> key to the <i class=" ">appSettings</i> section of your project's <strong class=" ">web.config</strong> file. Set the key's value to the assembly name of your custom provider.</p>
 </li><li class=" "><p>Configure the project to use the provider. Choose between the following options:<br><br></p>
 <ul class=" "><li class=" "><p>Add the <strong class=" ">CMSExternalStorageName</strong> key to the <i class=" ">appSettings</i> section of the web.config file and set the value to any identifier. This maps the project's <i class=" "><strong class=" ">entire</strong></i> file system to the custom provider.<br><br>– OR –<br><br></p>
 </li><li class=" "><p>Use the API to create an instance of the <strong class=" ">CMS.IO.StorageProvider</strong> class and map specific project folders to your custom provider.</p>
-</li></ul></li></ol>    <h4 id="src-68882095_Writingacustomfilesystemprovider-Examples" class="heading "><span>Examples</span></h4>
+</li></ul></li></ol>    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Examples</span></h4>
 <ul class=" "><li class=" "><p>The following web.config keys configure the application to store its <i class=" "><strong class=" ">entire</strong></i> file system using a custom provider implemented in the "CustomFileSystemProvider" assembly with "custom" as the identifier:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">

@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68880378">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Kentico supports Windows integrated authentication. This means that when a user signs in to a Windows domain, Kentico automatically recognizes their identity without requiring a user name and password.</p><div class="confbox admonition admonition-note">
+<div class="sp-grid-cell sp-grid-60"><p>Kentico supports Windows integrated authentication. This means that when a user signs in to a Windows domain, Kentico automatically recognizes their identity without requiring a user name and password.</p><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p><strong class=" ">Prerequisite</strong></p>
@@ -173,7 +173,7 @@
 
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -185,7 +185,7 @@
         </div>
     </div></div>
     
-    <h3 id="src-68880378_ConfiguringWindowsADauthentication-ConfiguringWindowsauthentication" class="heading "><span>Configuring Windows authentication</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Configuring Windows authentication</span></h3>
 <p>Follow the steps below to switch the application to <i class=" ">Windows authentication</i> mode:</p>
 <ol class=" "><li class=" "><p>Edit the <i class=" ">web.config</i> file of the web project.</p>
 </li><li class=" "><p>Set the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section to <strong class=" ">Windows</strong>:</p>
@@ -224,7 +224,7 @@
 <p>When Windows authentication is enabled, the <strong class=" ">Sign out</strong> button in user menu in the top right corner of the administration interface is not displayed. The same applies to the live site, where the sign out link is not displayed in all web parts that can be used to sign out.</p>
         </div>
     </div>
-    <h3 id="src-68880378_ConfiguringWindowsADauthentication-EnablingWindowsauthenticationinIIS" class="heading "><span>Enabling Windows authentication in IIS</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Enabling Windows authentication in IIS</span></h3>
 <p>If you are experiencing the <strong class=" ">401 error</strong> with Windows authentication, you need to enable Windows authentication in your IIS:</p>
 <ol class=" "><li class=" "><p>Start the <strong class=" ">Internet Information Services (IIS) Manager</strong>.</p>
 </li><li class=" "><p>Locate and select your site in the IIS tree.</p>
@@ -248,7 +248,7 @@
 <img class="confluence-embedded-image" src="images/download/attachments/5212098/Enable_windows_authentication.png" alt="images/download/attachments/5212098/Enable_windows_authentication.png" width="500">
         <br><span class="caption">Enable the Windows authentication</span>
     </li></ol><p>IIS now allows Windows authentication on your site.</p>
-    <h3 id="src-68880378_ConfiguringWindowsADauthentication-SettingupadministratoraccessafterenablingWindowsauthentication" class="heading "><span>Setting up administrator access after enabling Windows authentication</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Setting up administrator access after enabling Windows authentication</span></h3>
 <p>When you access the Kentico administration interface (<i class=" ">&lt;site domain&gt;/admin</i>) for the first time after configuring Windows authentication, you will encounter an <i class=" ">Access denied</i> message. Windows authentication logs you in under a new user account that the system automatically created based on your Active Directory user name, but the account does not have any permissions.</p>
 <p>To allow access to all features as an administrator under Windows authentication, you need to manually grant administrator permissions to your new user account:</p>
 <ol class=" "><li class=" "><p>Access the Kentico administration interface at least once under Windows authentication (to ensure that the system imports your AD user).</p>
@@ -260,7 +260,7 @@
 </li><li class=" "><p>Click <strong class=" ">Save</strong> and log out.</p>
 </li><li class=" "><p>Edit your <i class=" ">web.config</i> file and switch to <strong class=" ">Windows</strong> authentication again.</p>
 </li></ol><p>Close all browsers with Kentico, open the website in a new browser and access the administration interface. Make sure the system recognizes you as a global administrator without the need to manually log in.</p>
-    <h3 id="src-68880378_ConfiguringWindowsADauthentication-ForbiddencharacterreplacementduringActiveDirectoryimport" class="heading "><span>Forbidden character replacement during Active Directory import</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Forbidden character replacement during Active Directory import</span></h3>
 <p>When importing users and roles, forbidden characters in the names are replaced by the character defined in <strong class=" ">Settings -&gt; URLs and SEO -&gt; Forbidden characters replacement</strong>.</p>
 <p>The default value is a dash "-" (<i class=" ">domain-username</i> instead of <i class=" ">domain\username</i>). If you are using a different character, please change the entered user name accordingly.</p>
 <p>You can override this setting by adding the following keys to the <i class=" ">AppSettings</i> section of your <i class=" ">web.config</i> file. In both cases, the value must be exactly one character:</p>

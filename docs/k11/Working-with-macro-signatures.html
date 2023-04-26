@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882656">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Whenever a user saves a <a href="macro-expressions">macro expression</a>, the system automatically adds a security signature. Signatures prevent macros from accessing or displaying data for which the author is not authorized.</p><p>Every macro signature contains an identifier of the macro's author and a hash of the given expression. To increase the level of security, the hash function used when creating macro signatures appends a salt to the input (a sequence of additional characters). The salt value depends on the <a href="#src-68882656_workingwithmacrosignatures-configuringthehashsaltformacrosignatures">configuration</a> of the application's environment, so the signatures are in most cases not valid when deploying macros to other instances of Kentico.</p><p>You can recognize signed macro expressions by the <strong class=" ">#</strong> character, which the system automatically inserts before the closing <strong class=" ">%}</strong> parentheses when saving the text containing the macro.</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="sp-grid-cell sp-grid-60"><p>Whenever a user saves a <a href="macro-expressions">macro expression</a>, the system automatically adds a security signature. Signatures prevent macros from accessing or displaying data for which the author is not authorized.</p><p>Every macro signature contains an identifier of the macro's author and a hash of the given expression. To increase the level of security, the hash function used when creating macro signatures appends a salt to the input (a sequence of additional characters). The salt value depends on the <a href="#src-68882656_workingwithmacrosignatures-configuringthehashsaltformacrosignatures">configuration</a> of the application's environment, so the signatures are in most cases not valid when deploying macros to other instances of Kentico.</p><p>You can recognize signed macro expressions by the <strong class=" ">#</strong> character, which the system automatically inserts before the closing <strong class=" ">%}</strong> parentheses when saving the text containing the macro.</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">{% CurrentUser.Children[</code><code class="string">"cms_category"</code><code class="plain">][0].CategoryName #%}</code></div>
 </div>
@@ -174,7 +174,22 @@
 
     
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882656_workingwithmacrosignatures-assigningmacrosignatureidentities">Assigning macro signature identities</a></p>
+</li><li class=" "><p><a href="#src-68882656_workingwithmacrosignatures-disablingthesecuritysignatureforspecificmacros">Disabling the security signature for specific macros</a></p>
+</li><li class=" "><p><a href="#src-68882656_workingwithmacrosignatures-configuringthehashsaltformacrosignatures">Configuring the hash salt for macro signatures</a></p>
+</li><li class=" "><p><a href="#src-68882656_workingwithmacrosignatures-re-signingmacros">Re-signing macros</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="macros-and-security">Macros and security</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -191,7 +206,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882656_Workingwithmacrosignatures-Assigningmacrosignatureidentities" class="heading "><span>Assigning macro signature identities</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Assigning macro signature identities</span></h3>
 <p>Every macro signature contains an identifier of the user who entered and saved the expression. By default, the identifier is the user name.</p>
 <p>Alternatively, administrators can assign special macro signature identities to users, which then replace the user name in the signatures of all macro expressions created by the given users. The same macro identity can be shared by any number of users. Each identity has an <i class=" ">effective user</i>, which the system checks instead of the original user when evaluating permissions while resolving macro expressions.</p>
 <p>The following examples show how a signed macro expression is stored in the database, including the full signature (both types):</p>
@@ -226,7 +241,7 @@
 </li><li class=" "><p>On the <strong class=" ">General</strong> tab, select a <strong class=" ">Macro signature identity</strong>.</p>
 </li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol><p>All macros entered by the user are now signed with the selected identity instead of the user's name. This does NOT retroactively change the user's signatures for already existing macro expressions. You cannot assign more than one macro identity to each user, but the same identity can be shared by any number of users.</p>
-    <h3 id="src-68882656_Workingwithmacrosignatures-Disablingthesecuritysignatureforspecificmacros" class="heading "><span>Disabling the security signature for specific macros</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Disabling the security signature for specific macros</span></h3>
 <p>You can stop the system from adding macro signatures by manually adding the <strong class=" ">@</strong> character before the closing %} sequence of a macro:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -237,7 +252,7 @@
 <p>The advantage of unsigned macros is that they do not store an identifier of the author or a security hash. This allows you to:</p>
 <ul class=" "><li class=" "><p>Add macros into fields that have a limited character count (unsigned macro expressions have the same internal length as the visible number of characters)</p>
 </li><li class=" "><p>Create macros that are easier to deploy to other Kentico instances (they do not rely on a specific user or identity, and the environment's <a href="#src-68882656_workingwithmacrosignatures-configuringthehashsaltformacrosignatures">hash salt</a> value)</p>
-</li></ul>    <h3 id="src-68882656_Workingwithmacrosignatures-Configuringthehashsaltformacrosignatures" class="heading "><span>Configuring the hash salt for macro signatures</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Configuring the hash salt for macro signatures</span></h3>
 <p>The system appends a <a class="external-link" href="http://en.wikipedia.org/wiki/Salt_%28cryptography%29">salt</a> to the input of the hash function that creates macro signatures.</p>
 <p>By default, new instances of Kentico use a randomly generated <a class="external-link" href="http://en.wikipedia.org/wiki/GUID">GUID</a> as the hash salt. The installer sets the custom salt value through the <strong class=" ">CMSHashStringSalt</strong> key in the <i class=" ">appSettings</i> section of the web.config file. Instances without this web.config key use the application's main database connection string as the salt (the exact <strong class=" ">CMSConnectionString</strong> value in the web.config file). We strongly recommend using a custom salt (CMSHashStringSalt).</p>
 <p>A custom salt provides the following benefits:</p>
@@ -258,7 +273,7 @@
 <div class="line"><code class="plain">&lt;add key=</code><code class="string">"CMSHashStringSalt"</code><code class="plain"> value=</code><code class="string">"e68b9ad6-a461-4707-8e3e-ece73f03dd02"</code><code class="plain"> /&gt;</code></div>
 </div>
     </div>
-    <h3 id="src-68882656_Workingwithmacrosignatures-Re-signingmacros" class="heading "><span>Re-signing macros</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Re-signing macros</span></h3>
 <p>If the hash salt value used by your application changes, the security signatures of existing macro expressions become invalid. For example, you may encounter problems with unresolved macros:</p>
 <ul class=" "><li class=" "><p>After setting a new custom salt via the <strong class=" ">CMSHashStringSalt</strong> web.config key.</p>
 </li><li class=" "><p>When using <a href="content-staging">Content staging</a> to transfer data containing macros to an instance of Kentico with a different hash salt.</p>

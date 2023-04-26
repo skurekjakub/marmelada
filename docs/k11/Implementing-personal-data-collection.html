@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="76846055">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>To comply with the requirements of personal data regulations, such as the <a href="gdpr-compliance">GDPR</a>, you need to provide a way for administrators (data protection officers) to collect personal data stored within the system. This is necessary to resolve personal data queries from data subjects, and requests to transfer personal data to another system or application.</p><p>Kentico does not provide any personal data collection functionality by default. This requires exact knowledge of how your website gathers, processes and stores personal data. You need to implement the data collection based on the specifics of your website and the nature of the legal requirements that you wish to fulfill.</p><div class="confbox admonition admonition-info">
+<div class="sp-grid-cell sp-grid-60"><p>To comply with the requirements of personal data regulations, such as the <a href="gdpr-compliance">GDPR</a>, you need to provide a way for administrators (data protection officers) to collect personal data stored within the system. This is necessary to resolve personal data queries from data subjects, and requests to transfer personal data to another system or application.</p><p>Kentico does not provide any personal data collection functionality by default. This requires exact knowledge of how your website gathers, processes and stores personal data. You need to implement the data collection based on the specifics of your website and the nature of the legal requirements that you wish to fulfill.</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p>See the <a href="personal-data-in-kentico">Personal data in Kentico</a> reference to learn how the system gathers, stores and uses personal data by default. The information may be helpful when planning the collection functionality for your website.</p>
@@ -179,7 +179,23 @@
 
     
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-76846055_implementingpersonaldatacollection-identitycollectors">Identity collectors</a></p>
+</li><li class=" "><p><a href="#src-76846055_implementingpersonaldatacollection-datacollectors">Data collectors</a></p>
+</li><li class=" "><p><a href="#src-76846055_safe-id-sw1wbgvtzw50aw5ncgvyc29uywxkyxrhy29sbgvjdglvbi1fegftcgxl4octq3jlyxrpbmdjb250ywn0zgf0ywnvbgxly3rvcnm">Example – Creating contact data collectors</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="gdpr-compliance">GDPR compliance</a></p>
+</li><li class=" "><p><a href="personal-data-in-kentico">Personal data in Kentico</a></p>
+</li><li class=" "><p><a href="implementing-personal-data-erasure">Implementing personal data erasure</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -206,7 +222,7 @@
         </div>
     </div>
 <p></p>
-    <h3 id="src-76846055_Implementingpersonaldatacollection-Identitycollectors" class="heading "><span>Identity collectors</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Identity collectors</span></h3>
 <p>When searching for personal data in the <strong class=" ">Data protection</strong> application, users submit real-world identifiers of data subjects (email addresses, names, etc.). To collect personal data, you first need to create <i class=" ">Identity collectors</i> that convert these identifiers into Kentico objects representing matching data subjects, such as <a href="user-management">users</a> (<i class=" ">UserInfo</i>), <a href="working-with-contacts">contacts</a> (<i class=" ">ContactInfo</i>) or <a href="customers">customers</a> (<i class=" ">CustomerInfo</i>).</p>
 <p>Identity collectors are classes that implement the <strong class=" ">IIdentityCollector</strong> interface. Every implementation must contain the <strong class=" ">Collect</strong> method, which processes the following parameters:</p>
 <ul class=" "><li class=" "><p><strong class=" ">IDictionary&lt;string, object&gt;</strong> – a dictionary holding the submitted identifiers and other filtering parameters. The default identifier input only provides an email address value, which is available under the <strong class=" ">"email"</strong> key.</p>
@@ -220,7 +236,7 @@
 <p>See the <a href="#src-76846055_safe-id-sw1wbgvtzw50aw5ncgvyc29uywxkyxrhy29sbgvjdglvbi1fegftcgxl4octq3jlyxrpbmdjb250ywn0zgf0ywnvbgxly3rvcnm">Example - Creating contact data collectors</a> section to view a code example.</p>
         </div>
     </div>
-    <h4 id="src-76846055_Implementingpersonaldatacollection-Customizingtheidentifierinputs" class="heading "><span>Customizing the identifier inputs</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Customizing the identifier inputs</span></h4>
 <p>By default, the <strong class=" ">Data protection</strong> application allows users to search for personal data based on an email address value. If you wish to set up personal data collection according to other types of identifiers or add filtering options, you need to create and register a custom control:</p>
 <ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
 </li><li class=" "><p>Create a new Web User Control (.ascx file) in the Kentico web project (<i class=" ">CMSApp</i> or <i class=" ">CMS</i>).</p>
@@ -260,7 +276,7 @@
 <ul class=" "><li class=" "><p>Call the <strong class=" ">DataProtectionControlsRegister.Instance.RegisterDataSubjectIdentifiersFilterControl</strong> method (available in the <strong class=" ">CMS.UIControls</strong> namespace).</p>
 </li><li class=" "><p>Specify the path of the user control file in the method's parameter, for example: <i class=" ">~/CMSModules/CustomDataProtection/DataSubjectIdentifiers.ascx</i></p>
 </li></ul></li></ol><p>The system now uses your custom control to display the identifier inputs in the <strong class=" ">Data protection</strong> application. The keys and values added via the control's <strong class=" ">GetFilter</strong> method are available as the second parameter of the <strong class=" ">Collect</strong> method in your <strong class=" ">IIdentityCollector</strong> implementations.</p>
-    <h3 id="src-76846055_Implementingpersonaldatacollection-Datacollectors" class="heading "><span>Data collectors</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Data collectors</span></h3>
 <p>After you implement <a href="#src-76846055_implementingpersonaldatacollection-identitycollectors">Identity collectors</a>, you need to create <i class=" ">Data collectors</i>. These collectors retrieve personal data related to the identity objects provided by the registered identity collectors, and process the results into a suitable format. We recommend creating separate data collectors for different object types, depending on the types of <a href="personal-data-in-kentico">personal data</a> that you process on your website.</p>
 <p>Data collectors are classes that implement the <strong class=" ">IPersonalDataCollector</strong> interface. Every implementation must contain the <strong class=" ">Collect</strong> method.</p>
 <ul class=" "><li class=" "><p>The method's <strong class=" ">IEnumerable&lt;BaseInfo&gt;</strong> parameter provides the identity objects added by your <i class=" ">IIdentityCollector</i> implementations. You can convert the <i class=" ">BaseInfo</i> objects to specific types, such as <i class=" ">UserInfo, ContactInfo,</i> etc.</p>
@@ -285,7 +301,7 @@
         </div>
     </div>
 <p>The text provided by registered data collectors is displayed when searching for personal data in the <strong class=" ">Data protection</strong> application.</p>
-    <h4 id="src-76846055_Implementingpersonaldatacollection-Customizingthedataoutput" class="heading "><span>Customizing the data output</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Customizing the data output</span></h4>
 <p>By default, the overall data returned by the collection process is composed according to the registration order of your data collectors (starting from the first to the last). Additionally, the system assumes that machine-readable data is in XML format and adds a <i class=" ">&lt;PersonalData&gt;</i> root tag around the final output of all data collectors.</p>
 <p>If you wish to return machine-readable data in another format, such as <a class="external-link" href="http://www.json.org/">JSON</a>, or otherwise adjust the data composition process, use the following customization approach:</p>
 <ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
@@ -346,7 +362,7 @@
 </div>
     </div>
 <p>The system now uses your custom data joining implementation when displaying results in the <strong class=" ">Data protection</strong> application.</p>
-    <h3 id="src-76846055_safe-id-SW1wbGVtZW50aW5ncGVyc29uYWxkYXRhY29sbGVjdGlvbi1FeGFtcGxl4oCTQ3JlYXRpbmdjb250YWN0ZGF0YWNvbGxlY3RvcnM" class="heading "><span>Example – Creating contact data collectors</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example – Creating contact data collectors</span></h3>
 <p>The following example demonstrates how to implement personal data collection for basic <a href="working-with-contacts">contact</a> data. The sample collectors work with the default email address identifier that users can submit in the <strong class=" ">Data protection</strong> application, and produce personal data output in plain text or XML format.</p>
     <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -362,7 +378,7 @@
 </li><li class=" "><p><a href="#src-76846055_implementingpersonaldatacollection-creatingthedatacollector">Creating the data collector</a></p>
 </li><li class=" "><p><a href="#src-76846055_implementingpersonaldatacollection-registeringthecollectors">Registering the collectors</a></p>
 </li></ul><p></p>
-    <h4 id="src-76846055_Implementingpersonaldatacollection-Addingacustomclasslibrary" class="heading "><span>Adding a custom class library</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding a custom class library</span></h4>
 <p>Start by preparing a separate project for custom classes in your Kentico solution:</p>
 <ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
 </li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).</p>
@@ -387,7 +403,7 @@
 </div>
     </div>
 </li></ol><p>You can now add your collector implementations and other related classes under the custom project.<br></p>
-    <h4 id="src-76846055_Implementingpersonaldatacollection-Creatingtheidentitycollector" class="heading "><span>Creating the identity collector</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating the identity collector</span></h4>
 <p>To create an identity collector for contacts, add a new class implementing the <strong class=" ">IIdentityCollector</strong> interface under the custom project:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -426,7 +442,7 @@
 </div>
     </div>
 <p>The collector loads all contact objects (<i class=" ">ContactInfo</i>) that match the submitted email address identifier, and adds them to the list of collected identities.</p>
-    <h4 id="src-76846055_Implementingpersonaldatacollection-Implementingwriterclasses" class="heading "><span>Implementing writer classes</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Implementing writer classes</span></h4>
 <p>Continue by creating writer classes that convert Kentico objects into the required output formats (plain text and XML in this example).</p>
 <p>For plain text, add the following writer class under the custom project:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -576,7 +592,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h4 id="src-76846055_Implementingpersonaldatacollection-Creatingthedatacollector" class="heading "><span>Creating the data collector</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating the data collector</span></h4>
 <p>To create a data collector for contacts, add a class implementing the <strong class=" ">IPersonalDataCollector</strong> interface under the custom project:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -684,7 +700,7 @@
 </div>
     </div>
 <p>The sample data collector processes the contact objects provided by the identity collector, and then uses the writer classes to create personal data text in the requested output format.</p>
-    <h4 id="src-76846055_Implementingpersonaldatacollection-Registeringthecollectors" class="heading "><span>Registering the collectors</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Registering the collectors</span></h4>
 <p>To register the identity and data collectors, add a <a href="initializing-modules-to-run-custom-code">module class</a> under the custom project, and run the required initialization code:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">

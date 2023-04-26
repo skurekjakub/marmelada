@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882244">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The Kentico <a href="setting-up-continuous-integration">continuous integration solution</a> allows you to serialize the data of objects from the database into XML files and then use a source control system to synchronize the files between different instances. To enable continuous integration for the data of custom module classes, you need to set the appropriate <a href="setting-the-type-information-for-module-classes">type information</a> when developing your classes. For more information about the basics of module and class development, see the example in <a href="creating-custom-modules">Creating custom modules</a>.</p><p>To configure continuous integration support for a custom module class:</p><ol class=" "><li class=" "><p>Open the Kentico solution where you are developing the custom module (in Visual Studio).</p>
+<div class="sp-grid-cell sp-grid-60"><p>The Kentico <a href="setting-up-continuous-integration">continuous integration solution</a> allows you to serialize the data of objects from the database into XML files and then use a source control system to synchronize the files between different instances. To enable continuous integration for the data of custom module classes, you need to set the appropriate <a href="setting-the-type-information-for-module-classes">type information</a> when developing your classes. For more information about the basics of module and class development, see the example in <a href="creating-custom-modules">Creating custom modules</a>.</p><p>To configure continuous integration support for a custom module class:</p><ol class=" "><li class=" "><p>Open the Kentico solution where you are developing the custom module (in Visual Studio).</p>
 </li><li class=" "><p>Edit the <i class=" ">Info</i> class representing your module class.</p>
     <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -181,7 +181,25 @@
 
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-addingtheclasscodeintoaseparateassembly">Adding the class code into a separate assembly</a></p>
+</li><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-deletingclassesthathavecontinuousintegrationenabled">Deleting classes that have continuous integration enabled</a></p>
+</li><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-references">References</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-continuousintegrationsettings">ContinuousIntegrationSettings</a></p>
+</li><li class=" "><p><a href="#src-68882244_enablingcontinuousintegrationforcustomclasses-serializationsettings">SerializationSettings</a></p>
+</li></ul></li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="setting-the-type-information-for-module-classes">Setting the type information for module classes</a></p>
+</li><li class=" "><p><a href="setting-up-continuous-integration">Setting up continuous integration</a></p>
+</li><li class=" "><p><a href="reference---objecttypeinfo">Reference - ObjectTypeInfo</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -201,7 +219,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-Addingtheclasscodeintoaseparateassembly" class="heading "><span>Adding the class code into a separate assembly</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding the class code into a separate assembly</span></h3>
 <p>When <a href="restoring-continuous-integration-files-to-the-database">restoring data</a> from the continuous integration repository to the database, the process runs outside of the Kentico web application (as a console application by default). Module classes defined directly within the Kentico web project (in the <i class=" ">App_Code</i> folder on web site projects or under the <i class=" ">CMSApp</i> project on web application installations) cannot be detected by external utilities that are not web applications and are ignored by the continuous integration restore process.</p>
 <p>To correctly use continuous integration with custom module classes, your class code files <i class=" ">(Info</i> and <i class=" ">InfoProvider</i> classes) must be defined within a <strong class=" ">separate assembly</strong>. The assembly must also be configured to allow the system to detect classes using the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute.</p>
 <p>If your module classes are located directly in the Kentico web project, use the following process to move the code to a separate assembly:</p>
@@ -236,19 +254,19 @@
 </li><li class=" "><p>Save all changes.</p>
 </li><li class=" "><p>Build the Kentico solution (or only the module project on <i class=" ">web site</i> installations).</p>
 </li></ol><p>Placing the class code into a discoverable custom assembly allows the continuous integration solution to work with the class when restoring data from the <i class=" ">CIRepository</i> folder.</p>
-    <h3 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-Deletingclassesthathavecontinuousintegrationenabled" class="heading "><span>Deleting classes that have continuous integration enabled</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Deleting classes that have continuous integration enabled</span></h3>
 <p>Use the following process if you ever need to delete a custom class with existing data and continuous integration enabled:</p>
 <ol class=" "><li class=" "><p>First delete the given class's code files and rebuild the module project in Visual Studio (or remove the entire module project if it is no longer needed).</p>
 </li><li class=" "><p>Delete the class in the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
 </li><li class=" "><p>Manually delete the folder representing the class's data from your <i class=" ">CIRepository</i> folder (the system automatically removes the data from the database, but cannot clear the continuous integration data).</p>
-</li></ol>    <h3 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-References" class="heading "><span>References</span></h3>
+</li></ol>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>References</span></h3>
     <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p>The reference lists the <strong class=" ">ContinuousIntegrationSettings</strong> and <strong class=" ">SerializationSettings</strong> properties that are intended for public use. The classes also contain other members that are used internally or handled automatically by the system. We do not recommend working with any of the undocumented members.</p>
         </div>
     </div>
-    <h4 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-ContinuousIntegrationSettings" class="heading "><span>ContinuousIntegrationSettings</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>ContinuousIntegrationSettings</span></h4>
 <p>The <strong class=" ">ContinuousIntegrationSettings</strong> property of <i class=" ">ObjectTypeInfo</i> determines how classes work with the <a href="setting-up-continuous-integration">continuous integration</a> solution.</p>
 <p>Assign an instance of the <i class=" ">ContinuousIntegrationSettings</i> class and set its properties:<br></p>
     <div class="tablewrap">
@@ -352,7 +370,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h4 id="src-68882244_Enablingcontinuousintegrationforcustomclasses-SerializationSettings" class="heading "><span>SerializationSettings</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>SerializationSettings</span></h4>
 <p class="confluence-link">The <strong class=" ">SerializationSettings</strong> property of <i class=" ">ObjectTypeInfo</i> determines how the system serializes class objects from the database into XML data. The serialization is used by the system's continuous integration solution.</p>
 <p>Assign an instance of the <i class=" ">SerializationSettings</i> class and set its properties:</p>
     <div class="tablewrap">

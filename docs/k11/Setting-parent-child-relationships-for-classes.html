@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882240">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>When <a href="creating-custom-modules">developing custom modules</a>, you can use the <a href="setting-the-type-information-for-module-classes">type information</a> to define a hierarchy for the classes representing your data model. Child classes have a specified parent class, which can be either a standalone class or another child class. Every object (data record) of a child class contains a reference to a parent object.</p><p>Setting parent-child relationships for classes ensures that the system can provide many types of <i class=" "><strong class=" ">automatic</strong> </i>behavior, such as:</p><ul class=" "><li class=" "><p>Deleting of child objects when the parent is deleted</p>
+<div class="sp-grid-cell sp-grid-60"><p>When <a href="creating-custom-modules">developing custom modules</a>, you can use the <a href="setting-the-type-information-for-module-classes">type information</a> to define a hierarchy for the classes representing your data model. Child classes have a specified parent class, which can be either a standalone class or another child class. Every object (data record) of a child class contains a reference to a parent object.</p><p>Setting parent-child relationships for classes ensures that the system can provide many types of <i class=" "><strong class=" ">automatic</strong> </i>behavior, such as:</p><ul class=" "><li class=" "><p>Deleting of child objects when the parent is deleted</p>
 </li><li class=" "><p>Including of child objects into the data of parent objects when using the <a href="exporting-and-importing-sites">export/import</a> and <a href="content-staging">staging</a> features (see <a href="enabling-export-and-staging-for-the-data-of-classes">Enabling export and staging for the data of classes</a>)</p>
 </li><li class=" "><p>Simplified creation and displaying of child objects when building a custom administration interface</p>
 </li></ul><div class="confbox admonition admonition-info">
@@ -185,7 +185,28 @@
     
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882240_settingparentchildrelationshipsforclasses-parent-childlimitations">Parent-child limitations</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882240_settingparentchildrelationshipsforclasses-usingpagesastheparentclass">Using pages as the parent class</a></p>
+</li><li class=" "><p><a href="#src-68882240_settingparentchildrelationshipsforclasses-self-referencingparent-childrelationships">Self-referencing parent-child relationships</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882240_settingparentchildrelationshipsforclasses-example-creatingacustomchildclass">Example - Creating a custom child class</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882240_settingparentchildrelationshipsforclasses-creatingthechildclass">Creating the child class</a></p>
+</li><li class=" "><p><a href="#src-68882240_settingparentchildrelationshipsforclasses-settingthetypeinformationforthechildclass">Setting the type information for the child class</a></p>
+</li><li class=" "><p><a href="#src-68882240_settingparentchildrelationshipsforclasses-addingtheclassnameresourcestring">Adding the class name resource string</a></p>
+</li><li class=" "><p><a href="#src-68882240_settingparentchildrelationshipsforclasses-buildinganinterfaceforthechildclass">Building an interface for the child class</a></p>
+</li></ul></li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="setting-the-type-information-for-module-classes">Setting the type information for module classes</a></p>
+</li><li class=" "><p><a href="adding-references-between-classes">Adding references between classes</a></p>
+</li><li class=" "><p><a href="reference---objecttypeinfo">Reference - ObjectTypeInfo</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -208,14 +229,14 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882240_Settingparentchildrelationshipsforclasses-Parent-childlimitations" class="heading "><span>Parent-child limitations</span></h3>
-    <h4 id="src-68882240_Settingparentchildrelationshipsforclasses-Usingpagesastheparentclass" class="heading "><span>Using pages as the parent class</span></h4>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Parent-child limitations</span></h3>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Using pages as the parent class</span></h4>
 <p>Custom child classes with the <strong class=" "><i class=" ">page</i> </strong>class as a parent (i.e. the <i class=" ">cms.document</i> object type) are NOT supported. Pages in Kentico are complex data structures that consist of multiple classes and have special logic for handling other factors, such as <a href="configuring-workflows">workflow</a>.</p>
 <p>Parent-child relationships that include pages do not provide the automatic functionality that works for other classes, such as deleting of child objects along with the parent page.</p>
-    <h4 id="src-68882240_Settingparentchildrelationshipsforclasses-Self-referencingparent-childrelationships" class="heading "><span>Self-referencing parent-child relationships</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Self-referencing parent-child relationships</span></h4>
 <p>Currently, the system does NOT support classes that serve as their own parent class. Such classes would lead to various problems, for example when creating the first object of the given class (an existing parent must be assigned to each object).</p>
 <p>The recommended approach is to create a separate class for each level of the hierarchy, with a root class that does not have a parent at the top. If you need to model a tree hierarchy with variable depth, you can create a <a href="adding-references-between-classes">class field that stores references</a> to the same class, and then handle the parent-child functionality manually.</p>
-    <h3 id="src-68882240_Settingparentchildrelationshipsforclasses-Example-Creatingacustomchildclass" class="heading "><span>Example - Creating a custom child class</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example - Creating a custom child class</span></h3>
 <p>The following example demonstrates how to create a custom class as a child of another class. The sample child class represents <i class=" ">job openings</i> that are available for specific offices.</p>
     <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -223,7 +244,7 @@
 <p>To follow the example, you first need to create the <strong class=" ">Company overview</strong> custom module and the <strong class=" ">Office</strong> class according to the instructions in <a href="creating-custom-modules">Creating custom modules</a>.</p>
         </div>
     </div>
-    <h4 id="src-68882240_Settingparentchildrelationshipsforclasses-Creatingthechildclass" class="heading "><span>Creating the child class</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating the child class</span></h4>
 <ol class=" "><li class=" "><p>Edit the <strong class=" ">Company overview</strong> module in the <strong class=" ">Modules</strong> application.</p>
 </li><li class=" "><p>Select the <strong class=" ">Classes</strong> tab and click <strong class=" ">New class</strong>.</p>
 </li><li class=" "><p>Fill in the class names:</p>
@@ -257,7 +278,7 @@
 </li></ul></li><li class=" "><p>Click <strong class=" ">Next</strong> once the required fields are defined.</p>
 </li><li class=" "><p>Click <strong class=" ">Finish</strong> to complete the creation of the class.</p>
 </li></ol><p>The system automatically creates a database table for storing the class's data.</p>
-    <h4 id="src-68882240_Settingparentchildrelationshipsforclasses-Settingthetypeinformationforthechildclass" class="heading "><span>Setting the type information for the child class</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Setting the type information for the child class</span></h4>
 <p>Prepare the code required for the class's API, including the type information:</p>
 <ol class=" "><li class=" "><p>Select the <strong class=" ">Code</strong> tab in the editing interface of the <i class=" ">Office job opening</i> class.</p>
 </li><li class=" "><p>Click <strong class=" ">Save code</strong>. The system generates an <i class=" ">Info</i> and <i class=" ">InfoProvider</i> class in the <i class=" ">~/App_Code/CMSModules/CompanyOverview</i> folder.</p>
@@ -283,7 +304,7 @@
     </div>
 </li></ul></li><li class=" "><p>Save the change (build the project on web application installations).</p>
 </li></ol><p>The <i class=" "><strong class=" ">companyoverview.officejob</strong> </i>object type is now properly registered as a child of the <i class=" "><strong class=" ">companyoverview.office</strong> </i>type.</p>
-    <h4 id="src-68882240_Settingparentchildrelationshipsforclasses-Addingtheclassnameresourcestring" class="heading "><span>Adding the class name resource string</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding the class name resource string</span></h4>
 <p>Create a <a href="working-with-resource-strings">resource string</a> for displaying the job opening object type name:</p>
 <ol class=" "><li class=" "><p>In the Kentico administration interface, open the <strong class=" ">Localization</strong> application.</p>
 </li><li class=" "><p>On the <strong class=" ">Resource strings</strong> tab, click <strong class=" ">New string</strong>.</p>
@@ -291,12 +312,12 @@
 </li><li class=" "><p>Type the following text for the English version of the key: <i class=" ">Office job opening</i></p>
 </li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol><p>The system uses the resource string in the administration interface, for example when selecting object types.</p>
-    <h4 id="src-68882240_Settingparentchildrelationshipsforclasses-Buildinganinterfaceforthechildclass" class="heading "><span>Building an interface for the child class</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Building an interface for the child class</span></h4>
 <p>The following steps show how to extend the custom Company overview administration interface to allow management of job openings under specific offices:</p>
 <ol class=" "><li class=" "><p>In the <strong class=" ">Modules</strong> application, edit the <strong class=" ">Company overview</strong> module.</p>
 </li><li class=" "><p>Select the <strong class=" ">User interface</strong> tab.</p>
 </li><li class=" "><p>Expand the <strong class=" ">CMS -&gt; Administration -&gt; Custom</strong> element in the UI element tree.</p>
-</li></ol>    <h5 id="src-68882240_safe-id-U2V0dGluZ3BhcmVudGNoaWxkcmVsYXRpb25zaGlwc2ZvcmNsYXNzZXMtQWRkaW5ndGFic3RvdGhlb2ZmaWNlZWRpdGluZ2ludGVyZmFjZTo" class="heading "><span>Adding tabs to the office editing interface:</span></h5>
+</li></ol>    <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding tabs to the office editing interface:</span></h5>
 <ol class=" "><li class=" "><p>Select <strong class=" ">Company overview</strong> in the UI element tree.</p>
 </li><li class=" "><p>Click <strong class=" ">New element</strong> (<img class="confluence-embedded-image confluence-external-resource" src="images/docs.kentico.com/download/attachments/58334975/new.png" alt="images/docs.kentico.com/download/attachments/58334975/new.png">
 ).</p>
@@ -307,7 +328,7 @@
 </li><li class=" "><p><strong class=" ">Display breadcrumbs</strong>: yes</p>
 </li><li class=" "><p><strong class=" ">Page template</strong>: Vertical tabs</p>
 </li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
-</li></ol>    <h5 id="src-68882240_safe-id-U2V0dGluZ3BhcmVudGNoaWxkcmVsYXRpb25zaGlwc2ZvcmNsYXNzZXMtTW92aW5ndGhlb3JpZ2luYWxvZmZpY2VlZGl0aW5nZWxlbWVudHVuZGVydGhldGFiczo" class="heading "><span>Moving the original office editing element under the tabs:</span></h5>
+</li></ol>    <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Moving the original office editing element under the tabs:</span></h5>
 <ol class=" "><li class=" "><p>Select the <strong class=" ">Edit office</strong> element (from the example in <a href="creating-custom-modules">Creating custom modules</a>).</p>
 </li><li class=" "><p>Change the element's names and move it under the new tabs element:</p>
 <ul class=" "><li class=" "><p><strong class=" ">Display name</strong>: General</p>
@@ -316,7 +337,7 @@
 </li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li><li class=" "><p>Open the <strong class=" ">Properties</strong> tab and disable the <strong class=" ">Display breadcrumbs</strong> property.</p>
 </li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
-</li></ol>    <h5 id="src-68882240_safe-id-U2V0dGluZ3BhcmVudGNoaWxkcmVsYXRpb25zaGlwc2ZvcmNsYXNzZXMtQWRkaW5ndGhlbGlzdGluZ2VsZW1lbnRmb3J0aGVqb2JvcGVuaW5nY2hpbGRjbGFzczo" class="heading "><span>Adding the listing element for the job opening child class:</span></h5>
+</li></ol>    <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding the listing element for the job opening child class:</span></h5>
 <ol class=" "><li class=" "><p>Select the <strong class=" ">Edit office tabs</strong> element in the tree.</p>
 </li><li class=" "><p>Click <strong class=" ">New element</strong> (<img class="confluence-embedded-image confluence-external-resource" src="images/docs.kentico.com/download/attachments/58334975/new.png" alt="images/docs.kentico.com/download/attachments/58334975/new.png">
 ).</p>
@@ -356,7 +377,7 @@
 </div>
     </div>
 </li></ol><p>When editing an office, the <i class=" ">Job openings</i> tab now displays a list of all job openings created for that specific office.</p>
-    <h5 id="src-68882240_safe-id-U2V0dGluZ3BhcmVudGNoaWxkcmVsYXRpb25zaGlwc2ZvcmNsYXNzZXMtQWRkaW5ndGhlbmV3am9ib3BlbmluZ2VsZW1lbnQ6" class="heading "><span>Adding the new job opening element:</span></h5>
+    <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding the new job opening element:</span></h5>
 <ol class=" "><li class=" "><p>Select the <strong class=" ">Job openings</strong> element in the tree.</p>
 </li><li class=" "><p>Click <strong class=" ">New element</strong> (<img class="confluence-embedded-image confluence-external-resource" src="images/docs.kentico.com/download/attachments/58334975/new.png" alt="images/docs.kentico.com/download/attachments/58334975/new.png">
 ).</p>
@@ -367,7 +388,7 @@
 </li><li class=" "><p><strong class=" ">Page template</strong>: New / Edit object</p>
 </li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol><p>The <i class=" ">New</i> element allows users to create new job openings from the listing page. When creating new job opening objects, the system <i class=" "><strong class=" ">automatically sets the OfficeJobParentID to the ID of the currently edited office</strong> </i>(based on the type information settings of the child class).</p>
-    <h5 id="src-68882240_safe-id-U2V0dGluZ3BhcmVudGNoaWxkcmVsYXRpb25zaGlwc2ZvcmNsYXNzZXMtQWRkaW5ndGhlam9ib3BlbmluZ2VkaXRpbmdlbGVtZW50Og" class="heading "><span>Adding the job opening editing element:</span></h5>
+    <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding the job opening editing element:</span></h5>
 <ol class=" "><li class=" "><p>Select the <strong class=" ">Job openings</strong> element in the tree.</p>
 </li><li class=" "><p>Click <strong class=" ">New element</strong> (<img class="confluence-embedded-image confluence-external-resource" src="images/docs.kentico.com/download/attachments/58334975/new.png" alt="images/docs.kentico.com/download/attachments/58334975/new.png">
 ).</p>

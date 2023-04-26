@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="76845457">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Google Analytics allow tracking of shopping activity on e-commerce websites. To help you set up this functionality in Kentico, the system provides methods for macros, transformations and the API that return JSON data for products and orders in a suitable format. For more information, see <a href="integrating-google-analytics-enhanced-ecommerce">Integrating Google Analytics Enhanced Ecommerce</a>.</p><p>By default, the system's methods do not set all of the optional data fields that can be processed by Google Analytics. If you wish to extend or completely change how the system creates e-commerce data for the purposes of Google Analytics, use the following customization approach:</p><ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
+<div class="sp-grid-cell sp-grid-60"><p>Google Analytics allow tracking of shopping activity on e-commerce websites. To help you set up this functionality in Kentico, the system provides methods for macros, transformations and the API that return JSON data for products and orders in a suitable format. For more information, see <a href="integrating-google-analytics-enhanced-ecommerce">Integrating Google Analytics Enhanced Ecommerce</a>.</p><p>By default, the system's methods do not set all of the optional data fields that can be processed by Google Analytics. If you wish to extend or completely change how the system creates e-commerce data for the purposes of Google Analytics, use the following customization approach:</p><ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
 </li><li class=" "><p>Create a custom class that inherits from one of the <a href="#src-76845457_customizingecommercedataforgoogleanalytics-googleanalyticsdatahelperclasses">Google Analytics data helper classes</a>.</p>
     <div class="confbox admonition admonition-tip">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -163,7 +163,25 @@
 </li></ol><p>When you reload the website, the system creates e-commerce JSON data using the custom implementations that you registered.</p></div>
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-76845457_customizingecommercedataforgoogleanalytics-googleanalyticsdatahelperclasses">Google Analytics data helper classes</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-76845457_customizingecommercedataforgoogleanalytics-gtmproducthelper">GtmProductHelper</a></p>
+</li><li class=" "><p><a href="#src-76845457_customizingecommercedataforgoogleanalytics-gtmorderhelper">GtmOrderHelper</a></p>
+</li><li class=" "><p><a href="#src-76845457_customizingecommercedataforgoogleanalytics-gtmdatahelper">GtmDataHelper</a></p>
+</li></ul></li><li class=" "><p><a href="#src-76845457_customizingecommercedataforgoogleanalytics-creatingconditionalcustomizations">Creating conditional customizations</a></p>
+</li><li class=" "><p><a href="#src-76845457_safe-id-q3vzdg9taxppbmdly29tbwvyy2vkyxrhzm9yr29vz2xlqw5hbhl0awnzluv4yw1wbgxigjnbzgrpbmdjb3vwb25kyxrhzm9yb3jkzxjz">Example – Adding coupon data for orders</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="integrating-google-analytics-enhanced-ecommerce">Integrating Google Analytics Enhanced Ecommerce</a></p>
+</li><li class=" "><p><a href="customizing-providers">Customizing providers and helpers</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -183,14 +201,14 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-76845457_CustomizingecommercedataforGoogleAnalytics-GoogleAnalyticsdatahelperclasses" class="heading "><span>Google Analytics data helper classes</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Google Analytics data helper classes</span></h3>
     <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p>You can find the following helper classes in the <strong class=" ">CMS.Ecommerce</strong> namespace of the Kentico API.</p>
         </div>
     </div>
-    <h4 id="src-76845457_CustomizingecommercedataforGoogleAnalytics-GtmProductHelper" class="heading "><span>GtmProductHelper</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>GtmProductHelper</span></h4>
 <p>Provides the following methods that you can override:</p>
 <ul class=" "><li class=" "><p><strong class=" ">MapSKUInternal</strong> – creates data for a specified product (<i class=" ">SKUInfo</i>).<br></p>
 <ul class=" "><li class=" "><p>Must return a <i class=" ">GtmData</i> object containing the required keys (JSON field names) and values.</p>
@@ -198,7 +216,7 @@
 </li></ul></li><li class=" "><p><strong class=" ">MapShoppingCartItemsInternal</strong> – creates data for a collection of products representing shopping cart content (<i class=" ">IEnumerable&lt;ShoppingCartItemInfo&gt;</i>).<br></p>
 <ul class=" "><li class=" "><p>Must return an <i class=" ">IEnumerable</i> collection of <i class=" ">GtmData</i> objects, each containing the required keys (JSON field names) and values.</p>
 </li><li class=" "><p>Customize this method to change the output of the <i class=" ">GetGtmShoppingCartItemsJson</i> macro method.</p>
-</li></ul></li></ul>    <h4 id="src-76845457_CustomizingecommercedataforGoogleAnalytics-GtmOrderHelper" class="heading "><span>GtmOrderHelper</span></h4>
+</li></ul></li></ul>    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>GtmOrderHelper</span></h4>
 <p>Creates data for completed orders (purchases). Customize the methods in this class to change the output of the <i class=" ">GetGtmPurchaseJson</i> macro method.</p>
 <p>Provides the following methods that you can override:</p>
 <ul class=" "><li class=" "><p><strong class=" ">MapPurchaseInternal</strong> – creates the overall purchase data for a specified order (<i class=" ">OrderInfo</i>).<br></p>
@@ -208,11 +226,11 @@
 <ul class=" "><li class=" "><p>Must return a <i class=" ">GtmData</i> object containing the required keys (JSON field names) and values.</p>
 </li></ul></li><li class=" "><p><strong class=" ">MapOrderItemsInternal</strong> – creates data representing all products within the specified order (<i class=" ">OrderInfo</i>).</p>
 <ul class=" "><li class=" "><p>Must return an <i class=" ">IEnumerable</i> collection of <i class=" ">GtmData</i> objects, each containing the required keys (JSON field names) and values.</p>
-</li></ul></li></ul>    <h4 id="src-76845457_CustomizingecommercedataforGoogleAnalytics-GtmDataHelper" class="heading "><span>GtmDataHelper</span></h4>
+</li></ul></li></ul>    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>GtmDataHelper</span></h4>
 <p>Performs general serialization of <i class=" ">GtmData</i> objects into JSON strings. Affects the final output of methods from both the <i class=" ">GtmProductHelper</i> and <i class=" ">GtmOrderHelper</i> classes.</p>
 <p>You can override the <strong class=" ">SerializeToJsonInternal</strong> method – one overload for individual objects (<i class=" ">GtmData</i> parameter) and another for collections of objects (<i class=" ">IEnumerable&lt;GtmData&gt;</i> parameter).</p>
 <p>Customize the <i class=" ">GtmDataHelper</i> if you wish to replace or modify the default JSON serialization, which utilizes the <i class=" ">JsonConvert.SerializeObject</i> method provided by the <i class=" ">Newtonsoft.Json</i> library.</p>
-    <h3 id="src-76845457_CustomizingecommercedataforGoogleAnalytics-Creatingconditionalcustomizations" class="heading "><span>Creating conditional customizations</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating conditional customizations</span></h3>
 <p>If you wish to return different JSON data for specific scenarios, you can use the <strong class=" ">purpose</strong> parameter, which is available for all methods of the <a href="#src-76845457_customizingecommercedataforgoogleanalytics-googleanalyticsdatahelperclasses">Google Analytics data helper classes</a>.</p>
 <p>When calling the corresponding macro or transformation methods on your website, set the optional <i class=" ">purpose</i> parameter. For example:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -221,7 +239,7 @@
 </div>
     </div>
 <p>You can then evaluate the <i class=" ">purpose</i> parameter within the method overrides in your custom helper classes, and branch your code according to the specified purpose.</p>
-    <h3 id="src-76845457_safe-id-Q3VzdG9taXppbmdlY29tbWVyY2VkYXRhZm9yR29vZ2xlQW5hbHl0aWNzLUV4YW1wbGXigJNBZGRpbmdjb3Vwb25kYXRhZm9yb3JkZXJz" class="heading "><span>Example – Adding coupon data for orders</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example – Adding coupon data for orders</span></h3>
 <p>The following example demonstrates how to customize the Google Analytics JSON data that the system creates for purchases (completed orders). The customization adds the <strong class=" ">coupon</strong> field to the <i class=" ">actionField</i> object in the purchase data, and sets the value to a comma-separated string containing all <a href="working-with-coupon-codes">coupon codes</a> applied to the order.</p>
 <p>Start by preparing a separate project for custom classes in your Kentico solution:</p>
 <ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>

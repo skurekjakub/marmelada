@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="72974743">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>When performing operations with price values (for example calculation of <a href="configuring-taxes">taxes</a> and <a href="discounts">discounts</a>, <a href="configuring-exchange-rates">currency conversions</a>, etc.), the system rounds the result according to the number of decimal places allowed by the <a href="configuring-currencies">configuration of each currency</a>.</p><p>By default, you can configure the type of price rounding via settings:</p><ol class=" "><li class=" "><p>Open the <strong class=" ">Store configuration</strong> or <strong class=" ">Multistore configuration</strong> application.</p>
+<div class="sp-grid-cell sp-grid-60"><p>When performing operations with price values (for example calculation of <a href="configuring-taxes">taxes</a> and <a href="discounts">discounts</a>, <a href="configuring-exchange-rates">currency conversions</a>, etc.), the system rounds the result according to the number of decimal places allowed by the <a href="configuring-currencies">configuration of each currency</a>.</p><p>By default, you can configure the type of price rounding via settings:</p><ol class=" "><li class=" "><p>Open the <strong class=" ">Store configuration</strong> or <strong class=" ">Multistore configuration</strong> application.</p>
 </li><li class=" "><p>Navigate to the <strong class=" ">Store settings -&gt; General</strong> tab.</p>
 </li><li class=" "><p>Select one of the <strong class=" ">Price rounding</strong> options:</p>
 <ul class=" "><li class=" "><p><strong class=" ">Mathematical</strong> – standard rounding to the nearest number, with midpoint values rounded up (toward the nearest number that is away from zero).</p>
@@ -158,7 +158,22 @@
 </li></ol><p>If the default options do not fulfill the requirements of your store, you need to customize the Kentico rounding functionality.</p></div>
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-72974743_customizingpricerounding-customizingroundingglobally">Customizing rounding globally</a></p>
+</li><li class=" "><p><a href="#src-72974743_customizingpricerounding-customizingroundingoftaxvalues">Customizing rounding of tax values</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="settings---e-commerce">Settings - E-commerce</a></p>
+</li><li class=" "><p><a href="configuring-currencies">Configuring currencies</a></p>
+</li><li class=" "><p><a href="customizing-tax-calculation">Customizing tax calculation</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -175,7 +190,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-72974743_Customizingpricerounding-Customizingroundingglobally" class="heading "><span>Customizing rounding globally</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Customizing rounding globally</span></h3>
 <p>To customize the price rounding used throughout the entire system:</p>
 <ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
 </li><li class=" "><p>Create a new class that implements the <strong class=" ">IRoundingService</strong> interface (found in the <i class=" ">CMS.Ecommerce</i> namespace).</p>
@@ -191,7 +206,7 @@
 </li><li class=" "><p>Implement the <strong class=" ">GetRoundingService</strong> method for the factory class.</p>
 </li><li class=" "><p>Register your <i class=" ">IRoundingServiceFactory</i> implementation using the <strong class=" ">RegisterImplementation</strong> assembly attribute.</p>
 </li></ol><p>The customized rounding affects both price values displayed in product catalogs on the live site (when using appropriate <a href="reference---transformation-methods">transformation methods</a>) and price calculations during the checkout process.</p>
-    <h4 id="src-72974743_safe-id-Q3VzdG9taXppbmdwcmljZXJvdW5kaW5nLUV4YW1wbGXigJNDdXN0b21jYXNocm91bmRpbmc" class="heading "><span>Example – Custom cash rounding</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example – Custom cash rounding</span></h4>
 <p>The following example demonstrates how to implement custom <a class="external-link" href="https://en.wikipedia.org/wiki/Cash_rounding">cash rounding</a> of all price values. The example rounds values to the number of decimal places allowed by the <a href="configuring-currencies">configuration of each currency</a>, with the last digit always rounded to the nearest multiple of <strong class=" ">5</strong>.</p>
 <p>Prepare a separate project for custom classes in your Kentico solution:</p>
 <ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
@@ -268,7 +283,7 @@
     </div>
 </li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.</p>
 </li></ol><p class="auto-cursor-target">The registered <strong class=" ">CustomRoundingServiceFactory</strong> class provides an instance of <strong class=" ">CustomRoundingService</strong>. The customized rounding service ensures that all price values are rounded to the required number of decimal places, with the last digit being a multiple of 5.</p>
-    <h3 id="src-72974743_Customizingpricerounding-Customizingroundingoftaxvalues" class="heading "><span>Customizing rounding of tax values</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Customizing rounding of tax values</span></h3>
 <p>The e-commerce API allows you to customize rounding specifically for tax values, without affecting rounding in other locations.</p>
     <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -284,7 +299,7 @@
 </li><li class=" "><p>Use the <strong class=" ">RegisterImplementation</strong> assembly attribute to register the custom class as the implementation of the <strong class=" ">ITaxEstimationService</strong> interface.</p>
 </li></ol><p>The customization only changes the rounding of calculated tax values, while leaving the remaining tax functionality in its default state. The custom rounding applies both to tax values in checkout process calculations and when displaying tax values on the live site (using the appropriate <a href="reference---transformation-methods">transformation methods</a>).</p>
 <p>For all price values other than taxes, rounding is not affected and behaves according to the site's <i class=" ">Price rounding</i> setting (or the custom <a href="#src-72974743_customizingpricerounding-customizingroundingglobally">IRoundingService implementation</a> if one exists).</p>
-    <h4 id="src-72974743_safe-id-Q3VzdG9taXppbmdwcmljZXJvdW5kaW5nLUV4YW1wbGXigJNSb3VuZGluZ3RheHZhbHVlc3Vw" class="heading "><span>Example – Rounding tax values up</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example – Rounding tax values up</span></h4>
 <p>The following example demonstrates how to customize the system to always round tax values up (even if the rounded fractional number is closer to the lower number). The example rounds values to the number of decimal places allowed by the <a href="configuring-currencies">configuration of each currency</a>.</p>
 <ol class=" "><li class=" "><p>Recreate or reuse the custom project from the <a href="#src-72974743_safe-id-q3vzdg9taxppbmdwcmljzxjvdw5kaw5nluv4yw1wbgxigjnddxn0b21jyxnocm91bmrpbmc">global rounding customization example</a>.</p>
 </li><li class=" "><p>Create a new class under the custom project, inheriting from the <i class=" ">DefaultTaxEstimationService</i> class.</p>

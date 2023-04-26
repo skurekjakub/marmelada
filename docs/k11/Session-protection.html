@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881164">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>We use sessions, because web is running on HTTP, which is a stateless protocol. However, in many web applications, we need to keep some state information, some context. This is the purpose of sessions. When a user opens a browser and navigates to some website, the web server of that website generates a session ID for this user. The session ID is sent with every request and it is a key for any session data (session data = state/context). These data are stored on the server.</p><p>The session ID can be passed to the requests in two ways:</p><ul class=" "><li class=" "><p>via a URL parameter,</p>
+<div class="sp-grid-cell sp-grid-60"><p>We use sessions, because web is running on HTTP, which is a stateless protocol. However, in many web applications, we need to keep some state information, some context. This is the purpose of sessions. When a user opens a browser and navigates to some website, the web server of that website generates a session ID for this user. The session ID is sent with every request and it is a key for any session data (session data = state/context). These data are stored on the server.</p><p>The session ID can be passed to the requests in two ways:</p><ul class=" "><li class=" "><p>via a URL parameter,</p>
 </li><li class=" "><p>or using a cookie.</p>
 </li></ul><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -165,7 +165,7 @@
     </div><p>The session ends (in a typical case) after the user closes the browser or after the user is inactive for a specified amount of time.</p><p>There are basically three types of session attacks:</p><ul class=" "><li class=" "><p>Session stealing</p>
 </li><li class=" "><p>Session prediction</p>
 </li><li class=" "><p>Session fixation</p>
-</li></ul><h3 id="src-68881164_Sessionprotection-Sessionstealing" class="heading "><span>Session stealing</span></h3><p>A session can be stolen by stealing a session ID. When an attacker steals a user's session ID, he can get access to all of the session data. Because all these session IDs can be read by JavaScript, the most popular method for this type of attack is <a href="cross-site-scripting-%28xss%29">XSS</a>. An attacker can send a crafted link to a victim with a malicious JavaScript. When the victim clicks on the link, the JavaScript runs and sends the cookie value of the current session to the attacker.</p><h3 id="src-68881164_Sessionprotection-Sessionprediction" class="heading "><span>Session prediction</span></h3><p>Can an attacker simply guess some random session ID? Most implementations of session IDs are long strings and guessing a correct session ID in linear time is impossible. But there are also bad implementations when an attacker can generate session IDs from known values. This technique is called session prediction. For example, a session ID can be a user name encoded in base64. Fortunately, in ASP.NET, session ID is a 120bit random number represented by a 20-character string. So, it is relatively safe.</p><h3 id="src-68881164_Sessionprotection-Sessionfixation" class="heading "><span>Session fixation</span></h3><p>In this case, the attacker lets the server generate a session ID. Then the attacker sets a user's session ID to the generated ID. This is quite easy when the session ID is given in a URL parameter. After that, the user and the attacker share the same session. For example, when the user gets authenticated, the attacker is also authenticated as the user.</p><p>The goal of all kinds of session attacks is the same – to get the user's session data or achieve identity forgery. This page focuses mainly on <strong class=" ">session fixation</strong>, as <a href="cross-site-scripting-%28xss%29">XSS</a> is explained on a different page and we cannot influence how session IDs are generated. But generally, the implications of all three session attacks and the protective measures against them are similar.</p><p><br></p></div>
+</li></ul><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Session stealing</span></h3><p>A session can be stolen by stealing a session ID. When an attacker steals a user's session ID, he can get access to all of the session data. Because all these session IDs can be read by JavaScript, the most popular method for this type of attack is <a href="cross-site-scripting-%28xss%29">XSS</a>. An attacker can send a crafted link to a victim with a malicious JavaScript. When the victim clicks on the link, the JavaScript runs and sends the cookie value of the current session to the attacker.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Session prediction</span></h3><p>Can an attacker simply guess some random session ID? Most implementations of session IDs are long strings and guessing a correct session ID in linear time is impossible. But there are also bad implementations when an attacker can generate session IDs from known values. This technique is called session prediction. For example, a session ID can be a user name encoded in base64. Fortunately, in ASP.NET, session ID is a 120bit random number represented by a 20-character string. So, it is relatively safe.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Session fixation</span></h3><p>In this case, the attacker lets the server generate a session ID. Then the attacker sets a user's session ID to the generated ID. This is quite easy when the session ID is given in a URL parameter. After that, the user and the attacker share the same session. For example, when the user gets authenticated, the attacker is also authenticated as the user.</p><p>The goal of all kinds of session attacks is the same – to get the user's session data or achieve identity forgery. This page focuses mainly on <strong class=" ">session fixation</strong>, as <a href="cross-site-scripting-%28xss%29">XSS</a> is explained on a different page and we cannot influence how session IDs are generated. But generally, the implications of all three session attacks and the protective measures against them are similar.</p><p><br></p></div>
 
     
 
@@ -178,7 +178,7 @@
 
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -192,7 +192,7 @@
 </li></ul></li></ul><p></p>
         </div>
     </div></div>
-    <h4 id="src-68881164_Sessionprotection-Exampleofasessionfixation" class="heading "><span>Example of a session fixation</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example of a session fixation</span></h4>
 <p>Let's have a simple .aspx page which saves a value to a session and also shows it:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -218,12 +218,12 @@
 </li><li class=" "><p>The user, unaware of the forgery, clicks the link.</p>
 </li><li class=" "><p>The user sees the page normally and does not register anything unusual.</p>
 </li><li class=" "><p>When the user saves some private data now, the attacker will be able to access it.</p>
-</li></ol>    <h4 id="src-68881164_Sessionprotection-Whatcansessionfixationattacksdo" class="heading "><span>What can session fixation attacks do</span></h4>
+</li></ol>    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>What can session fixation attacks do</span></h4>
 <p>The main goal of the attacker is to read and manipulate session data or forge their identity. In both cases, the risks depend on the implementation of individual applications. If the application stores sensitive data to sessions (for example, user passwords in plain text) and allows this data to be displayed or changed, the damage cane be severe.</p>
-    <h4 id="src-68881164_Sessionprotection-Findingsessionfixationvulnerabilities" class="heading "><span>Finding session fixation vulnerabilities</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Finding session fixation vulnerabilities</span></h4>
 <p>In Kentico, session fixation is possible, depending on the application settings. You have to ensure that you do not store any sensitive information in sessions. The best way is to determine which variables are stored in sessions. Then, check how you can manipulate with them (read/change) and think about the risks – what damage can the attacker do by manipulating them. You can find these risks just from the user perspective by inspecting application reactions, parameters and so on.</p>
 <p>However, we still recommend code inspection. You can simply find all manipulations with session data by searching for <strong class=" ">SessionHelper</strong> and the <strong class=" ">Session[]</strong> array.</p>
-    <h4 id="src-68881164_Sessionprotection-Avoidingsessionfixation" class="heading "><span>Avoiding session fixation</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Avoiding session fixation</span></h4>
 <p>First of all, there is no native support for protecting against session fixation in ASP.NET. The best practice for protecting your application against session fixation is to regenerate the session ID after a user logs on. You can achieve this by changing the session ID to an empty string and letting ASP.NET generate a new one. However, this action causes loss of session data.</p>
 <p>In Kentico, you can include the <strong class=" ">CMSRenewSessionAuthChange</strong> key in the <strong class=" ">appSettings</strong> section of your web.config file, which enforces a change of the session ID when a user logs in or out. If you enable this setting, users will not be able to preserve their session data after logging in or out:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">

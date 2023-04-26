@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881120">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Query strings in URLs are useful and important in many ways, for example, when passing various values between pages or retrieving data from the database. In some cases though, an unauthorized user could obtain sensitive data or harm the system by entering a URL with <strong class=" ">tampered query string parameters</strong>.</p><p>To prevent tampering with query string parameters, the system adds the result of a <strong class=" ">hash function</strong> at the end of each URL. Such URLs can look like this:</p><div class="confbox admonition admonition-info has-no-icon">
+<div class="sp-grid-cell sp-grid-60"><p>Query strings in URLs are useful and important in many ways, for example, when passing various values between pages or retrieving data from the database. In some cases though, an unauthorized user could obtain sensitive data or harm the system by entering a URL with <strong class=" ">tampered query string parameters</strong>.</p><p>To prevent tampering with query string parameters, the system adds the result of a <strong class=" ">hash function</strong> at the end of each URL. Such URLs can look like this:</p><div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
 <p>http://localhost/Kentico/cms/getfile/2d003444-9a27-43c9-be97-4f5832474015/Partners_logos_silver.aspx?latestfordocid=75&amp;<strong class=" ">hash=eee41e027bd45142fd1f44d173d61950f34d6e98f4e35018fda70542322adc77&amp;chset=013bca78-6bf2-42ac-8959-b8bbbeb0a8e8</strong></p>
         </div>
@@ -164,7 +164,21 @@ getfile.aspx    </span>
     
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881120_querystringhashing-salt">Salt</a></p>
+</li><li class=" "><p><a href="#src-68881120_querystringhashing-userspecifichash">User specific hash</a></p>
+</li><li class=" "><p><a href="#src-68881120_querystringhashing-customhashvalidation">Custom hash validation</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="working-with-macro-signatures">Working with macro signatures</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -180,7 +194,7 @@ getfile.aspx    </span>
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68881120_Querystringhashing-Salt" class="heading "><span>Salt</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Salt</span></h3>
 <p>Protection of query string parameters using only the hash function would not be enough because attackers are able to reverse the hash function using <a class="external-link" href="http://en.wikipedia.org/wiki/Rainbow_table">rainbow tables</a>. For this reason, the system adds a <strong class=" ">salt</strong> to the URL before hashing it.</p>
     <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -204,7 +218,7 @@ CMSHashStringSalt    </span>
 <p>If you have already stored some persistent information (links for downloading files, image links, macros) in the system and you change the salt calculation, then these links and <strong class=" ">information may become broken</strong>. You will have to re-save the content to create hashes with the new salt.</p>
         </div>
     </div>
-    <h3 id="src-68881120_Querystringhashing-Userspecifichash" class="heading "><span>User specific hash</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>User specific hash</span></h3>
 <p>Sometimes it is useful to add user-specific information to the hash. Either the user session ID or IP address (if there is no session ID) are used for this purpose. If attackers manage to eavesdrop a URL and try to exploit it to gain sensitive data, they would not succeed, as their session ID would not match the hash.</p>
 <p>The user specific hash is used mainly for non-persistent information, such as displaying dialog boxes.</p>
     <div class="confbox admonition admonition-note">
@@ -213,7 +227,7 @@ CMSHashStringSalt    </span>
 <p>Note that if you use user specific hashing and save some content with it, users other than the one who saved the content will not be able to use it.</p>
         </div>
     </div>
-    <h3 id="src-68881120_Querystringhashing-Customhashvalidation" class="heading "><span>Custom hash validation</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Custom hash validation</span></h3>
 <p>We recommend using hashing features when developing custom dialog boxes. The following methods are available in the Kentico API:</p>
 <p>    <span style="color: #333333;">
 Hash calculation:<br>    </span>

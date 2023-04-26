@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882172">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Kentico allows you to write your own SQL search provider, which you can use to integrate a third-party search engine. You can also create a custom search provider if you need to modify or filter search results returned by the standard search engine.</p><p>You cannot customize the search provider in the App_Code folder. The modifications must be added as part of a new assembly, which you then need to register via the <strong class=" ">CMSSearchProviderAssembly</strong> web.config key.</p><div class="confbox admonition admonition-note">
+<div class="sp-grid-cell sp-grid-60"><p>Kentico allows you to write your own SQL search provider, which you can use to integrate a third-party search engine. You can also create a custom search provider if you need to modify or filter search results returned by the standard search engine.</p><p>You cannot customize the search provider in the App_Code folder. The modifications must be added as part of a new assembly, which you then need to register via the <strong class=" ">CMSSearchProviderAssembly</strong> web.config key.</p><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p>This provider only affects the SQL Search engine. The Smart Search engine remains unchanged.</p>
@@ -157,7 +157,22 @@
     </div></div>
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882172_creatingcustomsqlsearchproviders-addingthecustomsearchproviderassembly">Adding the custom search provider assembly</a></p>
+</li><li class=" "><p><a href="#src-68882172_creatingcustomsqlsearchproviders-modifyingthesearchproviderclass">Modifying the search provider class</a></p>
+</li><li class=" "><p><a href="#src-68882172_creatingcustomsqlsearchproviders-registeringthecustomsearchprovider">Registering the custom search provider</a></p>
+</li><li class=" "><p><a href="#src-68882172_creatingcustomsqlsearchproviders-result">Result</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="sql-search">SQL search</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -174,7 +189,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882172_CreatingcustomSQLsearchproviders-Addingthecustomsearchproviderassembly" class="heading "><span>Adding the custom search provider assembly</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding the custom search provider assembly</span></h3>
 <p>The following example demonstrates how to customize the SQL search provider so that it only searches a limited section of the website.</p>
 <ol class="conf-macro output-inline "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
 </li><li class=" "><p>Add a new <strong class=" ">Class Library</strong> project to the Kentico solution, for example named <i class=" ">CustomSearchProvider</i>.</p>
@@ -198,7 +213,7 @@
 </li></ol></li><li class=" "><p>Edit the <i class=" ">SearchProvider</i> class and rename the namespace to <strong class=" ">exactly</strong> match the assembly name of your custom project (<i class=" ">CustomSearchProvider</i> in this example).</p>
 </li><li class=" "><p>Build the <strong class=" ">CustomSearchProvider</strong> project (Build the entire solution on web application projects).</p>
 </li></ol><p>The CustomSearchProvider project is now integrated into your application.</p>
-    <h3 id="src-68882172_CreatingcustomSQLsearchproviders-Modifyingthesearchproviderclass" class="heading "><span>Modifying the search provider class</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Modifying the search provider class</span></h3>
 <ol class=" "><li class=" "><p>Edit the <strong class=" ">SearchProvider.cs</strong> class in the <strong class=" ">CustomSearchProvider</strong> project.</p>
 </li><li class=" "><p>Modify the code of the <strong class=" ">Search</strong> method according to the following:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -221,7 +236,7 @@
     </div>
 <p>3. Save the file and <strong class=" ">Rebuild</strong> the CustomSearchProvider project.</p>
 </li></ol><p>In real customization scenarios, you can modify the <strong class=" ">Search</strong> method to behave according to any requirements. The method must always return a DataSet containing the search results.</p>
-    <h3 id="src-68882172_CreatingcustomSQLsearchproviders-Registeringthecustomsearchprovider" class="heading "><span>Registering the custom search provider</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Registering the custom search provider</span></h3>
 <ol class=" "><li class=" "><p>Edit your application's web.config file.</p>
 </li><li class=" "><p>Add the following key to the configuration/appSettings section:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -230,7 +245,7 @@
 </div>
     </div>
 </li></ol><p>The system loads the <strong class=" ">SearchProvider</strong> class from the assembly specified as the value of the <strong class=" ">CMSSearchProviderAssembly</strong> key.</p>
-    <h3 id="src-68882172_CreatingcustomSQLsearchproviders-Result" class="heading "><span>Result</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Result</span></h3>
 <p>To try out the customized search engine, open the live website and search for text using the SQL Search engine. For example, you can use the<strong class=" "> Examples -&gt; Web Parts -&gt; Full‑Text Search -&gt; SQL Search -&gt; SQL Search dialog with results</strong> page on the sample Corporate site.</p>
 <p>The search now only returns results from the /Products section of the website.</p>
     <div class="confbox admonition admonition-tip">

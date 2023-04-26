@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882121">
 
 <div id="ht-loader">
     <noscript>
@@ -150,12 +150,27 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>When creating custom <a href="creating-local-search-indexes">smart search indexes</a>, you do not define the content on the <strong class=" ">Indexed content</strong> tab in the <strong class=" ">Smart search</strong> application. Instead, you must implement all functionality of the index by writing code. In the administration interface, you only need to specify the names of the assembly and class that contain the custom index logic.</p><p>To define a custom index, create a class that implements the <strong class=" ">ICustomSearchIndex</strong> interface (<strong class=" ">CMS.Search</strong> namespace).</p><p>To integrate the class into your application:</p><ul class=" "><li class=" "><p>Create a new assembly (Class library) in your web project and include the index class there. When using this approach, you must add the appropriate references to both the assembly and the main Kentico project.<br><br>OR</p>
+<div class="sp-grid-cell sp-grid-60"><p>When creating custom <a href="creating-local-search-indexes">smart search indexes</a>, you do not define the content on the <strong class=" ">Indexed content</strong> tab in the <strong class=" ">Smart search</strong> application. Instead, you must implement all functionality of the index by writing code. In the administration interface, you only need to specify the names of the assembly and class that contain the custom index logic.</p><p>To define a custom index, create a class that implements the <strong class=" ">ICustomSearchIndex</strong> interface (<strong class=" ">CMS.Search</strong> namespace).</p><p>To integrate the class into your application:</p><ul class=" "><li class=" "><p>Create a new assembly (Class library) in your web project and include the index class there. When using this approach, you must add the appropriate references to both the assembly and the main Kentico project.<br><br>OR</p>
 </li></ul><ul class=" "><li class=" "><p>Define the custom index directly in the Kentico web project and load the class via the API. This ensures that the system automatically compiles the index class and you do not need to use a separate assembly. The example below demonstrates this approach.<br><br></p>
 </li></ul></div>
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882121_creatingcustomsmartsearchindexes-writingthecustomindexcode">Writing the custom index code</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882121_creatingcustomsmartsearchindexes-loadingapp_codeindexclasses">Loading App_Code index classes</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882121_creatingcustomsmartsearchindexes-registeringcustomsearchindexes">Registering custom search indexes</a></p>
+</li><li class=" "><p><a href="#src-68882121_creatingcustomsmartsearchindexes-result">Result</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="creating-local-search-indexes">Creating local search indexes</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -172,7 +187,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882121_Creatingcustomsmartsearchindexes-Writingthecustomindexcode" class="heading "><span>Writing the custom index code</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Writing the custom index code</span></h3>
 <p>The following example shows how to create a custom index that searches the content of text files:</p>
 <ol class=" "><li class=" "><p>Open your web project in Visual Studio.</p>
 </li><li class=" "><p>Add a new class into the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong> on web application installations). For example, name the class <strong class=" ">TextFileIndex.cs</strong>.</p>
@@ -336,7 +351,7 @@
 <p>With additional custom development, you can update indexes by calling the <strong class=" ">Update</strong> or <strong class=" ">Delete</strong> methods of the <strong class=" ">CMS.Search.SearchHelper</strong> class. Typically, you need to update the index from custom code outside of the index class whenever the indexed content changes. However, in this case you need to ensure that the API is never called concurrently – problems can occur if multiple processes attempt to update the same index at the same time.</p>
         </div>
     </div>
-    <h4 id="src-68882121_Creatingcustomsmartsearchindexes-LoadingApp_Codeindexclasses" class="heading "><span>Loading App_Code index classes</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Loading App_Code index classes</span></h4>
 <p>For indexes defined in the <i class=" ">App_Code</i> folder, you need to ensure that the system loads the appropriate class when building the index. You can find additional information related to this topic in <a href="loading-custom-classes-from-app_code">Loading custom classes from App_Code</a>.</p>
 <p>Add the <strong class=" ">RegisterCustomClass</strong> assembly attribute above the <i class=" ">TextFileIndex</i> class declaration (requires <i class=" ">using</i> statement for the <strong class=" ">CMS</strong> namespace).</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -347,7 +362,7 @@
 <p>This attribute registers custom classes and makes them available in the system. The attribute accepts two parameters:</p>
 <ul class=" "><li class=" "><p>The first parameter is a string identifier representing the name of the class. The name must match the value of the <strong class=" ">Index provider class </strong>field specified for the given search index on its <strong class=" ">Indexed content</strong> tab (<i class=" ">TextFileIndex</i> in this example).</p>
 </li><li class=" "><p>The second parameter specifies the type of the class as a <strong class=" ">System.Type</strong> object. When the system builds the custom search index, the attribute ensures that an instance of the given class is provided.</p>
-</li></ul>    <h3 id="src-68882121_Creatingcustomsmartsearchindexes-Registeringcustomsearchindexes" class="heading "><span>Registering custom search indexes</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Registering custom search indexes</span></h3>
 <ol class=" "><li class=" "><p>Log in to the Kentico administration interface and open the <strong class=" ">Smart search</strong> application.</p>
 </li><li class=" "><p>Click <strong class=" ">New Index</strong>. Fill in the following properties:<br><br></p>
 <ul class=" "><li class=" "><p><strong class=" ">Display name</strong>: Text file index</p>
@@ -359,7 +374,7 @@
 </li></ul></li><li class=" "><p>Type any required parameters into the <strong class=" ">Index data</strong> field. In this example, you need to specify the file system path of the folder containing the text files that the index will search. You can create a new folder for this purpose, e.g. <i class=" ">C:\SearchExample\</i> and add some text files into it.</p>
 </li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li><li class=" "><p>Go to the <strong class=" ">General</strong> tab and <strong class=" ">Rebuild</strong> the index.</p>
-</li></ol>    <h3 id="src-68882121_Creatingcustomsmartsearchindexes-Result" class="heading "><span>Result</span></h3>
+</li></ol>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Result</span></h3>
 <p>The index is now fully functional. To test the index, switch to the <strong class=" ">Search preview</strong> tab and try searching for any words from the text files created in the <i class=" ">SearchExample</i> folder.</p>
         </div>
 

@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881113">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The principle of XPath injection is very similar to SQL injection. The goal of the attack is very similar too. The only difference between these attacks is that XPath injection uses an XML file for data storage instead of a database. One way to get data from an XML file is to use a special query language called XPath.</p><h3 id="src-68881113_XPathinjection-ExampleofXPathinjection" class="heading "><span>Example of XPath injection</span></h3><p>Let's say that a developer stores authentication data in an XML file with the following structure:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="sp-grid-cell sp-grid-60"><p>The principle of XPath injection is very similar to SQL injection. The goal of the attack is very similar too. The only difference between these attacks is that XPath injection uses an XML file for data storage instead of a database. One way to get data from an XML file is to use a special query language called XPath.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example of XPath injection</span></h3><p>Let's say that a developer stores authentication data in an XML file with the following structure:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">...</code></div>
 <div class="line"><code class="plain">&lt;user&gt;</code></div>
@@ -161,7 +161,7 @@
     
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -179,9 +179,9 @@
 </div>
     </div>
 <p>The txtUserName and txtPassword variables are standard ASPX textboxes. When the attacker inserts an expression with an apostrophe (') to one of the textboxes, the attacker terminates the string and is able to write his own XPath expression. The scenario is basically the same as with SQL injection.</p>
-    <h3 id="src-68881113_XPathinjection-WhatcanXPathinjectionattackdo" class="heading "><span>What can XPath injection attack do</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>What can XPath injection attack do</span></h3>
 <p>An attacker can get, modify or delete anything stored in the given XML file.</p>
-    <h3 id="src-68881113_XPathinjection-FindingXPathinjectionvulnerabilities" class="heading "><span>Finding XPath injection vulnerabilities</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Finding XPath injection vulnerabilities</span></h3>
 <p>The first technique is based on trying. Try to insert strings like:</p>
 <ul class=" "><li class=" "><p>'whatever – basic test</p>
 </li><li class=" "><p>DROP</p>
@@ -190,7 +190,7 @@
 <p>The second way is to search for vulnerabilities in code. You can search for the following strings:</p>
 <ul class=" "><li class=" "><p>Xpath - many classes which work with XPath have the 'xpath' string in their name.</p>
 </li><li class=" "><p><strong class=" ">SelectSingleNode()</strong> and <strong class=" ">SelectNodes()</strong> - methods used in Kentico for getting data from XML files via XPath.</p>
-</li></ul>    <h3 id="src-68881113_XPathinjection-AvoidingXPathinjectioninKentico" class="heading "><span>Avoiding XPath injection in Kentico</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Avoiding XPath injection in Kentico</span></h3>
 <p>We do not store sensitive data in XML files in Kentico at the moment. We also do not have any code where an XPath expression is built as described in the provided example. But this may change in the future. You can avoid XPath injection by following these rules:</p>
 <ul class=" "><li class=" "><p>Validate input from external sources before you put it into XPath expressions.</p>
 </li><li class=" "><p>For characters like ', &lt;, &gt;, etc., use replace entities. "'" is a replace entity for an apostrophe.</p>

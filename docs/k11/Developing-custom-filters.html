@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882212">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Filters are components that allow users to modify the data loaded and displayed by other website components. Filters provide two types of functionality:</p><ul class=" "><li class=" "><p>Limiting the range of items displayed in a list</p>
+<div class="sp-grid-cell sp-grid-60"><p>Filters are components that allow users to modify the data loaded and displayed by other website components. Filters provide two types of functionality:</p><ul class=" "><li class=" "><p>Limiting the range of items displayed in a list</p>
 </li><li class=" "><p>Changing the order of items in a list</p>
 </li></ul><p>Kentico comes with a built-in set of filters for various types of data, but you can also create custom filters to fulfill specific requirements.</p><ol class=" "><li class=" "><p>Implement filters as <i class=" ">user controls</i> that inherit from one of the following base classes:<br><br></p>
 <ul class=" "><li class=" "><p><strong class=" ">CMSAbstractDataFilterControl</strong> - works with page data sources</p>
@@ -173,7 +173,22 @@
 </li></ol><p>You can also use custom filters anywhere in your code as standard user controls, for example on ASPX templates or in other web parts. All necessary properties, such as the <strong class=" ">FilterName</strong> used to connect with the data source, are inherited from the base class.</p></div>
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882212_developingcustomfilters-example-creatingacustomproductfilter">Example - Creating a custom product filter</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882212_developingcustomfilters-creatingthefiltercontrol">Creating the filter control</a></p>
+</li><li class=" "><p><a href="#src-68882212_developingcustomfilters-implementingthefilteringlogic">Implementing the filtering logic</a></p>
+</li><li class=" "><p><a href="#src-68882212_developingcustomfilters-addingthefiltertoaportalenginepage">Adding the filter to a portal engine page</a></p>
+</li></ul></li></ul>        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
+</li><li class=" "><p><a href="filtering-and-paging-data">Filtering and paging data</a></p>
+</li><li class=" "><p><a href="developing-data-source-web-parts">Developing data source web parts</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <ul class="toc-indentation "><li class=" "><p><a href="#src-68882212_developingcustomfilters-example-creatingacustomproductfilter">Example - Creating a custom product filter</a></p>
@@ -190,9 +205,9 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882212_Developingcustomfilters-Example-Creatingacustomproductfilter" class="heading "><span>Example - Creating a custom product filter</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example - Creating a custom product filter</span></h3>
 <p>The following example demonstrates how to develop a custom filter for <i class=" ">product pages</i>. The filter allows users to view products from specific departments and determine the order in which products are displayed. The filter applies when a postback occurs on the page. You can create filters for all types of pages or other objects using the same approach.</p>
-    <h4 id="src-68882212_Developingcustomfilters-Creatingthefiltercontrol" class="heading "><span>Creating the filter control</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating the filter control</span></h4>
 <ol class=" "><li class=" "><p>Open your web project in Visual Studio.</p>
 </li><li class=" "><p>Create a <strong class=" ">New folder</strong> under the root called <i class=" ">CMSGlobalFiles</i> (if it doesn't already exist).</p>
 <ul class=" "><li class=" "><p>The system can export the content of this folder along with your site when you <a href="deploying-websites">deploy</a> it to another instance of Kentico.</p>
@@ -238,7 +253,7 @@
 <p>You can enter the captions of the filter's child controls using <a href="working-with-resource-strings">localization strings</a> through the <strong class=" ">ResourceString</strong> property, rather than directly as <strong class=" ">Text</strong>.</p>
         </div>
     </div>
-</li></ol>    <h4 id="src-68882212_Developingcustomfilters-Implementingthefilteringlogic" class="heading "><span>Implementing the filtering logic</span></h4>
+</li></ol>    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Implementing the filtering logic</span></h4>
 <ol class=" "><li class=" "><p>Switch to the user control's code behind file and add the following references:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -424,7 +439,7 @@
         </div>
     </div>
 </li></ol><p>When a user clicks the <strong class=" ">Apply Filter</strong> button, a postback occurs, which triggers the <strong class=" ">SetFilter()</strong> method during the <strong class=" ">PreRender</strong> event and the filter applies the conditions to the displayed data. Notice the use of the <strong class=" ">CMS.Helpers.RequestHelper.IsPostBack()</strong> method in the conditions. The control only calls the <strong class=" ">SetFilter()</strong> method when the current page request is a postback, and initializes the child controls only on the first page load (i.e. when the request is <i class=" ">not</i> a postback).</p>
-    <h4 id="src-68882212_Developingcustomfilters-Addingthefiltertoaportalenginepage" class="heading "><span>Adding the filter to a portal engine page</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding the filter to a portal engine page</span></h4>
 <p>The filter control is now ready and you can try out its functionality. It is recommended to test the filter on the <strong class=" ">Corporate</strong> or <strong class=" ">E-commerce</strong> sample sites, which already contain examples of product pages.</p>
 <ol class=" "><li class=" "><p>Log in to the administration interface.</p>
 </li><li class=" "><p>Open the <strong class=" ">Pages</strong> application and <a href="creating-new-pages">create a new page</a>.</p>

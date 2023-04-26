@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882910">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>To synchronize data from external applications to Kentico, you need to decide:</p><ul class=" "><li class=" "><p>which <strong class=" ">objects</strong> and <strong class=" ">pages </strong>you want to synchronize</p>
+<div class="sp-grid-cell sp-grid-60"><p>To synchronize data from external applications to Kentico, you need to decide:</p><ul class=" "><li class=" "><p>which <strong class=" ">objects</strong> and <strong class=" ">pages </strong>you want to synchronize</p>
 </li><li class=" "><p>which <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a> you want to use</p>
 </li></ul><p>Based on this information, choose which methods to implement in your <a href="creating-integration-connectors">connector class</a>. Proceed according to the following list:</p><ol class=" "><li class=" "><p>Call the <a href="#src-68882910_implementingincomingsynchronization-loggingincomingtasks">ProcessExternalTask </a>method to log incoming tasks into the integration task queue. Either call the method in your custom communication service or directly in the code of your external application.</p>
 </li><li class=" "><p>Implement the <a href="#src-68882910_implementingincomingsynchronization-prepareinternalobjectmethod">PrepareInternalObject </a>method in your connector class. The method handles transformations of objects and pages from the external application to Kentico.</p>
@@ -159,7 +159,25 @@
 </li></ul></li><li class=" "><p>(Optional) Call the <a href="#src-68882910_implementingincomingsynchronization-requestingtheprocessingofloggedtasks">RequestTasksProcessing </a>method to remotely trigger processing of logged incoming tasks.</p>
 </li></ol></div>
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882910_implementingincomingsynchronization-loggingincomingtasks">Logging incoming tasks</a></p>
+</li><li class=" "><p><a href="#src-68882910_implementingincomingsynchronization-implementingtheincomingsynchronization">Implementing the incoming synchronization</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882910_implementingincomingsynchronization-prepareinternalobjectmethod">PrepareInternalObject method</a></p>
+</li><li class=" "><p><a href="#src-68882910_implementingincomingsynchronization-getinternalobjectparamsmethod">GetInternalObjectParams method</a></p>
+</li><li class=" "><p><a href="#src-68882910_implementingincomingsynchronization-getinternaldocumentparamsmethod">GetInternalDocumentParams method</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882910_implementingincomingsynchronization-requestingtheprocessingofloggedtasks">Requesting the processing of logged tasks</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="integration-bus-overview#src-68882894_integrationbusoverview-incomingtasks-fromexternalapplicationstokenticocms">Integration bus overview - Incoming tasks</a></p>
+</li><li class=" "><p><a href="reference---integration-bus-data-types">Reference - Integration bus data types</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -179,7 +197,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882910_Implementingincomingsynchronization-Loggingincomingtasks" class="heading "><span>Logging incoming tasks</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Logging incoming tasks</span></h3>
 <p>The <strong class=" ">ProcessExternalTask</strong> method logs object or page tasks into the integration task queue. The system then takes the tasks out of the queue and processes them later. The method is available in the <i class=" ">IntegrationHelper</i> class.</p>
 <p>The location where you need to call the method depends on the approach that you use to communicate between Kentico and the external application:</p>
 <ul class=" "><li class=" "><p><strong class=" ">Kentico API</strong> – if your external application has references to your connector class and the Kentico DLLs (i.e. has the <i class=" ">Kentico.Libraries</i> NuGet package installed), call the <i class=" ">ProcessExternalTask</i> method directly in your application's code.</p>
@@ -208,8 +226,8 @@
 <p><img class="confluence-embedded-image" src="images/download/attachments/68882910/image2013-9-10-16_52_40.png" alt="images/download/attachments/68882910/image2013-9-10-16_52_40.png">
         <br><span class="caption">The sequence of method calls for each incoming synchronization</span>
     </p>
-    <h3 id="src-68882910_Implementingincomingsynchronization-Implementingtheincomingsynchronization" class="heading "><span>Implementing the incoming synchronization</span></h3>
-    <h4 id="src-68882910_Implementingincomingsynchronization-PrepareInternalObjectmethod" class="heading "><span>PrepareInternalObject method</span></h4>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Implementing the incoming synchronization</span></h3>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>PrepareInternalObject method</span></h4>
 <p>Implement the <i class=" ">PrepareInternalObject</i> method in your connector class. This method transforms objects from the external application into the corresponding objects or pages in Kentico. The method must return a valid <i class=" ">TreeNode</i> page or object inheriting from <i class=" ">BaseInfo</i> (UserInfo, RoleInfo, ForumPostInfo etc.).</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -224,21 +242,21 @@
 <p><img class="confluence-embedded-image" src="images/download/attachments/68882910/image2013-9-10-17_0_13.png" alt="images/download/attachments/68882910/image2013-9-10-17_0_13.png">
         <br><span class="caption">Calling of the PrepareInternalObject method</span>
     </p>
-    <h4 id="src-68882910_Implementingincomingsynchronization-GetInternalObjectParamsmethod" class="heading "><span>GetInternalObjectParams method</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>GetInternalObjectParams method</span></h4>
 <p>Implement the <i class=" ">GetInternalObjectParams </i>method if you need to synchronize objects that have foreign key bindings with other objects in Kentico. Based on the <i class=" ">id</i> and <i class=" ">objectType</i> parameters, you should be able to find the corresponding object in the external application, and then set the method's <i class=" ">out</i> parameters. At the very least you need to supply the object's code name (<i class=" ">codeName</i> parameter). The <i class=" ">siteName</i>, <i class=" ">parentId</i> and <i class=" ">groupId</i> parameters allow you to specify the object with more precision. The system then finds the related object in the Kentico database according to the <i class=" ">out</i> parameters, and translates the foreign key values.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> GetInternalObjectParams(</code><code class="keyword">int</code><code class="plain"> id, </code><code class="keyword">string</code><code class="plain"> objectType, </code><code class="keyword">out</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> codeName, </code><code class="keyword">out</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> siteName, </code><code class="keyword">ref</code><code class="plain"> </code><code class="keyword">int</code><code class="plain"> parentId, </code><code class="keyword">ref</code><code class="plain"> </code><code class="keyword">int</code><code class="plain"> groupId)</code></div>
 </div>
     </div>
-    <h4 id="src-68882910_Implementingincomingsynchronization-GetInternalDocumentParamsmethod" class="heading "><span>GetInternalDocumentParams method</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>GetInternalDocumentParams method</span></h4>
 <p>Implement the <i class=" ">GetInternalDocumentParams</i> method if you need to synchronize objects that have foreign key bindings to pages in Kentico. Based on the <i class=" ">id</i> and <i class=" ">className</i> parameters, you should be able to find the corresponding page in the external application, and then specify the page's <i class=" ">nodeGuid</i>, <i class=" ">cultureCode</i> and <i class=" ">siteName</i> through the method's <i class=" ">out</i> parameters. All of the parameters are mandatory. The system then finds the related page in the Kentico database, and translates the foreign key values.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> GetInternalDocumentParams(</code><code class="keyword">int</code><code class="plain"> id, </code><code class="keyword">string</code><code class="plain"> className, </code><code class="keyword">out</code><code class="plain"> Guid nodeGuid, </code><code class="keyword">out</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> cultureCode, </code><code class="keyword">out</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> siteName)</code></div>
 </div>
     </div>
-    <h3 id="src-68882910_Implementingincomingsynchronization-Requestingtheprocessingofloggedtasks" class="heading "><span>Requesting the processing of logged tasks</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Requesting the processing of logged tasks</span></h3>
 <p>The<i class=" "> BaseIntegrationConnector</i> offers two overloads of the <i class=" ">RequestTasksProcessing</i> method:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">

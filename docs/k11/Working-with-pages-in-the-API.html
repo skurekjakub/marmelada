@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882165">
 
 <div id="ht-loader">
     <noscript>
@@ -146,7 +146,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The Kentico API allows you to retrieve and manage page content using custom code.</p><p>Use the following classes from the <strong class=" ">CMS.DocumentEngine</strong> namespace to work with pages in the API:</p><ul class=" "><li class=" "><p><strong class=" ">TreeNode</strong> – object that represents pages. The <i class=" ">TreeNode</i> class encapsulates data from the <i class=" ">CMS_Tree</i> and <i class=" ">CMS_Document</i> <a href="page-database-structure">tables</a>, and the coupled data tables of individual page types.</p>
+<div class="sp-grid-cell sp-grid-60"><p>The Kentico API allows you to retrieve and manage page content using custom code.</p><p>Use the following classes from the <strong class=" ">CMS.DocumentEngine</strong> namespace to work with pages in the API:</p><ul class=" "><li class=" "><p><strong class=" ">TreeNode</strong> – object that represents pages. The <i class=" ">TreeNode</i> class encapsulates data from the <i class=" ">CMS_Tree</i> and <i class=" ">CMS_Document</i> <a href="page-database-structure">tables</a>, and the coupled data tables of individual page types.</p>
 </li><li class=" "><p><strong class=" ">DocumentQuery</strong> and <strong class=" ">MultiDocumentQuery</strong> – classes that represent a query for loading pages. You can further parametrize the query to only retrieve the pages you need. Both are similar in functionality:</p>
 <ul class=" "><li class=" "><p><strong class=" ">DocumentQuery</strong> allows you to retrieve pages of a single <a href="page-types">page type</a> (when an instance is created with a page type class name as the constructor parameter) or general pages of any type (when using a parameterless constructor). If used for a single specific page type, the resulting query automatically includes coupled data of the given page type (e.g., news, articles, blogs). <i class=" ">DocumentQuery</i> is also used internally by <a href="generating-classes-for-kentico-objects">generated page type providers</a> and any custom providers or repositories built around them.</p>
 </li><li class=" "><p><strong class=" ">MultiDocumentQuery</strong> allows you to retrieve pages of multiple page types in a single query at the cost of effectiveness. The coupled data of page types is not retrieved unless explicitly requested using the <i class=" ">WithCoupledData</i> <a href="reference---documentquery-methods">parametrization method</a>.</p>
@@ -167,7 +167,27 @@
 
     
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-retrievingpages">Retrieving pages</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-retrievingpagesunderworkflow">Retrieving pages under workflow</a></p>
+</li><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-retrievingpagesforcustomscenarios">Retrieving pages for custom scenarios</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-workingwithretrievedpages">Working with retrieved pages</a></p>
+</li><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-updatingpages">Updating pages</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="working-with-pages">Working with pages</a></p>
+</li><li class=" "><p><a href="page-types">Page types</a></p>
+</li><li class=" "><p><a href="generating-classes-for-kentico-objects">Generating classes for Kentico objects</a></p>
+</li><li class=" "><p><a href="reference---documentquery-methods">Reference - DocumentQuery methods</a></p>
+</li><li class=" "><p><a href="retrieving-database-data-using-objectquery-api">Retrieving database data using ObjectQuery API</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -195,7 +215,7 @@
 <ul class=" "><li class=" "><p><a class="external-link" href="http://devnet.kentico.com/articles/kentico-8-technology-documentquery-api">Kentico 8 Technology – DocumentQuery API</a></p>
 </li></ul>        </div>
     </div>
-    <h3 id="src-68882165_WorkingwithpagesintheAPI-Retrievingpages" class="heading "><span>Retrieving pages</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Retrieving pages</span></h3>
 <p>For basic retrieval of pages in your code, use the <strong class=" ">DocumentHelper.GetDocuments</strong> method and parameterize it using <a href="reference---documentquery-methods">parametrization methods</a> to only include the pages you need. If you have <a href="generating-classes-for-kentico-objects">generated page type providers</a> available, you can use them with the same parametrization methods, and then work with strongly typed page objects.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
@@ -210,7 +230,7 @@
 <div class="line"><code class="plain">					.Published();</code></div>
 </div>
     </div>
-    <h4 id="src-68882165_WorkingwithpagesintheAPI-Retrievingpagesunderworkflow" class="heading "><span>Retrieving pages under workflow</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Retrieving pages under workflow</span></h4>
 <p>When working with pages under <a href="configuring-workflows">workflow</a>, you may want to retrieve the latest edited version in some cases and the published version in others.</p>
 <ul class=" "><li class=" "><p>Use the <strong class=" ">PublishedVersion</strong> <a href="reference---documentquery-methods">parametrization method</a> to retrieve the published version of pages under workflow (when retrieving pages to be displayed on the live site).</p>
 </li><li class=" "><p>Use the <strong class=" ">LatestVersion</strong> <a href="reference---documentquery-methods">method</a> to retrieve the latest edited version of pages under workflow (when retrieving pages for further editing or previewing of unpublished changes).</p>
@@ -220,7 +240,7 @@
 <p><strong class=" ">Note</strong>: The <strong class=" ">Published</strong> <a href="reference---documentquery-methods">parametrization method</a> does not specify the version of the pages you retrieve, instead it limits the retrieved pages to only those that are currently published according to the value of their <strong class=" ">Published from</strong> / <strong class=" ">Published to</strong> settings and have a published version.</p>
         </div>
     </div>
-    <h4 id="src-68882165_WorkingwithpagesintheAPI-Retrievingpagesforcustomscenarios" class="heading "><span>Retrieving pages for custom scenarios</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Retrieving pages for custom scenarios</span></h4>
 <p><strong class=" ">DocumentHelper</strong> automatically performs some parameterization of the query to simplify the code for the most common scenarios. However, if you require full control over the query, you can directly use the <strong class=" ">DocumentQuery</strong> or <strong class=" ">MultiDocumentQuery</strong> classes to ensure that there is not any unexpected parametrization done in the background.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -243,7 +263,7 @@
 <div class="line"><code class="plain">                    .PublishedVersion();</code></div>
 </div>
     </div>
-    <h3 id="src-68882165_WorkingwithpagesintheAPI-Workingwithretrievedpages" class="heading "><span>Working with retrieved pages</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Working with retrieved pages</span></h3>
 <p>You can iterate through the retrieved collection to access the properties of individual pages. The available columns depend on how you parametrized the query when retrieving the pages.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -260,7 +280,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h3 id="src-68882165_WorkingwithpagesintheAPI-Updatingpages" class="heading "><span>Updating pages</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Updating pages</span></h3>
 <p>To update a page (<i class=" ">TreeNode</i> object):</p>
 <ol class=" "><li class=" "><p>Retrieve the latest edited version of a page using the methods described above.</p>
 </li><li class=" "><p>Modify the page's data:</p>

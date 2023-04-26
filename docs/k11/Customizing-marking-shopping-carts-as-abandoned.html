@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881672">
 
 <div id="ht-loader">
     <noscript>
@@ -149,12 +149,12 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The Kentico E-commerce Solution marks shopping carts as abandoned with a <a href="scheduling-tasks">scheduled task</a>. The scheduled task creates an <a href="tracking-contact-activities">activity</a> for every abandoned shopping cart. When you then set up a <a href="marketing-automation">marketing automation</a> process, the system sends an email reminder to <a href="customers">customers</a> with an abandoned shopping cart. In the email reminder, there can be, for example, links to the <a href="products">products</a> added to their shopping carts or a link to their shopping cart to continue shopping.</p><div class="confbox admonition admonition-info">
+<div class="sp-grid-cell sp-grid-60"><p>The Kentico E-commerce Solution marks shopping carts as abandoned with a <a href="scheduling-tasks">scheduled task</a>. The scheduled task creates an <a href="tracking-contact-activities">activity</a> for every abandoned shopping cart. When you then set up a <a href="marketing-automation">marketing automation</a> process, the system sends an email reminder to <a href="customers">customers</a> with an abandoned shopping cart. In the email reminder, there can be, for example, links to the <a href="products">products</a> added to their shopping carts or a link to their shopping cart to continue shopping.</p><div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p>Abandoned shopping carts do not have any property indicating whether they are abandoned or not. The process is used only to create the abandoned shopping cart activities for marketing automation.</p>
         </div>
-    </div><h3 id="src-68881672_Customizingmarkingshoppingcartsasabandoned-Howabandonedshoppingcartreminderswork" class="heading "><span>How abandoned shopping cart reminders work</span></h3><p>The scenario presumes the situation when a visitor (potentially a future customer) considers purchasing some products but then changes the mind and leaves. Store administrators then want to remind the visitor of the products. To be able to contact a visitor, the system saves the ID of the visitor's <a href="contact-management">contact</a> to the shopping cart (specifically to the <i class=" ">ShoppingCartContactID</i> column in the <i class=" ">COM_ShoppingCart</i> database table). In this scenario, visitors can be:</p><ul class=" "><li class=" "><p>A registered customer – the customer has a <a href="user-management">user</a> assigned, the user has a contact assigned.</p>
+    </div><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>How abandoned shopping cart reminders work</span></h3><p>The scenario presumes the situation when a visitor (potentially a future customer) considers purchasing some products but then changes the mind and leaves. Store administrators then want to remind the visitor of the products. To be able to contact a visitor, the system saves the ID of the visitor's <a href="contact-management">contact</a> to the shopping cart (specifically to the <i class=" ">ShoppingCartContactID</i> column in the <i class=" ">COM_ShoppingCart</i> database table). In this scenario, visitors can be:</p><ul class=" "><li class=" "><p>A registered customer – the customer has a <a href="user-management">user</a> assigned, the user has a contact assigned.</p>
 </li><li class=" "><p>An anonymous customer – the visitor has a contact assigned according to their activities. The contact can be:</p>
 <ul class=" "><li class=" "><p>With an email address – the email address is known, for example, from a subscribed <a href="email-marketing">newsletter</a>.</p>
 </li><li class=" "><p>Without an email address – the visitor did not provide any email address, therefore you cannot reach such visitor.</p>
@@ -163,7 +163,23 @@
     
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881672_customizingmarkingshoppingcartsasabandoned-howabandonedshoppingcartreminderswork">How abandoned shopping cart reminders work</a></p>
+</li><li class=" "><p><a href="#src-68881672_customizingmarkingshoppingcartsasabandoned-customizingevaluationwhetherashoppingcartisabandoned">Customizing evaluation whether a shopping cart is abandoned</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881672_safe-id-q3vzdg9taxppbmdtyxjraw5nc2hvchbpbmdjyxj0c2fzywjhbmrvbmvkluv4yw1wbgxigjndcmvhdgluz2fjdxn0b21ldmfsdwf0aw9ub2zhymfuzg9uzwrzag9wcgluz2nhcnrz">Example – Creating a custom evaluation of abandoned shopping carts</a></p>
+</li></ul></li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="walkthrough---sending-an-automated-reminder-of-an-abandoned-shopping-cart">Walkthrough - Sending an automated reminder of an abandoned shopping cart</a></p>
+</li><li class=" "><p><a href="scheduling-custom-tasks">Scheduling custom tasks</a></p>
+</li><li class=" "><p><a href="checkout-process">Checkout process</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -181,7 +197,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68881672_Customizingmarkingshoppingcartsasabandoned-Customizingevaluationwhetherashoppingcartisabandoned" class="heading "><span>Customizing evaluation whether a shopping cart is abandoned</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Customizing evaluation whether a shopping cart is abandoned</span></h3>
 <p>You can change the evaluation process when the system decides whether the shopping cart is abandoned.</p>
 <p>When the scheduled task starts, the system initializes the <strong class=" ">MarkCartAbandoned</strong> class and triggers the <strong class=" ">Execute</strong> method. The <strong class=" ">Execute</strong> method retrieves all shopping carts fulfilling all of the following conditions:</p>
 <ul class=" "><li class=" "><p>The shopping cart is non-empty (i.e., the shopping cart contains at least one product).</p>
@@ -213,7 +229,7 @@
 </div>
     </div>
 <p>The system then creates a <strong class=" ">Shopping cart abandoned</strong> activity for every looped abandoned shopping cart to its contact that ensures sending the reminder email to the contact.</p>
-    <h4 id="src-68881672_safe-id-Q3VzdG9taXppbmdtYXJraW5nc2hvcHBpbmdjYXJ0c2FzYWJhbmRvbmVkLUV4YW1wbGXigJNDcmVhdGluZ2FjdXN0b21ldmFsdWF0aW9ub2ZhYmFuZG9uZWRzaG9wcGluZ2NhcnRz" class="heading "><span>Example – Creating a custom evaluation of abandoned shopping carts</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example – Creating a custom evaluation of abandoned shopping carts</span></h4>
 <p>Implement a class inheriting from the <strong class=" ">MarkCartAbandoned</strong> class to provide your custom logic of evaluating abandoned shopping carts.</p>
 <ol class=" "><li class=" "><p>Create a new class file in your project in Visual Studio, for example <strong class=" ">CustomAbandonedCartEvaluation.cs</strong>, that inherits from the <strong class=" ">MarkCartAbandoned</strong> class.</p>
 </li><li class=" "><p>Add the <strong class=" ">CMS</strong>, <strong class=" ">CMS.Ecommerce</strong> and <strong class=" ">CMS.DataEngine</strong> namespaces to the <i class=" ">using</i> block.</p>

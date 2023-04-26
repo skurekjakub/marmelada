@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882136">
 
 <div id="ht-loader">
     <noscript>
@@ -148,9 +148,9 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The process of scheduling a custom task includes two steps:</p><ol class=" "><li class=" "><p><a href="#src-68882136_schedulingcustomtasks-writingthetaskcode">Writing the code</a> that performs the required actions</p>
+<div class="sp-grid-cell sp-grid-60"><p>The process of scheduling a custom task includes two steps:</p><ol class=" "><li class=" "><p><a href="#src-68882136_schedulingcustomtasks-writingthetaskcode">Writing the code</a> that performs the required actions</p>
 </li><li class=" "><p><a href="#src-68882136_schedulingcustomtasks-creatingnewscheduledtasks">Creating a new scheduled task in the Kentico administration interface</a></p>
-</li></ol><h3 id="src-68882136_Schedulingcustomtasks-Writingthetaskcode" class="heading "><span>Writing the task code</span></h3><p>You need to define each scheduled task as a class that implements the <strong class=" ">CMS.Scheduler.ITask</strong> interface. To integrate this type of class into the application, you can:</p><ul class=" "><li class=" "><p>Create a new assembly (<i class=" ">Class Library</i> project) in your solution and include the task class there. In this case, you must add the appropriate references to both the assembly and the main Kentico web project. The following example uses the assembly approach.</p>
+</li></ol><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Writing the task code</span></h3><p>You need to define each scheduled task as a class that implements the <strong class=" ">CMS.Scheduler.ITask</strong> interface. To integrate this type of class into the application, you can:</p><ul class=" "><li class=" "><p>Create a new assembly (<i class=" ">Class Library</i> project) in your solution and include the task class there. In this case, you must add the appropriate references to both the assembly and the main Kentico web project. The following example uses the assembly approach.</p>
 </li><li class=" "><p>Define the scheduled task directly in the Kentico web project (the <strong class=" ">App_Code</strong> folder for web site installations). In this case, you need to register and load the class via the API as described in <a href="loading-custom-classes-from-app_code">Loading custom classes from App_Code</a>.</p>
 </li></ul><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -162,7 +162,24 @@
     
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882136_schedulingcustomtasks-writingthetaskcode">Writing the task code</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882136_schedulingcustomtasks-preparingacustomproject">Preparing a custom project</a></p>
+</li><li class=" "><p><a href="#src-68882136_schedulingcustomtasks-definingthescheduledtaskclass">Defining the scheduled task class</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882136_schedulingcustomtasks-creatingnewscheduledtasks">Creating new scheduled tasks</a></p>
+</li><li class=" "><p><a href="#src-68882136_schedulingcustomtasks-result">Result</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="scheduling-tasks">Scheduling tasks</a></p>
+</li><li class=" "><p><a href="loading-custom-classes-from-app_code">Loading custom classes from App_Code</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -181,7 +198,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h4 id="src-68882136_Schedulingcustomtasks-Preparingacustomproject" class="heading "><span>Preparing a custom project</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Preparing a custom project</span></h4>
 <p>Set up a separate project for custom classes in your Kentico solution:</p>
 <ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
 </li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution (or reuse an existing custom project).<br></p>
@@ -196,7 +213,7 @@
 </li><li class=" "><p><strong class=" ">CMS.EventLog.dll</strong></p>
 </li><li class=" "><p><strong class=" ">CMS.Scheduler.dll</strong></p>
 </li></ul></li></ol></li><li class=" "><p>Reference the custom project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li></ol>    <h4 id="src-68882136_Schedulingcustomtasks-Definingthescheduledtaskclass" class="heading "><span>Defining the scheduled task class </span></h4>
+</li></ol>    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Defining the scheduled task class </span></h4>
 <ol class=" "><li class=" "><p>Create a new class under your custom project. For example, name the class <strong class=" ">CustomTask.cs</strong>.</p>
 </li><li class=" "><p>Edit the class and add using statements for the following namespaces:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -242,7 +259,7 @@
 <p>In this example, the task only creates a record in the application's <a href="working-with-the-system-event-log">event log</a> so that you can confirm it is being executed:</p>
 <ul class=" "><li class=" "><p>The <strong class=" ">TaskInfo</strong> parameter of the method allows you to access the data fields of the corresponding scheduled task object. The sample code adds the content of the <strong class=" ">TaskData</strong> field into the details of the event log entry.</p>
 </li><li class=" "><p>The string returned by the method is displayed in the administration interface as the result of the task's most recent execution. You can leave it as <i class=" ">null</i> in this case.</p>
-</li></ul>    <h3 id="src-68882136_Schedulingcustomtasks-Creatingnewscheduledtasks" class="heading "><span>Creating new scheduled tasks</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating new scheduled tasks</span></h3>
 <ol class=" "><li class=" "><p>Sign in to the Kentico administration interface.</p>
 </li><li class=" "><p>Open the <strong class=" ">Scheduled tasks</strong> application.</p>
 </li><li class=" "><p>Select the <strong class=" ">Site</strong> for which you wish to schedule the task (or <i class=" ">(global)</i> if you want the task to run for all sites or affect global objects).</p>
@@ -251,7 +268,7 @@
         <br><span class="caption">Registering a new custom task</span>
     </li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol><p>The system now executes the task regularly according to the specified interval.</p>
-    <h3 id="src-68882136_Schedulingcustomtasks-Result" class="heading "><span>Result</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Result</span></h3>
 <p>To check the result of this sample custom task, open the <strong class=" ">Event log</strong> application and look for entries with <i class=" ">CustomTask</i> as the <strong class=" ">Source</strong>.</p>
 <p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882136/Custom_Task_Result.png" alt="images/download/attachments/68882136/Custom_Task_Result.png" width="500">
         <br><span class="caption">Information events logged by the custom scheduled task</span>

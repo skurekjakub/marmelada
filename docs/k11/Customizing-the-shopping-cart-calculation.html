@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="72975274">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The Kentico E-commerce Solution allows you to customize the shopping cart calculation engine. The system runs this calculation when working with the shopping cart during <a href="checkout-process">checkout</a> and when creating or editing <a href="orders">orders</a>. The calculation determines how the system applies <a href="discounts">discounts</a>, handles <a href="configuring-shipping-options">shipping costs</a>, adds <a href="configuring-taxes">taxes</a>, etc.</p><p>For example, you can:</p><ul class=" "><li class=" "><p>Completely replace the shopping cart calculation with a custom solution</p>
+<div class="sp-grid-cell sp-grid-60"><p>The Kentico E-commerce Solution allows you to customize the shopping cart calculation engine. The system runs this calculation when working with the shopping cart during <a href="checkout-process">checkout</a> and when creating or editing <a href="orders">orders</a>. The calculation determines how the system applies <a href="discounts">discounts</a>, handles <a href="configuring-shipping-options">shipping costs</a>, adds <a href="configuring-taxes">taxes</a>, etc.</p><p>For example, you can:</p><ul class=" "><li class=" "><p>Completely replace the shopping cart calculation with a custom solution</p>
 </li><li class=" "><p>Integrate custom steps into the calculation process</p>
 </li></ul><p>To customize the shopping cart calculation:</p><ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
 </li><li class=" "><p>Create new classes that implement the <a href="#src-72975274_customizingtheshoppingcartcalculation-calculationinterfacesanddatatypes">calculation interfaces</a> (described below).</p>
@@ -172,7 +172,23 @@
 
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-72975274_customizingtheshoppingcartcalculation-calculationinterfacesanddatatypes">Calculation interfaces and data types</a></p>
+</li><li class=" "><p><a href="#src-72975274_customizingtheshoppingcartcalculation-defaultcalculationpipeline">Default calculation pipeline</a></p>
+</li><li class=" "><p><a href="#src-72975274_safe-id-q3vzdg9taxppbmd0agvzag9wcgluz2nhcnrjywxjdwxhdglvbi1fegftcgxl4octqwrkaw5nyw5lehryywnoyxjnzwnhbgn1bgf0aw9uc3rlca">Example – Adding an extra charge calculation step</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="e-commerce-customization-model">E-commerce customization model</a></p>
+</li><li class=" "><p><a href="checkout-process">Checkout process</a></p>
+</li><li class=" "><p><a href="orders">Orders</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -190,14 +206,14 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-72975274_Customizingtheshoppingcartcalculation-Calculationinterfacesanddatatypes" class="heading "><span>Calculation interfaces and data types</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Calculation interfaces and data types</span></h3>
     <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p>All mentioned classes can be found in the <strong class=" ">CMS.Ecommerce</strong> namespace.</p>
         </div>
     </div>
-    <h4 id="src-72975274_Customizingtheshoppingcartcalculation-Maincalculationlogic" class="heading "><span>Main calculation logic</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Main calculation logic</span></h4>
 <p>The core shopping cart calculation is performed by the registered implementations of the following interfaces:</p>
 <ul class=" "><li class=" "><p><strong class=" ">IShoppingCartCalculator</strong></p>
 </li><li class=" "><p><strong class=" ">IShoppingCartCalculationFactory</strong> – serves an instance of a class implementing <i class=" ">IShoppingCartCalculator</i> for each site. Must be implemented to use custom <i class=" ">IShoppingCartCalculator</i> implementations.</p>
@@ -212,7 +228,7 @@
     </div>
 <p>To fully replace the shopping cart calculation logic, the <strong class=" ">Calculate</strong> method of your <i class=" ">IShoppingCartCalculator</i> implementation needs to process the data provided in <strong class=" ">CalculatorData.Request</strong> and set all available properties of <strong class=" ">CalculatorData.Result</strong>.</p>
 <p>The default shopping cart calculation in Kentico uses a composite <i class=" ">IShoppingCartCalculator</i> step, consisting of multiple other <i class=" ">IShoppingCartCalculator</i> implementations that are executed in a specific order. See the <a href="#src-72975274_customizingtheshoppingcartcalculation-defaultcalculationpipeline">Default calculation pipeline</a> section for details.</p>
-    <h4 id="src-72975274_Customizingtheshoppingcartcalculation-Integrationwithshoppingcarts" class="heading "><span>Integration with shopping carts</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Integration with shopping carts</span></h4>
 <p>The E-commerce API uses the following interfaces to connect the main calculation logic to shopping cart objects:</p>
 <ul class=" "><li class=" "><p><strong class=" ">IShoppingCartAdapterService</strong> – prepares the data for the <i class=" ">IShoppingCartCalculator</i> calculations and applies the results to the shopping cart. Implementations must contain the following methods:</p>
 <ul class=" "><li class=" "><p><strong class=" ">GetCalculationRequest</strong>, <strong class=" ">GetCalculationResult</strong> – methods that initialize the <i class=" ">CalculationRequest</i> and <i class=" ">CalculationResult</i> objects for the calculation using the data of a specified shopping cart (<i class=" ">ShoppingCartInfo</i>).</p>
@@ -228,7 +244,7 @@
 </li></ol>        </div>
     </div>
 </li></ul></li><li class=" "><p><strong class=" ">IShoppingCartEvaluator</strong> – contains an <i class=" ">Evaluate</i> method that encapsulates the entire shopping cart evaluation and calculation logic. The default implementation prepares the calculation data using <i class=" ">IShoppingCartAdapterService</i>, runs the calculation using <i class=" ">IShoppingCartCalculationFactory</i>, and ensures automatic adding of free products to shopping carts for <a href="working-with-buy-x-get-y-discounts">Buy X Get Y discounts</a>.</p>
-</li></ul>    <h3 id="src-72975274_Customizingtheshoppingcartcalculation-Defaultcalculationpipeline" class="heading "><span>Default calculation pipeline</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Default calculation pipeline</span></h3>
 <p>The default shopping cart calculation in Kentico uses a composite implementation of the <i class=" ">IShoppingCartCalculator</i> interface – the <strong class=" ">ShoppingCartCalculatorCollection</strong> class. The <i class=" ">ShoppingCartCalculatorCollection</i> accepts an <i class=" ">IEnumerable</i> collection of other <i class=" ">IShoppingCartCalculator</i> instances (steps), calls the <strong class=" ">Calculate</strong> method of each step, and passes the <strong class=" ">CalculatorData</strong> between the steps.</p>
 <p>The default calculation pipeline consists of the following steps (each step is an <i class=" ">IShoppingCartCalculator</i> implementation):</p>
     <div class="tablewrap">
@@ -397,7 +413,7 @@
         </tr>
 </tbody>        </table>
             </div>
-    <h4 id="src-72975274_Customizingtheshoppingcartcalculation-Modifyingthedefaultcalculation" class="heading "><span>Modifying the default calculation</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Modifying the default calculation</span></h4>
 <p>You can use the <strong class=" ">ShoppingCartCalculatorCollection</strong> class to customize the shopping cart calculation while preserving the default calculation (or parts of it):</p>
 <ol class=" "><li class=" "><p>Prepare an <i class=" ">IEnumerable</i> collection of <strong class=" ">IShoppingCartCalculator</strong> instances. Define your own calculation pipeline, consisting of the default calculation steps and your own custom <i class=" ">IShoppingCartCalculator</i> steps.</p>
 </li><li class=" "><p>Create and register a custom <strong class=" ">IShoppingCartCalculationFactory</strong> implementation.</p>
@@ -408,7 +424,7 @@
 <p><strong class=" ">Note</strong>: If you have custom steps that modify the <strong class=" ">Subtotal</strong>, <strong class=" ">Total</strong> or <strong class=" ">GrandTotal</strong> values of the <strong class=" ">CalculationResult</strong>, you either need to run the steps after the last usage of the default <strong class=" ">TotalValuesCalculator</strong> step or you need to implement a custom calculator for the total values that reflects your customizations. Otherwise the <i class=" ">TotalValuesCalculator</i> step performs the default calculation of the shopping cart totals, which overwrites any values assigned by custom steps.</p>
         </div>
     </div>
-    <h3 id="src-72975274_safe-id-Q3VzdG9taXppbmd0aGVzaG9wcGluZ2NhcnRjYWxjdWxhdGlvbi1FeGFtcGxl4oCTQWRkaW5nYW5leHRyYWNoYXJnZWNhbGN1bGF0aW9uc3RlcA" class="heading "><span>Example – Adding an extra charge calculation step</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example – Adding an extra charge calculation step</span></h3>
 <p>The following example demonstrates how to add a custom step to the shopping cart calculation, while preserving all of the default calculation logic. The step adds an extra charge to the total price of the shopping cart or order based on the selected payment option.</p>
 <p>Prepare a separate project for custom classes in your Kentico solution:</p>
 <ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>

@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881931">
 
 <div id="ht-loader">
     <noscript>
@@ -148,31 +148,31 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"></div><p>To ensure that URLs can be processed correctly, the system checks text values for unsafe characters before they are added to the URL path, and makes any necessary changes. This affects fields such as page aliases, page URL paths, forum names, post subjects etc.</p>
-<p>By default, the process includes removal of diacritics and replacement of all forbidden characters according to the settings defined for the given site (as described in <a href="url-format-and-configuration">URL format and configuration</a>). Characters with diacritics are replaced by the appropriate base character, for example <i class=" ">ü</i> is converted to <i class=" ">u</i>.</p>
-<p>If you need to change the default behavior in any way, you can register and implement a handler for one or both of the following system events:</p>
-<ul class=" "><li class=" "><p><strong class=" ">OnBeforeGetSafeUrlPart</strong> - occurs whenever a potentially unsafe text value is added to a part of a URL, e.g. when the page alias field is saved (or filled automatically based on the page's name). This event can be used to customize the final format of URL paths. For example, you can convert characters from an international character set to an equivalent in Latin characters (ASCII) or specify a unique replacement string for particular forbidden characters.<br><br></p>
+<div class="sp-grid-cell sp-grid-60"><p>To ensure that URLs can be processed correctly, the system checks text values for unsafe characters before they are added to the URL path, and makes any necessary changes. This affects fields such as page aliases, page URL paths, forum names, post subjects etc.</p><p>By default, the process includes removal of diacritics and replacement of all forbidden characters according to the settings defined for the given site (as described in <a href="url-format-and-configuration">URL format and configuration</a>). Characters with diacritics are replaced by the appropriate base character, for example <i class=" ">ü</i> is converted to <i class=" ">u</i>.</p><p>If you need to change the default behavior in any way, you can register and implement a handler for one or both of the following system events:</p><ul class=" "><li class=" "><p><strong class=" ">OnBeforeGetSafeUrlPart</strong> - occurs whenever a potentially unsafe text value is added to a part of a URL, e.g. when the page alias field is saved (or filled automatically based on the page's name). This event can be used to customize the final format of URL paths. For example, you can convert characters from an international character set to an equivalent in Latin characters (ASCII) or specify a unique replacement string for particular forbidden characters.<br><br></p>
 </li><li class=" "><p><strong class=" ">OnBeforeRemoveDiacritics</strong> - occurs whenever the system removes diacritics from text. This is one of the default steps performed when creating safe URLs, but the event is also triggered during many text parsing operations that are not directly related to URLs (for example when indexing text for the <a href="setting-up-search-on-your-website">Smart search</a>).</p>
-</li></ul><p>The events are members of the <strong class=" ">URLHelper</strong> and <strong class=" ">TextHelper</strong> classes respectively, which can be found under the <strong class=" ">CMS.Helpers</strong> namespace.</p>
-<ul class=" "><li class=" "><p>The handlers for these events have the source text included as a string parameter passed by reference, so any changes that you make in the code are reflected in the result.</p>
+</li></ul><p>The events are members of the <strong class=" ">URLHelper</strong> and <strong class=" ">TextHelper</strong> classes respectively, which can be found under the <strong class=" ">CMS.Helpers</strong> namespace.</p><ul class=" "><li class=" "><p>The handlers for these events have the source text included as a string parameter passed by reference, so any changes that you make in the code are reflected in the result.</p>
 </li><li class=" "><p>Both handlers have a <i class=" ">boolean</i> return value that indicates whether the default functionality should also be performed after the handler is executed. For this reason, it is highly recommended to set the return value to <i class=" ">true</i> for all but the most extensive customizations.</p>
-</li></ul>    <div class="confbox admonition admonition-warning">
+</li></ul><div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p><strong class=" ">Warning</strong></p>
 <p>Only return a <i class=" ">false</i> value if you are sure that your custom handler can take full responsibility for all URL safety or diacritics removal requirements.</p>
 <p>Disabling the default system functionality may prevent parts of your website from working correctly, particularly in the case of handlers for the <strong class=" ">OnBeforeGetSafeUrlPart</strong> event.</p>
         </div>
-    </div>
-    <div class="confbox panel">
+    </div></div>
+
+
+
+    
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
 <ul class=" "><li class=" "><p><a href="url-format-and-configuration">URL format and configuration</a></p>
 </li><li class=" "><p><a href="setting-page-aliases">Setting page aliases</a></p>
 </li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
 </li></ul>        </div>
-    </div>
-    <h3 id="src-68881931_CustomhandlingofURLpathvalues-Example" class="heading "><span>Example</span></h3>
+    </div></div>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example</span></h3>
 <p>The following example demonstrates how to define handlers for the forbidden character events:</p>
 <ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio.</p>
 </li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>

@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881935">
 
 <div id="ht-loader">
     <noscript>
@@ -148,11 +148,26 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Wildcard URLs provide a way to load content dynamically depending on the page URL.</p><p>You can find an example on the sample Community starter site. The <strong class=" ">Members -&gt; Profile</strong> page uses wildcard URLs to display user profiles — a single page displays profiles of various site users.</p><p>How is it achieved? Log in to the administration interface and open the <strong class=" ">Pages</strong> application. Select the <strong class=" ">Members -&gt; Profile</strong> page in the content tree and switch to the <strong class=" ">Properties -&gt; URLs</strong> tab. You can see <strong class=" ">/Members/{UserName}</strong> in the <strong class=" ">Page URL path</strong> field. The <strong class=" ">{UserName}</strong> part of the URL is the actual wildcard.</p><p>If you type <strong class=" "><i class=" ">&lt;domain&gt;/Members/David.aspx</i> </strong>into your browser, the <strong class=" ">Members -&gt; Profile</strong> page opens. The system converts the wildcard part of the URL (<i class=" ">David</i>) into a query string parameter, so that the internal URL actually looks like <strong class=" ">&lt;domain&gt;/Members/Profile.aspx?username=David</strong>. The name of the parameter is taken from the name of the wildcard, and the value is the matching part of the entered URL. The <i class=" ">User public profile</i> web part which is placed on the page recognizes the <i class=" ">username</i> parameter in the rewritten URL and displays David's profile.</p></div>
+<div class="sp-grid-cell sp-grid-60"><p>Wildcard URLs provide a way to load content dynamically depending on the page URL.</p><p>You can find an example on the sample Community starter site. The <strong class=" ">Members -&gt; Profile</strong> page uses wildcard URLs to display user profiles — a single page displays profiles of various site users.</p><p>How is it achieved? Log in to the administration interface and open the <strong class=" ">Pages</strong> application. Select the <strong class=" ">Members -&gt; Profile</strong> page in the content tree and switch to the <strong class=" ">Properties -&gt; URLs</strong> tab. You can see <strong class=" ">/Members/{UserName}</strong> in the <strong class=" ">Page URL path</strong> field. The <strong class=" ">{UserName}</strong> part of the URL is the actual wildcard.</p><p>If you type <strong class=" "><i class=" ">&lt;domain&gt;/Members/David.aspx</i> </strong>into your browser, the <strong class=" ">Members -&gt; Profile</strong> page opens. The system converts the wildcard part of the URL (<i class=" ">David</i>) into a query string parameter, so that the internal URL actually looks like <strong class=" ">&lt;domain&gt;/Members/Profile.aspx?username=David</strong>. The name of the parameter is taken from the name of the wildcard, and the value is the matching part of the entered URL. The <i class=" ">User public profile</i> web part which is placed on the page recognizes the <i class=" ">username</i> parameter in the rewritten URL and displays David's profile.</p></div>
 
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881935_wildcardurls-defaultwildcardvalues">Default wildcard values</a></p>
+</li><li class=" "><p><a href="#src-68881935_wildcardurls-usingwildcardurlsonmulti-languagesites">Using wildcard URLs on multi-language sites</a></p>
+</li><li class=" "><p><a href="#src-68881935_wildcardurls-dotsinwildcardurls">Dots in wildcard URLs</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="setting-page-aliases">Setting page aliases</a></p>
+</li><li class=" "><p><a href="configuring-page-urls">Configuring page URLs</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -169,11 +184,11 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68881935_WildcardURLs-Defaultwildcardvalues" class="heading "><span>Default wildcard values</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Default wildcard values</span></h3>
 <p>You can set default values for wildcards in URLs. Use the following format in the URL path: <strong class=" ">{&lt;wildcard name&gt;;&lt;Default value&gt;}</strong>. Default values are useful when you want to have a wildcard in a page's URL path, but expect that the wildcard part may not always be present in the URL. The default value ensures that the system always generates the URL with a certain value in the wildcard.</p>
 <p>For example, open the sample Community site in the <strong class=" ">Pages</strong> application and select the <strong class=" ">Members</strong> page. Switch to the<strong class=" "> Properties -&gt; URLs</strong> tab, enter <i class=" ">/Members/{UserName;David}</i> into the <strong class=" ">Page URL path</strong> field and click <strong class=" ">Save</strong>. If you now access the Members page on the live site, the page displays David's profile by default.</p>
 <p>Additionally, the current value of a wildcard is always used as the default value in all other URLs on the given page that contain the same wildcard. For example, imagine a scenario with two pages that use a wildcard in their URL path: the first set to <i class=" ">/Profile/{UserName}</i> and the other to <i class=" ">/Profile/{UserName}/Details</i>. When the first page is accessed through the URL <strong class=" ">&lt;domain&gt;/Profile/Andy.aspx</strong>, navigation links to the second page are automatically generated as <strong class=" ">&lt;domain&gt;/Profile/Andy/Details.aspx</strong>. The current value is used even for wildcards that have a different default value set in the URL path.</p>
-    <h3 id="src-68881935_WildcardURLs-UsingwildcardURLsonmulti-languagesites" class="heading "><span>Using wildcard URLs on multi-language sites</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Using wildcard URLs on multi-language sites</span></h3>
 <p>The <strong class=" ">Page URL path</strong> is unique for each language version of a page. As a result, you may encounter problems when referring to a page using a wildcard URL on multi-lingual sites.</p>
 <p>For example, on the sample <strong class=" ">Community Starter site</strong>, the <strong class=" ">Members/Profile</strong> page has the <strong class=" ">Page URL path</strong> set to <strong class=" ">/Members/{UserName}</strong>. If you create a version of this page in another language, the Page URL path is automatically changed to <strong class=" ">/Members/{UserName}-1</strong>. This happens because the URL path needs to be unique for every page.</p>
 <p>Now let's presume that you have the following link leading to the page: <strong class=" ">&lt;domain&gt;/Members/David.aspx</strong>. In the original version, it works fine. But if you try to click the link in the second language version, no profile is found, because the URL in this language version is <strong class=" ">&lt;domain&gt;/Members/David-1.aspx</strong>. The modification added to the end of the URL path changes the wildcard value representing the user name, which makes it impossible to find a matching user profile.</p>
@@ -184,7 +199,7 @@
 <p>Keep in mind that it is not possible to specify <i class=" ">default</i> wildcard values through page aliases. An alias only makes the page accessible through a given URL, it does not enforce this URL for the page.</p>
         </div>
     </div>
-    <h3 id="src-68881935_WildcardURLs-DotsinwildcardURLs" class="heading "><span>Dots in wildcard URLs</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Dots in wildcard URLs</span></h3>
 <p>You may encounter problems when a string containing a dot character (".") gets into the wildcard parts of URLs. A typical example of this can be found on the <strong class=" ">Members -&gt; Profile</strong> page of the sample Community Starter Site.</p>
 <p>The page's Page URL path is <strong class=" ">/Members/{UserName}</strong>. For the username <strong class=" ">jack.smith</strong>, the profile page URL is <strong class=" ">http://&lt;domain&gt;/Members/jack.smith</strong>. Since the last part of the URL after the last dot (<i class=" ">smith</i> in this case) represents the extension, the URL returns a 404 error.</p>
 <p>One way to prevent such problems is to add validation rules that block registration with user names containing dots. If you need to allow dots in user names and use wildcard URLs with user names at the same time, move the wildcard in the Page URL to the middle of the URL, for example: <strong class=" ">/Members/{UserName}/Profile</strong></p>

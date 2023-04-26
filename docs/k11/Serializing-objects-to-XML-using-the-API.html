@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882144">
 
 <div id="ht-loader">
     <noscript>
@@ -148,12 +148,12 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The Kentico API provides a way to <a class="external-link" href="http://en.wikipedia.org/wiki/Serialization">serialize</a> many types of objects from the database into XML data. You can use the serialized data to synchronize objects between multiple development instances, in combination with a custom source control system or continuous integration solution. The system ensures that the XML data of matching objects is always identical and consistent (including element and attribute order), even when serialized on different instances of Kentico.</p><p>Serialization is supported for the object types listed on the <a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a> page.</p><div class="confbox admonition admonition-note">
+<div class="sp-grid-cell sp-grid-60"><p>The Kentico API provides a way to <a class="external-link" href="http://en.wikipedia.org/wiki/Serialization">serialize</a> many types of objects from the database into XML data. You can use the serialized data to synchronize objects between multiple development instances, in combination with a custom source control system or continuous integration solution. The system ensures that the XML data of matching objects is always identical and consistent (including element and attribute order), even when serialized on different instances of Kentico.</p><p>Serialization is supported for the object types listed on the <a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a> page.</p><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p><strong class=" ">Note</strong>: Only use the serialization API when implementing a custom synchronization solution. If you are using the default <a href="setting-up-continuous-integration">Kentico continuous integration solution</a>, you do not need to write any custom code.</p>
         </div>
-    </div><h3 id="src-68882144_SerializingobjectstoXMLusingtheAPI-GettingtheserializedXMLdataforobjects" class="heading "><span>Getting the serialized XML data for objects</span></h3><p>To get the serialized XML data of Kentico objects:</p><ol class=" "><li class=" "><p>Prepare a <i class=" ">BaseInfo (WebPartInfo, PageTemplateInfo</i> etc.) instance representing the object.</p>
+    </div><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Getting the serialized XML data for objects</span></h3><p>To get the serialized XML data of Kentico objects:</p><ol class=" "><li class=" "><p>Prepare a <i class=" ">BaseInfo (WebPartInfo, PageTemplateInfo</i> etc.) instance representing the object.</p>
 </li><li class=" "><p>Call the <strong class=" ">Serialize</strong> extension method of the <i class=" ">BaseInfo</i> object (provided within the <strong class=" ">CMS.DataEngine.Serialization</strong> library).</p>
 </li></ol><p>The <i class=" ">Serialize</i> method returns an <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlelement%28v=vs.100%29.aspx">XmlElement</a>.</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example - Serializing a web part</div>
@@ -180,7 +180,24 @@
 
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882144_serializingobjectstoxmlusingtheapi-gettingtheserializedxmldataforobjects">Getting the serialized XML data for objects</a></p>
+</li><li class=" "><p><a href="#src-68882144_serializingobjectstoxmlusingtheapi-deserializingxmldataintoobjects">Deserializing XML data into objects</a></p>
+</li><li class=" "><p><a href="#src-68882144_serializingobjectstoxmlusingtheapi-serializingallobjectstothefilesystem">Serializing all objects to the file system</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882144_serializingobjectstoxmlusingtheapi-restoringobjectsfromthefilesystem">Restoring objects from the file system</a></p>
+</li></ul></li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="setting-up-continuous-integration">Setting up continuous integration</a></p>
+</li><li class=" "><p><a href="continuous-integration-repository-structure">Continuous integration repository structure</a></p>
+</li><li class=" "><p><a href="database-table-api">Database table API</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -199,7 +216,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882144_SerializingobjectstoXMLusingtheAPI-DeserializingXMLdataintoobjects" class="heading "><span>Deserializing XML data into objects</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Deserializing XML data into objects</span></h3>
 <p>The API provides a way to deserialize XML data back into Kentico objects:</p>
 <ol class=" "><li class=" "><p>Read the XML data as an <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmldocument%28v=vs.100%29.aspx">XmlDocument</a> from the file system (or another source).</p>
 </li><li class=" "><p>Get the <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlelement%28v=vs.100%29.aspx">XmlElement</a> representing the given object from the <i class=" ">XmlDocument</i> (typically the root element).</p>
@@ -236,7 +253,7 @@
 <p>When deserializing XML data, the system automatically checks whether the given object already exists in the database (based on the code name or GUID values). If yes, the <i class=" ">Deserialize</i> method sets the appropriate object ID when creating the <i class=" ">DeserializationResult</i>. Saving the deserialized object into the database then updates the existing object instead of creating a new one.</p>
         </div>
     </div>
-    <h3 id="src-68882144_SerializingobjectstoXMLusingtheAPI-Serializingallobjectstothefilesystem" class="heading "><span>Serializing all objects to the file system</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Serializing all objects to the file system</span></h3>
 <p>You can call the API of the <a href="setting-up-continuous-integration">Kentico continuous integration solution</a> to serialize all objects of the supported types directly to the file system.</p>
 <p>Call the <strong class=" ">StoreAll</strong> static method of the <strong class=" ">CMS.ContinuousIntegration.FileSystemRepositoryManager</strong> class. The method returns a <strong class=" ">RepositoryActionResult</strong> object, which you can use to verify the success of the operation and process any errors that occurred.</p>
     <div class="confbox admonition admonition-info">
@@ -269,7 +286,7 @@
     </div>
 <p>The <i class=" ">StoreAll</i> method creates XML files containing the serialized data of objects in the project's <strong class=" ">CMS\App_Data\CIRepository</strong> folder. You need to ensure that the <strong class=" ">CIRepository</strong> folder is included in your source control system.</p>
 <p>For details about the file system structure, see <a href="continuous-integration-repository-structure">Continuous integration repository structure</a>.</p>
-    <h4 id="src-68882144_SerializingobjectstoXMLusingtheAPI-Restoringobjectsfromthefilesystem" class="heading "><span>Restoring objects from the file system</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Restoring objects from the file system</span></h4>
 <p>When developing websites in a team, you may often need to load the serialized XML data of objects from a source control system or another developer.</p>
 <p>You can restore the data from the XML files in the project's <strong class=" ">CIRepository</strong> folder using the <strong class=" ">ContinuousIntegration.exe</strong> command line utility available in the Kentico project's <strong class=" ">CMS\bin</strong> folder. The utility deserializes the objects stored in the project's <i class=" ">CIRepository</i> folder and creates, overwrites or removes corresponding data in the given project's database. See <a href="restoring-continuous-integration-files-to-the-database">Restoring continuous integration files to the database</a> for details.</p>
     <div class="confbox admonition admonition-note">

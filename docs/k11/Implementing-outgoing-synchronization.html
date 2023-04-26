@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882907">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>To synchronize data from Kentico to external applications, you need to decide:</p><ul class=" "><li class=" "><p>which <strong class=" ">objects</strong> and <strong class=" ">pages </strong>you want to synchronize</p>
+<div class="sp-grid-cell sp-grid-60"><p>To synchronize data from Kentico to external applications, you need to decide:</p><ul class=" "><li class=" "><p>which <strong class=" ">objects</strong> and <strong class=" ">pages </strong>you want to synchronize</p>
 </li><li class=" "><p>which <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a> you want to use</p>
 </li><li class=" "><p>whether you want to use <a href="integration-bus-overview#src-68882894_integrationbusoverview-synchronousprocessing">synchronous </a>or <a href="integration-bus-overview#src-68882894_integrationbusoverview-asynchronousprocessing">asynchronous </a>processing of integration tasks</p>
 </li><li class=" "><p>whether you want to handle <strong class=" ">translations</strong> of foreign key bindings</p>
@@ -169,7 +169,32 @@
 </li></ul></li></ol><p><br></p></div>
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">Creating subscriptions</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-usingpredefinedsubscriptionmethods">Using predefined subscription methods</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">Building subscription objects</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-creatingcustomsubscriptionclasses">Creating custom subscription classes</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization">Implementing outgoing synchronization</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-asynchronousprocessing">Asynchronous processing</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-synchronousprocessing">Synchronous processing</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-processingchildobjectdata">Processing child object data</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-sendingdatatothetargetapplication">Sending data to the target application</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects">Translating foreign keys to match external objects</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-getexternalobjectidmethod">GetExternalObjectID method</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-getexternaldocumentidmethod">GetExternalDocumentID method</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeysinsynchronousmode">Translating foreign keys in synchronous mode</a></p>
+</li></ul></li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="integration-bus-overview#src-68882894_integrationbusoverview-outgoingtasks-fromkenticocmstoexternalapplications">Integration bus overview - Outgoing tasks</a></p>
+</li><li class=" "><p><a href="reference---integration-bus-data-types">Reference - Integration bus data types</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -196,7 +221,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68882907_Implementingoutgoingsynchronization-Creatingsubscriptions" class="heading "><span>Creating subscriptions</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating subscriptions</span></h3>
 <p class="MsoNormal">Subscriptions keep track of actions that occur in Kentico, such as creating, updating or deleting objects and pages. Use subscriptions to determine the scope of the changes that the connector synchronizes.</p>
 <p class="MsoNormal">You need to implement subscriptions inside the <strong class=" ">Init()</strong> method of your <a href="creating-integration-connectors">connector class</a>:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -217,7 +242,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-Usingpredefinedsubscriptionmethods" class="heading "><span>Using predefined subscription methods</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Using predefined subscription methods</span></h4>
 <p>You can subscribe to pages or objects by calling the following methods:</p>
 <ul class=" "><li class=" "><p>SubscribeToAllDocuments</p>
 </li><li class=" "><p>SubscribeToDocuments</p>
@@ -237,7 +262,7 @@
 <div class="line"><code class="plain">SubscribeToAllDocuments(TaskProcessTypeEnum.AsyncSimpleSnapshot, TaskTypeEnum.All);</code></div>
 </div>
     </div>
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-Buildingsubscriptionobjects" class="heading "><span>Building subscription objects</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Building subscription objects</span></h4>
 <p class="MsoNormal">You can select exactly which objects are synchronized using subscription objects:</p>
 <ol class=" "><li class="MsoNormal "><p>Create a new object of a subscription class.</p>
 </li><li class="MsoNormal "><p>Call the <strong class=" ">SubscribeTo</strong> method for the object.</p>
@@ -299,7 +324,7 @@
 <div class="line"><code class="plain">SubscribeTo(customTableDataSub);</code></div>
 </div>
     </div>
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-Creatingcustomsubscriptionclasses" class="heading "><span>Creating custom subscription classes</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating custom subscription classes</span></h4>
 <p>If you need to extend the filtering options of a connector's subscriptions, you can create your own subscription class:</p>
 <ol class=" "><li class=" "><p>Create a new class inheriting from one of the existing <a href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">subscription classes</a>.</p>
 <ul class=" "><li class=" "><p>If you wish to create a completely custom subscription class, we recommend inheriting from <strong class=" ">AbstractIntegrationSubscription</strong>.</p>
@@ -322,13 +347,13 @@
 </div>
     </div>
 </li></ol><p>You can then use the custom subscription class to <a href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">build subscription objects</a>.</p>
-    <h3 id="src-68882907_Implementingoutgoingsynchronization-Implementingoutgoingsynchronization" class="heading "><span>Implementing outgoing synchronization</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Implementing outgoing synchronization</span></h3>
 <p>To synchronize the objects covered by your <a href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">subscriptions</a> to external applications, you need to override methods inside your <a href="creating-integration-connectors">connector class</a>:</p>
 <ul class=" "><li class=" "><p><strong class=" ">ProcessInternalTaskAsync</strong> for <a href="integration-bus-overview#src-68882894_integrationbusoverview-asynchronousprocessing">asynchronous processing</a> of integration tasks</p>
 </li><li class=" "><p><strong class=" ">ProcessInternalTaskSync</strong> for <a href="integration-bus-overview#src-68882894_integrationbusoverview-synchronousprocessing">synchronous processing</a></p>
 </li></ul>    <div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-Asynchronousprocessing" class="heading "><span>Asynchronous processing</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Asynchronous processing</span></h4>
 <p>The <strong class=" ">ProcessInternalTaskAsync</strong> method ensures asynchronous processing of <strong class=" ">objects</strong> (users, roles, forums, etc.) or <strong class=" ">pages </strong>(content tree nodes):</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Objects</div>
@@ -346,7 +371,7 @@
     </div>
     <div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-Synchronousprocessing" class="heading "><span>Synchronous processing</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Synchronous processing</span></h4>
 <p>The <strong class=" ">ProcessInternalTaskSync</strong> method ensures synchronous processing of <strong class=" ">objects</strong> (users, roles, forums, etc.) or <strong class=" ">pages </strong>(content tree nodes):</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Objects</div>
@@ -382,7 +407,7 @@
 </div>
     </div>
 <p>The synchronous and asynchronous versions of the methods work in the same way. The only difference is that you cannot use the <i class=" ">TranslateColumnsToExternal</i> method to <a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects">translate foreign key values</a> inside the <i class=" ">ProcessInternalTaskSync</i> method. If you wish to translate foreign keys with synchronous processing, you need to manually <a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeysinsynchronousmode">write the translation code</a>.</p>
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-Processingchildobjectdata" class="heading "><span>Processing child object data</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Processing child object data</span></h4>
 <p>When using asynchronous processing for tasks with the <strong class=" ">Snapshot</strong> <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a>, the task data includes both the main object and any child objects. Within the <strong class=" ">ProcessInternalTaskAsync</strong> method, you can access collections of child objects via the <strong class=" ">Children</strong> property of the <strong class=" ">GeneralizedInfo</strong> parameter.</p>
 <p>The following example demonstrates how to correctly get the main object and its child objects within the <i class=" ">ProcessInternalTaskAsync</i> method (the example processes <a href="orders">Order</a> objects and child items within the order).</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -422,13 +447,13 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-Sendingdatatothetargetapplication" class="heading "><span>Sending data to the target application</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Sending data to the target application</span></h4>
 <p>Once you have converted the object or page to an external equivalent, there are several ways to synchronize the data with the target system:</p>
 <ul class=" "><li class=" "><p>Call the API of the external system (you need to add references to the required namespaces).</p>
 </li><li class=" "><p>Use <i class=" ">CMSConnectionScope</i> and <i class=" ">GeneralConnection</i> and perform a query against the external database.</p>
 </li><li class=" "><p>Push the data to an external endpoint in a format that the target system can process. For example, the endpoint can be represented by a web service in the external system.</p>
 </li></ul><p>You can use any other approach, but you always need to be able to determine whether the processing succeeded on the external side. Both the <i class=" ">ProcessInternalTaskAsync</i> and <i class=" ">ProcessInternalTaskSync</i> methods must return the <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-integrationprocessresultenum">result status</a>.</p>
-    <h3 id="src-68882907_Implementingoutgoingsynchronization-Translatingforeignkeystomatchexternalobjects" class="heading "><span>Translating foreign keys to match external objects</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Translating foreign keys to match external objects</span></h3>
 <p>The values of identifier columns may not always be the same for equivalent objects in Kentico and external systems. For <a href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">subscriptions</a> using the <i class=" ">SimpleSnapshot</i> or <i class=" ">Snapshot</i> <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a> and asynchronous processing, you can ensure consistency by translating the columns that store foreign key bindings to related objects.</p>
 <p>To perform the translation, call <strong class=" ">TranslateColumnsToExternal</strong> inside your connector's <a href="#src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization">ProcessInternalTaskAsync</a> method. The TranslateColumnsToExternal method is inherited from <i class=" ">BaseIntegrationConnector</i> and accepts the following parameters:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -454,7 +479,7 @@
 </li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882907/image2013-9-5-16_41_19.png" alt="images/download/attachments/68882907/image2013-9-5-16_41_19.png" width="683" height="475">
         <br><span class="caption">Diagram of the column translation process</span>
     </p>
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-GetExternalObjectIDmethod" class="heading "><span>GetExternalObjectID method</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>GetExternalObjectID method</span></h4>
 <p>Override the GetExternalObjectID method inside your connector class if you call <i class=" ">TranslateColumnsToExternal</i> for objects or pages that have references to other objects inheriting from <i class=" ">BaseInfo</i>.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -469,7 +494,7 @@
 </li><li class=" "><p><strong class=" ">parentId</strong> - the ID of the object's parent.</p>
 </li><li class=" "><p><strong class=" ">groupId</strong> - the identifier of the object's group (if the object belongs to a group).</p>
 </li></ul><p>Use the parameters to find the corresponding object in the external system and <strong class=" ">return the given object's identifier</strong> (integer value).</p>
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-GetExternalDocumentIDmethod" class="heading "><span>GetExternalDocumentID method</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>GetExternalDocumentID method</span></h4>
 <p>Override the GetExternalDocumentID method inside your connector class if you call <i class=" ">TranslateColumnsToExternal</i> for objects or pages that have references to other pages (<i class=" ">TreeNode</i>).</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -525,7 +550,7 @@
 </tbody>        </table>
             </div>
 </li></ul><p>Use the parameters to find the corresponding page in the external system and <strong class=" ">return the given page's identifier</strong> (integer value).</p>
-    <h4 id="src-68882907_Implementingoutgoingsynchronization-Translatingforeignkeysinsynchronousmode" class="heading "><span>Translating foreign keys in synchronous mode</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Translating foreign keys in synchronous mode</span></h4>
 <p>If you need to translate ID column values to match external objects, we recommend using asynchronous processing. In synchronous mode, the only way to translate columns is to write custom code inside the <a href="#src-68882907_implementingoutgoingsynchronization-synchronousprocessing">ProcessInternalTaskSync</a> method.</p>
 <p>The following sample code indicates how to translate the identifier of a page's parent:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">

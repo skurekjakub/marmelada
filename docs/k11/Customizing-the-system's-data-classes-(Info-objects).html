@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882263">
 
 <div id="ht-loader">
     <noscript>
@@ -146,17 +146,31 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>You can extend system objects in Kentico by adding your own fields (properties).</p><ol class=" "><li class=" "><p>Create a custom data class containing the required fields.</p>
+<div class="sp-grid-cell sp-grid-60"><p>You can extend system objects in Kentico by adding your own fields (properties).</p><ol class=" "><li class=" "><p>Create a custom data class containing the required fields.</p>
 </li><li class=" "><p>Connect the class to the appropriate system object. All standard system objects implement the <strong class=" ">IRelatedData</strong> interface, which allows you to connect any type of class:</p>
 <ul class=" "><li class=" "><p>Through the <strong class=" ">RelatedData</strong> property</p>
 </li><li class=" "><p>Dynamically by handling the <strong class=" ">OnLoadRelatedData</strong> event</p>
-</li></ul></li></ol><p>If the connected class implements the <strong class=" ">IDataContainer</strong> interface, you can then access the data stored in the custom fields as part of the system object via the API (<strong class=" ">GetValue</strong> and <strong class=" ">SetValue</strong> methods) or <a href="macro-expressions">macro expressions</a>.</p><h3 id="src-68882263_safe-id-Q3VzdG9taXppbmd0aGVzeXN0ZW0nc2RhdGFjbGFzc2VzKEluZm9vYmplY3RzKS1FeGFtcGxl" class="heading "><span>Example</span></h3><p>The following sections demonstrate how to extend the <strong class=" ">SiteInfo</strong> object, which represents sites in Kentico. The example adds two custom properties for sites:</p><ul class=" "><li class=" "><p><strong class=" ">SiteOwner</strong> (string)</p>
+</li></ul></li></ol><p>If the connected class implements the <strong class=" ">IDataContainer</strong> interface, you can then access the data stored in the custom fields as part of the system object via the API (<strong class=" ">GetValue</strong> and <strong class=" ">SetValue</strong> methods) or <a href="macro-expressions">macro expressions</a>.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example</span></h3><p>The following sections demonstrate how to extend the <strong class=" ">SiteInfo</strong> object, which represents sites in Kentico. The example adds two custom properties for sites:</p><ul class=" "><li class=" "><p><strong class=" ">SiteOwner</strong> (string)</p>
 </li><li class=" "><p><strong class=" ">SiteValidUntil</strong> (DateTime)</p>
 </li></ul></div>
 
     
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882263_safe-id-q3vzdg9taxppbmd0agvzexn0zw0nc2rhdgfjbgfzc2vzkeluzm9vymply3rzks1ezwzpbmluz3rozwn1c3rvbwrhdgfjbgfzcw">Defining the custom data class</a></p>
+</li><li class=" "><p><a href="#src-68882263_safe-id-q3vzdg9taxppbmd0agvzexn0zw0nc2rhdgfjbgfzc2vzkeluzm9vymply3rzks1db25uzwn0aw5ndghly3vzdg9tzgf0ywnsyxnzdg90agvzexn0zw1vymply3q">Connecting the custom data class to the system object</a></p>
+</li><li class=" "><p><a href="#src-68882263_safe-id-q3vzdg9taxppbmd0agvzexn0zw0nc2rhdgfjbgfzc2vzkeluzm9vymply3rzks1szxn1bhq">Result</a></p>
+</li></ul>        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="database-table-api">Database table API</a></p>
+</li><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <ul class="toc-indentation "><li class=" "><p><a href="#src-68882263_safe-id-q3vzdg9taxppbmd0agvzexn0zw0nc2rhdgfjbgfzc2vzkeluzm9vymply3rzks1ezwzpbmluz3rozwn1c3rvbwrhdgfjbgfzcw">Defining the custom data class</a></p>
@@ -172,7 +186,7 @@
 </li></ul>        </div>
     </div></div>
     
-    <h4 id="src-68882263_safe-id-Q3VzdG9taXppbmd0aGVzeXN0ZW0nc2RhdGFjbGFzc2VzKEluZm9vYmplY3RzKS1EZWZpbmluZ3RoZWN1c3RvbWRhdGFjbGFzcw" class="heading "><span>Defining the custom data class</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Defining the custom data class</span></h4>
 <ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio.</p>
 </li><li class=" "><p>Create a new class named <strong class=" ">SiteRegistrationData.cs</strong>.</p>
 <ul class=" "><li class=" "><p>Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations).<br><br></p>
@@ -344,7 +358,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h4 id="src-68882263_safe-id-Q3VzdG9taXppbmd0aGVzeXN0ZW0nc2RhdGFjbGFzc2VzKEluZm9vYmplY3RzKS1Db25uZWN0aW5ndGhlY3VzdG9tZGF0YWNsYXNzdG90aGVzeXN0ZW1vYmplY3Q" class="heading "><span>Connecting the custom data class to the system object</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Connecting the custom data class to the system object</span></h4>
 <p>You need to bind the custom <i class=" ">SiteRegistrationData</i> class to the <i class=" ">SiteInfo</i> object. The example uses the <strong class=" ">OnLoadRelatedData</strong> event, which you can handle for specific object types, including <i class=" ">SiteInfo</i> objects. This type of binding is dynamic, which means that the system loads the data only when it is requested.</p>
 <ol class=" "><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a> in the same location as the <i class=" ">SiteRegistrationData</i> class.</p>
 </li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">SiteInfo.TYPEINFO.OnLoadRelatedData</strong> event.</p>
@@ -392,7 +406,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h4 id="src-68882263_safe-id-Q3VzdG9taXppbmd0aGVzeXN0ZW0nc2RhdGFjbGFzc2VzKEluZm9vYmplY3RzKS1SZXN1bHQ" class="heading "><span>Result</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Result</span></h4>
 <p>You can now work with the custom fields of site objects using the API.</p>
 <p>For example, log in to the Kentico administration interface and open your website in the <strong class=" ">Pages</strong> application. Add the following code into the ASCX <a href="editing-page-layouts">layout</a> of one of your website's pages:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -411,7 +425,7 @@
 <p>The <strong class=" ">GetValue</strong> method allows you to retrieve the data stored in the custom properties, just like with native fields of the <i class=" ">SiteInfo</i> object.</p>
 <p>The label control displays information on the page in the following format:</p>
 <p><i class=" ">Site 'Corporate Site' is valid until 1/15/2014 1:00:00 PM and owned by John Smith.</i></p>
-    <h5 id="src-68882263_safe-id-Q3VzdG9taXppbmd0aGVzeXN0ZW0nc2RhdGFjbGFzc2VzKEluZm9vYmplY3RzKS1BY2Nlc3Npbmdwcm9wZXJ0aWVzdGhyb3VnaG1hY3Jvcw" class="heading "><span>Accessing properties through macros</span></h5>
+    <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Accessing properties through macros</span></h5>
 <p>You can also load the values of custom properties using <a href="macro-expressions">macro expressions</a>. For example:</p>
 <ol class=" "><li class=" "><p>In the <strong class=" ">Pages</strong> application, edit a page on the <strong class=" ">Design</strong> tab.</p>
 </li><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Static text</strong> web part to the page.</p>

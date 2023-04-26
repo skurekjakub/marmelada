@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882275">
 
 <div id="ht-loader">
     <noscript>
@@ -148,20 +148,20 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"></div><p>When using <a href="content-staging">staging</a> to synchronize objects between Kentico instances, the system does not generate distinct staging tasks for most types of child objects and bindings. Child objects and bindings are often included within the data of staging tasks related to their parent object.</p>
-<p>Staging of child and binding data may cause problems because different environments require different types of child data processing. In some cases, you may wish to synchronize the exact state of objects from the source server, including deletion of objects that exist only on the target server. Other environments assume that relevant changes occur on the target server and need to avoid deletion of objects that do not exist on the source.</p>
-<p>As a result, the default behavior in Kentico may not meet the requirements of your environment. You can change the default staging behavior for specific child or binding object types by creating <a href="handling-global-events">event handlers</a> for the <strong class=" ">StagingEvents.GetChildProcessingType</strong> event.</p>
-<p>The <i class=" ">GetChildProcessingType</i> event occurs on <strong class=" "><i class=" ">target staging servers</i></strong> when processing create or update tasks that include the data of child or binding objects, once for each child or binding type. For example, staging tasks for roles include the data of binding objects, such as user-role and role-permission relationships. When processing a create or update staging task for a role, the <i class=" ">GetChildProcessingType</i> event triggers separately for each binding type included in the role data.</p>
-<p><br></p>
-    <div class="confbox panel">
+<div class="sp-grid-cell sp-grid-60"><p>When using <a href="content-staging">staging</a> to synchronize objects between Kentico instances, the system does not generate distinct staging tasks for most types of child objects and bindings. Child objects and bindings are often included within the data of staging tasks related to their parent object.</p><p>Staging of child and binding data may cause problems because different environments require different types of child data processing. In some cases, you may wish to synchronize the exact state of objects from the source server, including deletion of objects that exist only on the target server. Other environments assume that relevant changes occur on the target server and need to avoid deletion of objects that do not exist on the source.</p><p>As a result, the default behavior in Kentico may not meet the requirements of your environment. You can change the default staging behavior for specific child or binding object types by creating <a href="handling-global-events">event handlers</a> for the <strong class=" ">StagingEvents.GetChildProcessingType</strong> event.</p><p>The <i class=" ">GetChildProcessingType</i> event occurs on <strong class=" "><i class=" ">target staging servers</i></strong> when processing create or update tasks that include the data of child or binding objects, once for each child or binding type. For example, staging tasks for roles include the data of binding objects, such as user-role and role-permission relationships. When processing a create or update staging task for a role, the <i class=" ">GetChildProcessingType</i> event triggers separately for each binding type included in the role data.</p><p><br></p></div>
+
+
+
+
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
 <ul class=" "><li class=" "><p><a href="content-staging">Content staging</a></p>
 </li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
 </li><li class=" "><p><a href="reference---global-system-events">Reference - Global system events</a></p>
 </li></ul>        </div>
-    </div>
-    <h3 id="src-68882275_Customizingstagingofchildandbindingobjects-CreatingGetChildProcessingTypehandlers" class="heading "><span>Creating GetChildProcessingType handlers</span></h3>
+    </div></div>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating GetChildProcessingType handlers</span></h3>
 <p>Use the following process to create handlers for the <i class=" ">GetChildProcessingType</i> event:</p>
 <ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
 </li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
@@ -182,7 +182,7 @@
     </div>
 </li></ol></li><li class=" "><p>Transfer the module code to all instances in your staging environment where you wish to apply the customization.</p>
 </li></ol><p>When processing incoming staging tasks, the system handles child and binding object data according to the <i class=" ">ProcessingType</i> that you set in the <i class=" ">GetChildProcessingType</i> handler.</p>
-    <h4 id="src-68882275_Customizingstagingofchildandbindingobjects-Example" class="heading "><span>Example</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example</span></h4>
 <p>The following code demonstrates how to create a custom module that changes the default staging behavior for user-role bindings. The customization switches the <strong class=" ">ProcessingType</strong> to <i class=" ">Incremental,</i> which ensures that incoming staging tasks do not delete existing user-role bindings.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">

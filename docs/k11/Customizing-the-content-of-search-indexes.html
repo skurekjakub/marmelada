@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882123">
 
 <div id="ht-loader">
     <noscript>
@@ -148,14 +148,30 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The system provides a way to customize the content that <a href="setting-up-search-on-your-website">smart search indexes</a> store for pages or objects. You can add external data into the index, or parse and otherwise modify the text that the smart search adds to the index by default. Such customizations allow you to extend and change how the search finds matching results.</p><p>To customize the content of indexes, implement <a href="handling-global-events">event handlers</a> for the following events:</p><ul class=" "><li class=" "><p><strong class=" ">DocumentsEvents.GetContent.Execute</strong> – occurs before the system writes a page's data into smart search indexes.</p>
+<div class="sp-grid-cell sp-grid-60"><p>The system provides a way to customize the content that <a href="setting-up-search-on-your-website">smart search indexes</a> store for pages or objects. You can add external data into the index, or parse and otherwise modify the text that the smart search adds to the index by default. Such customizations allow you to extend and change how the search finds matching results.</p><p>To customize the content of indexes, implement <a href="handling-global-events">event handlers</a> for the following events:</p><ul class=" "><li class=" "><p><strong class=" ">DocumentsEvents.GetContent.Execute</strong> – occurs before the system writes a page's data into smart search indexes.</p>
 </li><li class=" "><p><strong class=" ">ObjectEvents.GetContent.Execute</strong> – occurs before the system writes the data of objects into search indexes. You can also use <i class=" ">&lt;name&gt;Info.TYPEINFO.Events</i> instead of <i class=" ">ObjectEvents</i> to handle the GetContent events for specific object types.</p>
 </li></ul><p>You need to assign handlers for the events at the beginning of the application's life cycle – create a <a href="initializing-modules-to-run-custom-code">custom module class</a> and override the module's <strong class=" ">OnInit</strong> method.</p><p>The system triggers <strong class=" ">GetContent</strong> events when a page or object is updated and when rebuilding search indexes.</p><p>Inside the GetContent event handler methods, you can access the search index content via the <strong class=" ">Content</strong> property of the handler's <strong class=" ">DocumentSearchEventArgs</strong> or <strong class=" ">ObjectEventArgs</strong> parameter (string type).</p></div>
 
 
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882123_safe-id-q3vzdg9taxppbmd0agvjb250zw50b2zzzwfyy2hpbmrlegvzluv4yw1wbgutqwrkaw5nzgf0ywzyb21hdxnlcmzpzwxkdg9wywdlaw5kzxhlcyheb2n1bwvudev2zw50cyk">Example - Adding data from a user field to page indexes (DocumentEvents)</a></p>
+</li><li class=" "><p><a href="#src-68882123_safe-id-q3vzdg9taxppbmd0agvjb250zw50b2zzzwfyy2hpbmrlegvzluv4yw1wbgutsw5kzxhpbmdwzxjzb25hbgnhdgvnb3j5bmftzxnmb3j1c2vycyhpymply3rfdmvudhmp">Example - Indexing personal category names for users (ObjectEvents)</a></p>
+</li><li class=" "><p><a href="#src-68882123_safe-id-q3vzdg9taxppbmd0agvjb250zw50b2zzzwfyy2hpbmrlegvzluv4yw1wbgutsw5kzxhpbmd0agvuyw1lc29myxnzawduzwrwcm9kdwn0b3b0aw9uc2zvcnbyb2r1y3rwywdlcyheb2n1bwvudev2zw50cyk">Example - Indexing the names of assigned product options for product pages (DocumentEvents)</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="creating-local-search-indexes">Creating local search indexes</a></p>
+</li><li class=" "><p><a href="creating-azure-search-indexes">Creating Azure Search indexes</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -192,7 +208,7 @@
 </li><li class=" "><p>Saving user objects directly does NOT update the index – a rebuild is required.</p>
 </li></ul>        </div>
     </div>
-    <h3 id="src-68882123_safe-id-Q3VzdG9taXppbmd0aGVjb250ZW50b2ZzZWFyY2hpbmRleGVzLUV4YW1wbGUtQWRkaW5nZGF0YWZyb21hdXNlcmZpZWxkdG9wYWdlaW5kZXhlcyhEb2N1bWVudEV2ZW50cyk" class="heading "><span>Example - Adding data from a user field to page indexes (DocumentEvents)</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example - Adding data from a user field to page indexes (DocumentEvents)</span></h3>
 <p>Pages in Kentico can have a <a href="user-management">user</a> assigned as the owner. The following example shows how to add the <strong class=" ">Description</strong> value from the user settings of a page's owner into the search index content of each page.</p>
 <ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
 </li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>. For example, name the class <strong class=" ">CustomSmartSearchModule.cs</strong>.</p>
@@ -251,7 +267,7 @@
 </li><li class=" "><p>Sign in to the Kentico administration interface.</p>
 </li><li class=" "><p>Open the <strong class=" ">Smart search</strong> application and <strong class=" ">Rebuild</strong> your page search indexes.</p>
 </li></ol><p>The search now returns results for pages if the owner's description field matches the search text.</p>
-    <h3 id="src-68882123_safe-id-Q3VzdG9taXppbmd0aGVjb250ZW50b2ZzZWFyY2hpbmRleGVzLUV4YW1wbGUtSW5kZXhpbmdwZXJzb25hbGNhdGVnb3J5bmFtZXNmb3J1c2VycyhPYmplY3RFdmVudHMp" class="heading "><span>Example - Indexing personal category names for users (ObjectEvents)</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example - Indexing personal category names for users (ObjectEvents)</span></h3>
 <p>Users in Kentico can create <a href="creating-personal-page-categories">personal categories</a> for organizing pages. The following example demonstrates how to customize the search so that the display names of personal categories are included in the content of <a href="defining-user-indexes">user indexes</a>.</p>
 <ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
 </li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>. For example, name the class <strong class=" ">CustomSmartSearchModule.cs</strong>.</p>
@@ -311,7 +327,7 @@
 </li><li class=" "><p>Sign in to the Kentico administration interface.</p>
 </li><li class=" "><p>Open the <strong class=" ">Smart search</strong> application and <strong class=" ">Rebuild</strong> your user indexes.</p>
 </li></ol><p>The search results now include users if the name of at least one of the user's personal page categories matches the search text.</p>
-    <h3 id="src-68882123_safe-id-Q3VzdG9taXppbmd0aGVjb250ZW50b2ZzZWFyY2hpbmRleGVzLUV4YW1wbGUtSW5kZXhpbmd0aGVuYW1lc29mYXNzaWduZWRwcm9kdWN0b3B0aW9uc2ZvcnByb2R1Y3RwYWdlcyhEb2N1bWVudEV2ZW50cyk" class="heading "><span>Example - Indexing the names of assigned product options for product pages (DocumentEvents)</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example - Indexing the names of assigned product options for product pages (DocumentEvents)</span></h3>
 <p>The following example shows how to add the names of e-commerce <a href="working-with-product-options">product options</a> into the indexed content for the relevant product pages. Only affects product options in categories of the <strong class=" ">Products</strong> type.</p>
 <ol class=" "><li class=" "><p>Open your Kentico web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
 </li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>. For example, name the class <strong class=" ">CustomSmartSearchModule.cs</strong>.</p>

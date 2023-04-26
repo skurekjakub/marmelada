@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881652">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The Kentico E-commerce Solution allows you to customize how the system retrieves <a href="products">product</a> prices. For example, you can:</p><ul class=" "><li class=" "><p>Adjust the system to load price values from a custom database column</p>
+<div class="sp-grid-cell sp-grid-60"><p>The Kentico E-commerce Solution allows you to customize how the system retrieves <a href="products">product</a> prices. For example, you can:</p><ul class=" "><li class=" "><p>Adjust the system to load price values from a custom database column</p>
 </li><li class=" "><p>Integrate an external system that fully provides prices for products and their various configurations</p>
 </li></ul><p>To customize the retrieval of prices:</p><ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
 </li><li class=" "><p>Create new classes that implement one or more of the <a href="#src-68881652_customizingproductprices-pricingcustomizationinterfaces">pricing customization interfaces</a> (described below).</p>
@@ -165,7 +165,26 @@
 </li></ol><p>When you reload the website, the system uses the custom implementations that you registered instead of the default pricing functionality.</p></div>
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881652_customizingproductprices-pricingcustomizationinterfaces">Pricing customization interfaces</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881652_customizingproductprices-productpricesource">Product price source</a></p>
+</li><li class=" "><p><a href="#src-68881652_customizingproductprices-productpricingservice">Product pricing service</a></p>
+</li><li class=" "><p><a href="#src-68881652_customizingproductprices-catalogpricecalculation">Catalog price calculation</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881652_safe-id-q3vzdg9taxppbmdwcm9kdwn0chjpy2vzluv4yw1wbgxigjnmb2fkaw5nchjvzhvjdhbyawnlc2zyb21jdxn0b21jb2x1bw5z">Example – Loading product prices from custom columns</a></p>
+</li><li class=" "><p><a href="#src-68881652_safe-id-q3vzdg9taxppbmdwcm9kdwn0chjpy2vzluv4yw1wbgxigjnvc2luz2fuzxh0zxjuywxwcmljaw5nc2vydmljzq">Example – Using an external pricing service</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="products">Products</a></p>
+</li><li class=" "><p><a href="configuring-products">Configuring products</a></p>
+</li><li class=" "><p><a href="custom-development">Custom development</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -186,14 +205,14 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68881652_Customizingproductprices-Pricingcustomizationinterfaces" class="heading "><span>Pricing customization interfaces</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Pricing customization interfaces</span></h3>
     <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p>All mentioned interfaces can be found in the <strong class=" ">CMS.Ecommerce</strong> namespace.</p>
         </div>
     </div>
-    <h4 id="src-68881652_Customizingproductprices-Productpricesource" class="heading "><span>Product price source</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Product price source</span></h4>
 <p>The price source implementation determines how the system gets product prices on the most basic level. The default Kentico price source loads product prices from the <i class=" ">SKUPrice</i> (standard price) or <i class=" ">SKURetailPrice</i> (list price) columns of the <i class=" ">COM_SKU</i> database table.</p>
 <p>This type of customization allows you to change the source of the product price (for example a database column) while keeping all other parts of the default Kentico price processing.</p>
 <ul class=" "><li class=" "><p><strong class=" ">ISKUPriceSource</strong> – implementations must contain the <i class=" ">GetPrice</i> method, which returns a price value (decimal) for a specified product and currency.</p>
@@ -207,7 +226,7 @@
         </div>
     </div>
 </li></ul></li></ul><p>See: <a href="#src-68881652_safe-id-q3vzdg9taxppbmdwcm9kdwn0chjpy2vzluv4yw1wbgxigjnmb2fkaw5nchjvzhvjdhbyawnlc2zyb21jdxn0b21jb2x1bw5z">Example - Loading product prices from custom columns</a></p>
-    <h4 id="src-68881652_Customizingproductprices-Productpricingservice" class="heading "><span>Product pricing service</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Product pricing service</span></h4>
 <p>The system uses a pricing service to calculate the prices of products within a specific context, including adjustments from <a href="working-with-product-options">product options</a> (of the <i class=" ">Attribute</i> and <i class=" ">Text</i> type) and product unit <a href="discounts">discounts</a> (catalog discounts and volume discounts). The default Kentico pricing service uses the <i class=" ">ISKUPriceSource</i> and <i class=" ">ISKUPriceSourceFactory</i> implementations to get the basic price, adds adjustments for any assigned product options, and then applies all valid product discounts.</p>
 <p>Creating a custom implementation of the <strong class=" ">IProductPricingService</strong> interface allows you to fully replace the default Kentico price processing, for example using an external pricing service.</p>
 <p>Implementations of <i class=" ">IProductPricingService</i> must contain the <strong class=" ">GetPrices</strong> method. The method provides the following parameters:</p>
@@ -225,7 +244,7 @@
 </li><li class=" "><p><strong class=" ">Price</strong> – the calculated final price including discounts.</p>
 </li><li class=" "><p><strong class=" ">AppliedDiscounts</strong> – a summary of any applied discounts (represented by a <i class=" ">ValuesSummary</i> object containing discount name and value pairs).</p>
 </li></ul><p>See: <a href="#src-68881652_safe-id-q3vzdg9taxppbmdwcm9kdwn0chjpy2vzluv4yw1wbgxigjnvc2luz2fuzxh0zxjuywxwcmljaw5nc2vydmljzq">Example - Using an external pricing service</a></p>
-    <h4 id="src-68881652_Customizingproductprices-Catalogpricecalculation" class="heading "><span>Catalog price calculation</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Catalog price calculation</span></h4>
 <p>The system uses an additional API layer to calculate the prices displayed in product catalogs on the live website. The default Kentico catalog price calculation uses the <i class=" ">IProductPricingService</i> implementation to get product prices, adds adjustments for any selected product accessories (<a href="working-with-product-options">product options</a> of the <i class=" ">Products</i> type), and then uses the <i class=" ">ICatalogTaxCalculator</i> implementation to get information about tax values (see <a href="customizing-tax-calculation">Customizing tax calculation</a>).</p>
 <p>Customize the catalog price calculation if you need to adjust how prices are displayed in the live site catalog, without affecting the price calculations during the checkout process.</p>
 <ul class=" "><li class=" "><p><strong class=" ">ICatalogPriceCalculator</strong></p>
@@ -242,7 +261,7 @@
 </li><li class=" "><p><strong class=" ">Price</strong> – the calculated price including discounts.</p>
 </li><li class=" "><p><strong class=" ">Tax</strong> – the tax value calculated for the <i class=" ">Price</i> (depending on the site's <i class=" ">Prices include tax</i> <a href="settings---e-commerce">setting</a>, the value either represents the tax that will be added to the price in the checkout process, or the tax component extracted from the price).</p>
 </li><li class=" "><p><strong class=" ">Discounts</strong> – a summary of any applied discounts (represented by a <i class=" ">ValuesSummary</i> object containing discount name and value pairs).</p>
-</li></ul>    <h3 id="src-68881652_safe-id-Q3VzdG9taXppbmdwcm9kdWN0cHJpY2VzLUV4YW1wbGXigJNMb2FkaW5ncHJvZHVjdHByaWNlc2Zyb21jdXN0b21jb2x1bW5z" class="heading "><span>Example – Loading product prices from custom columns</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example – Loading product prices from custom columns</span></h3>
 <p>The following example demonstrates how to customize the system to load product prices from a different database column than the default <i class=" ">SKUPrice</i>. The example loads prices from a custom <i class=" ">SKUCustomPrice</i> column for products that have their <a href="product-statuses">internal status</a> set to <i class=" ">Special offer</i>.</p>
 <p>Start by adding a custom column (field) for product objects:</p>
 <ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application.</p>
@@ -401,7 +420,7 @@
 </li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the custom project.</p>
 </li></ol><p>The registered <strong class=" ">CustomSKUPriceSourceFactory</strong> class provides an instance of <strong class=" ">CustomSKUPriceSource</strong>, with a parameter that indicates whether the standard price or list price is requested. The <strong class=" ">CustomSKUPriceSource</strong> implementation ensures that products with the <i class=" ">Special offer</i> internal status load their basic price from the <i class=" ">SKUCustomPrice</i> column instead of the default <i class=" ">SKUPrice</i>. The basic price is then further processed by the system, and affects both price calculations during the checkout process and prices displayed in product catalogs on the live site (when using appropriate <a href="reference---transformation-methods">transformation methods</a> or the default built-in web parts).</p>
 <p>The sample code also demonstrates how to use the default implementations of currency-related interfaces to convert the returned price value for stores using multiple currencies.</p>
-    <h3 id="src-68881652_safe-id-Q3VzdG9taXppbmdwcm9kdWN0cHJpY2VzLUV4YW1wbGXigJNVc2luZ2FuZXh0ZXJuYWxwcmljaW5nc2VydmljZQ" class="heading "><span>Example – Using an external pricing service</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example – Using an external pricing service</span></h3>
 <p>The following example demonstrates how to use a custom <strong class=" ">IProductPricingService</strong> implementation to integrate a 3rd-party service that fully provides prices for products. In this example, the returned price values are static, but you can replace the code with calls to the API of an external pricing service. Product data can be supplied to the pricing service from the parameters of the <strong class=" ">GetPrices</strong> method, which is required in all implementations of the <i class=" ">IProductPricingService</i> interface.</p>
 <ol class=" "><li class=" "><p>Recreate or reuse the custom project from the <a href="#src-68881652_safe-id-q3vzdg9taxppbmdwcm9kdwn0chjpy2vzluv4yw1wbgxigjnmb2fkaw5nchjvzhvjdhbyawnlc2zyb21jdxn0b21jb2x1bw5z">previous example</a>.</p>
 </li><li class=" "><p>Create a new class under the custom project, implementing the <i class=" ">IProductPricingService</i> interface.</p>

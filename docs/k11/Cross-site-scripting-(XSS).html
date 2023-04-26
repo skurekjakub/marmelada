@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881118">
 
 <div id="ht-loader">
     <noscript>
@@ -148,10 +148,10 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Cross site scripting happens when somebody (an attacker) inserts a malicious input into a form (for example, a piece of HTML code). Depending on what happens after that, we divide XSS attacks into these types:</p><ul class=" "><li class=" "><p><strong class=" ">Persistent XSS</strong> - a web application (like an instance of Kentico) stores the malicious input in the database. Then, on some other page, the input is rendered. A browser renders the attacker's malicious input as a part of the page's HTML and this is the spot, where the input can cause problems.</p>
+<div class="sp-grid-cell sp-grid-60"><p>Cross site scripting happens when somebody (an attacker) inserts a malicious input into a form (for example, a piece of HTML code). Depending on what happens after that, we divide XSS attacks into these types:</p><ul class=" "><li class=" "><p><strong class=" ">Persistent XSS</strong> - a web application (like an instance of Kentico) stores the malicious input in the database. Then, on some other page, the input is rendered. A browser renders the attacker's malicious input as a part of the page's HTML and this is the spot, where the input can cause problems.</p>
 </li><li class=" "><p><strong class=" ">Non-persistent XSS</strong> - the main difference is that a web application doesn't store the malicious input in the database. Instead, the application renders the input directly as a part of the page's response.<br></p>
 <ul class=" "><li class=" "><p>A special case of non-persistent XSS is called <strong class=" ">DOM-based XSS</strong> - this type of attack is done without sending any requests to the web server. The attacker injects JavaScript code directly.</p>
-</li></ul></li></ul><h3 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktVHlwZXNvZlhTU2F0dGFja3M" class="heading "><span>Types of XSS attacks</span></h3><h4 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktUGVyc2lzdGVudFhTUw" class="heading "><span>Persistent XSS</span></h4><p>In this example, we have a standard .aspx page with a textbox, a label and a button:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul></li></ul><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Types of XSS attacks</span></h3><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Persistent XSS</span></h4><p>In this example, we have a standard .aspx page with a textbox, a label and a button:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;asp:TextBox runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"txtUserName"</code><code class="plain">&gt;&lt;/asp:TextBox&gt;</code></div>
 <div class="line"><code class="plain">&lt;asp:Button runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"btnGetMeNameOfUser"</code><code class="plain"> Text=</code><code class="string">"Get me name of user"</code><code class="plain"> onclick=</code><code class="string">"btnGetMeNameOfUser_Click"</code><code class="plain"> /&gt;</code></div>
@@ -162,7 +162,7 @@
     
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <ul class="toc-indentation "><li class=" "><p><a href="#src-68881118_safe-id-q3jvc3nzaxrlc2nyaxb0aw5nkfhtuyktvhlwzxnvzlhtu2f0dgfja3m">Types of XSS attacks</a></p>
@@ -194,7 +194,7 @@
 </div>
     </div>
 <p>Now there is a possibility of XSS attack. The attacker can simply create a user with a first name <i class=" ">"&lt;script&gt;alert(1)&lt;/alert&gt;"</i>. Anyone who sends a request to a page where the attacker's first name would normally be displayed, gets the HTML code injected and executed on their machine (the user gets an alert showing <strong class=" ">"1"</strong>).</p>
-    <h4 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktTm9uLXBlcnNpc3RlbnRYU1M" class="heading "><span>Non-persistent XSS</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Non-persistent XSS</span></h4>
 <p>Now we have another standard .aspx page with a label:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -217,7 +217,7 @@
 </div>
     </div>
 <p>This is an example of a potential vulnerability to a non-persistent XSS attack. The attacker "creates" a URL like <i class=" ">www.ourweb.tld/ourpage.aspx?info=&lt;script&gt;alert(1)&lt;/script&gt;</i>. This URL is sent to a victim. The victim clicks on it, and JavaScript code <strong class=" ">alert(1)</strong> gets executed.</p>
-    <h5 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktRE9NLWJhc2VkWFNT" class="heading "><span>DOM-based XSS</span></h5>
+    <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>DOM-based XSS</span></h5>
 <p>Let's have another .aspx page with this JavaScript code:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -231,7 +231,7 @@
 </div>
     </div>
 <p>When a user navigates to <i class=" ">http://lwww.mydomain.tld/XSSDOMBased.aspx?default=&lt;script&gt;alert(document.cookie)&lt;/script&gt;</i>, the JavaScript code is executed because it is written to the page by the <strong class=" ">document.write()</strong> function. The key difference here is that no part of code is handled by the server. The whole attack is done only in the victim's browser.</p>
-    <h3 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktV2hhdGNhblhTU2F0dGFja3Nkbw" class="heading "><span>What can XSS attacks do</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>What can XSS attacks do</span></h3>
 <p>In cross site scripting, the attacker can insert any kind of code into a page which is interpreted by the client browser. So, the attacker can, for example:</p>
 <ul class=" "><li class=" "><p>change the look of your site,</p>
 </li><li class=" "><p>change the content of the site,</p>
@@ -252,7 +252,7 @@
 </div>
     </div>
 <p>Can you read that string? It is the same string as the first one, only in hexadecimal encoding, so the browser receives the same text.</p>
-    <h3 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktRmluZGluZ1hTU3Z1bG5lcmFiaWxpdGllcw" class="heading "><span>Finding XSS vulnerabilities</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Finding XSS vulnerabilities</span></h3>
 <p>The first way to find XSS vulnerabilities is based on trying. Simply insert a test string into all inputs and URL parameters. Use strings like:</p>
 <ul class=" "><li class=" "><p>&lt;script&gt;alert(1)&lt;/script&gt;</p>
 </li><li class=" "><p>alert(1)</p>
@@ -266,7 +266,7 @@
 </li><li class=" "><p>document.referrer</p>
 </li><li class=" "><p>window.location</p>
 </li></ul><p>The last way is to use automatic tools for vulnerability searching. These tools are based on similar techniques as manual searching, while they work automatically. However, they often find far too many false positive vulnerabilities and using them is much less effective. The reason for that is simple – these tools (at least those that aren't based on formal verification – about 99% of them) use brute force, while you can use your brain.</p>
-    <h3 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktQXZvaWRpbmdYU1NpbktlbnRpY28" class="heading "><span>Avoiding XSS in Kentico</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Avoiding XSS in Kentico</span></h3>
 <p><strong class=" ">Why would the attacker be able to perform all types of XSS attacks in the previously specified code examples?</strong></p>
 <p>Mainly because the dynamic parts of code (inputs, database data, …) were not encoded properly. So, everything that goes to output (is rendered to HTML) must be properly HTML/JavaScript encoded. What does it mean to properly encode something? Kentico provides the following methods for avoiding XSS attacks:</p>
 <ul class=" "><li class=" "><p><strong class=" ">HTMLHelper.HTMLEncode()</strong> - encodes HTML tags, replaces the &lt; and &gt; chars with their HTML entities.</p>
@@ -287,7 +287,7 @@
 <p>The <a href="configuring-the-editor">editor</a> used in Kentico allows users to input HTML content, including JavaScript.</p>
 <ul class=" "><li class=" "><p>If you use the editor for input forms on the live site, you need to properly encode the value before you render it on the website.</p>
 </li><li class=" "><p>Disable the <strong class=" ">Enable WYSIWYG editor</strong> option for any <a href="forums">Forums</a> that you have on the live site.</p>
-</li></ul>    <h4 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktRXhhbXBsZXNvZnNlcnZlci1zaWRlcHJvdGVjdGlvbmZyb21YU1N2dWxuZXJhYmlsaXRpZXM" class="heading "><span>Examples of server-side protection from XSS vulnerabilities</span></h4>
+</li></ul>    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Examples of server-side protection from XSS vulnerabilities</span></h4>
 <p>If you have a string value which is taken from the database, you must encode it with <strong class=" ">HTMLHelper.HTMLEncode()</strong> before you set it to a control's property (e.g., label text). For example:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -320,7 +320,7 @@
 </div>
     </div>
 <p>You can find other transformation examples in <a href="writing-transformations">Writing transformations</a>.</p>
-    <h3 id="src-68881118_safe-id-Q3Jvc3NzaXRlc2NyaXB0aW5nKFhTUyktU3VtbWFyeQ" class="heading "><span>Summary</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Summary</span></h3>
 <ul class=" "><li class=" "><p>Encode strings before they are rendered.</p>
 </li><li class=" "><p>Encode all strings from any external source (user input, database, context/environment, URL parameters, method parameters).</p>
 </li><li class=" "><p>Use <strong class=" ">HTMLHelper.HTMLEncode()</strong> to encode strings from any external source.</p>

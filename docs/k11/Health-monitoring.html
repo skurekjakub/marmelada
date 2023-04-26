@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882063">
 
 <div id="ht-loader">
     <noscript>
@@ -146,9 +146,9 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Health monitoring enables website administrators to monitor and record load and performance of Kentico instances. The feature only stores monitored values about the system in Windows performance counters. It does not perform the actual monitoring. For this purpose, you can use external applications, for example the built-in <strong class=" ">Performance monitor</strong> in Microsoft Windows.</p><p><img class="confluence-embedded-image" src="images/download/attachments/68882063/image2013-2-19-13_3_1.png" alt="images/download/attachments/68882063/image2013-2-19-13_3_1.png" width="500">
+<div class="sp-grid-cell sp-grid-60"><p>Health monitoring enables website administrators to monitor and record load and performance of Kentico instances. The feature only stores monitored values about the system in Windows performance counters. It does not perform the actual monitoring. For this purpose, you can use external applications, for example the built-in <strong class=" ">Performance monitor</strong> in Microsoft Windows.</p><p><img class="confluence-embedded-image" src="images/download/attachments/68882063/image2013-2-19-13_3_1.png" alt="images/download/attachments/68882063/image2013-2-19-13_3_1.png" width="500">
         <br><span class="caption">Performance monitor in Microsoft Windows</span>
-    </p><p>Monitoring of some of the values requires database access. To optimize performance in this case, you can install a dedicated Windows service and let it handle monitoring of these values instead of the application.<strong class=" "><i class=" "><br></i></strong></p><h4 id="src-68882063_safe-id-SGVhbHRobW9uaXRvcmluZy1Ub3N0YXJ0dXNpbmdoZWFsdGhtb25pdG9yaW5nOg" class="heading "><span>To start using health monitoring:</span></h4><ol class=" "><li class=" "><p><a href="registering-performance-counters">Register performance counters in Windows</a></p>
+    </p><p>Monitoring of some of the values requires database access. To optimize performance in this case, you can install a dedicated Windows service and let it handle monitoring of these values instead of the application.<strong class=" "><i class=" "><br></i></strong></p><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>To start using health monitoring:</span></h4><ol class=" "><li class=" "><p><a href="registering-performance-counters">Register performance counters in Windows</a></p>
 </li><li class=" "><p>(Optional) <a href="installing-the-health-monitoring-windows-service">Install the Health monitoring Windows services</a></p>
 </li><li class=" "><p><a href="enabling-health-monitoring">Enable Health monitoring</a> in Kentico</p>
 </li><li class=" "><p><a href="monitoring-using-the-performance-monitor">Use an external application to monitor values</a> (for example, the Performance monitor)</p>
@@ -156,7 +156,22 @@
 
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882063_safe-id-sgvhbhrobw9uaxrvcmluzy1ub3n0yxj0dxnpbmdozwfsdghtb25pdg9yaw5nog">To start using health monitoring:</a></p>
+</li><li class=" "><p><a href="#src-68882063_healthmonitoring-applicationnameweb.configkey">Application name web.config key</a></p>
+</li><li class=" "><p><a href="#src-68882063_healthmonitoring-performancecountercategories">Performance counter categories</a></p>
+</li><li class=" "><p><a href="#src-68882063_healthmonitoring-performancecountersdefinitionxml">Performance counters definition XML</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="adding-custom-performance-counters">Adding custom performance counters</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -184,7 +199,7 @@
     </div>
 <p></p>
 <p><br></p>
-    <h4 id="src-68882063_Healthmonitoring-Applicationnameweb.configkey" class="heading "><span>Application name web.config key</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Application name web.config key</span></h4>
 <p>Before getting to the counters, it is important to explain the following key in the <i class=" ">appSettings</i> section of the instance's <i class=" ">web.config</i> file:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -198,12 +213,12 @@
 <p>In case of Visual Studio web server installation, it is possible that multiple instances running on a single server may have identical values of the key (if the instances are installed into folders with the same names). In this case, you need to ensure that the keys have different values. Otherwise, values from these instances may be written to the same counters.</p>
         </div>
     </div>
-    <h4 id="src-68882063_Healthmonitoring-Performancecountercategories" class="heading "><span>Performance counter categories</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Performance counter categories</span></h4>
 <p>Kentico performance counters are stored in two categories:</p>
 <ul class=" "><li class=" "><p><strong class=" ">Kentico - General (&lt;CMSApplicationName&gt;)</strong> - contains general counters monitoring the Kentico instance as a whole. It contains single‑instance counters, which means each of the counters can be added to the list of monitored counters just once. If a counter is present in this category as well as in the Sites category, its value in this category is a sum of values of all site instances of the counter in the Sites category.</p>
 </li><li class=" "><p><strong class=" ">Kentico - Sites (&lt;CMSApplicationName&gt;)</strong> - contains site specific counters monitoring particular websites running in the Kentico instance. It contains multi‑instance counters, i.e. each of the counters can be added to the list of monitored counters multiple times — once for each website running in the instance. These counters are used only if the <i class=" ">Enable site counters</i> option is enabled in <i class=" ">Settings -&gt; System -&gt; Health monitoring</i>.</p>
 </li></ul><p>The <i class=" ">&lt;CMSApplicationName&gt;</i> part of the category names is the value of the CMSApplicationName <i class=" ">web.config</i> key explained in the previous section. For IIS installations, the value is reversed in the category names so that website name is stated first and the IIS path after it. For example, if the IIS path is <strong class=" ">Default Web Site/CMS</strong>, you would have <strong class=" ">CMS/Default Web Site</strong> in the name of the category. This should provide better orientation in the category list in Performance Monitor.</p>
-    <h4 id="src-68882063_Healthmonitoring-PerformancecountersdefinitionXML" class="heading "><span>Performance counters definition XML</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Performance counters definition XML</span></h4>
 <p>In <i class=" ">~\CMS\App_Data\CMSModules\HealthMonitoring</i>, you can find the <strong class=" ">counters.xpc</strong> file. This is a file in XML format which contains definitions of default performance counters for the respective instance of Kentico. It contains definitions of both General and Site counters. When performance counters are registered in Windows, this file is accessed to get the list of counters to be registered.</p>
 <p>Apart from this default file, the whole folder structure under <i class=" ">~\CMS\App_Data\CMSModules\ </i>is also searched for other files with the <strong class=" ">.xpc</strong> extension when counters are registered. The other files can contain definitions of additional performance counters and when found, the counters are registered as well.</p>
 <p>The following code is an extract from the <strong class=" ">counters.xpc</strong> file:</p>

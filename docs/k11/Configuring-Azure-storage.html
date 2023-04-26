@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882093">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>In some situations, it may be beneficial to store files of an on‑premise website on a <strong class=" ">Microsoft Azure Blob Storage</strong> account rather than on a local disk.</p><ul class=" "><li class=" "><p>For example, if your server has a limited storage capacity and you need to save large amounts of file data. Using Microsoft Azure may be more convenient than upgrading your server, especially if the increased requirements are only temporary.</p>
+<div class="sp-grid-cell sp-grid-60"><p>In some situations, it may be beneficial to store files of an on‑premise website on a <strong class=" ">Microsoft Azure Blob Storage</strong> account rather than on a local disk.</p><ul class=" "><li class=" "><p>For example, if your server has a limited storage capacity and you need to save large amounts of file data. Using Microsoft Azure may be more convenient than upgrading your server, especially if the increased requirements are only temporary.</p>
 </li><li class=" "><p>The same applies when running Kentico in <strong class=" "><a href="running-kentico-in-azure-web-apps">Azure Web Apps</a></strong>, where use of blob storage is optional (unlike with Cloud Services).</p>
 </li></ul><p>There are two approaches for connecting an Azure storage to your project:</p><ul class=" "><li class=" "><p><a href="#src-68882093_configuringazurestorage-configuringkenticotostoreonlymediafilesonazurestorage">Store only media files on Azure storage</a> <strong class=" ">(recommended)</strong></p>
 <ul class=" "><li class=" "><p>We recommend that you map only media library folders to the Azure storage. This allows you to store large media files on a shared storage and optionally use an Azure CDN for this data, while avoiding issues related to local smart search indexes and Web analytics functionality.</p>
@@ -164,7 +164,26 @@
     </div></div>
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882093_configuringazurestorage-configuringkenticotostoreonlymediafilesonazurestorage">Configuring Kentico to store only media files on Azure storage</a></p>
+</li><li class=" "><p><a href="#src-68882093_configuringazurestorage-configuringkenticotomapitsfilesystemtoazurestorage">Configuring Kentico to map its file system to Azure storage</a></p>
+</li><li class=" "><p><a href="#src-68882093_configuringazurestorage-mappingfilestostorageaccountsenforcinghttpsconnections">Mapping files to storage accounts enforcing HTTPS connections</a></p>
+</li><li class=" "><p><a href="#src-68882093_configuringazurestorage-medialibrarynotes">Media library notes</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882093_configuringazurestorage-storingtoomanyfilesinonemedialibraryfolder">Storing too many files in one media library folder</a></p>
+</li><li class=" "><p><a href="#src-68882093_configuringazurestorage-usingpermanentlinkswhencmsazurepubliccontainerkeyissettotrue">Using permanent links when CMSAzurePublicContainer key is set to true</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882093_configuringazurestorage-optionalweb.configsettingsforazurestorage">Optional web.config settings for Azure storage</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="settings---performance">Settings - Performance</a></p>
+</li><li class=" "><p><a href="configuring-azure-cdn">Configuring Azure CDN</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -192,7 +211,7 @@
 <p>Unlike standard Windows file systems, the Microsoft Azure Blob storage is case-sensitive. To ensure consistent behavior, Kentico automatically converts all file and folder names to lower case when processing files on Azure storage.</p>
         </div>
     </div>
-    <h3 id="src-68882093_ConfiguringAzurestorage-ConfiguringKenticotostoreonlymediafilesonAzurestorage" class="heading "><span>Configuring Kentico to store only media files on Azure storage</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Configuring Kentico to store only media files on Azure storage</span></h3>
 <p>To map <a href="media-library-files">media library</a> folders to Azure storage, use the API and the built-in Azure storage provider:</p>
 <ol class=" "><li class=" "><p>Add the following keys to the <i class=" ">appSettings</i> section of your project's <strong class=" ">web.config</strong> file. Specify the storage account name and primary access key:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
@@ -297,7 +316,7 @@
 <p>However, you can use the <strong class=" ">mediaProvider.CustomRootPath</strong> property (as described on this page) to map each project to a different container. This way, each project has its own section of the Azure storage and overwriting of files does not occur.</p>
         </div>
     </div>
-    <h3 id="src-68882093_ConfiguringAzurestorage-ConfiguringKenticotomapitsfilesystemtoAzurestorage" class="heading "><span>Configuring Kentico to map its file system to Azure storage</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Configuring Kentico to map its file system to Azure storage</span></h3>
     <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
@@ -334,7 +353,7 @@
         </div>
     </div>
 <p>Also see the <a href="#src-68882093_configuringazurestorage-medialibrarynotes">Media library notes</a> on this page for additional information about specifics of media libraries when using Azure storage.</p>
-    <h3 id="src-68882093_ConfiguringAzurestorage-MappingfilestostorageaccountsenforcingHTTPSconnections" class="heading "><span>Mapping files to storage accounts enforcing HTTPS connections</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Mapping files to storage accounts enforcing HTTPS connections</span></h3>
 <p>Some external storage accounts may enforce HTTPS communication via the <a class="external-link" href="https://docs.microsoft.com/en-us/azure/storage/common/storage-require-secure-transfer">Security transfer required</a> setting configurable in the <a class="external-link" href="https://portal.azure.com">Azure portal</a>. When mapping the file system or media library files to such accounts, you must include the <a href="#src-68882093_configuringazurestorage-optionalweb.configsettingsforazurestorage">CMSAzureBlobEndPoint </a>configuration key in the application's <strong class=" ">web.config</strong> file. The key's value needs to contain the full endpoint URL of the external storage account and explicitly use the <i class=" ">https</i> protocol:</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -344,18 +363,18 @@
 <div class="line"><code class="plain">&lt;/appSettings&gt;</code></div>
 </div>
     </div>
-    <h3 id="src-68882093_ConfiguringAzurestorage-Medialibrarynotes" class="heading "><span>Media library notes</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Media library notes</span></h3>
 <p>Using the Azure Blob storage as an external storage for your project has some specific effects on media libraries.</p>
-    <h4 id="src-68882093_ConfiguringAzurestorage-Storingtoomanyfilesinonemedialibraryfolder" class="heading "><span>Storing too many files in one media library folder</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Storing too many files in one media library folder</span></h4>
 <p>Note that storing a large number of media files in a single folder can significantly affect the performance of user interface when editing files in the Media library application. The performance of the website, however, is not affected. See <a href="configuring-media-libraries#src-68879365_configuringmedialibraries-medialibrarylimitationswhenstoringfilesinanexternalstorage">Media library limitations when storing files in an external storage</a> for details.</p>
-    <h4 id="src-68882093_ConfiguringAzurestorage-UsingpermanentlinkswhenCMSAzurePublicContainerkeyissettotrue" class="heading "><span>Using permanent links when CMSAzurePublicContainer key is set to true</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Using permanent links when CMSAzurePublicContainer key is set to true</span></h4>
 <p>If all following conditions are true:</p>
 <ul class=" "><li class=" "><p>you use the Azure Blob storage as an external storage</p>
 </li><li class=" "><p>and you set the CMSAzurePublicContainer key to <i class=" ">true</i></p>
 </li><li class=" "><p>and you want to use <a href="content-staging">content staging</a></p>
 </li></ul><p>then<strong class=" "> use Permanent links</strong> when linking to media files in media libraries.</p>
 <p>The reason is that when using the CMSAzurePublicContainer key, direct file links contain the name of the storage in the URL. These links are not updated when staging files to another server, which is typically connected to a different storage. As a result, staged links incorrectly target files from the source server's storage, or may become broken if the files are not exactly mirrored on the staging servers. Permanent links do not contain the name of the storage, and automatically target the correct storage for each server.</p>
-    <h3 id="src-68882093_ConfiguringAzurestorage-Optionalweb.configsettingsforAzurestorage" class="heading "><span>Optional web.config settings for Azure storage</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Optional web.config settings for Azure storage</span></h3>
     <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>

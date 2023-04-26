@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881119">
 
 <div id="ht-loader">
     <noscript>
@@ -148,9 +148,9 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>SQL injection is a well known web application vulnerability. The attacker's aim is to execute his own SQL code on the victim's database through a web application. The attack is similar to XSS. The attacker sends a string to the web application via a form or URL parameter. If that string is used as a dynamic part of an SQL query (for example as part of a WHERE condition) and not protected properly, the attacker can modify the query before it is executed.</p><p>We can divide vulnerabilities into two kinds – <i class=" ">classic</i> and <i class=" ">blind</i>:</p><ul class=" "><li class=" "><p>Classic SQL injection - the attacker can see the real error message from the SQL server.</p>
+<div class="sp-grid-cell sp-grid-60"><p>SQL injection is a well known web application vulnerability. The attacker's aim is to execute his own SQL code on the victim's database through a web application. The attack is similar to XSS. The attacker sends a string to the web application via a form or URL parameter. If that string is used as a dynamic part of an SQL query (for example as part of a WHERE condition) and not protected properly, the attacker can modify the query before it is executed.</p><p>We can divide vulnerabilities into two kinds – <i class=" ">classic</i> and <i class=" ">blind</i>:</p><ul class=" "><li class=" "><p>Classic SQL injection - the attacker can see the real error message from the SQL server.</p>
 </li><li class=" "><p>Blind SQL injection - the attacker sees only a general error page. These injections are harder to exploit because the attackers do not know how exactly they can inject the code. The attackers usually use enumeration in this type of attack. Then, according to the time based errors or the displayed error message can they determine which of their queries have passed and which did not.</p>
-</li></ul><h3 id="src-68881119_SQLinjection-ExampleofSQLinjection" class="heading "><span>Example of SQL injection</span></h3><p>A simple web page with a textbox and button which is used for searching users:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+</li></ul><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example of SQL injection</span></h3><p>A simple web page with a textbox and button which is used for searching users:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;asp:TextBox ID=</code><code class="string">"txtUserName"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain">&gt;&lt;/asp:TextBox&gt;</code></div>
 <div class="line"><code class="plain">&lt;asp:Button ID=</code><code class="string">"btnSearch"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> Text=</code><code class="string">"Search"</code><code class="plain"> onclick=</code><code class="string">"btnSearch_Click"</code><code class="plain"> /&gt; </code></div>
@@ -160,7 +160,7 @@
     
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -207,16 +207,16 @@
 </div>
     </div>
 <p>The query is executed, resulting in a deleted table.</p>
-    <h3 id="src-68881119_SQLinjection-WhatcanSQLinjectionattacksdo" class="heading "><span>What can SQL injection attacks do</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>What can SQL injection attacks do</span></h3>
 <p>With an SQL injection vulnerability, the attacker can do exactly the same operations with the database as the web application itself. For example, the attacker can read and modify all data or the database schema. Also, T-SQL supports the xp_cmdshell() function, which executes operating system commands. So, the attacker can basically manage the whole server.</p>
-    <h3 id="src-68881119_SQLinjection-FindingSQLinjectionvulnerabilities" class="heading "><span>Finding SQL injection vulnerabilities</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Finding SQL injection vulnerabilities</span></h3>
 <p>The first technique is based on trying. Insert strings like:</p>
 <ul class=" "><li class=" "><p>'whatever – basic test,</p>
 </li><li class=" "><p>DROP,</p>
 </li><li class=" "><p>something,</p>
 </li></ul><p>to all inputs and URL parameters. Do not test only the apostrophe character (in the next chapter, you will see that you can exploit an application even without the apostrophe character).</p>
 <p>The second way is to search for vulnerabilities in code. You can search for methods executing SQL queries. Then, you can check variables which are inputs of these methods. The aim of checking is searching for protection against SQL injection.</p>
-    <h3 id="src-68881119_SQLinjection-AvoidingSQLinjectioninKentico" class="heading "><span>Avoiding SQL injection in Kentico</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Avoiding SQL injection in Kentico</span></h3>
 <p>There are many ways of protection against SQL injection. Kentico provides:</p>
 <p></p>
 <ul class="toc-indentation "><li class=" "><p><a href="#src-68881119_sqlinjection-dataquery">DataQuery</a></p>
@@ -224,7 +224,7 @@
 </li><li class=" "><p><a href="#src-68881119_sqlinjection-sqlparameters">SQL Parameters</a></p>
 </li><li class=" "><p><a href="#src-68881119_sqlinjection-apostropheescaping">Apostrophe escaping</a></p>
 </li></ul><p></p>
-    <h4 id="src-68881119_SQLinjection-DataQuery" class="heading "><span>DataQuery</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>DataQuery</span></h4>
 <p>The best way to avoid SQL injection is to use the default Kentico API provider methods when loading data (ObjectQuery / DataQuery). The key security aspect of DataQuery is in processing parameter-driven queries.</p>
 <p>To create WHERE conditions, we strongly recommend using specific <i class=" ">Where</i> methods for the given purpose, such as:</p>
 <ul class=" "><li class=" "><p>WhereContains</p>
@@ -245,7 +245,7 @@
 <div class="line"><code class="plain">ObjectQuery&lt;AvatarInfo&gt; avatars = AvatarInfoProvider.GetAvatars().WhereStartsWith(</code><code class="string">"AvatarName"</code><code class="plain">, avatarName);</code></div>
 </div>
     </div>
-    <h4 id="src-68881119_SQLinjection-Queryobjects" class="heading "><span>Query objects</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Query objects</span></h4>
 <p>If you need to execute queries manually, use the appropriate <strong class=" ">query object classes</strong> from the Kentico <i class=" ">CMS.DataEngine</i> namespace to build parts of the query:</p>
 <ul class=" "><li class=" "><p><strong class=" ">WhereCondition</strong></p>
 </li><li class=" "><p><strong class=" ">Columns</strong></p>
@@ -263,7 +263,7 @@
 <div class="line"><code class="plain">    .WhereStartsWith(</code><code class="string">"AttachmentName"</code><code class="plain">, searchFileName).ToString(</code><code class="keyword">true</code><code class="plain">);</code></div>
 </div>
     </div>
-    <h4 id="src-68881119_SQLinjection-SQLParameters" class="heading "><span>SQL Parameters</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>SQL Parameters</span></h4>
 <p>For WHERE conditions in INSERT, UPDATE and DELETE query types and stored procedures, handle parameters via <strong class=" ">QueryDataParameters</strong> objects.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                     <div class="title">Example</div>
@@ -297,7 +297,7 @@
     </div>
         </div>
     </div>
-    <h4 id="src-68881119_SQLinjection-Apostropheescaping" class="heading "><span>Apostrophe escaping</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Apostrophe escaping</span></h4>
 <p>The last protection technique is manually replacing the dangerous apostrophe character with an escape sequence of two apostrophes. In code, you often build WHERE conditions for SELECT queries. When a part of the condition is a dynamically obtained string (e.g., from the database, input by a user, etc.), you must enclose it with apostrophes and perform replacing.</p>
 <p>You can use two different options:</p>
 <ul class=" "><li class=" "><p>To escape values in <i class=" "><strong class=" ">equals</strong></i> query patterns, use the <strong class=" ">SqlHelper.EscapeQuotes</strong> method:</p>
@@ -349,7 +349,7 @@
 <div class="line"><code class="keyword">string</code><code class="plain"> where = </code><code class="string">"SomeID = "</code><code class="plain"> + ValidationHelper.GetInteger(id, 0);</code></div>
 </div>
     </div>
-    <h3 id="src-68881119_SQLinjection-Summary" class="heading "><span>Summary</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Summary</span></h3>
 <ul class=" "><li class=" "><p>Use the Kentico provider methods to load data whenever possible (ObjectQuery / DataQuery)</p>
 </li><li class=" "><p>Protect dynamic parts in INSERT, UPDATE and DELETE queries with SQL parameters.</p>
 </li><li class=" "><p>Don't ever use the <strong class=" ">exec()</strong> function in your SQL code in combination with parameters.</p>

@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881115">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>This type of attack is also known as path traversal. The main goal is to show content of a file or directory via an application. Applications read data from the file system in many cases. Paths to these files or directories are often taken from input. If a user's input is not handled carefully, users can read data from the root directory of the server's file system.</p><h3 id="src-68881115_Directorytraversal-Exampleofdirectorytraversal" class="heading "><span>Example of directory traversal</span></h3><p>Let's inspect the following code:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
+<div class="sp-grid-cell sp-grid-60"><p>This type of attack is also known as path traversal. The main goal is to show content of a file or directory via an application. Applications read data from the file system in many cases. Paths to these files or directories are often taken from input. If a user's input is not handled carefully, users can read data from the root directory of the server's file system.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example of directory traversal</span></h3><p>Let's inspect the following code:</p><div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;strong&gt;Absolute path e:\\: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs = Directory.GetDirectories(</code><code class="string">"e:\\"</code><code class="plain">);</code></div>
@@ -198,7 +198,7 @@
     
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -217,14 +217,14 @@
 <p><strong class=" ">Directory with application: taken by ServerMapPath("~/../"):</strong><br>C:\inetpub\wwwroot\3855_10914<br>C:\inetpub\wwwroot\3889_32518<br>C:\inetpub\wwwroot\3968_07397</p>
 <p><strong class=" ">Directory with application: taken by Server.MapPath("/") + "../:</strong><br>C:\inetpub\wwwroot\../AdminScripts<br>C:\inetpub\wwwroot\../custerr<br>C:\inetpub\wwwroot\../history</p>
 <p>These are listings from one particular hard disk. The exact paths or listings aren't important, the important thing is that you can simply read any file or list any directory. And you can either use a relative or an absolute path. In this case, it is even a more severe vulnerability called full path disclosure. This bug enables the attacker to see a full path in an error message. The attacker finds out your directory structure and can effectively exploit a directory traversal vulnerability.</p>
-    <h3 id="src-68881115_Directorytraversal-Whatcandirectorytraversalattacksdo" class="heading "><span>What can directory traversal attacks do</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>What can directory traversal attacks do</span></h3>
 <p>The first dangerous thing is that the attacker knows your directory structure. And if there are any sensitive information in files in your application directory, the attacker can simply download these files. A worse case is when your application enables the attacker to read files. The attacker can then read your configuration files (e.g., the connection string in web.config file) or the configuration files of the whole system (if the application is used by a highly privileged user).</p>
-    <h3 id="src-68881115_Directorytraversal-Findingdirectorytraversalvulnerabilities" class="heading "><span>Finding directory traversal vulnerabilities</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Finding directory traversal vulnerabilities</span></h3>
 <p>Search for parts of your application where the application reads files and directories. Then try to change the input parameters to get content from a place outside of the application directory. In code, you can search for these strings:</p>
 <ul class=" "><li class=" "><p>ServerMapPath</p>
 </li><li class=" "><p>FileStream</p>
 </li><li class=" "><p>StreamReader</p>
-</li></ul>    <h3 id="src-68881115_Directorytraversal-Avoidingdirectorytraversal" class="heading "><span>Avoiding directory traversal</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Avoiding directory traversal</span></h3>
 <p>Validate user inputs, check for absolute paths for sequences of "../", and so on. Also, if you read a file, check if the file is within the application path. The application should never read data from a random path on a hard disk.</p>
         </div>
 

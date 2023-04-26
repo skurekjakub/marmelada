@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68880517">
 
 <div id="ht-loader">
     <noscript>
@@ -149,11 +149,11 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-    <div class="section-left"><h3 id="src-68880517_ImprovingperformanceofMVCapplications-ConfiguringwebfarmsonMVCapplications" class="heading "><span>Configuring web farms on MVC applications</span></h3><p>When using the <a href="developing-sites-using-asp.net-mvc">MVC development model</a>, your MVC application and Kentico application should always be configured to run as <a href="setting-up-web-farms">servers in a web farm</a> (see <a href="starting-with-mvc-development">Starting with MVC development</a>). The web farm ensures that the MVC application invalidates cache according to content or setting changes made in the Kentico application and vice versa.</p><p>The MVC application works as a web farm server, because it uses the same database as the Kentico application and performs operations through the Kentico API.</p><p>Licensing of the web farm servers works automatically for basic scenarios – see <a href="kentico-licensing-for-mvc-applications">Kentico licensing for MVC applications</a> for details.</p></div>
+    <div class="sp-grid-cell sp-grid-60"><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Configuring web farms on MVC applications</span></h3><p>When using the <a href="developing-sites-using-asp.net-mvc">MVC development model</a>, your MVC application and Kentico application should always be configured to run as <a href="setting-up-web-farms">servers in a web farm</a> (see <a href="starting-with-mvc-development">Starting with MVC development</a>). The web farm ensures that the MVC application invalidates cache according to content or setting changes made in the Kentico application and vice versa.</p><p>The MVC application works as a web farm server, because it uses the same database as the Kentico application and performs operations through the Kentico API.</p><p>Licensing of the web farm servers works automatically for basic scenarios – see <a href="kentico-licensing-for-mvc-applications">Kentico licensing for MVC applications</a> for details.</p></div>
 
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -176,17 +176,17 @@
 <p><strong class=" ">Note</strong>: The above scenarios require a license that supports the additional number of web farm servers.</p>
         </div>
     </div>
-    <h3 id="src-68880517_ImprovingperformanceofMVCapplications-CachinginMVCapplications" class="heading "><span>Caching in MVC applications</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Caching in MVC applications</span></h3>
 <p>You can cache the data and output of controller actions in your MVC application.</p>
 <p><strong class=" ">Prerequisite</strong>: For caching in your MVC application to work correctly, your Kentico and MVC applications need to be <a href="#src-68880517_improvingperformanceofmvcapplications-configuringwebfarmsonmvcapplications">configured as a web farm</a>.</p>
 <p>Specifically, you can cache the following:</p>
 <ul class=" "><li class=" "><p><a href="#src-68880517_improvingperformanceofmvcapplications-cachingdatainmvcapplications">Data</a> you retrieve to display on individual web pages.</p>
 </li><li class=" "><p><a href="#src-68880517_improvingperformanceofmvcapplications-cachingcontrolleractionoutputinmvcapplications">Output</a> of controller actions.</p>
-</li></ul>    <h4 id="src-68880517_ImprovingperformanceofMVCapplications-CachingdatainMVCapplications" class="heading "><span>Caching data in MVC applications</span></h4>
+</li></ul>    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Caching data in MVC applications</span></h4>
 <p>We recommend using caching of data, especially for data that is frequently accessed (queried from the database). For example, you may want to cache individual pages, forms and any other data that you retrieve from the Kentico database and display on the site.</p>
 <p>For pages, custom table data or forms, you can handle the caching in individual repositories that make use of the <a href="generating-classes-for-kentico-objects">generated providers</a>. Another approach would be using <a class="external-link" href="https://en.wikipedia.org/wiki/Aspect-oriented_programming">AOP</a> and decorating the individual repositories – see our <a class="external-link" href="https://github.com/Kentico/mvc">MVC demo site</a> for a reference on how to use this approach.</p>
 <p>Use the <strong class=" ">CacheHelper.Cache </strong>method to cache data in your code.</p>
-    <h5 id="src-68880517_ImprovingperformanceofMVCapplications-Examples" class="heading "><span>Examples</span></h5>
+    <h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Examples</span></h5>
     <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
@@ -267,7 +267,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h4 id="src-68880517_ImprovingperformanceofMVCapplications-CachingcontrolleractionoutputinMVCapplications" class="heading "><span>Caching controller action output in MVC applications</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Caching controller action output in MVC applications</span></h4>
 <p>You can cache the output of individual controller actions using <a class="external-link" href="https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/improving-performance-with-output-caching-cs">ASP.NET output caching</a>. This can significantly increase your website performance. We recommend caching the output of all possible controller actions, especially on controllers that return often requested views.</p>
 <p>Use the <a class="external-link" href="https://docs.microsoft.com/en-us/dotnet/api/system.web.mvc.outputcacheattribute">OutputCache</a> attribute to mark the action methods you want to cache. Set the cache duration (in seconds) and other properties of the attribute.</p>
 <p>When storing the output cache on the server (when the <i class=" ">OutputCache</i> attribute's <i class=" ">Location</i> property is set to <i class=" ">Server</i>), you can define cache dependencies to accommodate various scenarios with both static and dynamic content. Use the <strong class=" ">HttpContext.Response.AddCacheItemDependency()</strong> method to add dependencies in individual controller action methods.</p>

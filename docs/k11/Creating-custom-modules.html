@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882224">
 
 <div id="ht-loader">
     <noscript>
@@ -146,7 +146,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Modules in Kentico allow you to add custom functionality. You can extend all aspects of the system, including:</p><ul class=" "><li class=" "><p>the administration interface</p>
+<div class="sp-grid-cell sp-grid-60"><p>Modules in Kentico allow you to add custom functionality. You can extend all aspects of the system, including:</p><ul class=" "><li class=" "><p>the administration interface</p>
 </li><li class=" "><p>the data model (custom objects and database tables)</p>
 </li><li class=" "><p>business logic and general functionality (for example using <a href="handling-global-events">event handlers</a>)</p>
 </li></ul><p>All of the default modules in Kentico are <strong class=" ">sealed</strong> – you cannot edit their properties, or create new classes, UI elements, permissions and settings. When you create your own modules, they are in "development mode" on the given Kentico instance, and you can modify them in any way.</p><div class="confbox admonition admonition-info">
@@ -157,15 +157,15 @@
 </li><li class=" "><p>The Custom module also serves as a container for custom objects from previous Kentico versions after performing an upgrade or import.</p>
 </li></ul><p>For creating modular custom functionality, we strongly recommend creating your own separate modules.</p>
         </div>
-    </div><p>You can choose between two different approaches of developing and deploying your custom modules:</p><h5 id="src-68882224_Creatingcustommodules-Modulesdeployedviainstallationpackages" class="heading "><span>Modules deployed via installation packages</span></h5><ul class=" "><li class=" "><p>Deployment using <a class="external-link" href="https://www.nuget.org/">NuGet packages</a></p>
+    </div><p>You can choose between two different approaches of developing and deploying your custom modules:</p><h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Modules deployed via installation packages</span></h5><ul class=" "><li class=" "><p>Deployment using <a class="external-link" href="https://www.nuget.org/">NuGet packages</a></p>
 </li><li class=" "><p>Module files are included in a separate project within the Kentico solution during development</p>
 </li><li class=" "><p>All module code is compiled in a library (DLL) when installed on other instances</p>
 </li><li class=" "><p>Cannot be used to transfer modules for development on other instances, because the modules become sealed during the deployment</p>
-</li></ul><p>See <a href="creating-installation-packages-for-modules">Creating installation packages for modules</a> for more information.</p><p>For an example showing how to develop a module that supports the creation of installation packages, go to the <a href="example---creating-a-packageable-module">Example - Creating a packageable module</a> page.</p><h5 id="src-68882224_safe-id-Q3JlYXRpbmdjdXN0b21tb2R1bGVzLU1vZHVsZXNkZXBsb3llZHZpYUV4cG9ydC9JbXBvcnQ" class="heading "><span>Modules deployed via Export / Import</span></h5><ul class=" "><li class=" "><p>Deployment using the Kentico <a href="exporting-objects">export</a> and <a href="importing-a-site-or-objects">import</a> features</p>
+</li></ul><p>See <a href="creating-installation-packages-for-modules">Creating installation packages for modules</a> for more information.</p><p>For an example showing how to develop a module that supports the creation of installation packages, go to the <a href="example---creating-a-packageable-module">Example - Creating a packageable module</a> page.</p><h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Modules deployed via Export / Import</span></h5><ul class=" "><li class=" "><p>Deployment using the Kentico <a href="exporting-objects">export</a> and <a href="importing-a-site-or-objects">import</a> features</p>
 </li><li class=" "><p>Provides an option to <a href="#src-68882224_creatingcustommodules-creatingexportpackagesformodules">seal the modules during export</a> or to leave them unsealed and available for further development after import</p>
 </li><li class=" "><p>Requires manual selection of related database objects for each export package</p>
 </li><li class=" "><p>The export cannot transfer DLL files along with the module</p>
-</li></ul><p>See the remaining parts of <strong class=" ">this page</strong> for an example of module development and additional details.</p><h3 id="src-68882224_Creatingcustommodules-Creatingcustommodules" class="heading "><span>Creating custom modules</span></h3><p>The following sections are an example that demonstrates how to create a basic custom module (does not include steps required to create <a href="creating-installation-packages-for-modules">Installation packages</a> for the module). The module provides a "Company overview" that allows management of custom <i class=" ">Office</i> objects.</p><div class="confbox admonition admonition-warning">
+</li></ul><p>See the remaining parts of <strong class=" ">this page</strong> for an example of module development and additional details.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating custom modules</span></h3><p>The following sections are an example that demonstrates how to create a basic custom module (does not include steps required to create <a href="creating-installation-packages-for-modules">Installation packages</a> for the module). The module provides a "Company overview" that allows management of custom <i class=" ">Office</i> objects.</p><div class="confbox admonition admonition-warning">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
                 <div class="admonition-body">
 <p><strong class=" ">Important</strong>: It is necessary to follow <strong class=" "><i class=" ">all</i></strong> of the sections below in the presented order. Skipping steps may prevent subsequent sections from working correctly.</p>
@@ -189,7 +189,7 @@
 
     
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -209,7 +209,7 @@
         </div>
     </div></div>
     
-    <h4 id="src-68882224_Creatingcustommodules-Definingmodulepermissions" class="heading "><span>Defining module permissions</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Defining module permissions</span></h4>
 <ol class=" "><li class=" "><p>While editing the module in the <strong class=" ">Modules</strong> application, select the <strong class=" ">Permission names</strong> tab.</p>
 </li><li class=" "><p>Click <strong class=" ">New permission</strong>.</p>
 </li><li class=" "><p>Type <i class=" "><strong class=" ">Read</strong></i> into the <strong class=" ">Permission display name</strong>. The permission also automatically uses <i class=" ">Read</i> as the code name.</p>
@@ -229,7 +229,7 @@
 <p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882224/Custom_Module_Permissions.png" alt="images/download/attachments/68882224/Custom_Module_Permissions.png" width="500">
         <br><span class="caption">Creating the Read and Modify permissions for a custom module</span>
     </p>
-    <h3 id="src-68882224_Creatingcustommodules-Addingclassestomodules" class="heading "><span>Adding classes to modules</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Adding classes to modules</span></h3>
 <p>Module classes represent objects in Kentico. The classes serve as containers for configuration such as data fields, editing form definitions, and search settings. Classes also have associated code that provides an API for manipulating the given object.</p>
 <p>To create a custom class for the sample module:</p>
 <ol class=" "><li class=" "><p>Edit the module in the <strong class=" ">Modules</strong> application.</p>
@@ -265,7 +265,7 @@
 </li></ul></li><li class=" "><p>Click <strong class=" ">Next</strong> once the required fields are defined.</p>
 </li><li class=" "><p>Click <strong class=" ">Finish</strong> to complete the creation of the class.</p>
 </li></ol><p>The system automatically creates a database table for storing the class's data.</p>
-    <h4 id="src-68882224_Creatingcustommodules-Creatingobjecttyperesourcestrings" class="heading "><span>Creating object type resource strings</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating object type resource strings</span></h4>
 <p>The system uses <a href="working-with-resource-strings">resource strings</a> to display the names of class object types. By default, such strings do not exist for custom classes. Without an appropriate string, a custom class object type uses a default name (equal to the resource string key), which makes it difficult to find and identify in the administration interface.</p>
 <p>To create a resource string for your class's object type name:</p>
 <ol class=" "><li class=" "><p>Open the <strong class=" ">Localization</strong> application.</p>
@@ -275,7 +275,7 @@
 <ul class=" "><li class=" "><p>You can optionally enter translations for other languages that you use for the administration interface.</p>
 </li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol><p>The system now uses the text of the resource string in the administration interface, for example in object type selectors.</p>
-    <h4 id="src-68882224_Creatingcustommodules-Generatingclasscode" class="heading "><span>Generating class code</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Generating class code</span></h4>
 <p>The system provides a tool for automatically generating the basic code required for the API of the custom class:</p>
 <ol class=" "><li class=" "><p>Switch to the <strong class=" ">Code</strong> tab of the class.</p>
 </li><li class=" "><p>The required system fields should automatically be mapped to the corresponding fields of the class (Display name, Code name, GUID, Last modified).</p>
@@ -318,7 +318,7 @@
 </li></ol><p>The system can now work with the module's code in the given assembly.</p>
         </div>
     </div>
-    <h3 id="src-68882224_Creatingcustommodules-Buildingthemoduleinterface" class="heading "><span>Building the module interface</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Building the module interface</span></h3>
 <p>You can use the <a href="developing-websites-using-the-portal-engine">portal engine</a> to develop custom pages in the administration interface for your modules. The portal engine allows you to perform most of the work directly in your browser, and build UI elements out of page templates and web parts.</p>
     <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -329,7 +329,7 @@
         </div>
     </div>
 <p>The following sections describe how to create a basic editing interface for the <i class=" ">Office</i> objects used by the sample <i class=" ">Company overview</i> module.</p>
-    <h4 id="src-68882224_Creatingcustommodules-Officelistingelement" class="heading "><span>Office listing element</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Office listing element</span></h4>
 <ol class=" "><li class=" "><p>In the <strong class=" ">Modules</strong> application, edit the <strong class=" ">Company overview</strong> module.</p>
 </li><li class=" "><p>Open the <strong class=" ">User interface</strong> tab.</p>
 </li><li class=" "><p>Select the <strong class=" ">CMS -&gt; Administration -&gt; Custom</strong> element in the tree.</p>
@@ -382,7 +382,7 @@
 </li><li class=" "><p><strong class=" ">#delete</strong> - a predefined UniGrid action for deleting Kentico objects. The functionality is ensured by the default API that you generated for the <i class=" ">Office</i> class.</p>
 </li></ul>        </div>
     </div>
-    <h4 id="src-68882224_Creatingcustommodules-Newofficeelement" class="heading "><span>New office element</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>New office element</span></h4>
 <ol class=" "><li class=" "><p>Select <strong class=" ">Company overview</strong> in the UI element tree.</p>
 </li><li class=" "><p>Click <strong class=" ">New element</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/new.png" alt="images/download/attachments/68879208/new.png">
 ).</p>
@@ -394,7 +394,7 @@
 </li><li class=" "><p><strong class=" ">Page template</strong>: New / Edit object</p>
 </li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol><p>The <i class=" ">New</i> element allows users to create new offices from the listing page. If you switch to the <strong class=" ">Properties</strong> tab, you can see that the element automatically inherits the <strong class=" ">Object type</strong> from the parent listing page (<i class=" ">Custom office</i>).</p>
-    <h4 id="src-68882224_Creatingcustommodules-Officeeditingelement" class="heading "><span>Office editing element</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Office editing element</span></h4>
 <ol class=" "><li class=" "><p>Select <strong class=" ">Company overview</strong> in the UI element tree.</p>
 </li><li class=" "><p>Click <strong class=" ">New element</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/new.png" alt="images/download/attachments/68879208/new.png">
 ).</p>
@@ -421,7 +421,7 @@
         <br><span class="caption">Listing interface of the custom module's application</span>
     </p>
 <p>In addition to defining custom objects and creating a user interface, you can also use custom modules to execute your own code. See <a href="initializing-modules-to-run-custom-code">Initializing modules to run custom code</a> for more information.</p>
-    <h3 id="src-68882224_Creatingcustommodules-Exportingcustommodules" class="heading "><span>Exporting custom modules</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Exporting custom modules</span></h3>
 <p>You can use the <a href="exporting-objects">export</a> feature to transfer custom modules to other instances of Kentico, or prepare module packages for the <a class="external-link" href="http://devnet.kentico.com/marketplace">Kentico Marketplace</a>. Deployment of modules using <a href="content-staging">content staging</a> is NOT supported.</p>
 <p>The module export includes files from the following folders:</p>
 <ul class=" "><li class=" "><p><strong class=" ">~/CMSModules/&lt;module code name&gt;</strong> - you can use this folder to store store custom web forms, user controls or other files used by the module.</p>
@@ -434,7 +434,7 @@
 <p>If you are using a separate assembly (<i class=" ">Class Library</i> project) for the module's code, the resulting DLL is NOT automatically included in the export of the module. When using custom assemblies, you need to transfer the DLLs to the target project manually.</p>
         </div>
     </div>
-    <h4 id="src-68882224_Creatingcustommodules-Creatingexportpackagesformodules" class="heading "><span>Creating export packages for modules</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating export packages for modules</span></h4>
 <p>To export your custom modules:</p>
 <ol class=" "><li class=" "><p>Open the <strong class=" ">Sites</strong> application.</p>
 </li><li class=" "><p>Click <strong class=" ">Export</strong>.</p>
@@ -477,7 +477,7 @@ Click <strong class=" ">Next</strong>.    </span>
 </li><li class=" "><p><a href="example---creating-a-packageable-module">Example - Creating a packageable module</a></p>
 </li></ul>        </div>
     </div>
-    <h4 id="src-68882224_Creatingcustommodules-Exportingdataofmoduleclasses" class="heading "><span>Exporting data of module classes</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Exporting data of module classes</span></h4>
 <p>You cannot transfer the data of a module's classes within a single export package along with the module itself. A single import operation cannot import both the module's class definitions and the data.</p>
 <p>If you wish to provide default class data for your module, the recommended approach is to prepare a separate <a href="exporting-objects">export package</a> containing the required data. You can import the data after the module and its classes are successfully imported.</p>
 <p>See also: <a href="enabling-export-and-staging-for-the-data-of-classes">Enabling export and staging for the data of classes</a></p>

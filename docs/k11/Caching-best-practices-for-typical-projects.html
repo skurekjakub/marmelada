@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881969">
 
 <div id="ht-loader">
     <noscript>
@@ -149,12 +149,12 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>The following examples cover some typical cache configurations. Note that for your individual projects, you may (and mostly will) need to alter them to some extent.</p><p>You can use similar configuration also for smaller projects or projects with lower load, in general:</p><ul class=" "><li class=" "><p>The more content the site has, the shorter caching period should be used to reduce load on the system's memory.</p>
+<div class="sp-grid-cell sp-grid-60"><p>The following examples cover some typical cache configurations. Note that for your individual projects, you may (and mostly will) need to alter them to some extent.</p><p>You can use similar configuration also for smaller projects or projects with lower load, in general:</p><ul class=" "><li class=" "><p>The more content the site has, the shorter caching period should be used to reduce load on the system's memory.</p>
 </li><li class=" "><p>The higher load you expect on the site, the <a href="configuring-caching#src-68881957_configuringcaching-cachetypes">higher levels of caching</a> and longer caching intervals you should use.</p>
 </li><li class=" "><p>When there is a higher load to a specific part of the site, the section should use longer cache intervals. Balance this well with the first point.</p>
 </li><li class=" "><p>Configure shorter cache intervals if the process has less memory available.</p>
 </li><li class=" "><p>When you need to keep the content updatable, use either short enough caching intervals or <a href="configuring-caching#src-68881957_configuringcaching-cachetypes">levels of cache</a> with properly <a href="setting-cache-dependencies">configured flushing</a> (cache dependencies).</p>
-</li></ul><h3 id="src-68881969_Cachingbestpracticesfortypicalprojects-Heavilyaccessedcorporatesites" class="heading "><span>Heavily accessed corporate sites</span></h3><p>Websites of this type are mostly static, with lower amount of content, but a heavy load.</p><ul class=" "><li class=" "><p>Use static <a href="caching-page-output#src-68881966_cachingpageoutput-usingexternalcachingapproaches">external cache</a> or <a href="caching-page-output">output cache</a> based on the amount of load to handle.</p>
+</li></ul><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Heavily accessed corporate sites</span></h3><p>Websites of this type are mostly static, with lower amount of content, but a heavy load.</p><ul class=" "><li class=" "><p>Use static <a href="caching-page-output#src-68881966_cachingpageoutput-usingexternalcachingapproaches">external cache</a> or <a href="caching-page-output">output cache</a> based on the amount of load to handle.</p>
 </li><li class=" "><p>Use <a href="caching-page-output#src-68881966_cachingpageoutput-usingpersistentstoragefortheoutputcache">persistent output cache</a> with large intervals.</p>
 </li><li class=" "><p>Use larger cache intervals on all the enabled caches as the content is mostly static.</p>
 </li><li class=" "><p>Simulate first loads to identify weak spots, use <a href="caching-in-custom-code">API caching</a> and bulks loads to provide efficient first load times when cache is not available.</p>
@@ -165,7 +165,23 @@
 
     
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881969_cachingbestpracticesfortypicalprojects-heavilyaccessedcorporatesites">Heavily accessed corporate sites</a></p>
+</li><li class=" "><p><a href="#src-68881969_cachingbestpracticesfortypicalprojects-heavilyaccessednewssites">Heavily accessed news sites</a></p>
+</li><li class=" "><p><a href="#src-68881969_cachingbestpracticesfortypicalprojects-heavilyaccessedsiteswithlogin">Heavily accessed sites with login</a></p>
+</li><li class=" "><p><a href="#src-68881969_cachingbestpracticesfortypicalprojects-heavilyaccessede-commercesites">Heavily accessed e-commerce sites</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="configuring-caching">Configuring caching</a></p>
+</li><li class=" "><p><a href="optimizing-website-performance">Optimizing website for better performance</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -183,19 +199,19 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68881969_Cachingbestpracticesfortypicalprojects-Heavilyaccessednewssites" class="heading "><span>Heavily accessed news sites</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Heavily accessed news sites</span></h3>
 <p>News sites are an example of frequently updated websites with heavy load.</p>
 <ul class=" "><li class=" "><p>Use static <a href="caching-page-output#src-68881966_cachingpageoutput-usingexternalcachingapproaches">external cache</a>, preferably a Content delivery network (CDN) with shorter time interval (for example, 1 minute), make sure you use it for both pages and files.</p>
 </li><li class=" "><p>Use <a href="caching-page-output">output cache</a> and carefully set up <a href="setting-cache-dependencies">output cache dependencies</a> to allow efficient flushing of the cache. Use shorter time intervals as there is a large number of pages (for example, 10 minutes).</p>
 </li><li class=" "><p>Use client <a href="caching-files-and-resources">file caching with revalidation</a> if you expect images and files to update, or without revalidation if you don’t expect the published content to change. Use <a href="caching-files-and-resources#src-68881964_cachingfilesandresources-server-sidefilecaching">file server caching</a> with shorter interval and file size to not spam the server memory too much.</p>
 </li><li class=" "><p>Simulate first loads to identify weak spots. It is likely that a such site will share content between multiple sections. This means that you may need to configure content caching with some meaningful time interval so that you don’t spam memory too much (for example, 1 hour). The assumption is that the shared content won’t have many unique instances.</p>
 </li><li class=" "><p>If possible, disable <a href="caching-page-output#src-68881966_cachingpageoutput-cachingmultipleoutputversionsofpages">per user and other contextual caching</a>.</p>
-</li></ul>    <h3 id="src-68881969_Cachingbestpracticesfortypicalprojects-Heavilyaccessedsiteswithlogin" class="heading "><span>Heavily accessed sites with login</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Heavily accessed sites with login</span></h3>
 <p>For example, websites with member-only areas.</p>
 <ul class=" "><li class=" "><p>If the only information which changes based on login is the username in header, configure output caching to <a href="caching-page-output#src-68881966_cachingpageoutput-cachingmultipleoutputversionsofpages">NOT cache per user</a> and leverage <a href="using-output-cache-substitutions">output substitutions</a> to populate user name.</p>
 </li><li class=" "><p>If login influences the availability of content, use output caching configured to <a href="caching-page-output#src-68881966_cachingpageoutput-cachingmultipleoutputversionsofpages">store content per user</a> with shorter time period (more users = more similar cache items).</p>
 </li><li class=" "><p>If only smaller portions of an otherwise large website are influenced by login, consider using <a href="caching-page-output#src-68881966_cachingpageoutput-cachingportionsofthepageoutput">partial caching</a> to lower the memory footprint.</p>
-</li></ul>    <h3 id="src-68881969_Cachingbestpracticesfortypicalprojects-Heavilyaccessede-commercesites" class="heading "><span>Heavily accessed e-commerce sites</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Heavily accessed e-commerce sites</span></h3>
 <ul class=" "><li class=" "><p>Use <a href="caching-page-output">output cache</a> with shorter time interval (for example, 1 minute). Product prices may change based on factors other than discounts, and this helps you keep the customer updated.</p>
 </li><li class=" "><p>Use output <a href="caching-page-output#src-68881966_cachingpageoutput-cachingmultipleoutputversionsofpages">caching per user</a> as the content may vary by user.</p>
 </li><li class=" "><p>Do not use caching for checkout process pages, these need to be loaded with new information every time.</p>

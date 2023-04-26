@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882276">
 
 <div id="ht-loader">
     <noscript>
@@ -146,35 +146,35 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"></div><p>Test automation is an important part of every development project and is essential for agile projects. Automated tests help you improve productivity, reduce the testing phase of the development cycle, and increase code predictability and quality.</p>
+<div class="sp-grid-cell sp-grid-60"></div><p>Test automation is an important part of every development project and is essential for agile projects. Automated tests help you improve productivity, reduce the testing phase of the development cycle, and increase code predictability and quality.</p>
 <p>When developing custom functionality for Kentico projects, we recommend that you <a href="creating-automated-test-projects">create projects with automated tests</a> to cover the given code.</p>
 <p>Kentico provides the <strong class=" ">CMS.Tests </strong>library, which simplifies writing of automated tests for code that uses the Kentico API. The library contains base classes for unit and integration tests, as well as helper classes for faking <i class=" ">Info</i> and <i class=" ">Provider</i> objects. You can obtain the library by installing the <strong class=" ">Kentico.Libraries.Tests</strong> NuGet package into your test projects.</p>
-    <h3 id="src-68882276_Writingautomatedtests-Supportedtestingframeworks" class="heading "><span>Supported testing frameworks</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Supported testing frameworks</span></h3>
 <p>All of the functionality in the <i class=" ">CMS.Tests</i> library is fully compatible with both the <a class="external-link" href="https://github.com/nunit/docs/wiki">NUnit</a> framework and <strong class=" ">Microsoft unit test</strong> frameworks. The examples in this documentation are written for the NUnit framework.</p>
-    <h3 id="src-68882276_Writingautomatedtests-Typesoftests" class="heading "><span>Types of tests</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Types of tests</span></h3>
 <p>You can create the following general types of tests (categorized according to the way the tests work with database data):</p>
     <div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
-    <h4 id="src-68882276_Writingautomatedtests-Unittests" class="heading "><span>Unit tests</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Unit tests</span></h4>
 <p>Unit tests are able to run without external resources, such as a database. Try to write most of your tests as unit tests, since they are used to examine relatively small pieces of code. Unit tests execute much faster than the other types of automated tests.</p>
 <p>Use fake <i class=" ">Info</i> and <i class=" ">Provider</i> objects in your unit tests to avoid accessing the database. For more information, see <a href="faking-info-and-provider-objects-in-unit-tests">Faking Info and Provider objects in unit tests</a>.</p>
         </div>
     </div>
     <div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
-    <h4 id="src-68882276_Writingautomatedtests-Integrationtests" class="heading "><span>Integration tests</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Integration tests</span></h4>
 <p>Integration tests can access a database provided by a connection string. Use integration tests when you need to read the data from the database (unless you are absolutely sure you clean up everything properly after the test). Integration tests are significantly slower than unit tests.</p>
 <p>See: <a href="creating-integration-tests-with-a-connection-string">Creating integration tests with a connection string</a></p>
         </div>
     </div>
     <div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
-    <h4 id="src-68882276_Writingautomatedtests-Isolatedintegrationtests" class="heading "><span>Isolated integration tests</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Isolated integration tests</span></h4>
 <p>Isolated integration tests automatically create their own database before the test execution and clean up the database after the test is finished. Use isolated integration tests for complex testing that requires writing to the database, for example if the cleanup after an integration test is difficult. Isolated integration tests are the slowest of the three types of automated tests.</p>
 <p>See: <a href="creating-isolated-integration-tests">Creating isolated integration tests</a></p>
         </div>
     </div>
-    <h3 id="src-68882276_Writingautomatedtests-APIdifferencesintestcode" class="heading "><span>API differences in test code</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>API differences in test code</span></h3>
 <p>By default, all Kentico API executed within the body of tests that inherit from the <i class=" ">CMS.Tests</i> base classes runs without additional logging operations. For example, this includes logging of <a href="content-staging">staging tasks</a>, <a href="setting-up-web-farms">web farm synchronization tasks</a>, etc. Such operations are typically not relevant for the results of tests and unnecessarily reduce test performance.</p>
 <p>If you wish to run these additional operations within your tests, you need to explicitly enable them for blocks of code using the corresponding properties of <strong class=" ">CMSActionContext</strong>.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">

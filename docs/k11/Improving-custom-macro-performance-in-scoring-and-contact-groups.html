@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68882610">
 
 <div id="ht-loader">
     <noscript>
@@ -149,14 +149,14 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>This topic describes two ways in which you can improve <a href="macro-expressions">macro</a> performance in scoring and contact groups:</p><ol class=" "><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-creatingacustommacroruletranslator">Create a custom macro rule translator</a> - by default, <a href="registering-custom-macro-methods">custom macro</a> rules that you use in scoring and contact group conditions evaluate individually for each contact. You can improve the recalculation performance by implementing and registering translators for these macro rules. Once a macro rule has a translator registered, a database query is constructed that then selects only the contacts that fit the given macro condition.</p>
+<div class="sp-grid-cell sp-grid-60"><p>This topic describes two ways in which you can improve <a href="macro-expressions">macro</a> performance in scoring and contact groups:</p><ol class=" "><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-creatingacustommacroruletranslator">Create a custom macro rule translator</a> - by default, <a href="registering-custom-macro-methods">custom macro</a> rules that you use in scoring and contact group conditions evaluate individually for each contact. You can improve the recalculation performance by implementing and registering translators for these macro rules. Once a macro rule has a translator registered, a database query is constructed that then selects only the contacts that fit the given macro condition.</p>
 </li><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-recalculatingcontactgrouprulesonlyforspecificactivities">Limit unnecessary recalculations</a> - you can further improve your site performance by making sure your <a href="registering-custom-macro-methods">custom</a> contact group and scoring macro rules are recalculated only when users perform activity types that are relevant to the macro rule.</p>
 </li></ol><div class="confbox admonition admonition-info has-no-icon">
                         <div class="admonition-body">
 <p><strong class=" ">Default macro rules</strong></p>
 <p>Macro rules available in Kentico by default have both these optimizations implemented out of the box.</p>
         </div>
-    </div><h3 id="src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Creatingacustommacroruletranslator" class="heading "><span>Creating a custom macro rule translator</span></h3><ol class=" "><li class=" "><p>Create a class that implements    <span style="color: #ff6600;">
+    </div><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Creating a custom macro rule translator</span></h3><ol class=" "><li class=" "><p>Create a class that implements    <span style="color: #ff6600;">
      </span>
 the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
 </li><li class=" "><p>Implement the logic of the macro rule in a method that returns a query of the <i class=" ">ObjectQuery&lt;ContactInfo&gt; </i>type. The returned object needs to contain the contacts that fulfill the condition. Note that you do not have to handle contextual information, such as site context, in the query.</p>
@@ -246,7 +246,23 @@ the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
     
 
     
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-creatingacustommacroruletranslator">Creating a custom macro rule translator</a></p>
+</li><li class=" "><p><a href="#src-68882610_improvingcustommacroperformanceinscoringandcontactgroups-recalculatingcontactgroupandscoringrulesonlyforspecificactivitiesandattributes">Recalculating contact group and scoring rules only for specific activities and attributes</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="segmenting-contacts-into-contact-groups">Segmenting contacts into contact groups</a></p>
+</li><li class=" "><p><a href="scoring-contacts">Scoring contacts</a></p>
+</li><li class=" "><p><a href="macro-expressions">Macro expressions</a></p>
+</li><li class=" "><p><a href="creating-macro-rules">Creating macro rules</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -273,7 +289,7 @@ the <i class=" ">IMacroRuleInstanceTranslator</i> interface.</p>
         </div>
     </div>
 <p></p>
-    <h3 id="src-68882610_Improvingcustommacroperformanceinscoringandcontactgroups-Recalculatingcontactgroupandscoringrulesonlyforspecificactivitiesandattributes" class="heading "><span>Recalculating contact group and scoring rules only for specific activities and attributes</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Recalculating contact group and scoring rules only for specific activities and attributes</span></h3>
 <p>Another way of improving your site performance is by making sure that contact groups and scores are recalculated only when necessary. You can make sure your custom contact group and scoring macro rules are only recalculated for specified activities or when specific contact attributes change.</p>
 <p><strong class=" ">Examples:</strong></p>
 <ul class=" "><li class=" "><p>The "ContactIsFemale" macro doesn't need to be rebuilt by any contact activity that the visitor performs on a site. Instead, it only needs to be rebuilt by a change in the contact's "contactgender" attribute.</p>

@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="68881114">
 
 <div id="ht-loader">
     <noscript>
@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Macros are an essential part of Kentico. You can read more about them in the <a href="macro-expressions">Macro expressions</a> chapter. This page focuses on the security mechanisms and best practices related to macros.</p><h3 id="src-68881114_Macrosandsecurity-Signingmacros" class="heading "><span>Signing macros</span></h3><p>Whenever a user saves a complex macro expression, the system automatically adds a security signature. This signature contains an <strong class=" ">identifier</strong> of the macro's author (the user name or an assigned macro identity) and a <strong class=" ">hash</strong> of the given expression.</p><p>You can recognize signed macro expressions by the <strong class=" ">#</strong> character, which the system automatically inserts before the closing <strong class=" ">%}</strong> parentheses when saving the text containing the macro:</p><ul class=" "><li class=" "><p><i class=" ">{%CurrentSite.SiteID #%}</i></p>
+<div class="sp-grid-cell sp-grid-60"><p>Macros are an essential part of Kentico. You can read more about them in the <a href="macro-expressions">Macro expressions</a> chapter. This page focuses on the security mechanisms and best practices related to macros.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Signing macros</span></h3><p>Whenever a user saves a complex macro expression, the system automatically adds a security signature. This signature contains an <strong class=" ">identifier</strong> of the macro's author (the user name or an assigned macro identity) and a <strong class=" ">hash</strong> of the given expression.</p><p>You can recognize signed macro expressions by the <strong class=" ">#</strong> character, which the system automatically inserts before the closing <strong class=" ">%}</strong> parentheses when saving the text containing the macro:</p><ul class=" "><li class=" "><p><i class=" ">{%CurrentSite.SiteID #%}</i></p>
 </li></ul><p>For illustration, a signed macro may look like this in the database:</p><ul class=" "><li class=" "><p><i class=" ">{%CurrentSite.SiteID|(user)administrator|(hash)9056b7b76629a47a660c40cc2e5b0d92a13d0f9bce178847ca412c3a585552a1%}<br></i>– OR –</p>
 </li><li class=" "><p><i class=" ">{%CurrentSite.SiteID|(identity)GlobalAdministrator|(hash)e3402fe14374ab15d119dddbb6c831ce3d2ef55bd8e70ce8eb80994f4e6ad18b%}</i><br><br></p>
 </li></ul><div class="confbox admonition admonition-info">
@@ -164,7 +164,25 @@
     
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881114_macrosandsecurity-signingmacros">Signing macros</a></p>
+</li><li class=" "><p><a href="#src-68881114_macrosandsecurity-sqlinjections">SQL injections</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881114_macrosandsecurity-sqlinjectionprotectioninwebpartproperties">SQL injection protection in web part properties</a></p>
+</li><li class=" "><p><a href="#src-68881114_macrosandsecurity-sqlinjectionprotectionoutsideofwebpartproperties">SQL injection protection outside of web part properties</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881114_macrosandsecurity-outputencodingofmacros">Output encoding of macros</a></p>
+</li><li class=" "><p><a href="#src-68881114_macrosandsecurity-writingcustommacromethods">Writing custom macro methods</a></p>
+</li><li class=" "><p><a href="#src-68881114_macrosandsecurity-unsafemacros">Unsafe macros</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="macro-expressions">Macro expressions</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -184,9 +202,9 @@
 </li></ul>        </div>
     </div></div>
     
-    <h3 id="src-68881114_Macrosandsecurity-SQLinjections" class="heading "><span>SQL injections</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>SQL injections</span></h3>
 <p>Macros can often become part of SQL queries, for example in <i class=" ">WhereCondition</i> and <i class=" ">OrderBy</i> fields of web part properties, which can lead to SQL injection vulnerability.</p>
-    <h4 id="src-68881114_Macrosandsecurity-SQLinjectionprotectioninwebpartproperties" class="heading "><span>SQL injection protection in web part properties</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>SQL injection protection in web part properties</span></h4>
 <p>Some web part properties are secured against SQL injection attacks, which may affect how macros are resolved in specific cases. By default, this is applied to macros entered into the <strong class=" ">WhereCondition</strong>, <strong class=" ">OrderBy</strong> and <strong class=" ">Columns</strong> web part properties.</p>
 <p>If the macro returns a string value that contains single quote characters ('), they will be escaped and replaced by two single quotes (''). This may cause an SQL syntax error if you are using the macro to dynamically insert a part of a query, such as a WHERE clause.</p>
 <p>It is possible to disable single quote escaping for a specific macro expression by adding the <strong class=" ">handlesqlinjection </strong>parameter and setting its value to <i class=" ">false</i>:</p>
@@ -214,7 +232,7 @@
 <p>Disabling SQL protection may create security vulnerabilities if the macro resolves its value according to data that can be modified by the website's users, such as in the case of query string macros.</p>
         </div>
     </div>
-    <h4 id="src-68881114_Macrosandsecurity-SQLinjectionprotectionoutsideofwebpartproperties" class="heading "><span>SQL injection protection outside of web part properties</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>SQL injection protection outside of web part properties</span></h4>
 <p>If you are using macros outside of web part properties or you have disabled SQL escaping, then you need to use the SQLEscape method to handle SQL macros.</p>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
@@ -227,14 +245,14 @@
 <div class="line"><code class="keyword">WHERE</code><code class="plain"> UserID = {% ToInt(QueryString.GetValue(</code><code class="string">"test"</code><code class="plain">, </code><code class="string">""</code><code class="plain">), 0)#%}</code></div>
 </div>
     </div>
-    <h3 id="src-68881114_Macrosandsecurity-Outputencodingofmacros" class="heading "><span>Output encoding of macros</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Output encoding of macros</span></h3>
 <p>Macro encoding is an essential protection against XSS. You must encode output macros properly, unless you want to display some HTML code using the particular macro. There are several methods for encoding macros in Kentico:</p>
 <ul class=" "><li class=" "><p>{% UrlEncode(CurrentUser.FullName) %} – macro is encoded into the query URL.</p>
 </li><li class=" "><p>{% HTMLEncode(CurrentUser.FullName) %} – macro is a part of standard page output text and text between HTML tags.</p>
 </li><li class=" "><p>{% JSEscape(CurrentUser.FullName) %} – macro is a part of JS code.</p>
-</li></ul>    <h3 id="src-68881114_Macrosandsecurity-Writingcustommacromethods" class="heading "><span>Writing custom macro methods</span></h3>
+</li></ul>    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Writing custom macro methods</span></h3>
 <p>When creating a <a href="registering-custom-macro-methods">custom macro method</a>, you need to ensure security yourself. The macro engine cannot predict which data is accessed in the method, and thus cannot properly secure the method.</p>
-    <h3 id="src-68881114_Macrosandsecurity-Unsafemacros" class="heading "><span>Unsafe macros</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Unsafe macros</span></h3>
 <p>Query macros, cookie macros and data macros (information from the database, e.g. user display name) and their equivalent properties can be potentially dangerous. When you use these macros, you have to secure them against SQL injection and XSS.</p>
     <div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>

@@ -63,7 +63,7 @@
     </script>
     </head>
 
-<body pageid="68879260">
+<body pageid="68879260" elementpageid="76022192">
 
 <div id="ht-loader">
     <noscript>
@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="section-left"><p>Kentico provides a customization model that allows developers to extend or adjust how the system builds and maintains <a href="using-azure-search">Azure Search</a> indexes. Customization provides a way to set up Azure Search features that require advanced configuration, as well as adapt to changes in the Azure Search functionality and leverage new features.</p><p>For example, you can achieve the following scenarios by customizing the Azure Search:</p><ul class=" "><li class=" "><p><a href="adding-scoring-profiles-to-azure-search-indexes">Add scoring profiles for indexes</a></p>
+<div class="sp-grid-cell sp-grid-60"><p>Kentico provides a customization model that allows developers to extend or adjust how the system builds and maintains <a href="using-azure-search">Azure Search</a> indexes. Customization provides a way to set up Azure Search features that require advanced configuration, as well as adapt to changes in the Azure Search functionality and leverage new features.</p><p>For example, you can achieve the following scenarios by customizing the Azure Search:</p><ul class=" "><li class=" "><p><a href="adding-scoring-profiles-to-azure-search-indexes">Add scoring profiles for indexes</a></p>
 </li><li class=" "><p><a href="implementing-suggestions-for-azure-search">Add suggesters for indexes</a></p>
 </li><li class=" "><p><a href="setting-analyzers-for-azure-search">Set language analyzers for index fields</a></p>
 </li><li class=" "><p><a href="registering-custom-data-types-for-azure-search">Register custom data types for Azure Search</a></p>
@@ -178,7 +178,21 @@
 </li></ol></div>
 
 
-    <div class="section-right"><div class="confbox panel">
+    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-76022192_customizingazuresearch-configuringtheazuresearchretrypolicyandbatchsize">Configuring the Azure Search retry policy and batch size</a></p>
+</li><li class=" "><p><a href="#src-76022192_customizingazuresearch-reference-azuresearchevents">Reference - Azure Search events</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a href="creating-azure-search-indexes">Creating Azure Search indexes</a></p>
+</li><li class=" "><p><a href="integrating-azure-search-into-pages">Integrating Azure Search into pages</a></p>
+</li></ul>        </div>
+    </div></div><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -202,16 +216,16 @@
 <p>Most types of customizations additionally require usage of the <a class="external-link" href="https://docs.microsoft.com/en-us/azure/search/search-howto-dotnet-sdk">Azure Search .NET SDK</a>, which you can integrate by installing the <strong class=" ">Microsoft.Azure.Search </strong><a class="external-link" href="https://www.nuget.org/packages/Microsoft.Azure.Search">NuGet package</a> into your custom project.</p>
         </div>
     </div>
-    <h3 id="src-76022192_CustomizingAzureSearch-ConfiguringtheAzureSearchretrypolicyandbatchsize" class="heading "><span>Configuring the Azure Search retry policy and batch size</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Configuring the Azure Search retry policy and batch size</span></h3>
 <p>In addition to custom handling of <a href="#src-76022192_customizingazuresearch-reference-azuresearchevents">Azure Search indexing events</a>, the Kentico API allows developers to configure the retry policy and batch size that the system uses when performing Azure Search indexing operations.</p>
 <p>Get an <strong class=" ">instance</strong> of the <strong class=" ">SearchEngineConfiguration</strong> class within the initialization code of your custom module class and set its properties (see the sections below).</p>
-    <h4 id="src-76022192_CustomizingAzureSearch-Retrypolicy" class="heading "><span>Retry policy</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Retry policy</span></h4>
 <p>Because Azure Search indexes are cloud-based and hosted outside of the Kentico application, requests that interact with indexes may fail due to network errors, service unavailability, etc. To deal with such issues, the system sends all indexing requests using a retry policy with exponential backoff. Requests that fail are automatically repeated several times with exponentially growing time intervals.</p>
 <p>If necessary, you can adjust the parameters of the retry policy by setting the following properties of the <strong class=" ">SearchEngineConfiguration</strong> class:</p>
 <ul class=" "><li class=" "><p><strong class=" ">RetryCount</strong> – sets the maximum number of retry attempts that the system performs after an indexing operation fails. Setting the value to 0 disables the retry functionality (not recommended). The default value is 5.</p>
 </li><li class=" "><p><strong class=" ">MaxBackoffTimeSeconds</strong> – sets the ceiling for the time interval between retry attempts (in seconds). The default value is 8.</p>
 </li></ul><p>For example, if you set <strong class=" ">RetryCount</strong> to 7 and <strong class=" ">MaxBackoffTimeSeconds</strong> to 16, the system retries failed indexing operations up to 7 times, with the following intervals between the attempts (in seconds): 0, 1, 2, 4, 8, 16, 16</p>
-    <h4 id="src-76022192_CustomizingAzureSearch-Batchsize" class="heading "><span>Batch size</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Batch size</span></h4>
 <p>The <strong class=" ">DocumentsBatchSize</strong> property of the <strong class=" ">SearchEngineConfiguration</strong> class sets the maximum number of <a class="external-link" href="https://docs.microsoft.com/en-us/azure/search/search-what-is-an-index">search documents</a> processed by a single request to the Azure Search service. For example, when building a new index that covers 2500 pages in Kentico with a maximum batch size of 1000, the system first creates the Azure Search index with 1000 documents, and then updates the index twice by adding 1000 and 500 documents.</p>
 <p>The default document batch size value is <strong class=" ">1000.</strong> When setting a custom value, you need to respect the <a class="external-link" href="https://docs.microsoft.com/en-us/azure/search/search-limits-quotas-capacity">API Request limits of the Azure Search service</a>. For example, you may need to decrease the batch size if the total request size exceeds the maximum limit of 16 MB (when indexing a large number of objects with long text values).</p>
     <div class="confbox admonition admonition-info">
@@ -222,7 +236,7 @@
 <p>The <strong class=" ">SearchEngineConfiguration.DocumentsBatchSize</strong> property only has an effect for indexes whose batch size setting is greater than the property's value.</p>
         </div>
     </div>
-    <h4 id="src-76022192_CustomizingAzureSearch-Example" class="heading "><span>Example</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example</span></h4>
     <div class="confbox programlisting" style="counter-reset: scroll-code-numbering 1">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
@@ -257,7 +271,7 @@
 <div class="line"><code class="plain">}</code></div>
 </div>
     </div>
-    <h3 id="src-76022192_CustomizingAzureSearch-Reference-AzureSearchevents" class="heading "><span>Reference - Azure Search events</span></h3>
+    <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Reference - Azure Search events</span></h3>
 <p>This section provides an overview of system events that developers can handle to customize how the system builds and maintains Azure Search indexes.</p>
     <div class="confbox admonition admonition-info">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -265,7 +279,7 @@
 <p>For general information about Azure Search indexes and their structure, refer to the <a class="external-link" href="https://docs.microsoft.com/en-us/azure/search/search-what-is-an-index">Create an Azure Search index</a> article.</p>
         </div>
     </div>
-    <h4 id="src-76022192_CustomizingAzureSearch-Indexes" class="heading "><span>Indexes</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Indexes</span></h4>
 <p>Class: <strong class=" ">SearchServiceManager</strong></p>
     <div class="tablewrap">
         <table class="wrapped confluenceTable">
@@ -310,7 +324,7 @@ ___________    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <h4 id="src-76022192_CustomizingAzureSearch-Documents" class="heading "><span>Documents</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Documents</span></h4>
 <p>Class: <strong class=" ">DocumentCreator</strong> (access an <strong class=" ">Instance</strong> of the class to assign event handlers)</p>
     <div class="tablewrap">
         <table class="wrapped confluenceTable">
@@ -375,7 +389,7 @@ ___________    </span>
         </tr>
 </tbody>        </table>
             </div>
-    <h4 id="src-76022192_CustomizingAzureSearch-Fields" class="heading "><span>Fields</span></h4>
+    <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Fields</span></h4>
 <p>Class: <strong class=" ">DocumentFieldCreator</strong> (access an <strong class=" ">Instance</strong> of the class to assign event handlers)</p>
     <div class="tablewrap">
         <table class="wrapped confluenceTable">
