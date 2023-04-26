@@ -149,15 +149,12 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-cell sp-grid-60"><p>When using a separate MVC application together with a Kentico application, you need to ensure that <a href="scheduling-tasks">scheduled tasks</a> on the Kentico application get processed in regular intervals. As the Kentico application itself does not usually receive traffic from site visitors, you either need to keep the application alive in a different way or process the tasks independently on the Kentico application's worker process.</p><p>You can use one of the following approaches for processing scheduled tasks when developing MVC applications:</p><ul class=" "><li class=" "><p>Automatic scheduler mode – recommended approach. Requires the Kentico application's worker process to remain alive.</p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When using a separate MVC application together with a Kentico application, you need to ensure that <a href="scheduling-tasks">scheduled tasks</a> on the Kentico application get processed in regular intervals. As the Kentico application itself does not usually receive traffic from site visitors, you either need to keep the application alive in a different way or process the tasks independently on the Kentico application's worker process.</p><p>You can use one of the following approaches for processing scheduled tasks when developing MVC applications:</p><ul class=" "><li class=" "><p>Automatic scheduler mode – recommended approach. Requires the Kentico application's worker process to remain alive.</p>
 </li><li class=" "><p>Scheduler Windows service – independent of the Kentico application's worker process.</p>
 </li></ul><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Automatic scheduler mode</span></h4><ol class=" "><li class=" "><p>Configure the Kentico application to use <a href="configuring-scheduled-task-execution#src-68881906_configuringscheduledtaskexecution-automaticmode">Automatic scheduler mode</a>.</p>
 </li><li class=" "><p>Set the <a class="external-link" href="https://technet.microsoft.com/en-us/library/cc771956(v=ws.10).aspx">Idle Time-out (minutes)</a> setting of your IIS application pool to 0. Otherwise, the application pool worker process shuts down after a period of inactivity. As the Kentico application does not receive traffic from visitors, the worker process would shut down if no one used the Kentico administration for a certain period of time and scheduled tasks would not get executed.<br></p>
 <ul class=" "><li class=" "><p>If you do not want to set the <i class=" ">Idle Time-out (minutes)</i> setting to 0, you can keep the worker process alive by sending requests to the Kentico application within the set interval.</p>
-</li></ul></li></ol></div>
-
-    
-    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+</li></ul></li></ol><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -170,7 +167,10 @@
 <ul class=" "><li class=" "><p><a href="scheduling-tasks">Scheduling tasks</a></p>
 </li><li class=" "><p><a href="installing-the-scheduler-windows-service">Installing the Scheduler Windows service</a></p>
 </li></ul>        </div>
-    </div></div>
+    </div></div></div>
+
+    
+    
     
     <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Scheduler Windows service </span></h4>
 <p>You can use the <a href="installing-the-scheduler-windows-service">Scheduler Windows service</a> if you want to process scheduled tasks independently on the Kentico application.</p>

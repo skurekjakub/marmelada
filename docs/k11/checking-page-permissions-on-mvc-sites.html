@@ -150,24 +150,24 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-cell sp-grid-60"><p>You can control which <a href="working-with-users-on-mvc-sites">users</a> are able to view which pages on the live site by configuring <a href="page-level-permissions-%28acls%29">page-level permissions</a> and adjusting the controller action that <a href="retrieving-content-on-mvc-sites">retrieves page content</a>.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Controlling access to pages</span></h3><p>The following example uses the <i class=" ">DancingGoat.Article</i> page type from the <a class="external-link" href="https://github.com/Kentico/Mvc">Dancing Goat MVC demo</a> application. It demonstrates how to limit access to the <i class=" ">On Roasts</i> article so that only the user <i class=" ">Andy</i> can see the page content on the live site. You can use the same approach to control page-level permissions of other users.</p><p>To control access to pages on MVC sites you first need to set <a href="page-level-permissions-%28acls%29">page-level permissions (ACLs)</a> for a page in the content tree:</p><ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>You can control which <a href="working-with-users-on-mvc-sites">users</a> are able to view which pages on the live site by configuring <a href="page-level-permissions-%28acls%29">page-level permissions</a> and adjusting the controller action that <a href="retrieving-content-on-mvc-sites">retrieves page content</a>.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Controlling access to pages</span></h3><p>The following example uses the <i class=" ">DancingGoat.Article</i> page type from the <a class="external-link" href="https://github.com/Kentico/Mvc">Dancing Goat MVC demo</a> application. It demonstrates how to limit access to the <i class=" ">On Roasts</i> article so that only the user <i class=" ">Andy</i> can see the page content on the live site. You can use the same approach to control page-level permissions of other users.</p><p>To control access to pages on MVC sites you first need to set <a href="page-level-permissions-%28acls%29">page-level permissions (ACLs)</a> for a page in the content tree:</p><ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
 </li><li class=" "><p>Select the <i class=" ">On Roasts</i> page in the content tree.</p>
 </li><li class=" "><p>Switch to the <strong class=" ">Properties -&gt; Security</strong> tab.</p>
 </li><li class=" "><p>Click <strong class=" ">Add users</strong>.</p>
 </li><li class=" "><p>Select the user <i class=" ">Andrew Jones (Andy)</i>.</p>
 </li><li class=" "><p>In the <i class=" ">Access rights</i> table, click<strong class=" "> Allow</strong> for the <strong class=" ">Read</strong> permission.</p>
 </li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
-</li></ol></div>
-    
-
-
-    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+</li></ol><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
 <ul class=" "><li class=" "><p><a href="retrieving-content-on-mvc-sites">Retrieving content on MVC sites</a></p>
 </li><li class=" "><p><a href="page-level-permissions-%28acls%29">Page-level permissions (ACLs)</a></p>
 </li></ul>        </div>
-    </div></div>
+    </div></div></div>
+    
+
+
+    
 <p>Next, adjust the controller definition:</p>
 <ol class=" "><li class=" "><p>In your MVC application, open the controller that retrieves content of pages based on the <i class=" ">DancingGoat.Article</i> page type.</p>
 </li><li class=" "><p>In the controller action, extend the <a href="working-with-pages-in-the-api">document query</a> expression by adding the <i class=" ">CheckPermissions</i> method. We recommend using <a href="generating-classes-for-kentico-objects">generated</a> providers, such as the generated <i class=" ">ArticleProvider</i> class.</p>

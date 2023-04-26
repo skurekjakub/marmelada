@@ -146,28 +146,10 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-cell sp-grid-60"><p>This page describes how to troubleshoot issues related to <a href="using-locally-stored-search-indexes">locally stored smart search indexes</a> when running the Kentico application on Azure. Please note that each section applies either to Web Apps, Cloud Services, or both.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Search indexes are not being rebuilt or there are hanging tasks in the system</span></h3><p>If your local search <strong class=" ">indexes are not being built</strong> correctly or if many indexing <strong class=" ">tasks are stuck</strong> in the system, there is probably a conflict between the search index files located in the application's file system and files located on the blob storage. When an application is mapped to the blob storage, files in the file system cannot be modified. Therefore, the system is not able to delete the old search indexes.</p><p>Please proceed to the section which corresponds to your Azure environment.</p><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Cloud Services - removing search index files</span></h4><p>Applies to: <span class="status blue ">CLOUD SERVICES</span>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>This page describes how to troubleshoot issues related to <a href="using-locally-stored-search-indexes">locally stored smart search indexes</a> when running the Kentico application on Azure. Please note that each section applies either to Web Apps, Cloud Services, or both.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Search indexes are not being rebuilt or there are hanging tasks in the system</span></h3><p>If your local search <strong class=" ">indexes are not being built</strong> correctly or if many indexing <strong class=" ">tasks are stuck</strong> in the system, there is probably a conflict between the search index files located in the application's file system and files located on the blob storage. When an application is mapped to the blob storage, files in the file system cannot be modified. Therefore, the system is not able to delete the old search indexes.</p><p>Please proceed to the section which corresponds to your Azure environment.</p><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Cloud Services - removing search index files</span></h4><p>Applies to: <span class="status blue ">CLOUD SERVICES</span>
 </p><h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Quick fix</span></h5><p>The solution for this issue on Cloud Services is to delete all files in the <strong class=" "><i class=" ">~/App_Data/CMSModules/SmartSearch</i></strong> folder. Connect to your service through remote desktop and delete the files remotely in the file system.</p><h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Prevention</span></h5><p>Delete the files in the <i class=" ">~/App_Data/CMSModules/SmartSearch</i> folder and redeploy the cloud service. Also delete the files every time before you deploy your application to Cloud Services.</p><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Web Apps - removing search index files</span></h4><p>Applies to: <span class="status green ">WEB APPS</span>
 </p><h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Quick fix</span></h5><p>The immediate solution on Web Apps is to delete all files in the <strong class=" "><i class=" ">~/App_Data/CMSModules/SmartSearch</i></strong> folder. You can connect to your Web Apps service through FTP and delete the files in the file system.</p><h5 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Prevention</span></h5><p>When running Kentico on Azure Web Apps, you do not need to map the application's entire file system to the blob storage (this is optional). We recommend mapping only your media library folders to the blob storage and leaving all other files in the file system of the application.</p><p>To map only the media library folder to the blob storage, see <a href="configuring-azure-storage">Configuring Kentico to store only media files on Azure storage</a>.</p><p>However, if you want to connect the blob storage using the <strong class=" ">CMSExternalStorageName</strong> web.config key, which maps the whole file system of the application to the blob storage:</p><ul class=" "><li class=" "><p>You need to delete all search index files in the application's file system.</p>
-</li></ul></div>
-    
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-
-    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+</li></ul><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -185,7 +167,25 @@
 </li></ul></li><li class=" "><p><a href="#src-68881699_troubleshootinglocalsearchindexesonazure-smartsearchworkerroletroubleshootingoncloudservices">SmartSearchWorker role troubleshooting on Cloud Services</a></p>
 </li></ul><p></p>
         </div>
-    </div></div>
+    </div></div></div>
+    
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+    
     <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Deleting .lock files</span></h3>
 <p>Applies to: <span class="status green ">WEB APPS</span>
  <span class="status blue ">CLOUD SERVICES</span>

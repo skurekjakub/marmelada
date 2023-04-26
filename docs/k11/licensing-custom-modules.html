@@ -148,18 +148,13 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-cell sp-grid-60"><p>Kentico allows developers to add various types of custom functionality organized within <a href="creating-custom-modules">modules</a>. You may wish to provide these features to customers for a price. One way to achieve this is via licensing.</p><p>We provide tools and functionality necessary to implement licensing for custom Kentico modules – a license management application for the Kentico administration interface and an API for working with licenses in the code of custom modules.</p><p>To implement licensing for custom modules, you need to:</p><ul class=" "><li class=" "><p><a href="#src-68882260_licensingcustommodules-constructinglicenses">Construct licenses for your custom module</a></p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Kentico allows developers to add various types of custom functionality organized within <a href="creating-custom-modules">modules</a>. You may wish to provide these features to customers for a price. One way to achieve this is via licensing.</p><p>We provide tools and functionality necessary to implement licensing for custom Kentico modules – a license management application for the Kentico administration interface and an API for working with licenses in the code of custom modules.</p><p>To implement licensing for custom modules, you need to:</p><ul class=" "><li class=" "><p><a href="#src-68882260_licensingcustommodules-constructinglicenses">Construct licenses for your custom module</a></p>
 </li><li class=" "><p><a href="#src-68882260_licensingcustommodules-implementinglicensechecksincustommodules">Add license checks to the implementation of your custom module</a></p>
 </li><li class=" "><p><a href="#src-68882260_licensingcustommodules-managinglicensesforcustommodules">Add and manage licenses on all Kentico instances using the custom module</a></p>
 </li></ul><p>To help you with the implementation of module licensing, the Kentico API provides the <strong class=" ">ModuleLicensesHelper</strong> class in the <i class=" ">CMS.ModuleLicenses</i> namespace.</p><p>The <strong class=" ">ModuleLicensesHelper</strong> class exposes the following methods for working with licenses:</p><ul class=" "><li class=" "><p><strong class=" ">void GenerateKeyPair(out string privateKey, out string publicKey)</strong><br>Creates a new private and public key pair for generating and validating module licenses. Created keys are encoded in Base64.<br><br></p>
 </li><li class=" "><p><strong class=" ">string CreateModuleLicense(string licenseData, string privateKey)</strong><br>Creates a module license containing license data and a signature based on the given private key.<br><br></p>
 </li><li class=" "><p><strong class=" ">IEnumerable&lt;string&gt; GetValidModuleLicenses(string moduleName, string publicKey)</strong><br>Returns a collection of module license data with cryptographically valid signatures for a given module.<br></p>
-</li></ul></div>
-
-
-
-
-    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+</li></ul><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -174,7 +169,12 @@
 <ul class="toc-indentation "><li class=" "><p><a href="#src-68882260_licensingcustommodules-addingalicenseforamodule">Adding a license for a module</a></p>
 </li></ul></li></ul><p></p>
         </div>
-    </div></div>
+    </div></div></div>
+
+
+
+
+    
     <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Constructing licenses</span></h3>
     <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Generating cryptographic key pairs</span></h4>
 <p>Before you can construct your licenses, you need to generate a cryptographic key pair that will help secure your licenses against malicious tampering. You can generate a key pair via the <strong class=" ">GenerateKeyPair()</strong> method. For example:</p>

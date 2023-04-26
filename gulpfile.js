@@ -25,9 +25,8 @@ function fixExport(spaceKey)
                     const stats = fs.statSync(renamedFilePath)
                     if (!stats.isDirectory())
                     {
-
-                        //removeInThisSectionPanel(renamedFilePath);
-                        //fixTwoColumnPageLayout(renamedFilePath);
+                        removeInThisSectionPanel(renamedFilePath);
+                        fixTwoColumnPageLayout(renamedFilePath);
 
                         generateHelpServiceRedirectHandler(renamedFilePath);
                     }
@@ -64,24 +63,24 @@ function fixTwoColumnPageLayout(filePath)
     const BOTTOMSECTIONMARKUP = '<div class="sp-grid-cell sp-grid-100"></div>';
     const BOTTOMSECTION = '.sp-grid-cell.sp-grid-100'
     const SECTIONMARKUP = '<div class="sp-grid-section"></div>';
-    const SECTION = '.sp-grid-section';
+    const SECTION = '#main-content .sp-grid-section';
 
     // Parse the HTML using Cheerio
     const $ = cheerio.load(html);
-    // Skip if already processed
-    if ($(SECTION).length) return;
 
     // Find the first occurrence of the HTML code to be wrapped
     const onThisPage = $('.confbox.panel .title.panel-header:contains("On this page")').first().parent();
     const relatedPages = $('.confbox.panel .title.panel-header:contains("Related pages")').first().parent();
     if (onThisPage.length)
     {
+        $(SECTIONMARKUP).insertBefore(onThisPage);
         $(RIGHTCOLUMNMARKUP).insertBefore(onThisPage);
         $(RIGHTCOLUMN).append(onThisPage);
         $(RIGHTCOLUMN).append(relatedPages);
     }
     else if (relatedPages.length)
     {
+        $(SECTIONMARKUP).insertBefore(relatedPages);
         $(RIGHTCOLUMNMARKUP).insertBefore(relatedPages);
         $(RIGHTCOLUMN).append(onThisPage);
         $(RIGHTCOLUMN).append(relatedPages);
@@ -89,6 +88,7 @@ function fixTwoColumnPageLayout(filePath)
 
     // Find the element with id "main-content"
     const mainContentFirstChild = $('#main-content').children().first();
+    $(SECTIONMARKUP).insertBefore(mainContentFirstChild);
     $(LEFTCOLUMNMARKUP).insertBefore(mainContentFirstChild);
     const sectionLeft = $(LEFTCOLUMN);
 
@@ -96,6 +96,14 @@ function fixTwoColumnPageLayout(filePath)
     const array = sectionLeftElements.toArray().reverse();
     
     sectionLeft.append(array);
+    $(SECTION).first().append($(LEFTCOLUMN));
+    $(SECTION).first().append($(RIGHTCOLUMN));
+
+    // TODO
+    // const lastElement = $('#main-content').children().last();
+    // const restOfThePage = $(RIGHTCOLUMN).nextUntil(lastElement);
+    // restOfThePage.add(lastElement);
+
 
     // Save the modified HTML file
     fs.writeFileSync(filePath, $.html());

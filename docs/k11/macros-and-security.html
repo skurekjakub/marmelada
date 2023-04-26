@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-cell sp-grid-60"><p>Macros are an essential part of Kentico. You can read more about them in the <a href="macro-expressions">Macro expressions</a> chapter. This page focuses on the security mechanisms and best practices related to macros.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Signing macros</span></h3><p>Whenever a user saves a complex macro expression, the system automatically adds a security signature. This signature contains an <strong class=" ">identifier</strong> of the macro's author (the user name or an assigned macro identity) and a <strong class=" ">hash</strong> of the given expression.</p><p>You can recognize signed macro expressions by the <strong class=" ">#</strong> character, which the system automatically inserts before the closing <strong class=" ">%}</strong> parentheses when saving the text containing the macro:</p><ul class=" "><li class=" "><p><i class=" ">{%CurrentSite.SiteID #%}</i></p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Macros are an essential part of Kentico. You can read more about them in the <a href="macro-expressions">Macro expressions</a> chapter. This page focuses on the security mechanisms and best practices related to macros.</p><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Signing macros</span></h3><p>Whenever a user saves a complex macro expression, the system automatically adds a security signature. This signature contains an <strong class=" ">identifier</strong> of the macro's author (the user name or an assigned macro identity) and a <strong class=" ">hash</strong> of the given expression.</p><p>You can recognize signed macro expressions by the <strong class=" ">#</strong> character, which the system automatically inserts before the closing <strong class=" ">%}</strong> parentheses when saving the text containing the macro:</p><ul class=" "><li class=" "><p><i class=" ">{%CurrentSite.SiteID #%}</i></p>
 </li></ul><p>For illustration, a signed macro may look like this in the database:</p><ul class=" "><li class=" "><p><i class=" ">{%CurrentSite.SiteID|(user)administrator|(hash)9056b7b76629a47a660c40cc2e5b0d92a13d0f9bce178847ca412c3a585552a1%}<br></i>– OR –</p>
 </li><li class=" "><p><i class=" ">{%CurrentSite.SiteID|(identity)GlobalAdministrator|(hash)e3402fe14374ab15d119dddbb6c831ce3d2ef55bd8e70ce8eb80994f4e6ad18b%}</i><br><br></p>
 </li></ul><div class="confbox admonition admonition-info">
@@ -156,15 +156,7 @@
                 <div class="admonition-body">
 <p>Hashing is omitted when submitting very simple macros (e.g., {%FullName%}). Macros are signed only when they contain an indexer or a dot.</p>
         </div>
-    </div><p>The system checks the macro signature when accessing an object through a different object (for example the user settings of a user object) and evaluates whether the user (identified by the signature) has <strong class=" ">permissions</strong> to execute the macro.</p><p>The best practice is to use the least privilege approach – submit macros signed by a user who has access only to the required objects and nothing else.</p></div>
-    
-
-
-
-    
-
-
-    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+    </div><p>The system checks the macro signature when accessing an object through a different object (for example the user settings of a user object) and evaluates whether the user (identified by the signature) has <strong class=" ">permissions</strong> to execute the macro.</p><p>The best practice is to use the least privilege approach – submit macros signed by a user who has access only to the required objects and nothing else.</p><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -182,7 +174,15 @@
             <div class="panel-content">
 <ul class=" "><li class=" "><p><a href="macro-expressions">Macro expressions</a></p>
 </li></ul>        </div>
-    </div></div>
+    </div></div></div>
+    
+
+
+
+    
+
+
+    
     
     <h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>SQL injections</span></h3>
 <p>Macros can often become part of SQL queries, for example in <i class=" ">WhereCondition</i> and <i class=" ">OrderBy</i> fields of web part properties, which can lead to SQL injection vulnerability.</p>

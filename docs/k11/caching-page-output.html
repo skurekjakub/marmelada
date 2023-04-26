@@ -149,7 +149,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-cell sp-grid-60"><p>Output caching is the most effective way to increase page performance. The output cache stores the full source code of pages, i.e. the HTML and client script that the server sends to browsers for rendering. When a visitor views a page, the server caches the output code in the application's memory. Until the cache expires, the system displays the page using the cached output. As a result, the application can quickly serve requests without running the page code or communicating with SQL servers.</p><p>The implementation is similar to the native ASP.NET output cache, with better performance and options. Also, the Kentico output cache has better support for clearing the cache than <a href="#">external caching approaches</a>.</p><p><i class=" "><strong class=" ">We recommend using output caching for all possible pages</strong>, especially when there is a chance of high load on individual pages.</i> The drawback is that cached output can become outdated on dynamic pages, or if the website's content is updated. Output caching is not suitable for pages that need to refresh frequently (for example pages that update based on user input, or have randomly generated content). You cannot disable output caching for parts of pages.</p><p>However, the system provides several solutions that allow you to cache output even for pages with dynamic content:</p><ul class=" "><li class=" "><p><a href="#src-68881966_cachingpageoutput-settingoutputcachedependencies">Set dependencies</a> for the output cache (allows automatic clearing of the cache)</p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Output caching is the most effective way to increase page performance. The output cache stores the full source code of pages, i.e. the HTML and client script that the server sends to browsers for rendering. When a visitor views a page, the server caches the output code in the application's memory. Until the cache expires, the system displays the page using the cached output. As a result, the application can quickly serve requests without running the page code or communicating with SQL servers.</p><p>The implementation is similar to the native ASP.NET output cache, with better performance and options. Also, the Kentico output cache has better support for clearing the cache than <a href="#">external caching approaches</a>.</p><p><i class=" "><strong class=" ">We recommend using output caching for all possible pages</strong>, especially when there is a chance of high load on individual pages.</i> The drawback is that cached output can become outdated on dynamic pages, or if the website's content is updated. Output caching is not suitable for pages that need to refresh frequently (for example pages that update based on user input, or have randomly generated content). You cannot disable output caching for parts of pages.</p><p>However, the system provides several solutions that allow you to cache output even for pages with dynamic content:</p><ul class=" "><li class=" "><p><a href="#src-68881966_cachingpageoutput-settingoutputcachedependencies">Set dependencies</a> for the output cache (allows automatic clearing of the cache)</p>
 </li><li class=" "><p>Adjust how the system <a href="#src-68881966_cachingpageoutput-cachingmultipleoutputversionsofpages">caches multiple versions of pages</a></p>
 </li><li class=" "><p>Use <a href="using-output-cache-substitutions">substitution macros</a> to create dynamic content inside cached pages</p>
 </li><li class=" "><p>Disable full page output caching, but use <a href="#src-68881966_cachingpageoutput-cachingportionsofthepageoutput">partial caching</a> for sections of the page (individual web parts)</p>
@@ -172,17 +172,7 @@
 <p>To enable output caching for all pages on your site, edit the properties of the root page. The underlying pages need to have the <strong class=" ">Use output cache</strong> property set to <strong class=" ">Inherit</strong> (this is the default state).</p>
 <p>To apply different intervals to different sections - inherit the <strong class=" ">Use output cache</strong> property from different parent pages in the specific sections of the site. This allows you to set longer intervals for site sections with more static content.</p>
         </div>
-    </div><p>When a visitor requests the page, the system saves the full output code into the cache. Until the cache expires, the system displays the cached output without processing the page.</p></div>
-
-
-
-    
-
-
-
-    
-
-    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+    </div><p>When a visitor requests the page, the system saves the full output code into the cache. Until the cache expires, the system displays the cached output without processing the page.</p><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -204,7 +194,17 @@
 </li><li class=" "><p><a href="caching-in-custom-code">Caching in custom code</a></p>
 </li><li class=" "><p><a href="using-output-cache-substitutions">Using output cache substitutions</a></p>
 </li></ul>        </div>
-    </div></div>
+    </div></div></div>
+
+
+
+    
+
+
+
+    
+
+    
     
     <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Setting output cache dependencies</span></h4>
 <p>The output cache of pages can become outdated when users update the website's pages and objects. Dependencies allow the system to automatically delete cached content whenever related objects are modified. The output cache provides <i class=" "><strong class=" ">default dependencies</strong></i> that clear the cache for pages:</p>

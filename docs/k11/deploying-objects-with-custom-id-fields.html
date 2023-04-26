@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-cell sp-grid-60"><p>When transferring data between instances of Kentico (via <a href="exporting-and-importing-sites">import/export</a> or <a href="content-staging">staging</a>), the IDs of objects can differ between the environments. Kentico automatically "translates" the ID values for system objects, but not for custom objects. For example, when you stage a <a href="custom-tables">custom table</a> or <a href="page-types">page type</a> that contains a custom field storing object IDs, the values may not match the IDs of the objects on the target server.</p><p>You can ensure that the system correctly translates custom ID fields by handling the events in the <strong class=" ">ColumnsTranslationEvents</strong> class:</p><ul class=" "><li class=" "><p><strong class=" ">RegisterRecords</strong> – occurs on the source application when exporting objects. Handle this event to provide information for custom field translation.</p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When transferring data between instances of Kentico (via <a href="exporting-and-importing-sites">import/export</a> or <a href="content-staging">staging</a>), the IDs of objects can differ between the environments. Kentico automatically "translates" the ID values for system objects, but not for custom objects. For example, when you stage a <a href="custom-tables">custom table</a> or <a href="page-types">page type</a> that contains a custom field storing object IDs, the values may not match the IDs of the objects on the target server.</p><p>You can ensure that the system correctly translates custom ID fields by handling the events in the <strong class=" ">ColumnsTranslationEvents</strong> class:</p><ul class=" "><li class=" "><p><strong class=" ">RegisterRecords</strong> – occurs on the source application when exporting objects. Handle this event to provide information for custom field translation.</p>
 </li><li class=" "><p><strong class=" ">TranslateColumns</strong> – occurs on the target application when importing objects. Handle this event to translate field values using the provided information.</p>
 </li></ul><div class="confbox admonition admonition-note">
                             <span class="admonition-icon confluence-information-macro-icon"></span>
@@ -156,10 +156,7 @@
 <p><strong class=" ">Important</strong></p>
 <p>Handle the <i class=" ">RegisterRecords</i> event on the <i class=" "><strong class=" ">source</strong> </i>application, and the <i class=" ">TranslateColumns</i> event on the <i class=" "><strong class=" ">target</strong> </i>application. Add the handlers to both applications to ensure correct ID translation for both directions (for example bi-directional staging).</p>
         </div>
-    </div></div>
-
-    
-    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+    </div><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
 <ul class=" "><li class=" "><p><a href="exporting-and-importing-sites">Exporting and importing sites</a></p>
@@ -167,7 +164,10 @@
 </li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
 </li><li class=" "><p><a href="reference---global-system-events">Reference - Global system events</a></p>
 </li></ul>        </div>
-    </div></div>
+    </div></div></div>
+
+    
+    
     <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Example</span></h4>
 <p>The following example demonstrates how to implement custom ID translation for the <i class=" ">CustomTableUserID</i> field of a <a href="custom-tables">custom table</a>. The field stores the IDs of the users who own individual records in the custom table.</p>
 <ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>

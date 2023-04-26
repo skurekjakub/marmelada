@@ -148,7 +148,7 @@
         </header>
 
         <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<div class="sp-grid-cell sp-grid-60"><p>The integration bus synchronizes objects and pages with third party systems. It provides a safer and more reliable way than other solutions, because the synchronization tasks can be ordered in a queue and recovered if they fail. You can implement the synchronization in both directions:</p><ul class=" "><li class=" "><p><a href="#src-68882894_integrationbusoverview-outgoingtasks-fromkenticotoexternalapplications">Outgoing tasks</a> – perform synchronization from Kentico to external applications.</p>
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>The integration bus synchronizes objects and pages with third party systems. It provides a safer and more reliable way than other solutions, because the synchronization tasks can be ordered in a queue and recovered if they fail. You can implement the synchronization in both directions:</p><ul class=" "><li class=" "><p><a href="#src-68882894_integrationbusoverview-outgoingtasks-fromkenticotoexternalapplications">Outgoing tasks</a> – perform synchronization from Kentico to external applications.</p>
 </li><li class=" "><p><a href="#src-68882894_integrationbusoverview-incomingtasks-fromexternalapplicationstokentico">Incoming tasks</a> – perform synchronization from external systems to Kentico.</p>
 </li></ul><h3 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Outgoing tasks - From Kentico to external applications</span></h3><p>Outgoing synchronization tasks are based on <i class=" ">subscriptions</i>.</p><h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Subscriptions</span></h4><p>Subscriptions keep track of operations performed in Kentico, such as creating, updating or deleting objects and pages. Developers need to prepare subscriptions for operations that should be synchronized to external systems. When an operation that has a subscription occurs, the system passes the request to a connector, which processes the synchronization in one of two modes (depends on the subscription settings):</p><ul class=" "><li class="confluence-link "><p><a href="#src-68882894_integrationbusoverview-asynchronousprocessing">Asynchronously</a> – synchronization tasks are placed into a queue, which is automatically processed by the system at the end of each web request that logs new tasks. Failed tasks remain in the queue and are executed again during the next task processing.</p>
 </li><li class=" "><p><a href="#src-68882894_integrationbusoverview-synchronousprocessing">Synchronously&nbsp;</a>– synchronization tasks are passed directly to the connector.</p>
@@ -157,16 +157,7 @@
     </p><p><strong class=" ">Data types for subscriptions</strong></p><p>Subscriptions use one of three data types to specify which data is transferred:</p><ul class=" "><li class=" "><p><strong class=" ">Simple</strong> – synchronizes the content of objects.</p>
 </li><li class=" "><p><strong class=" ">SimpleSnapshot</strong> – synchronizes whole objects and preserves foreign key bindings. This applies only when the 3rd party system has an architecture and database design similar to Kentico.</p>
 </li><li class=" "><p><strong class=" ">Snapshot</strong> – synchronizes multiple objects at once. For example a main object with its children, such as polls together with poll answers. Not supported for pages.</p>
-</li></ul><p>For details, refer to the <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">TaskDataTypeEnum</a> enumeration.</p></div>
-    
-
-    
-
-
-
-
-
-    <div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+</li></ul><p>For details, refer to the <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">TaskDataTypeEnum</a> enumeration.</p><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
 <p></p>
@@ -186,7 +177,16 @@
 </li><li class=" "><p><a href="creating-integration-connectors">Creating integration connectors</a></p>
 </li><li class=" "><p><a href="managing-integration-tasks">Managing integration tasks</a></p>
 </li></ul>        </div>
-    </div></div>
+    </div></div></div>
+    
+
+    
+
+
+
+
+
+    
     
     <h4 $stringutils.tolowercase(${idattribute})="" class="heading "><span>Asynchronous processing</span></h4>
 <p>With asynchronous processing of tasks, the data of the changed object or page is first stored in the database (the task is logged in the task queue). If the external system is not available, the tasks wait ordered in the queue until they can be reliably processed.</p>
