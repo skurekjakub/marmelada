@@ -1,10 +1,101 @@
+## Consents script
+## Based on the cookie level shared with .xperience.io, puts the correct GA/GTM 'consent.default' script into the htmlhead 
+#set($cookieLevel = 0)
+#foreach($cookie in $request.getCookies())
+    #if ($cookie.getName() eq "xperience.cookieconsentlevel")
+        #set($cookieLevel = $cookie.getValue())
+    #end
+#end
+
+#if($cookieLevel == 1)
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'denied',
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'security_storage': 'denied'
+            }
+        });
+    </script>
+#elseif($cookieLevel == 2)
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'granted',
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'security_storage': 'denied'
+            }
+        });
+    </script>
+#elseif($cookieLevel == 3)
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'granted',
+            'analytics_storage': 'granted',
+            'ad_storage': 'denied',
+            'security_storage': 'denied'
+            }
+        });
+    </script>
+#elseif($cookieLevel == 4)
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'granted',
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'security_storage': 'granted'
+            }
+        });
+    </script>
+#end
+
+
+## Google Tag Manager script (Analytics)
+<script type="text/javascript">
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQNPJN');
+</script>
+
+<meta name="description" content="Kentico Xperience Documentation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+## Custom Xperience Confluence meta information
+<meta name="confluence-space-key" content="$space.key">
+<meta name="confluence-page-title" content="$page.title">
+<meta name="confluence-page-tiny-suffix" content="">
+<meta name="confluence-page-labels" content="$page.labels">
+
+## Theme stylesheets
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 ## jQuery
 <script type="text/javascript" src="assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
 
+<script type="text/javascript" src="assets/js/theme.prism.js"></script>
 
 ## Translations
 <script type="text/javascript" src="assets/js/translate.js"></script>
@@ -17,21 +108,7 @@
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
-<script type="text/javascript" src="assets/js/theme.lightbox.js"></script>
-<script type="text/javascript" src="assets/js/theme.prism.js"></script>
 
-<script type="text/javascript" async>
-    // Populates the documentation version switcher header
-    // loadVersionLinkData is located in theme.custom.js
-    $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
-</script>
-
-#if ($context.exportMode == "single-page")
-    ## Scroll tree implementation
-    <script type="text/javascript" src="assets/js/scroll-tree.js"></script>
-#else
-    <script type="text/javascript" src="assets/js/iframeResizer.min.js"></script>
-#end
 
 <link rel="stylesheet" href="assets/css/content-style.css">
 #if ($context.BuildSearchIndex)

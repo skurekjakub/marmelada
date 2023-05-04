@@ -3,15 +3,15 @@
 
     SCROLL.initPageTree = function() {
 
-        var queryString = window.location.search.slice(1);
-        var pageId;
+        // var queryString = window.location.search.slice(1);
+        var pageId = $("body").attr('pageid');
 
-        if (queryString) {
-            var param = queryString.split('=');
-            if (param.length === 2 && param[0] === 'pageId') {
-                pageId = param[1];
-            }
-        }
+        // if (queryString) {
+        //     var param = queryString.split('=');
+        //     if (param.length === 2 && param[0] === 'pageId') {
+        //         pageId = param[1];
+        //     }
+        // }
 
         $('a.ht-nav-page-link').each(function() {
             if ($(this).attr('data-destpageid') === pageId) {
