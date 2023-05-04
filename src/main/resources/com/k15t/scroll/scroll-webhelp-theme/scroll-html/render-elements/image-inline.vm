@@ -1,4 +1,5 @@
 #if($renderStart)
+#set($alttext = $stringEscapeUtils.escapeHtml($element.title))
 <img ${idAttribute} ${classAttribute} #if($element.Alignment)
     #if($element.Alignment.getHtmlCssFormattedValue() == "left")
             style="float:left;"
@@ -7,5 +8,5 @@
     #elseif($element.Alignment.getHtmlCssFormattedValue() == "center")
             style="display:block; margin-left: auto; margin-right: auto;"
     #end
-#end src="$stringEscapeUtils.escapeHtml($imageFilename)" alt="$stringEscapeUtils.escapeHtml($imageFilename)" #if($element.width)width="$element.width"#end #if($element.height)height="$element.height"#end />
+#end src="$stringEscapeUtils.escapeHtml($imageFilename)" alt="$alttext" #if($element.width)width="$element.width"#end #if($element.height)height="$element.height"#end />
 #end

@@ -12,10 +12,6 @@
 
     <link rel="stylesheet" href="assets/css/expand-macro.css">
 
-    #if ($scrollVersions.Language.Key)
-        <meta name="scroll-content-language-key" content="$scrollVersions.Language.Key">
-    #end
-
     #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-htmlhead.vm")
 
     #if ($context.BuildSearchIndex)
@@ -57,7 +53,7 @@
     #end
 </head>
 
-<body pageid="$page.getId()" elementpageid="$element.getPageId()">
+<body incorrectpageid="$page.getId()" pageid="$element.getPageId()">
 
 <div id="ht-loader">
     <noscript>
@@ -67,7 +63,6 @@
 
 <div>
    	#parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-headerbar.vm")
-   	#parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-sidebar.vm")
 </div>
 
 <div id="ht-wrap-container">
@@ -75,30 +70,45 @@
     ## ----------------------------------------------------------------------------------------------------------------------------------
     ## Represents include-content.vm in viewport from here
     ## ----------------------------------------------------------------------------------------------------------------------------------
+   
 
-    #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-sidebar-drag.vm")
-
-    <article id="ht-content" class="ht-content">
-        <header class="ht-content-header">
-            #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-breadcrumb.vm")
-            <h1 $idAttribute> #*
-            *##foreach ($annotation in $element.Annotations)#*
-                *##if ($annotation.Class.Name == "com.k15t.scroll.core.model.annotation.BookmarkAnnotation")#*
-                    *#<span id="${annotation.BookmarkId}" class="scroll-bookmark"></span>#*
-                *##end#*
-                *##if ($annotation.Class.Name == "com.k15t.scroll.core.model.annotation.AnchorAnnotation")#*
-                    *#<span id="${annotation.AnchorId}" class="confluence-anchor-link"></span>#*
-                *##end#*
-            *##end#*
-            *#<span>$stringEscapeUtils.escapeHtml($element.Title)</span></h1>
-        </header>
-
-        <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+    <div class="container">
+        <div class="ht-layout">
+            <div class="ht-layout-sidebar">
+                #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-sidebar.vm")
+            </div>
+            <div class="ht-layout-main">
+            <article id="ht-content" class="ht-content">
+                <header class="ht-content-header">
+                    #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-breadcrumb.vm")
+                    <h1 $idAttribute> #*
+                    *##foreach ($annotation in $element.Annotations)#*
+                        *##if ($annotation.Class.Name == "com.k15t.scroll.core.model.annotation.BookmarkAnnotation")#*
+                            *#<span id="${annotation.BookmarkId}" class="scroll-bookmark"></span>#*
+                        *##end#*
+                        *##if ($annotation.Class.Name == "com.k15t.scroll.core.model.annotation.AnchorAnnotation")#*
+                            *#<span id="${annotation.AnchorId}" class="confluence-anchor-link"></span>#*
+                        *##end#*
+                    *##end#*
+                    *#<span>$stringEscapeUtils.escapeHtml($element.Title)</span></h1>
+                </header>
+                <div id="content" class="page">
+                    <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
 #else
+                    </div>
+                </div>
+                    <footer class="ht-content-footer">                
+                        <div id="feedback-link-container">
+                            <a href="#top" id="back-to-top">
+                                <span class="icon-chevron-up"></span>
+                                <span class="sr-only">Go back to top</span>
+                            </a>
+                        </div>   
+                    </footer>
+                </div>
+            </article>
         </div>
-
-    </article>
-
+    </div>
 
     #if ($context.ExportMode == "default")
        ## #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-post-navigation.vm")
@@ -114,6 +124,10 @@
 <div>
     <div id="ht-mq-detect"></div>
 </div>
+
+## #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-cookiebanner.vm") TODO
+#parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-bodyendscripts.vm")
+<script type="text/javascript" src="assets/js/theme.lightbox.js"></script>
 
 #if ($context.BuildSearchIndex)
     <script src="js/lunr.js"></script>

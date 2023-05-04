@@ -1,8 +1,36 @@
 #if($renderStart)
-    <div ${idAttribute} class="confbox programlisting" style="counter-reset: scroll-code-numbering $element.firstLine">
-        #if($element.title)
-            <div class="title">$stringEscapeUtils.escapeHtml($element.title)</div>
-        #end
-        $element.htmlFormattedCode
+<div ${idAttribute} class="code panel pdl js-codePanel" >
+  ## Render header bar if the panel has title or is collapsible
+  <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+      #if ($element.title)<strong>$element.title</strong>#end
     </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+  ## Render the code
+  <div class="codeContent panelContent pdl#if($params.collapse) collapse#end">
+    #set($lang = $params.language)
+    
+    ## Default fallback on C#
+    #if (!$lang || $lang == "c#")
+    	#set($lang = "csharp")
+    #end
+    
+    ## Get rid of BOM if the file contains it (UTF-8)
+    #if($element.htmlFormattedCode.regionMatches(0, " ï»¿", 0, 4))
+    <pre><code class="js-code language-$lang">$stringEscapeUtils.escapeHtml($element.htmlFormattedCode.replaceFirst($element.htmlFormattedCode.substring(0,4), ""))</code></pre>
+    #elseif($element.htmlFormattedCode.regionMatches(0, "ï»¿", 0, 3))
+    <pre><code class="js-code language-$lang">$stringEscapeUtils.escapeHtml($element.htmlFormattedCode.replaceFirst($element.htmlFormattedCode.substring(0,3), ""))</code></pre>
+    #else
+    <pre><code class="js-code language-$lang">$stringEscapeUtils.escapeHtml($element.htmlFormattedCode)</code></pre>
+    #end
+  </div>
+</div>
 #end

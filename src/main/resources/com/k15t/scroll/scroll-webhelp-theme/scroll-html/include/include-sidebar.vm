@@ -1,25 +1,9 @@
+
 <aside id="ht-sidebar">
+    #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/include/include-space-switcher.vm")
     <div class="ht-sidebar-content">
         <div class="ht-sidebar-content-scroll-container">
-            <header class="ht-sidebar-header">
-                <h1 class="ht-logo">
-                    <span class="ht-logo-label">$stringEscapeUtils.escapeHtml($space.Key)</span>
-                    $spaceLogo
-                </h1>
-                <a href="$context.getLinkNamingStrategy().generateLinkString($context.sourceTree)" class="ht-space-link">
-                    <h2>$stringEscapeUtils.escapeHtml($space.Title)</h2>
-                </a>
-            </header>
-            #if ($context.exportMode == "single-page")
-                #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/toc-links.vm")
-            #else
-                <iframe id="ht-nav" src="toc.html?pageId=$element.pageId"></iframe>
-                <script>
-                    $('iframe#ht-nav').iFrameResize(
-                            { 'log': true, 'autoResize': true, 'heightCalculationMethod': 'lowestElement', 'checkOrigin': false });
-                </script>
-            #end
+            #parse("com/k15t/scroll/scroll-webhelp-theme/scroll-html/toc-links.vm")
         </div>
     </div>
-
 </aside>
