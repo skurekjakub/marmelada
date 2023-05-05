@@ -144,7 +144,7 @@ window.ATL_JQ_PAGE_PROPS = {
 
 // ============================ PDF EXPORT  ============================
 var setPdfExportUrl = function setPdfExportUrl() {
-    var pageId = $("body").attr("pageId");
+    var pageId = $("body").attr("pageid");
     $("#export-pdf").attr("href", CONFIG.CONFLUENCE_BASE_URL + "/spaces/flyingpdf/pdfpageexport.action?pageId=" + pageId);
 };
 
@@ -1074,7 +1074,7 @@ var getPageIdIfEditingAllowed = function getPageIdIfEditingAllowed() {
 
     if (length != 0 && !searchboxFocused)
     {
-        var pageId = $("body").attr("pageId");
+        var pageId = $("body").attr("pageid");
 
         return pageId ? pageId : 0;
     }
