@@ -462,6 +462,58 @@
         });
     }
 
+    
+    /*===================================
+     =       Header responsivity        =
+     ===================================*/
+
+     (function() {
+        var $openSearch = $('.js-header-search-open');
+        var $closeSearch = $('.js-header-search-close');
+        var $search = $('.js-header-search-box');
+        var transitionMs = 250;
+
+        $openSearch.click(function(e) {
+            $search
+                .css("display", "flex")
+                .hide()
+                .fadeIn(transitionMs);
+        });
+
+        $closeSearch.click(function(e) {
+            $search.fadeOut(transitionMs);
+        });
+
+        var $menuToggle = $('.js-menu-toggle');
+        var $sidebar = $('#ht-sidebar');
+
+        function showMenu() {
+            $menuToggle.addClass('is-active');
+            $sidebar.fadeIn(transitionMs);
+        }
+
+        function hideMenu() {
+            $menuToggle.removeClass('is-active');
+            $sidebar.fadeOut(transitionMs);
+        }
+
+        $menuToggle.click(function(e) {
+            if ($menuToggle.hasClass('is-active')) {
+                hideMenu();
+            } else {
+                showMenu();
+            }
+        })
+
+        window.addEventListener('click', function(e) {
+            if (!$menuToggle[0].contains(e.target) && !$sidebar[0].contains(e.target)) {
+                hideMenu();
+            } 
+        });
+    })();
+
+
+
 
     /*================================
      =            Dropdown            =
@@ -820,4 +872,37 @@
         }
     }
 
+    
+
+    /*=====================================
+     =             Clipboard              =
+     =====================================*/
+     (function(){
+        var clipboardTimeout;
+
+        var clipboard = new ClipboardJS('.js-codeClipboard', {
+            target: function(trigger) {
+                var $panel = $(trigger).closest('.js-codePanel');
+                var $code = $panel.find('.js-code');
+            
+                return $code[0];
+            }
+        });
+
+        clipboard.on('success', function (e) {
+            var $trigger = $(e.trigger);
+            $trigger.addClass('is-copied');
+
+            if (clipboardTimeout) {
+                window.clearTimeout(clipboardTimeout);
+            }
+
+            clipboardTimeout = window.setTimeout(function() {
+                $trigger.removeClass('is-copied');
+            }, 2000);
+
+            e.clearSelection();
+        });
+    }())
 })($);
+

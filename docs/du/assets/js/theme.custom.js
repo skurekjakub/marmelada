@@ -145,7 +145,7 @@ window.ATL_JQ_PAGE_PROPS = {
 // ============================ PDF EXPORT  ============================
 var setPdfExportUrl = function setPdfExportUrl() {
     var pageId = $("body").attr("pageid");
-    $("#export-pdf").attr("href", CONFIG.CONFLUENCE_BASE_URL + "/spaces/flyingpdf/pdfpageexport.action?pageId=" + pageId);
+    $("#export-pdf").attr("href", CONFIG.BASE_URL + "/spaces/flyingpdf/pdfpageexport.action?pageId=" + pageId);
 };
 
 $(document).ready(setPdfExportUrl);
@@ -154,21 +154,12 @@ $(document).ready(setPdfExportUrl);
 
 // Gets the page tiny link URL using REST and shows the page link panel
 var openPageLink = function openPageLink(pageID) {
-    var baseUrl = CONFIG.CONFLUENCE_BASE_URL;
-
-    var tinySuffix = $('[name="confluence-page-tiny-suffix"]').attr('content');
-
-    if (tinySuffix) {
-        togglePageLinkPanel(baseUrl + tinySuffix);
+    if (CONFIG.CONFLUENCE_PAGE_TINYID) {
+        togglePageLinkPanel(CONFIG.BASE_URL + '/x/' + CONFIG.CONFLUENCE_PAGE_TINYID);
     } else {
-        $.getJSON(baseUrl + "/rest/api/content/" + pageID + "?expand=_links", function (data) {
-            tinySuffix = data._links.tinyui;
-            $('[name="confluence-page-tiny-suffix"]').attr('content', tinySuffix);
-            togglePageLinkPanel(baseUrl + tinySuffix);
-        });
+        togglePageLinkPanel(window.location.href);
     }
 };
-
 
 var togglePageLinkPanel = function togglePageLinkPanel(tinyUrl) {
     $("#page-link-textbox").attr("value", tinyUrl);
@@ -179,7 +170,6 @@ var togglePageLinkPanel = function togglePageLinkPanel(tinyUrl) {
         $("#page-link-panel").addClass("show");
     }
 };
-
 
 // Attempts to copy the page link value to the clipboard
 var copyPageLinkToClip = function copyPageLinkToClip() {
@@ -196,7 +186,6 @@ var copyPageLinkToClip = function copyPageLinkToClip() {
 	}
 };
 
-
 // Closes the page link panel
 const closePageLink = () =>  $("#page-link-panel").removeClass("show");
 
@@ -211,7 +200,6 @@ const getVersionTextFromVersionId = (documentationVersion) =>
 // Translates the ID used by the documentation help service to Kentico version text
 const getVersionTextFromHelpServiceId = (helpServiceVersion) =>
     DOCUMENTATION_VERSIONS.find((item) => item.helpServiceVersion == helpServiceVersion).versionText;
-
 
 
 var versionSwitcherData;
@@ -1027,40 +1015,6 @@ $("span.expand-control").click(function () {
     }
 });
 
-
-// ============================ SHORTCUT TO EDIT ============================
-// If a user is signed in and presses 'e', a new tab with the edit mode opens
-window.onkeyup = function (e) {
-    var key = e.keyCode ? e.keyCode : e.which;
-
-    // hoisting
-    var pageId = getPageIdIfEditingAllowed();
-    var url;
-
-    if (key == 69) //e
-    {
-        if (pageId > 0) {
-            var viewportId = $(".ht-pages-nav-top").attr("data-viewport-id");
-
-            if (viewportId.length != 0) {
-                url = CONFIG.CONFLUENCE_BASE_URL + "/pages/editpage.action?pageId=" + pageId + "&viewportId=" + viewportId;
-                openLink(url, false);
-            }
-        }
-    } else if (key == 82) //r
-    {
-        if (pageId > 0) {
-            url = CONFIG.CONFLUENCE_BASE_URL + "/pages/editpage.action?pageId=" + pageId;
-            openLink(url, true);
-        }
-    } else if (key == 87) //w
-    {
-        if (pageId > 0) {
-            url = CONFIG.CONFLUENCE_BASE_URL + "/pages/viewpage.action?pageId=" + pageId;
-            openLink(url, true);
-        }
-    }
-};
 
 
 /**

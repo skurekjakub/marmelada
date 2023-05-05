@@ -20,7 +20,11 @@ const CONFIG = {
     DEV_DOCUMENTATION_VERSION_ID: "none",
     /** The newest unsupported Kentico version ID */
     NEWEST_UNSUPPORTED_VERSION_ID: "11",
-    
+
+    /** The base URL of the Confluence instance */
+    BASE_URL: 'http://localhost:3000',
+    /** The current space key */
+    CONFLUENCE_SPACE_KEY: $('[name="confluence-space-key"]').attr('content'),
     /** The Confluence page identifier */
     CONFLUENCE_PAGE_ID: $("body").attr("pageid"),
     CONFLUENCE_DEVMODEL_VERSIONSWITCHER_WHITELIST: ["12", "12sp"],
