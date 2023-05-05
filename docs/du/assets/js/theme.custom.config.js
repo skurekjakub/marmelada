@@ -20,13 +20,9 @@ const CONFIG = {
     DEV_DOCUMENTATION_VERSION_ID: "none",
     /** The newest unsupported Kentico version ID */
     NEWEST_UNSUPPORTED_VERSION_ID: "11",
-
-    /** The base URL of the Confluence instance */
-    CONFLUENCE_BASE_URL: $('[name="confluence-base-url"]').attr('content'),
-    /** The current space key */
-    CONFLUENCE_SPACE_KEY: $('[name="confluence-space-key"]').attr('content'),
+    
     /** The Confluence page identifier */
-    CONFLUENCE_PAGE_ID: $("body").attr("pageId"),
+    CONFLUENCE_PAGE_ID: $("body").attr("pageid"),
     CONFLUENCE_DEVMODEL_VERSIONSWITCHER_WHITELIST: ["12", "12sp"],
 		
 	/** The specified version is redirected to the "root" domain without a viewport URL path */
