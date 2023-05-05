@@ -187,7 +187,7 @@ function generateHelpServiceRedirectHandler(filePath)
     // // Parse the HTML using Cheerio
     const $ = cheerio.load(html);
 
-    const pageId = $(`body`).attr('elementpageid');
+    const pageId = $(`body`).attr('pageid');
     const tinyId = getTinyIdentifier(pageId);
 
     console.log(`PageId ${pageId} -> tinyId ${tinyId}`);  
