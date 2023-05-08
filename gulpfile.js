@@ -269,6 +269,6 @@ async function browsersync_reload(callback)
 // -----------------Runnable tasks-------------------
 exports.default = isItWorking;
 
-exports.fixExport = gulp.series(fixK11, fixDu);
+exports.fixExport = gulp.series(fixDu);
 
 exports.watch = browsersyncWatch;

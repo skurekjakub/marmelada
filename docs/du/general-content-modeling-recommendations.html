@@ -1,0 +1,1034 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>General content modeling recommendations - Documentation Updates</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+    
+
+
+<script type="text/javascript">
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQNPJN');
+</script>
+
+<meta name="description" content="Kentico Xperience Documentation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+<meta name="confluence-space-key" content="DU">
+<meta name="confluence-page-title" content="Documentation Updates Home">
+<meta name="confluence-page-tiny-suffix" content="">
+<meta name="confluence-page-labels" content="">
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+
+<link rel="stylesheet" href="assets/css/theme.prismhighlighter.css">
+<link rel="stylesheet" href="assets/css/theme.lightbox.css">
+<link rel="stylesheet" href="assets/css/theme.snackbar.css">
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body incorrectpageid="56787478" pageid="147162318" id="top">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+   <div class="container">
+        <div class="ht-headerbar-row">
+            <div class="ht-headerbar-left">
+                <button class="menu-toggle button button--icon-only js-menu-toggle" type="button" title="Open menu">
+                    <span class="menu-toggle-icon menu-toggle-icon--default icon-menu"></span>
+                    <span class="menu-toggle-icon menu-toggle-icon--active icon-modal-close"></span>
+                    <span class="menu-toggle-label menu-toggle-label--default sr-only">Open menu</span>
+                    <span class="menu-toggle-label menu-toggle-label--active sr-only">Hide menu</span>
+                </button>
+                <a href="" class="xperience-logo">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Xperience Docs" class="xperience-logo__image">
+                </a>
+            </div>
+            <div class="ht-headerbar-center">
+                <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>            </div>  
+            <div class="ht-headerbar-right">
+            
+                                <div id="ht-search" class="header-search-box open show js-header-search-box">
+                                                                                <div class="ht-search-input header-search-wrapper">
+                        <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
+                            <div class="header-search-field">
+                                <span class="header-search-field__icon icon-magnifier"></span>
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                            </div>
+                            <div class="header-search-button-wrapper">
+                                <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
+                            </div>
+                        </form>
+    
+                        <div class="ht-search-dropdown ht-dropdown header-search-dropdown">
+                            <ul></ul>
+                        </div>
+                    </div>
+
+                    <button class="ht-search-close button button--icon-only js-header-search-close" type="button" title="Close search">
+                        <span class="icon-modal-close"></span>
+                        <span class="sr-only">Close search</span>
+                    </button>
+                </div>
+
+                <button class="ht-search-open button button--icon-only js-header-search-open" type="button" title="Open search">
+                    <span class="icon-magnifier"></span>
+                    <span class="sr-only">Open search</span>
+                </button>
+                
+                                <a id="sp-viewport-control-opener" href="#" style="display:none"></a>
+                            </div>
+        </div>
+    </div>
+        
+            
+                    
+                                
+                            </header>    	<div id="old-version-note" class="sidebar-left-padding">
+		<div class="container">
+			<p><strong>Is this really the version you are looking for?</strong> Kentico DU documentation is no longer updated. Use the switch in the header to choose your Kentico Xperience version.</p>
+		</div>
+	</div></div>
+
+<div id="ht-wrap-container">
+
+               
+
+    <div class="container">
+        <div class="ht-layout">
+            <div class="ht-layout-sidebar">
+                
+<aside id="ht-sidebar">
+    <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            
+<nav class="ht-pages-nav">
+    <ul class="ht-pages-nav-top">
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787624" href="hotfix-instructions-temp">Hotfix instructions temp</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="165057117" href="xperience-changelog---davidb">Xperience changelog - DavidB</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379454" href="on-line-marketing-campaigns">On-line marketing campaigns</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379456" href="creating-campaigns">Creating campaigns</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379458" href="configuring-campaign-tracking">Configuring campaign tracking</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379464" href="example---creating-a-campaign-for-downloading-promotional-materials">Example - creating a campaign for downloading promotional materials</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379462" href="evaluating-campaigns">Evaluating campaigns</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379460" href="enabling-automatic-campaign-creation">Enabling automatic campaign creation</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787653" href="live-sites---styling-best-_practi%40ces">Live sites - styling best /practi@ces</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787656" href="general-hints">General hints</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787658" href="css-classes-in-web-parts">CSS Classes in Web Parts</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787660" href="admin-ui-components">Admin UI Components</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787663" href="skin.less-and-skin.css-files">Skin.less and Skin.css files</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379338" href="performing-upgrade-ready-customizations">Performing upgrade-ready customizations</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="62718884" href="customization-best-practices-update">Customization best practices update</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="62062625" href="pdf-export-test">PDF export test</a>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="62718037" href="testing-page">Testing page</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="66687519" href="creating-macro-examples">Creating macro examples</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="66687492" href="full-width-test">Full width test</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="64913669" href="hotfix-page-test">Hotfix page test</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852319" href="testing-web.config-keys">Testing Web.config keys</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70452863" href="viewport-test">ViewPort test</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="72976331" href="brano-sandbox">Brano sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76842449" href="clean-sand">Clean sand</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76872814" href="documentation-feedback-form">Documentation feedback form</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132060556" href="homepage">Homepage</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132060577" href="homepages">Homepages</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853890" href="product-licensing-temporary-content">Product licensing temporary content</a>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="110166179" href="archive-and-backup">Archive and Backup</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="101517359" href="rendering-forms-on-the-live-site">Rendering forms on the live site</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274414" href="roman-sandbox">Roman Sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059942" href="conditional-macro-test">Conditional macro test</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274810" href="copy-of-configuring-azure-cdn">Copy of Configuring Azure CDN</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274743" href="copy-of-copying-and-moving-pages%2c-creating-linked-pages">Copy of Copying and moving pages, creating linked pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274893" href="copy-of-inserting-media-content-using-the-editor">Copy of Inserting media content using the editor</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274882" href="copy-of-inserting-media-files-on-a-page">Copy of Inserting media files on a page</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274753" href="copy-of-managing-marketing-email-recipients">Copy of Managing marketing email recipients</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124321827" href="copy-of-page-builder-development">Copy of Page builder development</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124324430" href="copy-of-page-level-permissions-%28acls%29">Copy of Page-level permissions (ACLs)</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124324417" href="copy-of-uploading-files">Copy of Uploading files</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274511" href="copy-of-working-with-pages">Copy of Working with pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274419" href="this-is-a-sample-page">This is a sample page</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124326586" href="working-with-page-templates">Working with page templates</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124325711" href="luky-sandbox">Luky sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="147162026" href="content-modeling-guide">Content modeling guide</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="147162241" href="storing-content-in-xperience">Storing content in Xperience</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="147162295" href="designing-content-in-xperience">Designing content in Xperience</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="147162318" href="general-content-modeling-recommendations">General content modeling recommendations</a>
+    </li>
+                                    </ul>
+    </li>
+                                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="161612967" href="kxo-content-modeling-guide">KXO Content modeling guide</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="161612978" href="kxo-storing-content-in-xperience">KXO Storing content in Xperience</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="165052831" href="kxo-design-content-in-xperience">KXO Design content in Xperience</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="165052617" href="kxo-content-modeling-general-recommendations">KXO Content modeling general recommendations</a>
+    </li>
+                                    </ul>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330778" href="welcome-to-kentico-xperience-13">Welcome to Kentico Xperience 13</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330787" href="using-the-xperience-interface">Using the Xperience interface</a>
+    </li>
+                                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330825" href="developer-tutorial">Developer tutorial</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330793" href="asp.net-core-development-tutorial">ASP.NET Core development tutorial</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330795" href="asp.net-mvc-5-development-tutorial">ASP.NET MVC 5 development tutorial</a>
+    </li>
+                                    </ul>
+    </li>
+                                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330802" href="business-tutorial">Business tutorial</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124331656" href="web-content-management">Web content management</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059548" href="using-the-pages-application">Using the Pages application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059553" href="using-the-xperience-page-builder">Using the Xperience page builder</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059562" href="working-with-files">Working with files</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059567" href="adding-a-new-page">Adding a new page</a>
+    </li>
+                                    </ul>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124331658" href="customer-data-management">Customer data management</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124331660" href="content-personalization">Content personalization</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330827" href="marketing-automation">Marketing automation</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330829" href="email-marketing">Email marketing</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059815" href="next-steps-with-xperience-websites">Next steps with Xperience websites</a>
+    </li>
+                                    </ul>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="112624502" href="resource-hub-for-marketers">Resource hub for Marketers</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132064822" href="marcel-sandbox">Marcel sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="175145222" href="csp">CSP</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="187596963" href="media-library-improvements">Media library improvements</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="165052992" href="sendgrid-documentation-snippets">SendGrid documentation snippets</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="161612180" href="this-page-contains-a-video">This page contains a video</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="187596805" href="peter-sandbox">Peter sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="187596807" href="multi-lingual-sandbox---keep-tidy-and-clean">Multi-lingual sandbox - keep tidy and clean</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="187596809" href="update-xperience-by-kentico-projects">Update Xperience by Kentico projects</a>
+    </li>
+                                    </ul>
+    </li>
+                                    </ul>
+    </li>
+            </ul>
+</nav>        </div>
+    </div>
+</aside>            </div>
+            <div class="ht-layout-main">
+            <article id="ht-content" class="ht-content">
+                <header class="ht-content-header">
+                    <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="documentation-updates-home.html">Documentation Updates</a></li>
+                                                                                                             <li><a href="" onclick="$('.shortcut').each(function(){$(this).removeClass('shortcut')}); $(this).parent().addClass('shortcut'); return false;">...</a> </li>
+                                        <li class="shortcut"><a href="luky-sandbox.html">Luky sandbox</a></li>
+                                                                                     <li><a href="content-modeling-guide.html">Content modeling guide</a></li>
+                                                            </ul>
+</div>                    <h1 id="src-147162318"> <span>General content modeling recommendations</span></h1>
+                </header>
+                <div id="content" class="page">
+                    <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Every content model is unique and having a good content model is a foundation for a successful business online presence. When deciding on how to model the content in Kentico Xperience, always respect the project's business requirements and the preferences of website editors and marketers.</p><p>On this page, you can learn about general recommendations you, or your developers, might consider when creating your content model and planning your project.</p><h3 id="src-147162318_generalcontentmodelingrecommendations-digitalmarketingfeatures" class="heading "><span>Digital marketing features</span></h3><p>Kentico Xperience comes with a large set of <strong class=" ">    <span style="color: #ff0000;">
+<i class=" ">on-line marketing features</i>    </span>
+</strong>. These features can be used to attract new customers, promote your content or automate workflows to keep in touch with your existing customers. A decision about using digital marketing can have a direct impact on your content model and on the way content editors work with the content.</p><p>Find out more about the digital marketing features in the     <span style="color: #ff0000;">
+<strong class=" ">documentation </strong>    </span>
+and in the <a href="http://localhost:8090/display/13tutorial/Business+tutorial">Business tutorial</a>.</p><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-digitalmarketingfeatures">Digital marketing features</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-generalcontentmodelingrecommendations">General content modeling recommendations</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-modelingnavigation">Modeling navigation</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-websitesystempages">Website system pages</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-searchresultpages">Search result pages</a></p>
+</li><li class=" "><p><a href="#src-147162318_safe-id-r2vuzxjhbgnvbnrlbnrtb2rlbgluz3jly29tbwvuzgf0aw9ucy1tawdulwlul1jlz2lzdhjhdglvbnbhz2u">Sign-in/Registration page</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-consentssettingspage">Consents settings page</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-seospecificpages">SEO specific pages</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-sitemap">Sitemap</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-errorpages">Error pages</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-robots.txtandno-indexingcontent">Robots.txt and no-indexing content</a></p>
+</li></ul></li></ul></li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-conclusion">Conclusion</a></p>
+</li></ul><p></p>
+        </div>
+    </div></div></div>
+
+    
+
+
+    
+<div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <ul class=" "><li class=" "><p>If you want to leverage the built-in on-line marketing features, use pages to store content.</p>
+</li><li class=" "><p>We recommend using the Page Builder on pages in which your editors might benefit from     <span style="color: #ff0000;">
+<strong class=" ">content personalization</strong>    </span>
+ configurable directly in the Xperience administration. That is, personalization based on personas or contact groups, for example, on campaign landing pages or thank you pages.</p>
+<ul class=" "><li class=" "><p>For example, an "Articles" listing page can contain an editable area with a "Featured articles" widget. Editors can personalize the widget and offer different featured articles to visitors who fall under different personas.</p>
+</li><li class=" "><p>To enable the personalization,     <span style="color: #ff0000;">
+<strong class=" ">develop custom page builder widgets</strong>    </span>
+ that allow editors to personalize content based on personas or contact groups.</p>
+</li></ul></li><li class=" "><p>We recommend using the Page Builder on pages in which your marketers want to optimize content using the built-in     <span style="color: #ff0000;">
+<strong class=" ">A/B testing</strong>    </span>
+ feature.</p>
+</li><li class=" "><p>Use media libraries to store images and other assets for email marketing and marketing automation email campaigns.</p>
+</li><li class=" "><p>For collecting data from users, we recommend using     <span style="color: #ff0000;">
+<strong class=" ">forms</strong>    </span>
+. Developers should leverage built-in     <span style="color: #ff0000;">
+<strong class=" ">form section properties </strong>    </span>
+in the custom code. Editors will be then able to adjust the layout of their forms to match the rest of the pages.</p>
+</li><li class=" "><p>To ensure your website stays within the legal boundaries, we recommend using the     <span style="color: #ff0000;">
+<strong class=" ">Data protection</strong>    </span>
+ functionalities.</p>
+</li></ul>     
+    </div>
+</div>
+    <h3 id="src-147162318_generalcontentmodelingrecommendations-generalcontentmodelingrecommendations" class="heading "><span>General content modeling recommendations</span></h3>
+<div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p><strong class=" ">Routing and URLs</strong></p>
+<p>We recommend using the     <span style="color: #ff0000;">
+<strong class=" ">content tree-based routing</strong>    </span>
+ for most scenarios. Content tree-based routing ensures the system generates ULRs based on predefined rules set by developers. It also allows editors to easily change URL slugs of their pages, store URL history in the Former URLs application, or provide alternative URLs.</p>
+<p>To ensure editors don’t use characters that are considered invalid or suboptimal for URLs in specific environments (e.g., characters from extended Latin alphabets, such as ö), use the     <span style="color: #ff0000;">
+<strong class=" ">page type’s field validation</strong>    </span>
+ feature. Use it on any URL-related page type fields to constraint forbidden (or suboptimal) URL characters.</p>
+<p><strong class=" ">Aim for content reusability</strong></p>
+<p>Follow a simple rule of thumb: if there is a chance that a specific content will appear on the same website in multiple places or different channels of marketing communication, we recommend creating structured content.</p>
+<p><strong class=" ">Ensure seamless editing experience</strong></p>
+<p>When you build the structured content hierarchy, we recommend that every developer participating on the project steps into the content editor's shoes and creates several pages in the content tree from scratch. Developers will try out the editing experience, and might propose improvements.</p>
+<ul class=" "><li class=" "><p>For example, you can often improve the editing experience just by slightly flattening the content tree hierarchy.</p>
+</li></ul><p>Group the fields on the <strong class=" ">Content</strong> tab into categories to help with the editing experience.</p>
+<ul class=" "><li class=" "><p>For example, you can use categories such as: <i class=" ">Page content</i>, <i class=" ">SEO-related</i>, <i class=" ">original content</i>, <i class=" ">Page categories</i>, etc.</p>
+</li></ul><p>Using the <strong class=" ">Description</strong> and <strong class=" ">Explanation text</strong> page type fields (Description adds a<i class=" "> t</i>ooltip and Explanation adds an explanation under the field), you can help editors understand what content the corresponding field expects and its behavior. We recommend focusing more on the type of content that editors are supposed to provide rather than describing where the content will be used/displayed. Focusing on the substance of content rather than its presentation helps with strengthening its reusability aspect.</p>
+<p>Set restrictions for content creation by using the     <span style="color: #ff0000;">
+<strong class=" ">Allowed page types</strong>    </span>
+ or     <span style="color: #ff0000;">
+<strong class=" ">Page type scopes</strong>    </span>
+. It will ensure that editors won’t unintentionally break the website experience by adding a page where it doesn't belong.</p>
+<p><strong class=" ">Ensure seamless content workflow</strong></p>
+<p>Make sure that editors have complete control over their content. The <strong class=" ">Preview</strong> view mode in the <strong class=" ">Pages </strong>application gives editors option to see what their content will look like before it’s published to the live site. Similarly, we recommend using <a href="http://localhost:8090/display/13/Content+staging">Content staging</a> to help with testing and proving the content on pre-production before synchronizing it with the production site.</p>
+<p>To manage the content life-cycle identified in the content audit, we recommend using Xperience built-in features, such as     <span style="color: #ff0000;">
+<strong class=" ">content locking, versioning, ACL permissions, and content management workflows</strong>    </span>
+. To store archived pages, consider building a     <span style="color: #ff0000;">
+<strong class=" ">custom module</strong>    </span>
+.</p>
+<p><strong class=" ">Use inheritance to your benefit</strong></p>
+<p>Use inheritance in page types. Create “base” page types with properties and share them across different children page types. For example, you could share SEO-related fields or page categories.</p>
+<p><strong class=" ">Localization and multilingual websites</strong></p>
+<p>Xperience can store multilingual content within one site through a localized content tree or host many sites, each localized to a targeted culture. For pages in the content tree, editors can switch between language versions, create new language versions or manage translations. Find out more about localizing content in the <a href="http://localhost:8090/display/13/Multilingual+websites">Multilingual websites</a> section.</p>
+<p>If you're planning to use <a href="http://localhost:8090/display/13/On-line+marketing+features">on-line marketing features</a> on multilingual websites, note that:</p>
+<ul class=" "><li class=" "><p>Xperience contacts are global objects shared across all sites within one Xperience instance. This means that marketing teams working on one Xperience instance will have access to contacts from all websites of that instance.</p>
+</li></ul><p>Therefore, consider deploying websites running<strong class=" ">     <span style="color: #ff0000;">
+on multiple instances to separate contacts in regions ??     </span>
+</strong>where you need to meet specific e-privacy requirements.</p>
+<ul class=" "><li class=" "><p>For localizing content that doesn't need to be represented in the content tree, use resource strings.</p>
+</li><li class=" "><p>To create localized content variants, use the <a class="external-link" href="https://developers.google.com/search/docs/advanced/crawling/managing-multi-regional-sites?hl=en#multilingual">hreflang tag</a>.</p>
+</li><li class=" "><p>If you don't need to create localized variants of the whole content tree, consider using the     <span style="color: #ff0000;">
+<strong class=" ">content personalization features</strong>    </span>
+. For example, you can assign users from different regions to different personas and handle displaying localized <a class="external-link" href="https://docs.xperience.io/on-line-marketing-features/configuring-and-customizing-your-on-line-marketing-features/content-personalization#Contentpersonalization-WritingpersonalizationconditionsinMVCcode">variants in code</a> rather than in page builder widgets.</p>
+</li><li class=" "><p>Consider using the <strong class=" ">    <span style="color: #ff0000;">
+Culture alias    </span>
+</strong> to change the default .NET language prefix in the URL at the project's beginning.</p>
+</li></ul><p>Decisions on how to store and present localized content vary based on:</p>
+<ul class=" "><li class=" "><p>Your content types.</p>
+<ul class=" "><li class=" "><p>If the content types are the same for different languages, use a localized content tree.</p>
+</li><li class=" "><p>If the same content type needs to differ between languages, use a different site for each language version.</p>
+</li></ul></li><li class=" "><p>Your marketing team structure.</p>
+<ul class=" "><li class=" "><p>If the marketing team is small and oversees all the localized versions, use a localized content tree.</p>
+</li><li class=" "><p>If your company has independent marketing teams in different cultures or every team uses different workflows, it’s usually better to separate the content into multiple sites.</p>
+</li></ul></li></ul><p><strong class=" ">E-commerce features</strong></p>
+<p>Based on your project requirements, we recommend evaluating whether to use SKUs with pages versus the standalone SKUs option of storing products and deciding on how to approach the website’s language variants. See the <a href="http://localhost:8090/display/13/E-commerce+customization+model">E-commerce customization model</a> and <a href="http://localhost:8090/display/13/Developing+on-line+stores">Developing on-line store</a> for more information.</p>
+     
+    </div>
+</div>
+    <h3 id="src-147162318_generalcontentmodelingrecommendations-modelingnavigation" class="heading "><span>Modeling navigation</span></h3>
+<p>Website navigation helps users find the content they are looking for. Well-structured navigation menus provide an overview of how the website’s content (or its specific segment) is structured. It can also help keep users engaged and lead them to explore website content.</p>
+<p>There are different ways how developers can build website navigation.</p>
+<ol class=" "><li class=" "><p>Xperience comes with a built-in feature that allows editors to include pages stored in the content tree into website navigation. Read more on the <a href="http://localhost:8090/display/13/Building+website+navigation">Building website navigation</a> page.</p>
+</li><li class=" "><p>Developers can also create a dedicated section in the content tree where editors can build their navigation. For example, the linked pages can be used to define a navigation menu with only several key items.</p>
+</li><li class=" "><p>Developers can also prepare a dedicated “Menu item” page type and a section in the content tree. Editors can then use the "Menu item" page type and manually specify the website navigation structure into a hierarchy and desired order of the individual menu items.</p>
+</li></ol><div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>We recommend using the built-in "Navigation item" feature for small projects, typically websites for small businesses (such as our own Dancing Goat sample site).</p>
+<p>For larger projects where you want to create multi-layered navigation menus, we recommend creating a dedicated section in the content tree and defining a custom "Menu item" page type.</p>
+     
+    </div>
+</div>
+    <h3 id="src-147162318_generalcontentmodelingrecommendations-websitesystempages" class="heading "><span>Website system pages</span></h3>
+<p>Good website administration experience doesn’t only mean that editors can easily create and manage website content. A well-structured website offers editors ways to adjust system-specific features without asking developers for help whenever they need to adjust the website SEO performance. For example, you can create a ”Website settings” section in the content tree and create specific page types that content administrators can use to change system settings. We recommend including the following system pages into your project:</p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-searchresultpages">Search result pages</a></p>
+</li><li class=" "><p><a href="#src-147162318_safe-id-r2vuzxjhbgnvbnrlbnrtb2rlbgluz3jly29tbwvuzgf0aw9ucy1tawdulwlul1jlz2lzdhjhdglvbnbhz2u">Sign-in/Registration page</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-consentssettingspage">Consents settings page</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-seospecificpages">SEO specific pages</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-sitemap">Sitemap</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-errorpages">Error pages</a></p>
+</li><li class=" "><p><a href="#src-147162318_generalcontentmodelingrecommendations-robots.txtandno-indexingcontent">Robots.txt and no-indexing content</a></p>
+</li></ul></li></ul><p></p>
+    <h4 id="src-147162318_generalcontentmodelingrecommendations-searchresultpages" class="heading "><span>Search result pages</span></h4>
+<p>Xperience provides an index-based smart search solution that allows users to search through website data and display results on an internal search results page.</p>
+<p>Find out more about configuring search:</p>
+<ul class=" "><li class=" "><p><a href="http://localhost:8090/display/13/Setting+up+search+on+your+website">Setting up search on your website</a></p>
+</li><li class=" "><p><a href="http://localhost:8090/display/13/Settings+-+Search">Settings - Search</a></p>
+</li><li class=" "><p><a href="http://localhost:8090/display/13/Enabling+search+indexing">Enabling search indexing</a></p>
+</li><li class=" "><p><a href="http://localhost:8090/display/13/Using+Azure+Cognitive+Search">Using Azure Cognitive Search</a></p>
+</li></ul><div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>Considering your project requirements, we recommend using the     <span style="color: #ff0000;">
+<strong class=" ">Azure Cognitive Search</strong>    </span>
+.</p>
+<p>Use     <span style="color: #ff0000;">
+<strong class=" ">smart search</strong>    </span>
+ to index files uploaded as page attachments. For indexing files uploaded to media libraries, we recommend building a     <span style="color: #ff0000;">
+<strong class=" ">custom smart search indexer</strong>    </span>
+.</p>
+     
+    </div>
+</div>
+    <h4 id="src-147162318_safe-id-r2vuzxjhbgnvbnrlbnrtb2rlbgluz3jly29tbwvuzgf0aw9ucy1tawdulwlul1jlz2lzdhjhdglvbnbhz2u" class="heading "><span>Sign-in/Registration page</span></h4>
+<p>Businesses don’t want to have all the content exposed freely to search engines and regular website visitors; some content should be accessible only to authorized visitors. Xperience comes with a flexible security model that allows administrators to configure granular access permissions.</p>
+<p>The "Registration" (and "Sign in") page usually appears when a visitor is turning into a potential lead or existing customer. From a business perspective, this page provides an opportunity for content personalization, either using custom code or allowing editors to personalize the content using the Page Builder.</p>
+<p>Learn more about securing websites:</p>
+<ul class=" "><li class=" "><p><a href="http://localhost:8090/display/13/Permission+model+overview">Permission model overview</a></p>
+</li><li class=" "><p>    <span style="color: #ff0000;">
+<strong class=" ">Securing websites</strong>    </span>
+</p>
+</li><li class=" "><p>or take our <a class="external-link" href="https://xperience.io/services/training/xperience-for-developers">Xperience for Developers</a> e-learning course</p>
+</li></ul><div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>Website administrators should be able to define which roles have access to which content themselves. Create custom functionality that allows website admins to grant specific user role access to secured sections from the Xperience administration.</p>
+<p>Secure media library files on the     <span style="color: #ff0000;">
+<strong class=" ">IIS</strong>    </span>
+ level as the media files will always be accessible via their URLs.</p>
+<p>Allow for content personalization on the sign-in/registration page.</p>
+     
+    </div>
+</div>
+    <h4 id="src-147162318_generalcontentmodelingrecommendations-consentssettingspage" class="heading "><span>Consents settings page</span></h4>
+<p>Xperience comes with an extensive     <span style="color: #ff0000;">
+<strong class=" ">Data protection</strong>    </span>
+ functionality that allows for building websites compliant with many different e-privacy laws and legislation.</p>
+<p>Administrators can use the data protection features to create and manage tracking consents or easily remove personal data from the administration UI. Once the personal data is in the system, marketers can easily use them using the built-in Xperience on-line marketing features, e.g., ensure that marketing emails are sent only to visitors who provided appropriate consent.</p>
+<p>To comply with the data privacy regulations, developers need to implement data collection and erasure features to match project requirements and accommodate how the website gathers, processes, and stores personal data.</p>
+<p>Find out more about the customer data protection in Xperience:</p>
+<ul class=" "><li class=" "><p><a href="http://localhost:8090/display/13tutorial/Customer+data+management">Customer data management</a></p>
+</li><li class=" "><p><a href="http://localhost:8090/display/13/Data+protection">Data protection</a></p>
+</li><li class=" "><p><a class="external-link" href="https://devnet.kentico.com/articles/kentico-mvc-and-google-analytics-implementation">Kentico MVC and Google Analytics: Implementation</a></p>
+</li></ul><div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>To ensure marketers stay within legal boundaries with their marketing activities, we recommend leveraging the Xperience data protection functionality for collecting and managing every piece of visitor data in the customer life-cycle. From cookie tracking over data submitted through online forms up to e-commerce specific data.</p>
+<p>To allow users to manage their consents, we recommend building a consent settings page.</p>
+     
+    </div>
+</div>
+    <h4 id="src-147162318_generalcontentmodelingrecommendations-seospecificpages" class="heading "><span>SEO specific pages</span></h4>
+    <h5 id="src-147162318_generalcontentmodelingrecommendations-sitemap" class="heading "><span>Sitemap</span></h5>
+<p>Sitemaps help search engines correctly index the content of websites and have a significant effect on the resulting search ranking. You need to create a     <span style="color: #ff0000;">
+<strong class=" ">custom generator</strong>    </span>
+ to build a website sitemap.</p>
+<div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>We recommend doing a custom implementation of the sitemap generator, including a mechanism that enables editors to decide which page URL will be included in the sitemap, as well as a way to canonicalize URL. For example, by adding a dedicated URL canonical field on the page's Content tab.</p>
+     
+    </div>
+</div>
+    <h5 id="src-147162318_generalcontentmodelingrecommendations-errorpages" class="heading "><span>Error pages</span></h5>
+<p>Errors can appear on different occasions. Visitors can request content that’s no longer available on the page, or they can simply make a typo in the URL. In any case, a user-friendly error page combined with simple website navigation can help improve user experience and guide them to relevant content. Xperience uses MVC conventions for handling error pages.</p>
+<p>Find out more about handling errors:</p>
+<ul class=" "><li class=" "><p><a href="http://localhost:8090/display/13/Handling+404+errors">Handling 404 errors</a></p>
+</li><li class=" "><p><a href="http://localhost:8090/display/13/Designing+secure+error+messages">Designing secure error messages</a></p>
+</li><li class=" "><p><a class="external-link" href="https://xperience.io/services/training/xperience-for-developers">Xperience for Developers Course</a></p>
+</li></ul><div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>Give editors the power to personalize the content of error pages. It can help in case your website contains a lot of content and the menu on the website doesn't provide for quick navigation. The most frequently used error pages are:</p>
+<ul class=" "><li class=" "><p>404 - Page Not Found.</p>
+</li><li class=" "><p>403 Forbidden - You do not have permission to access this page.</p>
+</li><li class=" "><p>400 Bad request - Your browser performed an invalid operation.</p>
+</li><li class=" "><p>500 Internal server error - The server encountered an error while processing your request.</p>
+</li></ul>     
+    </div>
+</div>
+    <h5 id="src-147162318_generalcontentmodelingrecommendations-robots.txtandno-indexingcontent" class="heading "><span>Robots.txt and no-indexing content</span></h5>
+<p>Website administrators sometimes want to prevent search engine agents from indexing specific pages or parts of the website. The <i class=" ">Robots.txt</i> page can help in such situations.</p>
+<div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>We recommend to provide editors means to disallow parts of the website from search engines:</p>
+<ul class=" "><li class=" "><p>To disallow indexing of individual website pages, add dedicated fields on the Content tab. Selecting the fields should include the no-index directive into your output markup.</p>
+</li><li class=" "><p>To disallow indexing parts of the website, create a dedicated page for Robots.txt with, e.g., a Text area form control on the Content tab and use a custom code to process the directives administrators input into the Robots.txt file. The implementation could also allow restricting indexing the website by specific search bots.</p>
+</li></ul>     
+    </div>
+</div>
+    <h3 id="src-147162318_generalcontentmodelingrecommendations-conclusion" class="heading "><span>Conclusion</span></h3>
+<p>Even though content models show similarities across different organizations, every model is unique. Projects, where the content model is defined in collaboration with editors and other website stakeholders, are more successful in results and user satisfaction.</p>
+<p>The key points for building content models are:</p>
+<ul class=" "><li class=" "><p>Always follow the project requirements.</p>
+</li><li class=" "><p>Prefer structured content and use widgets for styling rather than storing the content.</p>
+</li><li class=" "><p>Regularly validate your model with stakeholders, both internal and external.</p>
+</li><li class=" "><p>Website developers should use the created content model and try out creating content on the website themselves.</p>
+</li><li class=" "><p>Don’t be afraid to experiment or drive away from the recommendations above to satisfy the project requirements.</p>
+</li></ul><p>Happy content modeling!</p>
+                    </div>
+                </div>
+                    <footer class="ht-content-footer">                
+                        <div id="feedback-link-container">
+                            <a href="#top" id="back-to-top">
+                                <span class="icon-chevron-up"></span>
+                                <span class="sr-only">Go back to top</span>
+                            </a>
+                        </div>   
+                    </footer>
+                </article></div>
+            
+        </div>
+    </div>
+
+               
+            
+    <footer id="ht-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <ul class="footer-menu">
+          <li>
+            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
+          </li>
+          <li>
+            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+          </li>    
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.prism.js"></script>
+<script type="text/javascript" src="assets/js/clipboard.min.js"></script>
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.config.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.js"></script>
+<script type="text/javascript" src="assets/js/snackbar.js"></script>
+
+<script type="text/javascript" async="">
+    // Populates the documentation version switcher header
+    // loadVersionLinkData is located in theme.custom.js
+    $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
+</script><script type="text/javascript" src="assets/js/theme.lightbox.js"></script>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>

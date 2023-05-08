@@ -1,0 +1,1217 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rendering forms on the live site - Documentation Updates</title>
+
+    
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+    
+
+
+<script type="text/javascript">
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQNPJN');
+</script>
+
+<meta name="description" content="Kentico Xperience Documentation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+<meta name="confluence-space-key" content="DU">
+<meta name="confluence-page-title" content="Documentation Updates Home">
+<meta name="confluence-page-tiny-suffix" content="">
+<meta name="confluence-page-labels" content="">
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+
+<link rel="stylesheet" href="assets/css/content-style.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+
+<link rel="stylesheet" href="assets/css/theme.prismhighlighter.css">
+<link rel="stylesheet" href="assets/css/theme.lightbox.css">
+<link rel="stylesheet" href="assets/css/theme.snackbar.css">
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body incorrectpageid="56787478" pageid="101517359" id="top">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+   <div class="container">
+        <div class="ht-headerbar-row">
+            <div class="ht-headerbar-left">
+                <button class="menu-toggle button button--icon-only js-menu-toggle" type="button" title="Open menu">
+                    <span class="menu-toggle-icon menu-toggle-icon--default icon-menu"></span>
+                    <span class="menu-toggle-icon menu-toggle-icon--active icon-modal-close"></span>
+                    <span class="menu-toggle-label menu-toggle-label--default sr-only">Open menu</span>
+                    <span class="menu-toggle-label menu-toggle-label--active sr-only">Hide menu</span>
+                </button>
+                <a href="" class="xperience-logo">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Xperience Docs" class="xperience-logo__image">
+                </a>
+            </div>
+            <div class="ht-headerbar-center">
+                <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>            </div>  
+            <div class="ht-headerbar-right">
+            
+                                <div id="ht-search" class="header-search-box open show js-header-search-box">
+                                                                                <div class="ht-search-input header-search-wrapper">
+                        <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
+                            <div class="header-search-field">
+                                <span class="header-search-field__icon icon-magnifier"></span>
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                            </div>
+                            <div class="header-search-button-wrapper">
+                                <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
+                            </div>
+                        </form>
+    
+                        <div class="ht-search-dropdown ht-dropdown header-search-dropdown">
+                            <ul></ul>
+                        </div>
+                    </div>
+
+                    <button class="ht-search-close button button--icon-only js-header-search-close" type="button" title="Close search">
+                        <span class="icon-modal-close"></span>
+                        <span class="sr-only">Close search</span>
+                    </button>
+                </div>
+
+                <button class="ht-search-open button button--icon-only js-header-search-open" type="button" title="Open search">
+                    <span class="icon-magnifier"></span>
+                    <span class="sr-only">Open search</span>
+                </button>
+                
+                                <a id="sp-viewport-control-opener" href="#" style="display:none"></a>
+                            </div>
+        </div>
+    </div>
+        
+            
+                    
+                                
+                            </header>    	<div id="old-version-note" class="sidebar-left-padding">
+		<div class="container">
+			<p><strong>Is this really the version you are looking for?</strong> Kentico DU documentation is no longer updated. Use the switch in the header to choose your Kentico Xperience version.</p>
+		</div>
+	</div></div>
+
+<div id="ht-wrap-container">
+
+               
+
+    <div class="container">
+        <div class="ht-layout">
+            <div class="ht-layout-sidebar">
+                
+<aside id="ht-sidebar">
+    <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            
+<nav class="ht-pages-nav">
+    <ul class="ht-pages-nav-top">
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787624" href="hotfix-instructions-temp">Hotfix instructions temp</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="165057117" href="xperience-changelog---davidb">Xperience changelog - DavidB</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379454" href="on-line-marketing-campaigns">On-line marketing campaigns</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379456" href="creating-campaigns">Creating campaigns</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379458" href="configuring-campaign-tracking">Configuring campaign tracking</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379464" href="example---creating-a-campaign-for-downloading-promotional-materials">Example - creating a campaign for downloading promotional materials</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379462" href="evaluating-campaigns">Evaluating campaigns</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379460" href="enabling-automatic-campaign-creation">Enabling automatic campaign creation</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787653" href="live-sites---styling-best-_practi%40ces">Live sites - styling best /practi@ces</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787656" href="general-hints">General hints</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787658" href="css-classes-in-web-parts">CSS Classes in Web Parts</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787660" href="admin-ui-components">Admin UI Components</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="56787663" href="skin.less-and-skin.css-files">Skin.less and Skin.css files</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="61379338" href="performing-upgrade-ready-customizations">Performing upgrade-ready customizations</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="62718884" href="customization-best-practices-update">Customization best practices update</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="62062625" href="pdf-export-test">PDF export test</a>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="62718037" href="testing-page">Testing page</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="66687519" href="creating-macro-examples">Creating macro examples</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="66687492" href="full-width-test">Full width test</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="64913669" href="hotfix-page-test">Hotfix page test</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852319" href="testing-web.config-keys">Testing Web.config keys</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70452863" href="viewport-test">ViewPort test</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="72976331" href="brano-sandbox">Brano sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76842449" href="clean-sand">Clean sand</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76872814" href="documentation-feedback-form">Documentation feedback form</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132060556" href="homepage">Homepage</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132060577" href="homepages">Homepages</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853890" href="product-licensing-temporary-content">Product licensing temporary content</a>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="110166179" href="archive-and-backup">Archive and Backup</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="101517359" href="rendering-forms-on-the-live-site">Rendering forms on the live site</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274414" href="roman-sandbox">Roman Sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059942" href="conditional-macro-test">Conditional macro test</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274810" href="copy-of-configuring-azure-cdn">Copy of Configuring Azure CDN</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274743" href="copy-of-copying-and-moving-pages%2c-creating-linked-pages">Copy of Copying and moving pages, creating linked pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274893" href="copy-of-inserting-media-content-using-the-editor">Copy of Inserting media content using the editor</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274882" href="copy-of-inserting-media-files-on-a-page">Copy of Inserting media files on a page</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274753" href="copy-of-managing-marketing-email-recipients">Copy of Managing marketing email recipients</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124321827" href="copy-of-page-builder-development">Copy of Page builder development</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124324430" href="copy-of-page-level-permissions-%28acls%29">Copy of Page-level permissions (ACLs)</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124324417" href="copy-of-uploading-files">Copy of Uploading files</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274511" href="copy-of-working-with-pages">Copy of Working with pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="121274419" href="this-is-a-sample-page">This is a sample page</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124326586" href="working-with-page-templates">Working with page templates</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124325711" href="luky-sandbox">Luky sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="147162026" href="content-modeling-guide">Content modeling guide</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="147162241" href="storing-content-in-xperience">Storing content in Xperience</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="147162295" href="designing-content-in-xperience">Designing content in Xperience</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="147162318" href="general-content-modeling-recommendations">General content modeling recommendations</a>
+    </li>
+                                    </ul>
+    </li>
+                                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="161612967" href="kxo-content-modeling-guide">KXO Content modeling guide</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="161612978" href="kxo-storing-content-in-xperience">KXO Storing content in Xperience</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="165052831" href="kxo-design-content-in-xperience">KXO Design content in Xperience</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="165052617" href="kxo-content-modeling-general-recommendations">KXO Content modeling general recommendations</a>
+    </li>
+                                    </ul>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330778" href="welcome-to-kentico-xperience-13">Welcome to Kentico Xperience 13</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330787" href="using-the-xperience-interface">Using the Xperience interface</a>
+    </li>
+                                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330825" href="developer-tutorial">Developer tutorial</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330793" href="asp.net-core-development-tutorial">ASP.NET Core development tutorial</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330795" href="asp.net-mvc-5-development-tutorial">ASP.NET MVC 5 development tutorial</a>
+    </li>
+                                    </ul>
+    </li>
+                                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330802" href="business-tutorial">Business tutorial</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124331656" href="web-content-management">Web content management</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059548" href="using-the-pages-application">Using the Pages application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059553" href="using-the-xperience-page-builder">Using the Xperience page builder</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059562" href="working-with-files">Working with files</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059567" href="adding-a-new-page">Adding a new page</a>
+    </li>
+                                    </ul>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124331658" href="customer-data-management">Customer data management</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124331660" href="content-personalization">Content personalization</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330827" href="marketing-automation">Marketing automation</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="124330829" href="email-marketing">Email marketing</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132059815" href="next-steps-with-xperience-websites">Next steps with Xperience websites</a>
+    </li>
+                                    </ul>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="112624502" href="resource-hub-for-marketers">Resource hub for Marketers</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="132064822" href="marcel-sandbox">Marcel sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="175145222" href="csp">CSP</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="187596963" href="media-library-improvements">Media library improvements</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="165052992" href="sendgrid-documentation-snippets">SendGrid documentation snippets</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="161612180" href="this-page-contains-a-video">This page contains a video</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="187596805" href="peter-sandbox">Peter sandbox</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="187596807" href="multi-lingual-sandbox---keep-tidy-and-clean">Multi-lingual sandbox - keep tidy and clean</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="187596809" href="update-xperience-by-kentico-projects">Update Xperience by Kentico projects</a>
+    </li>
+                                    </ul>
+    </li>
+                                    </ul>
+    </li>
+            </ul>
+</nav>        </div>
+    </div>
+</aside>            </div>
+            <div class="ht-layout-main">
+            <article id="ht-content" class="ht-content">
+                <header class="ht-content-header">
+                    <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="documentation-updates-home.html">Documentation Updates</a></li>
+                                                                                     <li><a href="archive-and-backup.html">Archive and Backup</a></li>
+                                                            </ul>
+</div>                    <h1 id="src-101517359"> <span>Rendering forms on the live site</span></h1>
+                </header>
+                <div id="content" class="page">
+                    <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><div class="box-general box-note">
+  
+                <div class="box-icon icon-exclamation-triangle"> </div> 
+        <div class="box-content"> 
+            <p>This page is currently outdated/inaccurate. The best practice for rendering forms directly is to use the <i class=" ">RenderStandaloneWidget</i> method - <a class="unresolved" href="#src-101517359">Rendering widgets in code</a>.</p>
+<p>Archived for potential future revival/reuse.</p>
+     
+    </div>
+</div><p>Forms created using the form builder can be rendered on the live site either by <a class="unresolved" href="#src-101517359">adding the default Form widget</a> onto pages via the <a class="unresolved" href="#src-101517359">page builder</a>, or by explicitly rendering the form in your views.</p><p>This page shows how to <a href="#src-101517359_renderingformsonthelivesite-renderingformsonthelivesite">render a form directly in a view</a> and how to <a href="#src-101517359_renderingformsonthelivesite-customizingthesurroundinghtmlmarkupofrenderedformfields">customize the surrounding HTML markup</a> of individual form fields. Finally, the entire process is also demonstrated on a <a href="#src-101517359_safe-id-umvuzgvyaw5nzm9ybxnvbnrozwxpdmvzaxrlluv4yw1wbgxigjnszw5kzxjpbmdhzm9ybw9udghlbgl2zxnpdgu">specific example</a>.</p><h3 id="src-101517359_renderingformsonthelivesite-renderingformsonthelivesite" class="heading "><span>Rendering forms on the live site</span></h3><p>To render a form created using the form builder in the code of your views:</p><ol class=" "><li class=" "><p>Add a <i class=" ">List&lt;AbstractFormComponent&gt;</i> property to a view model used by views in which you need to render the form.</p>
+<ul class=" "><li class=" "><p>Each item in this lists represents one form field.</p>
+</li></ul></li><li class=" "><p>Fill the property (e.g. in a corresponding controller action) by retrieving the relevant <i class=" ">BizFormInfo</i> object and then calling <i class=" ">IFormProvider.GetFormComponents</i>.</p>
+</li><li class=" "><p>Render the form in the corresponding view template by using the following <i class=" ">HtmlHelper</i> extension methods:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Html.Kentico().FormFields</strong> – renders the entire form. The order of individual rendered form fields reflects the order in which they were created on the <i class=" ">Form builder</i> tab in the <i class=" ">Forms</i> application.</p>
+</li><li class=" "><p><strong class=" ">Html.Kentico().FormField</strong> – renders a single item from the list of <i class=" ">AbstractFormComponent</i> objects. Rendering the form this way gives you more control over the position of individual fields as well as their surrounding markup. However, keep in mind that any subsequent changes to the rendered form need to be reflected in the corresponding views manually.</p>
+</li><li class=" "><p>If the form contains form fields based on form components that require custom styles to render properly, include them on the page by calling <strong class=" ">Html.Kentico().FormComponentsStyles</strong>.</p>
+</li></ul><div class="box-general box-info">
+  
+                <div class="box-icon icon-i-circle"> </div> 
+        <div class="box-content"> 
+            <p>Note that the <i class=" ">FormFields</i> and <i class=" ">FormField</i> extension methods only render the collection of form fields comprising the given form. You are free to implement the <i class=" ">submit</i> action in a way that bests suits your particular scenario.</p>
+     
+    </div>
+</div>
+</li><li class=" "><p>Implement a POST action that processes the retrieved values. The action signature needs to contain a list of <i class=" ">AbstractFormComponents</i> decorated with the <i class=" ">FormBuilderModelBinder </i>attribute to enable model binding of the submitted form data:</p>
+</li></ol><p>The form is now ready to be rendered and submitted on pages using the modified view template. To learn how to render a sample <i class=" ">Contact Us</i> form, see <a href="#src-101517359_safe-id-umvuzgvyaw5nzm9ybxnvbnrozwxpdmvzaxrlluv4yw1wbgxigjnszw5kzxjpbmdhzm9ybw9udghlbgl2zxnpdgu">Example - Rendering a form on the live site</a>.</p><div class="sp-grid-section"></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
+            <div class="title panel-header">On this page</div>
+            <div class="panel-content">
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-101517359_renderingformsonthelivesite-renderingformsonthelivesite">Rendering forms on the live site</a></p>
+</li><li class=" "><p><a href="#src-101517359_renderingformsonthelivesite-customizingthesurroundinghtmlmarkupofrenderedformfields">Customizing the surrounding HTML markup of rendered form fields</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-101517359_renderingformsonthelivesite-settingtheglobalrenderingconfiguration">Setting the global rendering configuration</a></p>
+</li><li class=" "><p><a href="#src-101517359_renderingformsonthelivesite-settingaspecificrenderingconfigurationforeachformfield">Setting a specific rendering configuration for each form field</a></p>
+</li></ul></li><li class=" "><p><a href="#src-101517359_renderingformsonthelivesite-linkingformcomponentcssfiles">Linking form component CSS files</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-101517359_renderingformsonthelivesite-instandardviews">In standard views</a></p>
+</li></ul></li><li class=" "><p><a href="#src-101517359_safe-id-umvuzgvyaw5nzm9ybxnvbnrozwxpdmvzaxrlluv4yw1wbgxigjnszw5kzxjpbmdhzm9ybw9udghlbgl2zxnpdgu">Example – Rendering a form on the live site</a></p>
+</li></ul><p></p>
+        </div>
+    </div><div class="confbox panel">
+            <div class="title panel-header">Related pages</div>
+            <div class="panel-content">
+<ul class=" "><li class=" "><p><a class="unresolved" href="#src-101517359">Form builder development</a></p>
+</li><li class=" "><p><a class="unresolved" href="#src-101517359">Developing form components</a></p>
+</li></ul>        </div>
+    </div></div></div>
+
+
+    
+
+
+    
+    
+    <h3 id="src-101517359_renderingformsonthelivesite-customizingthesurroundinghtmlmarkupofrenderedformfields" class="heading "><span>Customizing the surrounding HTML markup of rendered form fields</span></h3>
+<p>By default, each individual form field is rendered wrapped in a blank <strong class=" ">&lt;div&gt;</strong> HTML element. You can specify which HTML elements should surround each form field, its label, and its input field <a href="#src-101517359_renderingformsonthelivesite-settingtheglobalrenderingconfiguration">globally</a> or <a href="#src-101517359_renderingformsonthelivesite-settingaspecificrenderingconfigurationforeachformfield">on a per form basis</a> via the <strong class=" ">FormFieldRenderingConfiguration</strong> type.</p>
+<p>The <i class=" ">FormFieldRenderingConfiguration</i> type consists of four properties:</p>
+<ul class=" "><li class=" "><p><i class=" ">RootConfiguration </i>– allows you to specify the HTML element (and its attributes) surrounding the entire form field. If <i class=" ">null,</i> no surrounding element is rendered for the given form field.</p>
+</li><li class=" "><p><i class=" ">LabelWrapperConfiguration </i>– allows you to specify the HTML element (and its attributes) surrounding the <i class=" ">&lt;label&gt;</i> element. If <i class=" ">null, </i>only the <i class=" ">&lt;label&gt;</i> element is rendered.</p>
+</li><li class=" "><p><i class=" ">ColonAfterLabel </i>– allows you to specify whether a colon ':' character should be rendered within the <i class=" ">&lt;label&gt;</i> element. Set to <i class=" ">true</i> by default.</p>
+</li><li class=" "><p><i class=" ">EditorWrapperConfiguration </i>– allows you to specify the HTML element (and its attributes) surrounding the <i class=" ">&lt;input&gt;</i> element. If <i class=" ">null,</i> only the <i class=" ">&lt;input&gt;</i> element is rendered.</p>
+</li><li class=" "><p><i class=" ">SuppressValidationMessages</i> – allows you to specify whether validation error messages should be rendered for the form field. Set to <i class=" ">false</i> by default.</p>
+</li><li class=" "><p><i class=" ">ExplanationTextWrapperConfiguration</i> – allows you to specify the HTML element (and its attributes) surrounding the explanation text – a short message usually rendered under the input fields – of the component. If <i class=" ">null,</i> the explanation text is rendered with no surrounding elements.</p>
+</li></ul><p>Each of the <i class=" ">Configuration</i> properties takes an instance of the <strong class=" ">ElementRenderingConfiguration</strong> type, which holds the type and attributes of the surrounding HTML element. <i class=" ">ElementRenderingConfiguration</i> exposes three properties:</p>
+<ul class=" "><li class=" "><p><i class=" ">ElementName</i> – a string value containing the name of the HTML element enclosing the given form field component.</p>
+</li><li class=" "><p><i class=" ">HtmlAttributes</i> – a dictionary containing the element's attributes.</p>
+</li><li class=" "><p><i class=" ">ElementRenderingConfiguration</i> – can hold additional <i class=" ">ElementRenderingConfigurations</i>. You can use this property when you need to nest multiple wrapping elements for a given form field component.</p>
+</li></ul>    <h4 id="src-101517359_renderingformsonthelivesite-settingtheglobalrenderingconfiguration" class="heading "><span>Setting the global rendering configuration</span></h4>
+<p>The <strong class=" ">FormFieldRenderingConfiguration</strong> type exposes a default rendering configuration as an instance of itself in a static <i class=" ">Default</i> property. Customizing this property affects the rendering configuration of all forms on the site unless specifically overridden. See <a href="#src-101517359_renderingformsonthelivesite-settingaspecificrenderingconfigurationforeachformfield">Setting a specific rendering configuration for each form field</a> to learn how to set a specific form field rendering configuration per individual form.</p>
+<div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p><strong class=" ">Setting the rendering configuration of the Form widget</strong></p>
+<p><i class=" ">FormFieldRenderingConfiguration</i> also exposes the <strong class=" ">Widget</strong> property that contains the rendering configuration used by the <strong class=" ">Form</strong> page builder widget that serves as an alternative to the manual rendering process on pages where <a class="unresolved" href="#src-101517359">the page builder feature</a> is enabled. Customize the rendering configuration exposed by the <i class=" ">Widget</i> property to change the look of forms rendered using the <i class=" ">Form</i> widget.</p>
+     
+    </div>
+</div>
+    <h4 id="src-101517359_renderingformsonthelivesite-settingaspecificrenderingconfigurationforeachformfield" class="heading "><span>Setting a specific rendering configuration for each form field</span></h4>
+<p>By passing an instance of the <strong class=" ">FormFieldRenderingConfiguration</strong> type as an optional parameter to the <i class=" ">Html.Kentico().FormField</i> and <i class=" ">Html.Kentico().FormFields</i> extension methods, you can set a different form field rendering configuration for each rendered form. This overrides the global rendering configuration:</p>
+<ol class=" "><li class=" "><p>Prepare a new instance of the <i class=" ">FormFieldRenderingConfiguration</i> type configured according to your needs.</p>
+</li><li class=" "><p>Pass it to a view in a corresponding view model.</p>
+</li><li class=" "><p>Call the HtmlHelper extension methods passing the rendering configuration as an optional parameter.</p>
+</li></ol><p>The code snippet below shows the creation of a sample instance of the <i class=" ">FormFieldRenderingConfiguration</i> type:</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="57">
+<div class="line"><code class="plain">        </code><code class="comments">// Creates an instance of FormFieldRenderingConfiguration used to specify</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// the surrounding HTML markup of each rendered form field</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> FormFieldRenderingConfiguration PrepareFormFieldRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> FormFieldRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies the wrapping HTML element of the entire form field</code></div>
+<div class="line"><code class="plain">                RootConfiguration = </code><code class="keyword">new</code><code class="plain"> ElementRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">                {</code></div>
+<div class="line"><code class="plain">                    ElementName = </code><code class="string">"div"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    HtmlAttributes = </code><code class="keyword">new</code><code class="plain"> Dictionary&lt;</code><code class="keyword">string</code><code class="plain">, </code><code class="keyword">object</code><code class="plain">&gt; { { </code><code class="string">"class"</code><code class="plain">, </code><code class="string">"formField"</code><code class="plain"> } }</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies the wrapping HTML element of the field's label</code></div>
+<div class="line"><code class="plain">                LabelWrapperConfiguration = </code><code class="keyword">new</code><code class="plain"> ElementRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">                {</code></div>
+<div class="line"><code class="plain">                    ElementName = </code><code class="string">"span"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    HtmlAttributes = </code><code class="keyword">new</code><code class="plain"> Dictionary&lt;</code><code class="keyword">string</code><code class="plain">, </code><code class="keyword">object</code><code class="plain">&gt; { { </code><code class="string">"class"</code><code class="plain">, </code><code class="string">"formLabel"</code><code class="plain"> } }</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies whether a colon should be rendered within the &lt;label&gt; element</code></div>
+<div class="line"><code class="plain">                ColonAfterLabel = </code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies the wrapping HTML element of the &lt;input&gt; element</code></div>
+<div class="line"><code class="plain">                EditorWrapperConfiguration = </code><code class="keyword">new</code><code class="plain"> ElementRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">                {</code></div>
+<div class="line"><code class="plain">                    ElementName = </code><code class="string">"span"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    HtmlAttributes = </code><code class="keyword">new</code><code class="plain"> Dictionary&lt;</code><code class="keyword">string</code><code class="plain">, </code><code class="keyword">object</code><code class="plain">&gt; { { </code><code class="string">"class"</code><code class="plain">, </code><code class="string">"formInputField"</code><code class="plain"> } }</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies the wrapping HTML element of the form field's explanation text</code></div>
+<div class="line"><code class="plain">                ExplanationTextWrapperConfiguration = </code><code class="keyword">null</code></div>
+<div class="line"><code class="plain">            };</code></div>
+<div class="line"><code class="plain">        }</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p>Each form field is now rendered with the specified HTML markup:</p>
+<p></p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/101517359/image2018-6-21_14-58-28.png" alt="A form field rendered with the specified surrounding HTML markup" width="474" height="104">
+</p>
+    <h3 id="src-101517359_renderingformsonthelivesite-linkingformcomponentcssfiles" class="heading "><span>Linking form component CSS files</span></h3>
+    <h4 id="src-101517359_renderingformsonthelivesite-instandardviews" class="heading "><span>In standard views</span></h4>
+<p>When rendering a form built using the Form builder on pages, the related form component styles must be explicitly rendered in the corresponding views by calling the <strong class=" ">@Html.Kentico().FormComponentsStyles</strong> extension method:</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">@</code><code class="keyword">using</code><code class="plain"> Kentico.Forms.Web.Mvc @Html.Kentico().FormComponentsStyles()</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>Refer to <a href="#">Rendering forms on the live site</a> if you need more information about rendering forms built using the Form builder in your views.</p>
+     
+    </div>
+</div>
+<p>Forms placed <a class="unresolved" href="#src-101517359">using the Form widget</a> or rendered explicitly on pages containing page builder editable areas include the component styles by default. They are linked to the views via the <strong class=" ">Html.Kentico().PageBuilderStyles</strong> extension method, which needs to be called as part of process used to <a class="unresolved" href="#src-101517359">add page builder editable areas</a>.</p>
+    <h3 id="src-101517359_safe-id-umvuzgvyaw5nzm9ybxnvbnrozwxpdmvzaxrlluv4yw1wbgxigjnszw5kzxjpbmdhzm9ybw9udghlbgl2zxnpdgu" class="heading "><span>Example – Rendering a form on the live site</span></h3>
+<p>This example demonstrates a step by step process of rendering a sample <i class=" ">Contact Us</i> form on a Kentico MVC site:</p>
+<ol class=" "><li class=" "><p>Create a view model with a property that holds a collection of all form fields (instances of the <i class=" ">AbstractFormComponent</i> type) for the given form:</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="10">
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> ContactUsViewModel</code></div>
+<div class="line"><code class="plain">    {  </code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Contains a collection of individual form fields comprising a specific form</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> List&lt;FormComponent&gt; FormFields { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// Allows you to set the surrounding HTML markup for individual form fields</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> FormFieldRenderingConfiguration ElementRenderingConfiguration { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p></p>
+</li><li class=" "><p>Implement or extend a controller action to fill the created property and send the result to a corresponding view:</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="17">
+<div class="line"><code class="plain">        </code><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">/// Constructor for the FormController class.</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> FormController()</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Initializes an instance of a service required to retrieve  form components</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// For real-world projects, we recommend using a dependency injection</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// container to initialize service instances</code></div>
+<div class="line"><code class="plain">            formProvider = Service.Resolve&lt;IFormProvider&gt;();</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">/// Displays a form retrieved from Kentico.</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> ActionResult DisplayForm()</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Gets the form from the database</code></div>
+<div class="line"><code class="plain">            BizFormInfo contactUsFormInfo = BizFormInfoProvider.GetBizFormInfo(</code><code class="string">"ContactUs"</code><code class="plain">, </code><code class="string">"DancingGoatMvc"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Retrieves a list of individual form fields comprising the form</code></div>
+<div class="line"><code class="plain">            List&lt;FormComponent&gt; formFields = formProvider.GetFormComponents(contactUsFormInfo);</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Creates a form rendering configuration for the form</code></div>
+<div class="line"><code class="plain">            FormFieldRenderingConfiguration renderingConfiguration = PrepareFormFieldRenderingConfiguration();</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Fills a view model representation of the form with the retrieved form components</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">var</code><code class="plain"> contactUsViewModel = </code><code class="keyword">new</code><code class="plain"> ContactUsViewModel</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">                FormFields = formFields,</code></div>
+<div class="line"><code class="plain">                ElementRenderingConfiguration = renderingConfiguration</code></div>
+<div class="line"><code class="plain">            };</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Passes the created view model to the corresponding view</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> View(contactUsViewModel);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p></p>
+<div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>    <span style="color: #3f3e3c;">
+We recommend using a     </span>
+<a class="external-link" href="https://docs.kentico.com/k12/developing-websites/initializing-kentico-services-with-dependency-injection">dependency injection container</a>    <span style="color: #3f3e3c;">
+ to initialize instances of used API services (e.g.     </span>
+<i class=" ">IFormProvider</i><i class=" ">).</i></p>
+     
+    </div>
+</div>
+</li><li class=" "><p>(Optional) Specify a <a href="#src-101517359_renderingformsonthelivesite-customizingthesurroundinghtmlmarkupofrenderedformfields">rendering configuration</a> for individual form fields:</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="57">
+<div class="line"><code class="plain">        </code><code class="comments">// Creates an instance of FormFieldRenderingConfiguration used to specify</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">// the surrounding HTML markup of each rendered form field</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> FormFieldRenderingConfiguration PrepareFormFieldRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> FormFieldRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies the wrapping HTML element of the entire form field</code></div>
+<div class="line"><code class="plain">                RootConfiguration = </code><code class="keyword">new</code><code class="plain"> ElementRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">                {</code></div>
+<div class="line"><code class="plain">                    ElementName = </code><code class="string">"div"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    HtmlAttributes = </code><code class="keyword">new</code><code class="plain"> Dictionary&lt;</code><code class="keyword">string</code><code class="plain">, </code><code class="keyword">object</code><code class="plain">&gt; { { </code><code class="string">"class"</code><code class="plain">, </code><code class="string">"formField"</code><code class="plain"> } }</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies the wrapping HTML element of the field's label</code></div>
+<div class="line"><code class="plain">                LabelWrapperConfiguration = </code><code class="keyword">new</code><code class="plain"> ElementRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">                {</code></div>
+<div class="line"><code class="plain">                    ElementName = </code><code class="string">"span"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    HtmlAttributes = </code><code class="keyword">new</code><code class="plain"> Dictionary&lt;</code><code class="keyword">string</code><code class="plain">, </code><code class="keyword">object</code><code class="plain">&gt; { { </code><code class="string">"class"</code><code class="plain">, </code><code class="string">"formLabel"</code><code class="plain"> } }</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies whether a colon should be rendered within the &lt;label&gt; element</code></div>
+<div class="line"><code class="plain">                ColonAfterLabel = </code><code class="keyword">false</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies the wrapping HTML element of the &lt;input&gt; element</code></div>
+<div class="line"><code class="plain">                EditorWrapperConfiguration = </code><code class="keyword">new</code><code class="plain"> ElementRenderingConfiguration()</code></div>
+<div class="line"><code class="plain">                {</code></div>
+<div class="line"><code class="plain">                    ElementName = </code><code class="string">"span"</code><code class="plain">,</code></div>
+<div class="line"><code class="plain">                    HtmlAttributes = </code><code class="keyword">new</code><code class="plain"> Dictionary&lt;</code><code class="keyword">string</code><code class="plain">, </code><code class="keyword">object</code><code class="plain">&gt; { { </code><code class="string">"class"</code><code class="plain">, </code><code class="string">"formInputField"</code><code class="plain"> } }</code></div>
+<div class="line"><code class="plain">                },</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">                </code><code class="comments">// Specifies the wrapping HTML element of the form field's explanation text</code></div>
+<div class="line"><code class="plain">                ExplanationTextWrapperConfiguration = </code><code class="keyword">null</code></div>
+<div class="line"><code class="plain">            };</code></div>
+<div class="line"><code class="plain">        }</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p></p>
+</li><li class=" "><p>Render the form by calling one of our extension methods in the view. The following example renders the form:</p>
+<ul class=" "><li class=" "><p>Using the <i class=" ">Html.Kentico().FormField()</i> extension method and the default rendering configuration.</p>
+</li><li class=" "><p>Using the <i class=" ">Html.Kentico().FormFields() </i>extension method and the rendering configuration created above.</p>
+</li></ul><p></p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="10">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    @model LearningKit.Models.FormBuilder.ContactUsViewModel</code></div>
+<div class="line"><code class="plain">    @using Kentico.FormBuilder.Web.Mvc</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">    Displays a form rendered using the &lt;</code><code class="keyword">strong</code><code class="plain">&gt;Html.Kentico().FormField&lt;/</code><code class="keyword">strong</code><code class="plain">&gt; extension method:</code></div>
+<div class="line"><code class="plain">    @using (Html.BeginForm(nameof(FormController.FormSubmit), "Form", FormMethod.Post))</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">role</code><code class="plain">=</code><code class="string">"form"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            @* Renders each form field individually, allowing for more control over a field's position and its surrounding HTML markup *@</code></div>
+<div class="line"><code class="plain">            @foreach (var formField in Model.FormFields)</code></div>
+<div class="line"><code class="plain">            {</code></div>
+<div class="line"><code class="plain">                @Html.Kentico().FormField(formField);</code></div>
+<div class="line"><code class="plain">            }</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">            @* Renders the submit button *@</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">input</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">"submit"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"Submit"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">br</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">hr</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">br</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    Displays a form rendered using the &lt;</code><code class="keyword">strong</code><code class="plain">&gt;Html.Kentico().FormFields&lt;/</code><code class="keyword">strong</code><code class="plain">&gt; extension method with a custom &lt;</code><code class="keyword">strong</code><code class="plain">&gt;FormFieldRenderingConfiguration&lt;/</code><code class="keyword">strong</code><code class="plain">&gt;:</code></div>
+<div class="line"><code class="plain">    @using (Html.BeginForm(nameof(FormController.FormSubmit), "Form", FormMethod.Post))</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        @* Renders the entire form using a custom FormFieldRenderingConfiguration *@</code></div>
+<div class="line"><code class="plain">        @Html.Kentico().FormFields(Model.FormFields, Model.ElementRenderingConfiguration)</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">        @* Renders the submit button *@</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">input</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">"submit"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"Submit"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p></p>
+</li><li class=" "><p>Implement or extend a POST action to process the collected form data. The POST action must receive a <i class=" ">List&lt;AbstractFormComponent&gt;</i> collection decorated with the <i class=" ">FormBuilderModelBinder </i>attribute to enable Kentico to bind the submitted form data:</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="95">
+<div class="line"><code class="plain">        </code><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">/// Processes the submitted form data and saves them to the connected Kentico database.</code></div>
+<div class="line"><code class="plain">        </code><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="plain">        [HttpPost]</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> ActionResult FormSubmit([FormBuilderModelBinder(</code><code class="string">"ContactUs"</code><code class="plain">, </code><code class="string">"DancingGoatMvc"</code><code class="plain">)]List&lt;FormComponent&gt; formComponents, ContactUsViewModel model)</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Gets the BizFormInfo object corresponding to the posted form</code></div>
+<div class="line"><code class="plain">            BizFormInfo contactUsFormInfo = BizFormInfoProvider.GetBizFormInfo(</code><code class="string">"ContactUs"</code><code class="plain">, </code><code class="string">"DancingGoatMvc"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// Saves the collected data to the database</code></div>
+<div class="line"><code class="plain">            formProvider.SetFormData(contactUsFormInfo, formComponents);</code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
+<div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> RedirectToAction(nameof(DisplayForm));</code></div>
+<div class="line"><code class="plain">        }</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p></p>
+</li></ol><p>The form is now rendered in a view and ready to receive user submissions. The submitted data is saved in the corresponding <i class=" ">Form_&lt;SiteCodeName&gt;_&lt;FormCodeName&gt;</i> database table.</p>
+                    </div>
+                </div>
+                    <footer class="ht-content-footer">                
+                        <div id="feedback-link-container">
+                            <a href="#top" id="back-to-top">
+                                <span class="icon-chevron-up"></span>
+                                <span class="sr-only">Go back to top</span>
+                            </a>
+                        </div>   
+                    </footer>
+                </article></div>
+            
+        </div>
+    </div>
+
+               
+            
+    <footer id="ht-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <ul class="footer-menu">
+          <li>
+            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
+          </li>
+          <li>
+            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+          </li>    
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.prism.js"></script>
+<script type="text/javascript" src="assets/js/clipboard.min.js"></script>
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.config.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.js"></script>
+<script type="text/javascript" src="assets/js/snackbar.js"></script>
+
+<script type="text/javascript" async="">
+    // Populates the documentation version switcher header
+    // loadVersionLinkData is located in theme.custom.js
+    $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
+</script><script type="text/javascript" src="assets/js/theme.lightbox.js"></script>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>
