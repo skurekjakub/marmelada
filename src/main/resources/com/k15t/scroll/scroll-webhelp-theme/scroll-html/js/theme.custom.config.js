@@ -22,7 +22,7 @@ const CONFIG = {
     NEWEST_UNSUPPORTED_VERSION_ID: "11",
 
     /** The base URL of the Confluence instance */
-    BASE_URL: 'http://localhost:3000',
+    BASE_URL: window.location.origin,
     /** The current space key */
     CONFLUENCE_SPACE_KEY: $('[name="confluence-space-key"]').attr('content'),
     /** The Confluence page identifier */
