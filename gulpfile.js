@@ -1,12 +1,15 @@
 'use strict';
 
+const dev = require("./gulp/development");
 const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
+const run = require('gulp-run');
 const cheerio = require('cheerio');
 const browserSync = require('browser-sync');
 
 const server = browserSync.create('local');
+const WEBHELP_RESOURCES = 'src/main/resources/com/k15t/scroll/scroll-webhelp-theme/_sources';
 
 function fixExport(spaceKey)
 {
@@ -255,6 +258,7 @@ async function browsersyncWatch(cb)
     });
 
     gulp.watch(('./docs/**/*.*'), browsersync_reload)
+    gulp.watch((WEBHELP_RESOURCES + '/**/*.*'), gulp.series(dev.build, browsersync_reload));
 
     return cb;
 }
@@ -266,8 +270,20 @@ async function browsersync_reload(callback)
 }
 
 
+function build_plugin()
+{
+    return gulp.src('/')
+    .pipe(run('atlas-package'));
+}
+
+
+
 // -----------------Runnable tasks-------------------
 exports.default = isItWorking;
+
+exports.build = gulp.series(dev.build_scripts,dev.build_styles,build_plugin);
+exports.build_styles = dev.build_styles;
+exports.build_scripts = dev.build_scripts;
 
 exports.fixExport = gulp.series(fixDu);
 
