@@ -143,12 +143,10 @@ window.ATL_JQ_PAGE_PROPS = {
 };
 
 // ============================ PDF EXPORT  ============================
-var setPdfExportUrl = function setPdfExportUrl() {
-    var pageId = $("body").attr("pageid");
-    $("#export-pdf").attr("href", CONFIG.BASE_URL + "/spaces/flyingpdf/pdfpageexport.action?pageId=" + pageId);
+var exportPdf = function exportPdf() {
+    var documentBody = $("#ht-content");
+    html2pdf(documentBody);    
 };
-
-$(document).ready(setPdfExportUrl);
 
 // ============================ PAGE TINY LINKS ============================
 
