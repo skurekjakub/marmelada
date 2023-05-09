@@ -145,7 +145,10 @@ window.ATL_JQ_PAGE_PROPS = {
 // ============================ PDF EXPORT  ============================
 var exportPdf = function exportPdf() {
     var documentBody = $("#ht-content");
-    html2pdf(documentBody);    
+    var worker = html2pdf().from(documentBody, 'element');
+    worker.save();
+    
+    html2pdf().from().save(window.location.href.split('/').pop())
 };
 
 // ============================ PAGE TINY LINKS ============================

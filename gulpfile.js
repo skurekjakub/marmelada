@@ -1,5 +1,6 @@
 'use strict';
 
+const dev = require("./gulp/development");
 const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
