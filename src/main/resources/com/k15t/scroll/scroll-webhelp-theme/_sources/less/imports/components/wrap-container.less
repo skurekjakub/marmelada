@@ -1,0 +1,323 @@
+/*
+=======================================
+=          WRAP-CONTAINER             =
+=======================================
+*/
+body {
+    display: flex;
+    flex-direction: column;;
+}
+
+#ht-wrap-container {
+    flex: 1 0 auto;
+    padding-top: @header-height;
+}
+
+.ht-content {
+    padding-top: @spacing-xxxxl;
+    max-width: none;
+}
+
+.ht-content img {
+    max-width: 100%;
+}
+
+.ht-content .ht-content-header {
+    margin-bottom: 32px;
+}
+
+@media screen and (max-width: 1200px) {
+    #ht-wrap-container {
+        padding-top: @header-height-sm;
+    }
+
+    .ht-content {
+        padding-top: @spacing-xl;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .ht-content .ht-content-header {
+        margin-bottom: 18px;
+    }
+}
+
+.small-left-offset {
+    left: 20px !important;
+    max-width: 100% !important;
+}
+
+.ht-content .ht-content-header #ht-breadcrumb {
+    margin-top: 5px;
+    color: @color-text-hint;
+
+    ul {
+        font-size: 0;
+    }
+}
+
+.ht-content .ht-content-header #ht-breadcrumb li {
+    display: inline;
+    list-style: none;
+    
+    font-size: @font-size-l;
+
+    a {
+        color: inherit;
+    }
+}
+
+.ht-content .ht-content-header #ht-breadcrumb li:after {
+    content: "/";
+    padding: 0 @spacing-xs;
+}
+
+.ht-content .ht-content-header #ht-breadcrumb li:last-child:after {
+    content: "";
+}
+
+.ht-content .ht-content-header #ht-breadcrumb .shortcut {
+    display: none !important;
+}
+
+.ht-content .ht-content-header .page-metadata, 
+.ht-content .ht-content-header .page-metadata ul li a:link, 
+.ht-content .ht-content-header .page-metadata ul li a:focus, 
+.ht-content .ht-content-header .page-metadata ul li a:hover, 
+.ht-content .ht-content-header .page-metadata ul li a:visited {
+    margin: 0;
+    color: @color-text-hint;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.ht-content .ht-content-header #ht-spacetitle {
+    margin-bottom: 4px;
+}
+
+.ht-content .ht-content-header #ht-spacetitle li:after {
+    content: "/";
+    margin-left: 3px;
+}
+
+.ht-content .ht-content-header #ht-spacetitle li:last-child:after {
+    content: "";
+}
+
+
+// input, 
+// table, 
+// h1, 
+// h1, 
+// h2, 
+// h3, 
+// h4 {
+//     color: #262524;
+// }
+
+.ht-content #main-content {
+    word-wrap: break-word;
+}
+
+.ht-content #main-content p {
+    margin-bottom: @base-line-height-computed;
+    font-weight: normal;
+}
+
+#ht-post-nav {
+    font-size: 0.875em;
+    padding: 0 40px 72px 30px;
+    max-width: none;
+}
+
+#ht-post-nav svg {
+    width: 14px;
+    height: 14px;
+    float: left;
+}
+
+#ht-post-nav svg path {
+    fill: #205081;
+}
+
+#ht-post-nav span {
+    float: left;
+    padding-bottom: 5px;
+}
+
+#ht-post-nav .ht-post-nav-next {
+    float: right;
+    text-align: right;
+}
+
+#ht-post-nav .ht-post-nav-next span {
+    float: right;
+}
+
+#ht-post-nav .ht-post-nav-next svg {
+    float: right;
+}
+
+#ht-post-nav a {
+    display: inline-block;
+    width: 33%;
+}
+
+#ht-post-nav a span {
+    width: 90%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+}
+
+#ht-post-nav a:hover span {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 640px) {
+    #ht-post-nav {
+        font-size: 24px;
+        padding: 0 16px 72px 16px;
+        margin-bottom: 48px;
+    }
+    #ht-post-nav .ht-post-nav-prev {
+        padding: 10px 0 10px 0;
+    }
+    #ht-post-nav .ht-post-nav-next {
+        padding: 10px 0 10px 0;
+    }
+    #ht-post-nav a span {
+        width: 65%;
+        display: none;
+    }
+}
+
+.ht-content-footer {
+    clear: both;
+}
+/*
+=======================================
+=          FEEDBACK BUTTON            =
+=======================================
+*/
+.feedback-link-container-button() {
+    display: inline-block;
+    padding: 12px 20px;
+    border: solid 1px @color-text-default-on-light;
+    border-radius: @border-radius-pill;
+
+    background: none;
+    color: @color-text-default-on-light;
+    font-size: @font-size-l;
+
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    
+    transition: color @transition-250, background-color @transition-250, border-color @transition-250;
+
+    &:hover {
+        border-color: @color-gray70;
+        background-color: @color-gray70;
+        color: @color-text-default-on-dark;
+    }
+}
+#ht-wrap-container #feedback-link-container {
+    margin-top: 20px;
+    margin-bottom: @spacing-xxxxxl;
+    min-height: 40px;
+}
+
+#ht-wrap-container #feedback-link-container #feedback-link {
+    .feedback-link-container-button();    
+}
+
+/*
+=======================================
+=          BACK-TO-TOP BUTTON         =
+=======================================
+*/
+
+#ht-wrap-container #feedback-link-container #back-to-top {
+    .feedback-link-container-button();
+    float: right;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 18px;;
+}
+
+
+/*
+=======================================
+=          FOOTER                     =
+=======================================
+*/
+
+#ht-footer {
+    padding: @spacing-xxl 0;;
+    background-color: @color-gray10;
+
+    a {
+        color: inherit;
+    }
+}
+
+.footer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+
+    li {
+        &:not(:last-child) {
+            margin-right: @spacing-xl;
+        }
+    
+    }
+}
+
+#ht-footer #ht-jump-top {
+    display: none;
+    float: right;
+    margin-top: -4px;
+}
+
+#ht-footer #ht-jump-top:before {
+    font-size: 24px;
+}
+
+.footer-poweredby {
+    text-align: right;
+}
+
+#ht-footer #signin-action {
+    margin-left: 1.5em;
+}
+
+#ht-footer #signout-action {
+    margin-left: 1.5em;
+}
+
+
+/* Avoids overlap of the footer with the jump to top button */
+
+// @media screen and (max-width: 1024px) {
+//     #ht-footer div {
+//         margin: 0 20px 0 0;
+//     }
+//     #ht-footer {
+//         left: -20px !important;
+//         padding-left: 20px !important;
+//     }
+// }
+
+@media screen and (max-width: 620px) {
+    #ht-wrap-container .ht-content {
+        margin-bottom: 90px;
+    }
+}
