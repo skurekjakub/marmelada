@@ -118,38 +118,13 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
     'tabs-to-spaces': 4
 });
 
-
-// ============================ FEEDBACK COLLECTOR ============================
-
-window.ATL_JQ_PAGE_PROPS = {
-    "triggerFunction": function (showCollectorDialog) {
-        $("#feedback-link").click(function (e) {
-            e.preventDefault();
-            showCollectorDialog();
-        });
-    },
-    // Sets the collector dialog field values
-    fieldValues: function () {
-        var values = {};
-        values.summary = $('[name="confluence-page-title"]').attr('content');
-        values.priority = '6';
-        // Page name
-        values.customfield_14800 = $('[name="confluence-page-title"]').attr('content');
-        // Space key
-        values.customfield_14801 = CONFIG.CONFLUENCE_SPACE_KEY;
-
-        return values;
-    }
-};
-
 // ============================ PDF EXPORT  ============================
-var exportPdf = function exportPdf() {
-    var documentBody = $("#ht-content");
-    var worker = html2pdf().from(documentBody, 'element');
-    worker.save();
-    
-    html2pdf().from().save(window.location.href.split('/').pop())
+var setExportPdf = function exportPdf() {
+    var pageTitle = $('body').attr('data-pagetitle');
+    $("#export-pdf").attr('href', `../pdf/${CONFIG.CONFLUENCE_SPACE_KEY}/${pageTitle.toLowerCase()}.pdf`);
 };
+
+$(document).ready(setExportPdf);
 
 // ============================ PAGE TINY LINKS ============================
 
