@@ -31,9 +31,10 @@ function build_scripts()
                 ]
               }))
             .pipe(uglify())
-        //.pipe(sourcemaps.write())		
+        .pipe(sourcemaps.write())		
         .pipe(gulp.dest(WEBHELP_ROOT + '/scroll-html/assets/js'))
-        .pipe(gulp.dest('docs/du/assets/js'));;
+        .pipe(gulp.dest('docs/du/assets/js'))
+        .pipe(gulp.dest('docs/k11/assets/js'));
 }
 
 function build_styles()
@@ -47,7 +48,8 @@ function build_styles()
             console.log(`${details.name}: Minified: ${details.stats.minifiedSize}`);
         }))   
         .pipe(gulp.dest(WEBHELP_ROOT + '/scroll-html/assets/css'))
-        .pipe(gulp.dest('docs/du/assets/css'));
+        .pipe(gulp.dest('docs/du/assets/css'))
+        .pipe(gulp.dest('docs/k11/assets/js'));
 }
 
 

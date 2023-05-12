@@ -121,7 +121,7 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 // ============================ PDF EXPORT  ============================
 var setExportPdf = function exportPdf() {
     var pageTitle = $('body').attr('data-pagetitle');
-    $("#export-pdf").attr('href', `../pdf/${CONFIG.CONFLUENCE_SPACE_KEY}/${pageTitle.toLowerCase()}.pdf`);
+    $("#export-pdf").attr('href', `../pdf/${CONFIG.CONFLUENCE_SPACE_KEY}/${pageTitle.toLowerCase().replace(" ","-")}.pdf`);
 };
 
 $(document).ready(setExportPdf);
