@@ -31,7 +31,7 @@ function build_scripts()
                 ]
               }))
             .pipe(uglify())
-        .pipe(sourcemaps.write())		
+        //.pipe(sourcemaps.write())		
         .pipe(gulp.dest(WEBHELP_ROOT + '/scroll-html/assets/js'))
         .pipe(gulp.dest('docs/du/assets/js'));;
 }

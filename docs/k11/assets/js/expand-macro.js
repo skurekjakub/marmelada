@@ -1,3 +1,1 @@
-$('.scroll-expand-container').on('click', '.scroll-expand-control', function(ev) {
-    $(ev.delegateTarget).toggleClass('collapsed');
-});
+$(".scroll-expand-container").on("click",".scroll-expand-control",(function(l){$(l.delegateTarget).toggleClass("collapsed")}));
