@@ -397,14 +397,13 @@ var buildDocLink = function buildDocLink(version, docType, useDocTypeInLinkText,
                 spaceKey = "k" + version;
         }
     }
-		
-    var baseUrl = $('[name="ajs-base-url"]').attr('content');
+    
     var linkText = useDocTypeInLinkText ? docType : getVersionTextFromVersionId(version);
     var linkTitle = ' title="' + (useDocTypeInLinkText ? docType : getVersionLinkTitle(version)) + '"';
 
     var classAttribute = 'class="' + (isCurrent ? ' current' : '') + '"';
 
-    return '<li><a href="' + baseUrl + spaceKeySlash + spaceKey + '"' + classAttribute + linkTitle + '>' + linkText + '</a></li>';
+    return '<li><a href="' + spaceKeySlash + spaceKey + '"' + classAttribute + linkTitle + '>' + linkText + '</a></li>';
 };
 
 
