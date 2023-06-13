@@ -83,7 +83,7 @@ async.mapLimit(data, 1, (element, callback) => {
                                       const location = res.headers.location;
                                         console.log(`Redirected to: ${location}`);
                                         
-                                        console.log(`Downloading ${element.pageName} from `)
+                                        console.log(`Downloading ${element.pageName} `)
                                         http.get(LOCALHOST + location, (res) => {
                                           const fileStream = fs.createWriteStream('docs/pdf/k11/' + element.pageName.toLowerCase() + '.pdf');
                                           res.pipe(fileStream);
