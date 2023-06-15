@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Setting analyzers for Azure Search - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8639,7 +8636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-76022199"> <span>Setting analyzers for Azure Search</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8653,7 +8650,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8664,92 +8661,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Azure Search uses <a  class="external-link" href="https://docs.microsoft.com/en-us/rest/api/searchservice/language-support">Language analyzers</a> to process text values. By default, searchable fields are analyzed with the <a  class="external-link" href="http://lucene.apache.org/core/4_9_0/analyzers-common/index.html">Apache Lucene Standard analyzer</a>. Because Azure Search supports a variety of languages, it additionally provides other text analyzers with more advanced capabilities for specific languages.</p>
-<p   
->If you wish to assign a specific analyzer to the fields of an index, <a   href="customizing-azure-search">customize</a> the functionality that Kentico uses to build Azure Search indexes:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a <a   href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
-</li><li class=" "><p   
->Override the module&#39;s <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">DocumentFieldCreator.Instance.CreatingField.After</strong> event.</p>
-</li><li class=" "><p   
->Perform the following in the event&#39;s handler method:</p>
-<ol class=" "><li class=" "><p   
->Write a condition to limit which search indexes and fields are affected by the analyzer customization (using values of the <strong class=" ">SearchIndex</strong> and <strong class=" ">SearchField</strong> properties of the handler&#39;s <i class=" ">CreateFieldEventArgs</i> parameter).</p>
-</li><li class=" "><p   
->Access the <strong class=" ">Field</strong> property of the handler&#39;s <i class=" ">CreateFieldEventArgs</i> parameter, and assign a valid <a  class="external-link" href="https://docs.microsoft.com/en-us/rest/api/searchservice/language-support">analyzer name</a> into one of its <i class=" ">Analyzer</i> properties.</p>
-<div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Azure Search uses <a class="external-link" href="https://docs.microsoft.com/en-us/rest/api/searchservice/language-support">Language analyzers</a> to process text values. By default, searchable fields are analyzed with the <a class="external-link" href="http://lucene.apache.org/core/4_9_0/analyzers-common/index.html">Apache Lucene Standard analyzer</a>. Because Azure Search supports a variety of languages, it additionally provides other text analyzers with more advanced capabilities for specific languages.</p><p>If you wish to assign a specific analyzer to the fields of an index, <a href="customizing-azure-search">customize</a> the functionality that Kentico uses to build Azure Search indexes:</p><ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a <a href="initializing-modules-to-run-custom-code">custom module class</a>.</p>
+</li><li class=" "><p>Override the module's <strong class=" ">OnInit</strong> method and assign a handler to the <strong class=" ">DocumentFieldCreator.Instance.CreatingField.After</strong> event.</p>
+</li><li class=" "><p>Perform the following in the event's handler method:</p>
+<ol class=" "><li class=" "><p>Write a condition to limit which search indexes and fields are affected by the analyzer customization (using values of the <strong class=" ">SearchIndex</strong> and <strong class=" ">SearchField</strong> properties of the handler's <i class=" ">CreateFieldEventArgs</i> parameter).</p>
+</li><li class=" "><p>Access the <strong class=" ">Field</strong> property of the handler's <i class=" ">CreateFieldEventArgs</i> parameter, and assign a valid <a class="external-link" href="https://docs.microsoft.com/en-us/rest/api/searchservice/language-support">analyzer name</a> into one of its <i class=" ">Analyzer</i> properties.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Field analyzer properties</strong></p>
-<p   
->The <strong class=" ">Field</strong> class (Microsoft.Azure.Search.Models.Field) offers the following properties for setting the analyzer:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Analyzer</strong></p>
-</li><li class=" "><p   
-><strong class=" ">IndexAnalyzer</strong> (used at indexing time)</p>
-</li><li class=" "><p   
-><strong class=" ">SearchAnalyzer</strong> (used at search time)</p>
-</li></ul><p   
->For more information, see the <strong class=" ">Index Attributes</strong> section of the <a  class="external-link" href="https://docs.microsoft.com/en-us/rest/api/searchservice/create-index">Create Index</a> article.</p>
+            <p><strong class=" ">Field analyzer properties</strong></p>
+<p>The <strong class=" ">Field</strong> class (Microsoft.Azure.Search.Models.Field) offers the following properties for setting the analyzer:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Analyzer</strong></p>
+</li><li class=" "><p><strong class=" ">IndexAnalyzer</strong> (used at indexing time)</p>
+</li><li class=" "><p><strong class=" ">SearchAnalyzer</strong> (used at search time)</p>
+</li></ul><p>For more information, see the <strong class=" ">Index Attributes</strong> section of the <a class="external-link" href="https://docs.microsoft.com/en-us/rest/api/searchservice/create-index">Create Index</a> article.</p>
      
     </div>
 </div>
-</li></ol></li><li class=" "><p   
->Sign in to the Kentico administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Smart search</strong> application and <strong class=" ">Rebuild</strong> any related Azure Search indexes.</p>
-</li></ol><p   
->The customized Azure Search index fields now use the specified language analyzer.</p>
-    <div  class="confbox panel">
+</li></ol></li><li class=" "><p>Sign in to the Kentico administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">Smart search</strong> application and <strong class=" ">Rebuild</strong> any related Azure Search indexes.</p>
+</li></ol><p>The customized Azure Search index fields now use the specified language analyzer.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="creating-azure-search-indexes">Creating Azure Search indexes</a></p>
-</li><li class=" "><p   
-><a   href="customizing-azure-search">Customizing Azure Search</a></p>
+<ul class=" "><li class=" "><p><a href="creating-azure-search-indexes">Creating Azure Search indexes</a></p>
+</li><li class=" "><p><a href="customizing-azure-search">Customizing Azure Search</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
     <h3 id="src-76022199_settinganalyzersforazuresearch-example" class="heading "><span>Example</span></h3>
-<p   
->The following example demonstrates how to set the language analyzer for the <i class=" ">skudescription</i> field of an Azure Search index named <i class=" ">dg-store</i>.</p>
-<p   
->Start by preparing a separate project in your Kentico solution for the custom module class:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new <i class=" ">Class Library</i> project in the Kentico solution named <strong class=" ">SearchCustomization</strong>.</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Browse</strong> tab, click <strong class=" ">Browse</strong>, and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Search.Azure.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Right-click the <i class=" ">SearchCustomization</i> project in the <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
-</li><li class=" "><p   
->Install the <strong class=" ">Microsoft.Azure.Search</strong> package.</p>
-</li><li class=" "><p   
->Reference the <i class=" ">SearchCustomization</i> project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Edit the <i class=" ">SearchCustomization</i> project&#39;s <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br/></p>
-<div  class="code panel pdl js-codePanel" >
+<p>The following example demonstrates how to set the language analyzer for the <i class=" ">skudescription</i> field of an Azure Search index named <i class=" ">dg-store</i>.</p>
+<p>Start by preparing a separate project in your Kentico solution for the custom module class:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Create a new <i class=" ">Class Library</i> project in the Kentico solution named <strong class=" ">SearchCustomization</strong>.</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Browse</strong> tab, click <strong class=" ">Browse</strong>, and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries:</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Search.Azure.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Right-click the <i class=" ">SearchCustomization</i> project in the <strong class=" ">Solution Explorer</strong> and select <strong class=" ">Manage NuGet Packages</strong>.</p>
+</li><li class=" "><p>Install the <strong class=" ">Microsoft.Azure.Search</strong> package.</p>
+</li><li class=" "><p>Reference the <i class=" ">SearchCustomization</i> project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Edit the <i class=" ">SearchCustomization</i> project's <strong class=" ">AssemblyInfo.cs</strong> file (in the <i class=" ">Properties</i> folder).</p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:<br></p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8768,19 +8729,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-</li></ol><p   
-></p>
-<p   
->Continue by implementing the custom module class and rebuilding the related search index:</p>
-<ol class=" "><li class=" "><p   
->Create a new class named <strong class=" ">CustomAzureSearchModule</strong> under the <i class=" ">SearchCustomization</i> project, with the following code:</p>
-<div  class="code panel pdl js-codePanel" >
+</li></ol><p></p>
+<p>Continue by implementing the custom module class and rebuilding the related search index:</p>
+<ol class=" "><li class=" "><p>Create a new class named <strong class=" ">CustomAzureSearchModule</strong> under the <i class=" ">SearchCustomization</i> project, with the following code:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8799,14 +8757,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Search.Azure;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomAzureSearchModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomAzureSearchModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Module class constructor, the system registers the module under the name "CustomAzureSearch"</code></div>
@@ -8814,21 +8772,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        : </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomAzureSearch"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Assigns a handler to the CreatingField.After event for Azure Search indexes</code></div>
 <div class="line"><code class="plain">        DocumentFieldCreator.Instance.CreatingField.After += UseCustomSearchAnalyzer;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> UseCustomSearchAnalyzer(</code><code class="keyword">object</code><code class="plain"> sender, CreateFieldEventArgs e)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> indexName = e.SearchIndex.IndexCodeName;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">string</code><code class="plain"> fieldName = e.SearchField.FieldName;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Sets the 'en.microsoft' analyzer for the 'skudescription' field in the 'dg-store' index</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (indexName.Equals(</code><code class="string">"dg-store"</code><code class="plain">, StringComparison.InvariantCultureIgnoreCase)</code></div>
 <div class="line"><code class="plain">            &amp;&amp; fieldName.Equals(</code><code class="string">"skudescription"</code><code class="plain">, StringComparison.InvariantCultureIgnoreCase))</code></div>
@@ -8841,14 +8799,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Save all changes and <strong class=" ">Build</strong> the <i class=" ">SearchCustomization</i> project.</p>
-</li><li class=" "><p   
->Sign in to the Kentico administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Smart search</strong> application and <strong class=" ">Rebuild</strong> the <i class=" ">dg-store</i> index.</p>
-</li></ol><p   
->The <i class=" ">skudescription</i> field of the <i class=" ">dg-store</i> index now uses the &quot;en.microsoft&quot; language analyzer, both during indexing and at search time.</p>
+</li><li class=" "><p>Save all changes and <strong class=" ">Build</strong> the <i class=" ">SearchCustomization</i> project.</p>
+</li><li class=" "><p>Sign in to the Kentico administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">Smart search</strong> application and <strong class=" ">Rebuild</strong> the <i class=" ">dg-store</i> index.</p>
+</li></ol><p>The <i class=" ">skudescription</i> field of the <i class=" ">dg-store</i> index now uses the "en.microsoft" language analyzer, both during indexing and at search time.</p>
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -8859,8 +8813,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8872,10 +8826,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8894,9 +8848,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8907,7 +8858,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8918,5 +8869,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

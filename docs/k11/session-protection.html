@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Session protection - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881164"> <span>Session protection</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,21 +8660,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->We use sessions, because web is running on HTTP, which is a stateless protocol. However, in many web applications, we need to keep some state information, some context. This is the purpose of sessions. When a user opens a browser and navigates to some website, the web server of that website generates a session ID for this user. The session ID is sent with every request and it is a key for any session data (session data = state/context). These data are stored on the server.</p>
-<p   
->The session ID can be passed to the requests in two ways:</p>
-<ul class=" "><li class=" "><p   
->via a URL parameter,</p>
-</li><li class=" "><p   
->or using a cookie.</p>
-</li></ul><div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>We use sessions, because web is running on HTTP, which is a stateless protocol. However, in many web applications, we need to keep some state information, some context. This is the purpose of sessions. When a user opens a browser and navigates to some website, the web server of that website generates a session ID for this user. The session ID is sent with every request and it is a key for any session data (session data = state/context). These data are stored on the server.</p><p>The session ID can be passed to the requests in two ways:</p><ul class=" "><li class=" "><p>via a URL parameter,</p>
+</li><li class=" "><p>or using a cookie.</p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->It is recommended to use cookies for passing the session ID. You can disable the cookieless sessions by changing the cookieless attribute of the form element on the <strong class=" ">&lt;system.web&gt;</strong> section of the web.config file:</p>
-<div  class="code panel pdl js-codePanel" >
+            <p>It is recommended to use cookies for passing the session ID. You can disable the cookieless sessions by changing the cookieless attribute of the form element on the <strong class=" ">&lt;system.web&gt;</strong> section of the web.config file:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8703,57 +8693,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
      
     </div>
-</div>
-<p   
->The session ends (in a typical case) after the user closes the browser or after the user is inactive for a specified amount of time.</p>
-<p   
->There are basically three types of session attacks:</p>
-<ul class=" "><li class=" "><p   
->Session stealing</p>
-</li><li class=" "><p   
->Session prediction</p>
-</li><li class=" "><p   
->Session fixation</p>
-</li></ul>    <h3 id="src-68881164_sessionprotection-sessionstealing" class="heading "><span>Session stealing</span></h3>
-<p   
->A session can be stolen by stealing a session ID. When an attacker steals a user&#39;s session ID, he can get access to all of the session data. Because all these session IDs can be read by JavaScript, the most popular method for this type of attack is <a   href="cross-site-scripting-%28xss%29">XSS</a>. An attacker can send a crafted link to a victim with a malicious JavaScript. When the victim clicks on the link, the JavaScript runs and sends the cookie value of the current session to the attacker.</p>
-    <h3 id="src-68881164_sessionprotection-sessionprediction" class="heading "><span>Session prediction</span></h3>
-<p   
->Can an attacker simply guess some random session ID? Most implementations of session IDs are long strings and guessing a correct session ID in linear time is impossible. But there are also bad implementations when an attacker can generate session IDs from known values. This technique is called session prediction. For example, a session ID can be a user name encoded in base64. Fortunately, in ASP.NET, session ID is a 120bit random number represented by a 20-character string. So, it is relatively safe.</p>
-    <h3 id="src-68881164_sessionprotection-sessionfixation" class="heading "><span>Session fixation</span></h3>
-<p   
->In this case, the attacker lets the server generate a session ID. Then the attacker sets a user&#39;s session ID to the generated ID. This is quite easy when the session ID is given in a URL parameter. After that, the user and the attacker share the same session. For example, when the user gets authenticated, the attacker is also authenticated as the user.</p>
-<p   
->The goal of all kinds of session attacks is the same &ndash; to get the user&#39;s session data or achieve identity forgery. This page focuses mainly on <strong class=" ">session fixation</strong>, as <a   href="cross-site-scripting-%28xss%29">XSS</a> is explained on a different page and we cannot influence how session IDs are generated. But generally, the implications of all three session attacks and the protective measures against them are similar.</p>
-<p   
-><br/></p>
-    <div  class="confbox panel">
+</div><p>The session ends (in a typical case) after the user closes the browser or after the user is inactive for a specified amount of time.</p><p>There are basically three types of session attacks:</p><ul class=" "><li class=" "><p>Session stealing</p>
+</li><li class=" "><p>Session prediction</p>
+</li><li class=" "><p>Session fixation</p>
+</li></ul><h3 id="src-68881164_sessionprotection-sessionstealing" class="heading "><span>Session stealing</span></h3><p>A session can be stolen by stealing a session ID. When an attacker steals a user's session ID, he can get access to all of the session data. Because all these session IDs can be read by JavaScript, the most popular method for this type of attack is <a href="cross-site-scripting-%28xss%29">XSS</a>. An attacker can send a crafted link to a victim with a malicious JavaScript. When the victim clicks on the link, the JavaScript runs and sends the cookie value of the current session to the attacker.</p><h3 id="src-68881164_sessionprotection-sessionprediction" class="heading "><span>Session prediction</span></h3><p>Can an attacker simply guess some random session ID? Most implementations of session IDs are long strings and guessing a correct session ID in linear time is impossible. But there are also bad implementations when an attacker can generate session IDs from known values. This technique is called session prediction. For example, a session ID can be a user name encoded in base64. Fortunately, in ASP.NET, session ID is a 120bit random number represented by a 20-character string. So, it is relatively safe.</p><h3 id="src-68881164_sessionprotection-sessionfixation" class="heading "><span>Session fixation</span></h3><p>In this case, the attacker lets the server generate a session ID. Then the attacker sets a user's session ID to the generated ID. This is quite easy when the session ID is given in a URL parameter. After that, the user and the attacker share the same session. For example, when the user gets authenticated, the attacker is also authenticated as the user.</p><p>The goal of all kinds of session attacks is the same – to get the user's session data or achieve identity forgery. This page focuses mainly on <strong class=" ">session fixation</strong>, as <a href="cross-site-scripting-%28xss%29">XSS</a> is explained on a different page and we cannot influence how session IDs are generated. But generally, the implications of all three session attacks and the protective measures against them are similar.</p><p><br></p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881164_sessionprotection-sessionstealing">Session stealing</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881164_sessionprotection-sessionprediction">Session prediction</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881164_sessionprotection-sessionfixation">Session fixation</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881164_sessionprotection-exampleofasessionfixation">Example of a session fixation</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881164_sessionprotection-whatcansessionfixationattacksdo">What can session fixation attacks do</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881164_sessionprotection-findingsessionfixationvulnerabilities">Finding session fixation vulnerabilities</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881164_sessionprotection-avoidingsessionfixation">Avoiding session fixation</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881164_sessionprotection-sessionstealing">Session stealing</a></p>
+</li><li class=" "><p><a href="#src-68881164_sessionprotection-sessionprediction">Session prediction</a></p>
+</li><li class=" "><p><a href="#src-68881164_sessionprotection-sessionfixation">Session fixation</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881164_sessionprotection-exampleofasessionfixation">Example of a session fixation</a></p>
+</li><li class=" "><p><a href="#src-68881164_sessionprotection-whatcansessionfixationattacksdo">What can session fixation attacks do</a></p>
+</li><li class=" "><p><a href="#src-68881164_sessionprotection-findingsessionfixationvulnerabilities">Finding session fixation vulnerabilities</a></p>
+</li><li class=" "><p><a href="#src-68881164_sessionprotection-avoidingsessionfixation">Avoiding session fixation</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+    
+
+    
+
+    
+
+
+
+    
     <h4 id="src-68881164_sessionprotection-exampleofasessionfixation" class="heading "><span>Example of a session fixation</span></h4>
-<p   
->Let&#39;s have a simple .aspx page which saves a value to a session and also shows it:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>Let's have a simple .aspx page which saves a value to a session and also shows it:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8778,9 +8750,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->In the code behind, we handle the OnClick() event of the button:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>In the code behind, we handle the OnClick() event of the button:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8803,9 +8774,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->On page load, we display the value via the literal:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>On page load, we display the value via the literal:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8828,30 +8798,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->How the attack is executed:</p>
-<ol class=" "><li class=" "><p   
->The attacker forges a link to this page with a session ID and sends the link to the user.</p>
-</li><li class=" "><p   
->The user, unaware of the forgery, clicks the link.</p>
-</li><li class=" "><p   
->The user sees the page normally and does not register anything unusual.</p>
-</li><li class=" "><p   
->When the user saves some private data now, the attacker will be able to access it.</p>
+<p>How the attack is executed:</p>
+<ol class=" "><li class=" "><p>The attacker forges a link to this page with a session ID and sends the link to the user.</p>
+</li><li class=" "><p>The user, unaware of the forgery, clicks the link.</p>
+</li><li class=" "><p>The user sees the page normally and does not register anything unusual.</p>
+</li><li class=" "><p>When the user saves some private data now, the attacker will be able to access it.</p>
 </li></ol>    <h4 id="src-68881164_sessionprotection-whatcansessionfixationattacksdo" class="heading "><span>What can session fixation attacks do</span></h4>
-<p   
->The main goal of the attacker is to read and manipulate session data or forge their identity. In both cases, the risks depend on the implementation of individual applications. If the application stores sensitive data to sessions (for example, user passwords in plain text) and allows this data to be displayed or changed, the damage cane be severe.</p>
+<p>The main goal of the attacker is to read and manipulate session data or forge their identity. In both cases, the risks depend on the implementation of individual applications. If the application stores sensitive data to sessions (for example, user passwords in plain text) and allows this data to be displayed or changed, the damage cane be severe.</p>
     <h4 id="src-68881164_sessionprotection-findingsessionfixationvulnerabilities" class="heading "><span>Finding session fixation vulnerabilities</span></h4>
-<p   
->In Kentico, session fixation is possible, depending on the application settings. You have to ensure that you do not store any sensitive information in sessions. The best way is to determine which variables are stored in sessions. Then, check how you can manipulate with them (read/change) and think about the risks &ndash; what damage can the attacker do by manipulating them. You can find these risks just from the user perspective by inspecting application reactions, parameters and so on.</p>
-<p   
->However, we still recommend code inspection. You can simply find all manipulations with session data by searching for <strong class=" ">SessionHelper</strong> and the <strong class=" ">Session[]</strong> array.</p>
+<p>In Kentico, session fixation is possible, depending on the application settings. You have to ensure that you do not store any sensitive information in sessions. The best way is to determine which variables are stored in sessions. Then, check how you can manipulate with them (read/change) and think about the risks – what damage can the attacker do by manipulating them. You can find these risks just from the user perspective by inspecting application reactions, parameters and so on.</p>
+<p>However, we still recommend code inspection. You can simply find all manipulations with session data by searching for <strong class=" ">SessionHelper</strong> and the <strong class=" ">Session[]</strong> array.</p>
     <h4 id="src-68881164_sessionprotection-avoidingsessionfixation" class="heading "><span>Avoiding session fixation</span></h4>
-<p   
->First of all, there is no native support for protecting against session fixation in ASP.NET. The best practice for protecting your application against session fixation is to regenerate the session ID after a user logs on. You can achieve this by changing the session ID to an empty string and letting ASP.NET generate a new one. However, this action causes loss of session data.</p>
-<p   
->In Kentico, you can include the <strong class=" ">CMSRenewSessionAuthChange</strong> key in the <strong class=" ">appSettings</strong> section of your web.config file, which enforces a change of the session ID when a user logs in or out. If you enable this setting, users will not be able to preserve their session data after logging in or out:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>First of all, there is no native support for protecting against session fixation in ASP.NET. The best practice for protecting your application against session fixation is to regenerate the session ID after a user logs on. You can achieve this by changing the session ID to an empty string and letting ASP.NET generate a new one. However, this action causes loss of session data.</p>
+<p>In Kentico, you can include the <strong class=" ">CMSRenewSessionAuthChange</strong> key in the <strong class=" ">appSettings</strong> section of your web.config file, which enforces a change of the session ID when a user logs in or out. If you enable this setting, users will not be able to preserve their session data after logging in or out:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8874,8 +8834,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->It is still possible for attackers to manipulate non-user session data. You need to ensure that you <strong class=" ">do not save sensitive and critical information in sessions</strong>.</p>
+<p>It is still possible for attackers to manipulate non-user session data. You need to ensure that you <strong class=" ">do not save sensitive and critical information in sessions</strong>.</p>
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -8886,8 +8845,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8899,10 +8858,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8921,9 +8880,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8934,7 +8890,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8945,5 +8901,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

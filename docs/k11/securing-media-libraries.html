@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Securing media libraries - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8639,7 +8636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68879374"> <span>Securing media libraries</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8653,7 +8650,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8664,116 +8661,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Media libraries on your site can be secured or unsecured. To ensure the required functionality, several settings need to be done as described below.</p>
-<div  class="box-general box-info">
+<p>Media libraries on your site can be secured or unsecured. To ensure the required functionality, several settings need to be done as described below.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->By default, files in media libraries are NOT secured and can be accessed directly by anybody who knows the exact link to the file. If you want to prevent this behavior, secure your media library as described in this topic.</p>
+            <p>By default, files in media libraries are NOT secured and can be accessed directly by anybody who knows the exact link to the file. If you want to prevent this behavior, secure your media library as described in this topic.</p>
      
     </div>
 </div>
     <div class="section section-1" id="src-68879374_Securingmedialibraries-Settingupasecuredmedialibrary">
         <h1 class="heading "><span>Setting up a secured media library</span></h1>
-<p   
->Secured media libraries allow viewing of their content to members of authorized roles or to authenticated users only. Keep in mind that secured media libraries are slower than the unsecured ones as permission checking involves processing overhead.</p>
+<p>Secured media libraries allow viewing of their content to members of authorized roles or to authenticated users only. Keep in mind that secured media libraries are slower than the unsecured ones as permission checking involves processing overhead.</p>
     <div class="section section-2" id="src-68879374_Securingmedialibraries-IISsettings">
         <h2 class="heading "><span>IIS settings</span></h2>
-<p   
->You have to <strong class=" ">set up your IIS</strong> so that files can&#39;t be downloaded directly from the library by typing the link to the file like <i class=" ">&lt;site url&gt;/media/file.jpg</i> into the browser.</p>
-<ol class=" "><li class=" "><p   
->To open IIS, navigate to <strong class=" ">Start</strong> -&gt; <strong class=" ">Control Panel</strong> -&gt; <strong class=" ">Administrative Tools</strong> and start the <strong class=" ">Internet Information Services (IIS) Manager</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/1310858/opening_iis.png" 
-        alt="Opening IIS"        
-        width="286"        height="232" />
-<p   
-><br/></p>
-</li><li class=" "><p   
->In the connections pane, select the application for which you want to change the settings.</p>
-</li><li class=" "><p   
->Navigate to the folder of your application for which you want to want to change the settings. You can find individual media library folder under <i class=" ">&lt;site name&gt;/media</i>.</p>
-</li><li class=" "><p   
->In the Features View, double-click on <strong class=" ">Authentication</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68879374/configuring_iis_authentication.png" 
-                
-        width="371"        height="250" />
-<p   
-><br/></p>
-</li><li class=" "><p   
->Select <strong class=" ">Anonymous Authentication</strong>.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Actions list</strong>, click on <strong class=" ">Disable</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/1310858/enaabling_anonymous_auth.png" 
-        alt="Disabling IIS anonymous authentication"        
-        width="500"        height="172" />
-<p   
-><br/></p>
-</li><li class=" "><p   
->(Optional) If <strong class=" ">Windows Authentication</strong> is enabled as well, disable it.</p>
+<p>You have to <strong class=" ">set up your IIS</strong> so that files can't be downloaded directly from the library by typing the link to the file like <i class=" ">&lt;site url&gt;/media/file.jpg</i> into the browser.</p>
+<ol class=" "><li class=" "><p>To open IIS, navigate to <strong class=" ">Start</strong> -&gt; <strong class=" ">Control Panel</strong> -&gt; <strong class=" ">Administrative Tools</strong> and start the <strong class=" ">Internet Information Services (IIS) Manager</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/1310858/opening_iis.png" alt="Opening IIS" width="286" height="232">
+<p><br></p>
+</li><li class=" "><p>In the connections pane, select the application for which you want to change the settings.</p>
+</li><li class=" "><p>Navigate to the folder of your application for which you want to want to change the settings. You can find individual media library folder under <i class=" ">&lt;site name&gt;/media</i>.</p>
+</li><li class=" "><p>In the Features View, double-click on <strong class=" ">Authentication</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68879374/configuring_iis_authentication.png" width="371" height="250">
+<p><br></p>
+</li><li class=" "><p>Select <strong class=" ">Anonymous Authentication</strong>.</p>
+</li><li class=" "><p>In the <strong class=" ">Actions list</strong>, click on <strong class=" ">Disable</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/1310858/enaabling_anonymous_auth.png" alt="Disabling IIS anonymous authentication" width="500" height="172">
+<p><br></p>
+</li><li class=" "><p>(Optional) If <strong class=" ">Windows Authentication</strong> is enabled as well, disable it.</p>
 </li></ol>    </div>
     <div class="section section-2" id="src-68879374_Securingmedialibraries-Medialibrarysecuritysettings">
         <h2 class="heading "><span>Media library security settings</span></h2>
-<p   
->Once you changed the settings in IIS, you need to make changes in Kentico as well.</p>
+<p>Once you changed the settings in IIS, you need to make changes in Kentico as well.</p>
     <div class="section section-3" id="src-68879374_Securingmedialibraries-Changingsecuritysettingsforaparticularmedialibrary">
         <h3 class="heading "><span>Changing security settings for a particular media library</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Media libraries </strong>application.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/41484305/edit.png" 
-                
-                 />
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Media libraries </strong>application.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/41484305/edit.png">
 ) the Media library for which you want to set the permissions.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Security</strong> tab.</p>
-</li><li class=" "><p   
->Assign the <strong class=" ">See library content</strong> permission to <strong class=" ">Authenticated users</strong> or to <strong class=" ">Authorized roles</strong>.</p>
-</li><li class=" "><p   
->(Optional) If you assigned the permission to <strong class=" ">Authorized roles</strong>, turn the <strong class=" ">See library content</strong> check-box on for the roles which you want to allow to see the library content.<br/></p>
-</li></ol><p   
->By default, Kentico doesn&#39;t check for the <strong class=" ">See library content</strong> permission. To make the system check for the permission, you need to turn on the <strong class=" ">Check file permissions</strong> option as described below.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Security</strong> tab.</p>
+</li><li class=" "><p>Assign the <strong class=" ">See library content</strong> permission to <strong class=" ">Authenticated users</strong> or to <strong class=" ">Authorized roles</strong>.</p>
+</li><li class=" "><p>(Optional) If you assigned the permission to <strong class=" ">Authorized roles</strong>, turn the <strong class=" ">See library content</strong> check-box on for the roles which you want to allow to see the library content.<br></p>
+</li></ol><p>By default, Kentico doesn't check for the <strong class=" ">See library content</strong> permission. To make the system check for the permission, you need to turn on the <strong class=" ">Check file permissions</strong> option as described below.</p>
     </div>
     <div class="section section-3" id="src-68879374_Securingmedialibraries-Changingcheckfilepermissionssettings">
         <h3 class="heading "><span>Changing check file permissions settings</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Settings </strong>application.</p>
-</li><li class=" "><p   
->Switch to <strong class=" ">Content -&gt; Media</strong>.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Security</strong> settings group, select <strong class=" ">Check file permissions</strong>.</p>
-</li><li class=" "><p   
-><strong class=" ">Save </strong>the changes.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Settings </strong>application.</p>
+</li><li class=" "><p>Switch to <strong class=" ">Content -&gt; Media</strong>.</p>
+</li><li class=" "><p>In the <strong class=" ">Security</strong> settings group, select <strong class=" ">Check file permissions</strong>.</p>
+</li><li class=" "><p><strong class=" ">Save </strong>the changes.</p>
 </li></ol>    </div>
     </div>
     <div class="section section-2" id="src-68879374_Securingmedialibraries-Mediagallerywebpartsettings">
         <h2 class="heading "><span>Media gallery web part settings</span></h2>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">Pages </strong>application, navigate to the page on which you use the <a   href="displaying-media-library-content-on-the-live-site">Media gallery web part</a>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><strong class=" ">Configure</strong> the web part.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Content</strong> category, enable the <strong class=" ">Use secure links</strong> property.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Pages </strong>application, navigate to the page on which you use the <a href="displaying-media-library-content-on-the-live-site">Media gallery web part</a>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><strong class=" ">Configure</strong> the web part.</p>
+</li><li class=" "><p>In the <strong class=" ">Content</strong> category, enable the <strong class=" ">Use secure links</strong> property.</p>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
 </li></ol>    <div class="section section-3" id="src-68879374_Securingmedialibraries-WritingtransformationsfortheMediagallerywebpart">
         <h3 class="heading "><span>Writing transformations for the Media gallery web part</span></h3>
-<p   
->When writing your transformations for the <strong class=" ">Media gallery</strong> web part:</p>
-<ul class=" "><li class=" "><p   
->Obtain <strong class=" ">File previews</strong> and <strong class=" ">file details</strong> using the following control:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>When writing your transformations for the <strong class=" ">Media gallery</strong> web part:</p>
+<ul class=" "><li class=" "><p>Obtain <strong class=" ">File previews</strong> and <strong class=" ">file details</strong> using the following control:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8791,16 +8740,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
-<div class="line"><code class="plain"> &lt;cc1:MediaFilePreview ID=</code><code class="string">"filePreview"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> maxsidesize=</code><code class="string">"117"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&nbsp;&lt;cc1:MediaFilePreview ID=</code><code class="string">"filePreview"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> maxsidesize=</code><code class="string">"117"</code><code class="plain"> /&gt;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<p   
-><br/></p>
-</li><li class=" "><p   
->Obtain <strong class=" ">Download links</strong> using the following method:</p>
-<div  class="code panel pdl js-codePanel" >
+<p><br></p>
+</li><li class=" "><p>Obtain <strong class=" ">Download links</strong> using the following method:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8818,115 +8765,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
-<div class="line"><code class="plain"> &lt;%# MediaLibraryFunctions.GetMediaFileUrl(Eval(</code><code class="string">"FileLibraryID"</code><code class="plain">) ,Eval(</code><code class="string">"FilePath"</code><code class="plain">), Eval(</code><code class="string">"FileGUID"</code><code class="plain">), Eval(</code><code class="string">"FileName"</code><code class="plain">), GetDataControlValue&lt;bool&gt;(</code><code class="string">"UseSecureLinks"</code><code class="plain">)) %&gt;</code></div>
+<div class="line"><code class="plain">&nbsp;&lt;%# MediaLibraryFunctions.GetMediaFileUrl(Eval(</code><code class="string">"FileLibraryID"</code><code class="plain">) ,Eval(</code><code class="string">"FilePath"</code><code class="plain">), Eval(</code><code class="string">"FileGUID"</code><code class="plain">), Eval(</code><code class="string">"FileName"</code><code class="plain">), GetDataControlValue&lt;bool&gt;(</code><code class="string">"UseSecureLinks"</code><code class="plain">)) %&gt;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-</li></ul><p   
->You can see an example of a use of this web part, including the defined transformations, on the <strong class=" ">Community Site</strong> sample website, in the <strong class=" ">Media</strong> section.</p>
-<p   
->Using the settings above, you can ensure that only members of authorized roles or authenticated users are allowed to view media library content.</p>
+</li></ul><p>You can see an example of a use of this web part, including the defined transformations, on the <strong class=" ">Community Site</strong> sample website, in the <strong class=" ">Media</strong> section.</p>
+<p>Using the settings above, you can ensure that only members of authorized roles or authenticated users are allowed to view media library content.</p>
     </div>
     </div>
     </div>
     <div class="section section-1" id="src-68879374_Securingmedialibraries-Settingupaunsecuredmedialibrary">
         <h1 class="heading "><span>Setting up a unsecured media library</span></h1>
-<p   
->Secured media libraries allow viewing of their content to members of authorized roles or to authenticated users only. Keep in mind that secured media libraries are slower than the non-secured ones as permission checking involves processing overhead.</p>
+<p>Secured media libraries allow viewing of their content to members of authorized roles or to authenticated users only. Keep in mind that secured media libraries are slower than the non-secured ones as permission checking involves processing overhead.</p>
     <div class="section section-2" id="src-68879374_Securingmedialibraries-IISsettings.1">
         <h2 class="heading "><span>IIS settings</span></h2>
-<p   
->You have to <strong class=" ">set up your IIS</strong> so that files can be downloaded directly from the library by typing the link to the file like <i class=" ">&lt;site url&gt;/media/file.jpg</i> into the browser.</p>
-<ol class=" "><li class=" "><p   
->To open IIS, navigate to <strong class=" ">Start</strong> -&gt; <strong class=" ">Control Panel</strong> -&gt; <strong class=" ">Administrative Tools</strong> and start the <strong class=" ">Internet Information Services (IIS) Manager</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/1310858/opening_iis.png" 
-        alt="Opening IIS"        
-        width="286"        height="232" />
-<p   
-><br/></p>
-</li><li class=" "><p   
->In the connections pane, select the application for which you want to change the settings.</p>
-</li><li class=" "><p   
->Navigate to the folder of your application for which you want to want to change the settings. You can find individual media library folder under <i class=" ">&lt;site name&gt;/media</i>.<br/></p>
-</li><li class=" "><p   
->In the Features View, double-click on <strong class=" ">Authentication</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68879374/configuring_iis_authentication.png" 
-                
-        width="371"        height="250" />
-<p   
-><br/></p>
-</li><li class=" "><p   
->Select <strong class=" ">Anonymous Authentication</strong>.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Actions list</strong>, click on <strong class=" ">Enable</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/1310858/enabling_anonymous_auth.png" 
-        alt="Enabling IIS anonymous authentication"        
-        width="500"        height="181" />
-<p   
-><br/></p>
-</li><li class=" "><p   
->(Optional) If you disabled <strong class=" ">Windows authentication</strong> in order to secure your media libraries previously, you can now <strong class=" ">enable</strong> it.</p>
+<p>You have to <strong class=" ">set up your IIS</strong> so that files can be downloaded directly from the library by typing the link to the file like <i class=" ">&lt;site url&gt;/media/file.jpg</i> into the browser.</p>
+<ol class=" "><li class=" "><p>To open IIS, navigate to <strong class=" ">Start</strong> -&gt; <strong class=" ">Control Panel</strong> -&gt; <strong class=" ">Administrative Tools</strong> and start the <strong class=" ">Internet Information Services (IIS) Manager</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/1310858/opening_iis.png" alt="Opening IIS" width="286" height="232">
+<p><br></p>
+</li><li class=" "><p>In the connections pane, select the application for which you want to change the settings.</p>
+</li><li class=" "><p>Navigate to the folder of your application for which you want to want to change the settings. You can find individual media library folder under <i class=" ">&lt;site name&gt;/media</i>.<br></p>
+</li><li class=" "><p>In the Features View, double-click on <strong class=" ">Authentication</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68879374/configuring_iis_authentication.png" width="371" height="250">
+<p><br></p>
+</li><li class=" "><p>Select <strong class=" ">Anonymous Authentication</strong>.</p>
+</li><li class=" "><p>In the <strong class=" ">Actions list</strong>, click on <strong class=" ">Enable</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/1310858/enabling_anonymous_auth.png" alt="Enabling IIS anonymous authentication" width="500" height="181">
+<p><br></p>
+</li><li class=" "><p>(Optional) If you disabled <strong class=" ">Windows authentication</strong> in order to secure your media libraries previously, you can now <strong class=" ">enable</strong> it.</p>
 </li></ol>    </div>
     <div class="section section-2" id="src-68879374_Securingmedialibraries-Medialibrarysecuritysettings.1">
         <h2 class="heading "><span>Media library security settings</span></h2>
-<p   
->Once you changed the settings in IIS, you need to make changes in Kentico as well.</p>
+<p>Once you changed the settings in IIS, you need to make changes in Kentico as well.</p>
     <div class="section section-3" id="src-68879374_Securingmedialibraries-Changingsecuritysettingsforaparticularmedialibrary.1">
         <h3 class="heading "><span>Changing security settings for a particular media library</span></h3>
-<p   
->Note that if you want to change the settings temporarily and then revert back to the secured mode, you can simply turn checking file permissions off.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Media libraries </strong>application.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/41484305/edit.png" 
-                
-                 />
+<p>Note that if you want to change the settings temporarily and then revert back to the secured mode, you can simply turn checking file permissions off.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Media libraries </strong>application.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/41484305/edit.png">
 ) the Media library for which you want to set the permissions.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Security</strong> tab.</p>
-</li><li class=" "><p   
->Assign the <strong class=" ">See library content</strong> permission to <strong class=" ">All users</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Security</strong> tab.</p>
+</li><li class=" "><p>Assign the <strong class=" ">See library content</strong> permission to <strong class=" ">All users</strong>.</p>
 </li></ol>    </div>
     <div class="section section-3" id="src-68879374_Securingmedialibraries-Changingcheckfilepermissionssettings.1">
         <h3 class="heading "><span>Changing check file permissions settings</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Settings </strong>application.</p>
-</li><li class=" "><p   
->Switch to <strong class=" ">Content -&gt; Media</strong>.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Security</strong> settings group, deselect <strong class=" ">Check file permissions</strong>.</p>
-</li><li class=" "><p   
-><strong class=" ">Save </strong>the changes.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Settings </strong>application.</p>
+</li><li class=" "><p>Switch to <strong class=" ">Content -&gt; Media</strong>.</p>
+</li><li class=" "><p>In the <strong class=" ">Security</strong> settings group, deselect <strong class=" ">Check file permissions</strong>.</p>
+</li><li class=" "><p><strong class=" ">Save </strong>the changes.</p>
 </li></ol>    </div>
     </div>
     <div class="section section-2" id="src-68879374_Securingmedialibraries-Mediagallerywebpartsettings.1">
         <h2 class="heading "><span>Media gallery web part settings</span></h2>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">Pages </strong>application, navigate to the page on which you use the <a   href="displaying-media-library-content-on-the-live-site">Media gallery web part</a>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><strong class=" ">Configure</strong> the web part.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Content</strong> section, disable the <strong class=" ">Use secure links</strong> property.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Pages </strong>application, navigate to the page on which you use the <a href="displaying-media-library-content-on-the-live-site">Media gallery web part</a>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><strong class=" ">Configure</strong> the web part.</p>
+</li><li class=" "><p>In the <strong class=" ">Content</strong> section, disable the <strong class=" ">Use secure links</strong> property.</p>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
 </li></ol>    <div class="section section-3" id="src-68879374_Securingmedialibraries-WritingtransformationsfortheMediagallerywebpart.1">
         <h3 class="heading "><span>Writing transformations for the Media gallery web part</span></h3>
-<p   
->When writing your transformations for the <strong class=" ">Media gallery</strong> web part:</p>
-<ul class=" "><li class=" "><p   
->Obtain <strong class=" ">File previews</strong> and <strong class=" ">file details</strong> using the following control:<br/></p>
-<div  class="code panel pdl js-codePanel" >
+<p>When writing your transformations for the <strong class=" ">Media gallery</strong> web part:</p>
+<ul class=" "><li class=" "><p>Obtain <strong class=" ">File previews</strong> and <strong class=" ">file details</strong> using the following control:<br></p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8949,10 +8849,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
-><br/></p>
-</li><li class=" "><p   
->You can obtain other <strong class=" ">file type previews</strong>, <strong class=" ">details</strong> and <strong class=" ">download links</strong> directly.</p>
+<p><br></p>
+</li><li class=" "><p>You can obtain other <strong class=" ">file type previews</strong>, <strong class=" ">details</strong> and <strong class=" ">download links</strong> directly.</p>
 </li></ul>    </div>
     </div>
     </div>
@@ -8966,8 +8864,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8979,10 +8877,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9001,9 +8899,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9014,7 +8909,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9025,5 +8920,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

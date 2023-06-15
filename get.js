@@ -7,14 +7,14 @@ const path = require('path');
 const async = require('async');
 
 
-const LOCALHOST = 'http://localhost:8090';
+const SERVER = 'http://localhost:8090';
 const DELAY = 1000;
 
 function handleRedirect(res, filename, dirname) {
   const location = res.headers.location;
   console.log(`Redirected to: ${location}`);
   
-  http.get(LOCALHOST + location, (res) => {
+  http.get(SERVER + location, (res) => {
     handleResponse(res, filename, dirname);
   }).on('error', (err) => {
     console.error(`Error: ${err.message}`);
@@ -53,7 +53,7 @@ function EnumeratePages(dirpath)
         const filename = path.parse(file).name;
         
         return { pageName: filename, 
-                 exportUrl: `http://localhost:8090/spaces/flyingpdf/pdfpageexport.action?pageId=${pageId}`
+                 exportUrl: `${SERVER}/spaces/flyingpdf/pdfpageexport.action?pageId=${pageId}`
                  };
     })
 
@@ -84,7 +84,7 @@ async.mapLimit(data, 1, (element, callback) => {
                                         console.log(`Redirected to: ${location}`);
                                         
                                         console.log(`Downloading ${element.pageName} `)
-                                        http.get(LOCALHOST + location, (res) => {
+                                        http.get(SERVER + location, (res) => {
                                           const fileStream = fs.createWriteStream('docs/pdf/k11/' + element.pageName.toLowerCase() + '.pdf');
                                           res.pipe(fileStream);
                                         

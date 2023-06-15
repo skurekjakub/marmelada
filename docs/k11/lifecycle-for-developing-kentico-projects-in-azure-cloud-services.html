@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Lifecycle for developing Kentico projects in Azure Cloud Services - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881728"> <span>Lifecycle for developing Kentico projects in Azure Cloud Services</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,40 +8659,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When you develop projects in Microsoft Azure Cloud Services, you typically want to begin small, utilizing the least resources possible. Then, as your project grows, scale the available processing power and space to accommodate the performance and size requirements as necessary. This topic presents main <strong class=" ">levels of development</strong> on Microsoft Azure and provides links to related configuration tasks, which you need to perform when ascending to a higher level.</p>
-    <h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level0-localdevelopment" class="heading "><span>Level 0 - Local development</span></h4>
-<p  class="confluence-link" 
->You can choose to begin developing your Kentico Azure project locally in an emulator before deploying it to the cloud environment. In this case, set up a database and Azure Storage service and configure the web role&#39;s settings. See <a   href="developing-kentico-azure-projects-locally">Developing Kentico Azure projects locally</a>.</p>
-    <h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level1-development" class="heading "><span>Level 1 - Development</span></h4>
-<p   
->For the duration of project development, <strong class=" ">one instance</strong> of CMSApp web role is usually enough. To configure a project to use one web role instance, perform the <a   href="configuring-kentico-azure-projects-for-cloud-services#src-68881729_configuringkenticoazureprojectsforcloudservices-basicconfiguration">basic configuration</a> tasks.</p>
-    <h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level2-productionwithsla" class="heading "><span>Level 2 - Production with SLA</span></h4>
-<p   
->When you deploy your project and switch to the production environment, you may want to qualify for <a  class="external-link" href="https://azure.microsoft.com/en-us/support/legal/sla/">Microsoft SLA</a>. In such case, your project must use at least <strong class=" ">two instances</strong> of the CMSApp web role. When you increase the number of used web role instances, you need to adjust your project to synchronize the data between the instances and to store session state information.</p>
-<p   
->For data synchronization, you can use the default web farm synchronization tasks, in which case you do not need to configure anything.</p>
-<p   
->For storing session state information, you can use <strong class=" ">Microsoft Azure SQL Database</strong> &ndash; see <a   href="storing-cache-and-session-state-data-in-azure-environment">Storing cache and session state data in Azure environment</a>.</p>
-    <h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level3-performance" class="heading "><span>Level 3 - Performance</span></h4>
-<p   
->When the performance of the level 2 environment is not sufficient, you can configure the <strong class=" ">Azure Redis Cache </strong>to store session state information &ndash; see <a   href="storing-cache-and-session-state-data-in-azure-environment">Storing session state information in Azure Cache Service</a>.</p>
-    <h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level4-scalability" class="heading "><span>Level 4 - Scalability</span></h4>
-<p   
->When you need even more power, you can further scale your project using the following approaches:</p>
-<ul class=" "><li class=" "><p   
->Utilize larger cloud services</p>
-</li><li class=" "><p   
->Use more web role instances</p>
-</li><li class=" "><p   
->Configure autoscaling</p>
-</li></ul>    <div  class="confbox panel">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When you develop projects in Microsoft Azure Cloud Services, you typically want to begin small, utilizing the least resources possible. Then, as your project grows, scale the available processing power and space to accommodate the performance and size requirements as necessary. This topic presents main <strong class=" ">levels of development</strong> on Microsoft Azure and provides links to related configuration tasks, which you need to perform when ascending to a higher level.</p><h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level0-localdevelopment" class="heading "><span>Level 0 - Local development</span></h4><p class="confluence-link">You can choose to begin developing your Kentico Azure project locally in an emulator before deploying it to the cloud environment. In this case, set up a database and Azure Storage service and configure the web role's settings. See <a href="developing-kentico-azure-projects-locally">Developing Kentico Azure projects locally</a>.</p><h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level1-development" class="heading "><span>Level 1 - Development</span></h4><p>For the duration of project development, <strong class=" ">one instance</strong> of CMSApp web role is usually enough. To configure a project to use one web role instance, perform the <a href="configuring-kentico-azure-projects-for-cloud-services#src-68881729_configuringkenticoazureprojectsforcloudservices-basicconfiguration">basic configuration</a> tasks.</p><h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level2-productionwithsla" class="heading "><span>Level 2 - Production with SLA</span></h4><p>When you deploy your project and switch to the production environment, you may want to qualify for <a class="external-link" href="https://azure.microsoft.com/en-us/support/legal/sla/">Microsoft SLA</a>. In such case, your project must use at least <strong class=" ">two instances</strong> of the CMSApp web role. When you increase the number of used web role instances, you need to adjust your project to synchronize the data between the instances and to store session state information.</p><p>For data synchronization, you can use the default web farm synchronization tasks, in which case you do not need to configure anything.</p><p>For storing session state information, you can use <strong class=" ">Microsoft Azure SQL Database</strong> – see <a href="storing-cache-and-session-state-data-in-azure-environment">Storing cache and session state data in Azure environment</a>.</p><h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level3-performance" class="heading "><span>Level 3 - Performance</span></h4><p>When the performance of the level 2 environment is not sufficient, you can configure the <strong class=" ">Azure Redis Cache </strong>to store session state information – see <a href="storing-cache-and-session-state-data-in-azure-environment">Storing session state information in Azure Cache Service</a>.</p><h4 id="src-68881728_lifecyclefordevelopingkenticoprojectsinazurecloudservices-level4-scalability" class="heading "><span>Level 4 - Scalability</span></h4><p>When you need even more power, you can further scale your project using the following approaches:</p><ul class=" "><li class=" "><p>Utilize larger cloud services</p>
+</li><li class=" "><p>Use more web role instances</p>
+</li><li class=" "><p>Configure autoscaling</p>
+</li></ul><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="developing-kentico-azure-projects-locally">Developing Kentico Azure projects locally</a></p>
+<ul class=" "><li class=" "><p><a href="developing-kentico-azure-projects-locally">Developing Kentico Azure projects locally</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+    
+
+    
+
+    
+
+
+
+    
+
+    
+
+    
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -8706,8 +8691,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8719,10 +8704,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8741,9 +8726,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8754,7 +8736,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8765,5 +8747,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

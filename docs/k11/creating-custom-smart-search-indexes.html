@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating custom smart search indexes - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8639,7 +8636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882121"> <span>Creating custom smart search indexes</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8653,7 +8650,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8664,50 +8661,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When creating custom <a   href="creating-local-search-indexes">smart search indexes</a>, you do not define the content on the <strong class=" ">Indexed content</strong> tab in the <strong class=" ">Smart search</strong> application. Instead, you must implement all functionality of the index by writing code. In the administration interface, you only need to specify the names of the assembly and class that contain the custom index logic.</p>
-<p   
->To define a custom index, create a class that implements the <strong class=" ">ICustomSearchIndex</strong> interface (<strong class=" ">CMS.Search</strong> namespace).</p>
-<p   
->To integrate the class into your application:</p>
-<ul class=" "><li class=" "><p   
->Create a new assembly (Class library) in your web project and include the index class there. When using this approach, you must add the appropriate references to both the assembly and the main Kentico project.<br/><br/>OR</p>
-</li></ul><ul class=" "><li class=" "><p   
->Define the custom index directly in the Kentico web project and load the class via the API. This ensures that the system automatically compiles the index class and you do not need to use a separate assembly. The example below demonstrates this approach.<br/><br/></p>
-</li></ul>    <div  class="confbox panel">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When creating custom <a href="creating-local-search-indexes">smart search indexes</a>, you do not define the content on the <strong class=" ">Indexed content</strong> tab in the <strong class=" ">Smart search</strong> application. Instead, you must implement all functionality of the index by writing code. In the administration interface, you only need to specify the names of the assembly and class that contain the custom index logic.</p><p>To define a custom index, create a class that implements the <strong class=" ">ICustomSearchIndex</strong> interface (<strong class=" ">CMS.Search</strong> namespace).</p><p>To integrate the class into your application:</p><ul class=" "><li class=" "><p>Create a new assembly (Class library) in your web project and include the index class there. When using this approach, you must add the appropriate references to both the assembly and the main Kentico project.<br><br>OR</p>
+</li></ul><ul class=" "><li class=" "><p>Define the custom index directly in the Kentico web project and load the class via the API. This ensures that the system automatically compiles the index class and you do not need to use a separate assembly. The example below demonstrates this approach.<br><br></p>
+</li></ul><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882121_creatingcustomsmartsearchindexes-writingthecustomindexcode">Writing the custom index code</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882121_creatingcustomsmartsearchindexes-loadingapp_codeindexclasses">Loading App_Code index classes</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882121_creatingcustomsmartsearchindexes-registeringcustomsearchindexes">Registering custom search indexes</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882121_creatingcustomsmartsearchindexes-result">Result</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882121_creatingcustomsmartsearchindexes-writingthecustomindexcode">Writing the custom index code</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882121_creatingcustomsmartsearchindexes-loadingapp_codeindexclasses">Loading App_Code index classes</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882121_creatingcustomsmartsearchindexes-registeringcustomsearchindexes">Registering custom search indexes</a></p>
+</li><li class=" "><p><a href="#src-68882121_creatingcustomsmartsearchindexes-result">Result</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="creating-local-search-indexes">Creating local search indexes</a></p>
+<ul class=" "><li class=" "><p><a href="creating-local-search-indexes">Creating local search indexes</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+    
     <h3 id="src-68882121_creatingcustomsmartsearchindexes-writingthecustomindexcode" class="heading "><span>Writing the custom index code</span></h3>
-<p   
->The following example shows how to create a custom index that searches the content of text files:</p>
-<ol class=" "><li class=" "><p   
->Open your web project in Visual Studio.</p>
-</li><li class=" "><p   
->Add a new class into the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong> on web application installations). For example, name the class <strong class=" ">TextFileIndex.cs</strong>.</p>
-</li><li class=" "><p   
->Edit the class and make sure that the following <strong class=" ">using</strong> statements are present at the top of the code:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The following example shows how to create a custom index that searches the content of text files:</p>
+<ol class=" "><li class=" "><p>Open your web project in Visual Studio.</p>
+</li><li class=" "><p>Add a new class into the <strong class=" ">App_Code</strong> folder (or <strong class=" ">Old_App_Code</strong> on web application installations). For example, name the class <strong class=" ">TextFileIndex.cs</strong>.</p>
+</li><li class=" "><p>Edit the class and make sure that the following <strong class=" ">using</strong> statements are present at the top of the code:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8726,7 +8707,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Search;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.IO;</code></div>
@@ -8738,9 +8719,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Make the class implement the <strong class=" ">ICustomSearchIndex</strong> interface.</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Make the class implement the <strong class=" ">ICustomSearchIndex</strong> interface.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8763,18 +8743,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Define the <strong class=" ">Rebuild</strong> method inside the class:</p>
-<div  class="box-general box-info">
+</li><li class=" "><p>Define the <strong class=" ">Rebuild</strong> method inside the class:</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->You must always include the <i class=" ">Rebuild</i> method when writing custom indexed. The method fills the index with data, which determines what kind of searches the index provides. The system calls the method when building the index for the first time and on each subsequent rebuild.</p>
+            <p>You must always include the <i class=" ">Rebuild</i> method when writing custom indexed. The method fills the index with data, which determines what kind of searches the index provides. The system calls the method when building the index for the first time and on each subsequent rebuild.</p>
      
     </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8803,7 +8781,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets an index writer object for the current index</code></div>
 <div class="line"><code class="plain">		IIndexWriter iw = srchInfo.Provider.GetWriter(</code><code class="keyword">true</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Checks whether the writer is defined</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (iw != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">		{</code></div>
@@ -8811,22 +8789,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">			{</code></div>
 <div class="line"><code class="plain">				</code><code class="comments">// Gets an info object of the index settings</code></div>
 <div class="line"><code class="plain">				SearchIndexSettingsInfo sisi = srchInfo.IndexSettings.Items[SearchHelper.CUSTOM_INDEX_DATA];</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">				</code><code class="comments">// Gets the search path from the Index data field</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">string</code><code class="plain"> path = Convert.ToString(sisi.GetValue(</code><code class="string">"CustomData"</code><code class="plain">));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">				</code><code class="comments">// Checks whether the path is defined</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">if</code><code class="plain"> (!String.IsNullOrEmpty(path))</code></div>
 <div class="line"><code class="plain">				{</code></div>
 <div class="line"><code class="plain">					</code><code class="comments">// Gets all text files from the specified directory</code></div>
 <div class="line"><code class="plain">					</code><code class="keyword">string</code><code class="plain">[] files = Directory.GetFiles(path, </code><code class="string">"*.txt"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">					</code><code class="comments">// Loops through all files</code></div>
 <div class="line"><code class="plain">					</code><code class="keyword">foreach</code><code class="plain"> (</code><code class="keyword">string</code><code class="plain"> file </code><code class="keyword">in</code><code class="plain"> files)</code></div>
 <div class="line"><code class="plain">					{</code></div>
 <div class="line"><code class="plain">						</code><code class="comments">// Gets the current file info</code></div>
 <div class="line"><code class="plain">						FileInfo fi = FileInfo.New(file);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">						</code><code class="comments">// Gets the text content of the current file</code></div>
 <div class="line"><code class="plain">						</code><code class="keyword">string</code><code class="plain"> text = fi.OpenText().ReadToEnd();</code></div>
 <div class="line"><code class="plain">						</code></div>
@@ -8835,10 +8813,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">						{</code></div>
 <div class="line"><code class="plain">							</code><code class="comments">// Converts the text to lower case</code></div>
 <div class="line"><code class="plain">							text = text.ToLowerCSafe();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Removes diacritics</code></div>
 <div class="line"><code class="plain">							text = TextHelper.RemoveDiacritics(text);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Creates a new Lucene.Net search document for the current text file</code></div>
 <div class="line"><code class="plain">							SearchDocumentParameters documentParameters = </code><code class="keyword">new</code><code class="plain"> SearchDocumentParameters()</code></div>
 <div class="line"><code class="plain">							{</code></div>
@@ -8848,45 +8826,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">								Created = fi.CreationTime</code></div>
 <div class="line"><code class="plain">							};</code></div>
 <div class="line"><code class="plain">							ILuceneSearchDocument doc = LuceneSearchDocumentHelper.ToLuceneSearchDocument(SearchHelper.CreateDocument(documentParameters));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Adds a content field. This field is processed when the search looks for matching results.</code></div>
 <div class="line"><code class="plain">							doc.AddGeneralField(SearchFieldsConstants.CONTENT, text, SearchHelper.StoreContentField, </code><code class="keyword">true</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Adds a title field. The value of this field is used for the search result title.</code></div>
 <div class="line"><code class="plain">							doc.AddGeneralField(SearchFieldsConstants.CUSTOM_TITLE, fi.Name, </code><code class="keyword">true</code><code class="plain">, </code><code class="keyword">false</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Adds a content field. The value of this field is used for the search result excerpt.</code></div>
 <div class="line"><code class="plain">							doc.AddGeneralField(SearchFieldsConstants.CUSTOM_CONTENT, TextHelper.LimitLength(text, 200), </code><code class="keyword">true</code><code class="plain">, </code><code class="keyword">false</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Adds a date field. The value of this field is used for the date in the search results.</code></div>
 <div class="line"><code class="plain">							doc.AddGeneralField(SearchFieldsConstants.CUSTOM_DATE, fi.CreationTime, </code><code class="keyword">true</code><code class="plain">, </code><code class="keyword">false</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Adds a url field. The value of this field is used for link urls in the search results.</code></div>
 <div class="line"><code class="plain">							doc.AddGeneralField(SearchFieldsConstants.CUSTOM_URL, file, </code><code class="keyword">true</code><code class="plain">, </code><code class="keyword">false</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Adds an image field. The value of this field is used for the images in the search results.</code></div>
 <div class="line"><code class="plain">							</code><code class="comments">// Commented out, since the image file does not exist by default</code></div>
 <div class="line"><code class="plain">							</code><code class="comments">// doc.AddGeneralField(SearchFieldsConstants.CUSTOM_IMAGEURL, "textfile.jpg", true, false);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">							</code><code class="comments">// Adds the document to the index</code></div>
 <div class="line"><code class="plain">							iw.AddDocument(doc);</code></div>
 <div class="line"><code class="plain">						}</code></div>
 <div class="line"><code class="plain">					}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">					</code><code class="comments">// Flushes the index buffer</code></div>
 <div class="line"><code class="plain">					iw.Flush();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">					</code><code class="comments">// Optimizes the index</code></div>
 <div class="line"><code class="plain">					iw.Optimize();</code></div>
 <div class="line"><code class="plain">				}</code></div>
 <div class="line"><code class="plain">			}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Logs any potential exceptions</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">catch</code><code class="plain"> (Exception ex)</code></div>
 <div class="line"><code class="plain">			{</code></div>
 <div class="line"><code class="plain">				EventLogProvider.LogException(</code><code class="string">"CustomTextFileIndex"</code><code class="plain">, </code><code class="string">"Rebuild"</code><code class="plain">, ex);</code></div>
 <div class="line"><code class="plain">			}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Always close the index writer</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">finally</code></div>
 <div class="line"><code class="plain">			{</code></div>
@@ -8899,58 +8877,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li></ol><p   
->You need to write the code of the <i class=" ">Rebuild</i> method according to the specific purpose of the index. Use the following general steps for all indexes:</p>
-<ol class=" "><li class="pindentedlist "><p   
->Get an <strong class=" ">Index writer</strong> instance for the search index.</p>
-<ul class=" "><li class="pindentedlist "><p   
->The index writer object must implement the <strong class=" ">CMS.Search.IIndexWriter</strong> interface.</p>
-</li><li class="pindentedlist "><p   
->Get the index writer by calling the <i class=" ">Provider.GetWriter(true)</i> method of the <i class=" ">SearchIndexInfo</i> object.<br/><br/></p>
-</li></ul></li><li class="pindentedlist "><p   
->Define search <strong class=" ">Documents</strong> and their fields for the items that you wish to add to the index.</p>
-<ul class=" "><li class="pindentedlist "><p   
->Custom search document objects must implement the <strong class=" ">CMS.Search.ILuceneSearchDocument</strong> interface.</p>
-</li><li class="pindentedlist "><p   
->Create search documents by calling the <i class=" ">CMS.Search.SearchHelper.CreateDocument</i> method, and then convert the result via the <i class=" ">LuceneSearchDocumentHelper.ToLuceneSearchDocument</i> method.<br/><br/></p>
-</li></ul></li><li class="pindentedlist "><p   
->Call the <strong class=" ">AddDocument</strong> method of the <i class=" ">Index writer</i> for every search document.</p>
-</li><li class="pindentedlist "><p   
->After you have added all required search documents, call the <strong class=" ">Flush</strong> and <strong class=" ">Optimize</strong> methods of the <i class=" ">Index writer</i>.</p>
-</li><li class="pindentedlist "><p   
->Call the <strong class=" ">Close</strong> method of the <i class=" ">Index writer</i>.</p>
-</li></ol><div  class="box-general box-info">
+</li></ol><p>You need to write the code of the <i class=" ">Rebuild</i> method according to the specific purpose of the index. Use the following general steps for all indexes:</p>
+<ol class=" "><li class="pindentedlist "><p>Get an <strong class=" ">Index writer</strong> instance for the search index.</p>
+<ul class=" "><li class="pindentedlist "><p>The index writer object must implement the <strong class=" ">CMS.Search.IIndexWriter</strong> interface.</p>
+</li><li class="pindentedlist "><p>Get the index writer by calling the <i class=" ">Provider.GetWriter(true)</i> method of the <i class=" ">SearchIndexInfo</i> object.<br><br></p>
+</li></ul></li><li class="pindentedlist "><p>Define search <strong class=" ">Documents</strong> and their fields for the items that you wish to add to the index.</p>
+<ul class=" "><li class="pindentedlist "><p>Custom search document objects must implement the <strong class=" ">CMS.Search.ILuceneSearchDocument</strong> interface.</p>
+</li><li class="pindentedlist "><p>Create search documents by calling the <i class=" ">CMS.Search.SearchHelper.CreateDocument</i> method, and then convert the result via the <i class=" ">LuceneSearchDocumentHelper.ToLuceneSearchDocument</i> method.<br><br></p>
+</li></ul></li><li class="pindentedlist "><p>Call the <strong class=" ">AddDocument</strong> method of the <i class=" ">Index writer</i> for every search document.</p>
+</li><li class="pindentedlist "><p>After you have added all required search documents, call the <strong class=" ">Flush</strong> and <strong class=" ">Optimize</strong> methods of the <i class=" ">Index writer</i>.</p>
+</li><li class="pindentedlist "><p>Call the <strong class=" ">Close</strong> method of the <i class=" ">Index writer</i>.</p>
+</li></ol><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Using data parameters for custom indexes</strong></p>
-<p   
->The <strong class=" ">SearchIndexInfo</strong> parameter of the <i class=" ">Rebuild</i> method allows you to access the data fields of the corresponding search index object. The sample code loads the content of the <strong class=" ">Index data</strong> field and uses it to define the path to the searched text files.</p>
-<p   
->When writing your own custom indexes, you can use the <i class=" ">Index data</i> field as a string parameter for any required purpose. The parameter allows you to modify the behavior of the index directly from the administration interface without having to edit the index code.</p>
+            <p><strong class=" ">Using data parameters for custom indexes</strong></p>
+<p>The <strong class=" ">SearchIndexInfo</strong> parameter of the <i class=" ">Rebuild</i> method allows you to access the data fields of the corresponding search index object. The sample code loads the content of the <strong class=" ">Index data</strong> field and uses it to define the path to the searched text files.</p>
+<p>When writing your own custom indexes, you can use the <i class=" ">Index data</i> field as a string parameter for any required purpose. The parameter allows you to modify the behavior of the index directly from the administration interface without having to edit the index code.</p>
      
     </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Updating the content of custom indexes</strong></p>
-<p   
->By default, the only way to update the content of a custom index is to rebuild the whole index (i.e. using the implementation of the <i class=" ">Rebuild</i> method). You cannot use the Kentico <a   href="monitoring-search-indexing-tasks">search indexing tasks</a> to update custom indexes.</p>
-<p   
->With additional custom development, you can update indexes by calling the <strong class=" ">Update</strong> or <strong class=" ">Delete</strong> methods of the <strong class=" ">CMS.Search.SearchHelper</strong> class. Typically, you need to update the index from custom code outside of the index class whenever the indexed content changes. However, in this case you need to ensure that the API is never called concurrently &ndash; problems can occur if multiple processes attempt to update the same index at the same time.</p>
+            <p><strong class=" ">Updating the content of custom indexes</strong></p>
+<p>By default, the only way to update the content of a custom index is to rebuild the whole index (i.e. using the implementation of the <i class=" ">Rebuild</i> method). You cannot use the Kentico <a href="monitoring-search-indexing-tasks">search indexing tasks</a> to update custom indexes.</p>
+<p>With additional custom development, you can update indexes by calling the <strong class=" ">Update</strong> or <strong class=" ">Delete</strong> methods of the <strong class=" ">CMS.Search.SearchHelper</strong> class. Typically, you need to update the index from custom code outside of the index class whenever the indexed content changes. However, in this case you need to ensure that the API is never called concurrently – problems can occur if multiple processes attempt to update the same index at the same time.</p>
      
     </div>
 </div>
     <h4 id="src-68882121_creatingcustomsmartsearchindexes-loadingapp_codeindexclasses" class="heading "><span>Loading App_Code index classes</span></h4>
-<p   
->For indexes defined in the <i class=" ">App_Code</i> folder, you need to ensure that the system loads the appropriate class when building the index. You can find additional information related to this topic in <a   href="loading-custom-classes-from-app_code">Loading custom classes from App_Code</a>.</p>
-<p   
->Add the <strong class=" ">RegisterCustomClass</strong> assembly attribute above the <i class=" ">TextFileIndex</i> class declaration (requires <i class=" ">using</i> statement for the <strong class=" ">CMS</strong> namespace).</p>
-<div  class="code panel pdl js-codePanel" >
+<p>For indexes defined in the <i class=" ">App_Code</i> folder, you need to ensure that the system loads the appropriate class when building the index. You can find additional information related to this topic in <a href="loading-custom-classes-from-app_code">Loading custom classes from App_Code</a>.</p>
+<p>Add the <strong class=" ">RegisterCustomClass</strong> assembly attribute above the <i class=" ">TextFileIndex</i> class declaration (requires <i class=" ">using</i> statement for the <strong class=" ">CMS</strong> namespace).</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8973,38 +8933,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->This attribute registers custom classes and makes them available in the system. The attribute accepts two parameters:</p>
-<ul class=" "><li class=" "><p   
->The first parameter is a string identifier representing the name of the class. The name must match the value of the <strong class=" ">Index provider class </strong>field specified for the given search index on its <strong class=" ">Indexed content</strong> tab (<i class=" ">TextFileIndex</i> in this example).</p>
-</li><li class=" "><p   
->The second parameter specifies the type of the class as a <strong class=" ">System.Type</strong> object. When the system builds the custom search index, the attribute ensures that an instance of the given class is provided.</p>
+<p>This attribute registers custom classes and makes them available in the system. The attribute accepts two parameters:</p>
+<ul class=" "><li class=" "><p>The first parameter is a string identifier representing the name of the class. The name must match the value of the <strong class=" ">Index provider class </strong>field specified for the given search index on its <strong class=" ">Indexed content</strong> tab (<i class=" ">TextFileIndex</i> in this example).</p>
+</li><li class=" "><p>The second parameter specifies the type of the class as a <strong class=" ">System.Type</strong> object. When the system builds the custom search index, the attribute ensures that an instance of the given class is provided.</p>
 </li></ul>    <h3 id="src-68882121_creatingcustomsmartsearchindexes-registeringcustomsearchindexes" class="heading "><span>Registering custom search indexes</span></h3>
-<ol class=" "><li class=" "><p   
->Log in to the Kentico administration interface and open the <strong class=" ">Smart search</strong> application.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New Index</strong>. Fill in the following properties:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Display name</strong>: Text file index</p>
-</li><li class=" "><p   
-><strong class=" ">Index type</strong>: Custom Index<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Indexed content</strong> tab and enter the names of the assembly and class where the custom index is implemented:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Assembly name</strong>: (custom classes)</p>
-</li><li class=" "><p   
-><strong class=" ">Class</strong>: TextFileIndex<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Type any required parameters into the <strong class=" ">Index data</strong> field. In this example, you need to specify the file system path of the folder containing the text files that the index will search. You can create a new folder for this purpose, e.g. <i class=" ">C:\SearchExample\</i> and add some text files into it.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Go to the <strong class=" ">General</strong> tab and <strong class=" ">Rebuild</strong> the index.</p>
+<ol class=" "><li class=" "><p>Log in to the Kentico administration interface and open the <strong class=" ">Smart search</strong> application.</p>
+</li><li class=" "><p>Click <strong class=" ">New Index</strong>. Fill in the following properties:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Display name</strong>: Text file index</p>
+</li><li class=" "><p><strong class=" ">Index type</strong>: Custom Index<br><br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Indexed content</strong> tab and enter the names of the assembly and class where the custom index is implemented:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Assembly name</strong>: (custom classes)</p>
+</li><li class=" "><p><strong class=" ">Class</strong>: TextFileIndex<br><br></p>
+</li></ul></li><li class=" "><p>Type any required parameters into the <strong class=" ">Index data</strong> field. In this example, you need to specify the file system path of the folder containing the text files that the index will search. You can create a new folder for this purpose, e.g. <i class=" ">C:\SearchExample\</i> and add some text files into it.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Go to the <strong class=" ">General</strong> tab and <strong class=" ">Rebuild</strong> the index.</p>
 </li></ol>    <h3 id="src-68882121_creatingcustomsmartsearchindexes-result" class="heading "><span>Result</span></h3>
-<p   
->The index is now fully functional. To test the index, switch to the <strong class=" ">Search preview</strong> tab and try searching for any words from the text files created in the <i class=" ">SearchExample</i> folder.</p>
+<p>The index is now fully functional. To test the index, switch to the <strong class=" ">Search preview</strong> tab and try searching for any words from the text files created in the <i class=" ">SearchExample</i> folder.</p>
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -9015,8 +8960,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9028,10 +8973,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9050,9 +8995,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9063,7 +9005,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9074,5 +9016,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

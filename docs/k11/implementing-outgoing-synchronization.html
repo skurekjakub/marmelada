@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Implementing outgoing synchronization - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882907"> <span>Implementing outgoing synchronization</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,93 +8660,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->To synchronize data from Kentico to external applications, you need to decide:</p>
-<ul class=" "><li class=" "><p   
->which <strong class=" ">objects</strong> and <strong class=" ">pages </strong>you want to synchronize</p>
-</li><li class=" "><p   
->which <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a> you want to use</p>
-</li><li class=" "><p   
->whether you want to use <a   href="integration-bus-overview#src-68882894_integrationbusoverview-synchronousprocessing">synchronous </a>or <a   href="integration-bus-overview#src-68882894_integrationbusoverview-asynchronousprocessing">asynchronous </a>processing of integration tasks</p>
-</li><li class=" "><p   
->whether you want to handle <strong class=" ">translations</strong> of foreign key bindings</p>
-</li></ul><p   
->Use this information to implement the outgoing synchronization in your <a   href="creating-integration-connectors">connector class</a>:</p>
-<ol class=" "><li class=" "><p   
->Prepare subscriptions for the Kentico objects that you want to synchronize:<br/></p>
-<ul class=" "><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-usingpredefinedsubscriptionmethods">Use predefined subscription methods</a> - allows you to easily subscribe to objects or pages<br/>OR</p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">Build subscription objects</a> - allows you to select exactly which objects are synchronized</p>
-<div  class="box-general box-tip">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>To synchronize data from Kentico to external applications, you need to decide:</p><ul class=" "><li class=" "><p>which <strong class=" ">objects</strong> and <strong class=" ">pages </strong>you want to synchronize</p>
+</li><li class=" "><p>which <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a> you want to use</p>
+</li><li class=" "><p>whether you want to use <a href="integration-bus-overview#src-68882894_integrationbusoverview-synchronousprocessing">synchronous </a>or <a href="integration-bus-overview#src-68882894_integrationbusoverview-asynchronousprocessing">asynchronous </a>processing of integration tasks</p>
+</li><li class=" "><p>whether you want to handle <strong class=" ">translations</strong> of foreign key bindings</p>
+</li></ul><p>Use this information to implement the outgoing synchronization in your <a href="creating-integration-connectors">connector class</a>:</p><ol class=" "><li class=" "><p>Prepare subscriptions for the Kentico objects that you want to synchronize:<br></p>
+<ul class=" "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-usingpredefinedsubscriptionmethods">Use predefined subscription methods</a> - allows you to easily subscribe to objects or pages<br>OR</p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">Build subscription objects</a> - allows you to select exactly which objects are synchronized</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->You can <a   href="#src-68882907_implementingoutgoingsynchronization-creatingcustomsubscriptionclasses">create your own subscription class</a> if you need to define custom options for the subscription scope.</p>
+            <p>You can <a href="#src-68882907_implementingoutgoingsynchronization-creatingcustomsubscriptionclasses">create your own subscription class</a> if you need to define custom options for the subscription scope.</p>
      
     </div>
 </div>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization">Implement the method</a> that converts objects or pages to the objects used by the external application.<br/><br/></p>
-</li><li class=" "><p   
->(Optional) Implement <a   href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects">translation of foreign key bindings</a>:<br/></p>
-<ul class=" "><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-getexternalobjectidmethod">GetExternalObjectID</a> method - if the synchronized objects or pages have bindings to objects inheriting from <i class=" ">BaseInfo</i></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-getexternaldocumentidmethod">GetExternalDocumentID</a> method - if the synchronized objects or pages have bindings to pages (<i class=" ">TreeNode</i>)</p>
-</li></ul></li></ol><p   
-><br/></p>
-    <div  class="confbox panel">
+</li></ul></li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization">Implement the method</a> that converts objects or pages to the objects used by the external application.<br><br></p>
+</li><li class=" "><p>(Optional) Implement <a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects">translation of foreign key bindings</a>:<br></p>
+<ul class=" "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-getexternalobjectidmethod">GetExternalObjectID</a> method - if the synchronized objects or pages have bindings to objects inheriting from <i class=" ">BaseInfo</i></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-getexternaldocumentidmethod">GetExternalDocumentID</a> method - if the synchronized objects or pages have bindings to pages (<i class=" ">TreeNode</i>)</p>
+</li></ul></li></ol><p><br></p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">Creating subscriptions</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-usingpredefinedsubscriptionmethods">Using predefined subscription methods</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">Building subscription objects</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-creatingcustomsubscriptionclasses">Creating custom subscription classes</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization">Implementing outgoing synchronization</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-asynchronousprocessing">Asynchronous processing</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-synchronousprocessing">Synchronous processing</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-processingchildobjectdata">Processing child object data</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-sendingdatatothetargetapplication">Sending data to the target application</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects">Translating foreign keys to match external objects</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-getexternalobjectidmethod">GetExternalObjectID method</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-getexternaldocumentidmethod">GetExternalDocumentID method</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeysinsynchronousmode">Translating foreign keys in synchronous mode</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">Creating subscriptions</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-usingpredefinedsubscriptionmethods">Using predefined subscription methods</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">Building subscription objects</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-creatingcustomsubscriptionclasses">Creating custom subscription classes</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization">Implementing outgoing synchronization</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-asynchronousprocessing">Asynchronous processing</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-synchronousprocessing">Synchronous processing</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-processingchildobjectdata">Processing child object data</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-sendingdatatothetargetapplication">Sending data to the target application</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects">Translating foreign keys to match external objects</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-getexternalobjectidmethod">GetExternalObjectID method</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-getexternaldocumentidmethod">GetExternalDocumentID method</a></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeysinsynchronousmode">Translating foreign keys in synchronous mode</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="integration-bus-overview#src-68882894_integrationbusoverview-outgoingtasks-fromkenticocmstoexternalapplications">Integration bus overview - Outgoing tasks</a></p>
-</li><li class=" "><p   
-><a   href="reference---integration-bus-data-types">Reference - Integration bus data types</a></p>
+<ul class=" "><li class=" "><p><a href="integration-bus-overview#src-68882894_integrationbusoverview-outgoingtasks-fromkenticocmstoexternalapplications">Integration bus overview - Outgoing tasks</a></p>
+</li><li class=" "><p><a href="reference---integration-bus-data-types">Reference - Integration bus data types</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+    
     <h3 id="src-68882907_implementingoutgoingsynchronization-creatingsubscriptions" class="heading "><span>Creating subscriptions</span></h3>
-<p  class="MsoNormal" 
->Subscriptions keep track of actions that occur in Kentico, such as creating, updating or deleting objects and pages. Use subscriptions to determine the scope of the changes that the connector synchronizes.</p>
-<p  class="MsoNormal" 
->You need to implement subscriptions inside the <strong class=" ">Init()</strong> method of your <a   href="creating-integration-connectors">connector class</a>:</p>
-<div  class="code panel pdl js-codePanel" >
+<p class="MsoNormal">Subscriptions keep track of actions that occur in Kentico, such as creating, updating or deleting objects and pages. Use subscriptions to determine the scope of the changes that the connector synchronizes.</p>
+<p class="MsoNormal">You need to implement subscriptions inside the <strong class=" ">Init()</strong> method of your <a href="creating-integration-connectors">connector class</a>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8770,14 +8733,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SynchronizationEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Synchronization;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSIntegrationConnector : BaseIntegrationConnector</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Init()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Initializes the connector name</code></div>
 <div class="line"><code class="plain">		ConnectorName = GetType().Name;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Register your subscriptions here</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -8786,21 +8749,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h4 id="src-68882907_implementingoutgoingsynchronization-usingpredefinedsubscriptionmethods" class="heading "><span>Using predefined subscription methods</span></h4>
-<p   
->You can subscribe to pages or objects by calling the following methods:</p>
-<ul class=" "><li class=" "><p   
->SubscribeToAllDocuments</p>
-</li><li class=" "><p   
->SubscribeToDocuments</p>
-</li><li class=" "><p   
->SubscribeToAllObjects</p>
-</li><li class=" "><p   
->SubscribeToObjects</p>
-</li></ul><p   
->See <a   href="reference---integration-bus-data-types">Reference - Integration bus data types</a> for information about the method parameters.</p>
-<p   
-><strong class=" ">Examples</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>You can subscribe to pages or objects by calling the following methods:</p>
+<ul class=" "><li class=" "><p>SubscribeToAllDocuments</p>
+</li><li class=" "><p>SubscribeToDocuments</p>
+</li><li class=" "><p>SubscribeToAllObjects</p>
+</li><li class=" "><p>SubscribeToObjects</p>
+</li></ul><p>See <a href="reference---integration-bus-data-types">Reference - Integration bus data types</a> for information about the method parameters.</p>
+<p><strong class=" ">Examples</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8824,7 +8780,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8849,80 +8805,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h4 id="src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects" class="heading "><span>Building subscription objects</span></h4>
-<p  class="MsoNormal" 
->You can select exactly which objects are synchronized using subscription objects:</p>
-<ol class=" "><li class="MsoNormal "><p   
->Create a new object of a subscription class.</p>
-</li><li class="MsoNormal "><p   
->Call the <strong class=" ">SubscribeTo</strong> method for the object.</p>
-</li></ol><p  class="MsoNormal" 
->Subscription classes inherit from <i class=" ">AbstractIntegrationSubscription</i>, and you can use the following predefined options:</p>
-<ul class=" "><li class="MsoNormal "><p   
->BaseIntegrationSubscription</p>
-</li><li class="MsoNormal "><p   
->ObjectIntegrationSubscription</p>
-</li><li class="MsoNormal "><p   
->DocumentIntegrationSubscription</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882907/image2013-9-10-7_34_29.png" 
-        alt="The inheritance hierarchy of subscription classes"        
-        width="500"         />
+<p class="MsoNormal">You can select exactly which objects are synchronized using subscription objects:</p>
+<ol class=" "><li class="MsoNormal "><p>Create a new object of a subscription class.</p>
+</li><li class="MsoNormal "><p>Call the <strong class=" ">SubscribeTo</strong> method for the object.</p>
+</li></ol><p class="MsoNormal">Subscription classes inherit from <i class=" ">AbstractIntegrationSubscription</i>, and you can use the following predefined options:</p>
+<ul class=" "><li class="MsoNormal "><p>BaseIntegrationSubscription</p>
+</li><li class="MsoNormal "><p>ObjectIntegrationSubscription</p>
+</li><li class="MsoNormal "><p>DocumentIntegrationSubscription</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882907/image2013-9-10-7_34_29.png" alt="The inheritance hierarchy of subscription classes" width="500">
 </p>
-<p  class="MsoNormal" 
->The subscription classes provide the following <strong class=" ">filtering options</strong>:</p>
-<p   
-><strong class=" ">BaseIntegrationSubscription</strong></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ConnectorName</strong> - string; assigns the subscription to a connector. Use the <i class=" ">ConnectorName</i> property to enter the name of the current connector.</p>
-</li><li class=" "><p   
-><strong class=" ">TaskProcessType</strong> - enumeration; specifies the synchronization mode and data type. See <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskprocesstypeenum">TaskProcessTypeEnum</a> for details.</p>
-</li><li class=" "><p   
-><strong class=" ">TaskType</strong> - enumeration; determines the type of the synchronized action (create, update, delete, etc.). See <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-tasktypeenum">TaskTypeEnum</a> for details.</p>
-</li><li class=" "><p   
-><strong class=" ">SiteName</strong> - string; determines the code name of the site where the objects or pages belong. You can use <i class=" ">AbstractIntegrationSubscription.GLOBAL_OBJECTS</i> to subscribe only to global objects.</p>
-</li></ul><p   
-><strong class=" ">ObjectIntegrationSubscription</strong></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ObjectType</strong> - string; determines the type of the synchronized object. You can either use the object type value directly (for example <i class=" ">cms.user</i>) or system constants (<i class=" ">UserInfo.OBJECT_TYPE</i>).</p>
-<div  class="box-general box-tip">
+<p class="MsoNormal">The subscription classes provide the following <strong class=" ">filtering options</strong>:</p>
+<p><strong class=" ">BaseIntegrationSubscription</strong></p>
+<ul class=" "><li class=" "><p><strong class=" ">ConnectorName</strong> - string; assigns the subscription to a connector. Use the <i class=" ">ConnectorName</i> property to enter the name of the current connector.</p>
+</li><li class=" "><p><strong class=" ">TaskProcessType</strong> - enumeration; specifies the synchronization mode and data type. See <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskprocesstypeenum">TaskProcessTypeEnum</a> for details.</p>
+</li><li class=" "><p><strong class=" ">TaskType</strong> - enumeration; determines the type of the synchronized action (create, update, delete, etc.). See <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-tasktypeenum">TaskTypeEnum</a> for details.</p>
+</li><li class=" "><p><strong class=" ">SiteName</strong> - string; determines the code name of the site where the objects or pages belong. You can use <i class=" ">AbstractIntegrationSubscription.GLOBAL_OBJECTS</i> to subscribe only to global objects.</p>
+</li></ul><p><strong class=" ">ObjectIntegrationSubscription</strong></p>
+<ul class=" "><li class=" "><p><strong class=" ">ObjectType</strong> - string; determines the type of the synchronized object. You can either use the object type value directly (for example <i class=" ">cms.user</i>) or system constants (<i class=" ">UserInfo.OBJECT_TYPE</i>).</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Tip</strong>: To find object type values, open the <strong class=" ">System</strong> application in the Kentico administration interface and select the <strong class=" ">Object types</strong> tab.</p>
+            <p><strong class=" ">Tip</strong>: To find object type values, open the <strong class=" ">System</strong> application in the Kentico administration interface and select the <strong class=" ">Object types</strong> tab.</p>
      
     </div>
 </div>
-</li><li class=" "><p   
-><strong class=" ">ObjectCodeName</strong> - string; determines the code name of one specific object, for example: <i class=" ">administrator</i></p>
-</li></ul><p   
-><strong class=" ">DocumentIntegrationSubscription</strong></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">DocumentNodeAliasPath</strong> - string; determines the alias path of the synchronized pages, for example: <i class=" ">/Products/%</i></p>
-</li><li class=" "><p   
-><strong class=" ">DocumentCultureCode</strong> - string; determines the culture of the synchronized pages, for example: <i class=" ">en-US</i></p>
-</li><li class=" "><p   
-><strong class=" ">DocumentClassName</strong> - string; determines the <a   href="page-types">page type</a> of the synchronized pages, for example: <i class=" ">CMS.MenuItem</i></p>
-</li></ul><div  class="box-general box-info">
+</li><li class=" "><p><strong class=" ">ObjectCodeName</strong> - string; determines the code name of one specific object, for example: <i class=" ">administrator</i></p>
+</li></ul><p><strong class=" ">DocumentIntegrationSubscription</strong></p>
+<ul class=" "><li class=" "><p><strong class=" ">DocumentNodeAliasPath</strong> - string; determines the alias path of the synchronized pages, for example: <i class=" ">/Products/%</i></p>
+</li><li class=" "><p><strong class=" ">DocumentCultureCode</strong> - string; determines the culture of the synchronized pages, for example: <i class=" ">en-US</i></p>
+</li><li class=" "><p><strong class=" ">DocumentClassName</strong> - string; determines the <a href="page-types">page type</a> of the synchronized pages, for example: <i class=" ">CMS.MenuItem</i></p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Wildcard character </strong><strong class=" ">%</strong></p>
-<p   
->You can use the percent character (%) as a wildcard representing any number of characters in the string parameter values.</p>
-<p   
->For example, if you specify the <i class=" ">DocumentCultureCode</i> as &quot;en-%&quot;, the subscription covers all English cultures: <i class=" ">en-US</i>, <i class=" ">en-GB</i>, etc.</p>
+            <p><strong class=" ">Wildcard character </strong><strong class=" ">%</strong></p>
+<p>You can use the percent character (%) as a wildcard representing any number of characters in the string parameter values.</p>
+<p>For example, if you specify the <i class=" ">DocumentCultureCode</i> as "en-%", the subscription covers all English cultures: <i class=" ">en-US</i>, <i class=" ">en-GB</i>, etc.</p>
      
     </div>
 </div>
-<p  class="MsoNormal" 
->If you do not want to limit the synchronization scope through one of the properties, set the given value to <i class=" "><strong class=" ">null</strong></i> in the subscription object&#39;s constructor. For the <i class=" ">TaskType</i> enumeration, set the <i class=" "><strong class=" ">All</strong></i> value.</p>
-<p  class="MsoNormal" 
-><strong class=" ">Examples</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+<p class="MsoNormal">If you do not want to limit the synchronization scope through one of the properties, set the given value to <i class=" "><strong class=" ">null</strong></i> in the subscription object's constructor. For the <i class=" ">TaskType</i> enumeration, set the <i class=" "><strong class=" ">All</strong></i> value.</p>
+<p class="MsoNormal"><strong class=" ">Examples</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8943,7 +8868,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="comments">// Subscription that synchronizes the creation of object types starting with 'poll.poll' - polls and poll answers</code></div>
 <div class="line"><code class="plain">ObjectIntegrationSubscription objSub = </code><code class="keyword">new</code><code class="plain"> ObjectIntegrationSubscription(ConnectorName, TaskProcessTypeEnum.AsyncSnapshot, TaskTypeEnum.CreateObject, </code><code class="string">"DancingGoat"</code><code class="plain">, </code><code class="string">"poll.poll%"</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">SubscribeTo(objSub);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Subscription that synchronizes all changes made to pages on 'NewSite', located under the /Home/ path in the content tree</code></div>
 <div class="line"><code class="plain">DocumentIntegrationSubscription pageSub = </code><code class="keyword">new</code><code class="plain"> DocumentIntegrationSubscription(ConnectorName, TaskProcessTypeEnum.AsyncSimpleSnapshot, TaskTypeEnum.All, </code><code class="string">"NewSite"</code><code class="plain">, </code><code class="string">"/Home/%"</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">SubscribeTo(pageSub);</code></div>
@@ -8951,7 +8876,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8972,7 +8897,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="comments">// Subscribes to all changes made to the SETTINGS of a specific custom table, where 'customtable.SampleTable' is the table's code name</code></div>
 <div class="line"><code class="plain">ObjectIntegrationSubscription customTableSub = </code><code class="keyword">new</code><code class="plain"> ObjectIntegrationSubscription(ConnectorName, TaskProcessTypeEnum.AsyncSimpleSnapshot, TaskTypeEnum.All, </code><code class="keyword">null</code><code class="plain">, </code><code class="keyword">null</code><code class="plain">, </code><code class="string">"customtable.SampleTable"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">SubscribeTo(customTableSub);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Subscribes to all changes made to the DATA of the 'customtable.SampleTable' custom table</code></div>
 <div class="line"><code class="plain">ObjectIntegrationSubscription customTableDataSub = </code><code class="keyword">new</code><code class="plain"> ObjectIntegrationSubscription(ConnectorName, TaskProcessTypeEnum.AsyncSimpleSnapshot, TaskTypeEnum.All, </code><code class="keyword">null</code><code class="plain">, CustomTableItemProvider.GetObjectType(</code><code class="string">"customtable.SampleTable"</code><code class="plain">), </code><code class="keyword">null</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">SubscribeTo(customTableDataSub);</code></div>
@@ -8981,19 +8906,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h4 id="src-68882907_implementingoutgoingsynchronization-creatingcustomsubscriptionclasses" class="heading "><span>Creating custom subscription classes</span></h4>
-<p   
->If you need to extend the filtering options of a connector&#39;s subscriptions, you can create your own subscription class:</p>
-<ol class=" "><li class=" "><p   
->Create a new class inheriting from one of the existing <a   href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">subscription classes</a>.</p>
-<ul class=" "><li class=" "><p   
->If you wish to create a completely custom subscription class, we recommend inheriting from <strong class=" ">AbstractIntegrationSubscription</strong>.</p>
-</li><li class=" "><p   
->If you only wish to add custom filtering for objects or pages, inherit from <strong class=" ">ObjectIntegrationSubscription</strong> or <strong class=" ">DocumentIntegrationSubscription</strong>.<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Define any properties and constructors that you need for the custom logic of your subscription class.</p>
-</li><li class=" "><p   
->Override the <strong class=" ">IsMatch()</strong> method:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>If you need to extend the filtering options of a connector's subscriptions, you can create your own subscription class:</p>
+<ol class=" "><li class=" "><p>Create a new class inheriting from one of the existing <a href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">subscription classes</a>.</p>
+<ul class=" "><li class=" "><p>If you wish to create a completely custom subscription class, we recommend inheriting from <strong class=" ">AbstractIntegrationSubscription</strong>.</p>
+</li><li class=" "><p>If you only wish to add custom filtering for objects or pages, inherit from <strong class=" ">ObjectIntegrationSubscription</strong> or <strong class=" ">DocumentIntegrationSubscription</strong>.<br><br></p>
+</li></ul></li><li class=" "><p>Define any properties and constructors that you need for the custom logic of your subscription class.</p>
+</li><li class=" "><p>Override the <strong class=" ">IsMatch()</strong> method:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9017,7 +8936,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="comments">	* we recommend calling the IsMatch method of the parent class first:</code></div>
 <div class="line"><code class="comments">	* bool result = base.IsMatch(obj, taskType, taskProcessType)</code></div>
 <div class="line"><code class="comments">	* You can then use additional custom logic to modify the result. */</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/* Evaluate whether the subscription's properties match the properties of the 'obj' parameter (TreeNode page or BaseInfo object)</code></div>
 <div class="line"><code class="comments">	* and the value of 'taskType'.</code></div>
 <div class="line"><code class="comments">	* Return a boolean value that indicates when objects match the subscription requirements. */</code></div>
@@ -9026,22 +8945,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li></ol><p   
->You can then use the custom subscription class to <a   href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">build subscription objects</a>.</p>
+</li></ol><p>You can then use the custom subscription class to <a href="#src-68882907_implementingoutgoingsynchronization-buildingsubscriptionobjects">build subscription objects</a>.</p>
     <h3 id="src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization" class="heading "><span>Implementing outgoing synchronization</span></h3>
-<p   
->To synchronize the objects covered by your <a   href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">subscriptions</a> to external applications, you need to override methods inside your <a   href="creating-integration-connectors">connector class</a>:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ProcessInternalTaskAsync</strong> for <a   href="integration-bus-overview#src-68882894_integrationbusoverview-asynchronousprocessing">asynchronous processing</a> of integration tasks</p>
-</li><li class=" "><p   
-><strong class=" ">ProcessInternalTaskSync</strong> for <a   href="integration-bus-overview#src-68882894_integrationbusoverview-synchronousprocessing">synchronous processing</a></p>
-</li></ul><div  class="box-general box-info">
+<p>To synchronize the objects covered by your <a href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">subscriptions</a> to external applications, you need to override methods inside your <a href="creating-integration-connectors">connector class</a>:</p>
+<ul class=" "><li class=" "><p><strong class=" ">ProcessInternalTaskAsync</strong> for <a href="integration-bus-overview#src-68882894_integrationbusoverview-asynchronousprocessing">asynchronous processing</a> of integration tasks</p>
+</li><li class=" "><p><strong class=" ">ProcessInternalTaskSync</strong> for <a href="integration-bus-overview#src-68882894_integrationbusoverview-synchronousprocessing">synchronous processing</a></p>
+</li></ul><div class="box-general box-info">
   
             <div class="box-content-noicon">
                     <h4 id="src-68882907_implementingoutgoingsynchronization-asynchronousprocessing" class="heading "><span>Asynchronous processing</span></h4>
-<p   
->The <strong class=" ">ProcessInternalTaskAsync</strong> method ensures asynchronous processing of <strong class=" ">objects</strong> (users, roles, forums, etc.) or <strong class=" ">pages </strong>(content tree nodes):</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The <strong class=" ">ProcessInternalTaskAsync</strong> method ensures asynchronous processing of <strong class=" ">objects</strong> (users, roles, forums, etc.) or <strong class=" ">pages </strong>(content tree nodes):</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Objects</strong>    </div>
@@ -9064,7 +8978,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Pages</strong>    </div>
@@ -9090,13 +9004,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      
     </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
                     <h4 id="src-68882907_implementingoutgoingsynchronization-synchronousprocessing" class="heading "><span>Synchronous processing</span></h4>
-<p   
->The <strong class=" ">ProcessInternalTaskSync</strong> method ensures synchronous processing of <strong class=" ">objects</strong> (users, roles, forums, etc.) or <strong class=" ">pages </strong>(content tree nodes):</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The <strong class=" ">ProcessInternalTaskSync</strong> method ensures synchronous processing of <strong class=" ">objects</strong> (users, roles, forums, etc.) or <strong class=" ">pages </strong>(content tree nodes):</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Objects</strong>    </div>
@@ -9119,7 +9032,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Pages</strong>    </div>
@@ -9145,11 +9058,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      
     </div>
 </div>
-<p   
->In all cases, the purpose of the method is to transform the <i class=" ">GeneralizedInfo</i> or <i class=" ">TreeNode</i> internal object into a corresponding object in the third party system, and perform the action specified by <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-tasktypeenum">TaskTypeEnum</a>. You also have to take the <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">TaskDataTypeEnum</a> into account. When you are done with the processing, set the error message and return an <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-integrationprocessresultenum">IntegrationProcessResultEnum </a>value.</p>
-<p   
->For example:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>In all cases, the purpose of the method is to transform the <i class=" ">GeneralizedInfo</i> or <i class=" ">TreeNode</i> internal object into a corresponding object in the third party system, and perform the action specified by <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-tasktypeenum">TaskTypeEnum</a>. You also have to take the <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">TaskDataTypeEnum</a> into account. When you are done with the processing, set the error message and return an <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-integrationprocessresultenum">IntegrationProcessResultEnum </a>value.</p>
+<p>For example:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9169,13 +9080,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> IntegrationProcessResultEnum ProcessInternalTaskAsync(TreeNode node, TranslationHelper translations, TaskTypeEnum taskType, TaskDataTypeEnum dataType, </code><code class="keyword">string</code><code class="plain"> siteName, </code><code class="keyword">out</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> errorMessage)</code></div>
 <div class="line"><code class="plain">{</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Convert the TreeNode to an external page object</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Optional: Translate foreign key values</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Send the data to the target application</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Method result for successful processing</code></div>
 <div class="line"><code class="plain">	errorMessage = </code><code class="keyword">null</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> IntegrationProcessResultEnum.OK;</code></div>
@@ -9184,14 +9095,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The synchronous and asynchronous versions of the methods work in the same way. The only difference is that you cannot use the <i class=" ">TranslateColumnsToExternal</i> method to <a   href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects">translate foreign key values</a> inside the <i class=" ">ProcessInternalTaskSync</i> method. If you wish to translate foreign keys with synchronous processing, you need to manually <a   href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeysinsynchronousmode">write the translation code</a>.</p>
+<p>The synchronous and asynchronous versions of the methods work in the same way. The only difference is that you cannot use the <i class=" ">TranslateColumnsToExternal</i> method to <a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects">translate foreign key values</a> inside the <i class=" ">ProcessInternalTaskSync</i> method. If you wish to translate foreign keys with synchronous processing, you need to manually <a href="#src-68882907_implementingoutgoingsynchronization-translatingforeignkeysinsynchronousmode">write the translation code</a>.</p>
     <h4 id="src-68882907_implementingoutgoingsynchronization-processingchildobjectdata" class="heading "><span>Processing child object data</span></h4>
-<p   
->When using asynchronous processing for tasks with the <strong class=" ">Snapshot</strong> <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a>, the task data includes both the main object and any child objects. Within the <strong class=" ">ProcessInternalTaskAsync</strong> method, you can access collections of child objects via the <strong class=" ">Children</strong> property of the <strong class=" ">GeneralizedInfo</strong> parameter.</p>
-<p   
->The following example demonstrates how to correctly get the main object and its child objects within the <i class=" ">ProcessInternalTaskAsync</i> method (the example processes <a   href="orders">Order</a> objects and child items within the order).</p>
-<div  class="code panel pdl js-codePanel" >
+<p>When using asynchronous processing for tasks with the <strong class=" ">Snapshot</strong> <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a>, the task data includes both the main object and any child objects. Within the <strong class=" ">ProcessInternalTaskAsync</strong> method, you can access collections of child objects via the <strong class=" ">Children</strong> property of the <strong class=" ">GeneralizedInfo</strong> parameter.</p>
+<p>The following example demonstrates how to correctly get the main object and its child objects within the <i class=" ">ProcessInternalTaskAsync</i> method (the example processes <a href="orders">Order</a> objects and child items within the order).</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9211,12 +9119,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Collections.Generic;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Synchronization;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SynchronizationEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> IntegrationProcessResultEnum ProcessInternalTaskAsync(GeneralizedInfo infoObj, TranslationHelper translations,</code></div>
 <div class="line"><code class="plain">        TaskTypeEnum taskType, TaskDataTypeEnum dataType, </code><code class="keyword">string</code><code class="plain"> siteName, </code><code class="keyword">out</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> errorMessage)</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -9225,19 +9133,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets the parent order object</code></div>
 <div class="line"><code class="plain">		OrderInfo order = infoObj.MainObject </code><code class="keyword">as</code><code class="plain"> OrderInfo;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets a List of the order's OrderItemInfo child objects</code></div>
 <div class="line"><code class="plain">		List&lt;OrderItemInfo&gt; orderItems = order.Children</code></div>
 <div class="line"><code class="plain">												.FirstOrDefault(child =&gt; child.ObjectType == OrderItemInfo.OBJECT_TYPE)?</code></div>
 <div class="line"><code class="plain">												.Cast&lt;OrderItemInfo&gt;()</code></div>
 <div class="line"><code class="plain">												.ToList();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Convert the data to external objects</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// ...</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Send the data to the target application</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Method result for successful processing</code></div>
 <div class="line"><code class="plain">	errorMessage = </code><code class="keyword">null</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> IntegrationProcessResultEnum.OK;</code></div>
@@ -9247,22 +9155,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h4 id="src-68882907_implementingoutgoingsynchronization-sendingdatatothetargetapplication" class="heading "><span>Sending data to the target application</span></h4>
-<p   
->Once you have converted the object or page to an external equivalent, there are several ways to synchronize the data with the target system:</p>
-<ul class=" "><li class=" "><p   
->Call the API of the external system (you need to add references to the required namespaces).</p>
-</li><li class=" "><p   
->Use <i class=" ">CMSConnectionScope</i> and <i class=" ">GeneralConnection</i> and perform a query against the external database.</p>
-</li><li class=" "><p   
->Push the data to an external endpoint in a format that the target system can process. For example, the endpoint can be represented by a web service in the external system.</p>
-</li></ul><p   
->You can use any other approach, but you always need to be able to determine whether the processing succeeded on the external side. Both the <i class=" ">ProcessInternalTaskAsync</i> and <i class=" ">ProcessInternalTaskSync</i> methods must return the <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-integrationprocessresultenum">result status</a>.</p>
+<p>Once you have converted the object or page to an external equivalent, there are several ways to synchronize the data with the target system:</p>
+<ul class=" "><li class=" "><p>Call the API of the external system (you need to add references to the required namespaces).</p>
+</li><li class=" "><p>Use <i class=" ">CMSConnectionScope</i> and <i class=" ">GeneralConnection</i> and perform a query against the external database.</p>
+</li><li class=" "><p>Push the data to an external endpoint in a format that the target system can process. For example, the endpoint can be represented by a web service in the external system.</p>
+</li></ul><p>You can use any other approach, but you always need to be able to determine whether the processing succeeded on the external side. Both the <i class=" ">ProcessInternalTaskAsync</i> and <i class=" ">ProcessInternalTaskSync</i> methods must return the <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-integrationprocessresultenum">result status</a>.</p>
     <h3 id="src-68882907_implementingoutgoingsynchronization-translatingforeignkeystomatchexternalobjects" class="heading "><span>Translating foreign keys to match external objects</span></h3>
-<p   
->The values of identifier columns may not always be the same for equivalent objects in Kentico and external systems. For <a   href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">subscriptions</a> using the <i class=" ">SimpleSnapshot</i> or <i class=" ">Snapshot</i> <a   href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a> and asynchronous processing, you can ensure consistency by translating the columns that store foreign key bindings to related objects.</p>
-<p   
->To perform the translation, call <strong class=" ">TranslateColumnsToExternal</strong> inside your connector&#39;s <a   href="#src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization">ProcessInternalTaskAsync</a> method. The TranslateColumnsToExternal method is inherited from <i class=" ">BaseIntegrationConnector</i> and accepts the following parameters:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The values of identifier columns may not always be the same for equivalent objects in Kentico and external systems. For <a href="#src-68882907_implementingoutgoingsynchronization-creatingsubscriptions">subscriptions</a> using the <i class=" ">SimpleSnapshot</i> or <i class=" ">Snapshot</i> <a href="reference---integration-bus-data-types#src-68882893_referenceintegrationbusdatatypes-taskdatatypeenum">data type</a> and asynchronous processing, you can ensure consistency by translating the columns that store foreign key bindings to related objects.</p>
+<p>To perform the translation, call <strong class=" ">TranslateColumnsToExternal</strong> inside your connector's <a href="#src-68882907_implementingoutgoingsynchronization-implementingoutgoingsynchronization">ProcessInternalTaskAsync</a> method. The TranslateColumnsToExternal method is inherited from <i class=" ">BaseIntegrationConnector</i> and accepts the following parameters:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Objects</strong>    </div>
@@ -9285,7 +9186,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Pages</strong>    </div>
@@ -9308,33 +9209,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The last parameter determines whether to translate foreign keys of child objects. For the <i class=" ">SimpleSnapshot</i> data type, always pass <i class=" ">false</i>. The processChildren parameter is useful when using the <i class=" ">Snapshot</i> data type, for example when you are processing an object that does not exist in the target system yet, and you do not have enough information to translate the foreign keys of child objects before you process the main object. We recommend using the following translation order:</p>
-<ol class=" "><li class=" "><p   
->Call <i class=" ">TranslateColumnsToExternal(infoObj, translations, <strong class=" ">false</strong>)</i>.</p>
-</li><li class=" "><p   
->Process the main object (send the data to the target system).</p>
-</li><li class=" "><p   
->Call <i class=" ">TranslateColumnsToExternal(infoObj, translations, <strong class=" ">true</strong>)</i>.</p>
-</li><li class=" "><p   
->Iterate through the <strong class=" ">Children</strong> collection of <i class=" ">infoObj</i> and process each object.</p>
-</li></ol><p   
->To ensure correct translation functionality, you need to override one or both of the following methods inside your <a   href="creating-integration-connectors">connector class</a>:</p>
-<ul class=" "><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-getexternalobjectidmethod">GetExternalObjectID</a> - implement if the synchronized objects or pages have bindings to objects inheriting from <i class=" ">BaseInfo</i></p>
-</li><li class=" "><p   
-><a   href="#src-68882907_implementingoutgoingsynchronization-getexternaldocumentidmethod">GetExternalDocumentID</a> - implement if the synchronized objects or pages have bindings to pages (<i class=" ">TreeNode</i>)</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882907/image2013-9-5-16_41_19.png" 
-        alt="Diagram of the column translation process"        
-        width="683"        height="475" />
+<p>The last parameter determines whether to translate foreign keys of child objects. For the <i class=" ">SimpleSnapshot</i> data type, always pass <i class=" ">false</i>. The processChildren parameter is useful when using the <i class=" ">Snapshot</i> data type, for example when you are processing an object that does not exist in the target system yet, and you do not have enough information to translate the foreign keys of child objects before you process the main object. We recommend using the following translation order:</p>
+<ol class=" "><li class=" "><p>Call <i class=" ">TranslateColumnsToExternal(infoObj, translations, <strong class=" ">false</strong>)</i>.</p>
+</li><li class=" "><p>Process the main object (send the data to the target system).</p>
+</li><li class=" "><p>Call <i class=" ">TranslateColumnsToExternal(infoObj, translations, <strong class=" ">true</strong>)</i>.</p>
+</li><li class=" "><p>Iterate through the <strong class=" ">Children</strong> collection of <i class=" ">infoObj</i> and process each object.</p>
+</li></ol><p>To ensure correct translation functionality, you need to override one or both of the following methods inside your <a href="creating-integration-connectors">connector class</a>:</p>
+<ul class=" "><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-getexternalobjectidmethod">GetExternalObjectID</a> - implement if the synchronized objects or pages have bindings to objects inheriting from <i class=" ">BaseInfo</i></p>
+</li><li class=" "><p><a href="#src-68882907_implementingoutgoingsynchronization-getexternaldocumentidmethod">GetExternalDocumentID</a> - implement if the synchronized objects or pages have bindings to pages (<i class=" ">TreeNode</i>)</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882907/image2013-9-5-16_41_19.png" alt="Diagram of the column translation process" width="683" height="475">
 </p>
     <h4 id="src-68882907_implementingoutgoingsynchronization-getexternalobjectidmethod" class="heading "><span>GetExternalObjectID method</span></h4>
-<p   
->Override the GetExternalObjectID method inside your connector class if you call <i class=" ">TranslateColumnsToExternal</i> for objects or pages that have references to other objects inheriting from <i class=" ">BaseInfo</i>.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>Override the GetExternalObjectID method inside your connector class if you call <i class=" ">TranslateColumnsToExternal</i> for objects or pages that have references to other objects inheriting from <i class=" ">BaseInfo</i>.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9357,26 +9244,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->Parameters:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">objectType</strong> - identifies the type of the synchronized internal object (class). For example, <i class=" ">cms.user</i> can match external objects such as &quot;person&quot; or &quot;member&quot;.</p>
-</li><li class=" "><p   
-><strong class=" ">codename</strong> - the unique identifier of the synchronized object.</p>
-</li></ul><ul class=" "><li class=" "><p   
-><strong class=" ">siteName</strong> - the code name of the site where the object belongs (only for site-related objects).</p>
-</li><li class=" "><p   
-><strong class=" ">parentType</strong> - the type of the object&#39;s parent (if the object has a parent).</p>
-</li><li class=" "><p   
-><strong class=" ">parentId</strong> - the ID of the object&#39;s parent.</p>
-</li><li class=" "><p   
-><strong class=" ">groupId</strong> - the identifier of the object&#39;s group (if the object belongs to a group).</p>
-</li></ul><p   
->Use the parameters to find the corresponding object in the external system and <strong class=" ">return the given object&#39;s identifier</strong> (integer value).</p>
+<p>Parameters:</p>
+<ul class=" "><li class=" "><p><strong class=" ">objectType</strong> - identifies the type of the synchronized internal object (class). For example, <i class=" ">cms.user</i> can match external objects such as "person" or "member".</p>
+</li><li class=" "><p><strong class=" ">codename</strong> - the unique identifier of the synchronized object.</p>
+</li></ul><ul class=" "><li class=" "><p><strong class=" ">siteName</strong> - the code name of the site where the object belongs (only for site-related objects).</p>
+</li><li class=" "><p><strong class=" ">parentType</strong> - the type of the object's parent (if the object has a parent).</p>
+</li><li class=" "><p><strong class=" ">parentId</strong> - the ID of the object's parent.</p>
+</li><li class=" "><p><strong class=" ">groupId</strong> - the identifier of the object's group (if the object belongs to a group).</p>
+</li></ul><p>Use the parameters to find the corresponding object in the external system and <strong class=" ">return the given object's identifier</strong> (integer value).</p>
     <h4 id="src-68882907_implementingoutgoingsynchronization-getexternaldocumentidmethod" class="heading "><span>GetExternalDocumentID method</span></h4>
-<p   
->Override the GetExternalDocumentID method inside your connector class if you call <i class=" ">TranslateColumnsToExternal</i> for objects or pages that have references to other pages (<i class=" ">TreeNode</i>).</p>
-<div  class="code panel pdl js-codePanel" >
+<p>Override the GetExternalDocumentID method inside your connector class if you call <i class=" ">TranslateColumnsToExternal</i> for objects or pages that have references to other pages (<i class=" ">TreeNode</i>).</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9399,79 +9277,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->Parameters:</p>
-<div  class="box-general box-info">
+<p>Parameters:</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->To learn how Kentico stores pages in the database, refer to <a   href="page-database-structure">Page database structure</a>.</p>
+            <p>To learn how Kentico stores pages in the database, refer to <a href="page-database-structure">Page database structure</a>.</p>
      
     </div>
 </div>
-<ul class=" "><li class=" "><p   
-><strong class=" ">nodeGuid</strong> - the page&#39;s <a  class="external-link" href="http://en.wikipedia.org/wiki/GUID">GUID</a> identifier.</p>
-</li><li class=" "><p   
-><strong class=" ">cultureCode</strong> - the culture code of the page&#39;s language (for example <i class=" ">en-US</i>).</p>
-</li><li class=" "><p   
-><strong class=" ">siteName</strong> - the code name of the site where the page belongs.</p>
-</li><li class=" "><p   
-><strong class=" ">returnDocumentId</strong> - indicates which identifier you need to provide as the method&#39;s return value. If true, return the <i class=" ">DocumentID</i>, otherwise return the <i class=" ">NodeID</i>. The <i class=" ">NodeID</i> is an identifier of a tree node including all <a   href="editing-the-content-of-multilingual-websites">language versions</a>, while <i class=" ">DocumentID</i> is unique for each language version.</p>
-    <div  class="tablewrap">
+<ul class=" "><li class=" "><p><strong class=" ">nodeGuid</strong> - the page's <a class="external-link" href="http://en.wikipedia.org/wiki/GUID">GUID</a> identifier.</p>
+</li><li class=" "><p><strong class=" ">cultureCode</strong> - the culture code of the page's language (for example <i class=" ">en-US</i>).</p>
+</li><li class=" "><p><strong class=" ">siteName</strong> - the code name of the site where the page belongs.</p>
+</li><li class=" "><p><strong class=" ">returnDocumentId</strong> - indicates which identifier you need to provide as the method's return value. If true, return the <i class=" ">DocumentID</i>, otherwise return the <i class=" ">NodeID</i>. The <i class=" ">NodeID</i> is an identifier of a tree node including all <a href="editing-the-content-of-multilingual-websites">language versions</a>, while <i class=" ">DocumentID</i> is unique for each language version.</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
-><br/></p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p><br></p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Identifier</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Identifier</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Alternative identification</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Alternative identification</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Shared page data</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Shared page data</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->NodeID</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>NodeID</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->nodeGuid &amp; siteName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>nodeGuid &amp; siteName</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Culture version of a page</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Culture version of a page</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->DocumentID</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DocumentID</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->nodeGuide &amp; siteName &amp; cultureCode</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>nodeGuide &amp; siteName &amp; cultureCode</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-</li></ul><p   
->Use the parameters to find the corresponding page in the external system and <strong class=" ">return the given page&#39;s identifier</strong> (integer value).</p>
+</li></ul><p>Use the parameters to find the corresponding page in the external system and <strong class=" ">return the given page's identifier</strong> (integer value).</p>
     <h4 id="src-68882907_implementingoutgoingsynchronization-translatingforeignkeysinsynchronousmode" class="heading "><span>Translating foreign keys in synchronous mode</span></h4>
-<p   
->If you need to translate ID column values to match external objects, we recommend using asynchronous processing. In synchronous mode, the only way to translate columns is to write custom code inside the <a   href="#src-68882907_implementingoutgoingsynchronization-synchronousprocessing">ProcessInternalTaskSync</a> method.</p>
-<p   
->The following sample code indicates how to translate the identifier of a page&#39;s parent:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>If you need to translate ID column values to match external objects, we recommend using asynchronous processing. In synchronous mode, the only way to translate columns is to write custom code inside the <a href="#src-68882907_implementingoutgoingsynchronization-synchronousprocessing">ProcessInternalTaskSync</a> method.</p>
+<p>The following sample code indicates how to translate the identifier of a page's parent:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9491,28 +9351,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> IntegrationProcessResultEnum ProcessInternalTaskSync(TreeNode node, TaskTypeEnum taskType, </code><code class="keyword">string</code><code class="plain"> siteName, </code><code class="keyword">out</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> errorMessage)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Gets the Kentico parent node of the synchronized page</code></div>
 <div class="line"><code class="plain">	TreeProvider tree = </code><code class="keyword">new</code><code class="plain"> TreeProvider(MembershipContext.AuthenticatedUser);</code></div>
 <div class="line"><code class="plain">	TreeNode parentNode = DocumentHelper.GetDocument(node.NodeParentID, tree);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Gets the properties of the parent node</code></div>
 <div class="line"><code class="plain">	Guid parentGuid = parentNode.NodeGUID;</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">string</code><code class="plain"> parentSiteName = parentNode.NodeSiteName;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">int</code><code class="plain"> newParentId = 0;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// External code that finds the matching external page according to the parentNode properties, and fills the newParentID</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Assigns the new parent ID to the synchronized page</code></div>
 <div class="line"><code class="plain">	node.NodeParentID = newParentId;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </code></pre>
@@ -9528,8 +9388,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9541,10 +9401,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9563,9 +9423,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9576,7 +9433,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9587,5 +9444,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

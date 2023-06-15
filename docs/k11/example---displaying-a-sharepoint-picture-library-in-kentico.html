@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Example - Displaying a SharePoint picture library in Kentico - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882835"> <span>Example - Displaying a SharePoint picture library in Kentico</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,153 +8659,82 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The example demonstrates how you can display a picture library stored on a SharePoint server on a Kentico website.</p>
-<p   
->The example uses two custom transformations. If the URL of the page where you are viewing the SharePoint data contains a special parameter value, the system displays the corresponding picture library item. Otherwise, it displays all items from the specified picture library list. You specify the name of the parameter in the <strong class=" ">Selection</strong> section of the <strong class=" ">SharePoint data source</strong> web part.</p>
-<p   
->The example uses the sample Corporate Site, and consists of the following parts:</p>
-<ul class=" "><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringasharepointintegrationconnection">Configuring a SharePoint integration connection</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthesharepointdatasourcewebpart">Configuring the SharePoint data source web part</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-definingthetransformations">Defining the transformations</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthebasicrepeaterwebpart">Configuring the Basic repeater web part</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-result-viewingthesharepointdata">Result - Viewing the SharePoint data</a></p>
-</li></ul>    <h3 id="src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringasharepointintegrationconnection" class="heading "><span>Configuring a SharePoint integration connection</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">SharePoint connections </strong>application.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New connection</strong>.<strong class=" "><br/></strong></p>
-</li><li class=" "><p   
->Enter the following values for the connection&#39;s properties.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Display name</strong>: My connection</p>
-</li><li class=" "><p   
-><strong class=" ">Site URL</strong>: Enter the URL of your SharePoint site.</p>
-</li><li class=" "><p   
-><strong class=" ">SharePoint version</strong>: Select the version of your SharePoint server.</p>
-</li><li class=" "><p   
->Based on your system configuration, specify connection properties in the <strong class=" ">Authentication</strong> section.</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Test connection</strong></p>
-<ul class=" "><li class=" "><p   
->If the connection is functional, the system displays a notification message in green color.</p>
-</li></ul></li></ol><p   
->The system creates a new SharePoint connection.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882835/configuring_connection.png" 
-        alt="Configuring a SharePoint integration connection"        
-        width="393"        height="182" />
-</p>
-<p   
->You can now use the connection while configuring the <strong class=" ">SharePoint data source</strong> web part.</p>
-    <div  class="confbox panel">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>The example demonstrates how you can display a picture library stored on a SharePoint server on a Kentico website.</p><p>The example uses two custom transformations. If the URL of the page where you are viewing the SharePoint data contains a special parameter value, the system displays the corresponding picture library item. Otherwise, it displays all items from the specified picture library list. You specify the name of the parameter in the <strong class=" ">Selection</strong> section of the <strong class=" ">SharePoint data source</strong> web part.</p><p>The example uses the sample Corporate Site, and consists of the following parts:</p><ul class=" "><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringasharepointintegrationconnection">Configuring a SharePoint integration connection</a></p>
+</li><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthesharepointdatasourcewebpart">Configuring the SharePoint data source web part</a></p>
+</li><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-definingthetransformations">Defining the transformations</a></p>
+</li><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthebasicrepeaterwebpart">Configuring the Basic repeater web part</a></p>
+</li><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-result-viewingthesharepointdata">Result - Viewing the SharePoint data</a></p>
+</li></ul><h3 id="src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringasharepointintegrationconnection" class="heading "><span>Configuring a SharePoint integration connection</span></h3><ol class=" "><li class=" "><p>Open the <strong class=" ">SharePoint connections </strong>application.</p>
+</li><li class=" "><p>Click <strong class=" ">New connection</strong>.<strong class=" "><br></strong></p>
+</li><li class=" "><p>Enter the following values for the connection's properties.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Display name</strong>: My connection</p>
+</li><li class=" "><p><strong class=" ">Site URL</strong>: Enter the URL of your SharePoint site.</p>
+</li><li class=" "><p><strong class=" ">SharePoint version</strong>: Select the version of your SharePoint server.</p>
+</li><li class=" "><p>Based on your system configuration, specify connection properties in the <strong class=" ">Authentication</strong> section.</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Click <strong class=" ">Test connection</strong></p>
+<ul class=" "><li class=" "><p>If the connection is functional, the system displays a notification message in green color.</p>
+</li></ul></li></ol><p>The system creates a new SharePoint connection.</p><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882835/configuring_connection.png" alt="Configuring a SharePoint integration connection" width="393" height="182">
+</p><p>You can now use the connection while configuring the <strong class=" ">SharePoint data source</strong> web part.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringasharepointintegrationconnection">Configuring a SharePoint integration connection</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthesharepointdatasourcewebpart">Configuring the SharePoint data source web part</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-definingthetransformations">Defining the transformations</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthebasicrepeaterwebpart">Configuring the Basic repeater web part</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-result-viewingthesharepointdata">Result - Viewing the SharePoint data</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringasharepointintegrationconnection">Configuring a SharePoint integration connection</a></p>
+</li><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthesharepointdatasourcewebpart">Configuring the SharePoint data source web part</a></p>
+</li><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-definingthetransformations">Defining the transformations</a></p>
+</li><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthebasicrepeaterwebpart">Configuring the Basic repeater web part</a></p>
+</li><li class=" "><p><a href="#src-68882835_exampledisplayingasharepointpicturelibraryinkentico-result-viewingthesharepointdata">Result - Viewing the SharePoint data</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p  class="with-breadcrumbs" 
-><a   href="displaying-sharepoint-data-in-kentico">Displaying SharePoint data in Kentico</a></p>
+<ul class=" "><li class=" "><p class="with-breadcrumbs"><a href="displaying-sharepoint-data-in-kentico">Displaying SharePoint data in Kentico</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+
+
+
+    
+    
     <h3 id="src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthesharepointdatasourcewebpart" class="heading "><span>Configuring the SharePoint data source web part</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Select a page in the content tree.</p>
-<ul class=" "><li class=" "><p   
->You are selecting a page where the system will display the requested SharePoint data.</p>
-</li></ul></li><li class=" "><p   
->Switch to the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Add</a> the <strong class=" ">SharePoint data source</strong> web part to the selected web part zone.</p>
-<ul class=" "><li class=" "><p   
->The system opens the <strong class=" ">Web part properties (SharePoint data source)</strong> dialog window.</p>
-</li><li class=" "><p   
->The dialog window allows you to specify web part properties.</p>
-</li></ul></li><li class=" "><p   
->Configure the <strong class=" ">SharePoint data source</strong> web part.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Connection</strong>: My connection</p>
-</li><li class=" "><p   
-><strong class=" ">Retrieve</strong>: Specified list&#39;s items</p>
-</li><li class=" "><p   
-><strong class=" ">List type</strong>: Picture library</p>
-</li><li class=" "><p   
-><strong class=" ">List name</strong>: Here you need to specify the name of the SharePoint picture library list whose items you want to display.</p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: ID</p>
-<ul class=" "><li class=" "><p   
->The value is the internal name of the SharePoint column the system uses for item(s) selection.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Field type</strong>: Counter</p>
-</li><li class=" "><p   
-><strong class=" ">Field value</strong>: {? selection ?}</p>
-<ul class=" "><li class=" "><p   
->If the URL of the current page contains the <i class=" ">selection</i> parameter, the system selects from the specified picture library list the item whose <strong class=" ">ID</strong> column contains the <i class=" ">selection</i> value.</p>
-</li><li class=" "><p   
->If the URL of the current page does not contain the <i class=" ">selection</i> parameter, the system lists all items from the specified picture library list.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Retrieval mode</strong>: List files only</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882835/configuring_web_part.png" 
-                
-        width="500"         />
-<br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
-<ul class=" "><li class=" "><p   
->The system closes the <strong class=" ">Web part properties (SharePoint data source)</strong> dialog window.</p>
-</li></ul></li></ol><p   
->The page where you want to display the SharePoint data now contains the <strong class=" ">SharePoint data source</strong> web part. Next, you need to define the <a   href="writing-transformations">transformations</a>, and add the <strong class=" ">Basic repeater</strong> web part to the same page.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Select a page in the content tree.</p>
+<ul class=" "><li class=" "><p>You are selecting a page where the system will display the requested SharePoint data.</p>
+</li></ul></li><li class=" "><p>Switch to the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">SharePoint data source</strong> web part to the selected web part zone.</p>
+<ul class=" "><li class=" "><p>The system opens the <strong class=" ">Web part properties (SharePoint data source)</strong> dialog window.</p>
+</li><li class=" "><p>The dialog window allows you to specify web part properties.</p>
+</li></ul></li><li class=" "><p>Configure the <strong class=" ">SharePoint data source</strong> web part.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Connection</strong>: My connection</p>
+</li><li class=" "><p><strong class=" ">Retrieve</strong>: Specified list's items</p>
+</li><li class=" "><p><strong class=" ">List type</strong>: Picture library</p>
+</li><li class=" "><p><strong class=" ">List name</strong>: Here you need to specify the name of the SharePoint picture library list whose items you want to display.</p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: ID</p>
+<ul class=" "><li class=" "><p>The value is the internal name of the SharePoint column the system uses for item(s) selection.</p>
+</li></ul></li><li class=" "><p><strong class=" ">Field type</strong>: Counter</p>
+</li><li class=" "><p><strong class=" ">Field value</strong>: {? selection ?}</p>
+<ul class=" "><li class=" "><p>If the URL of the current page contains the <i class=" ">selection</i> parameter, the system selects from the specified picture library list the item whose <strong class=" ">ID</strong> column contains the <i class=" ">selection</i> value.</p>
+</li><li class=" "><p>If the URL of the current page does not contain the <i class=" ">selection</i> parameter, the system lists all items from the specified picture library list.</p>
+</li></ul></li><li class=" "><p><strong class=" ">Retrieval mode</strong>: List files only</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882835/configuring_web_part.png" width="500">
+<br></p>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+<ul class=" "><li class=" "><p>The system closes the <strong class=" ">Web part properties (SharePoint data source)</strong> dialog window.</p>
+</li></ul></li></ol><p>The page where you want to display the SharePoint data now contains the <strong class=" ">SharePoint data source</strong> web part. Next, you need to define the <a href="writing-transformations">transformations</a>, and add the <strong class=" ">Basic repeater</strong> web part to the same page.</p>
     <h3 id="src-68882835_exampledisplayingasharepointpicturelibraryinkentico-definingthetransformations" class="heading "><span>Defining the transformations</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Page types </strong>application.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image decoded confluence-external-resource" 
-        
-        src="images/docs.kentico.com/download/attachments/57442434/edit.png" 
-                
-                 />
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Page types </strong>application.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image decoded confluence-external-resource" src="images/docs.kentico.com/download/attachments/57442434/edit.png">
 ) the <strong class=" ">SharePoint - Transformations</strong> page type on the <strong class=" ">Transformations</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New transformation</strong>.<strong class=" "><br/></strong></p>
-</li><li class=" "><p   
->Enter the following values for properties of the first transformation.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Transformation name</strong>: MyTransformationListing</p>
-</li><li class=" "><p   
-><strong class=" ">Transformation type</strong>: ASCX</p>
-</li></ul></li><li class=" "><p   
->Enter the following transformation code.</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Click <strong class=" ">New transformation</strong>.<strong class=" "><br></strong></p>
+</li><li class=" "><p>Enter the following values for properties of the first transformation.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Transformation name</strong>: MyTransformationListing</p>
+</li><li class=" "><p><strong class=" ">Transformation type</strong>: ASCX</p>
+</li></ul></li><li class=" "><p>Enter the following transformation code.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8832,28 +8758,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<ul class=" "><li class=" "><p   
->The transformation lists all items contained in the specified library. The items are displayed as links leading to the items details.</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882835/defining_transformation.png" 
-        alt="Defining a transformation"        
-        width="500"         />
-<br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Go back to the <strong class=" ">Transformations</strong> tab of the <strong class=" ">SharePoint - Transformations</strong> page type, and click <strong class=" ">New transformation</strong>.</p>
-</li><li class=" "><p   
->Enter the following values for properties of the second transformation.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Transformation name</strong>: MyTransformationDetail</p>
-</li><li class=" "><p   
-><strong class=" ">Transformation type</strong>: ASCX</p>
-</li></ul></li><li class=" "><p   
->Enter the following transformation code.</p>
-<div  class="code panel pdl js-codePanel" >
+<ul class=" "><li class=" "><p>The transformation lists all items contained in the specified library. The items are displayed as links leading to the items details.</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882835/defining_transformation.png" alt="Defining a transformation" width="500">
+<br></p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Go back to the <strong class=" ">Transformations</strong> tab of the <strong class=" ">SharePoint - Transformations</strong> page type, and click <strong class=" ">New transformation</strong>.</p>
+</li><li class=" "><p>Enter the following values for properties of the second transformation.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Transformation name</strong>: MyTransformationDetail</p>
+</li><li class=" "><p><strong class=" ">Transformation type</strong>: ASCX</p>
+</li></ul></li><li class=" "><p>Enter the following transformation code.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8883,11 +8797,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<ul class=" "><li class=" "><p   
->The transformation displays item details.</p>
-</li></ul></li><li class=" "><p   
->(Optional) To give the retrieved files the ability to be downloaded, surround the target element with an <i class=" ">&lt;a&gt;</i> tag referring to the same URL. For example:</p>
-<div  class="code panel pdl js-codePanel" >
+<ul class=" "><li class=" "><p>The transformation displays item details.</p>
+</li></ul></li><li class=" "><p>(Optional) To give the retrieved files the ability to be downloaded, surround the target element with an <i class=" ">&lt;a&gt;</i> tag referring to the same URL. For example:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8912,70 +8824,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->The system adds two custom transformations. One transformation displays a listing of items, the other displays details of a selected item.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The system adds two custom transformations. One transformation displays a listing of items, the other displays details of a selected item.</p>
     <h3 id="src-68882835_exampledisplayingasharepointpicturelibraryinkentico-configuringthebasicrepeaterwebpart" class="heading "><span>Configuring the Basic repeater web part</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages </strong>application.</p>
-</li><li class=" "><p   
->In the content tree, select the page where you placed the <strong class=" ">SharePoint data source</strong> web part.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Basic repeater </strong>web part to the selected web part zone.</p>
-<ul class=" "><li class=" "><p   
->The system opens the <strong class=" ">Web part properties (Basic repeater)</strong> dialog window.</p>
-</li><li class=" "><p   
->The dialog window allows you to specify web part properties.</p>
-</li></ul></li><li class=" "><p   
->Configure the <strong class=" ">Basic repeater</strong> web part.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Data source name</strong>: SharePointDataSourceV2<br/></p>
-<ul class=" "><li class=" "><p   
->You need to enter the value of the <strong class=" ">Web part control ID</strong> property of the <strong class=" ">SharePoint data source</strong> web part.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Transformation name</strong>: MyTransformationListing</p>
-</li><li class=" "><p   
-><strong class=" ">Selected item transformation</strong>: MyTransformationDetail</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882835/configuring_repeater.png" 
-                
-        width="500"         />
-<br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
-<ul class=" "><li class=" "><p   
->The system closes the <strong class=" ">Web part properties (Basic repeater)</strong> dialog window.</p>
-</li></ul></li></ol><p   
->You have configured the system to display the requested SharePoint data retrieved through the <strong class=" ">SharePoint data source</strong> web part. You can now view this data on your website.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages </strong>application.</p>
+</li><li class=" "><p>In the content tree, select the page where you placed the <strong class=" ">SharePoint data source</strong> web part.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Basic repeater </strong>web part to the selected web part zone.</p>
+<ul class=" "><li class=" "><p>The system opens the <strong class=" ">Web part properties (Basic repeater)</strong> dialog window.</p>
+</li><li class=" "><p>The dialog window allows you to specify web part properties.</p>
+</li></ul></li><li class=" "><p>Configure the <strong class=" ">Basic repeater</strong> web part.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Data source name</strong>: SharePointDataSourceV2<br></p>
+<ul class=" "><li class=" "><p>You need to enter the value of the <strong class=" ">Web part control ID</strong> property of the <strong class=" ">SharePoint data source</strong> web part.</p>
+</li></ul></li><li class=" "><p><strong class=" ">Transformation name</strong>: MyTransformationListing</p>
+</li><li class=" "><p><strong class=" ">Selected item transformation</strong>: MyTransformationDetail</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882835/configuring_repeater.png" width="500">
+<br></p>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+<ul class=" "><li class=" "><p>The system closes the <strong class=" ">Web part properties (Basic repeater)</strong> dialog window.</p>
+</li></ul></li></ol><p>You have configured the system to display the requested SharePoint data retrieved through the <strong class=" ">SharePoint data source</strong> web part. You can now view this data on your website.</p>
     <h3 id="src-68882835_exampledisplayingasharepointpicturelibraryinkentico-result-viewingthesharepointdata" class="heading "><span>Result - Viewing the SharePoint data</span></h3>
-<ol class=" "><li class=" "><p   
->Open the live website.</p>
-</li><li class=" "><p   
->Go to the page where you placed the <strong class=" ">SharePoint data source</strong> and <strong class=" ">Basic repeater</strong> web parts.</p>
-<ul class=" "><li class=" "><p   
->The system displays all items contained in the specified SharePoint picture library.</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882835/viewing_list.png" 
-                
-        width="500"         />
-<br/></p>
-</li><li class=" "><p   
->Click the name of any listed item.</p>
-<ul class=" "><li class=" "><p   
->The system displays the details of the selected item.</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882835/viewing_details.png" 
-                
-        width="489"        height="235" />
+<ol class=" "><li class=" "><p>Open the live website.</p>
+</li><li class=" "><p>Go to the page where you placed the <strong class=" ">SharePoint data source</strong> and <strong class=" ">Basic repeater</strong> web parts.</p>
+<ul class=" "><li class=" "><p>The system displays all items contained in the specified SharePoint picture library.</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882835/viewing_list.png" width="500">
+<br></p>
+</li><li class=" "><p>Click the name of any listed item.</p>
+<ul class=" "><li class=" "><p>The system displays the details of the selected item.</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882835/viewing_details.png" width="489" height="235">
 </p>
 </li></ol>                    </div>
                 </div>
@@ -8987,8 +8863,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9000,10 +8876,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9022,9 +8898,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9035,7 +8908,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9046,5 +8919,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

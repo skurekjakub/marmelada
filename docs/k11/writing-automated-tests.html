@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Writing automated tests - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8635,7 +8632,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882276"> <span>Writing automated tests</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8649,7 +8646,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8660,57 +8657,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Test automation is an important part of every development project and is essential for agile projects. Automated tests help you improve productivity, reduce the testing phase of the development cycle, and increase code predictability and quality.</p>
-<p   
->When developing custom functionality for Kentico projects, we recommend that you <a   href="creating-automated-test-projects">create projects with automated tests</a> to cover the given code.</p>
-<p   
->Kentico provides the <strong class=" ">CMS.Tests </strong>library, which simplifies writing of automated tests for code that uses the Kentico API. The library contains base classes for unit and integration tests, as well as helper classes for faking <i class=" ">Info</i> and <i class=" ">Provider</i> objects. You can obtain the library by installing the <strong class=" ">Kentico.Libraries.Tests</strong> NuGet package into your test projects.</p>
+<p>Test automation is an important part of every development project and is essential for agile projects. Automated tests help you improve productivity, reduce the testing phase of the development cycle, and increase code predictability and quality.</p>
+<p>When developing custom functionality for Kentico projects, we recommend that you <a href="creating-automated-test-projects">create projects with automated tests</a> to cover the given code.</p>
+<p>Kentico provides the <strong class=" ">CMS.Tests </strong>library, which simplifies writing of automated tests for code that uses the Kentico API. The library contains base classes for unit and integration tests, as well as helper classes for faking <i class=" ">Info</i> and <i class=" ">Provider</i> objects. You can obtain the library by installing the <strong class=" ">Kentico.Libraries.Tests</strong> NuGet package into your test projects.</p>
     <h3 id="src-68882276_writingautomatedtests-supportedtestingframeworks" class="heading "><span>Supported testing frameworks</span></h3>
-<p   
->All of the functionality in the <i class=" ">CMS.Tests</i> library is fully compatible with both the <a  class="external-link" href="https://github.com/nunit/docs/wiki">NUnit</a> framework and <strong class=" ">Microsoft unit test</strong> frameworks. The examples in this documentation are written for the NUnit framework.</p>
+<p>All of the functionality in the <i class=" ">CMS.Tests</i> library is fully compatible with both the <a class="external-link" href="https://github.com/nunit/docs/wiki">NUnit</a> framework and <strong class=" ">Microsoft unit test</strong> frameworks. The examples in this documentation are written for the NUnit framework.</p>
     <h3 id="src-68882276_writingautomatedtests-typesoftests" class="heading "><span>Types of tests</span></h3>
-<p   
->You can create the following general types of tests (categorized according to the way the tests work with database data):</p>
-<div  class="box-general box-info">
+<p>You can create the following general types of tests (categorized according to the way the tests work with database data):</p>
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
                     <h4 id="src-68882276_writingautomatedtests-unittests" class="heading "><span>Unit tests</span></h4>
-<p   
->Unit tests are able to run without external resources, such as a database. Try to write most of your tests as unit tests, since they are used to examine relatively small pieces of code. Unit tests execute much faster than the other types of automated tests.</p>
-<p   
->Use fake <i class=" ">Info</i> and <i class=" ">Provider</i> objects in your unit tests to avoid accessing the database. For more information, see <a   href="faking-info-and-provider-objects-in-unit-tests">Faking Info and Provider objects in unit tests</a>.</p>
+<p>Unit tests are able to run without external resources, such as a database. Try to write most of your tests as unit tests, since they are used to examine relatively small pieces of code. Unit tests execute much faster than the other types of automated tests.</p>
+<p>Use fake <i class=" ">Info</i> and <i class=" ">Provider</i> objects in your unit tests to avoid accessing the database. For more information, see <a href="faking-info-and-provider-objects-in-unit-tests">Faking Info and Provider objects in unit tests</a>.</p>
      
     </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
                     <h4 id="src-68882276_writingautomatedtests-integrationtests" class="heading "><span>Integration tests</span></h4>
-<p   
->Integration tests can access a database provided by a connection string. Use integration tests when you need to read the data from the database (unless you are absolutely sure you clean up everything properly after the test). Integration tests are significantly slower than unit tests.</p>
-<p   
->See: <a   href="creating-integration-tests-with-a-connection-string">Creating integration tests with a connection string</a></p>
+<p>Integration tests can access a database provided by a connection string. Use integration tests when you need to read the data from the database (unless you are absolutely sure you clean up everything properly after the test). Integration tests are significantly slower than unit tests.</p>
+<p>See: <a href="creating-integration-tests-with-a-connection-string">Creating integration tests with a connection string</a></p>
      
     </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
                     <h4 id="src-68882276_writingautomatedtests-isolatedintegrationtests" class="heading "><span>Isolated integration tests</span></h4>
-<p   
->Isolated integration tests automatically create their own database before the test execution and clean up the database after the test is finished. Use isolated integration tests for complex testing that requires writing to the database, for example if the cleanup after an integration test is difficult. Isolated integration tests are the slowest of the three types of automated tests.</p>
-<p   
->See: <a   href="creating-isolated-integration-tests">Creating isolated integration tests</a></p>
+<p>Isolated integration tests automatically create their own database before the test execution and clean up the database after the test is finished. Use isolated integration tests for complex testing that requires writing to the database, for example if the cleanup after an integration test is difficult. Isolated integration tests are the slowest of the three types of automated tests.</p>
+<p>See: <a href="creating-isolated-integration-tests">Creating isolated integration tests</a></p>
      
     </div>
 </div>
     <h3 id="src-68882276_writingautomatedtests-apidifferencesintestcode" class="heading "><span>API differences in test code</span></h3>
-<p   
->By default, all Kentico API executed within the body of tests that inherit from the <i class=" ">CMS.Tests</i> base classes runs without additional logging operations. For example, this includes logging of <a   href="content-staging">staging tasks</a>, <a   href="setting-up-web-farms">web farm synchronization tasks</a>, etc. Such operations are typically not relevant for the results of tests and unnecessarily reduce test performance.</p>
-<p   
->If you wish to run these additional operations within your tests, you need to explicitly enable them for blocks of code using the corresponding properties of <strong class=" ">CMSActionContext</strong>.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>By default, all Kentico API executed within the body of tests that inherit from the <i class=" ">CMS.Tests</i> base classes runs without additional logging operations. For example, this includes logging of <a href="content-staging">staging tasks</a>, <a href="setting-up-web-farms">web farm synchronization tasks</a>, etc. Such operations are typically not relevant for the results of tests and unnecessarily reduce test performance.</p>
+<p>If you wish to run these additional operations within your tests, you need to explicitly enable them for blocks of code using the corresponding properties of <strong class=" ">CMSActionContext</strong>.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -8729,9 +8713,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> (</code><code class="keyword">new</code><code class="plain"> CMSActionContext { LogSynchronization = </code><code class="keyword">true</code><code class="plain">, LogWebFarmTasks = </code><code class="keyword">true</code><code class="plain"> })</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Test execution</code></div>
@@ -8740,15 +8724,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
+    
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -8759,8 +8735,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8772,10 +8748,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8794,9 +8770,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8807,7 +8780,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8818,5 +8791,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

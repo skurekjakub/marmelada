@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating new web parts - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882203"> <span>Creating new web parts</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,118 +8659,83 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If the <a   href="developing-web-parts">web parts </a>included in Kentico by default do not meet your requirements, you can create your own web parts. This allows you to add any type of custom content or functionality to <a   href="developing-websites-using-the-portal-engine">portal engine</a> pages.</p>
-<p   
->Developing new web parts consists of two basic steps:</p>
-<ol class=" "><li class=" "><p   
->Create the web part&#39;s code files in your web project.</p>
-</li><li class=" "><p   
->Register the web part in the system.</p>
-</li></ol><div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>If the <a href="developing-web-parts">web parts </a>included in Kentico by default do not meet your requirements, you can create your own web parts. This allows you to add any type of custom content or functionality to <a href="developing-websites-using-the-portal-engine">portal engine</a> pages.</p><p>Developing new web parts consists of two basic steps:</p><ol class=" "><li class=" "><p>Create the web part's code files in your web project.</p>
+</li><li class=" "><p>Register the web part in the system.</p>
+</li></ol><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: In many cases, it may be easier to achieve your goal by altering or extending one of the default web parts rather than developing an entirely new one.</p>
-<p   
->See: <a   href="customizing-web-parts">Customizing web parts</a></p>
+            <p><strong class=" ">Note</strong>: In many cases, it may be easier to achieve your goal by altering or extending one of the default web parts rather than developing an entirely new one.</p>
+<p>See: <a href="customizing-web-parts">Customizing web parts</a></p>
      
     </div>
-</div>
-    <h3 id="src-68882203_creatingnewwebparts-writingwebpartcode" class="heading "><span>Writing web part code</span></h3>
-<p   
->Implement web parts as <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/y6wb1a0e%28v=vs.100%29.aspx">user controls</a> (<i class=" ">.ascx</i> files) that inherit from an appropriate base class:</p>
-    <div  class="tablewrap">
+</div><h3 id="src-68882203_creatingnewwebparts-writingwebpartcode" class="heading "><span>Writing web part code</span></h3><p>Implement web parts as <a class="external-link" href="http://msdn.microsoft.com/en-us/library/y6wb1a0e%28v=vs.100%29.aspx">user controls</a> (<i class=" ">.ascx</i> files) that inherit from an appropriate base class:</p><div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Base class</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Base class</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Namespace</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Namespace</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Use for</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Use for</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMSAbstractWebPart</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMSAbstractWebPart</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.PortalEngine.Web.UI</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.PortalEngine.Web.UI</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Standard web parts.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Standard web parts.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMSAbstractEditableWebPart</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMSAbstractEditableWebPart</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.PortalEngine.Web.UI</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.PortalEngine.Web.UI</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Web parts that provide content editing functionality on the <strong class=" ">Page</strong> tab of the <strong class=" ">Pages</strong> application and in <a   href="enabling-on-site-editing">on-site editing mode</a> (such as <i class=" ">Editable text</i> or <i class=" ">Editable image</i>).</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Web parts that provide content editing functionality on the <strong class=" ">Page</strong> tab of the <strong class=" ">Pages</strong> application and in <a href="enabling-on-site-editing">on-site editing mode</a> (such as <i class=" ">Editable text</i> or <i class=" ">Editable image</i>).</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMSAbstractLayoutWebPart</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMSAbstractLayoutWebPart</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.PortalEngine.Web.UI</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.PortalEngine.Web.UI</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><a   href="working-with-layout-web-parts">Layout web parts</a>.</p>
-<p   
->See: <a   href="developing-layout-web-parts">Developing layout web parts</a></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><a href="working-with-layout-web-parts">Layout web parts</a>.</p>
+<p>See: <a href="developing-layout-web-parts">Developing layout web parts</a></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMSCheckoutWebPart</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMSCheckoutWebPart</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Ecommerce.Web.UI</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Ecommerce.Web.UI</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->E-commerce checkout web parts.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>E-commerce checkout web parts.</p>
             </td>
         </tr>
 </tbody>        </table>
-            </div>
-<p   
->To ensure that your custom web parts work correctly:</p>
-<ol class=" "><li class=" "><p   
->Edit the markup of the user control that implements the web part.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Control</strong> declaration, enter the <i class=" ">full relative path</i> of the code behind file into the <strong class=" ">CodeFile</strong> attribute (<strong class=" ">CodeBehind</strong> attribute on web application installations).</p>
-</li></ol><p   
->For example:</p>
-<div  class="code panel pdl js-codePanel" >
+            </div><p>To ensure that your custom web parts work correctly:</p><ol class=" "><li class=" "><p>Edit the markup of the user control that implements the web part.</p>
+</li><li class=" "><p>In the <strong class=" ">Control</strong> declaration, enter the <i class=" ">full relative path</i> of the code behind file into the <strong class=" ">CodeFile</strong> attribute (<strong class=" ">CodeBehind</strong> attribute on web application installations).</p>
+</li></ol><p>For example:</p><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8795,20 +8757,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
     </code></pre>
   </div>
-</div>
-<p   
->You can add any required content into the web part&#39;s markup and write custom code behind logic.</p>
-<p   
-><strong class=" ">Tips</strong>:</p>
-<ul class=" "><li class=" "><p   
->Display content from Kentico by placing <a   href="kentico-controls">Kentico Controls</a> into the markup of your web parts.</p>
-</li><li class=" "><p   
->See <a   href="working-with-web-part-properties">Working with web part properties</a> to learn how to access the values of web part properties in the code.</p>
-</li><li class=" "><p   
->To disable web parts in your code, set the <strong class=" ">StopProcessing</strong> property to <i class=" ">true</i>. All web parts inherit this property from the <i class=" ">CMSAbstractWebPart</i> base class.</p>
-</li><li class=" "><p   
->You can implement web parts that have special behavior or additional content when viewed on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application. Use the following code to check whether the web part is being rendered in Design mode:</p>
-<div  class="code panel pdl js-codePanel" >
+</div><p>You can add any required content into the web part's markup and write custom code behind logic.</p><p><strong class=" ">Tips</strong>:</p><ul class=" "><li class=" "><p>Display content from Kentico by placing <a href="kentico-controls">Kentico Controls</a> into the markup of your web parts.</p>
+</li><li class=" "><p>See <a href="working-with-web-part-properties">Working with web part properties</a> to learn how to access the values of web part properties in the code.</p>
+</li><li class=" "><p>To disable web parts in your code, set the <strong class=" ">StopProcessing</strong> property to <i class=" ">true</i>. All web parts inherit this property from the <i class=" ">CMSAbstractWebPart</i> base class.</p>
+</li><li class=" "><p>You can implement web parts that have special behavior or additional content when viewed on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application. Use the following code to check whether the web part is being rendered in Design mode:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8827,7 +8780,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.PortalEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (PortalContext.IsDesignMode(</code><code class="keyword">this</code><code class="plain">.PagePlaceholder.ViewMode))</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	...</code></div>
@@ -8836,86 +8789,66 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li></ul>    <h5 id="src-68882203_creatingnewwebparts-settingthepropertiesofcontrolsinwebparts" class="heading "><span>Setting the properties of controls in web parts</span></h5>
-<p   
->If you use Kentico controls inside your web parts, it is recommended to set/initialize the control properties using a combination of the <strong class=" ">OnContentLoaded</strong> and <strong class=" ">SetupControl</strong> methods. You can view the code of the default listing web parts to see an example (e.g. <i class=" ">~/CMSWebParts/Viewers/Documents/cmsrepeater.ascx.cs</i>).</p>
-<p   
->For standard .NET or third party controls, you can set the properties in the handler of the web part control&#39;s <strong class=" ">Load</strong> event (<i class=" ">OnLoad</i> method).</p>
-<p   
->If you encounter problems with the control life cycle, try <a   href="adding-custom-code-to-portal-engine-page-templates">adding</a> your controls to the page through the <strong class=" ">User control</strong> web part. This web part enables you to dynamically load user controls on portal engine pages.</p>
-    <h5 id="src-68882203_creatingnewwebparts-storingfilesrelatedtowebparts" class="heading "><span>Storing files related to web parts</span></h5>
-<p   
->If your web part consists of multiple files (such as other ASCX controls, images, JS scripts), place these files in a sub&#8209;folder under the directory containing the main web part&#39;s files. The name of the sub-folder must match the code name of the web part with <strong class=" "><i class=" ">_file</i> </strong>appended. For example, if the web part&#39;s code name is <strong class=" ">WebPart</strong>, the sub&#8209;folder must be <strong class=" ">WebPart_files</strong>.</p>
-<p   
->This ensures that the system includes the additional files in the web part&#39;s export package when you <a   href="deploying-websites">deploy the website</a> or distribute the web part to other developers.</p>
-    <div  class="confbox panel">
+</li></ul><h5 id="src-68882203_creatingnewwebparts-settingthepropertiesofcontrolsinwebparts" class="heading "><span>Setting the properties of controls in web parts</span></h5><p>If you use Kentico controls inside your web parts, it is recommended to set/initialize the control properties using a combination of the <strong class=" ">OnContentLoaded</strong> and <strong class=" ">SetupControl</strong> methods. You can view the code of the default listing web parts to see an example (e.g. <i class=" ">~/CMSWebParts/Viewers/Documents/cmsrepeater.ascx.cs</i>).</p><p>For standard .NET or third party controls, you can set the properties in the handler of the web part control's <strong class=" ">Load</strong> event (<i class=" ">OnLoad</i> method).</p><p>If you encounter problems with the control life cycle, try <a href="adding-custom-code-to-portal-engine-page-templates">adding</a> your controls to the page through the <strong class=" ">User control</strong> web part. This web part enables you to dynamically load user controls on portal engine pages.</p><h5 id="src-68882203_creatingnewwebparts-storingfilesrelatedtowebparts" class="heading "><span>Storing files related to web parts</span></h5><p>If your web part consists of multiple files (such as other ASCX controls, images, JS scripts), place these files in a sub‑folder under the directory containing the main web part's files. The name of the sub-folder must match the code name of the web part with <strong class=" "><i class=" ">_file</i> </strong>appended. For example, if the web part's code name is <strong class=" ">WebPart</strong>, the sub‑folder must be <strong class=" ">WebPart_files</strong>.</p><p>This ensures that the system includes the additional files in the web part's export package when you <a href="deploying-websites">deploy the website</a> or distribute the web part to other developers.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-writingwebpartcode">Writing web part code</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-managingwebpartsinthesystem">Managing web parts in the system</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-registeringwebparts">Registering web parts</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-configuringwebparts">Configuring web parts</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-stylingwebpartsusingcss">Styling web parts using CSS</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-example-creatinganewwebpart">Example - Creating a new web part</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-creatingthewebpartcodefiles">Creating the web part code files</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-registeringthewebpartinthesystem">Registering the web part in the system</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882203_creatingnewwebparts-addinganinstanceofthewebparttoapage">Adding an instance of the web part to a page</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882203_creatingnewwebparts-writingwebpartcode">Writing web part code</a></p>
+</li><li class=" "><p><a href="#src-68882203_creatingnewwebparts-managingwebpartsinthesystem">Managing web parts in the system</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882203_creatingnewwebparts-registeringwebparts">Registering web parts</a></p>
+</li><li class=" "><p><a href="#src-68882203_creatingnewwebparts-configuringwebparts">Configuring web parts</a></p>
+</li><li class=" "><p><a href="#src-68882203_creatingnewwebparts-stylingwebpartsusingcss">Styling web parts using CSS</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882203_creatingnewwebparts-example-creatinganewwebpart">Example - Creating a new web part</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882203_creatingnewwebparts-creatingthewebpartcodefiles">Creating the web part code files</a></p>
+</li><li class=" "><p><a href="#src-68882203_creatingnewwebparts-registeringthewebpartinthesystem">Registering the web part in the system</a></p>
+</li><li class=" "><p><a href="#src-68882203_creatingnewwebparts-addinganinstanceofthewebparttoapage">Adding an instance of the web part to a page</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Using and configuring web parts</a></p>
-</li><li class=" "><p   
-><a   href="working-with-web-part-properties">Working with web part properties</a></p>
-</li><li class=" "><p   
-><a   href="creating-inherited-web-parts">Creating inherited web parts</a></p>
-</li><li class=" "><p   
-><a   href="web-part-api">Web part API</a></p>
+<ul class=" "><li class=" "><p><a href="using-and-configuring-web-parts">Using and configuring web parts</a></p>
+</li><li class=" "><p><a href="working-with-web-part-properties">Working with web part properties</a></p>
+</li><li class=" "><p><a href="creating-inherited-web-parts">Creating inherited web parts</a></p>
+</li><li class=" "><p><a href="web-part-api">Web part API</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+
+    
+
+
+
+
+
+    
+
+
+
+    
+
+
+    
+    
     <h3 id="src-68882203_creatingnewwebparts-managingwebpartsinthesystem" class="heading "><span>Managing web parts in the system</span></h3>
     <h4 id="src-68882203_creatingnewwebparts-registeringwebparts" class="heading "><span>Registering web parts</span></h4>
-<p   
->Before you can use your user controls as web parts, you need to register them as objects in Kentico. The system sorts web parts into categories, organized in a tree structure.<strong class=" "><br/></strong></p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Web parts</strong> application.</p>
-</li><li class=" "><p   
->Select the category where you want to place the web part.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New web part</strong>.</p>
-</li><li class=" "><p   
->Type a <strong class=" ">Display name</strong> for the web part.</p>
-</li><li class=" "><p   
->Select <i class=" "><strong class=" ">Use existing file</strong> </i>as the <strong class=" ">Code files</strong> option.</p>
-</li><li class=" "><p   
->Specify the path of the user control in the <strong class=" ">File path</strong> field.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Define the properties of the web part. See <a   href="working-with-web-part-properties">Working with web part properties</a> for more information.</p>
-</li></ol><p   
->You can now place instances of the web part onto portal engine pages on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application.</p>
-<div  class="box-general box-tip">
+<p>Before you can use your user controls as web parts, you need to register them as objects in Kentico. The system sorts web parts into categories, organized in a tree structure.<strong class=" "><br></strong></p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Web parts</strong> application.</p>
+</li><li class=" "><p>Select the category where you want to place the web part.</p>
+</li><li class=" "><p>Click <strong class=" ">New web part</strong>.</p>
+</li><li class=" "><p>Type a <strong class=" ">Display name</strong> for the web part.</p>
+</li><li class=" "><p>Select <i class=" "><strong class=" ">Use existing file</strong> </i>as the <strong class=" ">Code files</strong> option.</p>
+</li><li class=" "><p>Specify the path of the user control in the <strong class=" ">File path</strong> field.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Define the properties of the web part. See <a href="working-with-web-part-properties">Working with web part properties</a> for more information.</p>
+</li></ol><p>You can now place instances of the web part onto portal engine pages on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application.</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Tip</strong>: You can register web parts before creating the user control source files in the web project. Select the <strong class=" ">Generate new files</strong> option when creating the web part, and the system automatically adds the required files according to the specified <strong class=" ">File name</strong>.     <span style="color: #000000;">
+            <p><strong class=" ">Tip</strong>: You can register web parts before creating the user control source files in the web project. Select the <strong class=" ">Generate new files</strong> option when creating the web part, and the system automatically adds the required files according to the specified <strong class=" ">File name</strong>.     <span style="color: #000000;">
 The automatically generated user control inherits from     </span>
 <strong class=" ">    <span style="color: #000000;">
 CMSAbstractWebPart    </span>
@@ -8924,163 +8857,117 @@ CMSAbstractWebPart    </span>
     </div>
 </div>
     <h4 id="src-68882203_creatingnewwebparts-configuringwebparts" class="heading "><span>Configuring web parts </span></h4>
-<p   
->To edit the settings of a web part, open the <strong class=" ">Web parts</strong> application and select the web part in the category tree. When editing web parts, you can configure the following on the <strong class=" ">General</strong> tab:</p>
-    <div  class="tablewrap">
+<p>To edit the settings of a web part, open the <strong class=" ">Web parts</strong> application and select the web part in the category tree. When editing web parts, you can configure the following on the <strong class=" ">General</strong> tab:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->General settings</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>General settings</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Display name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Display name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The name of the web part displayed to users in the administration interface (in the web part toolbar or selection dialog).</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The name of the web part displayed to users in the administration interface (in the web part toolbar or selection dialog).</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Code name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Code name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Serves as a unique identifier for the web part (for example in the API).</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Serves as a unique identifier for the web part (for example in the API).</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Category</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Category</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The category in the web part catalog where the system stores the web part.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The category in the web part catalog where the system stores the web part.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->File name<br/>    <span style="color: #ffffff;">
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>File name<br>    <span style="color: #ffffff;">
 __________________    </span>
 </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Contains the relative path to the user control that implements the web part. The path starts from the <strong class=" ">CMSWebParts</strong> folder. For example: <i class=" ">AbuseReport/AbuseReport.ascx</i><strong class=" "></strong></p>
-<p   
->It is recommended to organize the source files of web parts in a way that matches the structure of the web part categories.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Contains the relative path to the user control that implements the web part. The path starts from the <strong class=" ">CMSWebParts</strong> folder. For example: <i class=" ">AbuseReport/AbuseReport.ascx</i><strong class=" "></strong></p>
+<p>It is recommended to organize the source files of web parts in a way that matches the structure of the web part categories.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Type</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Type</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Sets the type of the web part, which affects its behavior and properties. The system identifies different web part types with different colors and icons on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application. The following web part types are available:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Standard</strong> - typical web parts that displays some type of content.</p>
-</li><li class=" "><p   
-><strong class=" ">Data source </strong>- do not display any content, only provide data to be displayed by other connected web parts. See <a   href="loading-and-displaying-data-on-websites">Loading and displaying data</a>.</p>
-</li><li class=" "><p   
-><strong class=" ">Filter</strong> - allow users to limit the data provided by a connected data source web part.</p>
-</li><li class=" "><p   
-><strong class=" ">Placeholder</strong> - used only for the <i class=" ">Page placeholder</i> web part. Specifies an area where <a   href="inheriting-portal-engine-page-content">nested</a> sub-pages display their content.</p>
-</li><li class=" "><p   
-><strong class=" ">Invisible</strong> - do not display any output on pages, usually perform some type of background task.</p>
-</li><li class=" "><p   
-><strong class=" ">Basic</strong> - basic web parts without partial caching and AJAX UpdatePanel support.</p>
-</li><li class=" "><p   
-><strong class=" ">Layout</strong> - generate a layout for page content by defining additional web part zones. See <a   href="working-with-layout-web-parts">Working with layout web parts</a> for more information.</p>
-</li><li class=" "><p   
-><strong class=" ">Widget only</strong> - the web parts only serves as base templates for <a   href="preparing-widgets-for-users">widgets</a> and are not available in the web part toolbar or selection dialog. Assigning the <i class=" ">Widget only</i> type does not remove or disable existing instances of the web part.</p>
-</li><li class=" "><p   
-><strong class=" ">UI</strong> - used to build pages of the Kentico administration interface (on <i class=" ">UI page</i> type page templates assigned to <a   href="reference---managing-ui-elements">UI elements</a>). You cannot add UI web parts onto standard portal engine page templates.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sets the type of the web part, which affects its behavior and properties. The system identifies different web part types with different colors and icons on the <strong class=" ">Design</strong> tab of the <strong class=" ">Pages</strong> application. The following web part types are available:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Standard</strong> - typical web parts that displays some type of content.</p>
+</li><li class=" "><p><strong class=" ">Data source </strong>- do not display any content, only provide data to be displayed by other connected web parts. See <a href="loading-and-displaying-data-on-websites">Loading and displaying data</a>.</p>
+</li><li class=" "><p><strong class=" ">Filter</strong> - allow users to limit the data provided by a connected data source web part.</p>
+</li><li class=" "><p><strong class=" ">Placeholder</strong> - used only for the <i class=" ">Page placeholder</i> web part. Specifies an area where <a href="inheriting-portal-engine-page-content">nested</a> sub-pages display their content.</p>
+</li><li class=" "><p><strong class=" ">Invisible</strong> - do not display any output on pages, usually perform some type of background task.</p>
+</li><li class=" "><p><strong class=" ">Basic</strong> - basic web parts without partial caching and AJAX UpdatePanel support.</p>
+</li><li class=" "><p><strong class=" ">Layout</strong> - generate a layout for page content by defining additional web part zones. See <a href="working-with-layout-web-parts">Working with layout web parts</a> for more information.</p>
+</li><li class=" "><p><strong class=" ">Widget only</strong> - the web parts only serves as base templates for <a href="preparing-widgets-for-users">widgets</a> and are not available in the web part toolbar or selection dialog. Assigning the <i class=" ">Widget only</i> type does not remove or disable existing instances of the web part.</p>
+</li><li class=" "><p><strong class=" ">UI</strong> - used to build pages of the Kentico administration interface (on <i class=" ">UI page</i> type page templates assigned to <a href="reference---managing-ui-elements">UI elements</a>). You cannot add UI web parts onto standard portal engine page templates.</p>
 </li></ul>            </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Skip initial configuration</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Skip initial configuration</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If checked, the system adds new instances of the web part directly onto pages without opening the property configuration dialog. This can be convenient, particularly in the case of web parts that are typically used with their default property values.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If checked, the system adds new instances of the web part directly onto pages without opening the property configuration dialog. This can be convenient, particularly in the case of web parts that are typically used with their default property values.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Thumbnail</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Thumbnail</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Allows you to set the image that represents the web part in the selection catalog and web part toolbar.</p>
-<p   
->You can choose between two types of images:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Image</strong> - upload a standard image file (for example a png).</p>
-</li><li class=" "><p   
-><strong class=" ">Font icon class</strong> - select a <a   href="working-with-font-icons">font icon</a> from the icon picker.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Allows you to set the image that represents the web part in the selection catalog and web part toolbar.</p>
+<p>You can choose between two types of images:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Image</strong> - upload a standard image file (for example a png).</p>
+</li><li class=" "><p><strong class=" ">Font icon class</strong> - select a <a href="working-with-font-icons">font icon</a> from the icon picker.</p>
 </li></ul>            </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Description</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Text describing the web part. The system displays the text:</p>
-<ul class=" "><li class=" "><p   
->In the web part selection catalog</p>
-</li><li class=" "><p   
->As a tooltip in the web part toolbar</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Text describing the web part. The system displays the text:</p>
+<ul class=" "><li class=" "><p>In the web part selection catalog</p>
+</li><li class=" "><p>As a tooltip in the web part toolbar</p>
 </li></ul>            </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882203/Web_Part_General.png" 
-        alt="Editing the settings of a web part in the administration interface"        
-        width="500"         />
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882203/Web_Part_General.png" alt="Editing the settings of a web part in the administration interface" width="500">
 </p>
     <h4 id="src-68882203_creatingnewwebparts-stylingwebpartsusingcss" class="heading "><span>Styling web parts using CSS</span></h4>
-<p   
->We recommend that you style the content of web parts in the CSS that you use for the entire website. See <a   href="designing-websites-using-css">Designing websites using CSS</a> for more information on the two recommended approaches.</p>
+<p>We recommend that you style the content of web parts in the CSS that you use for the entire website. See <a href="designing-websites-using-css">Designing websites using CSS</a> for more information on the two recommended approaches.</p>
     <h3 id="src-68882203_creatingnewwebparts-example-creatinganewwebpart" class="heading "><span>Example - Creating a new web part</span></h3>
-<p   
->The following example guides you through the process of creating a simple &quot;Hello world&quot; web part that displays a label and a button. When a user clicks the button, the label displays the current time.</p>
+<p>The following example guides you through the process of creating a simple "Hello world" web part that displays a label and a button. When a user clicks the button, the label displays the current time.</p>
     <h4 id="src-68882203_creatingnewwebparts-creatingthewebpartcodefiles" class="heading "><span>Creating the web part code files</span></h4>
-<ol class=" "><li class=" "><p   
->Open your web project in Visual Studio using the <strong class=" ">WebSite.sln</strong> (or <strong class=" ">WebApp.sln</strong>) file.</p>
-</li><li class=" "><p   
->Right-click the <strong class=" ">CMSWebParts</strong> folder in the Solution Explorer window and click <strong class=" ">Add -&gt; New Folder</strong>.</p>
-</li><li class=" "><p   
->Name the sub-folder <i class=" ">MyWebParts</i>.</p>
-</li><li class=" "><p   
->Create a <strong class=" ">Web User Control</strong> named <i class=" ">HelloWorld.ascx</i> in the <i class=" ">MyWebParts</i> folder.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Control</strong> declaration, enter the full relative path of the control&#39;s code behind file into the <strong class=" ">CodeFile</strong> attribute (<strong class=" ">CodeBehind</strong> attribute on web application installations).</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Open your web project in Visual Studio using the <strong class=" ">WebSite.sln</strong> (or <strong class=" ">WebApp.sln</strong>) file.</p>
+</li><li class=" "><p>Right-click the <strong class=" ">CMSWebParts</strong> folder in the Solution Explorer window and click <strong class=" ">Add -&gt; New Folder</strong>.</p>
+</li><li class=" "><p>Name the sub-folder <i class=" ">MyWebParts</i>.</p>
+</li><li class=" "><p>Create a <strong class=" ">Web User Control</strong> named <i class=" ">HelloWorld.ascx</i> in the <i class=" ">MyWebParts</i> folder.</p>
+</li><li class=" "><p>In the <strong class=" ">Control</strong> declaration, enter the full relative path of the control's code behind file into the <strong class=" ">CodeFile</strong> attribute (<strong class=" ">CodeBehind</strong> attribute on web application installations).</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9103,9 +8990,8 @@ __________________    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Add a <strong class=" ">Button</strong> and <strong class=" ">Label</strong> control into the control&#39;s markup.</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Add a <strong class=" ">Button</strong> and <strong class=" ">Label</strong> control into the control's markup.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9129,15 +9015,11 @@ __________________    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Set the <strong class=" ">Visible</strong> property of the Label control to <i class=" ">False</i>.</p>
-</li><li class=" "><p   
->Switch to <strong class=" ">Design</strong> mode and double-click the Button control.</p>
-<ul class=" "><li class=" "><p   
->Visual Studio opens the control&#39;s code behind file and creates a handler method for the button click event.</p>
-</li></ul></li><li class=" "><p   
->Add the following code into the <strong class=" ">Button1_Click</strong> method:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Set the <strong class=" ">Visible</strong> property of the Label control to <i class=" ">False</i>.</p>
+</li><li class=" "><p>Switch to <strong class=" ">Design</strong> mode and double-click the Button control.</p>
+<ul class=" "><li class=" "><p>Visual Studio opens the control's code behind file and creates a handler method for the button click event.</p>
+</li></ul></li><li class=" "><p>Add the following code into the <strong class=" ">Button1_Click</strong> method:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9161,9 +9043,8 @@ __________________    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Add the following references to the beginning of the control&#39;s code behind:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Add the following references to the beginning of the control's code behind:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9187,9 +9068,8 @@ __________________    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Modify the control&#39;s class declaration so that it inherits from <strong class=" ">CMSAbstractWebPart</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Modify the control's class declaration so that it inherits from <strong class=" ">CMSAbstractWebPart</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9212,9 +9092,8 @@ __________________    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Add the following code to the <strong class=" ">Page_Load</strong> method:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Add the following code to the <strong class=" ">Page_Load</strong> method:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9237,73 +9116,37 @@ __________________    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Save the user control&#39;s files.</p>
-</li></ol><p   
->The web part&#39;s source files are now ready. If your Kentico project was installed as a <i class=" ">web application</i>, you must <strong class=" ">Build</strong> the project.</p>
+</li><li class=" "><p>Save the user control's files.</p>
+</li></ol><p>The web part's source files are now ready. If your Kentico project was installed as a <i class=" ">web application</i>, you must <strong class=" ">Build</strong> the project.</p>
     <h4 id="src-68882203_creatingnewwebparts-registeringthewebpartinthesystem" class="heading "><span>Registering the web part in the system</span></h4>
-<ol class=" "><li class=" "><p   
->Log in to the Kentico administration interface and open the <strong class=" ">Web parts</strong> application.</p>
-</li><li class=" "><p   
->Select the root of the tree (<i class=" ">All web parts</i>), click <strong class=" ">...</strong> next to the <strong class=" ">New web part</strong> button and select <strong class=" ">New category</strong>.</p>
-</li><li class=" "><p   
->Type <i class=" ">My web parts</i> into the <strong class=" ">Category display name</strong> field and click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Select the new category and click<strong class=" "> New web part</strong>.</p>
-</li><li class=" "><p   
->Specify the following values:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Web part</strong>: Create a new</p>
-</li><li class=" "><p   
-><strong class=" ">Display name</strong>: Hello world</p>
-</li><li class=" "><p   
-><strong class=" ">Code files</strong>: Use existing file</p>
-</li><li class=" "><p   
-><strong class=" ">File path</strong>: ~/CMSWebParts/MyWebParts/HelloWorld.ascx</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Properties</strong> tab and click <strong class=" ">New field</strong> to create a <a   href="working-with-web-part-properties">web part property</a>:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field name</strong>: ButtonText</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Text</p>
-</li><li class=" "><p   
-><strong class=" ">Size</strong>: 100</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Button text</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Text box</p>
-</li></ul></li><li class=" "><p   
->Click<strong class=" "> Save</strong>.</p>
-</li></ol><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882203/Create_WebPart_Properties.png" 
-        alt="Defining the ButtonText property for the Hello world web part"        
-        width="500"         />
+<ol class=" "><li class=" "><p>Log in to the Kentico administration interface and open the <strong class=" ">Web parts</strong> application.</p>
+</li><li class=" "><p>Select the root of the tree (<i class=" ">All web parts</i>), click <strong class=" ">...</strong> next to the <strong class=" ">New web part</strong> button and select <strong class=" ">New category</strong>.</p>
+</li><li class=" "><p>Type <i class=" ">My web parts</i> into the <strong class=" ">Category display name</strong> field and click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Select the new category and click<strong class=" "> New web part</strong>.</p>
+</li><li class=" "><p>Specify the following values:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Web part</strong>: Create a new</p>
+</li><li class=" "><p><strong class=" ">Display name</strong>: Hello world</p>
+</li><li class=" "><p><strong class=" ">Code files</strong>: Use existing file</p>
+</li><li class=" "><p><strong class=" ">File path</strong>: ~/CMSWebParts/MyWebParts/HelloWorld.ascx</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Properties</strong> tab and click <strong class=" ">New field</strong> to create a <a href="working-with-web-part-properties">web part property</a>:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: ButtonText</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 100</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Button text</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text box</p>
+</li></ul></li><li class=" "><p>Click<strong class=" "> Save</strong>.</p>
+</li></ol><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882203/Create_WebPart_Properties.png" alt="Defining the ButtonText property for the Hello world web part" width="500">
 </p>
     <h4 id="src-68882203_creatingnewwebparts-addinganinstanceofthewebparttoapage" class="heading "><span>Adding an instance of the web part to a page</span></h4>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
-><a   href="creating-new-pages">Create a new page</a> in your website&#39;s content tree.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Hello world</strong> web part onto the page.</p>
-</li><li class=" "><p   
->In the web part configuration dialog, set the value of the <strong class=" ">Button text</strong> property to <i class=" ">Hello world!</i>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">OK</strong>.</p>
-</li></ol><p   
->If you switch to <strong class=" ">Preview</strong> mode, you can see the button with a <i class=" ">Hello world!</i> caption. When you click the button, the label displays the current date and time.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882203/Custom_WebPart_Result.png" 
-        alt="Hello world web part on the live site (or Preview mode)"        
-        width="268"        height="191" />
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p><a href="creating-new-pages">Create a new page</a> in your website's content tree.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Hello world</strong> web part onto the page.</p>
+</li><li class=" "><p>In the web part configuration dialog, set the value of the <strong class=" ">Button text</strong> property to <i class=" ">Hello world!</i>.</p>
+</li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p>If you switch to <strong class=" ">Preview</strong> mode, you can see the button with a <i class=" ">Hello world!</i> caption. When you click the button, the label displays the current date and time.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882203/Custom_WebPart_Result.png" alt="Hello world web part on the live site (or Preview mode)" width="268" height="191">
 </p>
                     </div>
                 </div>
@@ -9315,8 +9158,8 @@ __________________    </span>
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9328,10 +9171,10 @@ __________________    </span>
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9350,9 +9193,6 @@ __________________    </span>
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9363,7 +9203,7 @@ __________________    </span>
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9374,5 +9214,6 @@ __________________    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

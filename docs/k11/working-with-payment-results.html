@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Working with payment results - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881646"> <span>Working with payment results</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,59 +8660,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The system stores payment results in XML format. In the API, the results are managed using <i class=" ">CMS.Ecommerce.PaymentResultInfo </i>objects. Every XML node of a payment result is represented by a single payment result item, which can be managed using the <i class=" ">CMS.Ecommerce.PaymentResultItemInfo </i>object.</p>
-<p   
->By default, the system provides the following payment result items:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Payment date</strong> &ndash; the date and time when the payment result was last updated.</p>
-</li><li class=" "><p   
-><strong class=" ">Payment method</strong> &ndash; the <a   href="configuring-payment-methods">payment method</a> that was used for the transaction.</p>
-</li><li class=" "><p   
-><strong class=" ">Payment is completed</strong> &ndash; indicates whether the payment was completed successfully.</p>
-</li><li class=" "><p   
-><strong class=" ">Payment is authorized</strong> &ndash; indicates whether the payment was successfully authorized for later capture (for payment gateways that use delayed funds capture).</p>
-</li><li class=" "><p   
-><strong class=" ">Payment is failed</strong> &ndash; indicates whether the payment transaction failed (cannot be set together with the <i class=" ">Payment is completed</i> result item).</p>
-</li><li class=" "><p   
-><strong class=" ">Payment approval URL</strong> &ndash; the URL of a page (typically external) where customers provide additional payment details and finalize the transaction. If set, the system automatically redirects customers to this URL after they submit the related payment form.</p>
-</li><li class=" "><p   
-><strong class=" ">Payment status</strong> &ndash; the status of the payment, e.g. <i class=" ">Completed</i>, <i class=" ">Failed</i>, etc. (your custom status).</p>
-</li><li class=" "><p   
-><strong class=" ">Payment transaction ID</strong> &ndash; a unique identifier for the payment transaction generated by the payment gateway.</p>
-</li><li class=" "><p   
-><strong class=" ">Payment authorization ID</strong> &ndash; a unique identifier for authorization transactions generated by the payment gateway (for payment providers that use transactions with delayed capture of funds).</p>
-</li><li class=" "><p   
-><strong class=" ">Payment description</strong> &ndash; text describing the result of the payment transaction.</p>
-</li></ul><p   
->Payment result items have the following properties:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Name</strong> &ndash; represents a unique identifier of the payment result item.</p>
-</li><li class=" "><p   
-><strong class=" ">Header</strong> &ndash; represents the name of the payment result item visible to users in the Orders application (simple text or <a   href="localizing-text-fields">localizable string</a>).</p>
-</li><li class=" "><p   
-><strong class=" ">Text</strong> &ndash; determines the outer representation of the payment result item value visible to users in the Orders application (simple text or localizable string).</p>
-</li><li class=" "><p   
-><strong class=" ">Value</strong> &ndash; determines the inner representation of the payment result item value used by developers.</p>
-</li></ul>    <div  class="confbox panel">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>The system stores payment results in XML format. In the API, the results are managed using <i class=" ">CMS.Ecommerce.PaymentResultInfo </i>objects. Every XML node of a payment result is represented by a single payment result item, which can be managed using the <i class=" ">CMS.Ecommerce.PaymentResultItemInfo </i>object.</p><p>By default, the system provides the following payment result items:</p><ul class=" "><li class=" "><p><strong class=" ">Payment date</strong> – the date and time when the payment result was last updated.</p>
+</li><li class=" "><p><strong class=" ">Payment method</strong> – the <a href="configuring-payment-methods">payment method</a> that was used for the transaction.</p>
+</li><li class=" "><p><strong class=" ">Payment is completed</strong> – indicates whether the payment was completed successfully.</p>
+</li><li class=" "><p><strong class=" ">Payment is authorized</strong> – indicates whether the payment was successfully authorized for later capture (for payment gateways that use delayed funds capture).</p>
+</li><li class=" "><p><strong class=" ">Payment is failed</strong> – indicates whether the payment transaction failed (cannot be set together with the <i class=" ">Payment is completed</i> result item).</p>
+</li><li class=" "><p><strong class=" ">Payment approval URL</strong> – the URL of a page (typically external) where customers provide additional payment details and finalize the transaction. If set, the system automatically redirects customers to this URL after they submit the related payment form.</p>
+</li><li class=" "><p><strong class=" ">Payment status</strong> – the status of the payment, e.g. <i class=" ">Completed</i>, <i class=" ">Failed</i>, etc. (your custom status).</p>
+</li><li class=" "><p><strong class=" ">Payment transaction ID</strong> – a unique identifier for the payment transaction generated by the payment gateway.</p>
+</li><li class=" "><p><strong class=" ">Payment authorization ID</strong> – a unique identifier for authorization transactions generated by the payment gateway (for payment providers that use transactions with delayed capture of funds).</p>
+</li><li class=" "><p><strong class=" ">Payment description</strong> – text describing the result of the payment transaction.</p>
+</li></ul><p>Payment result items have the following properties:</p><ul class=" "><li class=" "><p><strong class=" ">Name</strong> – represents a unique identifier of the payment result item.</p>
+</li><li class=" "><p><strong class=" ">Header</strong> – represents the name of the payment result item visible to users in the Orders application (simple text or <a href="localizing-text-fields">localizable string</a>).</p>
+</li><li class=" "><p><strong class=" ">Text</strong> – determines the outer representation of the payment result item value visible to users in the Orders application (simple text or localizable string).</p>
+</li><li class=" "><p><strong class=" ">Value</strong> – determines the inner representation of the payment result item value used by developers.</p>
+</li></ul><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881646_workingwithpaymentresults-example-orderpaymentresultxmldefinition">Example - Order payment result XML definition</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881646_workingwithpaymentresults-example-orderpaymentresultintheordersapplication">Example - Order payment result in the Orders application</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881646_workingwithpaymentresults-customizingpaymentresults">Customizing payment results</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881646_workingwithpaymentresults-example-orderpaymentresultxmldefinition">Example - Order payment result XML definition</a></p>
+</li><li class=" "><p><a href="#src-68881646_workingwithpaymentresults-example-orderpaymentresultintheordersapplication">Example - Order payment result in the Orders application</a></p>
+</li><li class=" "><p><a href="#src-68881646_workingwithpaymentresults-customizingpaymentresults">Customizing payment results</a></p>
+</li></ul><p></p>
         </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
     <h3 id="src-68881646_workingwithpaymentresults-example-orderpaymentresultxmldefinition" class="heading "><span>Example - Order payment result XML definition</span></h3>
-<p   
->The following example shows an XML definition of an order payment result extended by the <i class=" ">authorizationcode</i> item used by Authorize.NET:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The following example shows an XML definition of an order payment result extended by the <i class=" ">authorizationcode</i> item used by Authorize.NET:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8746,60 +8720,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The system stores the payment result XML values in the <i class=" ">OrderPaymentResult</i> column of order records (<i class=" ">COM_Order</i> database table).</p>
+<p>The system stores the payment result XML values in the <i class=" ">OrderPaymentResult</i> column of order records (<i class=" ">COM_Order</i> database table).</p>
     <h3 id="src-68881646_workingwithpaymentresults-example-orderpaymentresultintheordersapplication" class="heading "><span>Example - Order payment result in the Orders application</span></h3>
-<p   
->The following example shows a payment result visible to your on-line store administrators in the <strong class=" ">Orders </strong>application while editing a selected <a   href="orders">order</a> on the <strong class=" ">Billing</strong> tab:</p>
-<p   
->Date:<i class=" "> 7/28/2017 3:06:16 PM</i><br/>Method:<i class=" "> Credit Card - Authorize.NET</i><br/>Is completed:<i class=" "> YES</i><br/>Status: <i class=" ">Completed</i><br/>Transaction ID:<i class=" "> 0</i><br/>Authorization code:<i class=" "> 000000</i></p>
-<div  class="box-general box-info">
+<p>The following example shows a payment result visible to your on-line store administrators in the <strong class=" ">Orders </strong>application while editing a selected <a href="orders">order</a> on the <strong class=" ">Billing</strong> tab:</p>
+<p>Date:<i class=" "> 7/28/2017 3:06:16 PM</i><br>Method:<i class=" "> Credit Card - Authorize.NET</i><br>Is completed:<i class=" "> YES</i><br>Status: <i class=" ">Completed</i><br>Transaction ID:<i class=" "> 0</i><br>Authorization code:<i class=" "> 000000</i></p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->The payment result is unavailable (N/A) until the payment gateway processor updates it.</p>
-<p   
->You do not need to specify both item value and item text if they are identical. The system automatically renders payments results as follows:</p>
-<ol class=" "><li class=" "><p   
->Render the item text if available.</p>
-</li><li class=" "><p   
->If not, render the item value.</p>
+            <p>The payment result is unavailable (N/A) until the payment gateway processor updates it.</p>
+<p>You do not need to specify both item value and item text if they are identical. The system automatically renders payments results as follows:</p>
+<ol class=" "><li class=" "><p>Render the item text if available.</p>
+</li><li class=" "><p>If not, render the item value.</p>
 </li></ol>     
     </div>
 </div>
     <h3 id="src-68881646_workingwithpaymentresults-customizingpaymentresults" class="heading "><span>Customizing payment results</span></h3>
-<p   
->To manage the default payment result items, use the corresponding properties of <strong class=" ">PaymentResultInfo</strong> objects:</p>
-<ul class=" "><li class=" "><p   
->PaymentDate (DateTime)</p>
-</li><li class=" "><p   
->PaymentMethodID (int)</p>
-</li><li class=" "><p   
->PaymentMethodName (string)</p>
-</li><li class=" "><p   
->PaymentIsCompleted (bool)</p>
-</li><li class=" "><p   
->PaymentIsAuthorized (bool)</p>
-</li><li class=" "><p   
->PaymentIsFailed (bool)</p>
-</li><li class=" "><p   
->PaymentApprovalUrl (string)</p>
-</li><li class=" "><p   
->PaymentStatusName (string)</p>
-</li><li class=" "><p   
->PaymentStatusValue (string</p>
-</li><li class=" "><p   
->PaymentTransactionID (string)</p>
-</li><li class=" "><p   
->PaymentAuthorizationID (string)</p>
-</li><li class=" "><p   
->PaymentDescription (string)</p>
-</li></ul><p   
->To get or set custom payment result items, call the <strong class=" "><i class=" ">GetPaymentResultItemInfo</i></strong><i class=" ">(string itemName) </i>and <strong class=" "><i class=" ">SetPaymentResultItemInfo</i></strong><i class=" ">(PaymentResultItemInfo itemObj</i>) public methods.</p>
-<p   
->The following examples demonstrate how to work with a custom payment result item (storing an authorization code) in the code of a <a   href="creating-a-custom-payment-gateway">custom gateway provider class</a>:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>To manage the default payment result items, use the corresponding properties of <strong class=" ">PaymentResultInfo</strong> objects:</p>
+<ul class=" "><li class=" "><p>PaymentDate (DateTime)</p>
+</li><li class=" "><p>PaymentMethodID (int)</p>
+</li><li class=" "><p>PaymentMethodName (string)</p>
+</li><li class=" "><p>PaymentIsCompleted (bool)</p>
+</li><li class=" "><p>PaymentIsAuthorized (bool)</p>
+</li><li class=" "><p>PaymentIsFailed (bool)</p>
+</li><li class=" "><p>PaymentApprovalUrl (string)</p>
+</li><li class=" "><p>PaymentStatusName (string)</p>
+</li><li class=" "><p>PaymentStatusValue (string</p>
+</li><li class=" "><p>PaymentTransactionID (string)</p>
+</li><li class=" "><p>PaymentAuthorizationID (string)</p>
+</li><li class=" "><p>PaymentDescription (string)</p>
+</li></ul><p>To get or set custom payment result items, call the <strong class=" "><i class=" ">GetPaymentResultItemInfo</i></strong><i class=" ">(string itemName) </i>and <strong class=" "><i class=" ">SetPaymentResultItemInfo</i></strong><i class=" ">(PaymentResultItemInfo itemObj</i>) public methods.</p>
+<p>The following examples demonstrate how to work with a custom payment result item (storing an authorization code) in the code of a <a href="creating-a-custom-payment-gateway">custom gateway provider class</a>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Setting the authorization code</strong>    </div>
@@ -8818,22 +8770,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Setting the authorization code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Prepares a PaymentResultItemInfo object for the authorization code</code></div>
 <div class="line"><code class="plain">PaymentResultItemInfo item = </code><code class="keyword">new</code><code class="plain"> PaymentResultItemInfo();</code></div>
 <div class="line"><code class="plain">item.Header = </code><code class="string">"{$AuthorizeNet.AuthorizationCode$}"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">item.Name = </code><code class="string">"authorizationcode"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">item.Value = </code><code class="string">"00000"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Saves the custom item into the PaymentResultInfo object processed by the gateway provider</code></div>
 <div class="line"><code class="plain">PaymentResult.SetPaymentResultItemInfo(item);</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Getting the authorization code</strong>    </div>
@@ -8852,9 +8804,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Getting the authorization code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets the custom item from the PaymentResultInfo object processed by the gateway provider</code></div>
 <div class="line"><code class="plain">PaymentResultItemInfo item = PaymentResult.GetPaymentResultItemInfo(</code><code class="string">"authorizationcode"</code><code class="plain">);</code></div>
 </div>
@@ -8871,8 +8823,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8884,10 +8836,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8906,9 +8858,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8919,7 +8868,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8930,5 +8879,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

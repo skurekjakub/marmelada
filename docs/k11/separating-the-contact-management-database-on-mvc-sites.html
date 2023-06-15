@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Separating the contact management database on MVC sites - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880514"> <span>Separating the contact management database on MVC sites</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,59 +8660,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When using contact management on high&#8209;traffic websites, the system needs to store a very large volume of data in order to keep records of all contacts, their activities and other related information. Kentico allows you to to move all <a   href="separating-the-contact-management-database#src-68882593_separatingthecontactmanagementdatabase-tablesaffectedbycontactmanagementdatabaseseparation">tables and database objects</a> associated with contact management to a separate database (including the currently stored data). Doing so allows easier management of the application&#39;s main database, without the need to deal with the contact data.</p>
-<p   
->There can only be one separated contact management database for the entire system, even when hosting multiple websites. It is not possible to create a different database for each site.</p>
-<p   
->If you wish to separate the contact management database, follow the steps listed in the <a   href="separating-the-contact-management-database#src-68882593_separatingthecontactmanagementdatabase-runningthedatabaseseparation">Running the database separation</a> section.</p>
-<div  class="box-general box-warning">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When using contact management on high‑traffic websites, the system needs to store a very large volume of data in order to keep records of all contacts, their activities and other related information. Kentico allows you to to move all <a href="separating-the-contact-management-database#src-68882593_separatingthecontactmanagementdatabase-tablesaffectedbycontactmanagementdatabaseseparation">tables and database objects</a> associated with contact management to a separate database (including the currently stored data). Doing so allows easier management of the application's main database, without the need to deal with the contact data.</p><p>There can only be one separated contact management database for the entire system, even when hosting multiple websites. It is not possible to create a different database for each site.</p><p>If you wish to separate the contact management database, follow the steps listed in the <a href="separating-the-contact-management-database#src-68882593_separatingthecontactmanagementdatabase-runningthedatabaseseparation">Running the database separation</a> section.</p><div class="box-general box-warning">
   
                 <div class="box-icon icon-exclamation-triangle-inverted"> </div> 
         <div class="box-content"> 
-            <ul class=" "><li class=" "><p   
->It is strongly recommended to back up your database before starting the separation.</p>
-</li><li class=" "><p   
->The database will be unavailable while the separation is being carried out, so you should run the process at a time when no visitors or editors are accessing the websites in the system.</p>
-</li><li class=" "><p   
->You cannot perform database separation if you use Integrated Windows authentication on your SQL Server.</p>
+            <ul class=" "><li class=" "><p>It is strongly recommended to back up your database before starting the separation.</p>
+</li><li class=" "><p>The database will be unavailable while the separation is being carried out, so you should run the process at a time when no visitors or editors are accessing the websites in the system.</p>
+</li><li class=" "><p>You cannot perform database separation if you use Integrated Windows authentication on your SQL Server.</p>
 </li></ul>     
     </div>
-</div>
-<p   
->Please note the difference for separating the database on MVC projects:</p>
-<div  class="box-general box-note">
+</div><p>Please note the difference for separating the database on MVC projects:</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->When the process of separating the database is completed, you need to add an additional connection string for the new contact management database to your MVC project&#39;s <i class=" ">web.config</i> file: &lt;<i class=" ">add name=&quot;CMSOMConnectionString&quot; connectionString=&quot;...&quot;</i> /&gt;.</p>
+            <p>When the process of separating the database is completed, you need to add an additional connection string for the new contact management database to your MVC project's <i class=" ">web.config</i> file: &lt;<i class=" ">add name="CMSOMConnectionString" connectionString="..."</i> /&gt;.</p>
      
     </div>
-</div>
-<p   
->After having separated the contact management database, all functionality of the website and administration interface remains the same as before the separation.</p>
-    <h3 id="src-68880514_separatingthecontactmanagementdatabaseonmvcsites-rejoiningthecontactmanagementdatabaseonmvcsites" class="heading "><span>Rejoining the contact management database on MVC sites</span></h3>
-<p   
->If you wish to reverse the process and return everything back to a single database, follow the instructions in <a   href="rejoining-the-contact-management-database">Rejoining the contact management database</a>. Please note the difference for rejoining the database on MVC projects:</p>
-<div  class="box-general box-note">
+</div><p>After having separated the contact management database, all functionality of the website and administration interface remains the same as before the separation.</p><h3 id="src-68880514_separatingthecontactmanagementdatabaseonmvcsites-rejoiningthecontactmanagementdatabaseonmvcsites" class="heading "><span>Rejoining the contact management database on MVC sites</span></h3><p>If you wish to reverse the process and return everything back to a single database, follow the instructions in <a href="rejoining-the-contact-management-database">Rejoining the contact management database</a>. Please note the difference for rejoining the database on MVC projects:</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->When the process of rejoining the database is completed, you need to delete the additional connection string for the separated contact management database from your MVC project&#39;s <i class=" ">web.config</i> file: &lt;<i class=" ">add name=&quot;CMSOMConnectionString&quot; connectionString=&quot;...&quot;</i> /&gt;.</p>
+            <p>When the process of rejoining the database is completed, you need to delete the additional connection string for the separated contact management database from your MVC project's <i class=" ">web.config</i> file: &lt;<i class=" ">add name="CMSOMConnectionString" connectionString="..."</i> /&gt;.</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="separating-the-contact-management-database">Separating the contact management database</a></p>
-</li><li class=" "><p   
-><a   href="rejoining-the-contact-management-database">Rejoining the contact management database</a></p>
+<ul class=" "><li class=" "><p><a href="separating-the-contact-management-database">Separating the contact management database</a></p>
+</li><li class=" "><p><a href="rejoining-the-contact-management-database">Rejoining the contact management database</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+
+
+    
+
+
+    
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -8726,8 +8710,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8739,10 +8723,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8761,9 +8745,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8774,7 +8755,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8785,5 +8766,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

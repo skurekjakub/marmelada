@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Revoking consent agreements - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-76844852"> <span>Revoking consent agreements</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,79 +8659,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Kentico does not provide any built-in components that give visitors an option to revoke their <a   href="working-with-consents">consent agreements</a>.</p>
-<p   
->To comply with the <a   href="gdpr-compliance">requirements of the GDPR</a>, you need to develop and maintain custom components that allow visitors to revoke consent agreements on your website. This way, you can create a solution that best reflects the state of <a   href="personal-data-in-kentico">personal data</a> processing on your website.</p>
-<div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Kentico does not provide any built-in components that give visitors an option to revoke their <a href="working-with-consents">consent agreements</a>.</p><p>To comply with the <a href="gdpr-compliance">requirements of the GDPR</a>, you need to develop and maintain custom components that allow visitors to revoke consent agreements on your website. This way, you can create a solution that best reflects the state of <a href="personal-data-in-kentico">personal data</a> processing on your website.</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->&quot;It shall be as easy to withdraw as to give consent.&quot;</p>
-<p   
->(Source: <a  class="external-link" href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679#d1e2001-1-1">GDPR Article 7</a>, Paragraph 3)</p>
+            <p>"It shall be as easy to withdraw as to give consent."</p>
+<p>(Source: <a class="external-link" href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679#d1e2001-1-1">GDPR Article 7</a>, Paragraph 3)</p>
      
     </div>
-</div>
-<p   
->To manage consent agreements in the code of your custom components, use the default implementation of the <strong class=" ">IConsentAgreementService</strong> interface. The interface provides the following methods:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">GetAgreedConsents(ContactInfo)</strong> &ndash; returns a collection of all consents with which the specified contact has agreed. The returned <i class=" ">Consent</i> objects provide the <i class=" ">GetConsentText</i> method, which automatically gets either the current texts of the given consent or the texts of the archived consent version for which the agreement was given.</p>
-</li><li class=" "><p   
-><strong class=" ">Agree(ContactInfo, ConsentInfo)</strong> &ndash; creates a consent agreement for a specified contact and consent.<strong class=" "><br/></strong></p>
-</li><li class=" "><p   
-><strong class=" ">Revoke(ContactInfo, ConsentInfo)</strong> &ndash; revokes the consent agreement for a specified contact and consent (if such an agreement exists).</p>
-</li><li class=" "><p   
-><strong class=" ">IsAgreed(ContactInfo, ConsentInfo)</strong> &ndash; evaluates whether a specified contact has agreed with a given consent.</p>
-</li></ul>    <div  class="confbox panel">
+</div><p>To manage consent agreements in the code of your custom components, use the default implementation of the <strong class=" ">IConsentAgreementService</strong> interface. The interface provides the following methods:</p><ul class=" "><li class=" "><p><strong class=" ">GetAgreedConsents(ContactInfo)</strong> – returns a collection of all consents with which the specified contact has agreed. The returned <i class=" ">Consent</i> objects provide the <i class=" ">GetConsentText</i> method, which automatically gets either the current texts of the given consent or the texts of the archived consent version for which the agreement was given.</p>
+</li><li class=" "><p><strong class=" ">Agree(ContactInfo, ConsentInfo)</strong> – creates a consent agreement for a specified contact and consent.<strong class=" "><br></strong></p>
+</li><li class=" "><p><strong class=" ">Revoke(ContactInfo, ConsentInfo)</strong> – revokes the consent agreement for a specified contact and consent (if such an agreement exists).</p>
+</li><li class=" "><p><strong class=" ">IsAgreed(ContactInfo, ConsentInfo)</strong> – evaluates whether a specified contact has agreed with a given consent.</p>
+</li></ul><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="creating-new-web-parts">Creating new web parts</a></p>
-</li><li class=" "><p   
-><a   href="working-with-consents">Working with consents</a></p>
+<ul class=" "><li class=" "><p><a href="creating-new-web-parts">Creating new web parts</a></p>
+</li><li class=" "><p><a href="working-with-consents">Working with consents</a></p>
 </li></ul>        </div>
-    </div>
-<p   
-></p>
-<div  class="box-general box-info">
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+    
+<p></p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
+            <p>Features described on this page require the <strong class=" ">Kentico EMS</strong> license.</p>
      
     </div>
 </div>
-<p   
-></p>
-<div  class="box-general box-note">
+<p></p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Clearing personal data for revoked consents</strong></p>
-<p   
->When a visitor revokes a consent agreement, you may also need to delete or anonymize certain types of <a   href="personal-data-in-kentico">personal data</a> stored by the system.</p>
-<p   
->To perform additional actions of this type whenever a consent agreement is revoked, assign a custom handler to the system&#39;s <strong class=" ">DataProtectionEvents.RevokeConsentAgreement </strong><a   href="reference---global-system-events">global event</a>.</p>
-<p   
->See also: <a   href="implementing-personal-data-erasure">Implementing personal data erasure</a></p>
+            <p><strong class=" ">Clearing personal data for revoked consents</strong></p>
+<p>When a visitor revokes a consent agreement, you may also need to delete or anonymize certain types of <a href="personal-data-in-kentico">personal data</a> stored by the system.</p>
+<p>To perform additional actions of this type whenever a consent agreement is revoked, assign a custom handler to the system's <strong class=" ">DataProtectionEvents.RevokeConsentAgreement </strong><a href="reference---global-system-events">global event</a>.</p>
+<p>See also: <a href="implementing-personal-data-erasure">Implementing personal data erasure</a></p>
      
     </div>
 </div>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Revoking tracking consent through the API</strong></p>
-<p   
->Consent with the <a   href="working-with-contacts">tracking of contacts</a> and their <a   href="tracking-contact-activities">activities</a> is controlled by the <a   href="cookie-levels">cookie level</a> allowed by each visitor.</p>
-<p   
->By default, visitors can manage their tracking consent and cookie level through the <strong class=" ">Cookie law and tracking consent</strong> web part. However, if you wish to revoke the tracking consent through the API, you also need to implement code that lowers the visitor&#39;s cookie level (below the <i class=" ">Visitor</i> level).</p>
-<div  class="code panel pdl js-codePanel" >
+            <p><strong class=" ">Revoking tracking consent through the API</strong></p>
+<p>Consent with the <a href="working-with-contacts">tracking of contacts</a> and their <a href="tracking-contact-activities">activities</a> is controlled by the <a href="cookie-levels">cookie level</a> allowed by each visitor.</p>
+<p>By default, visitors can manage their tracking consent and cookie level through the <strong class=" ">Cookie law and tracking consent</strong> web part. However, if you wish to revoke the tracking consent through the API, you also need to implement code that lowers the visitor's cookie level (below the <i class=" ">Visitor</i> level).</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8754,9 +8730,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Core;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">ICurrentCookieLevelProvider cookieLevelProvider = Service.Resolve&lt;ICurrentCookieLevelProvider&gt;();</code></div>
 <div class="line"><code class="plain">cookieLevelProvider.SetCurrentCookieLevel(cookieLevelProvider.GetDefaultCookieLevel());</code></div>
 </div>
@@ -8766,22 +8742,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      
     </div>
 </div>
-    <h3 id="src-76844852_safe-id-umv2b2tpbmdjb25zzw50ywdyzwvtzw50cy1fegftcgxl4octq3jlyxrpbmdhd2vicgfydgzvcnjldm9raw5ny29uc2vudgfncmvlbwvudhm" class="heading "><span>Example &ndash; Creating a web part for revoking consent agreements</span></h3>
-<p   
->The following example demonstrates how to <a   href="creating-new-web-parts">create a web part</a> that displays all consents with which the current visitor (contact) has agreed and allows them to be revoked.</p>
-<p   
->Start by implementing the web part code:</p>
-<ol class=" "><li class=" "><p   
->Open your web project in Visual Studio using the <strong class=" ">WebSite.sln</strong> (or <strong class=" ">WebApp.sln</strong>) file.</p>
-</li><li class=" "><p   
->Right-click the <strong class=" ">CMSWebParts</strong> folder in the Solution Explorer and click <strong class=" ">Add -&gt; New Folder</strong>.</p>
-</li><li class=" "><p   
->Name the sub-folder <i class=" ">CustomWebParts</i>.</p>
-</li><li class=" "><p   
->Create a <strong class=" ">Web User Control</strong> named <i class=" ">RevokeConsents.ascx</i> in the <i class=" ">CustomWebParts</i> folder.</p>
-</li><li class=" "><p   
->Copy the following code into the control&#39;s markup:</p>
-<div  class="code panel pdl js-codePanel" >
+    <h3 id="src-76844852_safe-id-umv2b2tpbmdjb25zzw50ywdyzwvtzw50cy1fegftcgxl4octq3jlyxrpbmdhd2vicgfydgzvcnjldm9raw5ny29uc2vudgfncmvlbwvudhm" class="heading "><span>Example – Creating a web part for revoking consent agreements</span></h3>
+<p>The following example demonstrates how to <a href="creating-new-web-parts">create a web part</a> that displays all consents with which the current visitor (contact) has agreed and allows them to be revoked.</p>
+<p>Start by implementing the web part code:</p>
+<ol class=" "><li class=" "><p>Open your web project in Visual Studio using the <strong class=" ">WebSite.sln</strong> (or <strong class=" ">WebApp.sln</strong>) file.</p>
+</li><li class=" "><p>Right-click the <strong class=" ">CMSWebParts</strong> folder in the Solution Explorer and click <strong class=" ">Add -&gt; New Folder</strong>.</p>
+</li><li class=" "><p>Name the sub-folder <i class=" ">CustomWebParts</i>.</p>
+</li><li class=" "><p>Create a <strong class=" ">Web User Control</strong> named <i class=" ">RevokeConsents.ascx</i> in the <i class=" ">CustomWebParts</i> folder.</p>
+</li><li class=" "><p>Copy the following code into the control's markup:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8802,7 +8771,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">&lt;%@ Control Language=</code><code class="string">"C#"</code><code class="plain"> AutoEventWireup=</code><code class="string">"true"</code><code class="plain"> </code></div>
 <div class="line"><code class="plain">                          CodeFile=</code><code class="string">"~/CMSWebParts/CustomWebParts/RevokeConsents.ascx.cs"</code></div>
 <div class="line"><code class="plain">                          Inherits=</code><code class="string">"CMSWebParts_CustomWebParts_RevokeConsents"</code><code class="plain"> %&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;cms:LocalizedLabel ID=</code><code class="string">"lblInfo"</code><code class="plain"> runat=</code><code class="string">"server"</code></div>
 <div class="line"><code class="plain">                                 Text=</code><code class="string">"Consent was successfully revoked."</code></div>
 <div class="line"><code class="plain">                                 EnableViewState=</code><code class="string">"false"</code></div>
@@ -8810,7 +8779,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">&lt;cms:LocalizedLabel ID=</code><code class="string">"lblNoData"</code><code class="plain"> runat =</code><code class="string">"server"</code></div>
 <div class="line"><code class="plain">                                   Text=</code><code class="string">"You have not given any consents yet."</code></div>
 <div class="line"><code class="plain">                                   EnableViewState=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;asp:Repeater runat=</code><code class="string">"server"</code><code class="plain"> ID=</code><code class="string">"rptConsents"</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">  &lt;ItemTemplate&gt;</code></div>
 <div class="line"><code class="plain">    &lt;h3 </code><code class="keyword">class</code><code class="plain">=</code><code class="string">"consent-heading"</code><code class="plain">&gt;</code></div>
@@ -8829,9 +8798,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Open the control&#39;s code behind file (<i class=" ">RevokeConsents.ascx.cs</i>) and use the following code:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Open the control's code behind file (<i class=" ">RevokeConsents.ascx.cs</i>) and use the following code:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8853,33 +8821,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Collections.Generic;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.UI.WebControls;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ContactManagement;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Core;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataProtection;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Localization;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.PortalEngine.Web.UI;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSWebParts_CustomWebParts_RevokeConsents : CMSAbstractWebPart</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> IConsentAgreementService consentAgreementService;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> ContactInfo currentContact;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Actions performed when the page is loaded</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnContentLoaded()</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.OnContentLoaded();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Prepares an instance of the default IConsentAgreementService implementation for managing consents</code></div>
 <div class="line"><code class="plain">        consentAgreementService = Service.Resolve&lt;IConsentAgreementService&gt;();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets the current contact</code></div>
 <div class="line"><code class="plain">		currentContact = ContactManagementContext.CurrentContact;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        LoadConsentData();</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Loads and displays the consent agreements for the current contact</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> LoadConsentData()</code></div>
 <div class="line"><code class="plain">    {</code></div>
@@ -8889,10 +8857,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Gets all consents with which the current contact has agreed</code></div>
 <div class="line"><code class="plain">        IEnumerable&lt;Consent&gt; consents = consentAgreementService.GetAgreedConsents(currentContact);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Prepares a data source for the internal repeater control from the loaded consents</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">var</code><code class="plain"> dataSource = consents.Select(consent =&gt; </code><code class="keyword">new</code></div>
 <div class="line"><code class="plain">        {</code></div>
@@ -8901,7 +8869,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            ConsentDisplayName = consent.DisplayName,</code></div>
 <div class="line"><code class="plain">            ConsentShortText = consent.GetConsentText(LocalizationContext.CurrentCulture.CultureCode).ShortText</code></div>
 <div class="line"><code class="plain">        });        </code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Binds the data source to the repeater</code></div>
 <div class="line"><code class="plain">        rptConsents.DataSource = dataSource;</code></div>
 <div class="line"><code class="plain">        rptConsents.DataBind();</code></div>
@@ -8909,7 +8877,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        </code><code class="comments">// Displays a message if the current contact has not agreed with any consents</code></div>
 <div class="line"><code class="plain">        lblNoData.Visible = !consents.Any();        </code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Revokes a specified consent agreement for the current contact</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> btnRevoke_Click(</code><code class="keyword">object</code><code class="plain"> sender, EventArgs e)</code></div>
 <div class="line"><code class="plain">    {</code></div>
@@ -8917,7 +8885,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        Button btn = (Button)sender;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">int</code><code class="plain"> consentId = ValidationHelper.GetInteger(btn.CommandArgument, 0);</code></div>
 <div class="line"><code class="plain">        ConsentInfo consent = ConsentInfoProvider.GetConsentInfo(consentId);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (consent != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// Revokes the specified consent and displays a message to inform the user</code></div>
@@ -8931,26 +8899,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Save the new files (if you have a web application installation, build the <i class=" ">CMSApp</i> project).</p>
-</li></ol><p   
->After creating the web part code, you need to <a   href="creating-new-web-parts#src-68882203_creatingnewwebparts-registeringthewebpartinthesystem">register the web part in the system</a> (you do not need to set up any web part properties) and <a   href="using-and-configuring-web-parts">add an instance of the web part</a> to a page on your website.</p>
-<p   
->To test the functionality of the web part:</p>
-<ol class=" "><li class=" "><p   
->Open your live site in a different browser or an incognito/private window.</p>
-</li><li class=" "><p   
->Agree with some <a   href="working-with-consents">consents</a>.</p>
-</li><li class=" "><p   
->Navigate to the page with the web part.</p>
-</li></ol><p   
->The web part displays a list of the accepted consents, and buttons that allow you to revoke individual consents.</p>
-<p   
-><img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/76844852/webpart_example.png" 
-                
-        width="500"         />
+</li><li class=" "><p>Save the new files (if you have a web application installation, build the <i class=" ">CMSApp</i> project).</p>
+</li></ol><p>After creating the web part code, you need to <a href="creating-new-web-parts#src-68882203_creatingnewwebparts-registeringthewebpartinthesystem">register the web part in the system</a> (you do not need to set up any web part properties) and <a href="using-and-configuring-web-parts">add an instance of the web part</a> to a page on your website.</p>
+<p>To test the functionality of the web part:</p>
+<ol class=" "><li class=" "><p>Open your live site in a different browser or an incognito/private window.</p>
+</li><li class=" "><p>Agree with some <a href="working-with-consents">consents</a>.</p>
+</li><li class=" "><p>Navigate to the page with the web part.</p>
+</li></ol><p>The web part displays a list of the accepted consents, and buttons that allow you to revoke individual consents.</p>
+<p><img class="confluence-embedded-image" src="images/download/attachments/76844852/webpart_example.png" width="500">
 </p>
                     </div>
                 </div>
@@ -8962,8 +8918,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8975,10 +8931,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8997,9 +8953,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9010,7 +8963,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9021,5 +8974,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

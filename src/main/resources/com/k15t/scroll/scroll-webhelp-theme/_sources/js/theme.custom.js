@@ -475,6 +475,24 @@ var loadHeaderLists = function loadHeaderLists() {
     loadDocVersionHeaderList(currentDocType, currentDocVersion);
 };
 
+var registerPageTreeEventHandler = function ()
+{
+    
+    $('ul.ht-pages-nav-top').on('click', '.sp-toggle', function() {
+        var li = $(this).parent('li');
+        if (li.is('.collapsed')) {
+            li.removeClass('collapsed')
+                .addClass('open');
+        } else if (li.is('.open')) {
+            li.removeClass('open')
+                .addClass('collapsed');
+        } else {
+            // we don't have children -> no-op
+        }
+    });
+}
+$(document).ready(registerPageTreeEventHandler);
+
 
 // Closes the documentation type and version drop-down lists if the client clicks elsewhere
 var closeHeaderDropDowns = function (event) {
@@ -1190,3 +1208,11 @@ var copyIconMouseOut = function copyIconMouseOut(e) {
 	// Appends the "Copy heading link" icon to the heading content
 	$(headingElements).not('div.box-general h2, div.box-general h3, h2:has(a), h3:has(a)').append(copyHeadingLinkIcon);
 })(); 
+
+var initFooterLinks = function()
+{
+   $(".js-qa-link").attr('href', THEME_CONFIG.KENTICO_QA_LINK);
+   $(".js-support-link").attr('href', THEME_CONFIG.KENTICO_QA_LINK);
+}
+
+$(document).ready(initFooterLinks);

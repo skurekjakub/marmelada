@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Defining local page indexes - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8639,7 +8636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882020"> <span>Defining local page indexes</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8653,7 +8650,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8664,507 +8661,354 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can use two types of locally stored search indexes for the pages of websites (i.e. pages in the content tree):</p>
-    <div  class="tablewrap">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>You can use two types of locally stored search indexes for the pages of websites (i.e. pages in the content tree):</p><div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Pages</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Pages</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Index the following page data:</p>
-<ul class=" "><li class=" "><p   
->The content of text web parts placed on pages (<i class=" ">Editable text</i>, <i class=" ">Static text</i> and similar)</p>
-</li><li class=" "><p   
->Page metadata</p>
-</li><li class=" "><p   
->Selected fields of individual page types (see <a   href="#src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields">Configuring search settings for page fields</a>)</p>
-</li></ul><p   
-><strong class=" ">Note</strong>: Pages indexes do NOT include the text of other pages or objects displayed through web parts (such as the content of News page displayed through a <i class=" ">Repeater</i> web part).</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Index the following page data:</p>
+<ul class=" "><li class=" "><p>The content of text web parts placed on pages (<i class=" ">Editable text</i>, <i class=" ">Static text</i> and similar)</p>
+</li><li class=" "><p>Page metadata</p>
+</li><li class=" "><p>Selected fields of individual page types (see <a href="#src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields">Configuring search settings for page fields</a>)</p>
+</li></ul><p><strong class=" ">Note</strong>: Pages indexes do NOT include the text of other pages or objects displayed through web parts (such as the content of News page displayed through a <i class=" ">Repeater</i> web part).</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Pages crawler</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Pages crawler</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Directly parse the HTML output generated by pages, which allows the search to find any text located on pages. Crawler indexes provide more accurate searches of page content than standard <strong class=" ">Pages </strong>indexes. However, building and updating crawler indexes may require more time and resources, particularly in the case of large indexes and complex pages.</p>
-<p   
->See also: <a   href="#src-68882020_defininglocalpageindexes-configuringpagecrawlerindexes">Configuring page crawler indexes</a></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Directly parse the HTML output generated by pages, which allows the search to find any text located on pages. Crawler indexes provide more accurate searches of page content than standard <strong class=" ">Pages </strong>indexes. However, building and updating crawler indexes may require more time and resources, particularly in the case of large indexes and complex pages.</p>
+<p>See also: <a href="#src-68882020_defininglocalpageindexes-configuringpagecrawlerindexes">Configuring page crawler indexes</a></p>
             </td>
         </tr>
 </tbody>        </table>
-            </div>
-<div  class="box-general box-info">
+            </div><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: Page indexes only cover pages that are <a   href="using-workflows">published</a> on the live site.</p>
+            <p><strong class=" ">Note</strong>: Page indexes only cover pages that are <a href="using-workflows">published</a> on the live site.</p>
      
     </div>
-</div>
-<p   
->To define which pages an index covers, specify allowed or excluded content:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Smart search</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Local indexes</strong> tab.</p>
-</li><li class=" "><p   
->Edit (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/edit.png" 
-                
-                 />
+</div><p>To define which pages an index covers, specify allowed or excluded content:</p><ol class=" "><li class=" "><p>Open the <strong class=" ">Smart search</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Local indexes</strong> tab.</p>
+</li><li class=" "><p>Edit (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png">
 ) the index.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Indexed content</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Add allowed content</strong> or <strong class=" ">Add excluded content</strong>.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Sites</strong> tab and assign the websites where you wish to use the index.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Cultures</strong> tab and select which language versions of the website&#39;s pages are indexed.</p>
-<ul class=" "><li class=" "><p   
->At least one culture must be assigned in order for the index to be functional.</p>
-</li></ul></li></ol><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882020/Indexed_Content_Documents.png" 
-        alt="Specifying allowed or excluded content for a page index"        
-        width="500"         />
-</p>
-    <div  class="confbox panel">
+</li><li class=" "><p>Select the <strong class=" ">Indexed content</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">Add allowed content</strong> or <strong class=" ">Add excluded content</strong>.</p>
+</li><li class=" "><p>Open the <strong class=" ">Sites</strong> tab and assign the websites where you wish to use the index.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Cultures</strong> tab and select which language versions of the website's pages are indexed.</p>
+<ul class=" "><li class=" "><p>At least one culture must be assigned in order for the index to be functional.</p>
+</li></ul></li></ol><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882020/Indexed_Content_Documents.png" alt="Specifying allowed or excluded content for a page index" width="500">
+</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882020_defininglocalpageindexes-addingallowedcontent">Adding allowed content</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882020_defininglocalpageindexes-addingexcludedcontent">Adding excluded content</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields">Configuring search settings for page fields</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882020_safe-id-rgvmaw5pbmdsb2nhbhbhz2vpbmrlegvzlvnlvshwcm9kdwn0kwfuzgdlbmvyywxwywdlzmllbgrz">SKU (product) and general page fields</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882020_defininglocalpageindexes-configuringpagecrawlerindexes">Configuring page crawler indexes</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882020_safe-id-rgvmaw5pbmdsb2nhbhbhz2vpbmrlegvzlun1c3rvbwl6aw5nag93y3jhd2xlcnnwcm9jzxnzcgfnzwnvbnrlbnqoqvbjkq">Customizing how crawlers process page content (API)</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882020_defininglocalpageindexes-addingallowedcontent">Adding allowed content</a></p>
+</li><li class=" "><p><a href="#src-68882020_defininglocalpageindexes-addingexcludedcontent">Adding excluded content</a></p>
+</li><li class=" "><p><a href="#src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields">Configuring search settings for page fields</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882020_safe-id-rgvmaw5pbmdsb2nhbhbhz2vpbmrlegvzlvnlvshwcm9kdwn0kwfuzgdlbmvyywxwywdlzmllbgrz">SKU (product) and general page fields</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882020_defininglocalpageindexes-configuringpagecrawlerindexes">Configuring page crawler indexes</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882020_safe-id-rgvmaw5pbmdsb2nhbhbhz2vpbmrlegvzlun1c3rvbwl6aw5nag93y3jhd2xlcnnwcm9jzxnzcgfnzwnvbnrlbnqoqvbjkq">Customizing how crawlers process page content (API)</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="creating-local-search-indexes">Creating local search indexes</a></p>
-</li><li class=" "><p   
-><a   href="creating-azure-search-indexes">Creating Azure Search indexes</a></p>
+<ul class=" "><li class=" "><p><a href="creating-local-search-indexes">Creating local search indexes</a></p>
+</li><li class=" "><p><a href="creating-azure-search-indexes">Creating Azure Search indexes</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+    
+
+
+
+    
+    
     <h3 id="src-68882020_defininglocalpageindexes-addingallowedcontent" class="heading "><span>Adding allowed content</span></h3>
-<p   
->Allowed content defines which of the website&#39;s pages are included in the index. Specify pages using a combination of the following options:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong> &ndash; <a   href="writing-page-path-expressions">path expression</a> identifying the pages that should be indexed.</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong> &ndash; allows you to limit which <a   href="page-types">page types</a> are included in the index.</p>
-</li></ul><p   
->The following properties define types of additional content that you can include in <i class=" ">Page </i>search indexes. The settings are not available for <i class=" ">Pages crawler</i> indexes:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Include ad-hoc forums</strong> &ndash; includes the content of ad-hoc <a   href="forums">forums</a> placed on the specified pages (if there are any).</p>
-</li><li class=" "><p   
-><strong class=" ">Include blog comments</strong> &ndash; includes blog comments posted for blog post pages.</p>
-</li><li class=" "><p   
-><strong class=" ">Include message boards</strong> &ndash; includes message boards placed on the specified pages.<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Include attachment content</strong> &ndash; if selected, the index includes the text content of files attached to the specified pages. See <a   href="searching-attachment-files">Searching attachment files</a> for more information.</p>
-</li><li class=" "><p   
-><strong class=" ">Include categories</strong> &ndash; if selected, the index stores the display names of <a   href="categorizing-pages">Categories</a> assigned to the specified pages. This allows users to find pages that belong to categories whose name matches the search expression.</p>
+<p>Allowed content defines which of the website's pages are included in the index. Specify pages using a combination of the following options:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Path</strong> – <a href="writing-page-path-expressions">path expression</a> identifying the pages that should be indexed.</p>
+</li><li class=" "><p><strong class=" ">Page types</strong> – allows you to limit which <a href="page-types">page types</a> are included in the index.</p>
+</li></ul><p>The following properties define types of additional content that you can include in <i class=" ">Page </i>search indexes. The settings are not available for <i class=" ">Pages crawler</i> indexes:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Include ad-hoc forums</strong> – includes the content of ad-hoc <a href="forums">forums</a> placed on the specified pages (if there are any).</p>
+</li><li class=" "><p><strong class=" ">Include blog comments</strong> – includes blog comments posted for blog post pages.</p>
+</li><li class=" "><p><strong class=" ">Include message boards</strong> – includes message boards placed on the specified pages.<br><br></p>
+</li><li class=" "><p><strong class=" ">Include attachment content</strong> – if selected, the index includes the text content of files attached to the specified pages. See <a href="searching-attachment-files">Searching attachment files</a> for more information.</p>
+</li><li class=" "><p><strong class=" ">Include categories</strong> – if selected, the index stores the display names of <a href="categorizing-pages">Categories</a> assigned to the specified pages. This allows users to find pages that belong to categories whose name matches the search expression.</p>
 </li></ul>    <h5 id="src-68882020_defininglocalpageindexes-examples" class="heading "><span>Examples</span></h5>
-    <div  class="tablewrap">
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Allowed content settings</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Allowed content settings</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Result</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Result</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong>: /%</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: empty</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><strong class=" ">Path</strong>: /%</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: empty</p>
 </li></ul>            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Indexes all pages on the site.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indexes all pages on the site.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
-><strong class=" ">Path: </strong>/Partners</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: empty</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><strong class=" ">Path: </strong>/Partners</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: empty</p>
 </li></ul>            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Only indexes the <i class=" ">/Partners</i> page, without the child pages placed under it.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Only indexes the <i class=" ">/Partners</i> page, without the child pages placed under it.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong>: /%</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: CMS.News</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><strong class=" ">Path</strong>: /%</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: CMS.News</p>
 </li></ul>            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Indexes all pages of the <i class=" ">CMS.News</i> page type on the entire site.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indexes all pages of the <i class=" ">CMS.News</i> page type on the entire site.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong>: /Products/%</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: CMS.Smartphone;CMS.Laptop</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><strong class=" ">Path</strong>: /Products/%</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: CMS.Smartphone;CMS.Laptop</p>
 </li></ul>            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Indexes all pages of the <i class=" ">CMS.Smartphone</i> and <i class=" ">CMS.Laptop</i> page types found under the <i class=" ">/Products</i> section.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indexes all pages of the <i class=" ">CMS.Smartphone</i> and <i class=" ">CMS.Laptop</i> page types found under the <i class=" ">/Products</i> section.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
     <h3 id="src-68882020_defininglocalpageindexes-addingexcludedcontent" class="heading "><span>Adding excluded content</span></h3>
-<p   
->Excluded content allows you to remove pages or entire website sections from the allowed content. For example, if you allow <strong class=" ">/% </strong>and exclude <strong class=" ">/Special&#8209;pages/%</strong> at the same time, the index will include all pages on the site except for the ones found under the <strong class=" ">/Special-pages</strong> node.</p>
-<p   
->You can specify the following options:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong> &ndash; <a   href="writing-page-path-expressions">path expression</a> identifying the pages that should be excluded.</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong> &ndash; allows you to limit which <a   href="page-types">page types</a> are excluded from the index.</p>
+<p>Excluded content allows you to remove pages or entire website sections from the allowed content. For example, if you allow <strong class=" ">/% </strong>and exclude <strong class=" ">/Special‑pages/%</strong> at the same time, the index will include all pages on the site except for the ones found under the <strong class=" ">/Special-pages</strong> node.</p>
+<p>You can specify the following options:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Path</strong> – <a href="writing-page-path-expressions">path expression</a> identifying the pages that should be excluded.</p>
+</li><li class=" "><p><strong class=" ">Page types</strong> – allows you to limit which <a href="page-types">page types</a> are excluded from the index.</p>
 </li></ul>    <h5 id="src-68882020_defininglocalpageindexes-examples.1" class="heading "><span>Examples</span></h5>
-    <div  class="tablewrap">
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Excluded content settings</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Excluded content settings</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Result</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Result</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
-><strong class=" ">Path: </strong>/Partners</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: empty</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><strong class=" ">Path: </strong>/Partners</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: empty</p>
 </li></ul>            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Excludes the <i class=" ">/Partners</i> page from the index. Child pages are not excluded.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Excludes the <i class=" ">/Partners</i> page from the index. Child pages are not excluded.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong>: /%</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: CMS.News</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><strong class=" ">Path</strong>: /%</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: CMS.News</p>
 </li></ul>            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Excludes all pages of the <i class=" ">CMS.News</i> page type from the index.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Excludes all pages of the <i class=" ">CMS.News</i> page type from the index.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong>: /Products/%</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: CMS.Smartphone;CMS.Laptop</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <ul class=" "><li class=" "><p><strong class=" ">Path</strong>: /Products/%</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: CMS.Smartphone;CMS.Laptop</p>
 </li></ul>            </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Excludes all pages of the <i class=" ">CMS.Smartphone</i> and <i class=" ">CMS.Laptop</i> page types found under the <i class=" ">/Products</i> section from the index.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Excludes all pages of the <i class=" ">CMS.Smartphone</i> and <i class=" ">CMS.Laptop</i> page types found under the <i class=" ">/Products</i> section from the index.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Excluding individual pages from all indexes</strong></p>
-<p   
->You can also exclude specific pages from all smart search indexing:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Select the given page in the content tree.</p>
-</li><li class=" "><p   
->In <strong class=" ">Edit</strong> mode, open the <strong class=" ">Properties -&gt; Navigation</strong> tab.</p>
-</li><li class=" "><p   
->Enable the <strong class=" ">Exclude from search</strong> property.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
+            <p><strong class=" ">Excluding individual pages from all indexes</strong></p>
+<p>You can also exclude specific pages from all smart search indexing:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Select the given page in the content tree.</p>
+</li><li class=" "><p>In <strong class=" ">Edit</strong> mode, open the <strong class=" ">Properties -&gt; Navigation</strong> tab.</p>
+</li><li class=" "><p>Enable the <strong class=" ">Exclude from search</strong> property.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
 </li></ol>     
     </div>
 </div>
     <h3 id="src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields" class="heading "><span>Configuring search settings for page fields</span></h3>
-<p   
->Pages are often complex data structures with many different fields. Not all fields may be relevant to the search that you are implementing. <a   href="page-types">Page types</a> allow you to adjust how the system indexes specific fields. We recommend indexing only necessary fields to keep your indexes as small (and fast) as possible.</p>
-<div  class="box-general box-note">
+<p>Pages are often complex data structures with many different fields. Not all fields may be relevant to the search that you are implementing. <a href="page-types">Page types</a> allow you to adjust how the system indexes specific fields. We recommend indexing only necessary fields to keep your indexes as small (and fast) as possible.</p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Pages crawler</strong> search indexes directly index the HTML output of pages. As a result, crawler indexes are not affected by the field settings of page types.</p>
+            <p><strong class=" ">Pages crawler</strong> search indexes directly index the HTML output of pages. As a result, crawler indexes are not affected by the field settings of page types.</p>
      
     </div>
 </div>
-<p   
->To edit the field search settings for page types:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Page types</strong> application.</p>
-</li><li class=" "><p   
->Edit (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/edit.png" 
-                
-                 />
+<p>To edit the field search settings for page types:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Page types</strong> application.</p>
+</li><li class=" "><p>Edit (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png">
 ) a page type.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Search fields</strong> tab.</p>
-</li></ol><p   
->The options in the top part of the tab allow you to configure how the system displays pages of the given type in search results. Note that the final appearance of the search results always depends on the used <a   href="displaying-local-index-search-results-using-transformations">search result transformation</a>.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Title field</strong> &ndash; select the page field whose value is used for the title of search results.</p>
-</li><li class=" "><p   
-><strong class=" ">Content field</strong> &ndash; the field whose value is used for the content extract of search results.</p>
-</li><li class=" "><p   
-><strong class=" ">Image field</strong> &ndash; the field that contains the image displayed in search results.</p>
-</li><li class=" "><p   
-><strong class=" ">Date field</strong> &ndash; the field whose value is used for the date and time displayed in search results.</p>
-</li></ul><p   
->The grid in the bottom section of the tab determines how the smart search indexes the page type&#39;s fields (as defined on the <strong class=" ">Fields</strong> tab).</p>
-<p   
->For <a   href="using-locally-stored-search-indexes">locally stored search indexes</a>, only the options under the <strong class=" ">Local</strong> and <strong class=" ">General</strong> sections of the grid apply (to learn about Azure Search page indexes, see <a   href="creating-azure-search-indexes">Creating Azure Search indexes</a>). You can set the following search options for individual fields:</p>
-    <div  class="tablewrap">
+</li><li class=" "><p>Open the <strong class=" ">Search fields</strong> tab.</p>
+</li></ol><p>The options in the top part of the tab allow you to configure how the system displays pages of the given type in search results. Note that the final appearance of the search results always depends on the used <a href="displaying-local-index-search-results-using-transformations">search result transformation</a>.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Title field</strong> – select the page field whose value is used for the title of search results.</p>
+</li><li class=" "><p><strong class=" ">Content field</strong> – the field whose value is used for the content extract of search results.</p>
+</li><li class=" "><p><strong class=" ">Image field</strong> – the field that contains the image displayed in search results.</p>
+</li><li class=" "><p><strong class=" ">Date field</strong> – the field whose value is used for the date and time displayed in search results.</p>
+</li></ul><p>The grid in the bottom section of the tab determines how the smart search indexes the page type's fields (as defined on the <strong class=" ">Fields</strong> tab).</p>
+<p>For <a href="using-locally-stored-search-indexes">locally stored search indexes</a>, only the options under the <strong class=" ">Local</strong> and <strong class=" ">General</strong> sections of the grid apply (to learn about Azure Search page indexes, see <a href="creating-azure-search-indexes">Creating Azure Search indexes</a>). You can set the following search options for individual fields:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" "></thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Content</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Content</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If selected, the content of the field is indexed and searchable in the standard way. Within search indexes, the values of all fields with the <i class=" ">Content</i> option enabled are combined into a system field named <strong class=" ">_content</strong> (this field is used to find or filter matching search items, but is NOT suitable for reading and displaying human-readable information such as search result extracts).</p>
-<p   
->For the purposes of standard search, <i class=" ">Content</i> fields are automatically tokenized by the analyzer of the used search index.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If selected, the content of the field is indexed and searchable in the standard way. Within search indexes, the values of all fields with the <i class=" ">Content</i> option enabled are combined into a system field named <strong class=" ">_content</strong> (this field is used to find or filter matching search items, but is NOT suitable for reading and displaying human-readable information such as search result extracts).</p>
+<p>For the purposes of standard search, <i class=" ">Content</i> fields are automatically tokenized by the analyzer of the used search index.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Searchable</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Searchable</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If selected, the field is stored separately within indexes and its content can be searched using expressions in format:</p>
-<p   
-><i class=" ">&lt;field code name&gt;:&lt;searched phrase&gt;</i></p>
-<p   
->See <a   href="smart-search-syntax">Smart search syntax</a> for more information about field searches.</p>
-<p   
->Fields must be set as <i class=" ">Searchable</i> to be usable in <a   href="adding-filters-for-local-search-indexes">Search filters</a> and general search result filtering or ordering conditions (such as the <i class=" ">Search condition</i> and <i class=" ">Search sort</i> properties of Smart search result web parts)<a  class="external-link" href="http://preview/Documentation/devguide/smart_search_filter.htm">.</a></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If selected, the field is stored separately within indexes and its content can be searched using expressions in format:</p>
+<p><i class=" ">&lt;field code name&gt;:&lt;searched phrase&gt;</i></p>
+<p>See <a href="smart-search-syntax">Smart search syntax</a> for more information about field searches.</p>
+<p>Fields must be set as <i class=" ">Searchable</i> to be usable in <a href="adding-filters-for-local-search-indexes">Search filters</a> and general search result filtering or ordering conditions (such as the <i class=" ">Search condition</i> and <i class=" ">Search sort</i> properties of Smart search result web parts)<a class="external-link" href="http://preview/Documentation/devguide/smart_search_filter.htm">.</a></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Tokenized</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Tokenized</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Relevant for <strong class=" ">Searchable</strong> fields. Indicates if the content of the field is processed by the analyzer when indexing. This allows the search to find results that match individual tokens (subsets) of the field&#39;s value. If disabled, the search only returns items if the full value of the field exactly matches the search expression.</p>
-<p   
->If a field has both the <i class=" ">Content</i> and <i class=" ">Searchable</i> options enabled, the <i class=" ">Tokenized</i> option only affects the content used for field searches (content is always automatically tokenized for the purposes of standard search).</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Relevant for <strong class=" ">Searchable</strong> fields. Indicates if the content of the field is processed by the analyzer when indexing. This allows the search to find results that match individual tokens (subsets) of the field's value. If disabled, the search only returns items if the full value of the field exactly matches the search expression.</p>
+<p>If a field has both the <i class=" ">Content</i> and <i class=" ">Searchable</i> options enabled, the <i class=" ">Tokenized</i> option only affects the content used for field searches (content is always automatically tokenized for the purposes of standard search).</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Custom search name</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Custom search name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Relevant for <strong class=" ">Searchable</strong> fields. The specified value is used as a substitute for the field code name in <i class=" ">&lt;field code name&gt;:&lt;searched phrase&gt;</i> search expressions.</p>
-<p   
-><strong class=" ">Note</strong>: If you enter a Custom search name value, the original field name cannot be used.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Relevant for <strong class=" ">Searchable</strong> fields. The specified value is used as a substitute for the field code name in <i class=" ">&lt;field code name&gt;:&lt;searched phrase&gt;</i> search expressions.</p>
+<p><strong class=" ">Note</strong>: If you enter a Custom search name value, the original field name cannot be used.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882020/Search_Fields_Documents.png" 
-        alt="Configuring a page type's search field settings for locally stored indexes"        
-        width="500"         />
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882020/Search_Fields_Documents.png" alt="Configuring a page type's search field settings for locally stored indexes" width="500">
 </p>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->After you <strong class=" ">Save</strong> changes of the field settings, you need to <strong class=" ">Rebuild</strong> all indexes that cover pages of the given type.</p>
+            <p>After you <strong class=" ">Save</strong> changes of the field settings, you need to <strong class=" ">Rebuild</strong> all indexes that cover pages of the given type.</p>
      
     </div>
 </div>
-<p   
->When running searches using page indexes, the system returns results according to the field search settings of individual page types. The page type search settings are shared by all page indexes in the system.</p>
+<p>When running searches using page indexes, the system returns results according to the field search settings of individual page types. The page type search settings are shared by all page indexes in the system.</p>
     <h4 id="src-68882020_safe-id-rgvmaw5pbmdsb2nhbhbhz2vpbmrlegvzlvnlvshwcm9kdwn0kwfuzgdlbmvyywxwywdlzmllbgrz" class="heading "><span>SKU (product) and general page fields</span></h4>
-<p   
->To configure the field search settings for <a   href="products">E-commerce SKUs</a> (products):</p>
-<div  class="box-general box-warning">
+<p>To configure the field search settings for <a href="products">E-commerce SKUs</a> (products):</p>
+<div class="box-general box-warning">
   
                 <div class="box-icon icon-exclamation-triangle-inverted"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Warning</strong>: It is highly recommended to modify only the settings of custom SKU fields. Changing the settings of the default fields may prevent the system from searching through products correctly.</p>
+            <p><strong class=" ">Warning</strong>: It is highly recommended to modify only the settings of custom SKU fields. Changing the settings of the default fields may prevent the system from searching through products correctly.</p>
      
     </div>
 </div>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application.</p>
-</li><li class=" "><p   
->Edit (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/edit.png" 
-                
-                 />
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application.</p>
+</li><li class=" "><p>Edit (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png">
 ) the <strong class=" ">E-commerce</strong> module.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Classes</strong> tab.</p>
-</li><li class=" "><p   
->Edit the <strong class=" ">SKU</strong> class.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Search</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Customize</strong>.</p>
-</li></ol><p   
->You can configure the search settings for fields just like for page types. The SKU fields are joined together with general page fields, such as fields that store the content of editable regions on pages (<i class=" ">DocumentContent</i>) or the content of text widgets (<i class=" ">DocumentWebParts</i>).</p>
-<div  class="box-general box-note">
+</li><li class=" "><p>Open the <strong class=" ">Classes</strong> tab.</p>
+</li><li class=" "><p>Edit the <strong class=" ">SKU</strong> class.</p>
+</li><li class=" "><p>Select the <strong class=" ">Search</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">Customize</strong>.</p>
+</li></ol><p>You can configure the search settings for fields just like for page types. The SKU fields are joined together with general page fields, such as fields that store the content of editable regions on pages (<i class=" ">DocumentContent</i>) or the content of text widgets (<i class=" ">DocumentWebParts</i>).</p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Important</strong>: The search settings of general fields affect all pages, even those that are not products.</p>
+            <p><strong class=" ">Important</strong>: The search settings of general fields affect all pages, even those that are not products.</p>
      
     </div>
 </div>
     <h3 id="src-68882020_defininglocalpageindexes-configuringpagecrawlerindexes" class="heading "><span>Configuring page crawler indexes</span></h3>
-<p   
->Page crawler search indexes read the content of pages while logged in under a user account. You can configure the following properties for every page crawler index (on the <strong class=" ">General</strong> tab of the index editing interface):</p>
-<p   
-></p>
-    <div  class="tablewrap">
+<p>Page crawler search indexes read the content of pages while logged in under a user account. You can configure the following properties for every page crawler index (on the <strong class=" ">General</strong> tab of the index editing interface):</p>
+<p></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Index property</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Index property</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->User<br/>    <span style="color: #ffffff;">
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>User<br>    <span style="color: #ffffff;">
 ______________    </span>
 </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Sets the user account that the crawler uses to index pages. Reading pages under a user allows the crawler to:</p>
-<ul class=" "><li class=" "><p   
->Load user-personalized content for the given user</p>
-</li><li class=" "><p   
->Avoid indexing of pages that the user is not allowed to access</p>
-</li></ul><p   
->If empty, the index uses the user account specified in <strong class=" ">Settings -&gt; System -&gt; Default user ID</strong> (or the default <i class=" ">administrator</i> user account if the setting is empty).</p>
-<p   
->On websites that use <a   href="configuring-windows-ad-authentication">Windows authentication</a>, you need to type the user name (including the Active Directory domain in format <i class=" "><strong class=" ">domain\username</strong></i>) and password. To guarantee that the crawler indexes under the specified Active Directory user, the covered pages cannot be accessible by public users (i.e. Windows authentication must be required).</p>
-<p   
-><strong class=" ">Note</strong>: The specified user account <i class=" "><strong class=" ">must be enabled</strong></i> (content will not be indexed if the user is disabled).</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sets the user account that the crawler uses to index pages. Reading pages under a user allows the crawler to:</p>
+<ul class=" "><li class=" "><p>Load user-personalized content for the given user</p>
+</li><li class=" "><p>Avoid indexing of pages that the user is not allowed to access</p>
+</li></ul><p>If empty, the index uses the user account specified in <strong class=" ">Settings -&gt; System -&gt; Default user ID</strong> (or the default <i class=" ">administrator</i> user account if the setting is empty).</p>
+<p>On websites that use <a href="configuring-windows-ad-authentication">Windows authentication</a>, you need to type the user name (including the Active Directory domain in format <i class=" "><strong class=" ">domain\username</strong></i>) and password. To guarantee that the crawler indexes under the specified Active Directory user, the covered pages cannot be accessible by public users (i.e. Windows authentication must be required).</p>
+<p><strong class=" ">Note</strong>: The specified user account <i class=" "><strong class=" ">must be enabled</strong></i> (content will not be indexed if the user is disabled).</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Domain</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Domain</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Sets the domain that the crawler uses when indexing sites. Enter the domain name without the protocol, for example: <i class=" ">www.domain.com</i></p>
-<p   
->If empty, the crawler automatically uses the <a   href="setting-domain-names-for-sites">main domain</a> of the site where the indexed pages belong.</p>
-<p   
->For example, you can set a custom domain for <a   href="setting-up-web-farms">web farm servers</a> that do not have access to the main domain.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sets the domain that the crawler uses when indexing sites. Enter the domain name without the protocol, for example: <i class=" ">www.domain.com</i></p>
+<p>If empty, the crawler automatically uses the <a href="setting-domain-names-for-sites">main domain</a> of the site where the indexed pages belong.</p>
+<p>For example, you can set a custom domain for <a href="setting-up-web-farms">web farm servers</a> that do not have access to the main domain.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
-></p>
-<p   
->By default, page crawlers also index pages that use redirection from the site&#39;s main domain name to a <a   href="setting-domain-names-for-sites">domain alias</a>. To only allow indexing for pages that use the website&#39;s main domain, set the <strong class=" ">CMSCrawlerAllowSiteAliasRedirect</strong> key to <i class=" ">false</i> in your application&#39;s web.config file:</p>
-<div  class="code panel pdl js-codePanel" >
+<p></p>
+<p>By default, page crawlers also index pages that use redirection from the site's main domain name to a <a href="setting-domain-names-for-sites">domain alias</a>. To only allow indexing for pages that use the website's main domain, set the <strong class=" ">CMSCrawlerAllowSiteAliasRedirect</strong> key to <i class=" ">false</i> in your application's web.config file:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9187,22 +9031,15 @@ ______________    </span>
     </code></pre>
   </div>
 </div>
-<p   
->The key applies to all page crawler indexes in the system.</p>
+<p>The key applies to all page crawler indexes in the system.</p>
     <h4 id="src-68882020_safe-id-rgvmaw5pbmdsb2nhbhbhz2vpbmrlegvzlun1c3rvbwl6aw5nag93y3jhd2xlcnnwcm9jzxnzcgfnzwnvbnrlbnqoqvbjkq" class="heading "><span>Customizing how crawlers process page content (API)</span></h4>
-<p   
->By default, the system converts the HTML output of pages to plain text before saving it to page crawler indexes:</p>
-<ul class=" "><li class=" "><p   
->Strips all HTML tags</p>
-</li><li class=" "><p   
->Removes the <i class=" ">Head</i> tag, <i class=" ">Style</i> tags and all JavaScript</p>
-</li><li class=" "><p   
->Converts all whitespace formatting to simple spaces</p>
-</li></ul><p   
->If you wish to index the content of any tags or exclude parts of the page output, you can customize how the crawlers process the HTML. You need to implement your custom functionality in a <a   href="handling-global-events">handler</a> of the <strong class=" ">OnHtmlToPlainText</strong> event of the <strong class=" ">CMS.Search.SearchCrawler</strong> class. This event occurs whenever a page search crawler processes the HTML output of a page.</p>
-<p   
->To assign a method as the handler for the <i class=" ">OnHTMLToPlainText</i> event, create a <a   href="initializing-modules-to-run-custom-code">custom module class</a> and override its <strong class=" ">OnInit</strong> method. Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations). For example, you can define the content of the class as shown below:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>By default, the system converts the HTML output of pages to plain text before saving it to page crawler indexes:</p>
+<ul class=" "><li class=" "><p>Strips all HTML tags</p>
+</li><li class=" "><p>Removes the <i class=" ">Head</i> tag, <i class=" ">Style</i> tags and all JavaScript</p>
+</li><li class=" "><p>Converts all whitespace formatting to simple spaces</p>
+</li></ul><p>If you wish to index the content of any tags or exclude parts of the page output, you can customize how the crawlers process the HTML. You need to implement your custom functionality in a <a href="handling-global-events">handler</a> of the <strong class=" ">OnHtmlToPlainText</strong> event of the <strong class=" ">CMS.Search.SearchCrawler</strong> class. This event occurs whenever a page search crawler processes the HTML output of a page.</p>
+<p>To assign a method as the handler for the <i class=" ">OnHTMLToPlainText</i> event, create a <a href="initializing-modules-to-run-custom-code">custom module class</a> and override its <strong class=" ">OnInit</strong> method. Either add the class into a custom project within the Kentico solution (recommended) or directly into the Kentico web project (into a custom folder under the <strong class=" ">CMSApp</strong> project for <i class=" ">web application</i> installations, into the <strong class=" ">App_Code</strong> folder for <i class=" ">web site</i> installations). For example, you can define the content of the class as shown below:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9221,15 +9058,15 @@ ______________    </span>
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Search;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomSearchCrawlerModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomSearchCrawlerModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomSearchCrawler"</code></div>
@@ -9237,36 +9074,36 @@ ______________    </span>
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomSearchCrawler"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}    </code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler for the OnHtmlToPlainText event</code></div>
 <div class="line"><code class="plain">		SearchCrawler.OnHtmlToPlainText += </code><code class="keyword">new</code><code class="plain"> SearchCrawler.HtmlToPlainTextHandler(SearchHelper_OnHtmlToPlainText);</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Add your custom HTML processing actions and return the result as a string</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> SearchHelper_OnHtmlToPlainText(</code><code class="keyword">string</code><code class="plain"> plainText, </code><code class="keyword">string</code><code class="plain"> originalHtml)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> outputResult = originalHtml;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Removes new line entities</code></div>
 <div class="line"><code class="plain">		outputResult = outputResult.Replace(</code><code class="string">"\n"</code><code class="plain">, </code><code class="string">" "</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Removes tab spaces</code></div>
 <div class="line"><code class="plain">		outputResult = outputResult.Replace(</code><code class="string">"\t"</code><code class="plain">, </code><code class="string">" "</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Removes JavaScript</code></div>
 <div class="line"><code class="plain">		outputResult = HTMLHelper.RegexHtmlToTextScript.Replace(outputResult, </code><code class="string">" "</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Removes tags</code></div>
 <div class="line"><code class="plain">		outputResult = HTMLHelper.RegexHtmlToTextTags.Replace(outputResult, </code><code class="string">" "</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Decodes HTML entities</code></div>
 <div class="line"><code class="plain">		outputResult = HttpUtility.HtmlDecode(outputResult);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> outputResult;</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -9274,12 +9111,9 @@ ______________    </span>
     </code></pre>
   </div>
 </div>
-<p   
->The <i class=" ">OnHTMLToPlainText</i> event provides the following string parameters to the handler:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">plainText</strong> &ndash; the page output already stripped of all tags and converted to plain text</p>
-</li><li class=" "><p   
-><strong class=" ">originalHTML</strong> &ndash; the raw page HTML code without any modifications</p>
+<p>The <i class=" ">OnHTMLToPlainText</i> event provides the following string parameters to the handler:</p>
+<ul class=" "><li class=" "><p><strong class=" ">plainText</strong> – the page output already stripped of all tags and converted to plain text</p>
+</li><li class=" "><p><strong class=" ">originalHTML</strong> – the raw page HTML code without any modifications</p>
 </li></ul>                    </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -9290,8 +9124,8 @@ ______________    </span>
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9303,10 +9137,10 @@ ______________    </span>
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9325,9 +9159,6 @@ ______________    </span>
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9338,7 +9169,7 @@ ______________    </span>
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9349,5 +9180,6 @@ ______________    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

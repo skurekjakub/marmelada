@@ -49,7 +49,7 @@ function build_styles()
         }))   
         .pipe(gulp.dest(WEBHELP_ROOT + '/scroll-html/assets/css'))
         .pipe(gulp.dest('docs/du/assets/css'))
-        .pipe(gulp.dest('docs/k11/assets/js'));
+        .pipe(gulp.dest('docs/k11/assets/css'));
 }
 
 

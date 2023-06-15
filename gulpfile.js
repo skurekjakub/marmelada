@@ -66,16 +66,15 @@ function fixTwoColumnPageLayout(filePath)
     const LEFTCOLUMN = ".sp-grid-cell.sp-grid-60";
     const LEFTCOLUMNMARKUP = '<div class="sp-grid-cell sp-grid-60"></div>';
     // TODO
-    const BOTTOMSECTIONMARKUP = '<div class="sp-grid-cell sp-grid-100"></div>';
-    const BOTTOMSECTION = '.sp-grid-cell.sp-grid-100'
+    const BOTTOMSECTIONMARKUP = '<div class="sp-grid-section bottom-column"></div>';
+    const BOTTOMSECTION = '.sp-grid-section.bottom-column'
+    const BOTTOMSECTIONCELLMARKUP = '<div class="sp-grid-cell sp-grid-100"></div>';
+    const BOTTOMSECTIONCELL = '.sp-grid-cell.sp-grid-100'
     const SECTIONMARKUP = '<div class="sp-grid-section"></div>';
     const SECTION = '#main-content .sp-grid-section';
 
     // Parse the HTML using Cheerio
     const $ = cheerio.load(html);
-
-    // Already processed, return
-    if($('#main-content .sp-grid-section').length) return;
 
     // Find the first occurrence of the HTML code to be wrapped
     const onThisPage = $('.confbox.panel .title.panel-header:contains("On this page")').first().parent();
@@ -94,6 +93,10 @@ function fixTwoColumnPageLayout(filePath)
         $(RIGHTCOLUMN).append(onThisPage);
         $(RIGHTCOLUMN).append(relatedPages);
     }
+    else 
+    {
+        return;
+    }
 
     // Find the element with id "main-content"
     const mainContentFirstChild = $('#main-content').children().first();
@@ -108,11 +111,16 @@ function fixTwoColumnPageLayout(filePath)
     $(SECTION).first().append($(LEFTCOLUMN));
     $(SECTION).first().append($(RIGHTCOLUMN));
 
-    // TODO
-    // const lastElement = $('#main-content').children().last();
-    // const restOfThePage = $(RIGHTCOLUMN).nextUntil(lastElement);
-    // restOfThePage.add(lastElement);
+    
+    const lastElement = $('#main-content').children().last();
+    const restOfThePage = $(RIGHTCOLUMN).nextUntil(lastElement);
+    restOfThePage.add(lastElement);
+    
+    $(BOTTOMSECTIONMARKUP).insertAfter(SECTION);
+    $(BOTTOMSECTION).append(BOTTOMSECTIONCELLMARKUP)
 
+
+    $(BOTTOMSECTIONCELL).append(restOfThePage);
 
     // Save the modified HTML file
     fs.writeFileSync(filePath, $.html());
@@ -285,6 +293,6 @@ exports.build = gulp.series(dev.build_scripts,dev.build_styles,build_plugin);
 exports.build_styles = dev.build_styles;
 exports.build_scripts = dev.build_scripts;
 
-exports.fixExport = gulp.series(fixDu);
+exports.fixExport = gulp.series(fixK11);
 
 exports.watch = browsersyncWatch;

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Working with pages in the API - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8635,7 +8632,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882165"> <span>Working with pages in the API</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8649,7 +8646,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8660,87 +8657,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The Kentico API allows you to retrieve and manage page content using custom code.</p>
-<p   
->Use the following classes from the <strong class=" ">CMS.DocumentEngine</strong> namespace to work with pages in the API:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">TreeNode</strong> &ndash; object that represents pages. The <i class=" ">TreeNode</i> class encapsulates data from the <i class=" ">CMS_Tree</i> and <i class=" ">CMS_Document</i> <a   href="page-database-structure">tables</a>, and the coupled data tables of individual page types.</p>
-</li><li class=" "><p   
-><strong class=" ">DocumentQuery</strong> and <strong class=" ">MultiDocumentQuery</strong> &ndash; classes that represent a query for loading pages. You can further parametrize the query to only retrieve the pages you need. Both are similar in functionality:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">DocumentQuery</strong> allows you to retrieve pages of a single <a   href="page-types">page type</a> (when an instance is created with a page type class name as the constructor parameter) or general pages of any type (when using a parameterless constructor). If used for a single specific page type, the resulting query automatically includes coupled data of the given page type (e.g., news, articles, blogs). <i class=" ">DocumentQuery</i> is also used internally by <a   href="generating-classes-for-kentico-objects">generated page type providers</a> and any custom providers or repositories built around them.</p>
-</li><li class=" "><p   
-><strong class=" ">MultiDocumentQuery</strong> allows you to retrieve pages of multiple page types in a single query at the cost of effectiveness. The coupled data of page types is not retrieved unless explicitly requested using the <i class=" ">WithCoupledData</i> <a   href="reference---documentquery-methods">parametrization method</a>.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">DocumentHelper</strong> &ndash; provides static methods for retrieving and managing the latest edited versions of pages. Internally, the <i class=" ">DocumentHelper</i> class utilizes <i class=" ">DocumentQuery</i> or <i class=" ">MultiDocumentQuery</i> to retrieve pages and then further adjusts the query, for example by applying the <i class=" ">CombineWithDefaultCulture</i> parametrization method based on the value of the <i class=" ">Combine with default culture</i> setting.</p>
-</li></ul><div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>The Kentico API allows you to retrieve and manage page content using custom code.</p><p>Use the following classes from the <strong class=" ">CMS.DocumentEngine</strong> namespace to work with pages in the API:</p><ul class=" "><li class=" "><p><strong class=" ">TreeNode</strong> – object that represents pages. The <i class=" ">TreeNode</i> class encapsulates data from the <i class=" ">CMS_Tree</i> and <i class=" ">CMS_Document</i> <a href="page-database-structure">tables</a>, and the coupled data tables of individual page types.</p>
+</li><li class=" "><p><strong class=" ">DocumentQuery</strong> and <strong class=" ">MultiDocumentQuery</strong> – classes that represent a query for loading pages. You can further parametrize the query to only retrieve the pages you need. Both are similar in functionality:</p>
+<ul class=" "><li class=" "><p><strong class=" ">DocumentQuery</strong> allows you to retrieve pages of a single <a href="page-types">page type</a> (when an instance is created with a page type class name as the constructor parameter) or general pages of any type (when using a parameterless constructor). If used for a single specific page type, the resulting query automatically includes coupled data of the given page type (e.g., news, articles, blogs). <i class=" ">DocumentQuery</i> is also used internally by <a href="generating-classes-for-kentico-objects">generated page type providers</a> and any custom providers or repositories built around them.</p>
+</li><li class=" "><p><strong class=" ">MultiDocumentQuery</strong> allows you to retrieve pages of multiple page types in a single query at the cost of effectiveness. The coupled data of page types is not retrieved unless explicitly requested using the <i class=" ">WithCoupledData</i> <a href="reference---documentquery-methods">parametrization method</a>.</p>
+</li></ul></li><li class=" "><p><strong class=" ">DocumentHelper</strong> – provides static methods for retrieving and managing the latest edited versions of pages. Internally, the <i class=" ">DocumentHelper</i> class utilizes <i class=" ">DocumentQuery</i> or <i class=" ">MultiDocumentQuery</i> to retrieve pages and then further adjusts the query, for example by applying the <i class=" ">CombineWithDefaultCulture</i> parametrization method based on the value of the <i class=" ">Combine with default culture</i> setting.</p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Page query parametrization methods</strong></p>
-<p   
->For detailed information about the options that allow you to parameterize page queries, see the dedicated reference: <a   href="reference---documentquery-methods">Reference - DocumentQuery methods</a></p>
+            <p><strong class=" ">Page query parametrization methods</strong></p>
+<p>For detailed information about the options that allow you to parameterize page queries, see the dedicated reference: <a href="reference---documentquery-methods">Reference - DocumentQuery methods</a></p>
      
     </div>
-</div>
-<div  class="box-general box-info">
+</div><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Loading other objects</strong></p>
-<p   
->To learn how to retrieve other types of non-page data from the Kentico database, see <a   href="retrieving-database-data-using-objectquery-api">Retrieving database data using ObjectQuery API</a>.</p>
+            <p><strong class=" ">Loading other objects</strong></p>
+<p>To learn how to retrieve other types of non-page data from the Kentico database, see <a href="retrieving-database-data-using-objectquery-api">Retrieving database data using ObjectQuery API</a>.</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882165_workingwithpagesintheapi-retrievingpages">Retrieving pages</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882165_workingwithpagesintheapi-retrievingpagesunderworkflow">Retrieving pages under workflow</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882165_workingwithpagesintheapi-retrievingpagesforcustomscenarios">Retrieving pages for custom scenarios</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882165_workingwithpagesintheapi-workingwithretrievedpages">Working with retrieved pages</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882165_workingwithpagesintheapi-updatingpages">Updating pages</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-retrievingpages">Retrieving pages</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-retrievingpagesunderworkflow">Retrieving pages under workflow</a></p>
+</li><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-retrievingpagesforcustomscenarios">Retrieving pages for custom scenarios</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-workingwithretrievedpages">Working with retrieved pages</a></p>
+</li><li class=" "><p><a href="#src-68882165_workingwithpagesintheapi-updatingpages">Updating pages</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="working-with-pages">Working with pages</a></p>
-</li><li class=" "><p   
-><a   href="page-types">Page types</a></p>
-</li><li class=" "><p   
-><a   href="generating-classes-for-kentico-objects">Generating classes for Kentico objects</a></p>
-</li><li class=" "><p   
-><a   href="reference---documentquery-methods">Reference - DocumentQuery methods</a></p>
-</li><li class=" "><p   
-><a   href="retrieving-database-data-using-objectquery-api">Retrieving database data using ObjectQuery API</a></p>
+<ul class=" "><li class=" "><p><a href="working-with-pages">Working with pages</a></p>
+</li><li class=" "><p><a href="page-types">Page types</a></p>
+</li><li class=" "><p><a href="generating-classes-for-kentico-objects">Generating classes for Kentico objects</a></p>
+</li><li class=" "><p><a href="reference---documentquery-methods">Reference - DocumentQuery methods</a></p>
+</li><li class=" "><p><a href="retrieving-database-data-using-objectquery-api">Retrieving database data using ObjectQuery API</a></p>
 </li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+    
+    
+    <div class="confbox panel">
             <div class="title panel-header">Related blogs</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a  class="external-link" href="http://devnet.kentico.com/articles/kentico-8-technology-documentquery-api">Kentico 8 Technology &ndash; DocumentQuery API</a></p>
+<ul class=" "><li class=" "><p><a class="external-link" href="http://devnet.kentico.com/articles/kentico-8-technology-documentquery-api">Kentico 8 Technology – DocumentQuery API</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882165_workingwithpagesintheapi-retrievingpages" class="heading "><span>Retrieving pages</span></h3>
-<p   
->For basic retrieval of pages in your code, use the <strong class=" ">DocumentHelper.GetDocuments</strong> method and parameterize it using <a   href="reference---documentquery-methods">parametrization methods</a> to only include the pages you need. If you have <a   href="generating-classes-for-kentico-objects">generated page type providers</a> available, you can use them with the same parametrization methods, and then work with strongly typed page objects.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>For basic retrieval of pages in your code, use the <strong class=" ">DocumentHelper.GetDocuments</strong> method and parameterize it using <a href="reference---documentquery-methods">parametrization methods</a> to only include the pages you need. If you have <a href="generating-classes-for-kentico-objects">generated page type providers</a> available, you can use them with the same parametrization methods, and then work with strongly typed page objects.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -8771,25 +8743,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h4 id="src-68882165_workingwithpagesintheapi-retrievingpagesunderworkflow" class="heading "><span>Retrieving pages under workflow</span></h4>
-<p   
->When working with pages under <a   href="configuring-workflows">workflow</a>, you may want to retrieve the latest edited version in some cases and the published version in others.</p>
-<ul class=" "><li class=" "><p   
->Use the <strong class=" ">PublishedVersion</strong> <a   href="reference---documentquery-methods">parametrization method</a> to retrieve the published version of pages under workflow (when retrieving pages to be displayed on the live site).</p>
-</li><li class=" "><p   
->Use the <strong class=" ">LatestVersion</strong> <a   href="reference---documentquery-methods">method</a> to retrieve the latest edited version of pages under workflow (when retrieving pages for further editing or previewing of unpublished changes).</p>
-</li></ul><div  class="box-general box-note">
+<p>When working with pages under <a href="configuring-workflows">workflow</a>, you may want to retrieve the latest edited version in some cases and the published version in others.</p>
+<ul class=" "><li class=" "><p>Use the <strong class=" ">PublishedVersion</strong> <a href="reference---documentquery-methods">parametrization method</a> to retrieve the published version of pages under workflow (when retrieving pages to be displayed on the live site).</p>
+</li><li class=" "><p>Use the <strong class=" ">LatestVersion</strong> <a href="reference---documentquery-methods">method</a> to retrieve the latest edited version of pages under workflow (when retrieving pages for further editing or previewing of unpublished changes).</p>
+</li></ul><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: The <strong class=" ">Published</strong> <a   href="reference---documentquery-methods">parametrization method</a> does not specify the version of the pages you retrieve, instead it limits the retrieved pages to only those that are currently published according to the value of their <strong class=" ">Published from</strong> / <strong class=" ">Published to</strong> settings and have a published version.</p>
+            <p><strong class=" ">Note</strong>: The <strong class=" ">Published</strong> <a href="reference---documentquery-methods">parametrization method</a> does not specify the version of the pages you retrieve, instead it limits the retrieved pages to only those that are currently published according to the value of their <strong class=" ">Published from</strong> / <strong class=" ">Published to</strong> settings and have a published version.</p>
      
     </div>
 </div>
     <h4 id="src-68882165_workingwithpagesintheapi-retrievingpagesforcustomscenarios" class="heading "><span>Retrieving pages for custom scenarios</span></h4>
-<p   
-><strong class=" ">DocumentHelper</strong> automatically performs some parameterization of the query to simplify the code for the most common scenarios. However, if you require full control over the query, you can directly use the <strong class=" ">DocumentQuery</strong> or <strong class=" ">MultiDocumentQuery</strong> classes to ensure that there is not any unexpected parametrization done in the background.</p>
-<div  class="code panel pdl js-codePanel" >
+<p><strong class=" ">DocumentHelper</strong> automatically performs some parameterization of the query to simplify the code for the most common scenarios. However, if you require full control over the query, you can directly use the <strong class=" ">DocumentQuery</strong> or <strong class=" ">MultiDocumentQuery</strong> classes to ensure that there is not any unexpected parametrization done in the background.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8818,7 +8785,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8847,9 +8814,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h3 id="src-68882165_workingwithpagesintheapi-workingwithretrievedpages" class="heading "><span>Working with retrieved pages</span></h3>
-<p   
->You can iterate through the retrieved collection to access the properties of individual pages. The available columns depend on how you parametrized the query when retrieving the pages.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>You can iterate through the retrieved collection to access the properties of individual pages. The available columns depend on how you parametrized the query when retrieving the pages.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8871,7 +8837,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">DocumentQuery smartphones = DocumentHelper.GetDocuments(</code><code class="string">"CMS.Smartphone"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">                                .Path(</code><code class="string">"/Products/"</code><code class="plain">, PathTypeEnum.Children)</code></div>
 <div class="line"><code class="plain">                                .OnSite(</code><code class="string">"CorporateSite"</code><code class="plain">);</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="comments">// Writes the 'DocumentName' and 'SmartphoneOS' values of each of the retrieved smartphones into an HTTP output response stream</code></div>
 <div class="line"><code class="keyword">foreach</code><code class="plain"> (TreeNode smartphone </code><code class="keyword">in</code><code class="plain"> smartphones)</code></div>
 <div class="line"><code class="plain">{      </code></div>
@@ -8883,30 +8849,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h3 id="src-68882165_workingwithpagesintheapi-updatingpages" class="heading "><span>Updating pages</span></h3>
-<p   
->To update a page (<i class=" ">TreeNode</i> object):</p>
-<ol class=" "><li class=" "><p   
->Retrieve the latest edited version of a page using the methods described above.</p>
-</li><li class=" "><p   
->Modify the page&#39;s data:</p>
-<ul class=" "><li class=" "><p   
->For general page fields, directly set the corresponding <i class=" ">TreeNode</i> properties.</p>
-</li><li class=" "><p   
->For the fields of specific page types, call the <i class=" ">TreeNode.SetValue(&quot;FieldName&quot;, value)</i> method.</p>
-</li></ul></li><li class=" "><p   
->Call the <strong class=" ">TreeNode.Update()</strong> method.</p>
-</li></ol><div  class="box-general box-note">
+<p>To update a page (<i class=" ">TreeNode</i> object):</p>
+<ol class=" "><li class=" "><p>Retrieve the latest edited version of a page using the methods described above.</p>
+</li><li class=" "><p>Modify the page's data:</p>
+<ul class=" "><li class=" "><p>For general page fields, directly set the corresponding <i class=" ">TreeNode</i> properties.</p>
+</li><li class=" "><p>For the fields of specific page types, call the <i class=" ">TreeNode.SetValue("FieldName", value)</i> method.</p>
+</li></ul></li><li class=" "><p>Call the <strong class=" ">TreeNode.Update()</strong> method.</p>
+</li></ol><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Updating pages under workflow</strong></p>
-<p   
->When using the API to update pages under <a   href="configuring-workflows">workflow</a> or <a   href="configuring-and-using-page-versioning">versioning</a>, always retrieve the page objects with all fields. Otherwise, the update may cause data loss. Use one of the following approaches:</p>
-<ul class=" "><li class=" "><p   
->Call the <i class=" ">DocumentHelper.GetDocuments(string className)</i> method with a <i class=" ">className</i> parameter for a specific page type.</p>
-</li><li class=" "><p   
->Use the <strong class=" ">Types</strong> query method to identify the page types and then apply the <strong class=" ">WithCoupledColumns</strong> method.</p>
+            <p><strong class=" ">Updating pages under workflow</strong></p>
+<p>When using the API to update pages under <a href="configuring-workflows">workflow</a> or <a href="configuring-and-using-page-versioning">versioning</a>, always retrieve the page objects with all fields. Otherwise, the update may cause data loss. Use one of the following approaches:</p>
+<ul class=" "><li class=" "><p>Call the <i class=" ">DocumentHelper.GetDocuments(string className)</i> method with a <i class=" ">className</i> parameter for a specific page type.</p>
+</li><li class=" "><p>Use the <strong class=" ">Types</strong> query method to identify the page types and then apply the <strong class=" ">WithCoupledColumns</strong> method.</p>
 </li></ul>     
     </div>
 </div>
@@ -8920,8 +8876,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8933,10 +8889,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8955,9 +8911,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8968,7 +8921,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8979,5 +8932,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

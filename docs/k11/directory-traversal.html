@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Directory traversal - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881115"> <span>Directory traversal</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,12 +8659,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->This type of attack is also known as path traversal. The main goal is to show content of a file or directory via an application. Applications read data from the file system in many cases. Paths to these files or directories are often taken from input. If a user&#39;s input is not handled carefully, users can read data from the root directory of the server&#39;s file system.</p>
-    <h3 id="src-68881115_directorytraversal-exampleofdirectorytraversal" class="heading "><span>Example of directory traversal</span></h3>
-<p   
->Let&#39;s inspect the following code:</p>
-<div  class="code panel pdl js-codePanel" >
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>This type of attack is also known as path traversal. The main goal is to show content of a file or directory via an application. Applications read data from the file system in many cases. Paths to these files or directories are often taken from input. If a user's input is not handled carefully, users can read data from the root directory of the server's file system.</p><h3 id="src-68881115_directorytraversal-exampleofdirectorytraversal" class="heading "><span>Example of directory traversal</span></h3><p>Let's inspect the following code:</p><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8691,29 +8683,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br /&gt;&lt;strong&gt;Read e:\\StorageHelper.cs with absolute path: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(File.ReadAllText(</code><code class="string">"e:\\StorageHelper.cs"</code><code class="plain">) + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br /&gt;&lt;strong&gt;Root path of C: taken by ./../../../: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs2 = Directory.GetDirectories(</code><code class="string">"./../../../"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">foreach</code><code class="plain"> (</code><code class="keyword">string</code><code class="plain"> dir </code><code class="keyword">in</code><code class="plain"> dirs2)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br/&gt;&lt;strong&gt;Read c:\\StorageHelper.cs with ./../../../: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(File.ReadAllText(</code><code class="string">"./../../../StorageHelper.cs"</code><code class="plain">) + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br /&gt;&lt;strong&gt;Directory with application: taken by ServerMapPath(\"~/../\"): &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs3 = Directory.GetDirectories(Server.MapPath(</code><code class="string">"~/../"</code><code class="plain">));</code></div>
 <div class="line"><code class="keyword">foreach</code><code class="plain"> (</code><code class="keyword">string</code><code class="plain"> dir </code><code class="keyword">in</code><code class="plain"> dirs3)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">//This code throws an exception - but the security is poor here</code></div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"Directory with application: taken by /../: &lt;br/&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs4 = Directory.GetDirectories(Server.MapPath(</code><code class="string">"/../."</code><code class="plain">));</code></div>
@@ -8721,7 +8713,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">   			Response.Write(dir + </code><code class="string">"&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">Response.Write(</code><code class="string">"&lt;br /&gt;&lt;strong&gt;Directory with application: taken by Server.MapPath(\"/\") + \"../: &lt;/strong&gt;&lt;br /&gt;"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">string</code><code class="plain">[] dirs5 = Directory.GetDirectories(Server.MapPath(</code><code class="string">"/"</code><code class="plain">) + </code><code class="string">"../"</code><code class="plain">);</code></div>
 <div class="line"><code class="keyword">foreach</code><code class="plain"> (</code><code class="keyword">string</code><code class="plain"> dir </code><code class="keyword">in</code><code class="plain"> dirs5)</code></div>
@@ -8731,55 +8723,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
     </code></pre>
   </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881115_directorytraversal-exampleofdirectorytraversal">Example of directory traversal</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881115_directorytraversal-whatcandirectorytraversalattacksdo">What can directory traversal attacks do</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881115_directorytraversal-findingdirectorytraversalvulnerabilities">Finding directory traversal vulnerabilities</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881115_directorytraversal-avoidingdirectorytraversal">Avoiding directory traversal</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881115_directorytraversal-exampleofdirectorytraversal">Example of directory traversal</a></p>
+</li><li class=" "><p><a href="#src-68881115_directorytraversal-whatcandirectorytraversalattacksdo">What can directory traversal attacks do</a></p>
+</li><li class=" "><p><a href="#src-68881115_directorytraversal-findingdirectorytraversalvulnerabilities">Finding directory traversal vulnerabilities</a></p>
+</li><li class=" "><p><a href="#src-68881115_directorytraversal-avoidingdirectorytraversal">Avoiding directory traversal</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-<p   
->The result of this code will look like this:</p>
-<p   
-><strong class=" ">Absolute path e:\:</strong><br/>e:\$RECYCLE.BIN<br/>e:\ASP.NET_TEMP<br/>e:\AzureSLN</p>
-<p   
-><strong class=" ">Read e:\StorageHelper.cs with absolute path:</strong><br/>************ Some code 2 ************</p>
-<p   
-><strong class=" ">Root path of C: taken by ./../../../:</strong><br/>./../../../$Recycle.Bin<br/>./../../../Backup<br/>./../../../Boot</p>
-<p   
-><strong class=" ">Read c:\StorageHelper.cs with ./../../../:</strong><br/>*************************** Some code StorageHelper.cs<br/>***************************</p>
-<p   
-><strong class=" ">Directory with application: taken by ServerMapPath(&quot;~/../&quot;):</strong><br/>C:\inetpub\wwwroot\3855_10914<br/>C:\inetpub\wwwroot\3889_32518<br/>C:\inetpub\wwwroot\3968_07397</p>
-<p   
-><strong class=" ">Directory with application: taken by Server.MapPath(&quot;/&quot;) + &quot;../:</strong><br/>C:\inetpub\wwwroot\../AdminScripts<br/>C:\inetpub\wwwroot\../custerr<br/>C:\inetpub\wwwroot\../history</p>
-<p   
->These are listings from one particular hard disk. The exact paths or listings aren&#39;t important, the important thing is that you can simply read any file or list any directory. And you can either use a relative or an absolute path. In this case, it is even a more severe vulnerability called full path disclosure. This bug enables the attacker to see a full path in an error message. The attacker finds out your directory structure and can effectively exploit a directory traversal vulnerability.</p>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+    
+
+
+    
+<p>The result of this code will look like this:</p>
+<p><strong class=" ">Absolute path e:\:</strong><br>e:\$RECYCLE.BIN<br>e:\ASP.NET_TEMP<br>e:\AzureSLN</p>
+<p><strong class=" ">Read e:\StorageHelper.cs with absolute path:</strong><br>************ Some code 2 ************</p>
+<p><strong class=" ">Root path of C: taken by ./../../../:</strong><br>./../../../$Recycle.Bin<br>./../../../Backup<br>./../../../Boot</p>
+<p><strong class=" ">Read c:\StorageHelper.cs with ./../../../:</strong><br>*************************** Some code StorageHelper.cs<br>***************************</p>
+<p><strong class=" ">Directory with application: taken by ServerMapPath("~/../"):</strong><br>C:\inetpub\wwwroot\3855_10914<br>C:\inetpub\wwwroot\3889_32518<br>C:\inetpub\wwwroot\3968_07397</p>
+<p><strong class=" ">Directory with application: taken by Server.MapPath("/") + "../:</strong><br>C:\inetpub\wwwroot\../AdminScripts<br>C:\inetpub\wwwroot\../custerr<br>C:\inetpub\wwwroot\../history</p>
+<p>These are listings from one particular hard disk. The exact paths or listings aren't important, the important thing is that you can simply read any file or list any directory. And you can either use a relative or an absolute path. In this case, it is even a more severe vulnerability called full path disclosure. This bug enables the attacker to see a full path in an error message. The attacker finds out your directory structure and can effectively exploit a directory traversal vulnerability.</p>
     <h3 id="src-68881115_directorytraversal-whatcandirectorytraversalattacksdo" class="heading "><span>What can directory traversal attacks do</span></h3>
-<p   
->The first dangerous thing is that the attacker knows your directory structure. And if there are any sensitive information in files in your application directory, the attacker can simply download these files. A worse case is when your application enables the attacker to read files. The attacker can then read your configuration files (e.g., the connection string in web.config file) or the configuration files of the whole system (if the application is used by a highly privileged user).</p>
+<p>The first dangerous thing is that the attacker knows your directory structure. And if there are any sensitive information in files in your application directory, the attacker can simply download these files. A worse case is when your application enables the attacker to read files. The attacker can then read your configuration files (e.g., the connection string in web.config file) or the configuration files of the whole system (if the application is used by a highly privileged user).</p>
     <h3 id="src-68881115_directorytraversal-findingdirectorytraversalvulnerabilities" class="heading "><span>Finding directory traversal vulnerabilities</span></h3>
-<p   
->Search for parts of your application where the application reads files and directories. Then try to change the input parameters to get content from a place outside of the application directory. In code, you can search for these strings:</p>
-<ul class=" "><li class=" "><p   
->ServerMapPath</p>
-</li><li class=" "><p   
->FileStream</p>
-</li><li class=" "><p   
->StreamReader</p>
+<p>Search for parts of your application where the application reads files and directories. Then try to change the input parameters to get content from a place outside of the application directory. In code, you can search for these strings:</p>
+<ul class=" "><li class=" "><p>ServerMapPath</p>
+</li><li class=" "><p>FileStream</p>
+</li><li class=" "><p>StreamReader</p>
 </li></ul>    <h3 id="src-68881115_directorytraversal-avoidingdirectorytraversal" class="heading "><span>Avoiding directory traversal</span></h3>
-<p   
->Validate user inputs, check for absolute paths for sequences of &quot;../&quot;, and so on. Also, if you read a file, check if the file is within the application path. The application should never read data from a random path on a hard disk.</p>
+<p>Validate user inputs, check for absolute paths for sequences of "../", and so on. Also, if you read a file, check if the file is within the application path. The application should never read data from a random path on a hard disk.</p>
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -8790,8 +8765,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8803,10 +8778,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8825,9 +8800,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8838,7 +8810,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8849,5 +8821,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

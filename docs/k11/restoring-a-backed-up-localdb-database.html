@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Restoring a backed-up LocalDB database - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882285"> <span>Restoring a backed-up LocalDB database</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,73 +8659,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Restoring a <strong class=" ">LocalDB</strong> database is similar to restoring a normal SQL database using the SQL Server Management Studio. However, you might encounter an error during the process:</p>
-<p   
-><img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68882285/DB_restore_error.png" 
-        alt="Database restore error"        
-        width="500"         />
+<p>Restoring a <strong class=" ">LocalDB</strong> database is similar to restoring a normal SQL database using the SQL Server Management Studio. However, you might encounter an error during the process:</p>
+<p><img class="confluence-embedded-image" src="images/download/attachments/68882285/DB_restore_error.png" alt="Database restore error" width="500">
 </p>
-<p   
-><i class=" ">&quot;Property BackupDirectory is not available for Settings &#39;Microsoft.SqlServer.Management.Smo.Settings&#39;. This property may not exist for this object or may not be retrievable due to insufficient access rights. (Microsoft.SqlServer.Smo).&quot;</i></p>
-<p   
->These steps provide a solution to this problem. We assume that you have created a backup of your database using the Hotfix and Upgrade Utility.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Registry editor</strong> and navigate to     <span style="color: #151515;">
+<p><i class=" ">"Property BackupDirectory is not available for Settings 'Microsoft.SqlServer.Management.Smo.Settings'. This property may not exist for this object or may not be retrievable due to insufficient access rights. (Microsoft.SqlServer.Smo)."</i></p>
+<p>These steps provide a solution to this problem. We assume that you have created a backup of your database using the Hotfix and Upgrade Utility.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Registry editor</strong> and navigate to     <span style="color: #151515;">
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL11E.LOCALDB\MSSQLServer    </span>
 .</p>
-</li><li class=" "><p   
->Add these three String Values with the <strong class=" ">path to your backed-up folder</strong> as a value:<br/></p>
-<ul class=" "><li class=" "><p   
->DefaultData</p>
-</li><li class=" "><p   
->DefaultLog</p>
-</li><li class=" "><p   
->BackupDirectory</p>
-</li></ul><p   
-><img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68882285/Add_registry_keys.png" 
-                
-        width="500"         />
-<br/><br/></p>
-</li><li class=" "><p   
->Open Microsoft SQL Server Management Studio</p>
-</li><li class=" "><p   
->Connect to the LocalDB instance, use the server name: <strong class=" ">(localdb)\Kentico</strong><br/></p>
-<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68882285/Connect_to_localDB.png" 
-        alt="Connect to LocalDB"        
-        width="350"         />
-</li><li class=" "><p   
-><strong class=" ">Delete</strong> the old database.</p>
-</li><li class=" "><p   
->Right-click the <strong class=" ">Databases</strong> folder and select <strong class=" ">Restore Database....</strong><strong class=" "><br/></strong><strong class=" "><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882285/Restore_database.png" 
-                
-        width="350"         />
-</strong><strong class=" "><br/></strong></p>
-</li><li class=" "><p   
->In the Source section, select <strong class=" ">Device</strong>.<strong class=" "><br/></strong></p>
-</li><li class=" "><p   
->Click the (<strong class=" ">...</strong>) button.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Add</strong>.</p>
-</li><li class=" "><p   
->Select the database backup file (.bak) and click <strong class=" ">OK</strong>.<br/></p>
-<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68882285/Select_database_backup_file.png" 
-        alt="Select the database backup file"        
-        width="500"         />
-</li><li class=" "><p   
->Click <strong class=" ">OK</strong> to begin the restore process.</p>
-</li></ol><p   
->The system now restores your LocalDB database.</p>
+</li><li class=" "><p>Add these three String Values with the <strong class=" ">path to your backed-up folder</strong> as a value:<br></p>
+<ul class=" "><li class=" "><p>DefaultData</p>
+</li><li class=" "><p>DefaultLog</p>
+</li><li class=" "><p>BackupDirectory</p>
+</li></ul><p><img class="confluence-embedded-image" src="images/download/attachments/68882285/Add_registry_keys.png" width="500">
+<br><br></p>
+</li><li class=" "><p>Open Microsoft SQL Server Management Studio</p>
+</li><li class=" "><p>Connect to the LocalDB instance, use the server name: <strong class=" ">(localdb)\Kentico</strong><br></p>
+<img class="confluence-embedded-image" src="images/download/attachments/68882285/Connect_to_localDB.png" alt="Connect to LocalDB" width="350">
+</li><li class=" "><p><strong class=" ">Delete</strong> the old database.</p>
+</li><li class=" "><p>Right-click the <strong class=" ">Databases</strong> folder and select <strong class=" ">Restore Database....</strong><strong class=" "><br></strong><strong class=" "><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882285/Restore_database.png" width="350">
+</strong><strong class=" "><br></strong></p>
+</li><li class=" "><p>In the Source section, select <strong class=" ">Device</strong>.<strong class=" "><br></strong></p>
+</li><li class=" "><p>Click the (<strong class=" ">...</strong>) button.</p>
+</li><li class=" "><p>Click <strong class=" ">Add</strong>.</p>
+</li><li class=" "><p>Select the database backup file (.bak) and click <strong class=" ">OK</strong>.<br></p>
+<img class="confluence-embedded-image" src="images/download/attachments/68882285/Select_database_backup_file.png" alt="Select the database backup file" width="500">
+</li><li class=" "><p>Click <strong class=" ">OK</strong> to begin the restore process.</p>
+</li></ol><p>The system now restores your LocalDB database.</p>
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -8739,8 +8696,8 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL11E.LOCALDB\MSSQ
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8752,10 +8709,10 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL11E.LOCALDB\MSSQ
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8774,9 +8731,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL11E.LOCALDB\MSSQ
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8787,7 +8741,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL11E.LOCALDB\MSSQ
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8798,5 +8752,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\MSSQL11E.LOCALDB\MSSQ
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Implementing custom shipping carrier providers - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881663"> <span>Implementing custom shipping carrier providers</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,119 +8660,78 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->To create <a   href="configuring-shipping-options">shipping options</a> not supported by Kentico by default, implement a custom shipping carrier provider. Shipping carrier providers are code packages that define <a   href="configuring-shipping-carriers">shipping carriers</a>, which you can add to your Kentico instance. The shipping carriers then enable creation of new shipping options.</p>
-<p   
->Shipping carrier providers can either use offline calculation of the shipping costs (for example, shipping based on weight, <a   href="example---creating-a-shipping-carrier-provider">the shipping address country</a>, date, etc.) or online cost calculation, which requires communication with other systems, typically via APIs of shipping companies (for example, FedEx, USPS, Australia Post). Carrier providers of this type can then provide a real-time shipping costs calculation or shipping option availability check. You can also combine both approaches to achieve your desired result.</p>
-<div  class="box-general box-tip">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>To create <a href="configuring-shipping-options">shipping options</a> not supported by Kentico by default, implement a custom shipping carrier provider. Shipping carrier providers are code packages that define <a href="configuring-shipping-carriers">shipping carriers</a>, which you can add to your Kentico instance. The shipping carriers then enable creation of new shipping options.</p><p>Shipping carrier providers can either use offline calculation of the shipping costs (for example, shipping based on weight, <a href="example---creating-a-shipping-carrier-provider">the shipping address country</a>, date, etc.) or online cost calculation, which requires communication with other systems, typically via APIs of shipping companies (for example, FedEx, USPS, Australia Post). Carrier providers of this type can then provide a real-time shipping costs calculation or shipping option availability check. You can also combine both approaches to achieve your desired result.</p><div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->You can<a   href="creating-installation-packages-for-modules"> create an installation package</a> out of your carrier provider module and then <a   href="installing-modules-from-installation-packages">install the package</a> on other instances of Kentico.</p>
+            <p>You can<a href="creating-installation-packages-for-modules"> create an installation package</a> out of your carrier provider module and then <a href="installing-modules-from-installation-packages">install the package</a> on other instances of Kentico.</p>
      
     </div>
-</div>
-    <h3 id="src-68881663_implementingcustomshippingcarrierproviders-relationshipbetweencarrierprovidersandshippingoptions" class="heading "><span>Relationship between carrier providers and shipping options</span></h3>
-<p   
->When you a add shipping carrier provider to Kentico, you can create a new <a   href="configuring-shipping-carriers">shipping carrier</a> in the administration interface. Shipping carriers contain services, which are types of shipping provided by the carrier. Administrators can then create <a   href="configuring-shipping-options">shipping options</a> based on the carrier&#39;s services.</p>
-<p   
->For example, you can create a custom provider for a FedEx carrier and two services &ndash; <i class=" ">International Priority shipping</i> and <i class=" ">International Economy shipping</i>. Then administrators create shipping options based on the carrier&#39;s services. They can also create multiple options based on one service.</p>
-    <h3 id="src-68881663_implementingcustomshippingcarrierproviders-creatingcarrierproviders" class="heading "><span>Creating carrier providers</span></h3>
-<p   
->To implement a custom shipping carrier provider, you need to create a class that inherits from the <strong class=" ">ICarrierProvider</strong> interface. If you wish to allow configuration of the carrier in the administration interface, you also need to create a corresponding module.</p>
-    <div  class="confbox panel">
+</div><h3 id="src-68881663_implementingcustomshippingcarrierproviders-relationshipbetweencarrierprovidersandshippingoptions" class="heading "><span>Relationship between carrier providers and shipping options</span></h3><p>When you a add shipping carrier provider to Kentico, you can create a new <a href="configuring-shipping-carriers">shipping carrier</a> in the administration interface. Shipping carriers contain services, which are types of shipping provided by the carrier. Administrators can then create <a href="configuring-shipping-options">shipping options</a> based on the carrier's services.</p><p>For example, you can create a custom provider for a FedEx carrier and two services – <i class=" ">International Priority shipping</i> and <i class=" ">International Economy shipping</i>. Then administrators create shipping options based on the carrier's services. They can also create multiple options based on one service.</p><h3 id="src-68881663_implementingcustomshippingcarrierproviders-creatingcarrierproviders" class="heading "><span>Creating carrier providers</span></h3><p>To implement a custom shipping carrier provider, you need to create a class that inherits from the <strong class=" ">ICarrierProvider</strong> interface. If you wish to allow configuration of the carrier in the administration interface, you also need to create a corresponding module.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881663_implementingcustomshippingcarrierproviders-relationshipbetweencarrierprovidersandshippingoptions">Relationship between carrier providers and shipping options</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881663_implementingcustomshippingcarrierproviders-creatingcarrierproviders">Creating carrier providers</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881663_implementingcustomshippingcarrierproviders-relationshipbetweencarrierprovidersandshippingoptions">Relationship between carrier providers and shipping options</a></p>
+</li><li class=" "><p><a href="#src-68881663_implementingcustomshippingcarrierproviders-creatingcarrierproviders">Creating carrier providers</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="example---creating-a-shipping-carrier-provider">Example - Creating a shipping carrier provider</a></p>
-</li><li class=" "><p   
-><a   href="configuring-shipping-carriers">Configuring shipping carriers</a></p>
-</li><li class=" "><p   
-><a   href="configuring-shipping-options">Configuring shipping options</a></p>
-</li><li class=" "><p   
-><a   href="configuring-your-store">Configuring your store</a></p>
-</li><li class=" "><p   
-><a   href="customizing-providers">Customizing providers</a></p>
-</li><li class=" "><p   
-><a   href="creating-custom-modules">Creating custom modules</a></p>
-</li><li class=" "><p   
-><a   href="creating-installation-packages-for-modules">Creating installation packages for modules</a></p>
-</li><li class=" "><p   
-><a   href="example---creating-a-packageable-module">Example - Creating a packageable module</a></p>
-</li><li class=" "><p   
-><a  class="external-link" href="http://devnet.kentico.com/articles/webinar-recap-adding-real-time-shipping-rates-to-kentico">Adding real-time shipping rates to Kentico</a> (webinar)</p>
+<ul class=" "><li class=" "><p><a href="example---creating-a-shipping-carrier-provider">Example - Creating a shipping carrier provider</a></p>
+</li><li class=" "><p><a href="configuring-shipping-carriers">Configuring shipping carriers</a></p>
+</li><li class=" "><p><a href="configuring-shipping-options">Configuring shipping options</a></p>
+</li><li class=" "><p><a href="configuring-your-store">Configuring your store</a></p>
+</li><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class=" "><p><a href="creating-custom-modules">Creating custom modules</a></p>
+</li><li class=" "><p><a href="creating-installation-packages-for-modules">Creating installation packages for modules</a></p>
+</li><li class=" "><p><a href="example---creating-a-packageable-module">Example - Creating a packageable module</a></p>
+</li><li class=" "><p><a class="external-link" href="http://devnet.kentico.com/articles/webinar-recap-adding-real-time-shipping-rates-to-kentico">Adding real-time shipping rates to Kentico</a> (webinar)</p>
 </li></ul>        </div>
-    </div>
-<ol class=" "><li class=" "><p   
-><a   href="creating-custom-modules">Create a custom module</a> to represent your carrier.</p>
-<div  class="box-general box-tip">
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+
+
+    
+
+    
+    
+<ol class=" "><li class=" "><p><a href="creating-custom-modules">Create a custom module</a> to represent your carrier.</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->For convenient distribution of the carrier to other Kentico instances, you can create an <a   href="creating-installation-packages-for-modules">installation package</a> for the module. See <a   href="example---creating-a-packageable-module">Example - Creating a packageable module</a> for more information.</p>
+            <p>For convenient distribution of the carrier to other Kentico instances, you can create an <a href="creating-installation-packages-for-modules">installation package</a> for the module. See <a href="example---creating-a-packageable-module">Example - Creating a packageable module</a> for more information.</p>
      
     </div>
 </div>
-</li><li class=" "><p   
->(Optional) Define a configuration interface for your carrier (for example, with login credentials for communication with a shipping company&#39;s API). Open the <strong class=" ">Modules</strong> application and edit the module representing your carrier. On the <strong class=" ">User interface</strong> tab, <a   href="manually-creating-the-interface-for-custom-modules">create a UI element</a> to be used as the configuration tab.</p>
-<ul class=" "><li class=" "><p   
->The UI element must be assigned to the carrier&#39;s module. Otherwise, it will not be included in installation packages.</p>
-</li><li class=" "><p   
->If your carrier does not need any configuration, you do not need to create any UI element.</p>
-</li><li class=" "><p   
->Each carrier can have only one configuration tab (UI element).</p>
-<div  class="box-general box-tip">
+</li><li class=" "><p>(Optional) Define a configuration interface for your carrier (for example, with login credentials for communication with a shipping company's API). Open the <strong class=" ">Modules</strong> application and edit the module representing your carrier. On the <strong class=" ">User interface</strong> tab, <a href="manually-creating-the-interface-for-custom-modules">create a UI element</a> to be used as the configuration tab.</p>
+<ul class=" "><li class=" "><p>The UI element must be assigned to the carrier's module. Otherwise, it will not be included in installation packages.</p>
+</li><li class=" "><p>If your carrier does not need any configuration, you do not need to create any UI element.</p>
+</li><li class=" "><p>Each carrier can have only one configuration tab (UI element).</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->To calculate shipping costs, shipping companies usually require the address from which packages are sent. You can <a   href="reference---field-editor">create a text box</a> on the configuration tab to allow administrators to set this address.</p>
+            <p>To calculate shipping costs, shipping companies usually require the address from which packages are sent. You can <a href="reference---field-editor">create a text box</a> on the configuration tab to allow administrators to set this address.</p>
      
     </div>
 </div>
-</li></ul></li><li class=" "><p   
->(Optional) As you did for the carrier, you can also create UI elements as configuration tabs for the carrier&#39;s services. Configuration tabs of services are then displayed while editing any shipping option based on the given service.</p>
-<ul class=" "><li class=" "><p   
->Every service can have one configuration tab.</p>
-</li></ul></li><li class=" "><p   
->(Optional) If you need to communicate with an API of a shipping company, you may need to add their API web references to your Kentico instance:<br/></p>
-<ol class=" "><li class=" "><p   
->Download a WSDL file from a website of the shipping company (for example, FedEx offers its WSDL files in their <a  class="external-link" href="https://www.fedex.com/us/developer/web-services/process.html">Documentation and Downloads</a> section).</p>
-</li><li class=" "><p   
->Right-click <strong class=" ">References</strong> in your carrier project in the Visual Studio Solution Explorer and click <strong class=" ">Add Service Reference</strong>.<br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881663/add_service_reference.png" 
-        alt="Location of the Add Service Reference button"        
-        width="476"        height="338" />
-</li><li class=" "><p   
->Click <strong class=" ">Advanced</strong> in the <strong class=" ">Add Service Reference </strong>dialog.</p>
-</li><li class=" "><p   
->In the <strong class=" ">Service Reference Settings</strong> dialog, click <strong class=" ">Add Web Reference</strong>.</p>
-</li><li class=" "><p   
->Enter the path of your downloaded WSDL file, and click <strong class=" ">Add Reference</strong>.</p>
-<ul class=" "><li class=" "><p   
->Visual Studio then generates a new class according to the reference file automatically. You can use the API&#39;s methods when implementing the carrier provider, for example in the <a   href="#src-68881663_implementingcustomshippingcarrierproviders-getprice">GetPrice</a> and <a   href="#src-68881663_implementingcustomshippingcarrierproviders-candeliver">CanDeliver</a> methods.</p>
-</li></ul></li></ol></li><li class=" "><p   
->Create a new class in your module project in Visual Studio (for example <strong class=" ">MyCustomCarrier.cs</strong>) that implements the <strong class=" ">ICarrierProvider</strong> interface.</p>
-<ol class=" "><li class=" "><p   
->Implement the <strong class=" ">CarrierProviderName</strong> property.</p>
-<div  class="code panel pdl js-codePanel" >
+</li></ul></li><li class=" "><p>(Optional) As you did for the carrier, you can also create UI elements as configuration tabs for the carrier's services. Configuration tabs of services are then displayed while editing any shipping option based on the given service.</p>
+<ul class=" "><li class=" "><p>Every service can have one configuration tab.</p>
+</li></ul></li><li class=" "><p>(Optional) If you need to communicate with an API of a shipping company, you may need to add their API web references to your Kentico instance:<br></p>
+<ol class=" "><li class=" "><p>Download a WSDL file from a website of the shipping company (for example, FedEx offers its WSDL files in their <a class="external-link" href="https://www.fedex.com/us/developer/web-services/process.html">Documentation and Downloads</a> section).</p>
+</li><li class=" "><p>Right-click <strong class=" ">References</strong> in your carrier project in the Visual Studio Solution Explorer and click <strong class=" ">Add Service Reference</strong>.<br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881663/add_service_reference.png" alt="Location of the Add Service Reference button" width="476" height="338">
+</li><li class=" "><p>Click <strong class=" ">Advanced</strong> in the <strong class=" ">Add Service Reference </strong>dialog.</p>
+</li><li class=" "><p>In the <strong class=" ">Service Reference Settings</strong> dialog, click <strong class=" ">Add Web Reference</strong>.</p>
+</li><li class=" "><p>Enter the path of your downloaded WSDL file, and click <strong class=" ">Add Reference</strong>.</p>
+<ul class=" "><li class=" "><p>Visual Studio then generates a new class according to the reference file automatically. You can use the API's methods when implementing the carrier provider, for example in the <a href="#src-68881663_implementingcustomshippingcarrierproviders-getprice">GetPrice</a> and <a href="#src-68881663_implementingcustomshippingcarrierproviders-candeliver">CanDeliver</a> methods.</p>
+</li></ul></li></ol></li><li class=" "><p>Create a new class in your module project in Visual Studio (for example <strong class=" ">MyCustomCarrier.cs</strong>) that implements the <strong class=" ">ICarrierProvider</strong> interface.</p>
+<ol class=" "><li class=" "><p>Implement the <strong class=" ">CarrierProviderName</strong> property.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8801,11 +8757,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The property returns the name of the carrier. The name is displayed in the administration interface when working with carriers or shipping options.<br/></p>
-</li><li class=" "><p   
->Implement the <strong class=" ">GetServices</strong> method.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The property returns the name of the carrier. The name is displayed in the administration interface when working with carriers or shipping options.<br></p>
+</li><li class=" "><p>Implement the <strong class=" ">GetServices</strong> method.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8828,25 +8782,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The method returns a list of code names (the first element in the list) and display names (the second element in the list) of the carrier&#39;s services. The code names serve as identifiers in code and macros. Display names are shown in the administration interface when working with shipping options.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881663/list_of_carrier_services.png" 
-        alt="List of services"        
-        width="500"         />
+<p>The method returns a list of code names (the first element in the list) and display names (the second element in the list) of the carrier's services. The code names serve as identifiers in code and macros. Display names are shown in the administration interface when working with shipping options.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881663/list_of_carrier_services.png" alt="List of services" width="500">
 </p>
-<div  class="box-general box-tip">
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->If you have a multilingual site, create <a   href="working-with-resource-strings">resource strings</a> to store the display names of your services.</p>
+            <p>If you have a multilingual site, create <a href="working-with-resource-strings">resource strings</a> to store the display names of your services.</p>
      
     </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -8873,18 +8820,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            {</code><code class="string">"STANDARD_OVERNIGHT"</code><code class="plain">, </code><code class="string">"{$com.fedexcarrierprovider.standardovernight$}"</code><code class="plain">},</code></div>
 <div class="line"><code class="plain">            {</code><code class="string">"FEDEX_2_DAY"</code><code class="plain">, </code><code class="string">"{$com.fedexcarrierprovider.2day$}"</code><code class="plain">}</code></div>
 <div class="line"><code class="plain">      };</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">      </code><code class="keyword">return</code><code class="plain"> services.ToList();</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<p   
-><br/></p>
-</li><li class=" "><p   
-><span id="src-68881663_Implementingcustomshippingcarrierproviders-GetPrice"></span>Implement the <strong class=" ">GetPrice</strong> method.</p>
-<div  class="code panel pdl js-codePanel" >
+<p><br></p>
+</li><li class=" "><p><span id="src-68881663_Implementingcustomshippingcarrierproviders-GetPrice"></span>Implement the <strong class=" ">GetPrice</strong> method.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8907,41 +8852,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The method calculates shipping costs of the specified delivery and then returns the total shipping cost in the specified currency.</p>
-<p   
-><strong class=" ">Parameters of GetPrice &ndash; the Delivery class</strong></p>
-<p   
->The <i class=" ">Delivery</i> class represents a set of items that the store ships using a shipping option. The class contains the following properties:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">IEnumberable&lt;DeliveryItem&gt; Items</strong> &ndash; the shipped items. Only products and product options of the <i class=" ">Products</i> type are present.</p>
-</li><li class=" "><p   
-><strong class=" ">DateTime ShippingDate</strong> &ndash; the date when the store passed the package to the shipping company</p>
-</li><li class=" "><p   
-><strong class=" ">decimal Weight</strong> &ndash; total weight of the shipped package in the unit specified in the <i class=" ">ECommerceSettings.MassUnit()</i> setting</p>
-</li><li class=" "><p   
-><strong class=" ">ShippingOptionInfo ShippingOption</strong> &ndash; the shipping option used for the delivery</p>
-</li><li class=" "><p   
-><strong class=" ">IAddress DeliveryAddress</strong> &ndash; the address where the package is delivered</p>
-</li><li class=" "><p   
-><strong class=" ">IDataContainer CustomData</strong> &ndash; you can use this property for custom data</p>
-</li></ul><div  class="box-general box-info">
+<p>The method calculates shipping costs of the specified delivery and then returns the total shipping cost in the specified currency.</p>
+<p><strong class=" ">Parameters of GetPrice – the Delivery class</strong></p>
+<p>The <i class=" ">Delivery</i> class represents a set of items that the store ships using a shipping option. The class contains the following properties:</p>
+<ul class=" "><li class=" "><p><strong class=" ">IEnumberable&lt;DeliveryItem&gt; Items</strong> – the shipped items. Only products and product options of the <i class=" ">Products</i> type are present.</p>
+</li><li class=" "><p><strong class=" ">DateTime ShippingDate</strong> – the date when the store passed the package to the shipping company</p>
+</li><li class=" "><p><strong class=" ">decimal Weight</strong> – total weight of the shipped package in the unit specified in the <i class=" ">ECommerceSettings.MassUnit()</i> setting</p>
+</li><li class=" "><p><strong class=" ">ShippingOptionInfo ShippingOption</strong> – the shipping option used for the delivery</p>
+</li><li class=" "><p><strong class=" ">IAddress DeliveryAddress</strong> – the address where the package is delivered</p>
+</li><li class=" "><p><strong class=" ">IDataContainer CustomData</strong> – you can use this property for custom data</p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->When communicating with the API of a shipping company that supports a different <a   href="configuring-currencies">currency</a> than the one used by the order, you need to perform currency conversions.</p>
-<p   
->You can use <a   href="configuring-exchange-rates">exchange rates</a> entered in the <strong class=" ">Store configuration</strong> application by using the <strong class=" ">CurrencyConverter.Convert(decimal amount, string inCurrencyCode, string toCurrencyCode, int siteID)</strong> method, where:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">decimal</strong><strong class=" "> </strong><strong class=" ">amount </strong><i class=" ">&ndash;</i> sets the price in the original currency</p>
-</li><li class=" "><p   
-><strong class=" ">string inCurrencyCode</strong> &ndash; sets the code of the original currency</p>
-</li><li class=" "><p   
-><strong class=" ">string toCurrenceCode</strong> &ndash; sets the code of the currency to which the value is converted</p>
-</li><li class=" "><p   
-><strong class=" ">int siteID </strong>&ndash; the ID of the site whose exchange rates and currency options are used</p>
-</li></ul><div  class="code panel pdl js-codePanel" >
+            <p>When communicating with the API of a shipping company that supports a different <a href="configuring-currencies">currency</a> than the one used by the order, you need to perform currency conversions.</p>
+<p>You can use <a href="configuring-exchange-rates">exchange rates</a> entered in the <strong class=" ">Store configuration</strong> application by using the <strong class=" ">CurrencyConverter.Convert(decimal amount, string inCurrencyCode, string toCurrencyCode, int siteID)</strong> method, where:</p>
+<ul class=" "><li class=" "><p><strong class=" ">decimal</strong><strong class=" "> </strong><strong class=" ">amount </strong><i class=" ">–</i> sets the price in the original currency</p>
+</li><li class=" "><p><strong class=" ">string inCurrencyCode</strong> – sets the code of the original currency</p>
+</li><li class=" "><p><strong class=" ">string toCurrenceCode</strong> – sets the code of the currency to which the value is converted</p>
+</li><li class=" "><p><strong class=" ">int siteID </strong>– the ID of the site whose exchange rates and currency options are used</p>
+</li></ul><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -8967,11 +8897,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      
     </div>
 </div>
-<p   
-><br/></p>
-</li><li class=" "><p   
-><span id="src-68881663_Implementingcustomshippingcarrierproviders-CanDeliver"></span>Implement the <strong class=" ">CanDeliver</strong> method.</p>
-<div  class="code panel pdl js-codePanel" >
+<p><br></p>
+</li><li class=" "><p><span id="src-68881663_Implementingcustomshippingcarrierproviders-CanDeliver"></span>Implement the <strong class=" ">CanDeliver</strong> method.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8994,15 +8922,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The method checks if the shipping option (specified in the <i class=" ">Delivery</i> parameter) is available for shipping. See the information about the <a   href="#src-68881663_implementingcustomshippingcarrierproviders-getprice"><strong class=" ">GetPrice</strong> method</a> to learn about the available parameters.</p>
-<div  class="box-general box-tip">
+<p>The method checks if the shipping option (specified in the <i class=" ">Delivery</i> parameter) is available for shipping. See the information about the <a href="#src-68881663_implementingcustomshippingcarrierproviders-getprice"><strong class=" ">GetPrice</strong> method</a> to learn about the available parameters.</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->If you want your services to always be available, return true.</p>
-<div  class="code panel pdl js-codePanel" >
+            <p>If you want your services to always be available, return true.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9031,9 +8957,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      
     </div>
 </div>
-</li><li class=" "><p   
-><span id="src-68881663_Implementingcustomshippingcarrierproviders-GetConfigurationUIElementGUID"></span>Implement the <strong class=" ">GetConfigurationUIElementGUID</strong> method.</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p><span id="src-68881663_Implementingcustomshippingcarrierproviders-GetConfigurationUIElementGUID"></span>Implement the <strong class=" ">GetConfigurationUIElementGUID</strong> method.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9056,16 +8981,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The method returns the GUID of a UI element that the carrier uses as its configuration tab. The system then displays the configuration tab while editing a carrier on the <strong class=" ">Shipping -&gt; Carriers</strong> tab in the <strong class=" ">Store configuration</strong> application.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881663/possibly_another_tab.png" 
-        alt="Location of another configuration tab"        
-        width="500"         />
-<br/>If the carrier does not have a configuration tab, return <i class=" ">Guid.Empty</i>. To get the GUID of a UIElement, you can call the <strong class=" ">UIElementInfoProvider.GetUIElementInfo(string resourceName, string elementName)</strong> method available in the <strong class=" ">CMS.Modules</strong> namespace.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The method returns the GUID of a UI element that the carrier uses as its configuration tab. The system then displays the configuration tab while editing a carrier on the <strong class=" ">Shipping -&gt; Carriers</strong> tab in the <strong class=" ">Store configuration</strong> application.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881663/possibly_another_tab.png" alt="Location of another configuration tab" width="500">
+<br>If the carrier does not have a configuration tab, return <i class=" ">Guid.Empty</i>. To get the GUID of a UIElement, you can call the <strong class=" ">UIElementInfoProvider.GetUIElementInfo(string resourceName, string elementName)</strong> method available in the <strong class=" ">CMS.Modules</strong> namespace.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -9084,7 +9003,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="Example" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Modules;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Returns the Guid of the carrier's configuration UI element, where moduleName is the code name</code></div>
 <div class="line"><code class="comments">/// of the module and elementName is the code name of the UIElement.</code></div>
@@ -9098,9 +9017,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Implement the <strong class=" ">GetServiceConfigurationUIElementGUID</strong> method.</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Implement the <strong class=" ">GetServiceConfigurationUIElementGUID</strong> method.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9123,16 +9041,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The method returns the GUID of a UI element that the service (specified with by code name in the <i class=" ">serviceName </i>property) uses as its configuration tab. You can get the UI element GUID as in the <a   href="#src-68881663_implementingcustomshippingcarrierproviders-getconfigurationuielementguid"><strong class=" ">GetConfigurationUIElementGUID</strong></a> method. The system then displays the configuration tab while editing a shipping option in the <strong class=" ">Store configuration</strong> application on the <strong class=" ">Shipping -&gt; Shipping options</strong> tab. For example, the <strong class=" ">Weight based shipping</strong> service of the <strong class=" ">Default carrier</strong> has the <strong class=" ">Shipping costs</strong> tab. For services that do not have a configuration tab, return <i class=" ">Guid.Empty</i>.</p>
-</li></ol></li></ol><p   
->Now you have a shipping provider that enables you to <a   href="configuring-shipping-carriers">create carriers</a> and then <a   href="configuring-shipping-options">shipping options</a>. If you create an <a   href="creating-installation-packages-for-modules">installation package</a> for the carrier&#39;s module, you can distribute the carrier to other Kentico instances.</p>
-<div  class="box-general box-tip">
+<p>The method returns the GUID of a UI element that the service (specified with by code name in the <i class=" ">serviceName </i>property) uses as its configuration tab. You can get the UI element GUID as in the <a href="#src-68881663_implementingcustomshippingcarrierproviders-getconfigurationuielementguid"><strong class=" ">GetConfigurationUIElementGUID</strong></a> method. The system then displays the configuration tab while editing a shipping option in the <strong class=" ">Store configuration</strong> application on the <strong class=" ">Shipping -&gt; Shipping options</strong> tab. For example, the <strong class=" ">Weight based shipping</strong> service of the <strong class=" ">Default carrier</strong> has the <strong class=" ">Shipping costs</strong> tab. For services that do not have a configuration tab, return <i class=" ">Guid.Empty</i>.</p>
+</li></ol></li></ol><p>Now you have a shipping provider that enables you to <a href="configuring-shipping-carriers">create carriers</a> and then <a href="configuring-shipping-options">shipping options</a>. If you create an <a href="creating-installation-packages-for-modules">installation package</a> for the carrier's module, you can distribute the carrier to other Kentico instances.</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->To see a sample carrier provider implementation that calculates shipping costs based on the country, see: <a   href="example---creating-a-shipping-carrier-provider">Example - Creating a shipping carrier provider</a></p>
+            <p>To see a sample carrier provider implementation that calculates shipping costs based on the country, see: <a href="example---creating-a-shipping-carrier-provider">Example - Creating a shipping carrier provider</a></p>
      
     </div>
 </div>
@@ -9146,8 +9061,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9159,10 +9074,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9181,9 +9096,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9194,7 +9106,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9205,5 +9117,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

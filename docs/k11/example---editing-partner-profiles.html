@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Example - Editing partner profiles - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880949"> <span>Example - Editing partner profiles</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,331 +8659,160 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p  class="confluence-link" 
->In this example, you will create a list of business partners who will be able to edit their profile on the <strong class=" ">My profile</strong> page after they have signed in. This example assumes that you are using the sample Corporate Site.</p>
-    <h3 id="src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofilepagetype" class="heading "><span>Creating the Partner profile page type</span></h3>
-<p   
->The Partner profile page type will store the name and text description of the partner.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Page types</strong> application.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New page type</strong>.</p>
-</li><li class=" "><p   
->In Step 1 of the New page type wizard, enter the following, then click <strong class=" ">Next</strong>:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Page type display name</strong>: Partner profile</p>
-</li><li class=" "><p   
-><strong class=" ">Namespace</strong>: custom</p>
-</li><li class=" "><p   
-><strong class=" ">Name</strong>: PartnerProfile<br/><br/></p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/creating_page_type.png" 
-                
-        width="500"         />
-<br/><br/></p>
-</li><li class=" "><p   
->In Step 2, leave the default values and click <strong class=" ">Next</strong>.</p>
-</li><li class=" "><p   
->In Step 3, add two attributes to the page type using the <strong class=" ">New field</strong> and <strong class=" ">Save</strong> buttons:</p>
-<ul class=" "><li class=" "><p   
->Partner name field<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field name</strong>: PartnerName</p>
-</li><li class=" "><p   
-><strong class=" ">Field type</strong>: Text</p>
-</li><li class=" "><p   
-><strong class=" ">Required</strong>: yes</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Partner name</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Text box<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Partner profile field<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field name</strong>: PartnerProfile</p>
-</li><li class=" "><p   
-><strong class=" ">Field type</strong>: Long text</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Partner profile</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Rich text editor<br/><br/></p>
-</li></ul></li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/fields_for_page_type.png" 
-                
-        width="500"         />
-<br/><br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Next</strong>.</p>
-</li><li class=" "><p   
->In Step 4, select <strong class=" "><i class=" ">PartnerName</i> </strong>in <strong class=" ">Page name source</strong>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Next</strong> in each of the remaining steps to finish the process.</p>
-</li></ol><p   
->The system creates a new page type named Partner profile.</p>
-    <div  class="confbox panel">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p class="confluence-link">In this example, you will create a list of business partners who will be able to edit their profile on the <strong class=" ">My profile</strong> page after they have signed in. This example assumes that you are using the sample Corporate Site.</p><h3 id="src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofilepagetype" class="heading "><span>Creating the Partner profile page type</span></h3><p>The Partner profile page type will store the name and text description of the partner.</p><ol class=" "><li class=" "><p>Open the <strong class=" ">Page types</strong> application.</p>
+</li><li class=" "><p>Click <strong class=" ">New page type</strong>.</p>
+</li><li class=" "><p>In Step 1 of the New page type wizard, enter the following, then click <strong class=" ">Next</strong>:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Page type display name</strong>: Partner profile</p>
+</li><li class=" "><p><strong class=" ">Namespace</strong>: custom</p>
+</li><li class=" "><p><strong class=" ">Name</strong>: PartnerProfile<br><br></p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/creating_page_type.png" width="500">
+<br><br></p>
+</li><li class=" "><p>In Step 2, leave the default values and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In Step 3, add two attributes to the page type using the <strong class=" ">New field</strong> and <strong class=" ">Save</strong> buttons:</p>
+<ul class=" "><li class=" "><p>Partner name field<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: PartnerName</p>
+</li><li class=" "><p><strong class=" ">Field type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Required</strong>: yes</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Partner name</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text box<br><br></p>
+</li></ul></li><li class=" "><p>Partner profile field<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: PartnerProfile</p>
+</li><li class=" "><p><strong class=" ">Field type</strong>: Long text</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Partner profile</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Rich text editor<br><br></p>
+</li></ul></li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/fields_for_page_type.png" width="500">
+<br><br></p>
+</li><li class=" "><p>Click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In Step 4, select <strong class=" "><i class=" ">PartnerName</i> </strong>in <strong class=" ">Page name source</strong>.</p>
+</li><li class=" "><p>Click <strong class=" ">Next</strong> in each of the remaining steps to finish the process.</p>
+</li></ol><p>The system creates a new page type named Partner profile.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofilepagetype">Creating the Partner profile page type</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartnerlistpage">Creating the partner list page</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartneruseraccount">Creating the partner user account</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofilepage">Creating the partner profile page</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofileeditingpage">Creating the partner profile editing page</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880949_exampleeditingpartnerprofiles-testingtheprofileeditingpage">Testing the profile editing page</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofilepagetype">Creating the Partner profile page type</a></p>
+</li><li class=" "><p><a href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartnerlistpage">Creating the partner list page</a></p>
+</li><li class=" "><p><a href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartneruseraccount">Creating the partner user account</a></p>
+</li><li class=" "><p><a href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofilepage">Creating the partner profile page</a></p>
+</li><li class=" "><p><a href="#src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofileeditingpage">Creating the partner profile editing page</a></p>
+</li><li class=" "><p><a href="#src-68880949_exampleeditingpartnerprofiles-testingtheprofileeditingpage">Testing the profile editing page</a></p>
+</li></ul><p></p>
         </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+    
+
+
+    
     <h3 id="src-68880949_exampleeditingpartnerprofiles-creatingthepartnerlistpage" class="heading "><span>Creating the partner list page</span></h3>
-<p   
->The partner list page will display a list of partner profile pages.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Examples</strong> page.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/57442434/new.png" 
-                
-                 />
+<p>The partner list page will display a list of partner profile pages.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Examples</strong> page.</p>
+</li><li class=" "><p>Click <strong class=" ">New</strong> (<img class="confluence-embedded-image" src="images/download/attachments/57442434/new.png">
 ) and select the <strong class=" ">Page (menu item)</strong> page type.</p>
-</li><li class=" "><p   
->Type <strong class=" "><i class=" ">Partner directory</i></strong> as the Page name, select <strong class=" ">Create a blank page</strong> and click <strong class=" ">Save</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/creating_partner_directory_page.png" 
-        alt="Creating a new blank page"        
-        width="500"         />
-<p   
-><br/><br/></p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design</strong> tab and add the <strong class=" ">Repeater</strong> web part to the page.</p>
-</li><li class=" "><p   
->Set the following repeater properties:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ID:</strong> repeaterPartners</p>
-</li><li class=" "><p   
-><strong class=" ">Page types:</strong> custom.PartnerProfile</p>
-</li><li class=" "><p   
-><strong class=" ">Transformation:</strong> custom.PartnerProfile.Default</p>
-</li><li class=" "><p   
-><strong class=" ">Selected item transformation:</strong> custom.PartnerProfile.Default<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
-</li></ol><p   
->The system creates a page which will display a list of partner profile pages.</p>
+</li><li class=" "><p>Type <strong class=" "><i class=" ">Partner directory</i></strong> as the Page name, select <strong class=" ">Create a blank page</strong> and click <strong class=" ">Save</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/creating_partner_directory_page.png" alt="Creating a new blank page" width="500">
+<p><br><br></p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design</strong> tab and add the <strong class=" ">Repeater</strong> web part to the page.</p>
+</li><li class=" "><p>Set the following repeater properties:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">ID:</strong> repeaterPartners</p>
+</li><li class=" "><p><strong class=" ">Page types:</strong> custom.PartnerProfile</p>
+</li><li class=" "><p><strong class=" ">Transformation:</strong> custom.PartnerProfile.Default</p>
+</li><li class=" "><p><strong class=" ">Selected item transformation:</strong> custom.PartnerProfile.Default<br><br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li></ol><p>The system creates a page which will display a list of partner profile pages.</p>
     <h3 id="src-68880949_exampleeditingpartnerprofiles-creatingthepartneruseraccount" class="heading "><span>Creating the partner user account</span></h3>
-<p   
->Now create a sample user which we will use in the examples.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Users</strong> application.</p>
-</li><li class=" "><p   
->Create a new user with the user name <i class=" "><strong class=" ">AAAWebDesign</strong></i>.</p>
-</li><li class=" "><p   
->Set the user&#39;s <strong class=" ">Privilege level</strong> to <i class=" "><strong class=" ">None</strong>.</i><br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/creating_sample_user.png" 
-        alt="Creating the sample AAAWebDesign user"        
-        width="350"         />
-<p   
-><br/><br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Roles</strong> tab and add the user to <i class=" "><strong class=" ">CMS Basic users</strong></i>.</p>
-</li></ol><p   
->You have created a user whose partner portal page you will create in the following procedure.</p>
+<p>Now create a sample user which we will use in the examples.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Users</strong> application.</p>
+</li><li class=" "><p>Create a new user with the user name <i class=" "><strong class=" ">AAAWebDesign</strong></i>.</p>
+</li><li class=" "><p>Set the user's <strong class=" ">Privilege level</strong> to <i class=" "><strong class=" ">None</strong>.</i><br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/creating_sample_user.png" alt="Creating the sample AAAWebDesign user" width="350">
+<p><br><br></p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Roles</strong> tab and add the user to <i class=" "><strong class=" ">CMS Basic users</strong></i>.</p>
+</li></ol><p>You have created a user whose partner portal page you will create in the following procedure.</p>
     <h3 id="src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofilepage" class="heading "><span>Creating the partner profile page</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Examples -&gt; Partner directory</strong> page.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/57442434/new.png" 
-                
-                 />
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Examples -&gt; Partner directory</strong> page.</p>
+</li><li class=" "><p>Click <strong class=" ">New</strong> (<img class="confluence-embedded-image" src="images/download/attachments/57442434/new.png">
 ) and select the <strong class=" ">Partner profile</strong> type.</p>
-</li><li class=" "><p   
->Enter the following information and click <strong class=" ">Save</strong>:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Partner name:</strong> AAA Web Design Inc.</p>
-</li><li class=" "><p   
-><strong class=" ">Partner profile:</strong> We provide web development services.<br/><br/></p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/creating_partner_profile.png" 
-                
-        width="500"         />
-<br/><br/></p>
-</li><li class=" "><p   
->Open the <strong class=" ">Properties -&gt; URLs</strong> tab.</p>
-</li><li class=" "><p   
->Set the <strong class=" ">Page alias</strong> to <strong class=" "><i class=" ">AAAWebDesign</i> </strong>and click <strong class=" ">Save</strong>.<br/></p>
-<ul class=" "><li class=" "><p   
->You need to use the same alias as the user name since you will be using them to match the users to their user profiles.</p>
-</li><li class=" "><p   
->The alias path of the page will always be <i class=" ">/Examples/Partner-directory/&lt;user name&gt;</i>.</p>
-</li></ul></li></ol><p   
->When you display the page in <strong class=" ">Preview </strong>mode now, you will see a page similar to this:</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/partner_dir_preview.png" 
-        alt="Previewing the partner page"        
-        width="500"         />
+</li><li class=" "><p>Enter the following information and click <strong class=" ">Save</strong>:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Partner name:</strong> AAA Web Design Inc.</p>
+</li><li class=" "><p><strong class=" ">Partner profile:</strong> We provide web development services.<br><br></p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/creating_partner_profile.png" width="500">
+<br><br></p>
+</li><li class=" "><p>Open the <strong class=" ">Properties -&gt; URLs</strong> tab.</p>
+</li><li class=" "><p>Set the <strong class=" ">Page alias</strong> to <strong class=" "><i class=" ">AAAWebDesign</i> </strong>and click <strong class=" ">Save</strong>.<br></p>
+<ul class=" "><li class=" "><p>You need to use the same alias as the user name since you will be using them to match the users to their user profiles.</p>
+</li><li class=" "><p>The alias path of the page will always be <i class=" ">/Examples/Partner-directory/&lt;user name&gt;</i>.</p>
+</li></ul></li></ol><p>When you display the page in <strong class=" ">Preview </strong>mode now, you will see a page similar to this:</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/partner_dir_preview.png" alt="Previewing the partner page" width="500">
 </p>
     <h3 id="src-68880949_exampleeditingpartnerprofiles-creatingthepartnerprofileeditingpage" class="heading "><span>Creating the partner profile editing page</span></h3>
-<p   
->Now you will create a page that will be available only to partners and that will allow them to edit their partner profile.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Examples</strong> page.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/57442434/new.png" 
-                
-                 />
+<p>Now you will create a page that will be available only to partners and that will allow them to edit their partner profile.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Examples</strong> page.</p>
+</li><li class=" "><p>Click <strong class=" ">New</strong> (<img class="confluence-embedded-image" src="images/download/attachments/57442434/new.png">
 ) and select the <strong class=" ">Page (menu item)</strong> type.</p>
-</li><li class=" "><p   
->Type <i class=" "><strong class=" ">My profile</strong></i>, choose the <strong class=" ">Create a blank page </strong>option and click <strong class=" ">Save</strong>.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/creating_myprofile_page.png" 
-        alt="Creating a new page for editing partner profiles"        
-        width="500"         />
-<p   
-><br/><br/></p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design tab </strong>of the newly created page and add the <strong class=" ">Repeater</strong> web part.</p>
-<ul class=" "><li class=" "><p   
->The repeater will display the current user&#39;s partner profile.<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Set the following properties for the repeater and click <strong class=" ">Save &amp; Close</strong>.<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ID:</strong> repeaterPartners</p>
-</li><li class=" "><p   
-><strong class=" ">Path: </strong>/Examples/Partner-directory/{%CurrentUser.UserName%}</p>
-<ul class=" "><li class=" "><p   
->This ensures that the page displays the profile that matches the current user.</p>
-</li><li class=" "><p   
->The {%CurrentUser.UserName%} macro is resolved as the user name of the current site visitor.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Page types:</strong>custom.PartnerProfile</p>
-</li><li class=" "><p   
-><strong class=" ">Transformation:</strong> custom.PartnerProfile.Default</p>
-</li><li class=" "><p   
-><strong class=" ">Selected item transformation:</strong> custom.PartnerProfile.Default</p>
-</li><li class=" "><p   
-><strong class=" ">Hide if no record found:</strong> no (clear the check-box)</p>
-</li><li class=" "><p   
-><strong class=" ">No record found text:</strong> No partner profile was found for your user account.</p>
-</li><li class=" "><p   
-><strong class=" ">Content before:</strong> &lt;h1&gt;Your Partner Profile&lt;/h1&gt;<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Add the <strong class=" ">User contributions/Edit contribution</strong> web part, set the following properties for the web part and click <strong class=" ">Save &amp; Close</strong>.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Path: </strong>/Examples/Partner-directory/{%CurrentUser.UserName%}</p>
-<ul class=" "><li class=" "><p   
->This ensures that the form edits a profile matching the current user.</p>
-</li><li class=" "><p   
->The {%CurrentUser.UserName%} macro is resolved as the user name of the current site visitor.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Allow delete: </strong>no (clear the check box)</p>
-<ul class=" "><li class=" "><p   
->This option hides the <strong class=" ">Delete</strong> button as you don&#39;t want the partners to delete their profile accidentally.</p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Allow editing by users:</strong> Authenticated</p>
-<ul class=" "><li class=" "><p   
->You want to allow editing only to authenticated users. At the same time, you don&#39;t require the user to be a page owner.<br/><br/></p>
-</li></ul></li></ul></li><li class=" "><p   
->Open the <strong class=" ">Properties -&gt; </strong><strong class=" ">Security </strong>tab.</p>
-</li><li class=" "><p   
->Set the <strong class=" ">Requires authentication</strong> value to <strong class=" ">Yes </strong>and click <strong class=" ">Save</strong>.</p>
-<ul class=" "><li class=" "><p   
->This will enable access to this page only to the authenticated partners so that you know their user name for displaying their profile.</p>
-</li></ul></li></ol><p   
->You have created a page that will allow the partners to edit their profiles.</p>
+</li><li class=" "><p>Type <i class=" "><strong class=" ">My profile</strong></i>, choose the <strong class=" ">Create a blank page </strong>option and click <strong class=" ">Save</strong>.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/creating_myprofile_page.png" alt="Creating a new page for editing partner profiles" width="500">
+<p><br><br></p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design tab </strong>of the newly created page and add the <strong class=" ">Repeater</strong> web part.</p>
+<ul class=" "><li class=" "><p>The repeater will display the current user's partner profile.<br><br></p>
+</li></ul></li><li class=" "><p>Set the following properties for the repeater and click <strong class=" ">Save &amp; Close</strong>.<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">ID:</strong> repeaterPartners</p>
+</li><li class=" "><p><strong class=" ">Path: </strong>/Examples/Partner-directory/{%CurrentUser.UserName%}</p>
+<ul class=" "><li class=" "><p>This ensures that the page displays the profile that matches the current user.</p>
+</li><li class=" "><p>The {%CurrentUser.UserName%} macro is resolved as the user name of the current site visitor.</p>
+</li></ul></li><li class=" "><p><strong class=" ">Page types:</strong>custom.PartnerProfile</p>
+</li><li class=" "><p><strong class=" ">Transformation:</strong> custom.PartnerProfile.Default</p>
+</li><li class=" "><p><strong class=" ">Selected item transformation:</strong> custom.PartnerProfile.Default</p>
+</li><li class=" "><p><strong class=" ">Hide if no record found:</strong> no (clear the check-box)</p>
+</li><li class=" "><p><strong class=" ">No record found text:</strong> No partner profile was found for your user account.</p>
+</li><li class=" "><p><strong class=" ">Content before:</strong> &lt;h1&gt;Your Partner Profile&lt;/h1&gt;<br><br></p>
+</li></ul></li><li class=" "><p>Add the <strong class=" ">User contributions/Edit contribution</strong> web part, set the following properties for the web part and click <strong class=" ">Save &amp; Close</strong>.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Path: </strong>/Examples/Partner-directory/{%CurrentUser.UserName%}</p>
+<ul class=" "><li class=" "><p>This ensures that the form edits a profile matching the current user.</p>
+</li><li class=" "><p>The {%CurrentUser.UserName%} macro is resolved as the user name of the current site visitor.</p>
+</li></ul></li><li class=" "><p><strong class=" ">Allow delete: </strong>no (clear the check box)</p>
+<ul class=" "><li class=" "><p>This option hides the <strong class=" ">Delete</strong> button as you don't want the partners to delete their profile accidentally.</p>
+</li></ul></li><li class=" "><p><strong class=" ">Allow editing by users:</strong> Authenticated</p>
+<ul class=" "><li class=" "><p>You want to allow editing only to authenticated users. At the same time, you don't require the user to be a page owner.<br><br></p>
+</li></ul></li></ul></li><li class=" "><p>Open the <strong class=" ">Properties -&gt; </strong><strong class=" ">Security </strong>tab.</p>
+</li><li class=" "><p>Set the <strong class=" ">Requires authentication</strong> value to <strong class=" ">Yes </strong>and click <strong class=" ">Save</strong>.</p>
+<ul class=" "><li class=" "><p>This will enable access to this page only to the authenticated partners so that you know their user name for displaying their profile.</p>
+</li></ul></li></ol><p>You have created a page that will allow the partners to edit their profiles.</p>
     <h3 id="src-68880949_exampleeditingpartnerprofiles-testingtheprofileeditingpage" class="heading "><span>Testing the profile editing page</span></h3>
-<ol class=" "><li class=" "><p   
->Sign out and go to <strong class=" ">Examples -&gt; My profile</strong> page (you can find a link at the bottom of the page).<br/></p>
-<ul class=" "><li class=" "><p   
->The system displays a logon form.</p>
-</li></ul></li><li class=" "><p   
->Sign in as user <i class=" "><strong class=" ">AAAWebDesign </strong></i>and you will see your partner profile with the <strong class=" ">Edit</strong> link.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/partner_profile.png" 
-        alt="Viewing the partner profile"        
-        width="500"         />
-<p   
-><br/><br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Edit</strong> to open the edit dialog window,<strong class=" "> </strong>modify some values and click <strong class=" ">Save</strong>.<br/></p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/editing_partner_profile.png" 
-        alt="Editing the partner profile"        
-        width="500"         />
+<ol class=" "><li class=" "><p>Sign out and go to <strong class=" ">Examples -&gt; My profile</strong> page (you can find a link at the bottom of the page).<br></p>
+<ul class=" "><li class=" "><p>The system displays a logon form.</p>
+</li></ul></li><li class=" "><p>Sign in as user <i class=" "><strong class=" ">AAAWebDesign </strong></i>and you will see your partner profile with the <strong class=" ">Edit</strong> link.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/partner_profile.png" alt="Viewing the partner profile" width="500">
+<p><br><br></p>
+</li><li class=" "><p>Click <strong class=" ">Edit</strong> to open the edit dialog window,<strong class=" "> </strong>modify some values and click <strong class=" ">Save</strong>.<br></p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/editing_partner_profile.png" alt="Editing the partner profile" width="500">
 </p>
-</li><li class=" "><p   
->Go to <strong class=" ">Examples -&gt; Partner directory </strong>page<strong class=" "> </strong>and you will see the updated profile.<br/><br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880949/updated_partner_profile.png" 
-        alt="Edited partner profile"        
-        width="500"         />
-<p   
-><br/><br/></p>
-</li></ol><div  class="box-general box-info">
+</li><li class=" "><p>Go to <strong class=" ">Examples -&gt; Partner directory </strong>page<strong class=" "> </strong>and you will see the updated profile.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880949/updated_partner_profile.png" alt="Edited partner profile" width="500">
+<p><br><br></p>
+</li></ol><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Hint 1: Simplifying the process of creating a new partner</strong></p>
-<p   
->You can develop a custom page (see <a   href="custom-development">Custom development</a>) containing a form for creating new partners, including code that automatically creates user accounts and partner profile pages with a corresponding alias path.</p>
+            <p><strong class=" ">Hint 1: Simplifying the process of creating a new partner</strong></p>
+<p>You can develop a custom page (see <a href="custom-development">Custom development</a>) containing a form for creating new partners, including code that automatically creates user accounts and partner profile pages with a corresponding alias path.</p>
      
     </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Hint 2: Assigning multiple users to the same partner profile</strong></p>
-<p   
->If the user name/page alias path mapping does not fit your needs or if you need to assign multiple users to the same partner profile, you can use another option:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application.</p>
-</li><li class=" "><p   
->Edit the <strong class=" ">Membership</strong> module.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Classes</strong> tab and edit the <strong class=" ">User</strong> class.</p>
-</li><li class=" "><p   
->On the <strong class=" ">Fields</strong> tab, create a custom text field for users, for example named <i class=" "><strong class=" ">PartnerProfileAliasPath</strong></i>.</p>
-</li></ol><p   
->You can then use the custom field to specify which pages users can edit as partner profiles. Set the <strong class=" ">Path</strong> property of the <strong class=" ">Edit contribution </strong>web part using a matching <a   href="macro-expressions">macro expression</a>, such as <i class=" "><strong class=" ">{% CurrentUser.PartnerProfileAliasPath %}</strong></i>.</p>
-<p   
-><strong class=" ">Note</strong>: When configuring user accounts, you can find custom fields on the <strong class=" ">Custom fields</strong> tab.</p>
+            <p><strong class=" ">Hint 2: Assigning multiple users to the same partner profile</strong></p>
+<p>If the user name/page alias path mapping does not fit your needs or if you need to assign multiple users to the same partner profile, you can use another option:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application.</p>
+</li><li class=" "><p>Edit the <strong class=" ">Membership</strong> module.</p>
+</li><li class=" "><p>Open the <strong class=" ">Classes</strong> tab and edit the <strong class=" ">User</strong> class.</p>
+</li><li class=" "><p>On the <strong class=" ">Fields</strong> tab, create a custom text field for users, for example named <i class=" "><strong class=" ">PartnerProfileAliasPath</strong></i>.</p>
+</li></ol><p>You can then use the custom field to specify which pages users can edit as partner profiles. Set the <strong class=" ">Path</strong> property of the <strong class=" ">Edit contribution </strong>web part using a matching <a href="macro-expressions">macro expression</a>, such as <i class=" "><strong class=" ">{% CurrentUser.PartnerProfileAliasPath %}</strong></i>.</p>
+<p><strong class=" ">Note</strong>: When configuring user accounts, you can find custom fields on the <strong class=" ">Custom fields</strong> tab.</p>
      
     </div>
 </div>
@@ -9000,8 +8826,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9013,10 +8839,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9035,9 +8861,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9048,7 +8871,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9059,5 +8882,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

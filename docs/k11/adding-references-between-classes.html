@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Adding references between classes - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882237"> <span>Adding references between classes</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,124 +8660,85 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p  class="confluence-link" 
->When developing classes for <a   href="creating-custom-modules">custom modules</a>, you can create fields that store references pointing to objects of other classes (i.e. foreign key fields). Such references allow each object of the given class to have a relationship with an object of another class. For example, you can assign users, sites or any other object in the system to your custom objects.</p>
-<p  class="confluence-link" 
->To ensure that the system automatically handles dependencies for your references, you need to register the reference fields in the <a   href="setting-the-type-information-for-module-classes">type information</a> of classes. The system can then maintain referential integrity of relationships when <a   href="exporting-and-importing-sites">importing</a> or <a   href="content-staging">staging</a> objects to other instances, or perform automatic removal of objects when a referenced object is deleted.</p>
-<p   
->You can define references in two possible directions:</p>
-<ul class=" "><li class=" "><p   
->From your custom class to another class registered in the system (the target class can also be custom)</p>
-</li><li class=" "><p   
->From any <i class=" "><strong class=" ">customizable</strong> </i>class to your custom class (for example, from a customizable Kentico class)</p>
-</li></ul><div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p class="confluence-link">When developing classes for <a href="creating-custom-modules">custom modules</a>, you can create fields that store references pointing to objects of other classes (i.e. foreign key fields). Such references allow each object of the given class to have a relationship with an object of another class. For example, you can assign users, sites or any other object in the system to your custom objects.</p><p class="confluence-link">To ensure that the system automatically handles dependencies for your references, you need to register the reference fields in the <a href="setting-the-type-information-for-module-classes">type information</a> of classes. The system can then maintain referential integrity of relationships when <a href="exporting-and-importing-sites">importing</a> or <a href="content-staging">staging</a> objects to other instances, or perform automatic removal of objects when a referenced object is deleted.</p><p>You can define references in two possible directions:</p><ul class=" "><li class=" "><p>From your custom class to another class registered in the system (the target class can also be custom)</p>
+</li><li class=" "><p>From any <i class=" "><strong class=" ">customizable</strong> </i>class to your custom class (for example, from a customizable Kentico class)</p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p  class="confluence-link" 
->When planning relationships between classes, carefully consider which approach to use:</p>
-<ul class=" "><li class="confluence-link "><p   
->Use reference fields (foreign keys) to define one-to-many relationships between standalone classes. See the remaining parts of this page to learn more.</p>
-</li><li class="confluence-link "><p   
->If you need to manage many-to-many relationships between two or more classes, create <a   href="creating-custom-binding-classes">separate binding classes</a>.</p>
-</li><li class="confluence-link "><p   
->Use <a   href="setting-parent-child-relationships-for-classes">parent-child relationships</a> to define a hierarchy for classes.</p>
+            <p class="confluence-link">When planning relationships between classes, carefully consider which approach to use:</p>
+<ul class=" "><li class="confluence-link "><p>Use reference fields (foreign keys) to define one-to-many relationships between standalone classes. See the remaining parts of this page to learn more.</p>
+</li><li class="confluence-link "><p>If you need to manage many-to-many relationships between two or more classes, create <a href="creating-custom-binding-classes">separate binding classes</a>.</p>
+</li><li class="confluence-link "><p>Use <a href="setting-parent-child-relationships-for-classes">parent-child relationships</a> to define a hierarchy for classes.</p>
 </li></ul>     
     </div>
-</div>
-<div  class="box-general box-note">
+</div><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Creating references to pages</strong></p>
-<p   
->We do NOT recommend creating references from custom classes to the <i class=" "><strong class=" ">page</strong> </i>class (i.e. the <i class=" ">cms.document</i> object type). Pages in Kentico are complex data structures that consist of multiple classes and have special logic for handling other factors, such as <a   href="configuring-workflows">workflow</a>.</p>
-<p   
->Custom references to pages do not support certain features, such as handling of referential integrity when the referenced page is deleted.</p>
+            <p><strong class=" ">Creating references to pages</strong></p>
+<p>We do NOT recommend creating references from custom classes to the <i class=" "><strong class=" ">page</strong> </i>class (i.e. the <i class=" ">cms.document</i> object type). Pages in Kentico are complex data structures that consist of multiple classes and have special logic for handling other factors, such as <a href="configuring-workflows">workflow</a>.</p>
+<p>Custom references to pages do not support certain features, such as handling of referential integrity when the referenced page is deleted.</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882237_addingreferencesbetweenclasses-addingreferencesfromcustomtootherclasses">Adding references from custom to other classes</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882237_addingreferencesbetweenclasses-creatingsitereferences">Creating site references</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882237_addingreferencesbetweenclasses-addingreferencesfromexistingtocustomclasses">Adding references from existing to custom classes</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882237_addingreferencesbetweenclasses-configuringforeignkeysinthedatabase">Configuring foreign keys in the database</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882237_addingreferencesbetweenclasses-example-addingreferencesbetweenacustomclassandotherclasses">Example - Adding references between a custom class and other classes</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882237_addingreferencesbetweenclasses-addingreferencesfromcustomtootherclasses">Adding references from custom to other classes</a></p>
+</li><li class=" "><p><a href="#src-68882237_addingreferencesbetweenclasses-creatingsitereferences">Creating site references</a></p>
+</li><li class=" "><p><a href="#src-68882237_addingreferencesbetweenclasses-addingreferencesfromexistingtocustomclasses">Adding references from existing to custom classes</a></p>
+</li><li class=" "><p><a href="#src-68882237_addingreferencesbetweenclasses-configuringforeignkeysinthedatabase">Configuring foreign keys in the database</a></p>
+</li><li class=" "><p><a href="#src-68882237_addingreferencesbetweenclasses-example-addingreferencesbetweenacustomclassandotherclasses">Example - Adding references between a custom class and other classes</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="setting-the-type-information-for-module-classes">Setting the type information for module classes</a></p>
-</li><li class=" "><p   
-><a   href="creating-custom-binding-classes">Creating custom binding classes</a></p>
-</li><li class=" "><p   
-><a   href="reference---objecttypeinfo">Reference - ObjectTypeInfo</a></p>
+<ul class=" "><li class=" "><p><a href="setting-the-type-information-for-module-classes">Setting the type information for module classes</a></p>
+</li><li class=" "><p><a href="creating-custom-binding-classes">Creating custom binding classes</a></p>
+</li><li class=" "><p><a href="reference---objecttypeinfo">Reference - ObjectTypeInfo</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+    
+    
     <h3 id="src-68882237_addingreferencesbetweenclasses-addingreferencesfromcustomtootherclasses" class="heading "><span>Adding references from custom to other classes</span></h3>
-<p   
->To create a reference from a custom class to an existing class in the system:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application.</p>
-</li><li class=" "><p   
->Edit the custom module and class where you wish to add the reference.</p>
-</li><li class=" "><p   
->On the <strong class=" ">Fields</strong> tab of the class editing interface, create a <strong class=" ">New field</strong>.</p>
-<ul class=" "><li class=" "><p   
->The best practice is to end the field name with the <strong class=" ">ID</strong> suffix.</p>
-</li><li class=" "><p   
->Set the field&#39;s <strong class=" ">Data type</strong> to <i class=" ">Integer number</i>.</p>
-</li><li class=" "><p   
->Select the target class of the reference in the <strong class=" ">Reference to</strong> selector.</p>
-</li><li class=" "><p   
->Choose a <strong class=" ">Reference type</strong> to determine how the system handles referential integrity and automatic removal of objects when a referenced object is deleted. For more information about the available options, see the table describing the <i class=" ">ObjectDependencyEnum</i> values below.</p>
-<div  class="box-general box-info">
+<p>To create a reference from a custom class to an existing class in the system:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application.</p>
+</li><li class=" "><p>Edit the custom module and class where you wish to add the reference.</p>
+</li><li class=" "><p>On the <strong class=" ">Fields</strong> tab of the class editing interface, create a <strong class=" ">New field</strong>.</p>
+<ul class=" "><li class=" "><p>The best practice is to end the field name with the <strong class=" ">ID</strong> suffix.</p>
+</li><li class=" "><p>Set the field's <strong class=" ">Data type</strong> to <i class=" ">Integer number</i>.</p>
+</li><li class=" "><p>Select the target class of the reference in the <strong class=" ">Reference to</strong> selector.</p>
+</li><li class=" "><p>Choose a <strong class=" ">Reference type</strong> to determine how the system handles referential integrity and automatic removal of objects when a referenced object is deleted. For more information about the available options, see the table describing the <i class=" ">ObjectDependencyEnum</i> values below.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Notes</strong>:</p>
-<ul class=" "><li class=" "><p   
->The <strong class=" ">Required</strong> flag in the field settings controls whether the reference field must have a target object set (not to be confused with the <i class=" ">Required</i> option of the <strong class=" ">Reference type</strong> setting).</p>
-</li><li class=" "><p   
->You can either keep the field hidden in the class&#39;s editing forms and handle the values in code, or create an object selection interface (for example using the <i class=" ">Uni selector</i> form control).</p>
+            <p><strong class=" ">Notes</strong>:</p>
+<ul class=" "><li class=" "><p>The <strong class=" ">Required</strong> flag in the field settings controls whether the reference field must have a target object set (not to be confused with the <i class=" ">Required</i> option of the <strong class=" ">Reference type</strong> setting).</p>
+</li><li class=" "><p>You can either keep the field hidden in the class's editing forms and handle the values in code, or create an object selection interface (for example using the <i class=" ">Uni selector</i> form control).</p>
 </li></ul>     
     </div>
 </div>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>. You can create any number of reference fields using the same approach.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Code</strong> tab of the class editing interface to view the new code generated for the class. Consider how to update the code in the web project:<br/></p>
-<ul class=" "><li class=" "><p   
->If you have already customized the class&#39;s <i class=" ">Info</i> or <i class=" ">InfoProvider</i> code, you can manually compare and copy the differences caused by the reference fields.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save code</strong> to fully overwrite the <i class=" ">Info</i> and <i class=" ">InfoProvider</i> code of the class.</p>
-</li></ul></li></ol><div  class="box-general box-note">
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>. You can create any number of reference fields using the same approach.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Code</strong> tab of the class editing interface to view the new code generated for the class. Consider how to update the code in the web project:<br></p>
+<ul class=" "><li class=" "><p>If you have already customized the class's <i class=" ">Info</i> or <i class=" ">InfoProvider</i> code, you can manually compare and copy the differences caused by the reference fields.</p>
+</li><li class=" "><p>Click <strong class=" ">Save code</strong> to fully overwrite the <i class=" ">Info</i> and <i class=" ">InfoProvider</i> code of the class.</p>
+</li></ul></li></ol><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Important</strong>: The <i class=" ">Reference</i> settings that you configure for fields on the <strong class=" ">Fields</strong> tab only serve as input for the default code generated for the <i class=" ">Info</i> class. Changing the field settings after you generate your code does NOT change the behavior of the reference fields. To make changes, you need to adjust the code of the given <i class=" ">Info</i> class.</p>
+            <p><strong class=" ">Important</strong>: The <i class=" ">Reference</i> settings that you configure for fields on the <strong class=" ">Fields</strong> tab only serve as input for the default code generated for the <i class=" ">Info</i> class. Changing the field settings after you generate your code does NOT change the behavior of the reference fields. To make changes, you need to adjust the code of the given <i class=" ">Info</i> class.</p>
      
     </div>
 </div>
-<p   
->The type information definition in the generated <i class=" ">Info</i> code automatically includes the required object dependencies based on the <i class=" ">Reference</i> settings of your fields. If you view the code, you can see that the <strong class=" ">DependsOn</strong> property in the <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/bb384062.aspx">initializer</a> of the TYPEINFO object contains a <i class=" ">List</i> collection of <strong class=" ">ObjectDependency</strong> objects.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The type information definition in the generated <i class=" ">Info</i> code automatically includes the required object dependencies based on the <i class=" ">Reference</i> settings of your fields. If you view the code, you can see that the <strong class=" ">DependsOn</strong> property in the <a class="external-link" href="http://msdn.microsoft.com/en-us/library/bb384062.aspx">initializer</a> of the TYPEINFO object contains a <i class=" ">List</i> collection of <strong class=" ">ObjectDependency</strong> objects.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -8808,57 +8766,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->Each <strong class=" ">ObjectDependency</strong> object defines one reference from the custom class to another class in the system. <i class=" ">ObjectDependency</i> objects have the following parameters:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">column (string)</strong> - the name of the custom class field (column) that stores the IDs of the referenced objects.</p>
-</li><li class=" "><p   
-><strong class=" ">object type (string)</strong> - the object type name of the class that is the target of the reference.</p>
-</li><li class=" "><p   
-><strong class=" ">reference type (ObjectDependencyEnum)</strong> - determines how the system handles referential integrity and automatic removal of objects when a referenced object is deleted. The value must be one of the options from the <strong class=" ">ObjectDependencyEnum</strong>:</p>
-    <div  class="tablewrap">
+<p>Each <strong class=" ">ObjectDependency</strong> object defines one reference from the custom class to another class in the system. <i class=" ">ObjectDependency</i> objects have the following parameters:</p>
+<ul class=" "><li class=" "><p><strong class=" ">column (string)</strong> - the name of the custom class field (column) that stores the IDs of the referenced objects.</p>
+</li><li class=" "><p><strong class=" ">object type (string)</strong> - the object type name of the class that is the target of the reference.</p>
+</li><li class=" "><p><strong class=" ">reference type (ObjectDependencyEnum)</strong> - determines how the system handles referential integrity and automatic removal of objects when a referenced object is deleted. The value must be one of the options from the <strong class=" ">ObjectDependencyEnum</strong>:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Value</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->NotRequired</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>NotRequired</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Represents an optional reference. If the referenced object is deleted or does not exist on the target instance during <a   href="exporting-and-importing-sites">import</a> or <a   href="content-staging">staging</a>, the system sets a <i class=" ">null</i> value for the reference field.</p>
-<p   
->The column that stores the IDs of the referenced objects must support empty/null values (i.e. the <strong class=" ">Required</strong> flag cannot be enabled for the field).</p>
-<p   
->For example, a field storing the ID of an <a   href="avatars">avatar</a> object is a <i class=" ">NotRequired</i> dependency of the user class.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Represents an optional reference. If the referenced object is deleted or does not exist on the target instance during <a href="exporting-and-importing-sites">import</a> or <a href="content-staging">staging</a>, the system sets a <i class=" ">null</i> value for the reference field.</p>
+<p>The column that stores the IDs of the referenced objects must support empty/null values (i.e. the <strong class=" ">Required</strong> flag cannot be enabled for the field).</p>
+<p>For example, a field storing the ID of an <a href="avatars">avatar</a> object is a <i class=" ">NotRequired</i> dependency of the user class.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->RequiredHasDefault</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>RequiredHasDefault</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If the referenced object is deleted or does not exist on the target instance during import or staging, the system automatically assigns a default object.</p>
-<p   
->For example, the blog comment class has a <i class=" ">RequiredHasDefault</i> type dependency for the field storing the ID of the user who approved the comment. The system does not delete blog comments if the user who approved the comment is removed. Instead, the default administrator account is assigned as the referenced user.</p>
-<p   
->To set the default object for your own custom classes, you need to override the<strong class=" "> GetDefaultObject</strong> method in the code of the given <i class=" ">Info</i> class.</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If the referenced object is deleted or does not exist on the target instance during import or staging, the system automatically assigns a default object.</p>
+<p>For example, the blog comment class has a <i class=" ">RequiredHasDefault</i> type dependency for the field storing the ID of the user who approved the comment. The system does not delete blog comments if the user who approved the comment is removed. Instead, the default administrator account is assigned as the referenced user.</p>
+<p>To set the default object for your own custom classes, you need to override the<strong class=" "> GetDefaultObject</strong> method in the code of the given <i class=" ">Info</i> class.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -8889,50 +8833,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Required</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Required</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The system always maintains the integrity and consistency of the reference as long as a value is set (the value can still be <i class=" ">null</i> if the <strong class=" ">Required</strong> flag is disabled for the given field).</p>
-<p   
->If the referenced object is deleted, the system automatically deletes the entire object containing the reference. If the referenced object does not exist on the target instance during import or staging, the operation is cancelled.</p>
-<p   
->For example, a column storing the ID of the original web part is a <i class=" ">Required</i> dependency of the <a   href="preparing-widgets-for-users">widget</a> class. The widget cannot exist without the referenced web part.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The system always maintains the integrity and consistency of the reference as long as a value is set (the value can still be <i class=" ">null</i> if the <strong class=" ">Required</strong> flag is disabled for the given field).</p>
+<p>If the referenced object is deleted, the system automatically deletes the entire object containing the reference. If the referenced object does not exist on the target instance during import or staging, the operation is cancelled.</p>
+<p>For example, a column storing the ID of the original web part is a <i class=" ">Required</i> dependency of the <a href="preparing-widgets-for-users">widget</a> class. The widget cannot exist without the referenced web part.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Binding</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Binding</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Only intended for the reference fields of dedicated binding classes (classes that only exist as representations of relationships between other classes). Works the same way as the <i class=" ">Required</i> dependency type.</p>
-<p   
->For example, the user-role binding class has a <i class=" ">Binding</i> type dependency for the field that stores the ID of the related user. The dependency of the role ID field is automatic, because the role class is set as the parent of the user-role binding class.</p>
-<p   
->See also: <a   href="creating-custom-binding-classes">Creating custom binding classes</a></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Only intended for the reference fields of dedicated binding classes (classes that only exist as representations of relationships between other classes). Works the same way as the <i class=" ">Required</i> dependency type.</p>
+<p>For example, the user-role binding class has a <i class=" ">Binding</i> type dependency for the field that stores the ID of the related user. The dependency of the role ID field is automatic, because the role class is set as the parent of the user-role binding class.</p>
+<p>See also: <a href="creating-custom-binding-classes">Creating custom binding classes</a></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
 </li></ul>    <h3 id="src-68882237_addingreferencesbetweenclasses-creatingsitereferences" class="heading "><span>Creating site references</span></h3>
-<p   
->If you are creating a class field that references a Kentico <a   href="managing-sites">site</a>, do NOT define any object dependencies in the type information. Simply enter the name of the class field that stores the site IDs into the <strong class=" ">siteIDColumn</strong> parameter of the <i class=" ">ObjectTypeInfo</i> constructor. The system automatically handles the required object dependencies based on the existence of the site ID field.</p>
-<p   
->When adding the site ID field to your class on the <strong class=" ">Fields</strong> tab, do not configure any <i class=" ">Reference</i> settings. You only need to ensure that the field is set as the <strong class=" ">Site ID column</strong> before you generate the <i class=" ">Info</i> code on the <strong class=" ">Code</strong> tab (the selection is automatic if the field name ends with the <i class=" ">SiteID</i> suffix).</p>
-<div  class="box-general box-tip">
+<p>If you are creating a class field that references a Kentico <a href="managing-sites">site</a>, do NOT define any object dependencies in the type information. Simply enter the name of the class field that stores the site IDs into the <strong class=" ">siteIDColumn</strong> parameter of the <i class=" ">ObjectTypeInfo</i> constructor. The system automatically handles the required object dependencies based on the existence of the site ID field.</p>
+<p>When adding the site ID field to your class on the <strong class=" ">Fields</strong> tab, do not configure any <i class=" ">Reference</i> settings. You only need to ensure that the field is set as the <strong class=" ">Site ID column</strong> before you generate the <i class=" ">Info</i> code on the <strong class=" ">Code</strong> tab (the selection is automatic if the field name ends with the <i class=" ">SiteID</i> suffix).</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->To allow global objects whose value in the site ID column is <i class=" ">null,</i> you need to set the <strong class=" ">SuppportsGlobalObjects</strong> property to <i class=" ">true</i> in the TYPEINFO definition of the given class.</p>
+            <p>To allow global objects whose value in the site ID column is <i class=" ">null,</i> you need to set the <strong class=" ">SuppportsGlobalObjects</strong> property to <i class=" ">true</i> in the TYPEINFO definition of the given class.</p>
      
     </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -8961,61 +8894,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The site relationship behaves as a <i class=" ">Required</i> type reference:</p>
-<ul class=" "><li class=" "><p   
->If the site referenced by an object is deleted, the system automatically removes the given object as well.</p>
-</li><li class=" "><p   
->Objects that reference a site can only be <a   href="exporting-sites">exported as part of the given site</a>. If the class supports global objects, then objects whose value in the site ID column is <i class=" ">null</i> can be <a   href="exporting-objects">exported as global objects</a> or with sites.</p>
+<p>The site relationship behaves as a <i class=" ">Required</i> type reference:</p>
+<ul class=" "><li class=" "><p>If the site referenced by an object is deleted, the system automatically removes the given object as well.</p>
+</li><li class=" "><p>Objects that reference a site can only be <a href="exporting-sites">exported as part of the given site</a>. If the class supports global objects, then objects whose value in the site ID column is <i class=" ">null</i> can be <a href="exporting-objects">exported as global objects</a> or with sites.</p>
 </li></ul>    <h3 id="src-68882237_addingreferencesbetweenclasses-addingreferencesfromexistingtocustomclasses" class="heading "><span>Adding references from existing to custom classes </span></h3>
-<p   
->You can extend existing classes in the system by adding a reference field pointing to one of your custom classes.</p>
-<div  class="box-general box-note">
+<p>You can extend existing classes in the system by adding a reference field pointing to one of your custom classes.</p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: The extended class must be <i class=" "><strong class=" ">customizable</strong> </i>. You cannot add the required reference field for classes that are not customizable.</p>
+            <p><strong class=" ">Note</strong>: The extended class must be <i class=" "><strong class=" ">customizable</strong> </i>. You cannot add the required reference field for classes that are not customizable.</p>
      
     </div>
 </div>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application.</p>
-</li><li class=" "><p   
->Edit the module and class that you wish to extend.</p>
-</li><li class=" "><p   
->On the <strong class=" ">Fields</strong> tab of the class editing interface, create a <strong class=" ">New field</strong>.</p>
-<ul class=" "><li class=" "><p   
->The best practice is to end the field name with the <strong class=" ">ID</strong> suffix.</p>
-</li><li class=" "><p   
->Set the field&#39;s <strong class=" ">Data type</strong> to <i class=" ">Integer number</i>.</p>
-</li><li class=" "><p   
->Either keep the field hidden and handle the values in code, or create an object selection interface (typically through an <a   href="creating-alternative-forms">alternative form</a>).</p>
-</li><li class=" "><p   
->There are no <i class=" ">Reference</i> settings to configure for the field with this type of reference.</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->You can repeat the process above for any number of customizable classes from which you wish to reference your custom class. Once the reference fields are created, you need to register them as dependencies in the type information of your custom class:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Edit the <i class=" ">Info</i> code of the custom class that is the <i class=" "><strong class=" ">target of the reference</strong></i>.</p>
-</li><li class=" "><p   
->In the <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/bb384062.aspx">initializer</a> of the TYPEINFO object, assign a <i class=" ">List</i> collection of<strong class=" "> ExtraColumn</strong> objects into the <strong class=" ">Extends</strong> property.<br/></p>
-<ul class=" "><li class=" "><p   
->Create an <strong class=" ">ExtraColumn</strong> object for each custom reference field that targets the given class.</p>
-</li></ul></li><li class=" "><p   
->Save the changes (build the project on web application installations).</p>
-</li></ol><p   
-><strong class=" ">ExtraColumn</strong> objects accept the following parameters:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">extended object type (string)</strong> - the object type name of the class where you added the reference field.</p>
-</li><li class=" "><p   
-><strong class=" ">column (string)</strong> - the name of the custom field (column) in the extended class that stores the IDs of the referenced objects.</p>
-</li><li class=" "><p   
-><strong class=" ">reference type (ObjectDependencyEnum)</strong> - determines how the system handles referential integrity and automatic removal of objects when a referenced object is deleted. The value must be one of the options from the <strong class=" ">ObjectDependencyEnum</strong>. See the table in the <a   href="#src-68882237_addingreferencesbetweenclasses-addingreferencesfromcustomtootherclasses">Adding references from custom to other classes</a> section for details.</p>
-</li></ul><div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application.</p>
+</li><li class=" "><p>Edit the module and class that you wish to extend.</p>
+</li><li class=" "><p>On the <strong class=" ">Fields</strong> tab of the class editing interface, create a <strong class=" ">New field</strong>.</p>
+<ul class=" "><li class=" "><p>The best practice is to end the field name with the <strong class=" ">ID</strong> suffix.</p>
+</li><li class=" "><p>Set the field's <strong class=" ">Data type</strong> to <i class=" ">Integer number</i>.</p>
+</li><li class=" "><p>Either keep the field hidden and handle the values in code, or create an object selection interface (typically through an <a href="creating-alternative-forms">alternative form</a>).</p>
+</li><li class=" "><p>There are no <i class=" ">Reference</i> settings to configure for the field with this type of reference.</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>You can repeat the process above for any number of customizable classes from which you wish to reference your custom class. Once the reference fields are created, you need to register them as dependencies in the type information of your custom class:</p>
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Edit the <i class=" ">Info</i> code of the custom class that is the <i class=" "><strong class=" ">target of the reference</strong></i>.</p>
+</li><li class=" "><p>In the <a class="external-link" href="http://msdn.microsoft.com/en-us/library/bb384062.aspx">initializer</a> of the TYPEINFO object, assign a <i class=" ">List</i> collection of<strong class=" "> ExtraColumn</strong> objects into the <strong class=" ">Extends</strong> property.<br></p>
+<ul class=" "><li class=" "><p>Create an <strong class=" ">ExtraColumn</strong> object for each custom reference field that targets the given class.</p>
+</li></ul></li><li class=" "><p>Save the changes (build the project on web application installations).</p>
+</li></ol><p><strong class=" ">ExtraColumn</strong> objects accept the following parameters:</p>
+<ul class=" "><li class=" "><p><strong class=" ">extended object type (string)</strong> - the object type name of the class where you added the reference field.</p>
+</li><li class=" "><p><strong class=" ">column (string)</strong> - the name of the custom field (column) in the extended class that stores the IDs of the referenced objects.</p>
+</li><li class=" "><p><strong class=" ">reference type (ObjectDependencyEnum)</strong> - determines how the system handles referential integrity and automatic removal of objects when a referenced object is deleted. The value must be one of the options from the <strong class=" ">ObjectDependencyEnum</strong>. See the table in the <a href="#src-68882237_addingreferencesbetweenclasses-addingreferencesfromcustomtootherclasses">Adding references from custom to other classes</a> section for details.</p>
+</li></ul><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -9043,65 +8953,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The code informs the system that the specified field of the extended class stores references to another class. During the initialization of the application, the system automatically inserts an object dependency into the type information definition of the extended class.</p>
+<p>The code informs the system that the specified field of the extended class stores references to another class. During the initialization of the application, the system automatically inserts an object dependency into the type information definition of the extended class.</p>
     <h3 id="src-68882237_addingreferencesbetweenclasses-configuringforeignkeysinthedatabase" class="heading "><span>Configuring foreign keys in the database</span></h3>
-<p   
->Kentico does not provide automatic management of foreign keys on the database level. You can manually set your custom ID columns as foreign keys in the corresponding database tables. This is not required to ensure correct functionality of reference fields in Kentico, but is recommended to leverage the performance and data consistency advantages of foreign key constraints.</p>
-<p   
->You can either use SQL Server Management Studio or execute an SQL script. See <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/ms189049.aspx">Create Foreign Key Relationships</a> for more information.</p>
+<p>Kentico does not provide automatic management of foreign keys on the database level. You can manually set your custom ID columns as foreign keys in the corresponding database tables. This is not required to ensure correct functionality of reference fields in Kentico, but is recommended to leverage the performance and data consistency advantages of foreign key constraints.</p>
+<p>You can either use SQL Server Management Studio or execute an SQL script. See <a class="external-link" href="http://msdn.microsoft.com/en-us/library/ms189049.aspx">Create Foreign Key Relationships</a> for more information.</p>
     <h3 id="src-68882237_addingreferencesbetweenclasses-example-addingreferencesbetweenacustomclassandotherclasses" class="heading "><span>Example - Adding references between a custom class and other classes</span></h3>
-<p   
->The following example demonstrates how to add references for a custom class, in both possible directions:</p>
-<ul class=" "><li class=" "><p   
->From the custom office class to the Kentico user class (the relationship allows you to select a single user as the manager of each office)</p>
-</li><li class=" "><p   
->From the Kentico <a   href="customers">customer</a> class to the custom office class (allows you to specify one office that is responsible for managing a given customer)</p>
-</li></ul><div  class="box-general box-note">
+<p>The following example demonstrates how to add references for a custom class, in both possible directions:</p>
+<ul class=" "><li class=" "><p>From the custom office class to the Kentico user class (the relationship allows you to select a single user as the manager of each office)</p>
+</li><li class=" "><p>From the Kentico <a href="customers">customer</a> class to the custom office class (allows you to specify one office that is responsible for managing a given customer)</p>
+</li></ul><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->To follow the example, you first need to create the <strong class=" ">Company overview</strong> custom module and the <strong class=" ">Office</strong> class according to the instructions in <a   href="creating-custom-modules">Creating custom modules</a>.</p>
+            <p>To follow the example, you first need to create the <strong class=" ">Company overview</strong> custom module and the <strong class=" ">Office</strong> class according to the instructions in <a href="creating-custom-modules">Creating custom modules</a>.</p>
      
     </div>
 </div>
     <h4 id="src-68882237_addingreferencesbetweenclasses-referencefromthecustomclasstoanotherclass" class="heading "><span>Reference from the custom class to another class</span></h4>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application and edit the <strong class=" ">Company overview</strong> module.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Classes</strong> tab and edit the <strong class=" ">Office</strong> class.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Fields</strong> tab and create a <strong class=" ">New field</strong> in the office class:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field type</strong>: Standard field</p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: OfficeManagerID</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Integer number</p>
-</li><li class=" "><p   
-><strong class=" ">Reference to</strong>: User</p>
-</li><li class=" "><p   
-><strong class=" ">Reference type</strong>: Not required</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Managed by</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Uni selector (select via the <i class=" ">(more items...)</i> option)</p>
-</li><li class=" "><p   
-><strong class=" ">Editing control settings -&gt; Object type</strong>: cms.user (the object type name of user objects)</p>
-</li><li class=" "><p   
-><strong class=" ">Editing control settings -&gt; Selection mode</strong>: Single text box</p>
-</li><li class=" "><p   
-><strong class=" ">Editing control settings -&gt; Allow none</strong>: yes (selected)</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Code</strong> tab of the class editing interface.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save code</strong>.</p>
-</li></ol><p   
->The system generates new <i class=" ">Info</i> and <i class=" ">InfoProvider</i> code and overwrites the existing code files (in the <i class=" ">~/App_Code/CMSModules/CompanyOverview</i> folder by default). The type information definition in the <i class=" ">Info</i> code automatically includes the required object dependency based on the <i class=" ">Reference</i> settings of the <i class=" ">OfficeManagerID</i> field.</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application and edit the <strong class=" ">Company overview</strong> module.</p>
+</li><li class=" "><p>Select the <strong class=" ">Classes</strong> tab and edit the <strong class=" ">Office</strong> class.</p>
+</li><li class=" "><p>Open the <strong class=" ">Fields</strong> tab and create a <strong class=" ">New field</strong> in the office class:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field type</strong>: Standard field</p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: OfficeManagerID</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Integer number</p>
+</li><li class=" "><p><strong class=" ">Reference to</strong>: User</p>
+</li><li class=" "><p><strong class=" ">Reference type</strong>: Not required</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Managed by</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Uni selector (select via the <i class=" ">(more items...)</i> option)</p>
+</li><li class=" "><p><strong class=" ">Editing control settings -&gt; Object type</strong>: cms.user (the object type name of user objects)</p>
+</li><li class=" "><p><strong class=" ">Editing control settings -&gt; Selection mode</strong>: Single text box</p>
+</li><li class=" "><p><strong class=" ">Editing control settings -&gt; Allow none</strong>: yes (selected)</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Code</strong> tab of the class editing interface.</p>
+</li><li class=" "><p>Click <strong class=" ">Save code</strong>.</p>
+</li></ol><p>The system generates new <i class=" ">Info</i> and <i class=" ">InfoProvider</i> code and overwrites the existing code files (in the <i class=" ">~/App_Code/CMSModules/CompanyOverview</i> folder by default). The type information definition in the <i class=" ">Info</i> code automatically includes the required object dependency based on the <i class=" ">Reference</i> settings of the <i class=" ">OfficeManagerID</i> field.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9134,65 +9020,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->Office objects can now store a reference pointing to a single user object, representing the manager of the given office. You can try out the functionality by editing an office in the <strong class=" ">Company overview</strong> application (under the <strong class=" ">Custom</strong> category). The editing form automatically includes the new field, and the <i class=" ">Uni selector</i> form control allows selection of the user.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882237/custom_class_reference_field.png" 
-        alt="Editing an office object, with a selector in the editing form for managing the user reference"        
-        width="500"         />
+<p>Office objects can now store a reference pointing to a single user object, representing the manager of the given office. You can try out the functionality by editing an office in the <strong class=" ">Company overview</strong> application (under the <strong class=" ">Custom</strong> category). The editing form automatically includes the new field, and the <i class=" ">Uni selector</i> form control allows selection of the user.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882237/custom_class_reference_field.png" alt="Editing an office object, with a selector in the editing form for managing the user reference" width="500">
 </p>
     <h4 id="src-68882237_addingreferencesbetweenclasses-referencefromanexistingclasstoacustomclass" class="heading "><span>Reference from an existing class to a custom class</span></h4>
-<p   
->Start by creating the custom reference field in the Customer class (this class is <i class=" ">customizable</i>).</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application.</p>
-</li><li class=" "><p   
->Edit the <strong class=" ">E-commerce</strong> module, select the <strong class=" ">Classes</strong> tab, and edit the <strong class=" ">Customer</strong> class.</p>
-</li><li class=" "><p   
->On the <strong class=" ">Fields</strong> tab, create a new field (at the end of the list of fields):<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field name</strong>: CustomerManagedByOfficeID</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Integer number</p>
-</li><li class=" "><p   
-><strong class=" ">Display field in the editing form</strong>: No (clear the checkbox)</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Alternative forms</strong> tab and edit the <i class=" "><strong class=" ">General properties</strong> </i>alternative form.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Fields</strong> tab, and set the following properties for the <strong class=" ">CustomerManagedByOfficeID</strong> field:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Display field in the editing form</strong>: Yes (select the checkbox)</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Managed under office</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Uni selector</p>
-</li><li class=" "><p   
-><strong class=" ">Editing control settings -&gt; Object type</strong>: companyoverview.office (the object type name of the custom office class)</p>
-</li><li class=" "><p   
-><strong class=" ">Editing control settings -&gt; Selection mode</strong>: Single drop down list</p>
-</li><li class=" "><p   
-><strong class=" ">Editing control settings -&gt; Allow none</strong>: yes (selected)</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Select the field above <i class=" ">CustomerManagedByOfficeID</i>, click<strong class=" "> ...</strong> next to the <strong class=" ">New field</strong> button and choose <strong class=" ">New category</strong>.</p>
-</li><li class=" "><p   
->Enter <i class=" "><strong class=" ">Custom</strong> </i>as the <strong class=" ">Category caption</strong> and click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->The <i class=" ">Customer</i> class now has a custom field that stores integer values. The modified<i class=" "> General properties</i> alternative form provides the interface used when editing existing customers on the <strong class=" ">General</strong> tab in the <strong class=" ">Customers</strong> application.</p>
-<p   
->You do not need to configure any <i class=" ">Reference</i> settings while creating the <i class=" ">CustomerManagedByOfficeID</i> field on the <strong class=" ">Fields</strong> tab. When extending existing objects, you must define the object reference directly in the code.</p>
-<ol class=" "><li class=" "><p   
->Open your project in Visual Studio.</p>
-</li><li class=" "><p   
->Edit <strong class=" "><i class=" ">OfficeInfo.cs</i> </strong>(by default in the <i class=" ">~/App_Code/CMSModules/CompanyOverview</i> folder).</p>
-</li><li class=" "><p   
->Add a using statement for the <strong class=" ">CMS.Ecommerce</strong> namespace:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>Start by creating the custom reference field in the Customer class (this class is <i class=" ">customizable</i>).</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application.</p>
+</li><li class=" "><p>Edit the <strong class=" ">E-commerce</strong> module, select the <strong class=" ">Classes</strong> tab, and edit the <strong class=" ">Customer</strong> class.</p>
+</li><li class=" "><p>On the <strong class=" ">Fields</strong> tab, create a new field (at the end of the list of fields):<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: CustomerManagedByOfficeID</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Integer number</p>
+</li><li class=" "><p><strong class=" ">Display field in the editing form</strong>: No (clear the checkbox)</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Alternative forms</strong> tab and edit the <i class=" "><strong class=" ">General properties</strong> </i>alternative form.</p>
+</li><li class=" "><p>Select the <strong class=" ">Fields</strong> tab, and set the following properties for the <strong class=" ">CustomerManagedByOfficeID</strong> field:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Display field in the editing form</strong>: Yes (select the checkbox)</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Managed under office</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Uni selector</p>
+</li><li class=" "><p><strong class=" ">Editing control settings -&gt; Object type</strong>: companyoverview.office (the object type name of the custom office class)</p>
+</li><li class=" "><p><strong class=" ">Editing control settings -&gt; Selection mode</strong>: Single drop down list</p>
+</li><li class=" "><p><strong class=" ">Editing control settings -&gt; Allow none</strong>: yes (selected)</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Select the field above <i class=" ">CustomerManagedByOfficeID</i>, click<strong class=" "> ...</strong> next to the <strong class=" ">New field</strong> button and choose <strong class=" ">New category</strong>.</p>
+</li><li class=" "><p>Enter <i class=" "><strong class=" ">Custom</strong> </i>as the <strong class=" ">Category caption</strong> and click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The <i class=" ">Customer</i> class now has a custom field that stores integer values. The modified<i class=" "> General properties</i> alternative form provides the interface used when editing existing customers on the <strong class=" ">General</strong> tab in the <strong class=" ">Customers</strong> application.</p>
+<p>You do not need to configure any <i class=" ">Reference</i> settings while creating the <i class=" ">CustomerManagedByOfficeID</i> field on the <strong class=" ">Fields</strong> tab. When extending existing objects, you must define the object reference directly in the code.</p>
+<ol class=" "><li class=" "><p>Open your project in Visual Studio.</p>
+</li><li class=" "><p>Edit <strong class=" "><i class=" ">OfficeInfo.cs</i> </strong>(by default in the <i class=" ">~/App_Code/CMSModules/CompanyOverview</i> folder).</p>
+</li><li class=" "><p>Add a using statement for the <strong class=" ">CMS.Ecommerce</strong> namespace:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9215,9 +9071,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Add the <strong class=" ">Extends</strong> property to the initializer of the TYPEINFO object. Designate the <i class=" ">CustomerManagedByOfficeID</i> field as a foreign key that references <i class=" ">Office</i> objects:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Add the <strong class=" ">Extends</strong> property to the initializer of the TYPEINFO object. Designate the <i class=" ">CustomerManagedByOfficeID</i> field as a foreign key that references <i class=" ">Office</i> objects:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9245,30 +9100,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">new</code><code class="plain"> ObjectDependency(</code><code class="string">"OfficeManagerID"</code><code class="plain">, </code><code class="string">"cms.user"</code><code class="plain">, ObjectDependencyEnum.NotRequired), </code></div>
 <div class="line"><code class="plain">	},</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Inserts an object dependency into the existing customer class</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Defines the optional reference from the customer class to the custom office class</code></div>
 <div class="line"><code class="plain">	Extends = </code><code class="keyword">new</code><code class="plain"> List&lt;ExtraColumn&gt;()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">new</code><code class="plain"> ExtraColumn(CustomerInfo.OBJECT_TYPE, </code><code class="string">"CustomerManagedByOfficeID"</code><code class="plain">, ObjectDependencyEnum.NotRequired)</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"><code class="plain"> };</code></div>
+<div class="line"><code class="plain">&nbsp;};</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Save the change (build the project on web application installations).</p>
-</li></ol><p   
->The system now knows that the <i class=" ">CustomerManagedByOfficeID</i> field of the <i class=" ">Customer</i> class stores references to <i class=" ">Office</i> objects. The object dependency is dynamically inserted into the type information definition of the Customer class during the initialization of the application.</p>
-<p   
->When editing existing customers on the <strong class=" ">General</strong> tab in the <strong class=" ">Customers</strong> application, you can now select and save an office object.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882237/reference_field_to_custom_class.png" 
-        alt="Editing a customer, with a custom office selector in the editing form"        
-        width="500"         />
+</li><li class=" "><p>Save the change (build the project on web application installations).</p>
+</li></ol><p>The system now knows that the <i class=" ">CustomerManagedByOfficeID</i> field of the <i class=" ">Customer</i> class stores references to <i class=" ">Office</i> objects. The object dependency is dynamically inserted into the type information definition of the Customer class during the initialization of the application.</p>
+<p>When editing existing customers on the <strong class=" ">General</strong> tab in the <strong class=" ">Customers</strong> application, you can now select and save an office object.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882237/reference_field_to_custom_class.png" alt="Editing a customer, with a custom office selector in the editing form" width="500">
 </p>
                     </div>
                 </div>
@@ -9280,8 +9127,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9293,10 +9140,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9315,9 +9162,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9328,7 +9172,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9339,5 +9183,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

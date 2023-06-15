@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Loading and displaying data on websites - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8635,7 +8632,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880592"> <span>Loading and displaying data on websites</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8649,7 +8646,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8660,130 +8657,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Once you prepare the data structure of your website using <a   href="page-types">page types</a> and/or <a   href="custom-tables">custom tables</a>, add components (<a   href="using-and-configuring-web-parts">web parts</a> or ASP.NET controls) onto pages to load and display the content. The following steps outline the general process:</p>
-<ol class=" "><li class=" "><p   
->Use a <i class=" "><strong class=" ">data source</strong></i> to load the required data</p>
-</li><li class=" "><p   
->Prepare <i class=" "><strong class=" ">transformations</strong></i> to define how the data appears on the website</p>
-</li><li class=" "><p   
->Place a <i class=" "><strong class=" ">listing</strong></i> component onto the page, which displays the items from the data source according to the assigned transformations</p>
-</li></ol><p   
->Many listing components contain a built-in data source. For example, the <strong class=" ">Repeater</strong> provides a data source for loading Kentico pages. If you wish to connect a separate data source to such web parts, the type must match the internal data source. So in the case of the Repeater web part, you need to connect a <strong class=" ">Pages data source</strong>.</p>
-<p   
->To display items from any type of data source, use the <strong class=" ">Basic repeater</strong>, <strong class=" ">Basic datalist</strong> or <strong class=" ">Basic universal viewer</strong>. The basic listing web parts do not load data on their own and you always need to connect a separate data source.</p>
-<p   
->You can also add optional functionality to lists of data:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Filters</strong> - allow users on the live site to limit which data is displayed</p>
-</li><li class=" "><p   
-><strong class=" ">Paging </strong>- separates lists of data into multiple pages and provides navigation between the pages</p>
-</li></ul><p   
->For more information, see <a   href="filtering-and-paging-data">Filtering and paging data</a>.</p>
-    <h3 id="src-68880592_safe-id-tg9hzgluz2fuzgrpc3bsyxlpbmdkyxrhb253zwjzaxrlcy1fegftcgxllurpc3bsyxlpbmdibg9ncg9zdhmocgfnzwrhdgep" class="heading "><span>Example - Displaying blog posts (page data)</span></h3>
-<p   
->The following example shows how to display a list of blog posts using a <strong class=" ">Repeater</strong> web part. The Repeater combines both a page data source and listing functionality. You can use the same approach whenever you need to display the content of your website&#39;s pages.</p>
-<p   
-><strong class=" ">Note</strong>: The example works with data from the sample Corporate site.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Use the content tree to select the page where you want to display the data.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Repeater</strong> web part onto the page.</p>
-</li><li class=" "><p   
->Set the web part&#39;s properties:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong>: /Community/Blogs/%</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: CMS.BlogPost</p>
-</li><li class=" "><p   
-><strong class=" ">Transformation</strong>: CorporateSite.Transformations.BlogPosts<br/><br/></p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Save &amp; Close</strong>.</p>
-</li></ol><p   
->The Repeater loads data from the blog post pages in the specified section of the website, and displays the information in the format defined by the transformation.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880592/Blog_post_list.png" 
-        alt="Blog posts displayed according to the 'CoporateSite.Transformations.BlogPosts' transformation"        
-        width="500"        height="126" />
-</p>
-<div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Once you prepare the data structure of your website using <a href="page-types">page types</a> and/or <a href="custom-tables">custom tables</a>, add components (<a href="using-and-configuring-web-parts">web parts</a> or ASP.NET controls) onto pages to load and display the content. The following steps outline the general process:</p><ol class=" "><li class=" "><p>Use a <i class=" "><strong class=" ">data source</strong></i> to load the required data</p>
+</li><li class=" "><p>Prepare <i class=" "><strong class=" ">transformations</strong></i> to define how the data appears on the website</p>
+</li><li class=" "><p>Place a <i class=" "><strong class=" ">listing</strong></i> component onto the page, which displays the items from the data source according to the assigned transformations</p>
+</li></ol><p>Many listing components contain a built-in data source. For example, the <strong class=" ">Repeater</strong> provides a data source for loading Kentico pages. If you wish to connect a separate data source to such web parts, the type must match the internal data source. So in the case of the Repeater web part, you need to connect a <strong class=" ">Pages data source</strong>.</p><p>To display items from any type of data source, use the <strong class=" ">Basic repeater</strong>, <strong class=" ">Basic datalist</strong> or <strong class=" ">Basic universal viewer</strong>. The basic listing web parts do not load data on their own and you always need to connect a separate data source.</p><p>You can also add optional functionality to lists of data:</p><ul class=" "><li class=" "><p><strong class=" ">Filters</strong> - allow users on the live site to limit which data is displayed</p>
+</li><li class=" "><p><strong class=" ">Paging </strong>- separates lists of data into multiple pages and provides navigation between the pages</p>
+</li></ul><p>For more information, see <a href="filtering-and-paging-data">Filtering and paging data</a>.</p><h3 id="src-68880592_safe-id-tg9hzgluz2fuzgrpc3bsyxlpbmdkyxrhb253zwjzaxrlcy1fegftcgxllurpc3bsyxlpbmdibg9ncg9zdhmocgfnzwrhdgep" class="heading "><span>Example - Displaying blog posts (page data)</span></h3><p>The following example shows how to display a list of blog posts using a <strong class=" ">Repeater</strong> web part. The Repeater combines both a page data source and listing functionality. You can use the same approach whenever you need to display the content of your website's pages.</p><p><strong class=" ">Note</strong>: The example works with data from the sample Corporate site.</p><ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Use the content tree to select the page where you want to display the data.</p>
+</li><li class=" "><p>Open the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Repeater</strong> web part onto the page.</p>
+</li><li class=" "><p>Set the web part's properties:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Path</strong>: /Community/Blogs/%</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: CMS.BlogPost</p>
+</li><li class=" "><p><strong class=" ">Transformation</strong>: CorporateSite.Transformations.BlogPosts<br><br></p>
+</li></ul></li><li class=" "><p><strong class=" ">Save &amp; Close</strong>.</p>
+</li></ol><p>The Repeater loads data from the blog post pages in the specified section of the website, and displays the information in the format defined by the transformation.</p><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880592/Blog_post_list.png" alt="Blog posts displayed according to the 'CoporateSite.Transformations.BlogPosts' transformation" width="500" height="126">
+</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->For more information, see:</p>
-<ul class=" "><li class=" "><p   
-><a   href="loading-page-data">Loading page data</a></p>
-</li><li class=" "><p   
-><a   href="writing-transformations">Writing transformations</a></p>
+            <p>For more information, see:</p>
+<ul class=" "><li class=" "><p><a href="loading-page-data">Loading page data</a></p>
+</li><li class=" "><p><a href="writing-transformations">Writing transformations</a></p>
 </li></ul>     
     </div>
-</div>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Using and configuring web parts</a></p>
-</li><li class=" "><p   
-><a   href="loading-data-efficiently">Loading data efficiently</a></p>
-</li><li class=" "><p   
-><a   href="developing-data-source-web-parts">Developing data source web parts</a></p>
-</li><li class=" "><p   
-><a   href="caching-the-data-of-page-components">Caching the data of page components</a></p>
-</li><li class=" "><p   
-><a   href="kentico-controls">Kentico Controls</a></p>
+<ul class=" "><li class=" "><p><a href="using-and-configuring-web-parts">Using and configuring web parts</a></p>
+</li><li class=" "><p><a href="loading-data-efficiently">Loading data efficiently</a></p>
+</li><li class=" "><p><a href="developing-data-source-web-parts">Developing data source web parts</a></p>
+</li><li class=" "><p><a href="caching-the-data-of-page-components">Caching the data of page components</a></p>
+</li><li class=" "><p><a href="kentico-controls">Kentico Controls</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+    
+
+
+
+
+
+    
+    
     <h3 id="src-68880592_safe-id-tg9hzgluz2fuzgrpc3bsyxlpbmdkyxrhb253zwjzaxrlcy1fegftcgxllurpc3bsyxlpbmd1c2vychjvzmlszxmob2jqzwn0zgf0ysk" class="heading "><span>Example - Displaying user profiles (object data)</span></h3>
-<p   
->The following example demonstrates how to create a list of content editor user profiles. To display user data, you need to connect two separate web parts &ndash; a data source and a basic listing web part.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->Use the content tree to select the page where you want to display the data.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Users data source</strong> web part onto the page.</p>
-</li><li class=" "><p   
->Set the following properties for the web part:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Web part control ID</strong>: EditorUserSource</p>
-</li><li class=" "><p   
-><strong class=" ">Where condition</strong>: UserPrivilegeLevel &gt;= 1<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">OK</strong>.</p>
-</li><li class=" "><p   
->Add the <strong class=" ">Basic repeater</strong> web part onto the same page with the following properties:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Data source name</strong>: EditorUserSource</p>
-</li><li class=" "><p   
-><strong class=" ">Transformation name</strong>: CorporateSite.Transformations.MembersList<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">OK</strong>.</p>
-</li></ol><p   
->The User data source loads all users whose <a   href="user-management">privilege level</a> is Editor or higher (i.e. users with access to the administration interface). The <strong class=" ">Web part control ID</strong> and <strong class=" ">Data source name</strong> properties bind the data source to the Basic repeater, which displays the user data according to the specified <a   href="writing-transformations">transformation</a>.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880592/User_list.png" 
-        alt="Sample users displayed according to the 'CoporateSite.Transformations.MembersList' transformation"        
-                 />
+<p>The following example demonstrates how to create a list of content editor user profiles. To display user data, you need to connect two separate web parts – a data source and a basic listing web part.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>Use the content tree to select the page where you want to display the data.</p>
+</li><li class=" "><p>Open the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Users data source</strong> web part onto the page.</p>
+</li><li class=" "><p>Set the following properties for the web part:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Web part control ID</strong>: EditorUserSource</p>
+</li><li class=" "><p><strong class=" ">Where condition</strong>: UserPrivilegeLevel &gt;= 1<br><br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li><li class=" "><p>Add the <strong class=" ">Basic repeater</strong> web part onto the same page with the following properties:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Data source name</strong>: EditorUserSource</p>
+</li><li class=" "><p><strong class=" ">Transformation name</strong>: CorporateSite.Transformations.MembersList<br><br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p>The User data source loads all users whose <a href="user-management">privilege level</a> is Editor or higher (i.e. users with access to the administration interface). The <strong class=" ">Web part control ID</strong> and <strong class=" ">Data source name</strong> properties bind the data source to the Basic repeater, which displays the user data according to the specified <a href="writing-transformations">transformation</a>.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880592/User_list.png" alt="Sample users displayed according to the 'CoporateSite.Transformations.MembersList' transformation">
 </p>
                     </div>
                 </div>
@@ -8795,8 +8730,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8808,10 +8743,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8830,9 +8765,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8843,7 +8775,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8854,5 +8786,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

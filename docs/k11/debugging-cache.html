@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Debugging cache - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881959"> <span>Debugging cache</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,245 +8660,152 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If you encounter unexpected caching behavior or any problems related to the cache, you can use the system&#39;s debugging functionality to:</p>
-<ul class=" "><li class=" "><p   
->Check the exact content of the application&#39;s cache</p>
-</li><li class=" "><p   
->Monitor caching operations for web requests</p>
-</li></ul><p   
->You can access the system&#39;s debugging interface through the <strong class=" ">Debug</strong> application.<strong class=" "><br/></strong></p>
-    <h3 id="src-68881959_debuggingcache-viewingthestoredcacheitems" class="heading "><span>Viewing the stored cache items</span></h3>
-<p   
->On the <strong class=" ">Cache items</strong> tab, you can see which <strong class=" ">Data items</strong> and <strong class=" ">Dummy keys</strong> (<a   href="setting-cache-dependencies">cache dependencies</a>) are currently stored in the system&#39;s server-side cache.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881959/Cache_Item_Debug.png" 
-        alt="Viewing cache items"        
-        width="500"         />
-</p>
-<p   
->You can delete individual cache keys by clicking <strong class=" ">Delete</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/delete.png" 
-                
-                 />
-) next to the corresponding items. To remove all items from the cache, click <strong class=" ">Clear cache</strong>.</p>
-<p   
->Clicking <strong class=" ">View</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/open_live_site.png" 
-                
-                 />
-) next to a cache key opens a new window showing detailed information about the cached object:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Key</strong> - the key under which the object is stored in the cache.</p>
-</li><li class=" "><p   
-><strong class=" ">Expiration</strong> - date and time when the cache item will expire (i.e. will be removed from the cache).</p>
-</li><li class=" "><p   
-><strong class=" ">Priority</strong> - Kentico uses two priorities for cache items: <i class=" ">High</i> and <i class=" ">NotRemovable</i> (will not be deleted from the cache as the server frees system memory).</p>
-</li><li class=" "><p   
-><strong class=" ">Dependencies</strong> - list of <a   href="setting-cache-dependencies">dummy keys</a> on which the cache item depends. The system removes the cache item if any of the dummy keys are touched (modified).</p>
-</li><li class=" "><p   
-><strong class=" ">Object type</strong> - the type of the cached item.</p>
-</li><li class=" "><p   
-><strong class=" ">Fields</strong> - the fields storing the actual data of the cached item (depend on the item&#39;s object type).</p>
-</li></ul><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881959/Cache_Item_Details.png" 
-        alt="Viewing the details of a cache item"        
-        width="500"        height="348" />
-</p>
-<p   
->If you need even more information about a cached object, click <strong class=" ">Debug</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/Debug.png" 
-                
-                 />
-) next to the item in the list of cache keys. Debugging cache keys allows you to browse the full system data of the given object, including all properties, variables and related objects.</p>
-<div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>If you encounter unexpected caching behavior or any problems related to the cache, you can use the system's debugging functionality to:</p><ul class=" "><li class=" "><p>Check the exact content of the application's cache</p>
+</li><li class=" "><p>Monitor caching operations for web requests</p>
+</li></ul><p>You can access the system's debugging interface through the <strong class=" ">Debug</strong> application.<strong class=" "><br></strong></p><h3 id="src-68881959_debuggingcache-viewingthestoredcacheitems" class="heading "><span>Viewing the stored cache items</span></h3><p>On the <strong class=" ">Cache items</strong> tab, you can see which <strong class=" ">Data items</strong> and <strong class=" ">Dummy keys</strong> (<a href="setting-cache-dependencies">cache dependencies</a>) are currently stored in the system's server-side cache.</p><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881959/Cache_Item_Debug.png" alt="Viewing cache items" width="500">
+</p><p>You can delete individual cache keys by clicking <strong class=" ">Delete</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/delete.png">
+) next to the corresponding items. To remove all items from the cache, click <strong class=" ">Clear cache</strong>.</p><p>Clicking <strong class=" ">View</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/open_live_site.png">
+) next to a cache key opens a new window showing detailed information about the cached object:</p><ul class=" "><li class=" "><p><strong class=" ">Key</strong> - the key under which the object is stored in the cache.</p>
+</li><li class=" "><p><strong class=" ">Expiration</strong> - date and time when the cache item will expire (i.e. will be removed from the cache).</p>
+</li><li class=" "><p><strong class=" ">Priority</strong> - Kentico uses two priorities for cache items: <i class=" ">High</i> and <i class=" ">NotRemovable</i> (will not be deleted from the cache as the server frees system memory).</p>
+</li><li class=" "><p><strong class=" ">Dependencies</strong> - list of <a href="setting-cache-dependencies">dummy keys</a> on which the cache item depends. The system removes the cache item if any of the dummy keys are touched (modified).</p>
+</li><li class=" "><p><strong class=" ">Object type</strong> - the type of the cached item.</p>
+</li><li class=" "><p><strong class=" ">Fields</strong> - the fields storing the actual data of the cached item (depend on the item's object type).</p>
+</li></ul><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881959/Cache_Item_Details.png" alt="Viewing the details of a cache item" width="500" height="348">
+</p><p>If you need even more information about a cached object, click <strong class=" ">Debug</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/Debug.png">
+) next to the item in the list of cache keys. Debugging cache keys allows you to browse the full system data of the given object, including all properties, variables and related objects.</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: The list of cache items does not display the <a   href="caching-page-output">partial output cache</a> stored for page components.</p>
+            <p><strong class=" ">Note</strong>: The list of cache items does not display the <a href="caching-page-output">partial output cache</a> stored for page components.</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881959_debuggingcache-viewingthestoredcacheitems">Viewing the stored cache items</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881959_debuggingcache-debuggingcacheaccess">Debugging cache access</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881959_debuggingcache-enablingthecacheaccessdebug">Enabling the cache access debug</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881959_debuggingcache-monitoringcacheaccess">Monitoring cache access</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881959_debuggingcache-viewingthestoredcacheitems">Viewing the stored cache items</a></p>
+</li><li class=" "><p><a href="#src-68881959_debuggingcache-debuggingcacheaccess">Debugging cache access</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881959_debuggingcache-enablingthecacheaccessdebug">Enabling the cache access debug</a></p>
+</li><li class=" "><p><a href="#src-68881959_debuggingcache-monitoringcacheaccess">Monitoring cache access</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="configuring-caching">Configuring caching</a></p>
-</li><li class=" "><p   
-><a   href="caching-in-custom-code">Caching in custom code</a></p>
-</li><li class=" "><p   
-><a   href="setting-cache-dependencies">Setting cache dependencies</a></p>
+<ul class=" "><li class=" "><p><a href="configuring-caching">Configuring caching</a></p>
+</li><li class=" "><p><a href="caching-in-custom-code">Caching in custom code</a></p>
+</li><li class=" "><p><a href="setting-cache-dependencies">Setting cache dependencies</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+    
+
+
+
+
+
+
+
+    
+    
     <h3 id="src-68881959_debuggingcache-debuggingcacheaccess" class="heading "><span>Debugging cache access</span></h3>
-<p   
->The cache access debug allows you to view the cache operations that the system performs for individual web requests (adding items to the cache, loading data from the cache).</p>
+<p>The cache access debug allows you to view the cache operations that the system performs for individual web requests (adding items to the cache, loading data from the cache).</p>
     <h4 id="src-68881959_debuggingcache-enablingthecacheaccessdebug" class="heading "><span>Enabling the cache access debug</span></h4>
-<p   
->To use cache access debugging, you need to adjust the settings in <strong class=" ">Settings -&gt; System -&gt; Debug</strong>:</p>
-    <div  class="tablewrap">
+<p>To use cache access debugging, you need to adjust the settings in <strong class=" ">Settings -&gt; System -&gt; Debug</strong>:</p>
+    <div class="tablewrap">
         <table class="confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Setting</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Setting</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Enable cache access debug</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Enable cache access debug</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Enables cache access debugging and the <strong class=" ">Cache access</strong> tab in the<strong class=" "> Debug</strong> application.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Enables cache access debugging and the <strong class=" ">Cache access</strong> tab in the<strong class=" "> Debug</strong> application.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Display cache access debug on live site</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Display cache access debug on live site</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If enabled, cache access debug information is also displayed at the bottom of each page on the live site. Requires cache access debugging to be enabled.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If enabled, cache access debug information is also displayed at the bottom of each page on the live site. Requires cache access debugging to be enabled.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Debug cache access of UI pages</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Debug cache access of UI pages</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If enabled, the cache access debug also covers requests for pages of the administration interface. Requires cache access debugging to be enabled.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If enabled, the cache access debug also covers requests for pages of the administration interface. Requires cache access debugging to be enabled.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Cache access debug log length</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Cache access debug log length</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Sets the maximum length of the cache access debug log on the <strong class=" ">Cache access</strong> tab of the debugging interface, i.e. the number of requests for which debug information is preserved and displayed.</p>
-<p   
->If empty, the value of the <strong class=" ">Default log length </strong>setting is used.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Sets the maximum length of the cache access debug log on the <strong class=" ">Cache access</strong> tab of the debugging interface, i.e. the number of requests for which debug information is preserved and displayed.</p>
+<p>If empty, the value of the <strong class=" ">Default log length </strong>setting is used.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Display stack information</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Display stack information</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If enabled, the system tracks the code stack when debugging cache access and displays the information in the <strong class=" ">Context</strong> column.</p>
-<p   
->This information is only available in the debugging UI and on the live site, not in the debug log written into the <i class=" ">logcache.log</i> file.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If enabled, the system tracks the code stack when debugging cache access and displays the information in the <strong class=" ">Context</strong> column.</p>
+<p>This information is only available in the debugging UI and on the live site, not in the debug log written into the <i class=" ">logcache.log</i> file.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Log cache access to file</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Log cache access to file</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If enabled, the system saves the cache access debug log into the <i class=" ">logcache.log</i> file in the <i class=" ">~\App_Data</i> folder. This option does not require cache access debugging to be enabled.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If enabled, the system saves the cache access debug log into the <i class=" ">logcache.log</i> file in the <i class=" ">~\App_Data</i> folder. This option does not require cache access debugging to be enabled.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<div  class="box-general box-tip">
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Tip</strong>: You can also enable cache access debugging through the &quot;debug everything&quot; settings in the <strong class=" ">All</strong> section of the <strong class=" ">Debug</strong> settings category.</p>
+            <p><strong class=" ">Tip</strong>: You can also enable cache access debugging through the "debug everything" settings in the <strong class=" ">All</strong> section of the <strong class=" ">Debug</strong> settings category.</p>
      
     </div>
 </div>
     <h4 id="src-68881959_debuggingcache-monitoringcacheaccess" class="heading "><span>Monitoring cache access</span></h4>
-<p   
->To view which cache operations the system performed for recent web requests:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Debug</strong> application.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Cache access</strong> tab.</p>
-</li></ol><p   
->You can see the URLs of web requests and the time when the system processed the requests. The table below each request contains the cache items that the system accessed during the request. The table provides the following information for each cache item:</p>
-<ul class=" "><li class=" "><p   
->The type of <strong class=" ">Access</strong> (Get, Add)</p>
-</li><li class=" "><p   
->The name of the accessed <strong class=" ">Cache key</strong></p>
-</li><li class=" "><p   
->The cache item&#39;s dependencies</p>
-</li><li class=" "><p   
->The object type and size of the cached <strong class=" ">Data</strong></p>
-</li><li class=" "><p   
->The <strong class=" ">Context</strong> in which the cache item was accessed (API method)<br/></p>
-<ul class=" "><li class=" "><p   
->Click on the method to see the stack trace of the cache access</p>
-</li><li class=" "><p   
->If you enable the <strong class=" ">Show complete context</strong> option at the top of the interface, the stack trace is displayed for all cache items.</p>
-</li></ul></li></ul><p   
->Click <strong class=" ">Clear debug log</strong> to remove all records in the cache access debug. To remove the actual data from the system&#39;s cache, click <strong class=" ">Clear cache</strong>.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881959/Cache_Access_Debug.png" 
-        alt="Debugging the system's cache access operations"        
-        width="500"         />
+<p>To view which cache operations the system performed for recent web requests:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Debug</strong> application.</p>
+</li><li class=" "><p>Select the <strong class=" ">Cache access</strong> tab.</p>
+</li></ol><p>You can see the URLs of web requests and the time when the system processed the requests. The table below each request contains the cache items that the system accessed during the request. The table provides the following information for each cache item:</p>
+<ul class=" "><li class=" "><p>The type of <strong class=" ">Access</strong> (Get, Add)</p>
+</li><li class=" "><p>The name of the accessed <strong class=" ">Cache key</strong></p>
+</li><li class=" "><p>The cache item's dependencies</p>
+</li><li class=" "><p>The object type and size of the cached <strong class=" ">Data</strong></p>
+</li><li class=" "><p>The <strong class=" ">Context</strong> in which the cache item was accessed (API method)<br></p>
+<ul class=" "><li class=" "><p>Click on the method to see the stack trace of the cache access</p>
+</li><li class=" "><p>If you enable the <strong class=" ">Show complete context</strong> option at the top of the interface, the stack trace is displayed for all cache items.</p>
+</li></ul></li></ul><p>Click <strong class=" ">Clear debug log</strong> to remove all records in the cache access debug. To remove the actual data from the system's cache, click <strong class=" ">Clear cache</strong>.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881959/Cache_Access_Debug.png" alt="Debugging the system's cache access operations" width="500">
 </p>
-<p   
->Clicking <strong class=" ">View</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/open_live_site.png" 
-                
-                 />
+<p>Clicking <strong class=" ">View</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/open_live_site.png">
 ) next to a cache key opens a new window showing detailed information about the cached object:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Key</strong> - the key under which the object is stored in the cache</p>
-</li><li class=" "><p   
-><strong class=" ">Expiration</strong> - date and time when the cache item will expire (i.e. will be removed from the cache)</p>
-</li><li class=" "><p   
-><strong class=" ">Priority</strong> - Kentico uses two priorities for cache items: <i class=" ">High</i> and <i class=" ">NotRemovable</i> (will not be deleted from the cache as the server frees system memory)</p>
-</li><li class=" "><p   
-><strong class=" ">Dependencies</strong> - list of <a   href="setting-cache-dependencies">dummy keys</a> on which the cache item depends. The system removes the cache item if any of the dummy keys are touched (modified).</p>
-</li><li class=" "><p   
-><strong class=" ">Object type</strong> - the type of the cached item</p>
-</li><li class=" "><p   
-><strong class=" ">Fields</strong> - the fields storing the actual cached data (different for each object type)</p>
+<ul class=" "><li class=" "><p><strong class=" ">Key</strong> - the key under which the object is stored in the cache</p>
+</li><li class=" "><p><strong class=" ">Expiration</strong> - date and time when the cache item will expire (i.e. will be removed from the cache)</p>
+</li><li class=" "><p><strong class=" ">Priority</strong> - Kentico uses two priorities for cache items: <i class=" ">High</i> and <i class=" ">NotRemovable</i> (will not be deleted from the cache as the server frees system memory)</p>
+</li><li class=" "><p><strong class=" ">Dependencies</strong> - list of <a href="setting-cache-dependencies">dummy keys</a> on which the cache item depends. The system removes the cache item if any of the dummy keys are touched (modified).</p>
+</li><li class=" "><p><strong class=" ">Object type</strong> - the type of the cached item</p>
+</li><li class=" "><p><strong class=" ">Fields</strong> - the fields storing the actual cached data (different for each object type)</p>
 </li></ul>                    </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -8912,8 +8816,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8925,10 +8829,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8947,9 +8851,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8960,7 +8861,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8971,5 +8872,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

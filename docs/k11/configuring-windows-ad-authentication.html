@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Configuring Windows AD authentication - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880378"> <span>Configuring Windows AD authentication</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,38 +8659,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Kentico supports Windows integrated authentication. This means that when a user signs in to a Windows domain, Kentico automatically recognizes their identity without requiring a user name and password.</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Kentico supports Windows integrated authentication. This means that when a user signs in to a Windows domain, Kentico automatically recognizes their identity without requiring a user name and password.</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Prerequisite</strong></p>
-<p   
->For Windows authentication to work, the application must be able to access the following attributes of user objects in Active Directory (i.e. the attributes cannot be protected or confidential):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">memberof</strong></p>
-</li><li class=" "><p   
-><strong class=" ">userAccountControl</strong></p>
+            <p><strong class=" ">Prerequisite</strong></p>
+<p>For Windows authentication to work, the application must be able to access the following attributes of user objects in Active Directory (i.e. the attributes cannot be protected or confidential):</p>
+<ul class=" "><li class=" "><p><strong class=" ">memberof</strong></p>
+</li><li class=" "><p><strong class=" ">userAccountControl</strong></p>
 </li></ul>     
     </div>
-</div>
-<p   
->When an authenticated user comes to a site configured for Windows authentication, the system automatically creates a matching user account in the Kentico database.</p>
-<p   
->Additionally, the system imports the user&#39;s domain groups as roles. If an existing user is added to new groups in Active Directory, Kentico imports new roles (the update occurs upon reauthentication, i.e. after the user&#39;s session expires). However, existing roles are not removed from users in Kentico when the matching users in Active Directory are removed from groups.</p>
-<p   
->The imported roles do <i class=" "><strong class=" ">not</strong></i> authorize the users to perform any actions in Kentico by default. You need to configure <a   href="configuring-permissions">permissions</a> and <a   href="ui-personalization">UI personalization</a> settings for the imported roles manually if you wish to use them.</p>
-<div  class="box-general box-tip">
+</div><p>When an authenticated user comes to a site configured for Windows authentication, the system automatically creates a matching user account in the Kentico database.</p><p>Additionally, the system imports the user's domain groups as roles. If an existing user is added to new groups in Active Directory, Kentico imports new roles (the update occurs upon reauthentication, i.e. after the user's session expires). However, existing roles are not removed from users in Kentico when the matching users in Active Directory are removed from groups.</p><p>The imported roles do <i class=" "><strong class=" ">not</strong></i> authorize the users to perform any actions in Kentico by default. You need to configure <a href="configuring-permissions">permissions</a> and <a href="ui-personalization">UI personalization</a> settings for the imported roles manually if you wish to use them.</p><div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Disabling the automatic role import</strong></p>
-<p   
->If you wish to disable the automatic import of user domain groups as roles in Kentico, add the following key to the <i class=" ">/configuration/appSettings</i> section of your project&#39;s web.config file:</p>
-<div  class="code panel pdl js-codePanel" >
+            <p><strong class=" ">Disabling the automatic role import</strong></p>
+<p>If you wish to disable the automatic import of user domain groups as roles in Kentico, add the following key to the <i class=" ">/configuration/appSettings</i> section of your project's web.config file:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8718,41 +8700,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880378_configuringwindowsadauthentication-configuringwindowsauthentication">Configuring Windows authentication</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880378_configuringwindowsadauthentication-enablingwindowsauthenticationiniis">Enabling Windows authentication in IIS</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880378_configuringwindowsadauthentication-settingupadministratoraccessafterenablingwindowsauthentication">Setting up administrator access after enabling Windows authentication</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880378_configuringwindowsadauthentication-forbiddencharacterreplacementduringactivedirectoryimport">Forbidden character replacement during Active Directory import</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880378_configuringwindowsadauthentication-configuringwindowsauthentication">Configuring Windows authentication</a></p>
+</li><li class=" "><p><a href="#src-68880378_configuringwindowsadauthentication-enablingwindowsauthenticationiniis">Enabling Windows authentication in IIS</a></p>
+</li><li class=" "><p><a href="#src-68880378_configuringwindowsadauthentication-settingupadministratoraccessafterenablingwindowsauthentication">Setting up administrator access after enabling Windows authentication</a></p>
+</li><li class=" "><p><a href="#src-68880378_configuringwindowsadauthentication-forbiddencharacterreplacementduringactivedirectoryimport">Forbidden character replacement during Active Directory import</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+
+    
+    
     <h3 id="src-68880378_configuringwindowsadauthentication-configuringwindowsauthentication" class="heading "><span>Configuring Windows authentication</span></h3>
-<p   
->Follow the steps below to switch the application to <i class=" ">Windows authentication</i> mode:</p>
-<ol class=" "><li class=" "><p   
->Edit the <i class=" ">web.config</i> file of the web project.</p>
-</li><li class=" "><p   
->Set the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section to <strong class=" ">Windows</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>Follow the steps below to switch the application to <i class=" ">Windows authentication</i> mode:</p>
+<ol class=" "><li class=" "><p>Edit the <i class=" ">web.config</i> file of the web project.</p>
+</li><li class=" "><p>Set the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section to <strong class=" ">Windows</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8775,9 +8745,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->(Optional) You can also make Windows authentication required for access to the live site. To achieve this result, uncomment the following <strong class=" ">&lt;location&gt;</strong> element in your web.config:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>(Optional) You can also make Windows authentication required for access to the live site. To achieve this result, uncomment the following <strong class=" ">&lt;location&gt;</strong> element in your web.config:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8806,113 +8775,69 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->If you want to require Windows authentication for only a part of the live website, see <a   href="securing-a-website-section-using-windows-authentication">Securing a website section using Windows authentication</a>.</p>
+            <p>If you want to require Windows authentication for only a part of the live website, see <a href="securing-a-website-section-using-windows-authentication">Securing a website section using Windows authentication</a>.</p>
      
     </div>
 </div>
-</li><li class=" "><p   
->Save the modified web.config file.</p>
-</li><li class=" "><p   
->Close all browsers with Kentico, open the website in a new browser and try to access the administration interface (<i class=" ">&lt;site domain&gt;/admin</i>).<br/></p>
-<ul class=" "><li class="confluence-link "><p   
->If you encounter a <strong class=" ">401 </strong>error, continue to the <i class=" ">Enabling Windows authentication in IIS </i>section below.</p>
-</li></ul></li></ol><p   
->With this configuration, the system automatically authenticates users from Windows Active Directory and imports them to the Kentico database.</p>
-<p   
->You need to manually <a   href="#src-68880378_configuringwindowsadauthentication-settingupadministratoraccessafterenablingwindowsauthentication">set up administrator access</a> for your new AD user account.</p>
-<div  class="box-general box-info">
+</li><li class=" "><p>Save the modified web.config file.</p>
+</li><li class=" "><p>Close all browsers with Kentico, open the website in a new browser and try to access the administration interface (<i class=" ">&lt;site domain&gt;/admin</i>).<br></p>
+<ul class=" "><li class="confluence-link "><p>If you encounter a <strong class=" ">401 </strong>error, continue to the <i class=" ">Enabling Windows authentication in IIS </i>section below.</p>
+</li></ul></li></ol><p>With this configuration, the system automatically authenticates users from Windows Active Directory and imports them to the Kentico database.</p>
+<p>You need to manually <a href="#src-68880378_configuringwindowsadauthentication-settingupadministratoraccessafterenablingwindowsauthentication">set up administrator access</a> for your new AD user account.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Sign out button missing with Windows authentication</strong></p>
-<p   
->When Windows authentication is enabled, the <strong class=" ">Sign out</strong> button in user menu in the top right corner of the administration interface is not displayed. The same applies to the live site, where the sign out link is not displayed in all web parts that can be used to sign out.</p>
+            <p><strong class=" ">Sign out button missing with Windows authentication</strong></p>
+<p>When Windows authentication is enabled, the <strong class=" ">Sign out</strong> button in user menu in the top right corner of the administration interface is not displayed. The same applies to the live site, where the sign out link is not displayed in all web parts that can be used to sign out.</p>
      
     </div>
 </div>
     <h3 id="src-68880378_configuringwindowsadauthentication-enablingwindowsauthenticationiniis" class="heading "><span>Enabling Windows authentication in IIS</span></h3>
-<p   
->If you are experiencing the <strong class=" ">401 error</strong> with Windows authentication, you need to enable Windows authentication in your IIS:</p>
-<ol class=" "><li class=" "><p   
->Start the <strong class=" ">Internet Information Services (IIS) Manager</strong>.</p>
-</li><li class=" "><p   
->Locate and select your site in the IIS tree.</p>
-</li><li class=" "><p   
->Double-click the <strong class=" ">Authentication</strong> icon.<br/><br/><img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/5212098/Authentication_feature_IIS.png" 
-        alt="Open the Authentication feature in IIS"        
-        width="500"         />
+<p>If you are experiencing the <strong class=" ">401 error</strong> with Windows authentication, you need to enable Windows authentication in your IIS:</p>
+<ol class=" "><li class=" "><p>Start the <strong class=" ">Internet Information Services (IIS) Manager</strong>.</p>
+</li><li class=" "><p>Locate and select your site in the IIS tree.</p>
+</li><li class=" "><p>Double-click the <strong class=" ">Authentication</strong> icon.<br><br><img class="confluence-embedded-image" src="images/download/attachments/5212098/Authentication_feature_IIS.png" alt="Open the Authentication feature in IIS" width="500">
 </p>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Windows Authentication missing in the list</strong></p>
-<p   
->If your IIS installation does not contain Windows Authentication by default, you need to install it:</p>
-<ol class=" "><li class=" "><p   
->Go to <strong class=" ">Control Panel -&gt; Programs and Features -&gt; Turn windows features on or off</strong>.</p>
-</li><li class=" "><p   
->Expand <strong class=" ">Internet Information Services -&gt; World Wide Web Services</strong>.</p>
-</li><li class=" "><p   
->Under <strong class=" ">Security</strong>, select the <strong class=" ">Windows Authentication</strong> check box.</p>
-</li><li class=" "><p   
->Click <strong class=" ">OK</strong> to finish the configuration.</p>
-</li></ol><p   
->Windows Authentication appears as an option in IIS website authentication settings.</p>
+            <p><strong class=" ">Windows Authentication missing in the list</strong></p>
+<p>If your IIS installation does not contain Windows Authentication by default, you need to install it:</p>
+<ol class=" "><li class=" "><p>Go to <strong class=" ">Control Panel -&gt; Programs and Features -&gt; Turn windows features on or off</strong>.</p>
+</li><li class=" "><p>Expand <strong class=" ">Internet Information Services -&gt; World Wide Web Services</strong>.</p>
+</li><li class=" "><p>Under <strong class=" ">Security</strong>, select the <strong class=" ">Windows Authentication</strong> check box.</p>
+</li><li class=" "><p>Click <strong class=" ">OK</strong> to finish the configuration.</p>
+</li></ol><p>Windows Authentication appears as an option in IIS website authentication settings.</p>
      
     </div>
 </div>
-</li><li class=" "><p   
->Select <strong class=" ">Windows Authentication</strong>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Enable</strong> in the <strong class=" ">Actions</strong> menu.<br/><br/></p>
-<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/5212098/Enable_windows_authentication.png" 
-        alt="Enable the Windows authentication"        
-        width="500"         />
-</li></ol><p   
->IIS now allows Windows authentication on your site.</p>
+</li><li class=" "><p>Select <strong class=" ">Windows Authentication</strong>.</p>
+</li><li class=" "><p>Click <strong class=" ">Enable</strong> in the <strong class=" ">Actions</strong> menu.<br><br></p>
+<img class="confluence-embedded-image" src="images/download/attachments/5212098/Enable_windows_authentication.png" alt="Enable the Windows authentication" width="500">
+</li></ol><p>IIS now allows Windows authentication on your site.</p>
     <h3 id="src-68880378_configuringwindowsadauthentication-settingupadministratoraccessafterenablingwindowsauthentication" class="heading "><span>Setting up administrator access after enabling Windows authentication</span></h3>
-<p   
->When you access the Kentico administration interface (<i class=" ">&lt;site domain&gt;/admin</i>) for the first time after configuring Windows authentication, you will encounter an <i class=" ">Access denied</i> message. Windows authentication logs you in under a new user account that the system automatically created based on your Active Directory user name, but the account does not have any permissions.</p>
-<p   
->To allow access to all features as an administrator under Windows authentication, you need to manually grant administrator permissions to your new user account:</p>
-<ol class=" "><li class=" "><p   
->Access the Kentico administration interface at least once under Windows authentication (to ensure that the system imports your AD user).</p>
-</li><li class=" "><p   
->Edit the project&#39;s <i class=" ">web.config</i> file and switch back to <strong class=" ">Forms</strong> authentication (set the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section back to <strong class=" ">Forms</strong>).</p>
-</li><li class=" "><p   
->Log back in to the Kentico administration using forms authentication (under your original administrator account).</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Users</strong> application.</p>
-</li><li class=" "><p   
->Edit the new user that matches your domain user name (the format is<i class=" "> domain-username</i>, for example <i class=" ">office-johns</i>).</p>
-</li><li class=" "><p   
->On the <strong class=" ">General</strong> tab, set the <strong class=" ">Privilege level</strong> to <i class=" ">Global administrator</i>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong> and log out.</p>
-</li><li class=" "><p   
->Edit your <i class=" ">web.config</i> file and switch to <strong class=" ">Windows</strong> authentication again.</p>
-</li></ol><p   
->Close all browsers with Kentico, open the website in a new browser and access the administration interface. Make sure the system recognizes you as a global administrator without the need to manually log in.</p>
+<p>When you access the Kentico administration interface (<i class=" ">&lt;site domain&gt;/admin</i>) for the first time after configuring Windows authentication, you will encounter an <i class=" ">Access denied</i> message. Windows authentication logs you in under a new user account that the system automatically created based on your Active Directory user name, but the account does not have any permissions.</p>
+<p>To allow access to all features as an administrator under Windows authentication, you need to manually grant administrator permissions to your new user account:</p>
+<ol class=" "><li class=" "><p>Access the Kentico administration interface at least once under Windows authentication (to ensure that the system imports your AD user).</p>
+</li><li class=" "><p>Edit the project's <i class=" ">web.config</i> file and switch back to <strong class=" ">Forms</strong> authentication (set the <strong class=" ">mode</strong> attribute of the <strong class=" ">&lt;authentication&gt;</strong> element in the <i class=" ">&lt;system.web&gt;</i> section back to <strong class=" ">Forms</strong>).</p>
+</li><li class=" "><p>Log back in to the Kentico administration using forms authentication (under your original administrator account).</p>
+</li><li class=" "><p>Open the <strong class=" ">Users</strong> application.</p>
+</li><li class=" "><p>Edit the new user that matches your domain user name (the format is<i class=" "> domain-username</i>, for example <i class=" ">office-johns</i>).</p>
+</li><li class=" "><p>On the <strong class=" ">General</strong> tab, set the <strong class=" ">Privilege level</strong> to <i class=" ">Global administrator</i>.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong> and log out.</p>
+</li><li class=" "><p>Edit your <i class=" ">web.config</i> file and switch to <strong class=" ">Windows</strong> authentication again.</p>
+</li></ol><p>Close all browsers with Kentico, open the website in a new browser and access the administration interface. Make sure the system recognizes you as a global administrator without the need to manually log in.</p>
     <h3 id="src-68880378_configuringwindowsadauthentication-forbiddencharacterreplacementduringactivedirectoryimport" class="heading "><span>Forbidden character replacement during Active Directory import</span></h3>
-<p   
->When importing users and roles, forbidden characters in the names are replaced by the character defined in <strong class=" ">Settings -&gt; URLs and SEO -&gt; Forbidden characters replacement</strong>.</p>
-<p   
->The default value is a dash &quot;-&quot; (<i class=" ">domain-username</i> instead of <i class=" ">domain\username</i>). If you are using a different character, please change the entered user name accordingly.</p>
-<p   
->You can override this setting by adding the following keys to the <i class=" ">AppSettings</i> section of your <i class=" ">web.config</i> file. In both cases, the value must be exactly one character:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>When importing users and roles, forbidden characters in the names are replaced by the character defined in <strong class=" ">Settings -&gt; URLs and SEO -&gt; Forbidden characters replacement</strong>.</p>
+<p>The default value is a dash "-" (<i class=" ">domain-username</i> instead of <i class=" ">domain\username</i>). If you are using a different character, please change the entered user name accordingly.</p>
+<p>You can override this setting by adding the following keys to the <i class=" ">AppSettings</i> section of your <i class=" ">web.config</i> file. In both cases, the value must be exactly one character:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8935,7 +8860,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8958,9 +8883,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->If you want to achieve the same functionality as in <strong class=" ">older versions</strong> of Kentico (<strong class=" ">office\username</strong>), forbidden characters replacement can be turned off completely using the following two keys. This may cause problems when using wildcard URLs with user names in the wildcard part and is therefore not recommended.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>If you want to achieve the same functionality as in <strong class=" ">older versions</strong> of Kentico (<strong class=" ">office\username</strong>), forbidden characters replacement can be turned off completely using the following two keys. This may cause problems when using wildcard URLs with user names in the wildcard part and is therefore not recommended.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8983,7 +8907,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9016,8 +8940,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9029,10 +8953,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9051,9 +8975,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9064,7 +8985,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9075,5 +8996,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

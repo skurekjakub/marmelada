@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating custom UniGrid filters - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8639,7 +8636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882757"> <span>Creating custom UniGrid filters</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8653,7 +8650,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8664,63 +8661,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->If you need to add custom filtering options to listing pages that utilize a <a   href="unigrid">UniGrid</a>, you can develop and assign your own filter controls.</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>If you need to add custom filtering options to listing pages that utilize a <a href="unigrid">UniGrid</a>, you can develop and assign your own filter controls.</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: We strongly recommend using the default UniGrid filter for standard filtering scenarios. Only implement a custom filter control if the default filter cannot fulfill your requirements. To use the default filter, you only need to configure the <strong class=" ">filter</strong> element under the appropriate <strong class=" ">column</strong> elements in the UniGrid&#39;s definition.</p>
-<p   
->For more information about the default UniGrid filter, see <a   href="reference---unigrid-definition">Reference - UniGrid definition</a>.</p>
+            <p><strong class=" ">Note</strong>: We strongly recommend using the default UniGrid filter for standard filtering scenarios. Only implement a custom filter control if the default filter cannot fulfill your requirements. To use the default filter, you only need to configure the <strong class=" ">filter</strong> element under the appropriate <strong class=" ">column</strong> elements in the UniGrid's definition.</p>
+<p>For more information about the default UniGrid filter, see <a href="reference---unigrid-definition">Reference - UniGrid definition</a>.</p>
      
     </div>
-</div>
-<p   
->To implement a custom UniGrid filter, you need to create a user control (.ascx file) in the Kentico project. We recommend storing your filter controls in one of the following folders:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">~/CMSModules/&lt;module code name&gt;</i> - if you are developing the filter as part of a <a   href="creating-custom-modules">custom module</a>.</p>
-</li><li class=" "><p   
-><i class=" ">~/CMSGlobalFiles</i> - general location recommended for files that are not associated with a specific module or site.</p>
-</li></ul><p   
->You can create two main types of custom filter controls for the UniGrid:</p>
-<ul class=" "><li class=" "><p   
-><a   href="#src-68882757_creatingcustomunigridfilters-creatingfiltersforspecificcolumns">Filters for specific columns</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882757_creatingcustomunigridfilters-fullyreplacingthedefaultunigridfilter">Filters that completely replace the default UniGrid filter</a></p>
-</li></ul>    <h3 id="src-68882757_creatingcustomunigridfilters-creatingfiltersforspecificcolumns" class="heading "><span>Creating filters for specific columns</span></h3>
-<p   
->The default UniGrid filter is a form that consists of multiple filtering fields. Each field typically provides filtering based on a different data column in the UniGrid listing.</p>
-<p   
->To implement a custom filter control for a specific UniGrid column:</p>
-<ol class=" "><li class=" "><p   
->Create a user control within the Kentico project.</p>
-</li><li class=" "><p   
->Build the filtering interface by adding elements to the control&#39;s markup.</p>
-</li><li class=" "><p   
->Perform the following in the control&#39;s code behind:<br/></p>
-<ul class=" "><li class=" "><p   
->Make the filter control inherit from the <strong class=" ">CMS.FormEngine.Web.UI.FormEngineUserControl</strong> class.</p>
-</li><li class=" "><p   
->Override the <strong class=" ">Value</strong> property - get and set the value selected within the filter.</p>
-</li><li class=" "><p   
->Override the <strong class=" ">GetWhereCondition()</strong> method - return a string containing an SQL where condition that performs the required filtering (use the <i class=" ">Value</i> property in the condition).</p>
-</li><li class=" "><p   
->Add any other logic required by the filter (for example initialization of filtering options).</p>
-</li></ul></li></ol><p   
->You can then assign the filter to a column in the definition of a UniGrid:</p>
-<ol class=" "><li class=" "><p   
->Find the <strong class=" ">&lt;column&gt;</strong> (XML) / <strong class=" ">&lt;ug:Column&gt;</strong> (markup) element representing the corresponding column.</p>
-</li><li class=" "><p   
->Add a <strong class=" ">&lt;filter&gt;</strong> element under the column element.</p>
-</li><li class=" "><p   
->Set the filter element&#39;s attributes:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">type</strong>: <i class=" ">custom</i></p>
-</li><li class=" "><p   
-><strong class=" ">path</strong>: enter the path to your custom filter&#39;s user control file</p>
-</li></ul></li></ol><div  class="code panel pdl js-codePanel" >
+</div><p>To implement a custom UniGrid filter, you need to create a user control (.ascx file) in the Kentico project. We recommend storing your filter controls in one of the following folders:</p><ul class=" "><li class=" "><p><i class=" ">~/CMSModules/&lt;module code name&gt;</i> - if you are developing the filter as part of a <a href="creating-custom-modules">custom module</a>.</p>
+</li><li class=" "><p><i class=" ">~/CMSGlobalFiles</i> - general location recommended for files that are not associated with a specific module or site.</p>
+</li></ul><p>You can create two main types of custom filter controls for the UniGrid:</p><ul class=" "><li class=" "><p><a href="#src-68882757_creatingcustomunigridfilters-creatingfiltersforspecificcolumns">Filters for specific columns</a></p>
+</li><li class=" "><p><a href="#src-68882757_creatingcustomunigridfilters-fullyreplacingthedefaultunigridfilter">Filters that completely replace the default UniGrid filter</a></p>
+</li></ul><h3 id="src-68882757_creatingcustomunigridfilters-creatingfiltersforspecificcolumns" class="heading "><span>Creating filters for specific columns</span></h3><p>The default UniGrid filter is a form that consists of multiple filtering fields. Each field typically provides filtering based on a different data column in the UniGrid listing.</p><p>To implement a custom filter control for a specific UniGrid column:</p><ol class=" "><li class=" "><p>Create a user control within the Kentico project.</p>
+</li><li class=" "><p>Build the filtering interface by adding elements to the control's markup.</p>
+</li><li class=" "><p>Perform the following in the control's code behind:<br></p>
+<ul class=" "><li class=" "><p>Make the filter control inherit from the <strong class=" ">CMS.FormEngine.Web.UI.FormEngineUserControl</strong> class.</p>
+</li><li class=" "><p>Override the <strong class=" ">Value</strong> property - get and set the value selected within the filter.</p>
+</li><li class=" "><p>Override the <strong class=" ">GetWhereCondition()</strong> method - return a string containing an SQL where condition that performs the required filtering (use the <i class=" ">Value</i> property in the condition).</p>
+</li><li class=" "><p>Add any other logic required by the filter (for example initialization of filtering options).</p>
+</li></ul></li></ol><p>You can then assign the filter to a column in the definition of a UniGrid:</p><ol class=" "><li class=" "><p>Find the <strong class=" ">&lt;column&gt;</strong> (XML) / <strong class=" ">&lt;ug:Column&gt;</strong> (markup) element representing the corresponding column.</p>
+</li><li class=" "><p>Add a <strong class=" ">&lt;filter&gt;</strong> element under the column element.</p>
+</li><li class=" "><p>Set the filter element's attributes:</p>
+<ul class=" "><li class=" "><p><strong class=" ">type</strong>: <i class=" ">custom</i></p>
+</li><li class=" "><p><strong class=" ">path</strong>: enter the path to your custom filter's user control file</p>
+</li></ul></li></ol><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8745,111 +8710,81 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		&lt;/</code><code class="keyword">column</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">		...</code></div>
 <div class="line"><code class="plain">	&lt;/</code><code class="keyword">columns</code><code class="plain">&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">grid</code><code class="plain">&gt;</code></div>
 </div>
     </code></pre>
   </div>
-</div>
-<p   
->The system inserts the custom filter for the given column into the UniGrid&#39;s overall filter. The custom filter can be combined with filters defined for other columns (both default and custom).</p>
-<div  class="box-general box-info">
+</div><p>The system inserts the custom filter for the given column into the UniGrid's overall filter. The custom filter can be combined with filters defined for other columns (both default and custom).</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->Custom filters that inherit from <i class=" ">FormEngineUserControl</i> provide automatic support for the UniGrid filter state management features (storing of the filter state for each user and resetting to the default state).</p>
+            <p>Custom filters that inherit from <i class=" ">FormEngineUserControl</i> provide automatic support for the UniGrid filter state management features (storing of the filter state for each user and resetting to the default state).</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882757_creatingcustomunigridfilters-creatingfiltersforspecificcolumns">Creating filters for specific columns</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882757_creatingcustomunigridfilters-settingparametersforcustomcolumnfilters">Setting parameters for custom column filters</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882757_creatingcustomunigridfilters-fullyreplacingthedefaultunigridfilter">Fully replacing the default UniGrid filter</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882757_creatingcustomunigridfilters-example-creatingacustomuserfilter">Example - Creating a custom user filter</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882757_creatingcustomunigridfilters-creatingfiltersforspecificcolumns">Creating filters for specific columns</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882757_creatingcustomunigridfilters-settingparametersforcustomcolumnfilters">Setting parameters for custom column filters</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882757_creatingcustomunigridfilters-fullyreplacingthedefaultunigridfilter">Fully replacing the default UniGrid filter</a></p>
+</li><li class=" "><p><a href="#src-68882757_creatingcustomunigridfilters-example-creatingacustomuserfilter">Example - Creating a custom user filter</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="unigrid">UniGrid</a></p>
-</li><li class=" "><p   
-><a   href="reference---unigrid-definition">Reference - UniGrid definition</a></p>
-</li><li class=" "><p   
-><a   href="example---developing-custom-form-controls">Example - Developing custom form controls</a></p>
+<ul class=" "><li class=" "><p><a href="unigrid">UniGrid</a></p>
+</li><li class=" "><p><a href="reference---unigrid-definition">Reference - UniGrid definition</a></p>
+</li><li class=" "><p><a href="example---developing-custom-form-controls">Example - Developing custom form controls</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+    
+
+
+
+
+
+
+    
+    
     <h4 id="src-68882757_creatingcustomunigridfilters-settingparametersforcustomcolumnfilters" class="heading "><span>Setting parameters for custom column filters</span></h4>
-<p   
->If your custom filter control has properties that change its behavior, you can set their values directly in the UniGrid definition. This gives your custom filters greater flexibility, since you can use a different filter configuration for every instance of the UniGrid.</p>
-<p   
->To assign values to the properties of custom filters in the UniGrid definition:</p>
-<ol class=" "><li class=" "><p   
->Add a <strong class=" ">&lt;parameters&gt;</strong> (XML) / <strong class=" ">&lt;CustomFilterParameters&gt;</strong> (markup) element under the given <strong class=" ">&lt;filter&gt;</strong> element.</p>
-</li><li class=" "><p   
->Create a child <strong class=" ">&lt;filterparameter&gt;</strong> (XML) / <strong class=" ">&lt;ug:FilterParameter&gt;</strong> (markup) element for every property that you want to set.</p>
-</li><li class=" "><p   
->Set the following attributes for each filter parameter:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">name</strong> - identifier of the parameter (used when getting the value in the filter&#39;s properties).</p>
-</li><li class=" "><p   
-><strong class=" ">value</strong> - the value assigned to the filter property. The type of the value attribute is a string, but you can use <i class=" ">ValidationHelper</i> methods to load the value as another type.</p>
-</li></ul></li></ol><p   
->To load UniGrid parameter values in your custom filter, call the <strong class=" ">GetValue</strong> method (inherited from <i class=" ">FormEngineUserControl)</i> within the <i class=" ">get</i> code of your properties. Then use <strong class=" ">CMS.Helpers.ValidationHelper</strong> methods to convert the value to the appropriate type. See the <a   href="#src-68882757_creatingcustomunigridfilters-example-creatingacustomuserfilter">Example</a> for additional details.<i class=" "><br/></i></p>
-<p   
->The system assigns the values from the UniGrid definition into the filter&#39;s properties before displaying the page.</p>
+<p>If your custom filter control has properties that change its behavior, you can set their values directly in the UniGrid definition. This gives your custom filters greater flexibility, since you can use a different filter configuration for every instance of the UniGrid.</p>
+<p>To assign values to the properties of custom filters in the UniGrid definition:</p>
+<ol class=" "><li class=" "><p>Add a <strong class=" ">&lt;parameters&gt;</strong> (XML) / <strong class=" ">&lt;CustomFilterParameters&gt;</strong> (markup) element under the given <strong class=" ">&lt;filter&gt;</strong> element.</p>
+</li><li class=" "><p>Create a child <strong class=" ">&lt;filterparameter&gt;</strong> (XML) / <strong class=" ">&lt;ug:FilterParameter&gt;</strong> (markup) element for every property that you want to set.</p>
+</li><li class=" "><p>Set the following attributes for each filter parameter:</p>
+<ul class=" "><li class=" "><p><strong class=" ">name</strong> - identifier of the parameter (used when getting the value in the filter's properties).</p>
+</li><li class=" "><p><strong class=" ">value</strong> - the value assigned to the filter property. The type of the value attribute is a string, but you can use <i class=" ">ValidationHelper</i> methods to load the value as another type.</p>
+</li></ul></li></ol><p>To load UniGrid parameter values in your custom filter, call the <strong class=" ">GetValue</strong> method (inherited from <i class=" ">FormEngineUserControl)</i> within the <i class=" ">get</i> code of your properties. Then use <strong class=" ">CMS.Helpers.ValidationHelper</strong> methods to convert the value to the appropriate type. See the <a href="#src-68882757_creatingcustomunigridfilters-example-creatingacustomuserfilter">Example</a> for additional details.<i class=" "><br></i></p>
+<p>The system assigns the values from the UniGrid definition into the filter's properties before displaying the page.</p>
     <h3 id="src-68882757_creatingcustomunigridfilters-fullyreplacingthedefaultunigridfilter" class="heading "><span>Fully replacing the default UniGrid filter</span></h3>
-<p   
->You can create custom filters that completely replace the entire default filter of the UniGrid (for all columns).</p>
-<p   
->To develop the custom filter control:</p>
-<ol class=" "><li class=" "><p   
->Create a user control within the Kentico project.</p>
-</li><li class=" "><p   
->Build the filtering interface by adding elements to the control&#39;s markup.</p>
-</li><li class=" "><p   
->Make the filter control&#39;s class implement the <strong class=" ">CMS.FormEngine.Web.UI.IFilterControl</strong> interface (use the <strong class=" ">WhereCondition</strong> property to generate the filtering condition).</p>
-</li></ol><p   
->You can then assign the filter to a UniGrid:</p>
-<ol class=" "><li class=" "><p   
->Edit the UniGrid&#39;s definition.</p>
-</li><li class=" "><p   
->Find or add the <strong class=" ">&lt;options&gt;</strong> (XML) / <strong class=" ">&lt;GridOptions&gt;</strong> (markup) element.</p>
-</li><li class=" "><p   
->Enter the path to your custom filter&#39;s user control file:</p>
-<ul class=" "><li class=" "><p   
->XML: Add a <strong class=" ">&lt;key name=&quot;FilterPath&quot;&gt;</strong> element under <strong class=" ">&lt;options&gt;</strong> with the path as the key&#39;s value.</p>
-</li><li class=" "><p   
->Markup: Set the path using the <strong class=" ">FilterPath</strong> attribute of the <strong class=" ">&lt;GridOptions&gt;</strong> element.</p>
-</li></ul></li></ol><p   
->The given UniGrid instance now uses your custom filter. Any filter settings for individual columns are ignored.</p>
+<p>You can create custom filters that completely replace the entire default filter of the UniGrid (for all columns).</p>
+<p>To develop the custom filter control:</p>
+<ol class=" "><li class=" "><p>Create a user control within the Kentico project.</p>
+</li><li class=" "><p>Build the filtering interface by adding elements to the control's markup.</p>
+</li><li class=" "><p>Make the filter control's class implement the <strong class=" ">CMS.FormEngine.Web.UI.IFilterControl</strong> interface (use the <strong class=" ">WhereCondition</strong> property to generate the filtering condition).</p>
+</li></ol><p>You can then assign the filter to a UniGrid:</p>
+<ol class=" "><li class=" "><p>Edit the UniGrid's definition.</p>
+</li><li class=" "><p>Find or add the <strong class=" ">&lt;options&gt;</strong> (XML) / <strong class=" ">&lt;GridOptions&gt;</strong> (markup) element.</p>
+</li><li class=" "><p>Enter the path to your custom filter's user control file:</p>
+<ul class=" "><li class=" "><p>XML: Add a <strong class=" ">&lt;key name="FilterPath"&gt;</strong> element under <strong class=" ">&lt;options&gt;</strong> with the path as the key's value.</p>
+</li><li class=" "><p>Markup: Set the path using the <strong class=" ">FilterPath</strong> attribute of the <strong class=" ">&lt;GridOptions&gt;</strong> element.</p>
+</li></ul></li></ol><p>The given UniGrid instance now uses your custom filter. Any filter settings for individual columns are ignored.</p>
     <h3 id="src-68882757_creatingcustomunigridfilters-example-creatingacustomuserfilter" class="heading "><span>Example - Creating a custom user filter</span></h3>
-<p   
->The following example demonstrates how to create a custom filter for a UniGrid displaying user objects. The sample filter is intended for a <i class=" "><strong class=" ">specific column</strong></i> and limits which users are displayed based on their preferred content culture. The filter provides a dynamically loaded list of cultures for selection and can be configured to offer only cultures assigned to the current site or only designated UI cultures.</p>
-<p   
->Start by developing the filter control:</p>
-<ol class=" "><li class=" "><p   
->Open your Kentico project in Visual Studio.</p>
-</li><li class=" "><p   
->Expand the <strong class=" ">~/CMSGlobalFiles</strong> folder (create the folder if it does not exist yet).</p>
-</li><li class=" "><p   
->Create a new web user control named <strong class=" ">UserCultureFilter.ascx</strong>.</p>
-</li><li class=" "><p   
->Add a <strong class=" ">CMSDropDownList</strong> into the control&#39;s markup to provide the filtering interface:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The following example demonstrates how to create a custom filter for a UniGrid displaying user objects. The sample filter is intended for a <i class=" "><strong class=" ">specific column</strong></i> and limits which users are displayed based on their preferred content culture. The filter provides a dynamically loaded list of cultures for selection and can be configured to offer only cultures assigned to the current site or only designated UI cultures.</p>
+<p>Start by developing the filter control:</p>
+<ol class=" "><li class=" "><p>Open your Kentico project in Visual Studio.</p>
+</li><li class=" "><p>Expand the <strong class=" ">~/CMSGlobalFiles</strong> folder (create the folder if it does not exist yet).</p>
+</li><li class=" "><p>Create a new web user control named <strong class=" ">UserCultureFilter.ascx</strong>.</p>
+</li><li class=" "><p>Add a <strong class=" ">CMSDropDownList</strong> into the control's markup to provide the filtering interface:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8868,15 +8803,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;%@ Register namespace="CMS.Base.Web.UI" assembly="CMS.Base.Web.UI" tagPrefix="cms" %&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;</code><code class="keyword">cms</code><code class="plain">:CMSDropDownList </code><code class="color1">ID</code><code class="plain">=</code><code class="string">"drpCultures"</code><code class="plain"> </code><code class="color1">runat</code><code class="plain">=</code><code class="string">"server"</code><code class="plain"> </code><code class="color1">DataTextField</code><code class="plain">=</code><code class="string">"CultureName"</code><code class="plain"> </code><code class="color1">DataValueField</code><code class="plain">=</code><code class="string">"CultureCode"</code><code class="plain"> /&gt;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Switch to the control&#39;s code behind and add the following code:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Switch to the control's code behind and add the following code:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8897,12 +8831,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Data;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.UI.WebControls;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.FormEngine.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Localization;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.SiteProvider;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSGlobalFiles_UserCultureFilter : FormEngineUserControl</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -8919,7 +8853,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">			drpCultures.SelectedValue = ValidationHelper.GetString(value, </code><code class="string">""</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// Indicates whether the filter only provides cultures that are assigned as content cultures to the current site.</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8936,7 +8870,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">			SetValue(</code><code class="string">"currentsiteculturesonly"</code><code class="plain">, value);</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// Indicates whether the filter only provides designated UI cultures.</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8953,26 +8887,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">			SetValue(</code><code class="string">"uiculturesonly"</code><code class="plain">, value);</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// Loads the filtering options during the initialization of the control.</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;/summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit(EventArgs e)    </code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit(e);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Only initializes the culture options on the first page load</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (IsPostBack == </code><code class="keyword">false</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// Prepares a where condition for loading cultures based on the filter's parameters</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">string</code><code class="plain"> where = String.Empty;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Adds a condition for loading only cultures assigned to the current site</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">if</code><code class="plain"> (CurrentSiteCulturesOnly)</code></div>
 <div class="line"><code class="plain">			{</code></div>
 <div class="line"><code class="plain">				where = </code><code class="string">"CultureID IN (SELECT CultureID FROM CMS_SiteCulture WHERE SiteID = "</code><code class="plain"> + SiteContext.CurrentSiteID + </code><code class="string">")"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">			}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Adds a condition for loading only designated UI cultures</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">if</code><code class="plain"> (UICulturesOnly)</code></div>
 <div class="line"><code class="plain">			{</code></div>
@@ -8982,33 +8916,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">				}</code></div>
 <div class="line"><code class="plain">				where += </code><code class="string">"CultureIsUICulture = 1"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">			}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Loads the cultures from the Kentico database based on the where condition</code></div>
 <div class="line"><code class="plain">			DataSet ds = CultureInfoProvider.GetCultures(where);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Binds the loaded cultures to the filter's drop-down list</code></div>
 <div class="line"><code class="plain">			drpCultures.DataSource = ds;</code></div>
 <div class="line"><code class="plain">			drpCultures.DataBind();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Adds the '(any)' and '(default)' filtering options</code></div>
 <div class="line"><code class="plain">			drpCultures.Items.Insert(0, </code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"(default)"</code><code class="plain">, </code><code class="string">""</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">			drpCultures.Items.Insert(0, </code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"(any)"</code><code class="plain">, </code><code class="string">"_any"</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// Generates the SQL Where condition used to limit the data displayed in the connected UniGrid.</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;/summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> GetWhereCondition()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> filterCultureCode = Value </code><code class="keyword">as</code><code class="plain"> </code><code class="keyword">string</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Returns an empty condition if the special (any) option is selected in the filter</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (filterCultureCode.Equals(</code><code class="string">"_any"</code><code class="plain">))</code></div>
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">return</code><code class="plain"> String.Empty;</code></div>
 <div class="line"><code class="plain">		}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Returns a condition for loading users whose preferred content culture matches the filter's value.</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> </code><code class="string">"(PreferredCultureCode = N'"</code><code class="plain"> + Value + </code><code class="string">"')"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">	}</code></div>
@@ -9017,9 +8951,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li></ol><p   
->The filter control is now ready to be assigned to any UniGrid component that works with user objects (and includes the <i class=" ">PreferredCultureCode</i> column in the loaded data). For example, the following <a   href="reference---unigrid-definition">UniGrid definition</a> uses the custom filter for a column, and sets the filter&#39;s <i class=" ">CurrentSiteCulturesOnly</i> and <i class=" ">UICulturesOnly</i> parameters.</p>
-<div  class="code panel pdl js-codePanel" >
+</li></ol><p>The filter control is now ready to be assigned to any UniGrid component that works with user objects (and includes the <i class=" ">PreferredCultureCode</i> column in the loaded data). For example, the following <a href="reference---unigrid-definition">UniGrid definition</a> uses the custom filter for a column, and sets the filter's <i class=" ">CurrentSiteCulturesOnly</i> and <i class=" ">UICulturesOnly</i> parameters.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9038,10 +8971,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;?</code><code class="keyword">xml</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">"1.0"</code><code class="plain"> </code><code class="color1">encoding</code><code class="plain">=</code><code class="string">"utf-8"</code><code class="plain">?&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;</code><code class="keyword">grid</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">objecttype</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">"cms.user"</code><code class="plain"> </code><code class="color1">columns</code><code class="plain">=</code><code class="string">"UserID, UserName, PreferredCultureCode"</code><code class="plain"> /&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">columns</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">		&lt;</code><code class="keyword">column</code><code class="plain"> </code><code class="color1">source</code><code class="plain">=</code><code class="string">"UserName"</code><code class="plain"> </code><code class="color1">caption</code><code class="plain">=</code><code class="string">"$general.username$"</code><code class="plain"> </code><code class="color1">wrap</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">		&lt;</code><code class="keyword">column</code><code class="plain"> </code><code class="color1">source</code><code class="plain">=</code><code class="string">"PreferredCultureCode"</code><code class="plain"> </code><code class="color1">caption</code><code class="plain">=</code><code class="string">"Preferred culture"</code><code class="plain"> </code><code class="color1">externalsourcename</code><code class="plain">=</code><code class="string">"#culturename"</code><code class="plain"> </code><code class="color1">width</code><code class="plain">=</code><code class="string">"100%"</code><code class="plain">&gt;</code></div>
@@ -9053,25 +8986,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">			&lt;/</code><code class="keyword">filter</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">		&lt;/</code><code class="keyword">column</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/</code><code class="keyword">columns</code><code class="plain">&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	&lt;</code><code class="keyword">options</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">		&lt;</code><code class="keyword">key</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">"DisplayFilter"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"true"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">		&lt;</code><code class="keyword">key</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">"FilterLimit"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"0"</code><code class="plain"> /&gt;</code></div>
 <div class="line"><code class="plain">	&lt;/</code><code class="keyword">options</code><code class="plain">&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">grid</code><code class="plain">&gt;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<p   
->If you view the output of the UniGrid, you can use the custom filter to control which users are displayed. The filter offers culture options according to the parameters that you configured in the UniGrid definition.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882757/Custom_UniGrid_Filter.png" 
-        alt="UniGrid displaying users with the custom culture filter"        
-        width="500"         />
+<p>If you view the output of the UniGrid, you can use the custom filter to control which users are displayed. The filter offers culture options according to the parameters that you configured in the UniGrid definition.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882757/Custom_UniGrid_Filter.png" alt="UniGrid displaying users with the custom culture filter" width="500">
 </p>
                     </div>
                 </div>
@@ -9083,8 +9010,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9096,10 +9023,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9118,9 +9045,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9131,7 +9055,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9142,5 +9066,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

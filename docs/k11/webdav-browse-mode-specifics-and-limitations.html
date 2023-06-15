@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>WebDAV browse mode specifics and limitations - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8639,7 +8636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68879472"> <span>WebDAV browse mode specifics and limitations</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8653,7 +8650,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8664,36 +8661,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The following text lists specific behavior of the system when WebDAV Browse mode is used.</p>
+<p>The following text lists specific behavior of the system when WebDAV Browse mode is used.</p>
     <div class="section section-1" id="src-68879472_WebDAVbrowsemodespecificsandlimitations-Maximalpathlength">
         <h1 class="heading "><span>Maximal path length</span></h1>
-<p   
->The maximal path length in Windows file systems is 250 characters. Folders and files with a path longer than 250 characters are not displayed on the network drive.</p>
+<p>The maximal path length in Windows file systems is 250 characters. Folders and files with a path longer than 250 characters are not displayed on the network drive.</p>
     </div>
     <div class="section section-1" id="src-68879472_WebDAVbrowsemodespecificsandlimitations-Windowscachedelays">
         <h1 class="heading "><span>Windows cache delays</span></h1>
-<p   
->As explained in the <a   href="example---webdav-browse-mode-editing">Example - WebDAV browse mode editing</a> topic, you may experience delays when updating files in grouped attachment fields or file fields. The original file will be present along with the new one for about 1 minute. If you refresh displayed content of the folder after the interval, the original file should disappear.</p>
-<p   
->The same problems may be experienced when deleting a file without appropriate permissions. The file will not actually be deleted, but it will not appear in the folder for a 1 minute interval until the Windows cache is refreshed.</p>
+<p>As explained in the <a href="example---webdav-browse-mode-editing">Example - WebDAV browse mode editing</a> topic, you may experience delays when updating files in grouped attachment fields or file fields. The original file will be present along with the new one for about 1 minute. If you refresh displayed content of the folder after the interval, the original file should disappear.</p>
+<p>The same problems may be experienced when deleting a file without appropriate permissions. The file will not actually be deleted, but it will not appear in the folder for a 1 minute interval until the Windows cache is refreshed.</p>
     </div>
     <div class="section section-1" id="src-68879472_WebDAVbrowsemodespecificsandlimitations-Zerofile-lengthlimitations">
         <h1 class="heading "><span>Zero file-length limitations</span></h1>
-<p   
->It is not possible to upload or create <a   href="attaching-files-to-pages">page attachments</a> and     <span style="color: #003366;">
+<p>It is not possible to upload or create <a href="attaching-files-to-pages">page attachments</a> and     <span style="color: #003366;">
 files using the file field    </span>
  based on files that have zero file length.</p>
-<p   
->When uploading a zero-length file under the <strong class=" ">attachments</strong> folder, a temporary attachment is created. It is not visible in the UI or on the network drive. If your try to upload a file to the same folder, an error message saying that the file already exists will be displayed (asking you if you want to overwrite it).</p>
-<p   
->When uploading a zero-length file under the <strong class=" ">content</strong> folder, a standard <i class=" ">CMS.File</i> page is created, while it only has a temporary attachment in the file field. The page can be seen both in the UI (as a page in the content tree) and on the network drive (as a folder which can&#39;t be deleted using Browse mode). The temporary attachment can&#39;t be seen in either of the two. If you try to upload a file to the same folder, an error message saying that the file already exists will be displayed (asking you if you want to overwrite it).</p>
-<div  class="box-general box-info">
+<p>When uploading a zero-length file under the <strong class=" ">attachments</strong> folder, a temporary attachment is created. It is not visible in the UI or on the network drive. If your try to upload a file to the same folder, an error message saying that the file already exists will be displayed (asking you if you want to overwrite it).</p>
+<p>When uploading a zero-length file under the <strong class=" ">content</strong> folder, a standard <i class=" ">CMS.File</i> page is created, while it only has a temporary attachment in the file field. The page can be seen both in the UI (as a page in the content tree) and on the network drive (as a folder which can't be deleted using Browse mode). The temporary attachment can't be seen in either of the two. If you try to upload a file to the same folder, an error message saying that the file already exists will be displayed (asking you if you want to overwrite it).</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->Note that in WebDAV Edit mode, uploading of zero-length files is possible without any problems or limitations.</p>
+            <p>Note that in WebDAV Edit mode, uploading of zero-length files is possible without any problems or limitations.</p>
      
     </div>
 </div>
@@ -8708,8 +8697,8 @@ files using the file field    </span>
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8721,10 +8710,10 @@ files using the file field    </span>
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8743,9 +8732,6 @@ files using the file field    </span>
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8756,7 +8742,7 @@ files using the file field    </span>
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8767,5 +8753,6 @@ files using the file field    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

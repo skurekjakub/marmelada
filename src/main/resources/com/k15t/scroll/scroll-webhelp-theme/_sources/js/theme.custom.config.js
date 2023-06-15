@@ -44,3 +44,8 @@ const CONFIG = {
 	XPERIENCE13_MISSING_PAGES_URL: "https://docs.xperience.io/release-notes-xperience-13/missing-documentation-pages",
 	XP_MISSING_PAGES_URL: "https://docs.xperience.io/xp/xperience-changelog/missing-documentation-pages"
 };
+
+const THEME_CONFIG = {
+    KENTICO_SUPPORT_LINK: "https://devnet.kentico.com/support",
+    KENTICO_QA_LINK: "https://devnet.kentico.com/questions-answers"
+}

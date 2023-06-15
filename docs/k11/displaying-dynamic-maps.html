@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Displaying dynamic maps - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8639,7 +8636,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880664"> <span>Displaying dynamic maps</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8653,7 +8650,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8664,211 +8661,138 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->    <span style="color: #000000;">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>    <span style="color: #000000;">
 Kentico offers two ways of displaying dynamic maps on a page:    </span>
+</p><ul class=" "><li class=" "><p>    <span style="color: #000000;">
+<a href="#src-68880664_displayingdynamicmaps-pa-relatedmaps">Page-related maps</a> - display geographical locations based on the properties of specified pages. You can display multiple locations at the same time.    </span>
 </p>
-<ul class=" "><li class=" "><p   
->    <span style="color: #000000;">
-<a   href="#src-68880664_displayingdynamicmaps-pa-relatedmaps">Page-related maps</a> - display geographical locations based on the properties of specified pages. You can display multiple locations at the same time.    </span>
-</p>
-</li><li class=" "><p   
->    <span style="color: #000000;">
-<a   href="#src-68880664_displayingdynamicmaps-datasourcemaps">Data source maps</a> - displays geographical location based on a data source web part. For example, a pages data source, query data source, xml data source web part or others.     <span style="color: #000000;">
+</li><li class=" "><p>    <span style="color: #000000;">
+<a href="#src-68880664_displayingdynamicmaps-datasourcemaps">Data source maps</a> - displays geographical location based on a data source web part. For example, a pages data source, query data source, xml data source web part or others.     <span style="color: #000000;">
 You can display multiple locations at the same time.    </span>
-<br/>    </span>
+<br>    </span>
 </p>
-</li></ul><p   
->    <span style="color: #000000;">
+</li></ul><p>    <span style="color: #000000;">
 Either of these can use the Google maps or Bing maps service.    </span>
-</p>
-    <h3 id="src-68880664_displayingdynamicmaps-page-relatedmaps" class="heading "><span>Page-related maps</span></h3>
-<p   
->Page-related maps allow you to display multiple predefined places on a map. The places that the map displays are loaded from pages that you specify. The usual example is a list of pages, each representing a different company office. By default, the <i class=" ">CMS.Office</i> page type can be used for this purpose, but any page type with fields specifying a geographical location will do. The web part (<strong class=" ">Google maps web part</strong> or <strong class=" ">Bing maps web part</strong>) then loads the geographical coordinates off of these pages and displays them on the map.</p>
-<p   
->The process consists of two steps:</p>
-<ol class=" "><li class=" "><p   
-><a   href="#src-68880664_displayingdynamicmaps-pagesfromwhichyoucandisplaydataonamap">Setting up the pages from which the map loads data.</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880664_displayingdynamicmaps-placingapage-relatedmaponapage">Placing a page-related map on a page.</a></p>
-</li></ol>    <h4 id="src-68880664_displayingdynamicmaps-pagesfromwhichyoucandisplaydataonamap" class="heading "><span>Pages from which you can display data on a map</span></h4>
-<p   
->The pages from which you can display data on a map need to have fields that represent a geographical location. These pages need to have either of these:</p>
-<ul class=" "><li class=" "><p   
->Two fields representing <i class=" ">latitude</i> and <i class=" ">longitude</i>.<br/>&mdash;OR&mdash;</p>
-</li><li class=" "><p   
->A field or multiple fields representing an address in a human-readable form.<br/><br/></p>
-</li></ul><p   
->You can use the predefined <i class=" ">CMS.Office</i> page type to load data onto a map. You can also use the page type as a reference when creating your own page types.</p>
-    <div  class="confbox panel">
+</p><h3 id="src-68880664_displayingdynamicmaps-page-relatedmaps" class="heading "><span>Page-related maps</span></h3><p>Page-related maps allow you to display multiple predefined places on a map. The places that the map displays are loaded from pages that you specify. The usual example is a list of pages, each representing a different company office. By default, the <i class=" ">CMS.Office</i> page type can be used for this purpose, but any page type with fields specifying a geographical location will do. The web part (<strong class=" ">Google maps web part</strong> or <strong class=" ">Bing maps web part</strong>) then loads the geographical coordinates off of these pages and displays them on the map.</p><p>The process consists of two steps:</p><ol class=" "><li class=" "><p><a href="#src-68880664_displayingdynamicmaps-pagesfromwhichyoucandisplaydataonamap">Setting up the pages from which the map loads data.</a></p>
+</li><li class=" "><p><a href="#src-68880664_displayingdynamicmaps-placingapage-relatedmaponapage">Placing a page-related map on a page.</a></p>
+</li></ol><h4 id="src-68880664_displayingdynamicmaps-pagesfromwhichyoucandisplaydataonamap" class="heading "><span>Pages from which you can display data on a map</span></h4><p>The pages from which you can display data on a map need to have fields that represent a geographical location. These pages need to have either of these:</p><ul class=" "><li class=" "><p>Two fields representing <i class=" ">latitude</i> and <i class=" ">longitude</i>.<br>—OR—</p>
+</li><li class=" "><p>A field or multiple fields representing an address in a human-readable form.<br><br></p>
+</li></ul><p>You can use the predefined <i class=" ">CMS.Office</i> page type to load data onto a map. You can also use the page type as a reference when creating your own page types.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880664_displayingdynamicmaps-page-relatedmaps">Page-related maps</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880664_displayingdynamicmaps-datasourcemaps">Data source maps</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880664_displayingdynamicmaps-page-relatedmaps">Page-related maps</a></p>
+</li><li class=" "><p><a href="#src-68880664_displayingdynamicmaps-datasourcemaps">Data source maps</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="#">Displaying dynamic maps</a></p>
-</li><li class=" "><p   
-><a   href="page-types">Page types</a></p>
-</li><li class=" "><p   
-><a   href="writing-transformations">Writing transformations</a></p>
+<ul class=" "><li class=" "><p><a href="#">Displaying dynamic maps</a></p>
+</li><li class=" "><p><a href="page-types">Page types</a></p>
+</li><li class=" "><p><a href="writing-transformations">Writing transformations</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+    
+
+
+    
+
+
+    
+    
     <h4 id="src-68880664_displayingdynamicmaps-placingapage-relatedmaponapage" class="heading "><span>Placing a page-related map on a page</span></h4>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">Pages </strong>application,<strong class=" "> </strong>navigate to the page on which you want to display the map.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts#src-68880718_usingandconfiguringwebparts-addingwebparts">Place</a> the <strong class=" ">Google maps </strong>or the <strong class=" ">Bing maps </strong>web part on the page. The <strong class=" ">web part properties </strong>dialog opens.</p>
-</li><li class=" "><p   
->Specify the <strong class=" ">Path</strong> to the pages from which you want the map to load data.</p>
-</li><li class=" "><p   
-><strong class=" ">Select </strong>the <strong class=" ">Page types</strong> that you want the map to load. For example, <i class=" ">CMS.Office</i>.</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Pages </strong>application,<strong class=" "> </strong>navigate to the page on which you want to display the map.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts#src-68880718_usingandconfiguringwebparts-addingwebparts">Place</a> the <strong class=" ">Google maps </strong>or the <strong class=" ">Bing maps </strong>web part on the page. The <strong class=" ">web part properties </strong>dialog opens.</p>
+</li><li class=" "><p>Specify the <strong class=" ">Path</strong> to the pages from which you want the map to load data.</p>
+</li><li class=" "><p><strong class=" ">Select </strong>the <strong class=" ">Page types</strong> that you want the map to load. For example, <i class=" ">CMS.Office</i>.</p>
 </li><li class=" ">    <div class="scroll-expand-container collapsed">
         <div class="scroll-expand-control">
             <span class="scroll-expand-control-icon">&nbsp;</span>
             <span class="scroll-expand-control-text">Load a human-readable address onto the map</span>
         </div>
         <div class="scroll-expand-content">
-<p   
->If you want the map to use a human-readable address, specify the <strong class=" ">Field name</strong> that the <strong class=" ">Page types</strong> use for location in the <strong class=" ">Location field</strong> property. For example, <i class=" ">OfficeAddress</i> in the <i class=" ">CMS.Office</i> page type loads the first address line. You can also specify multiple field names separated by semicolons, for example,<i class=" "> OfficeAddress;OfficeCity</i>, if the whole address is divided into more than one field.</p>
-<ul class=" "><li class=" "><p   
->You can select the <strong class=" ">Use server processing </strong>option if you want the system to process and cache the processed (translated to latitude and longitude) <strong class=" ">Location or address </strong>field. If you decide to do so, please check that your map service query limits (IP-based) are sufficient for your needs.</p>
+<p>If you want the map to use a human-readable address, specify the <strong class=" ">Field name</strong> that the <strong class=" ">Page types</strong> use for location in the <strong class=" ">Location field</strong> property. For example, <i class=" ">OfficeAddress</i> in the <i class=" ">CMS.Office</i> page type loads the first address line. You can also specify multiple field names separated by semicolons, for example,<i class=" "> OfficeAddress;OfficeCity</i>, if the whole address is divided into more than one field.</p>
+<ul class=" "><li class=" "><p>You can select the <strong class=" ">Use server processing </strong>option if you want the system to process and cache the processed (translated to latitude and longitude) <strong class=" ">Location or address </strong>field. If you decide to do so, please check that your map service query limits (IP-based) are sufficient for your needs.</p>
 </li></ul>        </div>
     </div>
-<p   
->&mdash;OR&mdash;</p>
+<p>—OR—</p>
     <div class="scroll-expand-container collapsed">
         <div class="scroll-expand-control">
             <span class="scroll-expand-control-icon">&nbsp;</span>
             <span class="scroll-expand-control-text">Load coordinates onto the map</span>
         </div>
         <div class="scroll-expand-content">
-<p   
->If you want the map to use coordinates, specify the <strong class=" ">Field names</strong> that the <strong class=" ">Page types</strong> use for longitude and latitude in the <strong class=" ">Longitude field </strong>and <strong class=" ">Latitude field</strong> properties. For example, <i class=" ">OfficeLatitude</i> and <i class=" ">OfficeLongitude</i> from the <i class=" ">CMS.Office</i> page type.</p>
-<ul class=" "><li class=" "><p   
->Using latitude and longitude<strong class=" "> </strong>allows the system to process the location faster. These properties can also be more accurate.</p>
+<p>If you want the map to use coordinates, specify the <strong class=" ">Field names</strong> that the <strong class=" ">Page types</strong> use for longitude and latitude in the <strong class=" ">Longitude field </strong>and <strong class=" ">Latitude field</strong> properties. For example, <i class=" ">OfficeLatitude</i> and <i class=" ">OfficeLongitude</i> from the <i class=" ">CMS.Office</i> page type.</p>
+<ul class=" "><li class=" "><p>Using latitude and longitude<strong class=" "> </strong>allows the system to process the location faster. These properties can also be more accurate.</p>
 </li></ul>        </div>
     </div>
-</li><li class=" "><p   
->Fill in either the <strong class=" ">Default l</strong><strong class=" ">ocation or address </strong>or the <strong class=" ">Default</strong><strong class=" ">Latitude </strong>and <strong class=" ">Default</strong><strong class=" ">Longitude </strong>fields. These fields represent the map&#39;s initial view location.</p>
-</li><li class=" "><p   
->Specify the rest of the web part properties, especially in the <strong class=" ">Transformation</strong>, <strong class=" ">Content</strong>, and <strong class=" ">Map properties</strong> categories. Hover over a property to see its description.</p>
-</li><li class=" "><p   
->Click <strong class=" ">OK</strong>.</p>
-</li></ol><p   
->The page now displays a map with markers at the locations retrieved from the page fields you specified. For example:</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880664/MapWithMarkers.png" 
-        alt="Google maps web part displaying specified locations"        
-        width="365"        height="250" />
+</li><li class=" "><p>Fill in either the <strong class=" ">Default l</strong><strong class=" ">ocation or address </strong>or the <strong class=" ">Default</strong><strong class=" ">Latitude </strong>and <strong class=" ">Default</strong><strong class=" ">Longitude </strong>fields. These fields represent the map's initial view location.</p>
+</li><li class=" "><p>Specify the rest of the web part properties, especially in the <strong class=" ">Transformation</strong>, <strong class=" ">Content</strong>, and <strong class=" ">Map properties</strong> categories. Hover over a property to see its description.</p>
+</li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p>The page now displays a map with markers at the locations retrieved from the page fields you specified. For example:</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880664/MapWithMarkers.png" alt="Google maps web part displaying specified locations" width="365" height="250">
 </p>
     <h3 id="src-68880664_displayingdynamicmaps-datasourcemaps" class="heading "><span>Data source maps</span></h3>
-<p   
->Data source maps allow you to display multiple places on a map. The places that the map displays are loaded from a predefined data source web part. The usual example is a Page data source web part, which the map uses to load data from a list of pages. Each of the pages can represent a different company office, for example. By default, the <i class=" ">CMS.Office</i> page type can be used for this purpose, but any page type with fields specifying a geographical location will do. The web part (<strong class=" ">Basic Google maps web part</strong> or <strong class=" ">Basic Bing maps web part</strong>) then loads the geographical coordinates from these pages and displays them on the map.</p>
-<div  class="box-general box-info">
+<p>Data source maps allow you to display multiple places on a map. The places that the map displays are loaded from a predefined data source web part. The usual example is a Page data source web part, which the map uses to load data from a list of pages. Each of the pages can represent a different company office, for example. By default, the <i class=" ">CMS.Office</i> page type can be used for this purpose, but any page type with fields specifying a geographical location will do. The web part (<strong class=" ">Basic Google maps web part</strong> or <strong class=" ">Basic Bing maps web part</strong>) then loads the geographical coordinates from these pages and displays them on the map.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->The described process uses the <strong class=" ">Page data source </strong>web part.</p>
+            <p>The described process uses the <strong class=" ">Page data source </strong>web part.</p>
      
     </div>
 </div>
-<p   
->The process consists of the following:</p>
-<ol class=" "><li class=" "><p   
-><a   href="#src-68880664_displayingdynamicmaps-pagesfromwhichyoucandisplaydataonamap">Setting up the pages from which the map loads data.</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880664_displayingdynamicmaps-placingapagedatasource">Placing a data source that defines which pages are loaded into the map</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880664_displayingdynamicmaps-placingadocument-relatedmaponapage">Placing a data source map on a page.</a></p>
+<p>The process consists of the following:</p>
+<ol class=" "><li class=" "><p><a href="#src-68880664_displayingdynamicmaps-pagesfromwhichyoucandisplaydataonamap">Setting up the pages from which the map loads data.</a></p>
+</li><li class=" "><p><a href="#src-68880664_displayingdynamicmaps-placingapagedatasource">Placing a data source that defines which pages are loaded into the map</a></p>
+</li><li class=" "><p><a href="#src-68880664_displayingdynamicmaps-placingadocument-relatedmaponapage">Placing a data source map on a page.</a></p>
 </li></ol>    <h4 id="src-68880664_displayingdynamicmaps-pagesfromwhichyoucandisplaydataonamap.1" class="heading "><span>Pages from which you can display data on a map</span></h4>
-<p   
->The pages from which you can display data on a map need to have fields that represent a geographical location. These pages need to have either of these:</p>
-<ul class=" "><li class=" "><p   
->Two fields representing <i class=" ">latitude</i> and <i class=" ">longitude</i>.<br/>&mdash;OR&mdash;</p>
-</li><li class=" "><p   
->A field or multiple fields representing an address in a human readable form.<br/><br/></p>
-</li></ul><p   
->You can use the predefined <i class=" ">CMS.Office</i> page type to load data from onto a map. You can also use the page type as a reference when creating your own page types.</p>
+<p>The pages from which you can display data on a map need to have fields that represent a geographical location. These pages need to have either of these:</p>
+<ul class=" "><li class=" "><p>Two fields representing <i class=" ">latitude</i> and <i class=" ">longitude</i>.<br>—OR—</p>
+</li><li class=" "><p>A field or multiple fields representing an address in a human readable form.<br><br></p>
+</li></ul><p>You can use the predefined <i class=" ">CMS.Office</i> page type to load data from onto a map. You can also use the page type as a reference when creating your own page types.</p>
     <h4 id="src-68880664_displayingdynamicmaps-placingapagedatasource" class="heading "><span>Placing a page data source</span></h4>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">Pages </strong>application,<strong class=" "> </strong>navigate to the page on which you want to display the map.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts#src-68880718_usingandconfiguringwebparts-addingwebparts">Place</a> the <strong class=" ">Pages data source </strong>web part on the page. The <strong class=" ">web part properties </strong>dialog opens.</p>
-</li><li class=" "><p   
->Specify the <strong class=" ">Path</strong> to the pages from which you want the map to load data.</p>
-</li><li class=" "><p   
-><strong class=" ">Select </strong>the <strong class=" ">Page types</strong> that you want the map to load. For example, <i class=" ">CMS.Office</i>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">OK</strong>.</p>
-</li></ol><p   
->You can now connect the data source to a map web part.</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Pages </strong>application,<strong class=" "> </strong>navigate to the page on which you want to display the map.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts#src-68880718_usingandconfiguringwebparts-addingwebparts">Place</a> the <strong class=" ">Pages data source </strong>web part on the page. The <strong class=" ">web part properties </strong>dialog opens.</p>
+</li><li class=" "><p>Specify the <strong class=" ">Path</strong> to the pages from which you want the map to load data.</p>
+</li><li class=" "><p><strong class=" ">Select </strong>the <strong class=" ">Page types</strong> that you want the map to load. For example, <i class=" ">CMS.Office</i>.</p>
+</li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p>You can now connect the data source to a map web part.</p>
     <h4 id="src-68880664_displayingdynamicmaps-placingadatasourcemaponapage" class="heading "><span>Placing a data source map on a page</span></h4>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">Pages </strong>application,<strong class=" "> </strong>navigate to the page on which you want to display the map.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Design </strong>tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts#src-68880718_usingandconfiguringwebparts-addingwebparts">Place</a> the <strong class=" ">Basic Google maps </strong>or the <strong class=" ">Basic Bing maps </strong>web part on the page. The <strong class=" ">web part properties </strong>dialog opens.</p>
-</li><li class=" "><p   
->Enter the<strong class=" "> Data source name</strong>.</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Pages </strong>application,<strong class=" "> </strong>navigate to the page on which you want to display the map.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Design </strong>tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts#src-68880718_usingandconfiguringwebparts-addingwebparts">Place</a> the <strong class=" ">Basic Google maps </strong>or the <strong class=" ">Basic Bing maps </strong>web part on the page. The <strong class=" ">web part properties </strong>dialog opens.</p>
+</li><li class=" "><p>Enter the<strong class=" "> Data source name</strong>.</p>
 </li><li class=" ">    <div class="scroll-expand-container collapsed">
         <div class="scroll-expand-control">
             <span class="scroll-expand-control-icon">&nbsp;</span>
             <span class="scroll-expand-control-text">Load a human-readable address onto the map</span>
         </div>
         <div class="scroll-expand-content">
-<p   
->If you want the map to use a human-readable address, specify the <strong class=" ">Field name</strong> that the <strong class=" ">Page types</strong> use for location in the <strong class=" ">Location field</strong> property. For example, <i class=" ">OfficeAddress</i> in the <i class=" ">CMS.Office</i> page type loads the first address line. You can also specify multiple field names separated by semicolons, for example,<i class=" "> OfficeAddress;OfficeCity</i>, if the whole address is divided into more than one field.</p>
-<ul class=" "><li class=" "><p   
->You can select the <strong class=" ">Use server processing </strong>option if you want the server to process and cache the processed (translated to latitude and longitude) <strong class=" ">Location or address </strong>field. If you decide to do so, please check that your map service query limits (IP-based) are sufficient for your needs.</p>
+<p>If you want the map to use a human-readable address, specify the <strong class=" ">Field name</strong> that the <strong class=" ">Page types</strong> use for location in the <strong class=" ">Location field</strong> property. For example, <i class=" ">OfficeAddress</i> in the <i class=" ">CMS.Office</i> page type loads the first address line. You can also specify multiple field names separated by semicolons, for example,<i class=" "> OfficeAddress;OfficeCity</i>, if the whole address is divided into more than one field.</p>
+<ul class=" "><li class=" "><p>You can select the <strong class=" ">Use server processing </strong>option if you want the server to process and cache the processed (translated to latitude and longitude) <strong class=" ">Location or address </strong>field. If you decide to do so, please check that your map service query limits (IP-based) are sufficient for your needs.</p>
 </li></ul>        </div>
     </div>
-<p   
->&mdash;OR&mdash;</p>
+<p>—OR—</p>
     <div class="scroll-expand-container collapsed">
         <div class="scroll-expand-control">
             <span class="scroll-expand-control-icon">&nbsp;</span>
             <span class="scroll-expand-control-text">Load coordinates onto the map</span>
         </div>
         <div class="scroll-expand-content">
-<p   
->If you want the map to use coordinates, specify the <strong class=" ">Field names</strong> that the <strong class=" ">Page types</strong> use for longitude and latitude in the <strong class=" ">Longitude field </strong>and <strong class=" ">Latitude field</strong> properties. For example, <i class=" ">OfficeLatitude</i> and <i class=" ">OfficeLongitude </i>from the <i class=" ">CMS.Office</i> page type.</p>
-<ul class=" "><li class=" "><p   
->Using latitude and longitude<strong class=" "> </strong>allows the system to process the location faster. These properties can also be more accurate.</p>
+<p>If you want the map to use coordinates, specify the <strong class=" ">Field names</strong> that the <strong class=" ">Page types</strong> use for longitude and latitude in the <strong class=" ">Longitude field </strong>and <strong class=" ">Latitude field</strong> properties. For example, <i class=" ">OfficeLatitude</i> and <i class=" ">OfficeLongitude </i>from the <i class=" ">CMS.Office</i> page type.</p>
+<ul class=" "><li class=" "><p>Using latitude and longitude<strong class=" "> </strong>allows the system to process the location faster. These properties can also be more accurate.</p>
 </li></ul>        </div>
     </div>
-</li><li class=" "><p   
->Fill in either the <strong class=" ">Default l</strong><strong class=" ">ocation or address </strong>or the <strong class=" ">Default</strong><strong class=" ">Latitude </strong>and <strong class=" ">Default</strong><strong class=" ">Longitude </strong>fields. These fields represent the map&#39;s initial view location.</p>
-</li><li class=" "><p   
->Specify the rest of the web part properties, especially in the <strong class=" ">Transformation</strong>, <strong class=" ">Content</strong>, and <strong class=" ">Map properties</strong> categories. Hover over a property to see its description.</p>
-</li><li class=" "><p   
->Click <strong class=" ">OK</strong>.</p>
-</li></ol><p   
->The page now displays a map with markers at the locations retrieved from the pages you specified in the Page data source web part. For example:</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880664/MapWithMarkersDataSource.png" 
-        alt="Basic Google maps web part displaying locations loaded from a connected Page data source"        
-        width="365"        height="250" />
+</li><li class=" "><p>Fill in either the <strong class=" ">Default l</strong><strong class=" ">ocation or address </strong>or the <strong class=" ">Default</strong><strong class=" ">Latitude </strong>and <strong class=" ">Default</strong><strong class=" ">Longitude </strong>fields. These fields represent the map's initial view location.</p>
+</li><li class=" "><p>Specify the rest of the web part properties, especially in the <strong class=" ">Transformation</strong>, <strong class=" ">Content</strong>, and <strong class=" ">Map properties</strong> categories. Hover over a property to see its description.</p>
+</li><li class=" "><p>Click <strong class=" ">OK</strong>.</p>
+</li></ol><p>The page now displays a map with markers at the locations retrieved from the pages you specified in the Page data source web part. For example:</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880664/MapWithMarkersDataSource.png" alt="Basic Google maps web part displaying locations loaded from a connected Page data source" width="365" height="250">
 </p>
                     </div>
                 </div>
@@ -8880,8 +8804,8 @@ Either of these can use the Google maps or Bing maps service.    </span>
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8893,10 +8817,10 @@ Either of these can use the Google maps or Bing maps service.    </span>
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8915,9 +8839,6 @@ Either of these can use the Google maps or Bing maps service.    </span>
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8928,7 +8849,7 @@ Either of these can use the Google maps or Bing maps service.    </span>
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8939,5 +8860,6 @@ Either of these can use the Google maps or Bing maps service.    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

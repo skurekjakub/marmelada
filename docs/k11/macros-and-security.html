@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Macros and security - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881114"> <span>Macros and security</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,75 +8659,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Macros are an essential part of Kentico. You can read more about them in the <a   href="macro-expressions">Macro expressions</a> chapter. This page focuses on the security mechanisms and best practices related to macros.</p>
-    <h3 id="src-68881114_macrosandsecurity-signingmacros" class="heading "><span>Signing macros</span></h3>
-<p   
->Whenever a user saves a complex macro expression, the system automatically adds a security signature. This signature contains an <strong class=" ">identifier</strong> of the macro&#39;s author (the user name or an assigned macro identity) and a <strong class=" ">hash</strong> of the given expression.</p>
-<p   
->You can recognize signed macro expressions by the <strong class=" ">#</strong> character, which the system automatically inserts before the closing <strong class=" ">%}</strong> parentheses when saving the text containing the macro:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">{%CurrentSite.SiteID #%}</i></p>
-</li></ul><p   
->For illustration, a signed macro may look like this in the database:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">{%CurrentSite.SiteID|(user)administrator|(hash)9056b7b76629a47a660c40cc2e5b0d92a13d0f9bce178847ca412c3a585552a1%}<br/></i>&ndash; OR &ndash;</p>
-</li><li class=" "><p   
-><i class=" ">{%CurrentSite.SiteID|(identity)GlobalAdministrator|(hash)e3402fe14374ab15d119dddbb6c831ce3d2ef55bd8e70ce8eb80994f4e6ad18b%}</i><br/><br/></p>
-</li></ul><div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Macros are an essential part of Kentico. You can read more about them in the <a href="macro-expressions">Macro expressions</a> chapter. This page focuses on the security mechanisms and best practices related to macros.</p><h3 id="src-68881114_macrosandsecurity-signingmacros" class="heading "><span>Signing macros</span></h3><p>Whenever a user saves a complex macro expression, the system automatically adds a security signature. This signature contains an <strong class=" ">identifier</strong> of the macro's author (the user name or an assigned macro identity) and a <strong class=" ">hash</strong> of the given expression.</p><p>You can recognize signed macro expressions by the <strong class=" ">#</strong> character, which the system automatically inserts before the closing <strong class=" ">%}</strong> parentheses when saving the text containing the macro:</p><ul class=" "><li class=" "><p><i class=" ">{%CurrentSite.SiteID #%}</i></p>
+</li></ul><p>For illustration, a signed macro may look like this in the database:</p><ul class=" "><li class=" "><p><i class=" ">{%CurrentSite.SiteID|(user)administrator|(hash)9056b7b76629a47a660c40cc2e5b0d92a13d0f9bce178847ca412c3a585552a1%}<br></i>– OR –</p>
+</li><li class=" "><p><i class=" ">{%CurrentSite.SiteID|(identity)GlobalAdministrator|(hash)e3402fe14374ab15d119dddbb6c831ce3d2ef55bd8e70ce8eb80994f4e6ad18b%}</i><br><br></p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->Hashing is omitted when submitting very simple macros (e.g., {%FullName%}). Macros are signed only when they contain an indexer or a dot.</p>
+            <p>Hashing is omitted when submitting very simple macros (e.g., {%FullName%}). Macros are signed only when they contain an indexer or a dot.</p>
      
     </div>
-</div>
-<p   
->The system checks the macro signature when accessing an object through a different object (for example the user settings of a user object) and evaluates whether the user (identified by the signature) has <strong class=" ">permissions</strong> to execute the macro.</p>
-<p   
->The best practice is to use the least privilege approach &ndash; submit macros signed by a user who has access only to the required objects and nothing else.</p>
-    <div  class="confbox panel">
+</div><p>The system checks the macro signature when accessing an object through a different object (for example the user settings of a user object) and evaluates whether the user (identified by the signature) has <strong class=" ">permissions</strong> to execute the macro.</p><p>The best practice is to use the least privilege approach – submit macros signed by a user who has access only to the required objects and nothing else.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881114_macrosandsecurity-signingmacros">Signing macros</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881114_macrosandsecurity-sqlinjections">SQL injections</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881114_macrosandsecurity-sqlinjectionprotectioninwebpartproperties">SQL injection protection in web part properties</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881114_macrosandsecurity-sqlinjectionprotectionoutsideofwebpartproperties">SQL injection protection outside of web part properties</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68881114_macrosandsecurity-outputencodingofmacros">Output encoding of macros</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881114_macrosandsecurity-writingcustommacromethods">Writing custom macro methods</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881114_macrosandsecurity-unsafemacros">Unsafe macros</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881114_macrosandsecurity-signingmacros">Signing macros</a></p>
+</li><li class=" "><p><a href="#src-68881114_macrosandsecurity-sqlinjections">SQL injections</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881114_macrosandsecurity-sqlinjectionprotectioninwebpartproperties">SQL injection protection in web part properties</a></p>
+</li><li class=" "><p><a href="#src-68881114_macrosandsecurity-sqlinjectionprotectionoutsideofwebpartproperties">SQL injection protection outside of web part properties</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881114_macrosandsecurity-outputencodingofmacros">Output encoding of macros</a></p>
+</li><li class=" "><p><a href="#src-68881114_macrosandsecurity-writingcustommacromethods">Writing custom macro methods</a></p>
+</li><li class=" "><p><a href="#src-68881114_macrosandsecurity-unsafemacros">Unsafe macros</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="macro-expressions">Macro expressions</a></p>
+<ul class=" "><li class=" "><p><a href="macro-expressions">Macro expressions</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+    
+
+
+
+
+
+
+    
+    
     <h3 id="src-68881114_macrosandsecurity-sqlinjections" class="heading "><span>SQL injections</span></h3>
-<p   
->Macros can often become part of SQL queries, for example in <i class=" ">WhereCondition</i> and <i class=" ">OrderBy</i> fields of web part properties, which can lead to SQL injection vulnerability.</p>
+<p>Macros can often become part of SQL queries, for example in <i class=" ">WhereCondition</i> and <i class=" ">OrderBy</i> fields of web part properties, which can lead to SQL injection vulnerability.</p>
     <h4 id="src-68881114_macrosandsecurity-sqlinjectionprotectioninwebpartproperties" class="heading "><span>SQL injection protection in web part properties</span></h4>
-<p   
->Some web part properties are secured against SQL injection attacks, which may affect how macros are resolved in specific cases. By default, this is applied to macros entered into the <strong class=" ">WhereCondition</strong>, <strong class=" ">OrderBy</strong> and <strong class=" ">Columns</strong> web part properties.</p>
-<p   
->If the macro returns a string value that contains single quote characters (&#39;), they will be escaped and replaced by two single quotes (&#39;&#39;). This may cause an SQL syntax error if you are using the macro to dynamically insert a part of a query, such as a WHERE clause.</p>
-<p   
->It is possible to disable single quote escaping for a specific macro expression by adding the <strong class=" ">handlesqlinjection </strong>parameter and setting its value to <i class=" ">false</i>:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>Some web part properties are secured against SQL injection attacks, which may affect how macros are resolved in specific cases. By default, this is applied to macros entered into the <strong class=" ">WhereCondition</strong>, <strong class=" ">OrderBy</strong> and <strong class=" ">Columns</strong> web part properties.</p>
+<p>If the macro returns a string value that contains single quote characters ('), they will be escaped and replaced by two single quotes (''). This may cause an SQL syntax error if you are using the macro to dynamically insert a part of a query, such as a WHERE clause.</p>
+<p>It is possible to disable single quote escaping for a specific macro expression by adding the <strong class=" ">handlesqlinjection </strong>parameter and setting its value to <i class=" ">false</i>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8753,9 +8726,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->To disable SQL escaping globally for all properties of a specific type of web part, edit its code behind file (e.g. <i class=" ">~/CMSWebParts/Viewers/Documents/cmsrepeater.ascx.cs</i> for the <strong class=" ">Repeater</strong> web part) and add the following line of code into the <strong class=" ">SetupControl()</strong> method:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>To disable SQL escaping globally for all properties of a specific type of web part, edit its code behind file (e.g. <i class=" ">~/CMSWebParts/Viewers/Documents/cmsrepeater.ascx.cs</i> for the <strong class=" ">Repeater</strong> web part) and add the following line of code into the <strong class=" ">SetupControl()</strong> method:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8778,11 +8750,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The <strong class=" ">SQLProperties</strong> property is inherited from the <strong class=" ">CMSAbstractWebPart</strong> base class by all web parts, but you can override its value to set which properties the system protects.</p>
-<p   
->If you wish to enable SQL escaping for additional web part properties, enter their names into the SQLProperties value separated by semicolons, for example:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The <strong class=" ">SQLProperties</strong> property is inherited from the <strong class=" ">CMSAbstractWebPart</strong> base class by all web parts, but you can override its value to set which properties the system protects.</p>
+<p>If you wish to enable SQL escaping for additional web part properties, enter their names into the SQLProperties value separated by semicolons, for example:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8805,19 +8775,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->Disabling SQL protection may create security vulnerabilities if the macro resolves its value according to data that can be modified by the website&#39;s users, such as in the case of query string macros.</p>
+            <p>Disabling SQL protection may create security vulnerabilities if the macro resolves its value according to data that can be modified by the website's users, such as in the case of query string macros.</p>
      
     </div>
 </div>
     <h4 id="src-68881114_macrosandsecurity-sqlinjectionprotectionoutsideofwebpartproperties" class="heading "><span>SQL injection protection outside of web part properties</span></h4>
-<p   
->If you are using macros outside of web part properties or you have disabled SQL escaping, then you need to use the SQLEscape method to handle SQL macros.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>If you are using macros outside of web part properties or you have disabled SQL escaping, then you need to use the SQLEscape method to handle SQL macros.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8840,9 +8808,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->However, if you expect a different data type than string (for example an integer), you need to convert the macro to the correct data type. The SQLEscape method is useless in this case.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>However, if you expect a different data type than string (for example an integer), you need to convert the macro to the correct data type. The SQLEscape method is useless in this case.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8866,26 +8833,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h3 id="src-68881114_macrosandsecurity-outputencodingofmacros" class="heading "><span>Output encoding of macros</span></h3>
-<p   
->Macro encoding is an essential protection against XSS. You must encode output macros properly, unless you want to display some HTML code using the particular macro. There are several methods for encoding macros in Kentico:</p>
-<ul class=" "><li class=" "><p   
->{% UrlEncode(CurrentUser.FullName) %} &ndash; macro is encoded into the query URL.</p>
-</li><li class=" "><p   
->{% HTMLEncode(CurrentUser.FullName) %} &ndash; macro is a part of standard page output text and text between HTML tags.</p>
-</li><li class=" "><p   
->{% JSEscape(CurrentUser.FullName) %} &ndash; macro is a part of JS code.</p>
+<p>Macro encoding is an essential protection against XSS. You must encode output macros properly, unless you want to display some HTML code using the particular macro. There are several methods for encoding macros in Kentico:</p>
+<ul class=" "><li class=" "><p>{% UrlEncode(CurrentUser.FullName) %} – macro is encoded into the query URL.</p>
+</li><li class=" "><p>{% HTMLEncode(CurrentUser.FullName) %} – macro is a part of standard page output text and text between HTML tags.</p>
+</li><li class=" "><p>{% JSEscape(CurrentUser.FullName) %} – macro is a part of JS code.</p>
 </li></ul>    <h3 id="src-68881114_macrosandsecurity-writingcustommacromethods" class="heading "><span>Writing custom macro methods</span></h3>
-<p   
->When creating a <a   href="registering-custom-macro-methods">custom macro method</a>, you need to ensure security yourself. The macro engine cannot predict which data is accessed in the method, and thus cannot properly secure the method.</p>
+<p>When creating a <a href="registering-custom-macro-methods">custom macro method</a>, you need to ensure security yourself. The macro engine cannot predict which data is accessed in the method, and thus cannot properly secure the method.</p>
     <h3 id="src-68881114_macrosandsecurity-unsafemacros" class="heading "><span>Unsafe macros</span></h3>
-<p   
->Query macros, cookie macros and data macros (information from the database, e.g. user display name) and their equivalent properties can be potentially dangerous. When you use these macros, you have to secure them against SQL injection and XSS.</p>
-<div  class="box-general box-note">
+<p>Query macros, cookie macros and data macros (information from the database, e.g. user display name) and their equivalent properties can be potentially dangerous. When you use these macros, you have to secure them against SQL injection and XSS.</p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->It is NOT possible to gain access to user passwords using macros.</p>
+            <p>It is NOT possible to gain access to user passwords using macros.</p>
      
     </div>
 </div>
@@ -8899,8 +8859,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8912,10 +8872,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8934,9 +8894,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8947,7 +8904,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8958,5 +8915,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

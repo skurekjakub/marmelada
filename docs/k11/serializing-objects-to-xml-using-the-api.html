@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Serializing objects to XML using the API - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882144"> <span>Serializing objects to XML using the API</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,29 +8659,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The Kentico API provides a way to <a  class="external-link" href="http://en.wikipedia.org/wiki/Serialization">serialize</a> many types of objects from the database into XML data. You can use the serialized data to synchronize objects between multiple development instances, in combination with a custom source control system or continuous integration solution. The system ensures that the XML data of matching objects is always identical and consistent (including element and attribute order), even when serialized on different instances of Kentico.</p>
-<p   
->Serialization is supported for the object types listed on the <a   href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a> page.</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>The Kentico API provides a way to <a class="external-link" href="http://en.wikipedia.org/wiki/Serialization">serialize</a> many types of objects from the database into XML data. You can use the serialized data to synchronize objects between multiple development instances, in combination with a custom source control system or continuous integration solution. The system ensures that the XML data of matching objects is always identical and consistent (including element and attribute order), even when serialized on different instances of Kentico.</p><p>Serialization is supported for the object types listed on the <a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a> page.</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: Only use the serialization API when implementing a custom synchronization solution. If you are using the default <a   href="setting-up-continuous-integration">Kentico continuous integration solution</a>, you do not need to write any custom code.</p>
+            <p><strong class=" ">Note</strong>: Only use the serialization API when implementing a custom synchronization solution. If you are using the default <a href="setting-up-continuous-integration">Kentico continuous integration solution</a>, you do not need to write any custom code.</p>
      
     </div>
-</div>
-    <h3 id="src-68882144_serializingobjectstoxmlusingtheapi-gettingtheserializedxmldataforobjects" class="heading "><span>Getting the serialized XML data for objects</span></h3>
-<p   
->To get the serialized XML data of Kentico objects:</p>
-<ol class=" "><li class=" "><p   
->Prepare a <i class=" ">BaseInfo (WebPartInfo, PageTemplateInfo</i> etc.) instance representing the object.</p>
-</li><li class=" "><p   
->Call the <strong class=" ">Serialize</strong> extension method of the <i class=" ">BaseInfo</i> object (provided within the <strong class=" ">CMS.DataEngine.Serialization</strong> library).</p>
-</li></ol><p   
->The <i class=" ">Serialize</i> method returns an <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlelement%28v=vs.100%29.aspx">XmlElement</a>.</p>
-<div  class="code panel pdl js-codePanel" >
+</div><h3 id="src-68882144_serializingobjectstoxmlusingtheapi-gettingtheserializedxmldataforobjects" class="heading "><span>Getting the serialized XML data for objects</span></h3><p>To get the serialized XML data of Kentico objects:</p><ol class=" "><li class=" "><p>Prepare a <i class=" ">BaseInfo (WebPartInfo, PageTemplateInfo</i> etc.) instance representing the object.</p>
+</li><li class=" "><p>Call the <strong class=" ">Serialize</strong> extension method of the <i class=" ">BaseInfo</i> object (provided within the <strong class=" ">CMS.DataEngine.Serialization</strong> library).</p>
+</li></ol><p>The <i class=" ">Serialize</i> method returns an <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlelement%28v=vs.100%29.aspx">XmlElement</a>.</p><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example - Serializing a web part</strong>    </div>
@@ -8705,61 +8689,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Xml;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine.Serialization;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.PortalEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets a web part object                </code></div>
 <div class="line"><code class="plain">WebPartInfo webPartObject = WebPartInfoProvider.GetWebPartInfo(</code><code class="string">"repeater"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Creates an XmlElement containing the serialized data of the object</code></div>
 <div class="line"><code class="plain">XmlElement objectElement = webPartObject.Serialize();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets the serialized object data as an XmlDocument</code></div>
 <div class="line"><code class="plain">XmlDocument xmlDoc = objectElement.OwnerDocument;</code></div>
 </div>
     </code></pre>
   </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882144_serializingobjectstoxmlusingtheapi-gettingtheserializedxmldataforobjects">Getting the serialized XML data for objects</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882144_serializingobjectstoxmlusingtheapi-deserializingxmldataintoobjects">Deserializing XML data into objects</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882144_serializingobjectstoxmlusingtheapi-serializingallobjectstothefilesystem">Serializing all objects to the file system</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882144_serializingobjectstoxmlusingtheapi-restoringobjectsfromthefilesystem">Restoring objects from the file system</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882144_serializingobjectstoxmlusingtheapi-gettingtheserializedxmldataforobjects">Getting the serialized XML data for objects</a></p>
+</li><li class=" "><p><a href="#src-68882144_serializingobjectstoxmlusingtheapi-deserializingxmldataintoobjects">Deserializing XML data into objects</a></p>
+</li><li class=" "><p><a href="#src-68882144_serializingobjectstoxmlusingtheapi-serializingallobjectstothefilesystem">Serializing all objects to the file system</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882144_serializingobjectstoxmlusingtheapi-restoringobjectsfromthefilesystem">Restoring objects from the file system</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="setting-up-continuous-integration">Setting up continuous integration</a></p>
-</li><li class=" "><p   
-><a   href="continuous-integration-repository-structure">Continuous integration repository structure</a></p>
-</li><li class=" "><p   
-><a   href="database-table-api">Database table API</a></p>
+<ul class=" "><li class=" "><p><a href="setting-up-continuous-integration">Setting up continuous integration</a></p>
+</li><li class=" "><p><a href="continuous-integration-repository-structure">Continuous integration repository structure</a></p>
+</li><li class=" "><p><a href="database-table-api">Database table API</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+
+
+
+    
+    
     <h3 id="src-68882144_serializingobjectstoxmlusingtheapi-deserializingxmldataintoobjects" class="heading "><span>Deserializing XML data into objects</span></h3>
-<p   
->The API provides a way to deserialize XML data back into Kentico objects:</p>
-<ol class=" "><li class=" "><p   
->Read the XML data as an <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmldocument%28v=vs.100%29.aspx">XmlDocument</a> from the file system (or another source).</p>
-</li><li class=" "><p   
->Get the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlelement%28v=vs.100%29.aspx">XmlElement</a> representing the given object from the <i class=" ">XmlDocument</i> (typically the root element).</p>
-</li><li class=" "><p   
->Call the <strong class=" ">Deserialize</strong> extension method of the <i class=" ">XmlElement</i> (provided within the <strong class=" ">CMS.DataEngine.Serialization</strong> library).</p>
-</li></ol><p   
->The <i class=" ">Deserialize</i> method returns a <strong class=" ">DeserializationResult</strong> object, which you can convert to a specific Info object type <i class=" ">(WebPartInfo, PageTemplateInfo,</i> etc.) or a general <i class=" ">BaseInfo.</i> You can then work with the <i class=" ">Info</i> object in any way. For example, use the corresponding <i class=" ">InfoProvider</i> class to save the deserialized object into the application&#39;s database.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The API provides a way to deserialize XML data back into Kentico objects:</p>
+<ol class=" "><li class=" "><p>Read the XML data as an <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmldocument%28v=vs.100%29.aspx">XmlDocument</a> from the file system (or another source).</p>
+</li><li class=" "><p>Get the <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlelement%28v=vs.100%29.aspx">XmlElement</a> representing the given object from the <i class=" ">XmlDocument</i> (typically the root element).</p>
+</li><li class=" "><p>Call the <strong class=" ">Deserialize</strong> extension method of the <i class=" ">XmlElement</i> (provided within the <strong class=" ">CMS.DataEngine.Serialization</strong> library).</p>
+</li></ol><p>The <i class=" ">Deserialize</i> method returns a <strong class=" ">DeserializationResult</strong> object, which you can convert to a specific Info object type <i class=" ">(WebPartInfo, PageTemplateInfo,</i> etc.) or a general <i class=" ">BaseInfo.</i> You can then work with the <i class=" ">Info</i> object in any way. For example, use the corresponding <i class=" ">InfoProvider</i> class to save the deserialized object into the application's database.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example - Deserializing a web part</strong>    </div>
@@ -8781,51 +8757,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine.Serialization;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.PortalEngine;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Prepare an XmlDocument containing the serialized data of a web part</code></div>
 <div class="line"><code class="plain">XmlDocument xmlDoc = ... ;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Gets the root XmlElement of the XmlDocument</code></div>
 <div class="line"><code class="plain">XmlElement xmlElement = xmlDoc.DocumentElement;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Deserializes the XML data into a WebPartInfo object</code></div>
 <div class="line"><code class="plain">DeserializationResult result = xmlElement.Deserialize();</code></div>
 <div class="line"><code class="plain">WebPartInfo webPart = (WebPartInfo)result;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Saves the deserialized web part into the database</code></div>
 <div class="line"><code class="plain">WebPartInfoProvider.SetWebPartInfo(webPart);</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">IDs of deserialized objects</strong></p>
-<p   
->When deserializing XML data, the system automatically checks whether the given object already exists in the database (based on the code name or GUID values). If yes, the <i class=" ">Deserialize</i> method sets the appropriate object ID when creating the <i class=" ">DeserializationResult</i>. Saving the deserialized object into the database then updates the existing object instead of creating a new one.</p>
+            <p><strong class=" ">IDs of deserialized objects</strong></p>
+<p>When deserializing XML data, the system automatically checks whether the given object already exists in the database (based on the code name or GUID values). If yes, the <i class=" ">Deserialize</i> method sets the appropriate object ID when creating the <i class=" ">DeserializationResult</i>. Saving the deserialized object into the database then updates the existing object instead of creating a new one.</p>
      
     </div>
 </div>
     <h3 id="src-68882144_serializingobjectstoxmlusingtheapi-serializingallobjectstothefilesystem" class="heading "><span>Serializing all objects to the file system</span></h3>
-<p   
->You can call the API of the <a   href="setting-up-continuous-integration">Kentico continuous integration solution</a> to serialize all objects of the supported types directly to the file system.</p>
-<p   
->Call the <strong class=" ">StoreAll</strong> static method of the <strong class=" ">CMS.ContinuousIntegration.FileSystemRepositoryManager</strong> class. The method returns a <strong class=" ">RepositoryActionResult</strong> object, which you can use to verify the success of the operation and process any errors that occurred.</p>
-<div  class="box-general box-info">
+<p>You can call the API of the <a href="setting-up-continuous-integration">Kentico continuous integration solution</a> to serialize all objects of the supported types directly to the file system.</p>
+<p>Call the <strong class=" ">StoreAll</strong> static method of the <strong class=" ">CMS.ContinuousIntegration.FileSystemRepositoryManager</strong> class. The method returns a <strong class=" ">RepositoryActionResult</strong> object, which you can use to verify the success of the operation and process any errors that occurred.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: The <i class=" ">StoreAll</i> method may have a long run time, depending on the number of objects in your database.</p>
+            <p><strong class=" ">Note</strong>: The <i class=" ">StoreAll</i> method may have a long run time, depending on the number of objects in your database.</p>
      
     </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8844,15 +8815,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ContinuousIntegration;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Serializes all supported objects to the file system</code></div>
 <div class="line"><code class="plain">RepositoryActionResult result = FileSystemRepositoryManager.StoreAll((logItem) =&gt;</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Optionally create a progress log by processing the 'logItem.Message' strings </code></div>
 <div class="line"><code class="plain">});</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Checks whether the serialization process was successful</code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (!result.Success)</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -8865,42 +8836,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The <i class=" ">StoreAll</i> method creates XML files containing the serialized data of objects in the project&#39;s <strong class=" ">CMS\App_Data\CIRepository</strong> folder. You need to ensure that the <strong class=" ">CIRepository</strong> folder is included in your source control system.</p>
-<p   
->For details about the file system structure, see <a   href="continuous-integration-repository-structure">Continuous integration repository structure</a>.</p>
+<p>The <i class=" ">StoreAll</i> method creates XML files containing the serialized data of objects in the project's <strong class=" ">CMS\App_Data\CIRepository</strong> folder. You need to ensure that the <strong class=" ">CIRepository</strong> folder is included in your source control system.</p>
+<p>For details about the file system structure, see <a href="continuous-integration-repository-structure">Continuous integration repository structure</a>.</p>
     <h4 id="src-68882144_serializingobjectstoxmlusingtheapi-restoringobjectsfromthefilesystem" class="heading "><span>Restoring objects from the file system</span></h4>
-<p   
->When developing websites in a team, you may often need to load the serialized XML data of objects from a source control system or another developer.</p>
-<p   
->You can restore the data from the XML files in the project&#39;s <strong class=" ">CIRepository</strong> folder using the <strong class=" ">ContinuousIntegration.exe</strong> command line utility available in the Kentico project&#39;s <strong class=" ">CMS\bin</strong> folder. The utility deserializes the objects stored in the project&#39;s <i class=" ">CIRepository</i> folder and creates, overwrites or removes corresponding data in the given project&#39;s database. See <a   href="restoring-continuous-integration-files-to-the-database">Restoring continuous integration files to the database</a> for details.</p>
-<div  class="box-general box-note">
+<p>When developing websites in a team, you may often need to load the serialized XML data of objects from a source control system or another developer.</p>
+<p>You can restore the data from the XML files in the project's <strong class=" ">CIRepository</strong> folder using the <strong class=" ">ContinuousIntegration.exe</strong> command line utility available in the Kentico project's <strong class=" ">CMS\bin</strong> folder. The utility deserializes the objects stored in the project's <i class=" ">CIRepository</i> folder and creates, overwrites or removes corresponding data in the given project's database. See <a href="restoring-continuous-integration-files-to-the-database">Restoring continuous integration files to the database</a> for details.</p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Warning</strong>: The restore operation <i class=" "><strong class=" ">deletes</strong></i> all objects of the supported types that do not exist as files in the repository. Only restore if you are sure that the <i class=" ">CIRepository</i> folder contains the required state of your object data. We also recommend creating regular backups of your database.</p>
+            <p><strong class=" ">Warning</strong>: The restore operation <i class=" "><strong class=" ">deletes</strong></i> all objects of the supported types that do not exist as files in the repository. Only restore if you are sure that the <i class=" ">CIRepository</i> folder contains the required state of your object data. We also recommend creating regular backups of your database.</p>
      
     </div>
 </div>
-<p   
->If you wish to implement a custom solution for restoring objects to the database, use the Kentico API.</p>
-<p   
->Call the <strong class=" ">RestoreAll</strong> static method of the <strong class=" ">CMS.ContinuousIntegration.FileSystemRepositoryManager</strong> class. The method returns a <strong class=" ">RepositoryActionResult</strong> object, which you can use to verify the success of the operation and process any errors that occurred.</p>
-<div  class="box-general box-info">
+<p>If you wish to implement a custom solution for restoring objects to the database, use the Kentico API.</p>
+<p>Call the <strong class=" ">RestoreAll</strong> static method of the <strong class=" ">CMS.ContinuousIntegration.FileSystemRepositoryManager</strong> class. The method returns a <strong class=" ">RepositoryActionResult</strong> object, which you can use to verify the success of the operation and process any errors that occurred.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Notes</strong></p>
-<ul class=" "><li class=" "><p   
->To avoid potential collisions in the <i class=" ">CIRepository</i> folder, we strongly recommend calling the restore API from an external application while the main Kentico application is not running. For example, you can create a custom console application for this purpose (see <a   href="using-the-kentico-api-externally">Using the Kentico API externally</a>).<br/><br/></p>
-</li><li class=" "><p   
->The <i class=" ">RestoreAll</i> method may have a long run time, depending on the number of objects in your file system repository.</p>
+            <p><strong class=" ">Notes</strong></p>
+<ul class=" "><li class=" "><p>To avoid potential collisions in the <i class=" ">CIRepository</i> folder, we strongly recommend calling the restore API from an external application while the main Kentico application is not running. For example, you can create a custom console application for this purpose (see <a href="using-the-kentico-api-externally">Using the Kentico API externally</a>).<br><br></p>
+</li><li class=" "><p>The <i class=" ">RestoreAll</i> method may have a long run time, depending on the number of objects in your file system repository.</p>
 </li></ul>     
     </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8920,11 +8881,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.ContinuousIntegration;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">RepositoryActionResult result;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Disables automatic processing of new smart search indexing tasks during the restore operation to prevent potential conflicts</code></div>
 <div class="line"><code class="comments">// Indexing tasks are still created, but processed after the restore is finished</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> (</code><code class="keyword">new</code><code class="plain"> CMSActionContext { EnableSmartSearchIndexer = </code><code class="keyword">false</code><code class="plain"> })</code></div>
@@ -8936,7 +8897,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		</code><code class="comments">// Optionally create a progress log by processing the 'logItem.Message' strings </code></div>
 <div class="line"><code class="plain">	});</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Checks whether the restoring process was successful        </code></div>
 <div class="line"><code class="keyword">if</code><code class="plain"> (!result.Success)</code></div>
 <div class="line"><code class="plain">{</code></div>
@@ -8959,8 +8920,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8972,10 +8933,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8994,9 +8955,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9007,7 +8965,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9018,5 +8976,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

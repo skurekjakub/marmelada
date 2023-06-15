@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating custom SQL search providers - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882172"> <span>Creating custom SQL search providers</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,98 +8659,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Kentico allows you to write your own SQL search provider, which you can use to integrate a third-party search engine. You can also create a custom search provider if you need to modify or filter search results returned by the standard search engine.</p>
-<p   
->You cannot customize the search provider in the App_Code folder. The modifications must be added as part of a new assembly, which you then need to register via the <strong class=" ">CMSSearchProviderAssembly</strong> web.config key.</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Kentico allows you to write your own SQL search provider, which you can use to integrate a third-party search engine. You can also create a custom search provider if you need to modify or filter search results returned by the standard search engine.</p><p>You cannot customize the search provider in the App_Code folder. The modifications must be added as part of a new assembly, which you then need to register via the <strong class=" ">CMSSearchProviderAssembly</strong> web.config key.</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->This provider only affects the SQL Search engine. The Smart Search engine remains unchanged.</p>
-<p   
->To modify the smart search, <a   href="creating-custom-smart-search-indexes">create and use custom search indexes</a>.</p>
+            <p>This provider only affects the SQL Search engine. The Smart Search engine remains unchanged.</p>
+<p>To modify the smart search, <a href="creating-custom-smart-search-indexes">create and use custom search indexes</a>.</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882172_creatingcustomsqlsearchproviders-addingthecustomsearchproviderassembly">Adding the custom search provider assembly</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882172_creatingcustomsqlsearchproviders-modifyingthesearchproviderclass">Modifying the search provider class</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882172_creatingcustomsqlsearchproviders-registeringthecustomsearchprovider">Registering the custom search provider</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882172_creatingcustomsqlsearchproviders-result">Result</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882172_creatingcustomsqlsearchproviders-addingthecustomsearchproviderassembly">Adding the custom search provider assembly</a></p>
+</li><li class=" "><p><a href="#src-68882172_creatingcustomsqlsearchproviders-modifyingthesearchproviderclass">Modifying the search provider class</a></p>
+</li><li class=" "><p><a href="#src-68882172_creatingcustomsqlsearchproviders-registeringthecustomsearchprovider">Registering the custom search provider</a></p>
+</li><li class=" "><p><a href="#src-68882172_creatingcustomsqlsearchproviders-result">Result</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="sql-search">SQL search</a></p>
+<ul class=" "><li class=" "><p><a href="sql-search">SQL search</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+    
     <h3 id="src-68882172_creatingcustomsqlsearchproviders-addingthecustomsearchproviderassembly" class="heading "><span>Adding the custom search provider assembly</span></h3>
-<p   
->The following example demonstrates how to customize the SQL search provider so that it only searches a limited section of the website.</p>
-<ol class="conf-macro output-inline "><li class=" "><p   
->Open your Kentico solution in Visual Studio.</p>
-</li><li class=" "><p   
->Add a new <strong class=" ">Class Library</strong> project to the Kentico solution, for example named <i class=" ">CustomSearchProvider</i>.</p>
-</li><li class=" "><p   
->Add references to the required Kentico libraries (DLLs) for the new project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add references to the following libraries:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMS.Base.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Core.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.DataEngine.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Helpers.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.Search.dll</strong></p>
-</li><li class=" "><p   
-><strong class=" ">CMS.SearchProviderSQL.dll</strong></p>
-</li></ul></li></ol></li><li class=" "><p   
->Reference the <i class=" ">CustomSearchProvider</i> project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
-</li><li class=" "><p   
->Open your Kentico program files directory (by default <i class=" ">C:\Program Files\Kentico\&lt;version&gt;</i>) and expand the <i class=" ">CodeSamples\CustomizationSamples\CustomSearchProvider</i> subfolder.</p>
-</li><li class=" "><p   
->Copy the <strong class=" ">SearchProvider.cs</strong> file into the <i class=" ">CustomSearchProvider</i> directory in your web project<strong class=" ">.</strong></p>
-</li><li class=" "><p   
->Include the new file into the <i class=" ">CustomSearchProvider</i> project in Visual Studio:</p>
-<ol class="conf-macro output-inline "><li class=" "><p   
->Expand the <i class=" ">CustomSearchProvider</i> project in the Solution Explorer.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
-</li><li class=" "><p   
->Right-click the <i class=" ">SearchProvider.cs</i> file and select <strong class=" ">Include in Project</strong>.</p>
-</li></ol></li><li class=" "><p   
->Edit the <i class=" ">SearchProvider</i> class and rename the namespace to <strong class=" ">exactly</strong> match the assembly name of your custom project (<i class=" ">CustomSearchProvider</i> in this example).</p>
-</li><li class=" "><p   
->Build the <strong class=" ">CustomSearchProvider</strong> project (Build the entire solution on web application projects).</p>
-</li></ol><p   
->The CustomSearchProvider project is now integrated into your application.</p>
+<p>The following example demonstrates how to customize the SQL search provider so that it only searches a limited section of the website.</p>
+<ol class="conf-macro output-inline "><li class=" "><p>Open your Kentico solution in Visual Studio.</p>
+</li><li class=" "><p>Add a new <strong class=" ">Class Library</strong> project to the Kentico solution, for example named <i class=" ">CustomSearchProvider</i>.</p>
+</li><li class=" "><p>Add references to the required Kentico libraries (DLLs) for the new project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Select the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add references to the following libraries:</p>
+<ul class=" "><li class=" "><p><strong class=" ">CMS.Base.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Core.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.DataEngine.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Helpers.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.Search.dll</strong></p>
+</li><li class=" "><p><strong class=" ">CMS.SearchProviderSQL.dll</strong></p>
+</li></ul></li></ol></li><li class=" "><p>Reference the <i class=" ">CustomSearchProvider</i> project from the Kentico web project <i class=" ">(CMSApp</i> or <i class=" ">CMS)</i>.</p>
+</li><li class=" "><p>Open your Kentico program files directory (by default <i class=" ">C:\Program Files\Kentico\&lt;version&gt;</i>) and expand the <i class=" ">CodeSamples\CustomizationSamples\CustomSearchProvider</i> subfolder.</p>
+</li><li class=" "><p>Copy the <strong class=" ">SearchProvider.cs</strong> file into the <i class=" ">CustomSearchProvider</i> directory in your web project<strong class=" ">.</strong></p>
+</li><li class=" "><p>Include the new file into the <i class=" ">CustomSearchProvider</i> project in Visual Studio:</p>
+<ol class="conf-macro output-inline "><li class=" "><p>Expand the <i class=" ">CustomSearchProvider</i> project in the Solution Explorer.</p>
+</li><li class=" "><p>Click <strong class=" ">Show all files</strong> at the top of the Solution Explorer.</p>
+</li><li class=" "><p>Right-click the <i class=" ">SearchProvider.cs</i> file and select <strong class=" ">Include in Project</strong>.</p>
+</li></ol></li><li class=" "><p>Edit the <i class=" ">SearchProvider</i> class and rename the namespace to <strong class=" ">exactly</strong> match the assembly name of your custom project (<i class=" ">CustomSearchProvider</i> in this example).</p>
+</li><li class=" "><p>Build the <strong class=" ">CustomSearchProvider</strong> project (Build the entire solution on web application projects).</p>
+</li></ol><p>The CustomSearchProvider project is now integrated into your application.</p>
     <h3 id="src-68882172_creatingcustomsqlsearchproviders-modifyingthesearchproviderclass" class="heading "><span>Modifying the search provider class</span></h3>
-<ol class=" "><li class=" "><p   
->Edit the <strong class=" ">SearchProvider.cs</strong> class in the <strong class=" ">CustomSearchProvider</strong> project.</p>
-</li><li class=" "><p   
->Modify the code of the <strong class=" ">Search</strong> method according to the following:</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Edit the <strong class=" ">SearchProvider.cs</strong> class in the <strong class=" ">CustomSearchProvider</strong> project.</p>
+</li><li class=" "><p>Modify the code of the <strong class=" ">Search</strong> method according to the following:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8775,30 +8736,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Limits the search path to only the /Products section of the website</code></div>
 <div class="line"><code class="plain">	searchNodePath = </code><code class="string">"/Products/%"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Gets a new instance of the SQL SearchProvider</code></div>
 <div class="line"><code class="plain">	CMS.SearchProviderSQL.SearchProvider limitedSearchProvider = </code><code class="keyword">new</code><code class="plain"> CMS.SearchProviderSQL.SearchProvider();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Gets the search result dataset based on the parameters of the Search method and the limited search path</code></div>
 <div class="line"><code class="plain">   </code></div>
 <div class="line"><code class="plain">	DataSet searchResults = limitedSearchProvider.Search(siteName, searchNodePath, cultureCode, searchExpression, searchMode, searchChildNodes, classNames, filterResultsByReadPermission, searchOnlyPublished, whereCondition, orderBy, combineWithDefaultCulture);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> searchResults;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<p   
->3. Save the file and <strong class=" ">Rebuild</strong> the CustomSearchProvider project.</p>
-</li></ol><p   
->In real customization scenarios, you can modify the <strong class=" ">Search</strong> method to behave according to any requirements. The method must always return a DataSet containing the search results.</p>
+<p>3. Save the file and <strong class=" ">Rebuild</strong> the CustomSearchProvider project.</p>
+</li></ol><p>In real customization scenarios, you can modify the <strong class=" ">Search</strong> method to behave according to any requirements. The method must always return a DataSet containing the search results.</p>
     <h3 id="src-68882172_creatingcustomsqlsearchproviders-registeringthecustomsearchprovider" class="heading "><span>Registering the custom search provider</span></h3>
-<ol class=" "><li class=" "><p   
->Edit your application&#39;s web.config file.</p>
-</li><li class=" "><p   
->Add the following key to the configuration/appSettings section:</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Edit your application's web.config file.</p>
+</li><li class=" "><p>Add the following key to the configuration/appSettings section:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8821,19 +8778,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li></ol><p   
->The system loads the <strong class=" ">SearchProvider</strong> class from the assembly specified as the value of the <strong class=" ">CMSSearchProviderAssembly</strong> key.</p>
+</li></ol><p>The system loads the <strong class=" ">SearchProvider</strong> class from the assembly specified as the value of the <strong class=" ">CMSSearchProviderAssembly</strong> key.</p>
     <h3 id="src-68882172_creatingcustomsqlsearchproviders-result" class="heading "><span>Result</span></h3>
-<p   
->To try out the customized search engine, open the live website and search for text using the SQL Search engine. For example, you can use the<strong class=" "> Examples -&gt; Web Parts -&gt; Full&#8209;Text Search -&gt; SQL Search -&gt; SQL Search dialog with results</strong> page on the sample Corporate site.</p>
-<p   
->The search now only returns results from the /Products section of the website.</p>
-<div  class="box-general box-tip">
+<p>To try out the customized search engine, open the live website and search for text using the SQL Search engine. For example, you can use the<strong class=" "> Examples -&gt; Web Parts -&gt; Full‑Text Search -&gt; SQL Search -&gt; SQL Search dialog with results</strong> page on the sample Corporate site.</p>
+<p>The search now only returns results from the /Products section of the website.</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->This customization example is purely demonstrative. If you need to change the search path, directly set the Path property of individual SQL search web parts or controls.</p>
+            <p>This customization example is purely demonstrative. If you need to change the search path, directly set the Path property of individual SQL search web parts or controls.</p>
      
     </div>
 </div>
@@ -8847,8 +8800,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8860,10 +8813,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8882,9 +8835,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8895,7 +8845,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8906,5 +8856,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

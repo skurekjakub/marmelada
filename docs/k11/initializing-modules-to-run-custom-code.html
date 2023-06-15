@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Initializing modules to run custom code - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882228"> <span>Initializing modules to run custom code</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,66 +8659,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can modify the behavior of the Kentico application by registering a <a   href="creating-custom-modules">custom module</a> and executing code during its initialization:</p>
-<div  class="box-general box-tip">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>You can modify the behavior of the Kentico application by registering a <a href="creating-custom-modules">custom module</a> and executing code during its initialization:</p><div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Tip</strong>: If you only wish to run custom initialization code without developing a complete module, you can register &quot;code-only&quot; modules. You do not need to create a matching module object within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
+            <p><strong class=" ">Tip</strong>: If you only wish to run custom initialization code without developing a complete module, you can register "code-only" modules. You do not need to create a matching module object within the <strong class=" ">Modules</strong> application in the Kentico administration interface.</p>
      
     </div>
-</div>
-<ol class=" "><li class=" "><p   
->Open your project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a class in the module&#39;s code folder, for example <i class=" ">~/App_Code/CMSModules/CompanyOverview</i>.</p>
-<div  class="box-general box-info">
+</div><ol class=" "><li class=" "><p>Open your project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a class in the module's code folder, for example <i class=" ">~/App_Code/CMSModules/CompanyOverview</i>.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->If your module uses a separate assembly, add the module class into the corresponding project.</p>
-<p   
->Keep in mind that the code of your custom assembly project must contain the <strong class=" ">[assembly: AssemblyDiscoverable]</strong> attribute (the recommended location is in the <i class=" ">Properties/AssemblyInfo.cs</i> file). To use the attribute, your assembly&#39;s project must contain a reference to the <i class=" ">CMS.Core.dll</i> library.</p>
+            <p>If your module uses a separate assembly, add the module class into the corresponding project.</p>
+<p>Keep in mind that the code of your custom assembly project must contain the <strong class=" ">[assembly: AssemblyDiscoverable]</strong> attribute (the recommended location is in the <i class=" ">Properties/AssemblyInfo.cs</i> file). To use the attribute, your assembly's project must contain a reference to the <i class=" ">CMS.Core.dll</i> library.</p>
      
     </div>
 </div>
-</li><li class=" "><p   
->Make the module class inherit from <strong class=" ">CMS.DataEngine.Module</strong>.</p>
-</li><li class=" "><p   
->Define the constructor of the module class:</p>
-<ul class=" "><li class=" "><p   
->Inherit from the base constructor</p>
-</li><li class=" "><p   
->Enter the code name of the module as the base constructor parameter (for code-only modules, the value can be any string except for the names of existing modules)</p>
-</li><li class=" "><p   
->If you are developing a <a   href="creating-installation-packages-for-modules">module with installation package support</a>, you need to set the optional second parameter <i class=" ">(isInstallable)</i> to <i class=" "><strong class=" ">true</strong></i><br/><br/></p>
-</li></ul></li><li class=" "><p   
->Register the module class using the <strong class=" ">RegisterModule</strong> assembly attribute.</p>
-</li><li class=" "><p   
->Implement your custom functionality inside the module class.</p>
-</li></ol>    <div  class="confbox panel">
+</li><li class=" "><p>Make the module class inherit from <strong class=" ">CMS.DataEngine.Module</strong>.</p>
+</li><li class=" "><p>Define the constructor of the module class:</p>
+<ul class=" "><li class=" "><p>Inherit from the base constructor</p>
+</li><li class=" "><p>Enter the code name of the module as the base constructor parameter (for code-only modules, the value can be any string except for the names of existing modules)</p>
+</li><li class=" "><p>If you are developing a <a href="creating-installation-packages-for-modules">module with installation package support</a>, you need to set the optional second parameter <i class=" ">(isInstallable)</i> to <i class=" "><strong class=" ">true</strong></i><br><br></p>
+</li></ul></li><li class=" "><p>Register the module class using the <strong class=" ">RegisterModule</strong> assembly attribute.</p>
+</li><li class=" "><p>Implement your custom functionality inside the module class.</p>
+</li></ol><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="creating-custom-modules">Creating custom modules</a></p>
-</li><li class=" "><p   
-><a   href="handling-global-events">Handling global events</a></p>
+<ul class=" "><li class=" "><p><a href="creating-custom-modules">Creating custom modules</a></p>
+</li><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
 </li></ul>        </div>
-    </div>
-<p   
->You can achieve most customizations by running code during the initialization of the module &ndash; override the following methods:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">OnInit (recommended)</strong> - the system executes the code during the initialization (start) of the application. A typical example of <i class=" ">OnInit</i> code is assigning handler methods to system events.</p>
-</li><li class=" "><p   
-><strong class=" ">OnPreInit</strong> - the system executes the code before <i class=" ">OnInit.</i> Does <i class=" ">not</i> support any operations that require access to the database, such as working with the data of modules. For example, you can use <i class=" ">OnPreInit</i> to register custom implementations of interfaces.</p>
-</li></ul><p   
->Because you cannot manually set the initialization order of modules or define dependencies between modules, we do not recommend working with the data of other modules directly inside the <i class=" ">OnInit</i> method<i class=" ">.</i> The best approach is to <a   href="handling-global-events">assign handlers to system events</a>, and perform the actual operations inside the handler methods. For general code that is not related to a specific system event, you can use the <strong class=" ">ApplicationEvents.Initialized.Execute</strong> event, which occurs after all modules in the system are initialized.</p>
-<p   
->For example, the following code extends the sample <i class=" ">Company overview</i> module from the <a   href="creating-custom-modules">Creating custom modules</a> page. The example uses event handling to log an entry in the system&#39;s <a   href="working-with-the-system-event-log">Event log</a> whenever a new office is created.</p>
-<div  class="code panel pdl js-codePanel" >
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+    
+<p>You can achieve most customizations by running code during the initialization of the module – override the following methods:</p>
+<ul class=" "><li class=" "><p><strong class=" ">OnInit (recommended)</strong> - the system executes the code during the initialization (start) of the application. A typical example of <i class=" ">OnInit</i> code is assigning handler methods to system events.</p>
+</li><li class=" "><p><strong class=" ">OnPreInit</strong> - the system executes the code before <i class=" ">OnInit.</i> Does <i class=" ">not</i> support any operations that require access to the database, such as working with the data of modules. For example, you can use <i class=" ">OnPreInit</i> to register custom implementations of interfaces.</p>
+</li></ul><p>Because you cannot manually set the initialization order of modules or define dependencies between modules, we do not recommend working with the data of other modules directly inside the <i class=" ">OnInit</i> method<i class=" ">.</i> The best approach is to <a href="handling-global-events">assign handlers to system events</a>, and perform the actual operations inside the handler methods. For general code that is not related to a specific system event, you can use the <strong class=" ">ApplicationEvents.Initialized.Execute</strong> event, which occurs after all modules in the system are initialized.</p>
+<p>For example, the following code extends the sample <i class=" ">Company overview</i> module from the <a href="creating-custom-modules">Creating custom modules</a> page. The example uses event handling to log an entry in the system's <a href="working-with-the-system-event-log">Event log</a> whenever a new office is created.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Example</strong>    </div>
@@ -8742,9 +8719,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.EventLog;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CompanyOverviewModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CompanyOverviewModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, inherits from the base constructor with the code name of the module as the parameter</code></div>
@@ -8752,16 +8729,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CompanyOverview"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Initializes the module. Called when the application starts.</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the Insert.After event for OfficeInfo objects</code></div>
 <div class="line"><code class="plain">		CompanyOverview.OfficeInfo.TYPEINFO.Events.Insert.After += Office_InsertAfter;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Office_InsertAfter(</code><code class="keyword">object</code><code class="plain"> sender, ObjectEventArgs e)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Logs an information entry into the system's event log whenever a new office is created</code></div>
@@ -8783,8 +8760,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8796,10 +8773,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8818,9 +8795,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8831,7 +8805,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8842,5 +8816,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

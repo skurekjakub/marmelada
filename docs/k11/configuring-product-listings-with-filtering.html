@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Configuring product listings with filtering - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881200"> <span>Configuring product listings with filtering</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,353 +8660,227 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When displaying <a   href="products">products</a> on your <a   href="managing-sites">site</a>, you may want to provide product filters to your <a   href="customers">customers</a>, i.e. so-called <strong class=" ">faceted search</strong>. For example, you may want to let your customers to filter products according to name, price ranges, stock availability, etc. You may also want your customers to be able to sort the products by their price.</p>
-<p   
->In Kentico, you can create product filters using the <a   href="setting-up-search-on-your-website">smart search</a> functionality.<br/></p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881200/product_filter.png" 
-        alt="Possible product filter appearance"        
-                 />
-</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When displaying <a href="products">products</a> on your <a href="managing-sites">site</a>, you may want to provide product filters to your <a href="customers">customers</a>, i.e. so-called <strong class=" ">faceted search</strong>. For example, you may want to let your customers to filter products according to name, price ranges, stock availability, etc. You may also want your customers to be able to sort the products by their price.</p><p>In Kentico, you can create product filters using the <a href="setting-up-search-on-your-website">smart search</a> functionality.<br></p><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881200/product_filter.png" alt="Possible product filter appearance">
+</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: This page describes how to create product filters using <a   href="using-locally-stored-search-indexes">locally stored search indexes</a> and <a   href="adding-filters-for-local-search-indexes">filters</a>. Alternatively, you can set up advanced faceted navigation for products using <a   href="using-azure-search">Azure Search</a>. To see an example, refer to <a   href="integrating-azure-search-into-pages">Integrating Azure Search into pages</a>.</p>
+            <p><strong class=" ">Note</strong>: This page describes how to create product filters using <a href="using-locally-stored-search-indexes">locally stored search indexes</a> and <a href="adding-filters-for-local-search-indexes">filters</a>. Alternatively, you can set up advanced faceted navigation for products using <a href="using-azure-search">Azure Search</a>. To see an example, refer to <a href="integrating-azure-search-into-pages">Integrating Azure Search into pages</a>.</p>
      
     </div>
-</div>
-<p   
->To set up a product filter:</p>
-<ul class=" "><li class=" "><p   
->Decide whether you want to:<br/></p>
-<ul class=" "><li class=" "><p   
->Filter products based on a text property &ndash; typically, you use text filtering when you want to provide filtering by name. For this type of filtering, you use a text box.</p>
-</li><li class=" "><p   
->Filter products based on an option property &ndash; suitable, for example, when you want to filter the stock availability, a manufacturer or a product parameter. For this type of filtering, you can use checkboxes, drop-down lists, etc.</p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindex">Prepare the index</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-placingthefilterwebpart">Display the filter</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-displayingthefilterresults">Display the filter results</a></p>
-</li></ul>    <h3 id="src-68881200_configuringproductlistingswithfiltering-preparingtheindex" class="heading "><span>Preparing the index</span></h3>
-<p   
->Prepare the index for the filter to be able to search in the specific database columns. If the field is a general page or SKU field (e.g., page name, description, manufacturer), you need to <a   href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindexforageneralpageorskufield">set the fields in the <strong class=" ">Page </strong>class of the <strong class=" ">Pages</strong> module </a>. On the other hand, if the field is a page type specific (e.g., the origin country of a coffee you sell that has its database column located in the <strong class=" ">Coffee</strong> page type), you need to <a   href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindexforapagetypespecificfield">set the fields in the specific page type</a>. After preparing the index, do not forget to <a   href="#src-68881200_configuringproductlistingswithfiltering-rebuildingtheindex">rebuild the index</a>.</p>
-    <div  class="confbox panel">
+</div><p>To set up a product filter:</p><ul class=" "><li class=" "><p>Decide whether you want to:<br></p>
+<ul class=" "><li class=" "><p>Filter products based on a text property – typically, you use text filtering when you want to provide filtering by name. For this type of filtering, you use a text box.</p>
+</li><li class=" "><p>Filter products based on an option property – suitable, for example, when you want to filter the stock availability, a manufacturer or a product parameter. For this type of filtering, you can use checkboxes, drop-down lists, etc.</p>
+</li></ul></li><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindex">Prepare the index</a></p>
+</li><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-placingthefilterwebpart">Display the filter</a></p>
+</li><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-displayingthefilterresults">Display the filter results</a></p>
+</li></ul><h3 id="src-68881200_configuringproductlistingswithfiltering-preparingtheindex" class="heading "><span>Preparing the index</span></h3><p>Prepare the index for the filter to be able to search in the specific database columns. If the field is a general page or SKU field (e.g., page name, description, manufacturer), you need to <a href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindexforageneralpageorskufield">set the fields in the <strong class=" ">Page </strong>class of the <strong class=" ">Pages</strong> module </a>. On the other hand, if the field is a page type specific (e.g., the origin country of a coffee you sell that has its database column located in the <strong class=" ">Coffee</strong> page type), you need to <a href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindexforapagetypespecificfield">set the fields in the specific page type</a>. After preparing the index, do not forget to <a href="#src-68881200_configuringproductlistingswithfiltering-rebuildingtheindex">rebuild the index</a>.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindex">Preparing the index</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindexforageneralpageorskufield">Preparing the index for a general page or SKU field</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindexforapagetypespecificfield">Preparing the index for a page type specific field</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-rebuildingtheindex">Rebuilding the index</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-placingthefilterwebpart">Placing the filter web part</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881200_configuringproductlistingswithfiltering-displayingthefilterresults">Displaying the filter results</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindex">Preparing the index</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindexforageneralpageorskufield">Preparing the index for a general page or SKU field</a></p>
+</li><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-preparingtheindexforapagetypespecificfield">Preparing the index for a page type specific field</a></p>
+</li><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-rebuildingtheindex">Rebuilding the index</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-placingthefilterwebpart">Placing the filter web part</a></p>
+</li><li class=" "><p><a href="#src-68881200_configuringproductlistingswithfiltering-displayingthefilterresults">Displaying the filter results</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="setting-up-search-on-your-website">Setting up search on your website</a></p>
-</li><li class=" "><p   
-><a   href="creating-local-search-indexes">Creating local search indexes</a></p>
-</li><li class=" "><p   
-><a   href="adding-filters-for-local-search-indexes">Adding filters for local search indexes</a></p>
-</li><li class=" "><p   
-><a   href="managing-page-templates">Managing page templates</a></p>
+<ul class=" "><li class=" "><p><a href="setting-up-search-on-your-website">Setting up search on your website</a></p>
+</li><li class=" "><p><a href="creating-local-search-indexes">Creating local search indexes</a></p>
+</li><li class=" "><p><a href="adding-filters-for-local-search-indexes">Adding filters for local search indexes</a></p>
+</li><li class=" "><p><a href="managing-page-templates">Managing page templates</a></p>
 </li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+    
+
+    
+    
+    <div class="confbox panel">
             <div class="title panel-header">Configuring the E-commerce Solution</div>
             <div class="panel-content">
-<ol class=" "><li class=" "><p   
-><a   href="choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a></p>
-</li><li class=" "><p   
-><a   href="configuring-currencies">Configuring currencies</a></p>
-</li><li class=" "><p   
-><a   href="configuring-taxes">Configuring taxes</a></p>
-</li><li class=" "><p   
-><a   href="configuring-multilingual-stores">Configuring multilingual stores</a></p>
-</li><li class=" "><p   
-><a   href="configuring-product-page-types">Configuring product page types</a></p>
-</li><li class=" "><p   
-><a   href="configuring-products">Configuring products</a></p>
-</li><li class=" "><p   
-><a   href="configuring-product-pages">Configuring product pages</a></p>
-</li><li class=" "><p   
-><a   href="checkout-process">Checkout process</a></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Configuring product listings with filtering</strong></p>
-</li></ul></li><li class=" "><p   
-><a   href="configuring-shipping-options">Configuring shipping options</a></p>
-</li><li class=" "><p   
-><a   href="configuring-payment-methods">Configuring payment methods</a></p>
-</li><li class=" "><p   
-><a   href="configuring-invoices">Configuring invoices</a></p>
-</li><li class=" "><p   
-><a   href="configuring-e-commerce-email-notifications">Configuring e-commerce email notifications</a></p>
-</li><li class=" "><p   
-><a   href="configuring-user-registration-in-stores">Configuring user registration in stores</a></p>
-</li><li class=" "><p   
-><a   href="configuring-e-commerce-permissions">Configuring e-commerce permissions</a></p>
+<ol class=" "><li class=" "><p><a href="choosing-site-or-global-e-commerce-configuration">Choosing site or global e-commerce configuration</a></p>
+</li><li class=" "><p><a href="configuring-currencies">Configuring currencies</a></p>
+</li><li class=" "><p><a href="configuring-taxes">Configuring taxes</a></p>
+</li><li class=" "><p><a href="configuring-multilingual-stores">Configuring multilingual stores</a></p>
+</li><li class=" "><p><a href="configuring-product-page-types">Configuring product page types</a></p>
+</li><li class=" "><p><a href="configuring-products">Configuring products</a></p>
+</li><li class=" "><p><a href="configuring-product-pages">Configuring product pages</a></p>
+</li><li class=" "><p><a href="checkout-process">Checkout process</a></p>
+<ul class=" "><li class=" "><p><strong class=" ">Configuring product listings with filtering</strong></p>
+</li></ul></li><li class=" "><p><a href="configuring-shipping-options">Configuring shipping options</a></p>
+</li><li class=" "><p><a href="configuring-payment-methods">Configuring payment methods</a></p>
+</li><li class=" "><p><a href="configuring-invoices">Configuring invoices</a></p>
+</li><li class=" "><p><a href="configuring-e-commerce-email-notifications">Configuring e-commerce email notifications</a></p>
+</li><li class=" "><p><a href="configuring-user-registration-in-stores">Configuring user registration in stores</a></p>
+</li><li class=" "><p><a href="configuring-e-commerce-permissions">Configuring e-commerce permissions</a></p>
 </li></ol>        </div>
     </div>
     <h4 id="src-68881200_configuringproductlistingswithfiltering-preparingtheindexforageneralpageorskufield" class="heading "><span>Preparing the index for a general page or SKU field</span></h4>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/edit.png" 
-                
-                 />
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png">
 ) the <strong class=" ">Pages</strong> module.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Classes</strong> tab.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/edit.png" 
-                
-                 />
+</li><li class=" "><p>Switch to the <strong class=" ">Classes</strong> tab.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png">
 ) the <strong class=" ">Page</strong> class.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Search</strong> tab.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Customize</strong> and confirm the dialog.</p>
-</li><li class=" "><p   
->On the row with the desired field name, select options for the required columns.</p>
-<ul class=" "><li class=" "><p   
->The field names correspond with database columns. Configure the fields that you want to search in your filter (for example <i class=" ">SKUName</i>).</p>
-</li><li class=" "><p   
->For fields that you want to use in a filter with text input, select the <a   href="defining-local-page-indexes#src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields"><i class=" ">Content</i>, <i class=" ">Searchable</i> and <i class=" ">Tokenized</i></a> options in the <strong class=" ">Local</strong> section of the grid.</p>
-</li><li class=" "><p   
->For fields that you want to use as options in a filter, select the <i class=" ">Searchable</i> and <i class=" ">Tokenized</i> options in the <strong class=" ">Local</strong> section of the grid.</p>
-<div  class="box-general box-tip">
+</li><li class=" "><p>Switch to the <strong class=" ">Search</strong> tab.</p>
+</li><li class=" "><p>Click <strong class=" ">Customize</strong> and confirm the dialog.</p>
+</li><li class=" "><p>On the row with the desired field name, select options for the required columns.</p>
+<ul class=" "><li class=" "><p>The field names correspond with database columns. Configure the fields that you want to search in your filter (for example <i class=" ">SKUName</i>).</p>
+</li><li class=" "><p>For fields that you want to use in a filter with text input, select the <a href="defining-local-page-indexes#src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields"><i class=" ">Content</i>, <i class=" ">Searchable</i> and <i class=" ">Tokenized</i></a> options in the <strong class=" ">Local</strong> section of the grid.</p>
+</li><li class=" "><p>For fields that you want to use as options in a filter, select the <i class=" ">Searchable</i> and <i class=" ">Tokenized</i> options in the <strong class=" ">Local</strong> section of the grid.</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->The <strong class=" ">Tokenized</strong> option is important for processing text containing spaces or other values that need to be broken into searchable tokens. You can leave the <i class=" ">Tokenized</i> option disabled for fields containing values without spaces.</p>
+            <p>The <strong class=" ">Tokenized</strong> option is important for processing text containing spaces or other values that need to be broken into searchable tokens. You can leave the <i class=" ">Tokenized</i> option disabled for fields containing values without spaces.</p>
      
     </div>
 </div>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->The index now indexes and searches in the configured fields (database columns) as described in <a   href="defining-local-page-indexes">Defining local page indexes</a>.</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The index now indexes and searches in the configured fields (database columns) as described in <a href="defining-local-page-indexes">Defining local page indexes</a>.</p>
     <h4 id="src-68881200_configuringproductlistingswithfiltering-preparingtheindexforapagetypespecificfield" class="heading "><span>Preparing the index for a page type specific field</span></h4>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Page types</strong> application.</p>
-</li><li class=" "><p   
-><strong class=" ">Edit</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/edit.png" 
-                
-                 />
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Page types</strong> application.</p>
+</li><li class=" "><p><strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png">
 ) the specific page type.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Search fields</strong> tab.</p>
-</li><li class=" "><p   
->On the row with the desired field name, select the required columns.</p>
-<ul class=" "><li class=" "><p   
->The field names correspond with database columns. Configure the fields that you want to search in your filter (for example <i class=" ">CoffeeFarm</i>).</p>
-</li><li class=" "><p   
->For fields that you want to use in a filter with text input, select the <a   href="defining-local-page-indexes#src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields"><i class=" ">Content</i>, <i class=" ">Searchable</i> and <i class=" ">Tokenized</i></a> options in the <strong class=" ">Local</strong> section of the grid.</p>
-</li><li class=" "><p   
->For fields that you want to use as options in a filter, select the <i class=" ">Searchable</i> and <i class=" ">Tokenized</i> options in the <strong class=" ">Local</strong> section of the grid.</p>
-<div  class="box-general box-tip">
+</li><li class=" "><p>Switch to the <strong class=" ">Search fields</strong> tab.</p>
+</li><li class=" "><p>On the row with the desired field name, select the required columns.</p>
+<ul class=" "><li class=" "><p>The field names correspond with database columns. Configure the fields that you want to search in your filter (for example <i class=" ">CoffeeFarm</i>).</p>
+</li><li class=" "><p>For fields that you want to use in a filter with text input, select the <a href="defining-local-page-indexes#src-68882020_defininglocalpageindexes-configuringsearchsettingsforpagefields"><i class=" ">Content</i>, <i class=" ">Searchable</i> and <i class=" ">Tokenized</i></a> options in the <strong class=" ">Local</strong> section of the grid.</p>
+</li><li class=" "><p>For fields that you want to use as options in a filter, select the <i class=" ">Searchable</i> and <i class=" ">Tokenized</i> options in the <strong class=" ">Local</strong> section of the grid.</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->The <strong class=" ">Tokenized</strong> option is important for processing text containing spaces or other values that need to be broken into searchable tokens. You can leave the <i class=" ">Tokenized</i> option disabled for fields containing values without spaces.</p>
+            <p>The <strong class=" ">Tokenized</strong> option is important for processing text containing spaces or other values that need to be broken into searchable tokens. You can leave the <i class=" ">Tokenized</i> option disabled for fields containing values without spaces.</p>
      
     </div>
 </div>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->The index now indexes and searches in the configured fields (database columns) as described in <a   href="defining-local-page-indexes">Defining local page indexes</a>.</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The index now indexes and searches in the configured fields (database columns) as described in <a href="defining-local-page-indexes">Defining local page indexes</a>.</p>
     <h4 id="src-68881200_configuringproductlistingswithfiltering-rebuildingtheindex" class="heading "><span>Rebuilding the index</span></h4>
-<p   
->You need to refresh the index to include <a   href="#src-68881200_configuringproductlistingswithfiltering-settingupfieldsfortheindex">the configured fields</a>.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Smart search </strong>application.</p>
-</li><li class=" "><p   
->On the <strong class=" ">Local indexes</strong> tab, edit your search index.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Rebuild</strong>.</p>
-</li></ol><p   
->The index is now rebuilt and contains all the needed data.</p>
+<p>You need to refresh the index to include <a href="#src-68881200_configuringproductlistingswithfiltering-settingupfieldsfortheindex">the configured fields</a>.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Smart search </strong>application.</p>
+</li><li class=" "><p>On the <strong class=" ">Local indexes</strong> tab, edit your search index.</p>
+</li><li class=" "><p>Click <strong class=" ">Rebuild</strong>.</p>
+</li></ol><p>The index is now rebuilt and contains all the needed data.</p>
     <h3 id="src-68881200_configuringproductlistingswithfiltering-placingthefilterwebpart" class="heading "><span>Placing the filter web part</span></h3>
-<p   
->To place the filter on a page, place the <strong class=" ">Smart search filter</strong> web part on the page and enter its properties:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application and navigate to the <a   href="configuring-product-structure">main products page</a>.<br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881195/navigating_to_main_store_page.png" 
-        alt="Navigating to the main page of products"        
-        width="304"        height="362" />
-<p   
-><br/></p>
-<ul class=" "><li class=" "><p   
->If you have not created any product structure yet, <a   href="creating-new-pages">create a new page</a> of the <strong class=" ">Page (menu item) </strong>page type in the <strong class=" ">Pages</strong> application.</p>
-</li></ul></li><li class=" "><p   
->On the <strong class=" ">Properties -&gt; Template</strong> tab, if the template is not ad-hoc (the name is not in the form: &quot;Ad-hoc: <i class=" ">name of the page</i>&quot;), click <strong class=" ">Clone template as ad-hoc</strong> to create a template based on the template of the parent page.<br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881200/ad-hoc_page_template.png" 
-        alt="Ad-hoc page template"        
-        width="438"        height="482" />
-</li><li class=" "><p   
->(Optional) If you want to modify the template of the page, click <strong class=" ">Edit template properties</strong> and in the <strong class=" ">Edit page template</strong> dialog, switch to the <strong class=" ">Layout</strong> tab.</p>
-<ul class=" "><li class=" "><p   
->See <a   href="managing-page-templates">Managing page templates</a> to learn more information about modifying page templates.</p>
-</li></ul></li><li class=" "><p   
->To display the field of the filter, place the <strong class=" ">Smart search filter</strong> web part on the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
->Edit the properties of the <strong class=" ">Smart search filter</strong> according to your needs:</p>
-<ul class=" "><li class=" "><p   
->If you want to filter products based on a text, enter the following properties:<br/></p>
-    <div  class="tablewrap">
+<p>To place the filter on a page, place the <strong class=" ">Smart search filter</strong> web part on the page and enter its properties:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application and navigate to the <a href="configuring-product-structure">main products page</a>.<br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881195/navigating_to_main_store_page.png" alt="Navigating to the main page of products" width="304" height="362">
+<p><br></p>
+<ul class=" "><li class=" "><p>If you have not created any product structure yet, <a href="creating-new-pages">create a new page</a> of the <strong class=" ">Page (menu item) </strong>page type in the <strong class=" ">Pages</strong> application.</p>
+</li></ul></li><li class=" "><p>On the <strong class=" ">Properties -&gt; Template</strong> tab, if the template is not ad-hoc (the name is not in the form: "Ad-hoc: <i class=" ">name of the page</i>"), click <strong class=" ">Clone template as ad-hoc</strong> to create a template based on the template of the parent page.<br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881200/ad-hoc_page_template.png" alt="Ad-hoc page template" width="438" height="482">
+</li><li class=" "><p>(Optional) If you want to modify the template of the page, click <strong class=" ">Edit template properties</strong> and in the <strong class=" ">Edit page template</strong> dialog, switch to the <strong class=" ">Layout</strong> tab.</p>
+<ul class=" "><li class=" "><p>See <a href="managing-page-templates">Managing page templates</a> to learn more information about modifying page templates.</p>
+</li></ul></li><li class=" "><p>To display the field of the filter, place the <strong class=" ">Smart search filter</strong> web part on the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p>Edit the properties of the <strong class=" ">Smart search filter</strong> according to your needs:</p>
+<ul class=" "><li class=" "><p>If you want to filter products based on a text, enter the following properties:<br></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Field</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Field</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Value</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter mode</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter mode</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">Text box</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">Text box</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Values</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Values</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Type the desired field name is the database column name in which the filter will search.</p>
-<p   
->For example: <i class=" ">DocumentName</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Type the desired field name is the database column name in which the filter will search.</p>
+<p>For example: <i class=" ">DocumentName</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter clause</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter clause</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">Must</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">Must</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Field is conditional</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Field is conditional</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">Yes (selected)</i><i class=" "><br/></i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">Yes (selected)</i><i class=" "><br></i></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
-></p>
-</li><li class=" "><p   
->If you want to filter products based on an option, enter the following properties:<br/></p>
-    <div  class="tablewrap">
+<p></p>
+</li><li class=" "><p>If you want to filter products based on an option, enter the following properties:<br></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Field</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Field</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Value</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter mode</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter mode</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Specify how the filter look like.</p>
-<p   
->For example: <i class=" ">Dropdown list</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Specify how the filter look like.</p>
+<p>For example: <i class=" ">Dropdown list</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter auto postback</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter auto postback</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Specify whether the filter automatically reloads results when changed.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Specify whether the filter automatically reloads results when changed.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Values</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Values</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Type the desired field name is the database column name in which the filter will search.</p>
-<p   
->For example: <i class=" ">DocumentName</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Type the desired field name is the database column name in which the filter will search.</p>
+<p>For example: <i class=" ">DocumentName</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Field is conditional</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Field is conditional</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">No (cleared)</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">No (cleared)</i></p>
             </td>
         </tr>
 </tbody>        </table>
@@ -9020,38 +8891,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span class="scroll-expand-control-text">Specific examples...</span>
         </div>
         <div class="scroll-expand-content">
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Public status filter</div>
             <div class="panel-content">
-<p   
->To create a filter displaying products according to products&#39; public statuses, set also the following properties:</p>
-    <div  class="tablewrap">
+<p>To create a filter displaying products according to products' public statuses, set also the following properties:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Field</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Field</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Value</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Query name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Query name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Create a new query:</p>
-<p   
-><strong class=" ">Query name</strong>: set a query name, for example <i class=" ">SelectPublicStatusesFilter</i><br/><strong class=" ">Query type</strong>: <i class=" ">Query text</i><br/><strong class=" ">Requires transaction</strong>: <i class=" ">No (cleared)</i><br/><strong class=" ">Query text</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Create a new query:</p>
+<p><strong class=" ">Query name</strong>: set a query name, for example <i class=" ">SelectPublicStatusesFilter</i><br><strong class=" ">Query type</strong>: <i class=" ">Query text</i><br><strong class=" ">Requires transaction</strong>: <i class=" ">No (cleared)</i><br><strong class=" ">Query text</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9083,12 +8948,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Query WHERE condition</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Query WHERE condition</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9114,61 +8978,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter status</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter status</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">Must</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">Must</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter is conditional</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter is conditional</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">Yes (selected)</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">Yes (selected)</i></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
         </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Manufacturer filter</div>
             <div class="panel-content">
-<p   
->To create a filter displaying products according to products&#39; manufacturers, set also the following properties:</p>
-    <div  class="tablewrap">
+<p>To create a filter displaying products according to products' manufacturers, set also the following properties:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Field</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Field</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Value</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Query name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Query name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Create a new query:</p>
-<p   
-><strong class=" ">Query name</strong>: set a query name, for example <i class=" ">ManufacturerFilterQuery</i><br/><strong class=" ">Query type</strong>: <i class=" ">Query text</i><br/><strong class=" ">Requires transaction</strong>: <i class=" ">No (cleared)</i><br/><strong class=" ">Query text</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Create a new query:</p>
+<p><strong class=" ">Query name</strong>: set a query name, for example <i class=" ">ManufacturerFilterQuery</i><br><strong class=" ">Query type</strong>: <i class=" ">Query text</i><br><strong class=" ">Requires transaction</strong>: <i class=" ">No (cleared)</i><br><strong class=" ">Query text</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9200,12 +9054,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Query WHERE condition</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Query WHERE condition</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9231,283 +9084,214 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter clause</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter clause</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">Must</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">Must</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter is conditional</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter is conditional</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">Yes (selected)</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">Yes (selected)</i></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
         </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Sort filter</div>
             <div class="panel-content">
-<p   
->To create a filter displaying products sorted according to products&#39; prices, set also the following properties:</p>
-    <div  class="tablewrap">
+<p>To create a filter displaying products sorted according to products' prices, set also the following properties:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Field</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Field</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Value</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Values</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Values</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">SKUPrice DESC;;Price descending</i><br/><i class=" ">SKUPrice;;Price ascending</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">SKUPrice DESC;;Price descending</i><br><i class=" ">SKUPrice;;Price ascending</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter clause</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter clause</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">None</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">None</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter is conditional</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter is conditional</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">No (cleared)</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">No (cleared)</i></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
         </div>
     </div>
-    <div  class="confbox panel">
+    <div class="confbox panel">
             <div class="title panel-header">Stock filter</div>
             <div class="panel-content">
-<p   
->To create a filter displaying products according to products&#39; availability in stock, set also the following properties:</p>
-    <div  class="tablewrap">
+<p>To create a filter displaying products according to products' availability in stock, set also the following properties:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Field</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Field</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Value</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Values</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Values</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">-SKUAvailableItems;[* TO (int)0];Only in stock</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">-SKUAvailableItems;[* TO (int)0];Only in stock</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter clause</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter clause</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">None</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">None</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter is conditional</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter is conditional</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><i class=" ">Yes (selected)</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><i class=" ">Yes (selected)</i></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
         </div>
     </div>
-<div  class="box-general box-tip">
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->You can also create a filter displaying products according to a specific product parameter (a <a   href="configuring-product-page-types">product page type</a> field). See <a   href="installing-the-e-commerce-sample-sites">the sample <i class=" ">Dancing Goat</i> site</a> for other examples of filtering based on a product parameter.</p>
+            <p>You can also create a filter displaying products according to a specific product parameter (a <a href="configuring-product-page-types">product page type</a> field). See <a href="installing-the-e-commerce-sample-sites">the sample <i class=" ">Dancing Goat</i> site</a> for other examples of filtering based on a product parameter.</p>
      
     </div>
 </div>
         </div>
     </div>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Save &amp; Close</strong> the web part properties dialog.</p>
-</li></ol><p   
->The system places the web part on the page and customers can filter your products (however, the results are not displayed anywhere yet).</p>
+</li></ul></li><li class=" "><p><strong class=" ">Save &amp; Close</strong> the web part properties dialog.</p>
+</li></ol><p>The system places the web part on the page and customers can filter your products (however, the results are not displayed anywhere yet).</p>
     <h3 id="src-68881200_configuringproductlistingswithfiltering-displayingthefilterresults" class="heading "><span>Displaying the filter results</span></h3>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application and navigate to the <a   href="configuring-product-structure">main products page</a>.<br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881195/navigating_to_main_store_page.png" 
-        alt="Navigating to the main page of products"        
-        width="304"        height="362" />
-<p   
-><br/></p>
-<ul class=" "><li class=" "><p   
->If you have not created any product structure yet, <a   href="creating-new-pages">create a new page</a> of the <strong class=" ">Page (menu item) </strong>page type in the <strong class=" ">Pages</strong> application.<br/></p>
-</li></ul></li><li class=" "><p   
->On the <strong class=" ">Properties -&gt; Template</strong> tab, if the template is not ad-hoc (the name is not in the form: &quot;Ad-hoc: <i class=" ">name of the page</i>&quot;), click <strong class=" ">Clone template as ad-hoc</strong> to create a template based on the template of the parent page.<br/></p>
-<img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68881200/ad-hoc_page_template.png" 
-        alt="Ad-hoc page template"        
-        width="438"        height="482" />
-<p   
-><br/></p>
-</li><li class=" "><p   
->(Optional) If you want to modify the template of the page, click <strong class=" ">Edit template properties</strong> and in the <strong class=" ">Edit page template</strong> dialog, switch to the <strong class=" ">Layout</strong> tab.</p>
-<ul class=" "><li class=" "><p   
->See <a   href="managing-page-templates">Managing page templates</a> to learn more information about modifying page templates.<br/></p>
-</li></ul></li><li class=" "><p   
->To display product data, place the <strong class=" ">Smart search results</strong> web part on the <strong class=" ">Design</strong> tab.<br/></p>
-</li><li class=" "><p   
->Edit the properties of the <strong class=" ">Smart search results</strong> according to your needs:</p>
-    <div  class="tablewrap">
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application and navigate to the <a href="configuring-product-structure">main products page</a>.<br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881195/navigating_to_main_store_page.png" alt="Navigating to the main page of products" width="304" height="362">
+<p><br></p>
+<ul class=" "><li class=" "><p>If you have not created any product structure yet, <a href="creating-new-pages">create a new page</a> of the <strong class=" ">Page (menu item) </strong>page type in the <strong class=" ">Pages</strong> application.<br></p>
+</li></ul></li><li class=" "><p>On the <strong class=" ">Properties -&gt; Template</strong> tab, if the template is not ad-hoc (the name is not in the form: "Ad-hoc: <i class=" ">name of the page</i>"), click <strong class=" ">Clone template as ad-hoc</strong> to create a template based on the template of the parent page.<br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68881200/ad-hoc_page_template.png" alt="Ad-hoc page template" width="438" height="482">
+<p><br></p>
+</li><li class=" "><p>(Optional) If you want to modify the template of the page, click <strong class=" ">Edit template properties</strong> and in the <strong class=" ">Edit page template</strong> dialog, switch to the <strong class=" ">Layout</strong> tab.</p>
+<ul class=" "><li class=" "><p>See <a href="managing-page-templates">Managing page templates</a> to learn more information about modifying page templates.<br></p>
+</li></ul></li><li class=" "><p>To display product data, place the <strong class=" ">Smart search results</strong> web part on the <strong class=" ">Design</strong> tab.<br></p>
+</li><li class=" "><p>Edit the properties of the <strong class=" ">Smart search results</strong> according to your needs:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Field</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Field</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Value</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Value</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Web part control ID</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Web part control ID</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Name the web part.</p>
-<p   
->For example: <i class=" ">SmartSearchProductList</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Name the web part.</p>
+<p>For example: <i class=" ">SmartSearchProductList</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Indexes</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Indexes</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Select the index name used when deciding whether to product with a text or with an option.</p>
-<p   
->For example: <i class=" ">DancingGoat.Pages</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Select the index name used when deciding whether to product with a text or with an option.</p>
+<p>For example: <i class=" ">DancingGoat.Pages</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Path</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Path</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Type <i class=" ">./%</i> to display all pages on levels in the product tree below the product listing page.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Type <i class=" ">./%</i> to display all pages on levels in the product tree below the product listing page.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Page types</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Page types</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Select those page types which are then displayed.</p>
-<p   
->Typically, select all product page types.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Select those page types which are then displayed.</p>
+<p>Typically, select all product page types.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Search options</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Search options</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Specify what syntax the search recognize.</p>
-<p   
->See <a   href="smart-search-syntax">Smart search syntax</a> to learn more information.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Specify what syntax the search recognize.</p>
+<p>See <a href="smart-search-syntax">Smart search syntax</a> to learn more information.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Transformation</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Transformation</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Select the transformation you created for the product listing pages.</p>
-<p   
->For example: <i class=" ">DancingGoat.Transformations.SmartSearchProductList</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Select the transformation you created for the product listing pages.</p>
+<p>For example: <i class=" ">DancingGoat.Transformations.SmartSearchProductList</i></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
-></p>
-</li><li class=" "><p   
-><strong class=" ">Save &amp; Close</strong> the web part properties dialog.<br/></p>
-</li><li class=" "><p   
->Edit the <strong class=" ">Smart search filter</strong> web part which should display the filtered data in the just created <strong class=" ">Smart search results</strong> web part.<br/></p>
-</li><li class=" "><p   
->In the <strong class=" ">Search dialog web part ID</strong> field, type the name (web part control ID) of the <strong class=" ">Smart search results</strong> web part (for example, <i class=" ">SmartSearchProductList</i>).<br/></p>
-</li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
-<ul class=" "><li class=" "><p   
->Repeat the steps 7&ndash;9 for every <strong class=" ">Smart search filter </strong>web part that displays the filtered data in the <strong class=" ">Smart search results</strong> web part.</p>
-</li></ul></li></ol><p   
->The system places the web part on the page and customers can filter your products.</p>
-<div  class="box-general box-tip">
+<p></p>
+</li><li class=" "><p><strong class=" ">Save &amp; Close</strong> the web part properties dialog.<br></p>
+</li><li class=" "><p>Edit the <strong class=" ">Smart search filter</strong> web part which should display the filtered data in the just created <strong class=" ">Smart search results</strong> web part.<br></p>
+</li><li class=" "><p>In the <strong class=" ">Search dialog web part ID</strong> field, type the name (web part control ID) of the <strong class=" ">Smart search results</strong> web part (for example, <i class=" ">SmartSearchProductList</i>).<br></p>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+<ul class=" "><li class=" "><p>Repeat the steps 7–9 for every <strong class=" ">Smart search filter </strong>web part that displays the filtered data in the <strong class=" ">Smart search results</strong> web part.</p>
+</li></ul></li></ol><p>The system places the web part on the page and customers can filter your products.</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
->To add the product detail page, see <a   href="configuring-product-pages">Configuring product pages</a>. To combine it with the product filter, leave the <strong class=" ">Transformation</strong> field empty and select only the <strong class=" ">Selected item transformation</strong> field.</p>
+            <p>To add the product detail page, see <a href="configuring-product-pages">Configuring product pages</a>. To combine it with the product filter, leave the <strong class=" ">Transformation</strong> field empty and select only the <strong class=" ">Selected item transformation</strong> field.</p>
      
     </div>
 </div>
@@ -9521,8 +9305,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9534,10 +9318,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9556,9 +9340,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9569,7 +9350,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9580,5 +9361,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

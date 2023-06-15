@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Developing custom filters - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882212"> <span>Developing custom filters</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,87 +8660,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Filters are components that allow users to modify the data loaded and displayed by other website components. Filters provide two types of functionality:</p>
-<ul class=" "><li class=" "><p   
->Limiting the range of items displayed in a list</p>
-</li><li class=" "><p   
->Changing the order of items in a list</p>
-</li></ul><p   
->Kentico comes with a built-in set of filters for various types of data, but you can also create custom filters to fulfill specific requirements.</p>
-<ol class=" "><li class=" "><p   
->Implement filters as <i class=" ">user controls</i> that inherit from one of the following base classes:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CMSAbstractDataFilterControl</strong> - works with page data sources</p>
-</li><li class=" "><p   
-><strong class=" ">CMSAbstractControlFilterControl</strong> - works with navigation web parts</p>
-</li><li class=" "><p   
-><strong class=" ">CMSAbstractQueryFilterControl</strong> - works with custom table and query data sources</p>
-</li></ul><div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Filters are components that allow users to modify the data loaded and displayed by other website components. Filters provide two types of functionality:</p><ul class=" "><li class=" "><p>Limiting the range of items displayed in a list</p>
+</li><li class=" "><p>Changing the order of items in a list</p>
+</li></ul><p>Kentico comes with a built-in set of filters for various types of data, but you can also create custom filters to fulfill specific requirements.</p><ol class=" "><li class=" "><p>Implement filters as <i class=" ">user controls</i> that inherit from one of the following base classes:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">CMSAbstractDataFilterControl</strong> - works with page data sources</p>
+</li><li class=" "><p><strong class=" ">CMSAbstractControlFilterControl</strong> - works with navigation web parts</p>
+</li><li class=" "><p><strong class=" ">CMSAbstractQueryFilterControl</strong> - works with custom table and query data sources</p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->Select the appropriate base class according to the type of data that you need to filter. You can find these base classes in the <strong class=" ">CMS.DocumentEngine.Web.UI</strong> namespace.</p>
+            <p>Select the appropriate base class according to the type of data that you need to filter. You can find these base classes in the <strong class=" ">CMS.DocumentEngine.Web.UI</strong> namespace.</p>
      
     </div>
 </div>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: If you are connecting a <strong class=" ">CMSAbstractQueryFilterControl</strong> filter to a data source with a custom query, the code of the query must contain the ##WHERE## and ##ORDERBY## expressions. When applied, the filter replaces the expressions with dynamically generated SQL code. See: <a   href="loading-data-using-custom-queries#src-68880629_loadingdatausingcustomqueries-usingpropertiestomodifyqueries">Using properties to modify queries</a></p>
+            <p><strong class=" ">Note</strong>: If you are connecting a <strong class=" ">CMSAbstractQueryFilterControl</strong> filter to a data source with a custom query, the code of the query must contain the ##WHERE## and ##ORDERBY## expressions. When applied, the filter replaces the expressions with dynamically generated SQL code. See: <a href="loading-data-using-custom-queries#src-68880629_loadingdatausingcustomqueries-usingpropertiestomodifyqueries">Using properties to modify queries</a></p>
      
     </div>
 </div>
-</li><li class=" "><p   
->Add the filter control onto your website through the <strong class=" ">Filter</strong> web part.<br/></p>
-<ul class=" "><li class=" "><p   
->You need to specify the path to the <i class=" ">.ascx</i> file in the <strong class=" ">Filter control path</strong> property.</p>
-</li></ul></li><li class=" "><p   
->Attach the filter web part to the data source web part of the matching type.</p>
-</li></ol><p   
->You can also use custom filters anywhere in your code as standard user controls, for example on ASPX templates or in other web parts. All necessary properties, such as the <strong class=" ">FilterName</strong> used to connect with the data source, are inherited from the base class.</p>
-    <div  class="confbox panel">
+</li><li class=" "><p>Add the filter control onto your website through the <strong class=" ">Filter</strong> web part.<br></p>
+<ul class=" "><li class=" "><p>You need to specify the path to the <i class=" ">.ascx</i> file in the <strong class=" ">Filter control path</strong> property.</p>
+</li></ul></li><li class=" "><p>Attach the filter web part to the data source web part of the matching type.</p>
+</li></ol><p>You can also use custom filters anywhere in your code as standard user controls, for example on ASPX templates or in other web parts. All necessary properties, such as the <strong class=" ">FilterName</strong> used to connect with the data source, are inherited from the base class.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882212_developingcustomfilters-example-creatingacustomproductfilter">Example - Creating a custom product filter</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882212_developingcustomfilters-creatingthefiltercontrol">Creating the filter control</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882212_developingcustomfilters-implementingthefilteringlogic">Implementing the filtering logic</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882212_developingcustomfilters-addingthefiltertoaportalenginepage">Adding the filter to a portal engine page</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882212_developingcustomfilters-example-creatingacustomproductfilter">Example - Creating a custom product filter</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882212_developingcustomfilters-creatingthefiltercontrol">Creating the filter control</a></p>
+</li><li class=" "><p><a href="#src-68882212_developingcustomfilters-implementingthefilteringlogic">Implementing the filtering logic</a></p>
+</li><li class=" "><p><a href="#src-68882212_developingcustomfilters-addingthefiltertoaportalenginepage">Adding the filter to a portal engine page</a></p>
 </li></ul></li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
-</li><li class=" "><p   
-><a   href="filtering-and-paging-data">Filtering and paging data</a></p>
-</li><li class=" "><p   
-><a   href="developing-data-source-web-parts">Developing data source web parts</a></p>
+<ul class=" "><li class=" "><p><a href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
+</li><li class=" "><p><a href="filtering-and-paging-data">Filtering and paging data</a></p>
+</li><li class=" "><p><a href="developing-data-source-web-parts">Developing data source web parts</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+    
     <h3 id="src-68882212_developingcustomfilters-example-creatingacustomproductfilter" class="heading "><span>Example - Creating a custom product filter</span></h3>
-<p   
->The following example demonstrates how to develop a custom filter for <i class=" ">product pages</i>. The filter allows users to view products from specific departments and determine the order in which products are displayed. The filter applies when a postback occurs on the page. You can create filters for all types of pages or other objects using the same approach.</p>
+<p>The following example demonstrates how to develop a custom filter for <i class=" ">product pages</i>. The filter allows users to view products from specific departments and determine the order in which products are displayed. The filter applies when a postback occurs on the page. You can create filters for all types of pages or other objects using the same approach.</p>
     <h4 id="src-68882212_developingcustomfilters-creatingthefiltercontrol" class="heading "><span>Creating the filter control</span></h4>
-<ol class=" "><li class=" "><p   
->Open your web project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a <strong class=" ">New folder</strong> under the root called <i class=" ">CMSGlobalFiles</i> (if it doesn&#39;t already exist).</p>
-<ul class=" "><li class=" "><p   
->The system can export the content of this folder along with your site when you <a   href="deploying-websites">deploy</a> it to another instance of Kentico.</p>
-</li></ul></li><li class=" "><p   
->Add a <strong class=" ">Web User Control</strong> named <i class=" ">CustomProductFilter.ascx</i> into the <strong class=" ">CMSGlobalFiles</strong> folder.</p>
-</li><li class=" "><p   
->Add the following markup to the control:</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Open your web project in Visual Studio.</p>
+</li><li class=" "><p>Create a <strong class=" ">New folder</strong> under the root called <i class=" ">CMSGlobalFiles</i> (if it doesn't already exist).</p>
+<ul class=" "><li class=" "><p>The system can export the content of this folder along with your site when you <a href="deploying-websites">deploy</a> it to another instance of Kentico.</p>
+</li></ul></li><li class=" "><p>Add a <strong class=" ">Web User Control</strong> named <i class=" ">CustomProductFilter.ascx</i> into the <strong class=" ">CMSGlobalFiles</strong> folder.</p>
+</li><li class=" "><p>Add the following markup to the control:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8762,7 +8732,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;%@ Control Language=</code><code class="string">"C#"</code><code class="plain"> AutoEventWireup=</code><code class="string">"true"</code><code class="plain"> CodeFile=</code><code class="string">"CustomProductFilter.ascx.cs"</code><code class="plain"> Inherits=</code><code class="string">"CMSGlobalFiles_CustomProductFilter"</code><code class="plain"> %&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;table&gt;</code></div>
 <div class="line"><code class="plain">  &lt;tr&gt;</code></div>
 <div class="line"><code class="plain">    &lt;td style=</code><code class="string">"padding:2px"</code><code class="plain">&gt;</code></div>
@@ -8794,21 +8764,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->This creates the design of the filter&#39;s user interface. The filter is composed of localized labels, drop-down lists and a button, arranged in a simple table layout. Alternatively, you can use a CSS&#8209;based layout applied through HTML elements (e.g. &lt;div&gt;, &lt;span&gt;, etc.).</p>
-<p   
->You can enter the captions of the filter&#39;s child controls using <a   href="working-with-resource-strings">localization strings</a> through the <strong class=" ">ResourceString</strong> property, rather than directly as <strong class=" ">Text</strong>.</p>
+            <p>This creates the design of the filter's user interface. The filter is composed of localized labels, drop-down lists and a button, arranged in a simple table layout. Alternatively, you can use a CSS‑based layout applied through HTML elements (e.g. &lt;div&gt;, &lt;span&gt;, etc.).</p>
+<p>You can enter the captions of the filter's child controls using <a href="working-with-resource-strings">localization strings</a> through the <strong class=" ">ResourceString</strong> property, rather than directly as <strong class=" ">Text</strong>.</p>
      
     </div>
 </div>
 </li></ol>    <h4 id="src-68882212_developingcustomfilters-implementingthefilteringlogic" class="heading "><span>Implementing the filtering logic</span></h4>
-<ol class=" "><li class=" "><p   
->Switch to the user control&#39;s code behind file and add the following references:</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Switch to the user control's code behind file and add the following references:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8828,7 +8795,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Data;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.UI.WebControls;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Ecommerce;</code></div>
@@ -8836,11 +8803,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Set the control to inherit from the appropriate base class.</p>
-<ul class=" "><li class=" "><p   
->This example uses the <strong class=" ">CMSAbstractDataFilterControl</strong> class, since the filter is intended for use with a page data source.</p>
-</li></ul><div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Set the control to inherit from the appropriate base class.</p>
+<ul class=" "><li class=" "><p>This example uses the <strong class=" ">CMSAbstractDataFilterControl</strong> class, since the filter is intended for use with a page data source.</p>
+</li></ul><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8860,15 +8825,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSGlobalFiles_CustomProductFilter : CMSAbstractDataFilterControl</code></div>
 <div class="line"><code class="plain">{</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Add the following methods into the user control class to load the filtering options into the child drop-down lists:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Add the following methods into the user control class to load the filtering options into the child drop-down lists:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8896,18 +8860,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.Visible = </code><code class="keyword">false</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Initializes only if the current request is NOT a postback</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">else</code><code class="plain"> </code><code class="keyword">if</code><code class="plain"> (!RequestHelper.IsPostBack())</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Loads product departments as filtering options</code></div>
 <div class="line"><code class="plain">        InitializeDepartments();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Initializes the Order by drop-down list</code></div>
 <div class="line"><code class="plain">        IntializeOrder();</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Loads the ordering options into the Order by drop-down list.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8918,7 +8882,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">    </code><code class="keyword">this</code><code class="plain">.drpOrder.Items.Add(</code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"Price - Descending"</code><code class="plain">, </code><code class="string">"priceDesc"</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">this</code><code class="plain">.drpOrder.Items.Add(</code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"Product name"</code><code class="plain">, </code><code class="string">"name"</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Loads all existing product departments as filtering options into the department drop-down list.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8926,7 +8890,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Gets all product departments from the system's database</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">var</code><code class="plain"> departments = DepartmentInfoProvider.GetDepartments();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Checks that at least one product department exists</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (!DataHelper.DataSourceIsEmpty(departments))</code></div>
 <div class="line"><code class="plain">    {</code></div>
@@ -8934,9 +8898,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.drpDepartment.DataSource = departments;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.drpDepartment.DataTextField = </code><code class="string">"DepartmentDisplayName"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.drpDepartment.DataValueField = </code><code class="string">"DepartmentID"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.drpDepartment.DataBind();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Adds the default '(all)' option</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.drpDepartment.Items.Insert(0, </code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"(all)"</code><code class="plain">, </code><code class="string">"##ALL##"</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">    }</code></div>
@@ -8945,9 +8909,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Define the <strong class=" ">SetFilter()</strong> method:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Define the <strong class=" ">SetFilter()</strong> method:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8972,19 +8935,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">string</code><code class="plain"> where = </code><code class="keyword">null</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">string</code><code class="plain"> order = </code><code class="keyword">null</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Generates a WHERE condition based on the selected product department</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (</code><code class="keyword">this</code><code class="plain">.drpDepartment.SelectedValue != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets the ID of the selected department</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">int</code><code class="plain"> departmentId = ValidationHelper.GetInteger(</code><code class="keyword">this</code><code class="plain">.drpDepartment.SelectedValue, 0);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (departmentId &gt; 0)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            where = </code><code class="string">"SKUDepartmentID = "</code><code class="plain"> + departmentId;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Applies the selected product order</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (</code><code class="keyword">this</code><code class="plain">.drpOrder.SelectedValue != </code><code class="string">""</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
@@ -8993,29 +8956,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> </code><code class="string">"priceAsc"</code><code class="plain">:</code></div>
 <div class="line"><code class="plain">                order = </code><code class="string">"SKUPrice"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">break</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> </code><code class="string">"priceDesc"</code><code class="plain">:</code></div>
 <div class="line"><code class="plain">                order = </code><code class="string">"SKUPrice Desc"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">break</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="keyword">case</code><code class="plain"> </code><code class="string">"name"</code><code class="plain">:</code></div>
 <div class="line"><code class="plain">                order = </code><code class="string">"SKUName"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">break</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (where != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Sets the Where condition</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.WhereCondition = where;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (order != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Sets the OrderBy clause</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.OrderBy = order;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">// Raises the filter changed event</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">this</code><code class="plain">.RaiseOnFilterChanged();</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -9023,24 +8986,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->The filter control dynamically generates a WHERE condition and ORDER BY statement based on the selected filtering options. The values are stored in the <strong class=" ">WhereCondition</strong> and <strong class=" ">OrderBy</strong> properties inherited from the base class. When you attach the filter to a data source, it reads the values of the properties and inserts them into the SQL query used to load the data.</p>
-<p   
->Note:</p>
-<ul class=" "><li class=" "><p   
->The filter must inherit from the appropriate base class according to the type of the used data source.</p>
-</li><li class=" "><p   
->If you are connecting a filter to a data source with a custom query, the code of the query must contain the ##WHERE## and ##ORDERBY## expressions. When applied, the filter replaces the expressions with the dynamically generated SQL code. See: <a   href="loading-data-using-custom-queries#src-68880629_loadingdatausingcustomqueries-usingpropertiestomodifyqueries">Using properties to modify queries</a></p>
+            <p>The filter control dynamically generates a WHERE condition and ORDER BY statement based on the selected filtering options. The values are stored in the <strong class=" ">WhereCondition</strong> and <strong class=" ">OrderBy</strong> properties inherited from the base class. When you attach the filter to a data source, it reads the values of the properties and inserts them into the SQL query used to load the data.</p>
+<p>Note:</p>
+<ul class=" "><li class=" "><p>The filter must inherit from the appropriate base class according to the type of the used data source.</p>
+</li><li class=" "><p>If you are connecting a filter to a data source with a custom query, the code of the query must contain the ##WHERE## and ##ORDERBY## expressions. When applied, the filter replaces the expressions with the dynamically generated SQL code. See: <a href="loading-data-using-custom-queries#src-68880629_loadingdatausingcustomqueries-usingpropertiestomodifyqueries">Using properties to modify queries</a></p>
 </li></ul>     
     </div>
 </div>
-</li><li class=" "><p   
->Add two more methods that override the handlers of the control&#39;s <strong class=" ">Init</strong> and <strong class=" ">PreRender</strong> events:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Add two more methods that override the handlers of the control's <strong class=" ">Init</strong> and <strong class=" ">PreRender</strong> events:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9067,7 +9025,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">    SetupControl();</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">base</code><code class="plain">.OnInit(e);</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// PreRender event handler</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9079,115 +9037,83 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        </code><code class="comments">// Applies the filter to the displayed data</code></div>
 <div class="line"><code class="plain">        SetFilter();</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">base</code><code class="plain">.OnPreRender(e);</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->The <i class=" ">OnInit</i> and <i class=" ">OnPreRender</i> handlers call the previously defined private methods during the correct stages of the page life cycle.</p>
+            <p>The <i class=" ">OnInit</i> and <i class=" ">OnPreRender</i> handlers call the previously defined private methods during the correct stages of the page life cycle.</p>
      
     </div>
 </div>
-</li></ol><p   
->When a user clicks the <strong class=" ">Apply Filter</strong> button, a postback occurs, which triggers the <strong class=" ">SetFilter()</strong> method during the <strong class=" ">PreRender</strong> event and the filter applies the conditions to the displayed data. Notice the use of the <strong class=" ">CMS.Helpers.RequestHelper.IsPostBack()</strong> method in the conditions. The control only calls the <strong class=" ">SetFilter()</strong> method when the current page request is a postback, and initializes the child controls only on the first page load (i.e. when the request is <i class=" ">not</i> a postback).</p>
+</li></ol><p>When a user clicks the <strong class=" ">Apply Filter</strong> button, a postback occurs, which triggers the <strong class=" ">SetFilter()</strong> method during the <strong class=" ">PreRender</strong> event and the filter applies the conditions to the displayed data. Notice the use of the <strong class=" ">CMS.Helpers.RequestHelper.IsPostBack()</strong> method in the conditions. The control only calls the <strong class=" ">SetFilter()</strong> method when the current page request is a postback, and initializes the child controls only on the first page load (i.e. when the request is <i class=" ">not</i> a postback).</p>
     <h4 id="src-68882212_developingcustomfilters-addingthefiltertoaportalenginepage" class="heading "><span>Adding the filter to a portal engine page</span></h4>
-<p   
->The filter control is now ready and you can try out its functionality. It is recommended to test the filter on the <strong class=" ">Corporate</strong> or <strong class=" ">E-commerce</strong> sample sites, which already contain examples of product pages.</p>
-<ol class=" "><li class=" "><p   
->Log in to the administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application and <a   href="creating-new-pages">create a new page</a>.</p>
-</li><li class=" "><p   
->Switch to the page&#39;s <strong class=" ">Design</strong> tab and add the following web parts:</p>
-    <div  class="tablewrap">
+<p>The filter control is now ready and you can try out its functionality. It is recommended to test the filter on the <strong class=" ">Corporate</strong> or <strong class=" ">E-commerce</strong> sample sites, which already contain examples of product pages.</p>
+<ol class=" "><li class=" "><p>Log in to the administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">Pages</strong> application and <a href="creating-new-pages">create a new page</a>.</p>
+</li><li class=" "><p>Switch to the page's <strong class=" ">Design</strong> tab and add the following web parts:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Web part</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Web part</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Instructions</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Instructions</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Pages data source<br/>    <span style="color: #ffffff;">
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Pages data source<br>    <span style="color: #ffffff;">
 ____________________    </span>
 </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ol class=" "><li class=" "><p   
->Configure the web part to load product pages.</p>
-</li><li class=" "><p   
->Fill in the <strong class=" ">Filter name</strong> property (e.g. <i class=" ">CustomProductFilter)</i>.</p>
-</li></ol><p   
-><strong class=" ">Note</strong>: You can alternatively use the <i class=" ">Products data source</i> web part for this purpose.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ol class=" "><li class=" "><p>Configure the web part to load product pages.</p>
+</li><li class=" "><p>Fill in the <strong class=" ">Filter name</strong> property (e.g. <i class=" ">CustomProductFilter)</i>.</p>
+</li></ol><p><strong class=" ">Note</strong>: You can alternatively use the <i class=" ">Products data source</i> web part for this purpose.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Filter</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Filter</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ol class=" "><li class=" "><p   
->Assign a <strong class=" ">Filter name</strong> that matches the data source (<i class=" ">CustomProductFilter</i>).</p>
-</li><li class=" "><p   
->Enter the path of the .ascx file implementing your custom filter into the <strong class=" ">Filter control path</strong> property:<br/><i class=" ">~/CMSGlobalFiles/CustomProductFilter.ascx</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ol class=" "><li class=" "><p>Assign a <strong class=" ">Filter name</strong> that matches the data source (<i class=" ">CustomProductFilter</i>).</p>
+</li><li class=" "><p>Enter the path of the .ascx file implementing your custom filter into the <strong class=" ">Filter control path</strong> property:<br><i class=" ">~/CMSGlobalFiles/CustomProductFilter.ascx</i></p>
 </li></ol>            </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Basic repeater</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Basic repeater</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ol class=" "><li class=" "><p   
->Enter the ID of the Pages data source web part into the <strong class=" ">Data source name</strong> property.</p>
-</li><li class=" "><p   
->Set an appropriate <strong class=" ">Transformation name</strong>, for example: <i class=" ">CMS.Product.CorporateSite</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ol class=" "><li class=" "><p>Enter the ID of the Pages data source web part into the <strong class=" ">Data source name</strong> property.</p>
+</li><li class=" "><p>Set an appropriate <strong class=" ">Transformation name</strong>, for example: <i class=" ">CMS.Product.CorporateSite</i></p>
 </li></ol>            </td>
         </tr>
 </tbody>        </table>
             </div>
-<div  class="box-general box-info">
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->For more information about setting up web parts that display data and allow filtering, see:</p>
-<ul class=" "><li class=" "><p   
-><a   href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
-</li><li class=" "><p   
-><a   href="filtering-and-paging-data">Filtering and paging data</a></p>
+            <p>For more information about setting up web parts that display data and allow filtering, see:</p>
+<ul class=" "><li class=" "><p><a href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
+</li><li class=" "><p><a href="filtering-and-paging-data">Filtering and paging data</a></p>
 </li></ul>     
     </div>
 </div>
-</li></ol><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882212/CustomFilter_WebParts.png" 
-        alt="Creating a page that displays product pages and a custom filter"        
-        width="500"         />
+</li></ol><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882212/CustomFilter_WebParts.png" alt="Creating a page that displays product pages and a custom filter" width="500">
 </p>
-<p   
->If you view the page on the live site, you can see a list of products with the custom filter above. Try filtering the products by their department and changing their order.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882212/Custom_Filter_Result.png" 
-        alt="Filtering the products to display only Laptops and tables, in descending order according to their price"        
-        width="500"         />
+<p>If you view the page on the live site, you can see a list of products with the custom filter above. Try filtering the products by their department and changing their order.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882212/Custom_Filter_Result.png" alt="Filtering the products to display only Laptops and tables, in descending order according to their price" width="500">
 </p>
                     </div>
                 </div>
@@ -9199,8 +9125,8 @@ ____________________    </span>
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9212,10 +9138,10 @@ ____________________    </span>
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9234,9 +9160,6 @@ ____________________    </span>
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9247,7 +9170,7 @@ ____________________    </span>
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9258,5 +9181,6 @@ ____________________    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

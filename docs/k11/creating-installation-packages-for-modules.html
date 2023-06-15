@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating installation packages for modules - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882253"> <span>Creating installation packages for modules</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,149 +8659,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->The system allows you to transfer custom modules to other instances of Kentico using <a  class="external-link" href="https://www.nuget.org/">NuGet packages</a>.</p>
-<p   
->When creating modules that you wish to deploy as installation packages, you need to take additional steps during the development process. The module must be represented by a separate web application project inside the Kentico solution. Based on <a   href="#src-68882253_creatinginstallationpackagesformodules-reference-custommoduleconventions">conventions</a>, the installation package automatically includes files from specific folders and database objects related to the module.</p>
-<p   
->The module project only exists on the Kentico instance that you use to develop the module. When you <a   href="installing-modules-from-installation-packages">install the module</a> on a different instance, all code (including code behinds of web forms and controls) is compiled inside the module DLL, and other files are integrated into the main Kentico project. Installation of modules is supported for both <i class=" ">web application</i> and <i class=" ">web site</i> type projects.</p>
-<p   
->Module packages do not include any data stored in module classes. If you wish to provide default data along with your module, you can prepare additional <a   href="exporting-objects">export packages</a> containing the data or an <a   href="#src-68882253_creatinginstallationpackagesformodules-preparingadditionalsqlscriptsfortheinstallation">SQL script</a> that creates the required data after the installation of the module.</p>
-<div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>The system allows you to transfer custom modules to other instances of Kentico using <a class="external-link" href="https://www.nuget.org/">NuGet packages</a>.</p><p>When creating modules that you wish to deploy as installation packages, you need to take additional steps during the development process. The module must be represented by a separate web application project inside the Kentico solution. Based on <a href="#src-68882253_creatinginstallationpackagesformodules-reference-custommoduleconventions">conventions</a>, the installation package automatically includes files from specific folders and database objects related to the module.</p><p>The module project only exists on the Kentico instance that you use to develop the module. When you <a href="installing-modules-from-installation-packages">install the module</a> on a different instance, all code (including code behinds of web forms and controls) is compiled inside the module DLL, and other files are integrated into the main Kentico project. Installation of modules is supported for both <i class=" ">web application</i> and <i class=" ">web site</i> type projects.</p><p>Module packages do not include any data stored in module classes. If you wish to provide default data along with your module, you can prepare additional <a href="exporting-objects">export packages</a> containing the data or an <a href="#src-68882253_creatinginstallationpackagesformodules-preparingadditionalsqlscriptsfortheinstallation">SQL script</a> that creates the required data after the installation of the module.</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Limitations</strong></p>
-<p   
->Modules transferred via installation packages <i class=" ">currently</i> have the following limitations:</p>
-<ul class=" "><li class=" "><p   
->To install or uninstall module packages, you need to open the target project in Visual Studio &ndash; the operations cannot be performed on certain types of deployed and running websites (for example on Microsoft Azure).</p>
-</li><li class=" "><p   
->You cannot use installation packages to transfer modules for development on other instances &ndash; the module always becomes sealed and uncustomizable after installation, and all code is compiled into a DLL. If you wish to develop the module on multiple instances, use <a   href="exporting-objects">export</a> and <a   href="importing-a-site-or-objects">import </a>features instead.</p>
-</li><li class=" "><p   
->You cannot define dependencies between multiple module packages.</p>
-</li><li class=" "><p   
->Modules installed from packages cannot be directly downgraded to older versions. You can however uninstall a module and then install a package with an older version.</p>
-</li><li class=" "><p   
->You may encounter problems when using components (user controls etc.) from the main Kentico project inside the module&#39;s project. This may make it difficult to develop custom web forms, user controls or web parts within packageable modules.</p>
-</li><li class=" "><p   
->If you transfer a web part with a <a   href="using-custom-web-part-layouts">custom layout</a> as part of the module, the layout does not work correctly when <a   href="deployment-mode-for-virtual-objects">Deployment mode</a> is enabled.</p>
-</li><li class=" "><p   
->You cannot create installation packages for:</p>
-<ul class=" "><li class=" "><p   
->The default Kentico modules.</p>
-</li><li class=" "><p   
->The default <i class=" ">Custom</i> module, which is intended for non-transferable customizations.</p>
-</li><li class=" "><p   
->Modules installed from other installation packages.</p>
+            <p><strong class=" ">Limitations</strong></p>
+<p>Modules transferred via installation packages <i class=" ">currently</i> have the following limitations:</p>
+<ul class=" "><li class=" "><p>To install or uninstall module packages, you need to open the target project in Visual Studio – the operations cannot be performed on certain types of deployed and running websites (for example on Microsoft Azure).</p>
+</li><li class=" "><p>You cannot use installation packages to transfer modules for development on other instances – the module always becomes sealed and uncustomizable after installation, and all code is compiled into a DLL. If you wish to develop the module on multiple instances, use <a href="exporting-objects">export</a> and <a href="importing-a-site-or-objects">import </a>features instead.</p>
+</li><li class=" "><p>You cannot define dependencies between multiple module packages.</p>
+</li><li class=" "><p>Modules installed from packages cannot be directly downgraded to older versions. You can however uninstall a module and then install a package with an older version.</p>
+</li><li class=" "><p>You may encounter problems when using components (user controls etc.) from the main Kentico project inside the module's project. This may make it difficult to develop custom web forms, user controls or web parts within packageable modules.</p>
+</li><li class=" "><p>If you transfer a web part with a <a href="using-custom-web-part-layouts">custom layout</a> as part of the module, the layout does not work correctly when <a href="deployment-mode-for-virtual-objects">Deployment mode</a> is enabled.</p>
+</li><li class=" "><p>You cannot create installation packages for:</p>
+<ul class=" "><li class=" "><p>The default Kentico modules.</p>
+</li><li class=" "><p>The default <i class=" ">Custom</i> module, which is intended for non-transferable customizations.</p>
+</li><li class=" "><p>Modules installed from other installation packages.</p>
 </li></ul></li></ul>     
     </div>
-</div>
-<p   
-><strong class=" ">To create an installation package for a custom module, you need to</strong>:</p>
-<ol class=" "><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleproject">Create a separate project for the module in the Kentico solution</a></p>
-</li><li class=" "><p   
->Develop the module (see <a   href="example---creating-a-packageable-module">Example - Creating a packageable module</a> for an example)<br/></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-includingdatabaseobjectsinthepackage">Make sure the installation package includes database objects related to the module</a></p>
-</li><li class=" "><p   
->Optional steps:</p>
-<ul class=" "><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-addingadditionallibrariestothepackage">Add additional libraries to the module installation package</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-configuringcustommodulesettings">Configure the module&#39;s custom settings</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-preparingadditionalsqlscriptsfortheinstallation">Prepare additional SQL scripts for the module installation</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleinstallationpackage">Create the module installation package</a></p>
-</li></ol><p   
-></p>
-    <div  class="confbox panel">
+</div><p><strong class=" ">To create an installation package for a custom module, you need to</strong>:</p><ol class=" "><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleproject">Create a separate project for the module in the Kentico solution</a></p>
+</li><li class=" "><p>Develop the module (see <a href="example---creating-a-packageable-module">Example - Creating a packageable module</a> for an example)<br></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-includingdatabaseobjectsinthepackage">Make sure the installation package includes database objects related to the module</a></p>
+</li><li class=" "><p>Optional steps:</p>
+<ul class=" "><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-addingadditionallibrariestothepackage">Add additional libraries to the module installation package</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-configuringcustommodulesettings">Configure the module's custom settings</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-preparingadditionalsqlscriptsfortheinstallation">Prepare additional SQL scripts for the module installation</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleinstallationpackage">Create the module installation package</a></p>
+</li></ol><p></p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleproject">Creating the module project</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-includingdatabaseobjectsinthepackage">Including database objects in the package</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-addingadditionallibrariestothepackage">Adding additional libraries to the package</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-configuringcustommodulesettings">Configuring custom module settings</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-preparingadditionalsqlscriptsfortheinstallation">Preparing additional SQL scripts for the installation</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleinstallationpackage">Creating the module installation package</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-preparingupdatepackagesformodules">Preparing update packages for modules</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-reference-custommoduleconventions">Reference - Custom module conventions</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleproject">Creating the module project</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-includingdatabaseobjectsinthepackage">Including database objects in the package</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-addingadditionallibrariestothepackage">Adding additional libraries to the package</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-configuringcustommodulesettings">Configuring custom module settings</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-preparingadditionalsqlscriptsfortheinstallation">Preparing additional SQL scripts for the installation</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleinstallationpackage">Creating the module installation package</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-preparingupdatepackagesformodules">Preparing update packages for modules</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-reference-custommoduleconventions">Reference - Custom module conventions</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
-    <div  class="confbox panel">
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+
+
+    
+    
+    <div class="confbox panel">
             <div class="title panel-header">Related articles</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a  class="external-link" href="https://devnet.kentico.com/articles/creating-module-installation-packages">Creating module installation packages</a></p>
+<ul class=" "><li class=" "><p><a class="external-link" href="https://devnet.kentico.com/articles/creating-module-installation-packages">Creating module installation packages</a></p>
 </li></ul>        </div>
     </div>
     <h3 id="src-68882253_creatinginstallationpackagesformodules-creatingthemoduleproject" class="heading "><span>Creating the module project</span></h3>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->We strongly recommend using <i class=" ">web application</i> installations of Kentico when developing custom modules that you wish to deploy as installation packages.</p>
-<p   
->Module projects must always use the <a  class="external-link" href="http://msdn.microsoft.com/en-us/library/dd547590.aspx">web application format</a> &ndash; having the same project type for the main Kentico project makes it easier to reuse files. With <i class=" ">web site</i> projects, you need to manually ensure that all module files are converted to the web application format.</p>
+            <p>We strongly recommend using <i class=" ">web application</i> installations of Kentico when developing custom modules that you wish to deploy as installation packages.</p>
+<p>Module projects must always use the <a class="external-link" href="http://msdn.microsoft.com/en-us/library/dd547590.aspx">web application format</a> – having the same project type for the main Kentico project makes it easier to reuse files. With <i class=" ">web site</i> projects, you need to manually ensure that all module files are converted to the web application format.</p>
      
     </div>
 </div>
-<p   
->Before you can develop a module that supports the creation of installation packages, you need to prepare a web application project and include this project in the Kentico solution.</p>
-<p   
->The following steps are necessary to maintain the proper folder structure within the Kentico solution:</p>
-<ol class=" "><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-creatingtheproject">Create the project</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-copyingtheprojectfilestothekenticosolution">Copy the project files to the Kentico solution</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-includingtheprojectinthekenticosolution">Include the project in the Kentico solution</a></p>
+<p>Before you can develop a module that supports the creation of installation packages, you need to prepare a web application project and include this project in the Kentico solution.</p>
+<p>The following steps are necessary to maintain the proper folder structure within the Kentico solution:</p>
+<ol class=" "><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-creatingtheproject">Create the project</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-copyingtheprojectfilestothekenticosolution">Copy the project files to the Kentico solution</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-includingtheprojectinthekenticosolution">Include the project in the Kentico solution</a></p>
 </li></ol>    <h4 id="src-68882253_creatinginstallationpackagesformodules-creatingtheproject" class="heading "><span>Creating the project</span></h4>
-<ol class=" "><li class=" "><p   
->Open Visual Studio and create a new web application project.</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Important</strong>: The project name must match the module&#39;s code name.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">ASP.NET Web Application</strong> project template (Empty).</p>
-</li></ul></li><li class=" "><p   
->Delete the project&#39;s <i class=" ">Web.config</i> file.</p>
-</li><li class=" "><p   
->Rename the <i class=" ">packages.config</i> file to <i class=" ">packages.&lt;project name&gt;.config</i>.</p>
-</li><li class=" "><p   
->In the project&#39;s <strong class=" ">Properties</strong> folder, rename the <i class=" ">AssemblyInfo.cs</i> file to <i class=" "><i class=" ">&lt;project name&gt;</i>AssemblyInfo.cs</i>.</p>
-</li><li class=" "><p   
->Save the project.</p>
+<ol class=" "><li class=" "><p>Open Visual Studio and create a new web application project.</p>
+<ul class=" "><li class=" "><p><strong class=" ">Important</strong>: The project name must match the module's code name.</p>
+</li><li class=" "><p>Select the <strong class=" ">ASP.NET Web Application</strong> project template (Empty).</p>
+</li></ul></li><li class=" "><p>Delete the project's <i class=" ">Web.config</i> file.</p>
+</li><li class=" "><p>Rename the <i class=" ">packages.config</i> file to <i class=" ">packages.&lt;project name&gt;.config</i>.</p>
+</li><li class=" "><p>In the project's <strong class=" ">Properties</strong> folder, rename the <i class=" ">AssemblyInfo.cs</i> file to <i class=" "><i class=" ">&lt;project name&gt;</i>AssemblyInfo.cs</i>.</p>
+</li><li class=" "><p>Save the project.</p>
 </li></ol>    <h4 id="src-68882253_creatinginstallationpackagesformodules-copyingtheprojectfilestothekenticosolution" class="heading "><span>Copying the project files to the Kentico solution</span></h4>
-<ol class=" "><li class=" "><p   
->Open the project&#39;s folder on your file system.</p>
-</li><li class=" "><p   
->Edit the <i class=" ">&lt;project name&gt;.csproj</i> file and make sure the content reflects the changes in the names of the <i class=" ">AssemblyInfo.cs</i> and <i class=" ">packages.config</i> files.</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Open the project's folder on your file system.</p>
+</li><li class=" "><p>Edit the <i class=" ">&lt;project name&gt;.csproj</i> file and make sure the content reflects the changes in the names of the <i class=" ">AssemblyInfo.cs</i> and <i class=" ">packages.config</i> files.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8832,34 +8768,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Copy the <i class=" "><strong class=" ">&lt;project name&gt;.csproj</strong> </i>file and <i class=" "><strong class=" ">packages.&lt;project name&gt;.config</strong> </i>file (if present) to the <strong class=" ">CMS</strong> folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Copy <i class=" "><strong class=" "><strong class=" ">&lt;project name&gt;</strong>AssemblyInfo.cs</strong> </i>from the project&#39;s <strong class=" ">Properties</strong> directory to the <strong class=" ">CMS\Properties</strong> folder of your Kentico web project.</p>
+</li><li class=" "><p>Copy the <i class=" "><strong class=" ">&lt;project name&gt;.csproj</strong> </i>file and <i class=" "><strong class=" ">packages.&lt;project name&gt;.config</strong> </i>file (if present) to the <strong class=" ">CMS</strong> folder of your Kentico web project.</p>
+</li><li class=" "><p>Copy <i class=" "><strong class=" "><strong class=" ">&lt;project name&gt;</strong>AssemblyInfo.cs</strong> </i>from the project's <strong class=" ">Properties</strong> directory to the <strong class=" ">CMS\Properties</strong> folder of your Kentico web project.</p>
 </li></ol>    <h4 id="src-68882253_creatinginstallationpackagesformodules-includingtheprojectinthekenticosolution" class="heading "><span>Including the project in the Kentico solution</span></h4>
-<ol class=" "><li class=" "><p   
->Open your Kentico solution in Visual Studio (using the <i class=" ">WebApp.sln</i> file).</p>
-</li><li class=" "><p   
->Add your custom module project to the Kentico solution:<br/></p>
-<ol class=" "><li class=" "><p   
->In the Solution Explorer, right-click the solution.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Add -&gt; Existing Project...</strong></p>
-</li><li class=" "><p   
->Select the <i class=" ">&lt;project name&gt;.csproj</i> file in the project&#39;s <strong class=" ">CMS</strong> folder.</p>
-</li></ol></li><li class=" "><p   
->Add the required references to your custom module project:<br/></p>
-<ol class=" "><li class=" "><p   
->Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
-</li><li class=" "><p   
->Add a reference to the<i class=" "> <strong class=" ">CMS.Core.dll</strong> </i>library (and any others that you require for custom code).</p>
-</li></ol></li><li class=" "><p   
->Expand the <strong class=" ">Properties</strong> folder of the module project and edit <i class=" "><strong class=" ">&lt;project name&gt;AssemblyInfo.cs</strong> </i>.</p>
-</li><li class=" "><p   
->Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Open your Kentico solution in Visual Studio (using the <i class=" ">WebApp.sln</i> file).</p>
+</li><li class=" "><p>Add your custom module project to the Kentico solution:<br></p>
+<ol class=" "><li class=" "><p>In the Solution Explorer, right-click the solution.</p>
+</li><li class=" "><p>Click <strong class=" ">Add -&gt; Existing Project...</strong></p>
+</li><li class=" "><p>Select the <i class=" ">&lt;project name&gt;.csproj</i> file in the project's <strong class=" ">CMS</strong> folder.</p>
+</li></ol></li><li class=" "><p>Add the required references to your custom module project:<br></p>
+<ol class=" "><li class=" "><p>Right-click the project and select <strong class=" ">Add -&gt; Reference</strong>.</p>
+</li><li class=" "><p>Open the <strong class=" ">Browse</strong> tab of the <strong class=" ">Reference manager</strong> dialog, click <strong class=" ">Browse</strong> and navigate to the <i class=" "><strong class=" ">Lib</strong> </i>folder of your Kentico web project.</p>
+</li><li class=" "><p>Add a reference to the<i class=" "> <strong class=" ">CMS.Core.dll</strong> </i>library (and any others that you require for custom code).</p>
+</li></ol></li><li class=" "><p>Expand the <strong class=" ">Properties</strong> folder of the module project and edit <i class=" "><strong class=" ">&lt;project name&gt;AssemblyInfo.cs</strong> </i>.</p>
+</li><li class=" "><p>Add the <strong class=" ">AssemblyDiscoverable</strong> assembly attribute:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8878,476 +8801,333 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly:AssemblyDiscoverable]</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Save the solution and all files.</p>
-</li></ol><p   
->The Kentico solution now contains a web application project representing your custom module. You can start developing the module. After you compile the module code into an assembly (i.e. build the project), the system automatically includes the resulting DLL when you <a   href="#src-68882253_creatinginstallationpackagesformodules-createthemoduleinstallationpackage">create an installation package for the module</a>.</p>
-<p   
->The additional project only exists on the Kentico instance that you use to develop the module. When you <a   href="installing-modules-from-installation-packages">install the module</a> on a different instance, all code is already compiled inside the module&#39;s DLL and other files are integrated into the main Kentico project.</p>
-<div  class="box-general box-info">
+</li><li class=" "><p>Save the solution and all files.</p>
+</li></ol><p>The Kentico solution now contains a web application project representing your custom module. You can start developing the module. After you compile the module code into an assembly (i.e. build the project), the system automatically includes the resulting DLL when you <a href="#src-68882253_creatinginstallationpackagesformodules-createthemoduleinstallationpackage">create an installation package for the module</a>.</p>
+<p>The additional project only exists on the Kentico instance that you use to develop the module. When you <a href="installing-modules-from-installation-packages">install the module</a> on a different instance, all code is already compiled inside the module's DLL and other files are integrated into the main Kentico project.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: If you ever need to rename a module during development, <strong class=" ">Clean</strong> your solution in Visual Studio <strong class=" ">before</strong> you rename the module project or manually delete the original DLL. Otherwise the module&#39;s old DLL may cause errors on your site.</p>
+            <p><strong class=" ">Note</strong>: If you ever need to rename a module during development, <strong class=" ">Clean</strong> your solution in Visual Studio <strong class=" ">before</strong> you rename the module project or manually delete the original DLL. Otherwise the module's old DLL may cause errors on your site.</p>
      
     </div>
 </div>
     <h3 id="src-68882253_creatinginstallationpackagesformodules-includingdatabaseobjectsinthepackage" class="heading "><span> Including database objects in the package </span></h3>
-<p   
->When <a   href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleinstallationpackage">creating</a> module installation packages, the system automatically includes the following database objects that are directly related to the given module:</p>
-<ul class=" "><li class=" "><p   
->Classes</p>
-</li><li class=" "><p   
->Permissions</p>
-</li><li class=" "><p   
->UI elements</p>
-</li><li class=" "><p   
->Setting categories and groups, including all contained setting keys<br/></p>
-</li></ul><p   
->You can configure <a   href="page-types">Page types</a> to be included in the installation packages of a specific custom module. Edit the page type in the <strong class=" ">Page types</strong> application and choose a module via the <strong class=" ">Include in module package</strong> selector.<br/></p>
-<p   
->By following <a   href="#src-68882253_creatinginstallationpackagesformodules-conventionsfordatabaseobjects">naming conventions</a> , you can also create objects of the following types that the system includes in the module&#39;s installation packages:</p>
-<ul class=" "><li class=" "><p   
-><a   href="developing-web-parts">Web parts</a></p>
-</li><li class=" "><p   
->Web part categories</p>
-</li><li class=" "><p   
-><a   href="developing-form-controls">Form controls</a></p>
-</li></ul><div  class="box-general box-note">
+<p>When <a href="#src-68882253_creatinginstallationpackagesformodules-creatingthemoduleinstallationpackage">creating</a> module installation packages, the system automatically includes the following database objects that are directly related to the given module:</p>
+<ul class=" "><li class=" "><p>Classes</p>
+</li><li class=" "><p>Permissions</p>
+</li><li class=" "><p>UI elements</p>
+</li><li class=" "><p>Setting categories and groups, including all contained setting keys<br></p>
+</li></ul><p>You can configure <a href="page-types">Page types</a> to be included in the installation packages of a specific custom module. Edit the page type in the <strong class=" ">Page types</strong> application and choose a module via the <strong class=" ">Include in module package</strong> selector.<br></p>
+<p>By following <a href="#src-68882253_creatinginstallationpackagesformodules-conventionsfordatabaseobjects">naming conventions</a> , you can also create objects of the following types that the system includes in the module's installation packages:</p>
+<ul class=" "><li class=" "><p><a href="developing-web-parts">Web parts</a></p>
+</li><li class=" "><p>Web part categories</p>
+</li><li class=" "><p><a href="developing-form-controls">Form controls</a></p>
+</li></ul><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: Module installation packages cannot transfer other types of database objects, such as for example <a   href="scheduling-tasks">scheduled tasks</a>. You can create separate <a   href="exporting-objects">export packages</a> for additional objects and deliver them together with your module&#39;s installation package.</p>
+            <p><strong class=" ">Note</strong>: Module installation packages cannot transfer other types of database objects, such as for example <a href="scheduling-tasks">scheduled tasks</a>. You can create separate <a href="exporting-objects">export packages</a> for additional objects and deliver them together with your module's installation package.</p>
      
     </div>
 </div>
     <h3 id="src-68882253_creatinginstallationpackagesformodules-addingadditionallibrariestothepackage" class="heading "><span>Adding additional libraries to the package</span></h3>
-<p   
->The system cannot automatically identify all dynamic link libraries (DLLs) required by your custom module. If your module uses third-party or custom libraries, you need to assign these libraries to the module before creating the installation package.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application and <strong class=" ">Edit</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/edit.png" 
-                
-                 />
+<p>The system cannot automatically identify all dynamic link libraries (DLLs) required by your custom module. If your module uses third-party or custom libraries, you need to assign these libraries to the module before creating the installation package.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application and <strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png">
 ) your custom module.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Additional libraries</strong> tab.</p>
-</li><li class=" "><p   
->Assign any number of libraries from the project&#39;s <strong class=" ">bin</strong> folder:<br/></p>
-<ol class=" "><li class=" "><p   
->Click <strong class=" ">Add library</strong>.</p>
-</li><li class=" "><p   
->Select the library that you wish to include in the module&#39;s installation package.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Select</strong>.</p>
-</li></ol></li></ol><p   
->When you create the module installation package, the package also contains the selected libraries.</p>
-<p   
-><strong class=" ">Note</strong>: Do NOT assign DLLs that are part of the default Kentico project as additional libraries of module packages. This includes any DLL files in the <i class=" ">CMS\bin</i> or <i class=" ">CMS\CMSDependencies</i> folders of unmodified Kentico projects. Adding these libraries may cause the system to work incorrectly after installing or uninstalling the custom module package.<br/></p>
+</li><li class=" "><p>Switch to the <strong class=" ">Additional libraries</strong> tab.</p>
+</li><li class=" "><p>Assign any number of libraries from the project's <strong class=" ">bin</strong> folder:<br></p>
+<ol class=" "><li class=" "><p>Click <strong class=" ">Add library</strong>.</p>
+</li><li class=" "><p>Select the library that you wish to include in the module's installation package.</p>
+</li><li class=" "><p>Click <strong class=" ">Select</strong>.</p>
+</li></ol></li></ol><p>When you create the module installation package, the package also contains the selected libraries.</p>
+<p><strong class=" ">Note</strong>: Do NOT assign DLLs that are part of the default Kentico project as additional libraries of module packages. This includes any DLL files in the <i class=" ">CMS\bin</i> or <i class=" ">CMS\CMSDependencies</i> folders of unmodified Kentico projects. Adding these libraries may cause the system to work incorrectly after installing or uninstalling the custom module package.<br></p>
     <h3 id="src-68882253_creatinginstallationpackagesformodules-configuringcustommodulesettings" class="heading "><span>Configuring custom module settings</span></h3>
-<p   
->If you have defined <a   href="adding-custom-website-settings">custom settings</a> for the module, we recommend configuring the default values of the settings before you create the installation package. Open the <strong class=" ">Settings</strong> application and set the desired <i class=" ">(global)</i> values for the module&#39;s settings.</p>
-<p   
->The setting values configured on the development instance are used by default when the module is installed on other instances of Kentico.</p>
+<p>If you have defined <a href="adding-custom-website-settings">custom settings</a> for the module, we recommend configuring the default values of the settings before you create the installation package. Open the <strong class=" ">Settings</strong> application and set the desired <i class=" ">(global)</i> values for the module's settings.</p>
+<p>The setting values configured on the development instance are used by default when the module is installed on other instances of Kentico.</p>
     <h3 id="src-68882253_creatinginstallationpackagesformodules-preparingadditionalsqlscriptsfortheinstallation" class="heading "><span>Preparing additional SQL scripts for the installation</span></h3>
-<p   
->Installation packages cannot automatically transfer certain types of database components, such as <strong class=" ">indexes</strong> and <strong class=" ">views</strong>. If you wish to deliver such components with the module, you need to manually prepare SQL scripts that create (and remove) the required database objects.</p>
-<p   
->Add the script files into the following folders in the development project (create the folders if necessary):</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">~/App_Data/CMSModules/&lt;module code name&gt;/</strong><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Install</strong> &ndash; scripts run before or after the import of the module&#39;s database objects (do not run when updating the module from an older version)</p>
-</li><li class=" "><p   
-><strong class=" ">Update</strong> &ndash; scripts run before or after the import of database objects when updating the module from an older version</p>
-</li><li class=" "><p   
-><strong class=" ">Uninstall</strong> &ndash; scripts run before or after the removal of the module&#39;s database objects</p>
-</li></ul></li></ul><p   
->In all cases, the script files must be named either <strong class=" ">before.sql</strong> or <strong class=" ">after.sql</strong>. In the uninstallation scripts, you typically need to remove objects that you created in the opposing installation scripts (for example <i class=" "><strong class=" ">Uninstall/before.sql</strong> </i>to reverse <i class=" "><strong class=" ">Install/after.sql</strong> </i>).</p>
-<p   
->The system automatically includes the script files into the module&#39;s installation packages. When <a   href="installing-modules-from-installation-packages">installing</a> or <a   href="uninstalling-modules">uninstalling</a> the module, the appropriate <i class=" ">before.sql</i> and <i class=" ">after.sql</i> scripts are executed against the target database.<br/></p>
+<p>Installation packages cannot automatically transfer certain types of database components, such as <strong class=" ">indexes</strong> and <strong class=" ">views</strong>. If you wish to deliver such components with the module, you need to manually prepare SQL scripts that create (and remove) the required database objects.</p>
+<p>Add the script files into the following folders in the development project (create the folders if necessary):</p>
+<ul class=" "><li class=" "><p><strong class=" ">~/App_Data/CMSModules/&lt;module code name&gt;/</strong><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Install</strong> – scripts run before or after the import of the module's database objects (do not run when updating the module from an older version)</p>
+</li><li class=" "><p><strong class=" ">Update</strong> – scripts run before or after the import of database objects when updating the module from an older version</p>
+</li><li class=" "><p><strong class=" ">Uninstall</strong> – scripts run before or after the removal of the module's database objects</p>
+</li></ul></li></ul><p>In all cases, the script files must be named either <strong class=" ">before.sql</strong> or <strong class=" ">after.sql</strong>. In the uninstallation scripts, you typically need to remove objects that you created in the opposing installation scripts (for example <i class=" "><strong class=" ">Uninstall/before.sql</strong> </i>to reverse <i class=" "><strong class=" ">Install/after.sql</strong> </i>).</p>
+<p>The system automatically includes the script files into the module's installation packages. When <a href="installing-modules-from-installation-packages">installing</a> or <a href="uninstalling-modules">uninstalling</a> the module, the appropriate <i class=" ">before.sql</i> and <i class=" ">after.sql</i> scripts are executed against the target database.<br></p>
     <h3 id="src-68882253_creatinginstallationpackagesformodules-creatingthemoduleinstallationpackage" class="heading "><span>Creating the module installation package</span></h3>
-<p   
->Once your custom module is fully developed, you can create the installation package in the Kentico administration interface:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application and <strong class=" ">Edit</strong> (<img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68879208/edit.png" 
-                
-                 />
+<p>Once your custom module is fully developed, you can create the installation package in the Kentico administration interface:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application and <strong class=" ">Edit</strong> (<img class="confluence-embedded-image" src="images/download/attachments/68879208/edit.png">
 ) your custom module.</p>
-</li><li class=" "><p   
->On the <strong class=" ">General</strong> tab, fill in the module&#39;s metadata:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Module description</strong> (Default value: <i class=" ">No description provided</i>)</p>
-</li><li class=" "><p   
-><strong class=" ">Module version</strong> (Default value: <i class=" ">1.0.0</i>)</p>
-</li><li class=" "><p   
-><strong class=" ">Module author</strong> (Default value: <i class=" ">Unknown</i>)</p>
-<div  class="box-general box-tip">
+</li><li class=" "><p>On the <strong class=" ">General</strong> tab, fill in the module's metadata:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Module description</strong> (Default value: <i class=" ">No description provided</i>)</p>
+</li><li class=" "><p><strong class=" ">Module version</strong> (Default value: <i class=" ">1.0.0</i>)</p>
+</li><li class=" "><p><strong class=" ">Module author</strong> (Default value: <i class=" ">Unknown</i>)</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Tip</strong>: Developers can perform more advanced modifications of the module package metadata (i.e. the <a  class="external-link" href="https://docs.microsoft.com/en-us/nuget/schema/nuspec">.nuspec XML manifest</a>). Assign a custom handler to the system&#39;s <strong class=" ">ModulePackagingEvents.BuildNuSpecManifest</strong> <a   href="reference---global-system-events">global event</a>.</p>
+            <p><strong class=" ">Tip</strong>: Developers can perform more advanced modifications of the module package metadata (i.e. the <a class="external-link" href="https://docs.microsoft.com/en-us/nuget/schema/nuspec">.nuspec XML manifest</a>). Assign a custom handler to the system's <strong class=" ">ModulePackagingEvents.BuildNuSpecManifest</strong> <a href="reference---global-system-events">global event</a>.</p>
      
     </div>
 </div>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Create installation package</strong>.</p>
-<ul class=" "><li class=" "><p   
->The system opens a dialog showing the package&#39;s metadata, and the files and objects included in the package.</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Create</strong>.</p>
-</li></ol><p   
->The system creates the module installation package in the project&#39;s export folder (<strong class=" ">CMS\CMSSiteUtils\Export</strong> by default). You can use the package to <a   href="installing-modules-from-installation-packages">install </a>the module on other instances of Kentico.</p>
-<div  class="box-general box-note">
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Click <strong class=" ">Create installation package</strong>.</p>
+<ul class=" "><li class=" "><p>The system opens a dialog showing the package's metadata, and the files and objects included in the package.</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Create</strong>.</p>
+</li></ol><p>The system creates the module installation package in the project's export folder (<strong class=" ">CMS\CMSSiteUtils\Export</strong> by default). You can use the package to <a href="installing-modules-from-installation-packages">install </a>the module on other instances of Kentico.</p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Kentico version requirements of module packages</strong></p>
-<p   
->Module packages can be successfully installed only on Kentico instances that have the same version as the source instance, including minor hotfix versions. For example, if you create a module installation package on a 9.0.16 instance, users cannot install the package on Kentico 9.0.15 or older. We strongly recommend adding information about the minimum required Kentico version into the <i class=" "><strong class=" ">Module description</strong> </i>.</p>
-<p   
->Module packages from older versions can be installed on newer versions, but may cause problems or errors depending on the differences in the data structure and API of the two versions.</p>
+            <p><strong class=" ">Kentico version requirements of module packages</strong></p>
+<p>Module packages can be successfully installed only on Kentico instances that have the same version as the source instance, including minor hotfix versions. For example, if you create a module installation package on a 9.0.16 instance, users cannot install the package on Kentico 9.0.15 or older. We strongly recommend adding information about the minimum required Kentico version into the <i class=" "><strong class=" ">Module description</strong> </i>.</p>
+<p>Module packages from older versions can be installed on newer versions, but may cause problems or errors depending on the differences in the data structure and API of the two versions.</p>
      
     </div>
 </div>
     <h3 id="src-68882253_creatinginstallationpackagesformodules-preparingupdatepackagesformodules" class="heading "><span>Preparing update packages for modules</span></h3>
-<p   
->If you make further changes to a module after creating an installation package, you can prepare a new version of the package at any time. Use the following procedure:</p>
-<ol class=" "><li class=" "><p   
->Add or update the files and database objects for the module.</p>
-</li><li class=" "><p   
->Set a higher <strong class=" ">Module version</strong> number when editing the module on the <i class=" ">General</i> tab in the <i class=" ">Modules</i> application.</p>
-</li><li class=" "><p   
->Create the installation package.</p>
-</li></ol><p   
->When <a   href="installing-modules-from-installation-packages">installing</a> the newer version of the package on an instance that already contains an older version of the module, the system adds any new files or database objects and updates existing ones. If the instance does not contain the module at all, the standard installation occurs.</p>
-<div  class="box-general box-note">
+<p>If you make further changes to a module after creating an installation package, you can prepare a new version of the package at any time. Use the following procedure:</p>
+<ol class=" "><li class=" "><p>Add or update the files and database objects for the module.</p>
+</li><li class=" "><p>Set a higher <strong class=" ">Module version</strong> number when editing the module on the <i class=" ">General</i> tab in the <i class=" ">Modules</i> application.</p>
+</li><li class=" "><p>Create the installation package.</p>
+</li></ol><p>When <a href="installing-modules-from-installation-packages">installing</a> the newer version of the package on an instance that already contains an older version of the module, the system adds any new files or database objects and updates existing ones. If the instance does not contain the module at all, the standard installation occurs.</p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Limitation</strong>: The module update functionality does not automatically support <i class=" "><strong class=" ">removing</strong> </i>of database objects related to the module (classes, web parts, form controls etc.). If the newer version of the module installation package does not contain an object that exists in an older version, updating the module will NOT automatically remove the given object on the target instance.</p>
+            <p><strong class=" ">Limitation</strong>: The module update functionality does not automatically support <i class=" "><strong class=" ">removing</strong> </i>of database objects related to the module (classes, web parts, form controls etc.). If the newer version of the module installation package does not contain an object that exists in an older version, updating the module will NOT automatically remove the given object on the target instance.</p>
      
     </div>
 </div>
     <h4 id="src-68882253_creatinginstallationpackagesformodules-addingupdatesqlscripts" class="heading "><span>Adding update SQL scripts</span></h4>
-<p   
->If you wish to perform additional database operations during the module update (for example add, update or remove database <strong class=" ">indexes</strong> and<strong class=" "> views</strong>), you need to manually prepare SQL scripts. You can use the update SQL scripts as a workaround for removing module-related objects from the database.</p>
-<p   
->Add the script files into the <strong class=" ">~/App_Data/CMSModules/&lt;module code name&gt;/Update</strong> folder in the development project (create the folder if necessary). The script files must be named either <strong class=" ">before.sql</strong> or <strong class=" ">after.sql</strong>. The system runs the scripts before or after the import of the module&#39;s database objects (only when updating from an older module version to a newer one).</p>
-<div  class="box-general box-tip">
+<p>If you wish to perform additional database operations during the module update (for example add, update or remove database <strong class=" ">indexes</strong> and<strong class=" "> views</strong>), you need to manually prepare SQL scripts. You can use the update SQL scripts as a workaround for removing module-related objects from the database.</p>
+<p>Add the script files into the <strong class=" ">~/App_Data/CMSModules/&lt;module code name&gt;/Update</strong> folder in the development project (create the folder if necessary). The script files must be named either <strong class=" ">before.sql</strong> or <strong class=" ">after.sql</strong>. The system runs the scripts before or after the import of the module's database objects (only when updating from an older module version to a newer one).</p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Adjusting the update scripts based on the original module version</strong></p>
-<p   
->When running the scripts during the update of a module, the system supplies the original version number of the module via the <strong class=" ">@FromVersion</strong> SQL parameter. You can use the parameter to branch your module&#39;s update scripts and perform different operations according to the module version from which you are updating.</p>
+            <p><strong class=" ">Adjusting the update scripts based on the original module version</strong></p>
+<p>When running the scripts during the update of a module, the system supplies the original version number of the module via the <strong class=" ">@FromVersion</strong> SQL parameter. You can use the parameter to branch your module's update scripts and perform different operations according to the module version from which you are updating.</p>
      
     </div>
 </div>
     <h3 id="src-68882253_creatinginstallationpackagesformodules-reference-custommoduleconventions" class="heading "><span>Reference - Custom module conventions</span></h3>
-<p   
->To ensure that the installation packages created for your custom modules contain the required files and database objects, you need to follow naming and location conventions, or directly assign objects to modules in the administration interface.</p>
-<ul class=" "><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-filesystemconventions">File system conventions</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882253_creatinginstallationpackagesformodules-conventionsfordatabaseobjects">Conventions for database objects</a><br/></p>
-</li></ul><div  class="box-general box-info">
+<p>To ensure that the installation packages created for your custom modules contain the required files and database objects, you need to follow naming and location conventions, or directly assign objects to modules in the administration interface.</p>
+<ul class=" "><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-filesystemconventions">File system conventions</a></p>
+</li><li class=" "><p><a href="#src-68882253_creatinginstallationpackagesformodules-conventionsfordatabaseobjects">Conventions for database objects</a><br></p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Module code name</strong></p>
-<p   
->The naming conventions for folders, files and database objects are based on the <strong class=" ">Module code name</strong>, including any prefixes or namespaces. For example: <i class=" ">Acme.Forums</i></p>
-<p   
->Carefully consider the code name when creating custom modules. Choose a <i class=" "><strong class=" ">sufficiently unique</strong> </i>module code name to avoid collisions with the default Kentico modules or other custom modules. Do NOT start the code names of custom modules with the <strong class=" ">cms.</strong> prefix, which is reserved for Kentico modules.</p>
+            <p><strong class=" ">Module code name</strong></p>
+<p>The naming conventions for folders, files and database objects are based on the <strong class=" ">Module code name</strong>, including any prefixes or namespaces. For example: <i class=" ">Acme.Forums</i></p>
+<p>Carefully consider the code name when creating custom modules. Choose a <i class=" "><strong class=" ">sufficiently unique</strong> </i>module code name to avoid collisions with the default Kentico modules or other custom modules. Do NOT start the code names of custom modules with the <strong class=" ">cms.</strong> prefix, which is reserved for Kentico modules.</p>
      
     </div>
 </div>
     <h4 id="src-68882253_creatinginstallationpackagesformodules-filesystemconventions" class="heading "><span>File system conventions</span></h4>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Important</strong></p>
-<p   
->Include all custom files related to your module into the module&#39;s web application project in Visual Studio, NOT the default Kentico web project (<i class=" ">CMSApp</i>).</p>
-<p   
->Both projects share the same folder on the file system, so you can include files located in the default Kentico folders (such as <i class=" ">~/App_Data/CMSModules</i> or <i class=" ">~/CMSWebParts</i>) without problems. When the module package is installed on a different instance, files from both projects are merged into the standard Kentico project.</p>
-<p   
->Including files in the module project ensures that:</p>
-<ul class=" "><li class=" "><p   
->Custom module files are clearly separated in your development solution from the default files.</p>
-</li><li class=" "><p   
->All required code is compiled into the module&#39;s DLL. Module installation packages transfer all code within the module DLL, without the original code files. Files with separate code behinds (web forms, user controls, web parts, form controls, handlers, etc.) are installed without the code behind and instead reference the appropriate class in the module DLL.</p>
+            <p><strong class=" ">Important</strong></p>
+<p>Include all custom files related to your module into the module's web application project in Visual Studio, NOT the default Kentico web project (<i class=" ">CMSApp</i>).</p>
+<p>Both projects share the same folder on the file system, so you can include files located in the default Kentico folders (such as <i class=" ">~/App_Data/CMSModules</i> or <i class=" ">~/CMSWebParts</i>) without problems. When the module package is installed on a different instance, files from both projects are merged into the standard Kentico project.</p>
+<p>Including files in the module project ensures that:</p>
+<ul class=" "><li class=" "><p>Custom module files are clearly separated in your development solution from the default files.</p>
+</li><li class=" "><p>All required code is compiled into the module's DLL. Module installation packages transfer all code within the module DLL, without the original code files. Files with separate code behinds (web forms, user controls, web parts, form controls, handlers, etc.) are installed without the code behind and instead reference the appropriate class in the module DLL.</p>
 </li></ul>     
     </div>
 </div>
-<p   
-><br/></p>
-    <div  class="tablewrap">
+<p><br></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Module component</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Module component</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Convention</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Convention</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Module library</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Module library</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The library containing the module&#39;s compiled code must be located in the <i class=" ">~/bin</i> folder of the Kentico project and have the same name as the module code name. For example, the <i class=" ">Acme.Forums </i>module has the <i class=" ">Acme.Forums.dll</i> library.</p>
-<p   
->As long as the module&#39;s web application project in the Kentico solution matches the module name, the library is created automatically when you compile the project.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The library containing the module's compiled code must be located in the <i class=" ">~/bin</i> folder of the Kentico project and have the same name as the module code name. For example, the <i class=" ">Acme.Forums </i>module has the <i class=" ">Acme.Forums.dll</i> library.</p>
+<p>As long as the module's web application project in the Kentico solution matches the module name, the library is created automatically when you compile the project.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->3rd party libraries</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>3rd party libraries</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->You can <a   href="#src-68882253_creatinginstallationpackagesformodules-addingadditionallibrariestothepackage">manually include 3rd party libraries</a> into the module&#39;s installation package using the administration interface. The libraries must be located in the <i class=" ">~/bin</i> folder of the Kentico project.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>You can <a href="#src-68882253_creatinginstallationpackagesformodules-addingadditionallibrariestothepackage">manually include 3rd party libraries</a> into the module's installation package using the administration interface. The libraries must be located in the <i class=" ">~/bin</i> folder of the Kentico project.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Code files</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Code files</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->All code files must be included in the module&#39;s web application project in Visual Studio. Examples of module code files are:</p>
-<ul class=" "><li class=" "><p   
-><i class=" ">Info</i> and <i class=" ">InfoProvider</i> files of the module&#39;s classes</p>
-</li><li class=" "><p   
->The file containing the module&#39;s <a   href="initializing-modules-to-run-custom-code">initialization code</a></p>
-</li><li class=" "><p   
-><a   href="creating-extenders-for-module-interface-pages">User interface extenders</a></p>
-</li></ul><p   
->We recommend organizing the code files inside a folder that matches the code name of the module, for example: <i class=" ">~/Acme.Forums/</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>All code files must be included in the module's web application project in Visual Studio. Examples of module code files are:</p>
+<ul class=" "><li class=" "><p><i class=" ">Info</i> and <i class=" ">InfoProvider</i> files of the module's classes</p>
+</li><li class=" "><p>The file containing the module's <a href="initializing-modules-to-run-custom-code">initialization code</a></p>
+</li><li class=" "><p><a href="creating-extenders-for-module-interface-pages">User interface extenders</a></p>
+</li></ul><p>We recommend organizing the code files inside a folder that matches the code name of the module, for example: <i class=" ">~/Acme.Forums/</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Web forms and controls</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Web forms and controls</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Place web forms or user controls used by your module into the <strong class=" "><i class=" ">~/CMSModules/<i class=" ">&lt;module code name&gt;</i>/</i> </strong>folder.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Place web forms or user controls used by your module into the <strong class=" "><i class=" ">~/CMSModules/<i class=" ">&lt;module code name&gt;</i>/</i> </strong>folder.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Web part files</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Web part files</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Place the source files (user controls) of <a   href="developing-web-parts">web parts</a> that are part of your module into the <strong class=" "><i class=" ">~/CMSWebParts/<i class=" "><i class=" ">&lt;module code name&gt;/</i> </i></i></strong>folder.</p>
-<p   
->For example: <i class=" ">~/CMSWebParts/</i><i class=" ">Acme.Forums/</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Place the source files (user controls) of <a href="developing-web-parts">web parts</a> that are part of your module into the <strong class=" "><i class=" ">~/CMSWebParts/<i class=" "><i class=" ">&lt;module code name&gt;/</i> </i></i></strong>folder.</p>
+<p>For example: <i class=" ">~/CMSWebParts/</i><i class=" ">Acme.Forums/</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Form control files</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Form control files</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Place the source files (user controls) of <a   href="developing-form-controls">form controls</a> that are part of your module into the <strong class=" "><i class=" ">~/CMSFormControls/<i class=" ">&lt;module code name&gt;/</i> </i></strong>folder.</p>
-<p   
->For example: <i class=" ">~/CMSFormControls/Acme.Forums/</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Place the source files (user controls) of <a href="developing-form-controls">form controls</a> that are part of your module into the <strong class=" "><i class=" ">~/CMSFormControls/<i class=" ">&lt;module code name&gt;/</i> </i></strong>folder.</p>
+<p>For example: <i class=" ">~/CMSFormControls/Acme.Forums/</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->UniGrid definitions</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>UniGrid definitions</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Place the XML definitions for the module&#39;s <a   href="unigrid">UniGrid</a> components (object listings) into the <i class=" "><strong class=" ">~/App_Data/CMSModules/&lt;module code name&gt;/UI/Grids/</strong> </i>folder.</p>
-<p   
->The default recommended location includes further subfolders named after specific object types. For example: <i class=" ">~/App_Data/CMSModules/Acme.Forums/UI/Grids/</i> <i class=" ">Acme_Forums_Forum/default.xml</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Place the XML definitions for the module's <a href="unigrid">UniGrid</a> components (object listings) into the <i class=" "><strong class=" ">~/App_Data/CMSModules/&lt;module code name&gt;/UI/Grids/</strong> </i>folder.</p>
+<p>The default recommended location includes further subfolders named after specific object types. For example: <i class=" ">~/App_Data/CMSModules/Acme.Forums/UI/Grids/</i> <i class=" ">Acme_Forums_Forum/default.xml</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Resource strings</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Resource strings</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Place the module&#39;s <a   href="working-with-resource-strings">resource strings</a> into <i class=" ">resource files (.resx)</i> inside the <strong class=" "><i class=" ">~/CMSResources/&lt;module code name&gt;/</i> </strong>folder. To add resource files for specific languages, create subfolders with names that match the required <i class=" ">culture code</i>.</p>
-<p   
->For example, <i class=" ">~/CMSResources/Acme.Forums/Common.resx</i> for strings in the default culture, and <i class=" ">~/CMSResources/Acme.Forums/&lt;language code&gt;/Common.resx</i> for the <i class=" ">&lt;culture code&gt;</i> culture.</p>
-<p   
->Note: If you plan to <a   href="publishing-projects-from-visual-studio">publish</a> your development project, set the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/0c6xyb66%28v=vs.100%29.aspx">Build Action</a> property of resource files to <strong class=" ">Content</strong> to ensure that they are included. The Build Action of resx files is automatically set to <i class=" ">Content</i> when installing module packages on other instances<i class=" ">.</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Place the module's <a href="working-with-resource-strings">resource strings</a> into <i class=" ">resource files (.resx)</i> inside the <strong class=" "><i class=" ">~/CMSResources/&lt;module code name&gt;/</i> </strong>folder. To add resource files for specific languages, create subfolders with names that match the required <i class=" ">culture code</i>.</p>
+<p>For example, <i class=" ">~/CMSResources/Acme.Forums/Common.resx</i> for strings in the default culture, and <i class=" ">~/CMSResources/Acme.Forums/&lt;language code&gt;/Common.resx</i> for the <i class=" ">&lt;culture code&gt;</i> culture.</p>
+<p>Note: If you plan to <a href="publishing-projects-from-visual-studio">publish</a> your development project, set the <a class="external-link" href="https://msdn.microsoft.com/en-us/library/0c6xyb66%28v=vs.100%29.aspx">Build Action</a> property of resource files to <strong class=" ">Content</strong> to ensure that they are included. The Build Action of resx files is automatically set to <i class=" ">Content</i> when installing module packages on other instances<i class=" ">.</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->JavaScript files</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>JavaScript files</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If your module uses JavaScript files, place them into the <strong class=" "><i class=" ">~/CMSScripts/CMSModules<i class=" ">/&lt;module code name&gt;/</i> </i></strong>folder.</p>
-<p   
->For example: <i class=" ">~/CMSScripts/CMSModules/Acme.Forums/TextBox.js</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If your module uses JavaScript files, place them into the <strong class=" "><i class=" ">~/CMSScripts/CMSModules<i class=" ">/&lt;module code name&gt;/</i> </i></strong>folder.</p>
+<p>For example: <i class=" ">~/CMSScripts/CMSModules/Acme.Forums/TextBox.js</i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CSS</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CSS</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If your module uses physical CSS files, place them into the <strong class=" "><i class=" ">~/CMSModules/&lt;module code name&gt;/Content/</i> </strong>folder.</p>
-<p   
->For example: <i class=" ">~/CMSModules/&lt;module code name&gt;/Content/Forums.css</i></p>
-<p   
->To add links to module stylesheets on pages, call the following methods (in the code behind of pages or components such as form controls):<i class=" "><br/></i></p>
-<ul class=" "><li class=" "><p   
-><i class=" ">ModuleCssRegistration.RegisterModuleStylesheets</i> - adds links for all stylesheets of the specified module.</p>
-</li><li class=" "><p   
-><i class=" "><i class=" ">ModuleCssRegistration</i>.RegisterModuleStylesheet</i> - adds a link for one particular module stylesheet.</p>
-</li></ul><p   
->The <i class=" "><i class=" ">ModuleCssRegistration</i> </i>class is located in the <i class=" ">CMS.Base.Web.UI</i> namespace.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If your module uses physical CSS files, place them into the <strong class=" "><i class=" ">~/CMSModules/&lt;module code name&gt;/Content/</i> </strong>folder.</p>
+<p>For example: <i class=" ">~/CMSModules/&lt;module code name&gt;/Content/Forums.css</i></p>
+<p>To add links to module stylesheets on pages, call the following methods (in the code behind of pages or components such as form controls):<i class=" "><br></i></p>
+<ul class=" "><li class=" "><p><i class=" ">ModuleCssRegistration.RegisterModuleStylesheets</i> - adds links for all stylesheets of the specified module.</p>
+</li><li class=" "><p><i class=" "><i class=" ">ModuleCssRegistration</i>.RegisterModuleStylesheet</i> - adds a link for one particular module stylesheet.</p>
+</li></ul><p>The <i class=" "><i class=" ">ModuleCssRegistration</i> </i>class is located in the <i class=" ">CMS.Base.Web.UI</i> namespace.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->HTTP handlers<br/>    <span style="color: #ffffff;">
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>HTTP handlers<br>    <span style="color: #ffffff;">
 ____________________    </span>
 </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->If your module uses HTTP handlers or other types of system pages, place them into the <strong class=" "><i class=" ">~/CMSModules/<i class=" ">&lt;module code name&gt;</i>/CMSPages/</i> </strong>folder.</p>
-<p   
->For example: <i class=" ">~/CMSModules/Acme.Forums/CMSPages/GetAttachmentHandler.ashx</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>If your module uses HTTP handlers or other types of system pages, place them into the <strong class=" "><i class=" ">~/CMSModules/<i class=" ">&lt;module code name&gt;</i>/CMSPages/</i> </strong>folder.</p>
+<p>For example: <i class=" ">~/CMSModules/Acme.Forums/CMSPages/GetAttachmentHandler.ashx</i></p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
     <h4 id="src-68882253_creatinginstallationpackagesformodules-conventionsfordatabaseobjects" class="heading "><span>Conventions for database objects</span></h4>
-    <div  class="tablewrap">
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Object type</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Object type</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Convention</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Convention</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><a   href="developing-web-parts">Web part</a></p>
-<p   
->    <span style="color: #ffffff;">
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><a href="developing-web-parts">Web part</a></p>
+<p>    <span style="color: #ffffff;">
 ____________________    </span>
 </p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The code names of web parts must start with the <strong class=" "><i class=" ">&lt;module code name&gt;.</i> </strong>prefix (including the dot character).</p>
-<p   
->For example: <i class=" "><i class=" "><i class=" ">Acme.Forums.</i>ForumList</i></i></p>
-<p   
->Module installation packages automatically include the parent categories of web parts that match the naming convention.<i class=" "><i class=" "><br/></i></i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The code names of web parts must start with the <strong class=" "><i class=" ">&lt;module code name&gt;.</i> </strong>prefix (including the dot character).</p>
+<p>For example: <i class=" "><i class=" "><i class=" ">Acme.Forums.</i>ForumList</i></i></p>
+<p>Module installation packages automatically include the parent categories of web parts that match the naming convention.<i class=" "><i class=" "><br></i></i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Web part category</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Web part category</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The code names of web part categories (<strong class=" ">Category name</strong> field) must start with the <strong class=" "><i class=" ">&lt;module code name&gt;.</i> </strong>prefix (including the dot character).</p>
-<p   
->For example:<i class=" "> <i class=" "><i class=" ">Acme.Forums.WebpartCategory</i></i></i></p>
-<p   
->Including a web part category into the module installation package does NOT automatically include all web parts inside the given category. The web parts are only included if their code name matches the module naming convention.</p>
-<p   
->You only need to use the module name convention for web part categories to ensure that the system deletes the categories and their entire content when the <a   href="uninstalling-modules">module package is uninstalled</a>.<i class=" "><i class=" "><i class=" "><br/></i></i></i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The code names of web part categories (<strong class=" ">Category name</strong> field) must start with the <strong class=" "><i class=" ">&lt;module code name&gt;.</i> </strong>prefix (including the dot character).</p>
+<p>For example:<i class=" "> <i class=" "><i class=" ">Acme.Forums.WebpartCategory</i></i></i></p>
+<p>Including a web part category into the module installation package does NOT automatically include all web parts inside the given category. The web parts are only included if their code name matches the module naming convention.</p>
+<p>You only need to use the module name convention for web part categories to ensure that the system deletes the categories and their entire content when the <a href="uninstalling-modules">module package is uninstalled</a>.<i class=" "><i class=" "><i class=" "><br></i></i></i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><a   href="developing-form-controls">Form control</a></p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><a href="developing-form-controls">Form control</a></p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->The code names of form controls must start with the <strong class=" "><i class=" ">&lt;module code name&gt;.</i> </strong>prefix (including the dot character).</p>
-<p   
->For example: <i class=" "><i class=" "><i class=" "><i class=" ">Acme.Forums.TextBox</i></i></i></i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>The code names of form controls must start with the <strong class=" "><i class=" ">&lt;module code name&gt;.</i> </strong>prefix (including the dot character).</p>
+<p>For example: <i class=" "><i class=" "><i class=" "><i class=" ">Acme.Forums.TextBox</i></i></i></i></p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><a   href="page-types">Page type</a></p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><a href="page-types">Page type</a></p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Pages types do not use module naming conventions. To include a page type into the installation packages of a custom module:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Page types</strong> application.</p>
-</li><li class=" "><p   
->Edit the page type.</p>
-</li><li class=" "><p   
->On the <strong class=" ">General</strong> tab, select the module in the <strong class=" ">Include in module package</strong> property (you can only choose custom modules that are still in development mode).</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
-><strong class=" ">Note</strong>: After you include a page type into the installation packages of a module, you can no longer specify on which <i class=" ">Sites</i> the page type is available. The page type automatically uses the site bindings of the given module, which you can edit in the <i class=" ">Modules</i> application.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Pages types do not use module naming conventions. To include a page type into the installation packages of a custom module:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Page types</strong> application.</p>
+</li><li class=" "><p>Edit the page type.</p>
+</li><li class=" "><p>On the <strong class=" ">General</strong> tab, select the module in the <strong class=" ">Include in module package</strong> property (you can only choose custom modules that are still in development mode).</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p><strong class=" ">Note</strong>: After you include a page type into the installation packages of a module, you can no longer specify on which <i class=" ">Sites</i> the page type is available. The page type automatically uses the site bindings of the given module, which you can edit in the <i class=" ">Modules</i> application.</p>
             </td>
         </tr>
 </tbody>        </table>
@@ -9362,8 +9142,8 @@ ____________________    </span>
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9375,10 +9155,10 @@ ____________________    </span>
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9397,9 +9177,6 @@ ____________________    </span>
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9410,7 +9187,7 @@ ____________________    </span>
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9421,5 +9198,6 @@ ____________________    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

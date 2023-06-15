@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Handling custom claims-based authentication - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882273"> <span>Handling custom claims-based authentication</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,14 +8659,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->You can use <a   href="handling-global-events">global events</a> to define custom actions that the system performs after a user signs in or out of Kentico when using <a   href="claims-based-authentication">claims-based authentication</a>. See the <strong class=" ">SecurityEvents</strong> section of the <a   href="reference---global-system-events#src-68882268_referenceglobalsystemevents-securityevents">global event reference</a> to learn more about the available options.</p>
-    <h3 id="src-68882273_handlingcustomclaimsbasedauthentication-sign-inevents" class="heading "><span>Sign-in events</span></h3>
-<p   
->To set up a custom action, which the system performs after a user tries to access a restricted section of Kentico, implement a handler for the <strong class=" ">SecurityEvents.AuthenticationRequested.Execute</strong> event. For example, you can set up your own redirection to an identity provider.</p>
-<p   
->The following code is a simple example of a <a   href="initializing-modules-to-run-custom-code">custom module class</a> that writes information into the system event log when a user attempts to access a restricted page or section in Kentico.</p>
-<div  class="code panel pdl js-codePanel" >
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>You can use <a href="handling-global-events">global events</a> to define custom actions that the system performs after a user signs in or out of Kentico when using <a href="claims-based-authentication">claims-based authentication</a>. See the <strong class=" ">SecurityEvents</strong> section of the <a href="reference---global-system-events#src-68882268_referenceglobalsystemevents-securityevents">global event reference</a> to learn more about the available options.</p><h3 id="src-68882273_handlingcustomclaimsbasedauthentication-sign-inevents" class="heading "><span>Sign-in events</span></h3><p>To set up a custom action, which the system performs after a user tries to access a restricted section of Kentico, implement a handler for the <strong class=" ">SecurityEvents.AuthenticationRequested.Execute</strong> event. For example, you can set up your own redirection to an identity provider.</p><p>The following code is a simple example of a <a href="initializing-modules-to-run-custom-code">custom module class</a> that writes information into the system event log when a user attempts to access a restricted page or section in Kentico.</p><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8691,10 +8681,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.EventLog;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomAuthenticationModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomAuthenticationModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomAuthentication"</code></div>
@@ -8702,17 +8692,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomAuthentication"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the SecurityEvents.AuthenticationRequested.Execute event</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// This event occurs when users attempt to access a restricted section of Kentico</code></div>
 <div class="line"><code class="plain">		SecurityEvents.AuthenticationRequested.Execute += SignIn_Execute;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Handler method that writes the URL from which the authentication request was made into the event log</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// You can replace it with your custom code</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> SignIn_Execute(</code><code class="keyword">object</code><code class="plain"> sender, AuthenticationRequestEventArgs e)</code></div>
@@ -8724,35 +8714,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
     </code></pre>
   </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882273_handlingcustomclaimsbasedauthentication-sign-inevents">Sign-in events</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882273_handlingcustomclaimsbasedauthentication-sign-outevents">Sign-out events</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882273_handlingcustomclaimsbasedauthentication-sign-inevents">Sign-in events</a></p>
+</li><li class=" "><p><a href="#src-68882273_handlingcustomclaimsbasedauthentication-sign-outevents">Sign-out events</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="handling-global-events">Handling global events</a></p>
-</li><li class=" "><p   
-><a   href="reference---global-system-events">Reference - Global system events</a></p>
+<ul class=" "><li class=" "><p><a href="handling-global-events">Handling global events</a></p>
+</li><li class=" "><p><a href="reference---global-system-events">Reference - Global system events</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+    
+
+
+
+    
+    
     <h3 id="src-68882273_handlingcustomclaimsbasedauthentication-sign-outevents" class="heading "><span>Sign-out events</span></h3>
-<p   
->To set up a custom action that the system performs after a user signs out of Kentico, implement a handler for the <strong class=" ">SecurityEvents.SignOut.Before</strong> event. For example, you can set up simultaneous sign-out from an external CRM or another system.</p>
-<p   
->The following code is a simple example of a <a   href="initializing-modules-to-run-custom-code">custom module class</a> that writes information into the system event log when a user attempts to sign out of Kentico.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>To set up a custom action that the system performs after a user signs out of Kentico, implement a handler for the <strong class=" ">SecurityEvents.SignOut.Before</strong> event. For example, you can set up simultaneous sign-out from an external CRM or another system.</p>
+<p>The following code is a simple example of a <a href="initializing-modules-to-run-custom-code">custom module class</a> that writes information into the system event log when a user attempts to sign out of Kentico.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8774,10 +8760,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DataEngine;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.EventLog;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">// Registers the custom module into the system</code></div>
 <div class="line"><code class="plain">[assembly: RegisterModule(</code><code class="keyword">typeof</code><code class="plain">(CustomAuthenticationModule))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomAuthenticationModule : Module</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Module class constructor, the system registers the module under the name "CustomAuthentication"</code></div>
@@ -8785,17 +8771,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		: </code><code class="keyword">base</code><code class="plain">(</code><code class="string">"CustomAuthentication"</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Contains initialization code that is executed when the application starts</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">base</code><code class="plain">.OnInit();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns a handler to the SecurityEvents.SignOut.Before event</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// This event occurs when users attempt to sign out of Kentico</code></div>
 <div class="line"><code class="plain">		SecurityEvents.SignOut.Before += SignOut_Before;</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Handler method that writes the username and sign-out URL into the event log</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// You can replace it with your custom code</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> SignOut_Before(</code><code class="keyword">object</code><code class="plain"> sender, SignOutEventArgs e)</code></div>
@@ -8818,8 +8804,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8831,10 +8817,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8853,9 +8839,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8866,7 +8849,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8877,5 +8860,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

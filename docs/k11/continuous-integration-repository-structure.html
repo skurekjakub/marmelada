@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Continuous integration repository structure - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880574"> <span>Continuous integration repository structure</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,325 +8660,194 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When using the <a   href="setting-up-continuous-integration">continuous integration solution</a>, the system serializes database data into XML and stores the results on the file system in the project&#39;s <strong class=" ">CMS\App_Data\CIRepository</strong> folder.</p>
-<p   
->The files are further organized within the following folder structure:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Site level folders</strong> - the top level separates objects based on their relationships with sites: <strong class=" ">@global</strong> for global objects, <strong class=" ">&lt;site code name&gt;</strong> for individual sites (stores site-related objects, such as roles or ad-hoc page templates)<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Object type folders</strong> - the next level contains folders for specific types of objects, based on <i class=" "><strong class=" ">object type names</strong></i> (see <a   href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a> to learn more).<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Object files</strong> - individual XML files are named according to the <i class=" "><strong class=" ">code name</strong></i> of the corresponding object. Object types without code names use the value of a non-unique field, followed by a unique hash. Object types without any easily readable identifying fields use their GUID value for the file name.<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Binding data files</strong> - binding data is not stored in separate files for individual binding records, but combined for each main object in the relationship. The binding XML data contains an identifier of the main object (parent) in the relationship, and then identifiers of all objects that have the given relationship with the main object, along with any other data stored by the binding. The binding files are named after the main object in format: <i class=" "><strong class=" ">&lt;object name&gt;@&lt;unique hash&gt;</strong></i><br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Parent object folders</strong> - object types that belong under a parent type (such as the transformations of a page type) use an additional level of subfolders &ndash; objects are separated into folders named according to the parent object in format: <i class=" "><strong class=" ">&lt;parent object name&gt;@&lt;unique hash&gt;</strong></i>. For object types that have multiple possible parent types, the folder name also contains a <i class=" "><strong class=" ">&lt;parent object type&gt;_</strong></i> prefix (for example, transformations can belong under page types or custom tables).<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Separated field files</strong> - certain types of objects store the values of specific data fields in separate files (placed next to the main XML file). For example, the binary data of metafile objects is stored in separate files. The separated files use names in format <strong class=" "><i class=" ">&lt;object name&gt;#&lt;separated field identifier&gt;</i></strong> and have an appropriate extension.</p>
-</li></ul></li></ul></li></ul>    <div  class="confbox panel">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When using the <a href="setting-up-continuous-integration">continuous integration solution</a>, the system serializes database data into XML and stores the results on the file system in the project's <strong class=" ">CMS\App_Data\CIRepository</strong> folder.</p><p>The files are further organized within the following folder structure:</p><ul class=" "><li class=" "><p><strong class=" ">Site level folders</strong> - the top level separates objects based on their relationships with sites: <strong class=" ">@global</strong> for global objects, <strong class=" ">&lt;site code name&gt;</strong> for individual sites (stores site-related objects, such as roles or ad-hoc page templates)<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Object type folders</strong> - the next level contains folders for specific types of objects, based on <i class=" "><strong class=" ">object type names</strong></i> (see <a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a> to learn more).<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Object files</strong> - individual XML files are named according to the <i class=" "><strong class=" ">code name</strong></i> of the corresponding object. Object types without code names use the value of a non-unique field, followed by a unique hash. Object types without any easily readable identifying fields use their GUID value for the file name.<br><br></p>
+</li><li class=" "><p><strong class=" ">Binding data files</strong> - binding data is not stored in separate files for individual binding records, but combined for each main object in the relationship. The binding XML data contains an identifier of the main object (parent) in the relationship, and then identifiers of all objects that have the given relationship with the main object, along with any other data stored by the binding. The binding files are named after the main object in format: <i class=" "><strong class=" ">&lt;object name&gt;@&lt;unique hash&gt;</strong></i><br><br></p>
+</li><li class=" "><p><strong class=" ">Parent object folders</strong> - object types that belong under a parent type (such as the transformations of a page type) use an additional level of subfolders – objects are separated into folders named according to the parent object in format: <i class=" "><strong class=" ">&lt;parent object name&gt;@&lt;unique hash&gt;</strong></i>. For object types that have multiple possible parent types, the folder name also contains a <i class=" "><strong class=" ">&lt;parent object type&gt;_</strong></i> prefix (for example, transformations can belong under page types or custom tables).<br><br></p>
+</li><li class=" "><p><strong class=" ">Separated field files</strong> - certain types of objects store the values of specific data fields in separate files (placed next to the main XML file). For example, the binary data of metafile objects is stored in separate files. The separated files use names in format <strong class=" "><i class=" ">&lt;object name&gt;#&lt;separated field identifier&gt;</i></strong> and have an appropriate extension.</p>
+</li></ul></li></ul></li></ul><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880574_continuousintegrationrepositorystructure-example-cirepositorystructure">Example - CIRepository structure</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880574_continuousintegrationrepositorystructure-storagestructureforspecificobjecttypes">Storage structure for specific object types</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880574_continuousintegrationrepositorystructure-pages">Pages</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880574_continuousintegrationrepositorystructure-forms">Forms</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880574_continuousintegrationrepositorystructure-users">Users</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880574_continuousintegrationrepositorystructure-resourcestrings">Resource strings</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880574_continuousintegrationrepositorystructure-example-cirepositorystructure">Example - CIRepository structure</a></p>
+</li><li class=" "><p><a href="#src-68880574_continuousintegrationrepositorystructure-storagestructureforspecificobjecttypes">Storage structure for specific object types</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880574_continuousintegrationrepositorystructure-pages">Pages</a></p>
+</li><li class=" "><p><a href="#src-68880574_continuousintegrationrepositorystructure-forms">Forms</a></p>
+</li><li class=" "><p><a href="#src-68880574_continuousintegrationrepositorystructure-users">Users</a></p>
+</li><li class=" "><p><a href="#src-68880574_continuousintegrationrepositorystructure-resourcestrings">Resource strings</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="setting-up-continuous-integration">Setting up continuous integration</a></p>
-</li><li class=" "><p   
-><a   href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
-</li><li class=" "><p   
-><a   href="serializing-objects-to-xml-using-the-api">Serializing objects to XML using the API</a></p>
+<ul class=" "><li class=" "><p><a href="setting-up-continuous-integration">Setting up continuous integration</a></p>
+</li><li class=" "><p><a href="object-types-supported-by-continuous-integration">Object types supported by continuous integration</a></p>
+</li><li class=" "><p><a href="serializing-objects-to-xml-using-the-api">Serializing objects to XML using the API</a></p>
 </li></ul>        </div>
-    </div>
-<div  class="box-general box-info">
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+    
+    
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Long names and forbidden characters</strong></p>
-<p   
->Very long folder and file names automatically replace the middle of the name with <strong class=" ">..</strong> characters, preceded and followed by a limited number of characters from the start and end of the name. To ensure the uniqueness of the name, an <strong class=" ">@</strong> symbol followed by a fixed-length hash value is appended.</p>
-<p   
->For example: <i class=" ">longcustomwpprefix..webpartcodenameend@fe6fd25d3e.xml</i></p>
-<p   
->If an object name contains characters that are not allowed in file names (for example slashes or backslashes), the given characters are removed and the same unique hash is appended.</p>
+            <p><strong class=" ">Long names and forbidden characters</strong></p>
+<p>Very long folder and file names automatically replace the middle of the name with <strong class=" ">..</strong> characters, preceded and followed by a limited number of characters from the start and end of the name. To ensure the uniqueness of the name, an <strong class=" ">@</strong> symbol followed by a fixed-length hash value is appended.</p>
+<p>For example: <i class=" ">longcustomwpprefix..webpartcodenameend@fe6fd25d3e.xml</i></p>
+<p>If an object name contains characters that are not allowed in file names (for example slashes or backslashes), the given characters are removed and the same unique hash is appended.</p>
      
     </div>
 </div>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Source control ignore rules</strong></p>
-<p   
->Certain source control systems may have ignore rules, such as <i class=" ">gitignore</i>, which exclude files or folders used in the continuous integration repository (for example the <i class=" ">*.class</i> and <i class=" ">*.user</i> file and folder extensions).</p>
-<p   
->Such rules may prevent your environment from working correctly. We recommend that you evaluate ignore rules for the continuous integration repository location and disable them as required.</p>
+            <p><strong class=" ">Source control ignore rules</strong></p>
+<p>Certain source control systems may have ignore rules, such as <i class=" ">gitignore</i>, which exclude files or folders used in the continuous integration repository (for example the <i class=" ">*.class</i> and <i class=" ">*.user</i> file and folder extensions).</p>
+<p>Such rules may prevent your environment from working correctly. We recommend that you evaluate ignore rules for the continuous integration repository location and disable them as required.</p>
      
     </div>
 </div>
     <h3 id="src-68880574_continuousintegrationrepositorystructure-example-cirepositorystructure" class="heading "><span>Example - CIRepository structure</span></h3>
-<p   
-><strong class=" ">Note</strong>: The example does not include all <a   href="object-types-supported-by-continuous-integration">object types supported by continuous integration</a>.</p>
-<div  class="box-general box-info">
+<p><strong class=" ">Note</strong>: The example does not include all <a href="object-types-supported-by-continuous-integration">object types supported by continuous integration</a>.</p>
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
-                <p   
->CMS\App_Data\CIRepository</p>
-<ul class=" "><li class=" "><p   
->@global</p>
-<ul class=" "><li class=" "><p   
->cms.alternativeform</p>
-<ul class=" "><li class=" "><p   
->cms.news@8a478af656<br/></p>
-<ul class=" "><li class=" "><p   
->filter.xml</p>
-</li></ul></li></ul></li><li class=" "><p   
->cms.documenttype</p>
-<ul class=" "><li class=" "><p   
->cms.news.xml</p>
-</li></ul></li><li class=" "><p   
->cms.emailtemplate</p>
-<ul class=" "><li class=" "><p   
->blog.newcommentnotification.xml</p>
-</li></ul></li><li class=" "><p   
->cms.metafile</p>
-<ul class=" "><li class=" "><p   
->articles@7baacb97a4<br/></p>
-<ul class=" "><li class=" "><p   
->articlesthumbnail.png@ead1667b00#file.png</p>
-</li><li class=" "><p   
->articlesthumbnail.png@ead1667b00.xml</p>
-</li></ul></li></ul></li><li class=" "><p   
->cms.pagetemplate</p>
-<ul class=" "><li class=" "><p   
->articles.xml</p>
-</li></ul></li><li class=" "><p   
->cms.pagetemplatesite</p>
-<ul class=" "><li class=" "><p   
->articles@7baacb97a4.xml</p>
-</li></ul></li><li class=" "><p   
->cms.transformation</p>
-<ul class=" "><li class=" "><p   
->cms.news@8a478af656<br/></p>
-<ul class=" "><li class=" "><p   
->newslist.xml</p>
-</li></ul></li></ul></li><li class=" "><p   
->cms.webpart</p>
-<ul class=" "><li class=" "><p   
->repeater.xml</p>
-</li><li class=" "><p   
->logonform.xml</p>
-</li></ul></li><li class=" "><p   
->cms.webpartcategory</p>
-<ul class=" "><li class=" "><p   
->documentviewers.xml</p>
-</li></ul></li><li class=" "><p   
->cms.webpartlayout</p>
-<ul class=" "><li class=" "><p   
->logonform@9c9772813a<br/></p>
-<ul class=" "><li class=" "><p   
->ecommercelogon.xml</p>
-</li></ul></li></ul></li></ul></li><li class=" "><p   
->dancinggoat</p>
-<ul class=" "><li class=" "><p   
->cms.documenttypescope</p>
-<ul class=" "><li class=" "><p   
->articles@e0c9de07c4.xml</p>
-</li></ul></li><li class=" "><p   
->cms.emailtemplate</p>
-<ul class=" "><li class=" "><p   
->blog.newcommentnotification.xml</p>
-</li></ul></li><li class=" "><p   
->cms.pagetemplate</p>
-<ul class=" "><li class=" "><p   
->3f0209c2-c0b9-47de-a855-0ca34e586b77.xml</p>
-</li></ul></li><li class=" "><p   
->cms.pagetemplatescope</p>
-<ul class=" "><li class=" "><p   
->dancinggoat-landingpage@5db220236b<br/></p>
-<ul class=" "><li class=" "><p   
->home@6be8e032f6.xml</p>
-</li></ul></li></ul></li><li class=" "><p   
->cms.role</p>
-<ul class=" "><li class=" "><p   
->contenteditor.xml</p>
-</li></ul></li><li class=" "><p   
->cms.userrole</p>
-<ul class=" "><li class=" "><p   
->contenteditor@f6aafc4899.xml</p>
+                <p>CMS\App_Data\CIRepository</p>
+<ul class=" "><li class=" "><p>@global</p>
+<ul class=" "><li class=" "><p>cms.alternativeform</p>
+<ul class=" "><li class=" "><p>cms.news@8a478af656<br></p>
+<ul class=" "><li class=" "><p>filter.xml</p>
+</li></ul></li></ul></li><li class=" "><p>cms.documenttype</p>
+<ul class=" "><li class=" "><p>cms.news.xml</p>
+</li></ul></li><li class=" "><p>cms.emailtemplate</p>
+<ul class=" "><li class=" "><p>blog.newcommentnotification.xml</p>
+</li></ul></li><li class=" "><p>cms.metafile</p>
+<ul class=" "><li class=" "><p>articles@7baacb97a4<br></p>
+<ul class=" "><li class=" "><p>articlesthumbnail.png@ead1667b00#file.png</p>
+</li><li class=" "><p>articlesthumbnail.png@ead1667b00.xml</p>
+</li></ul></li></ul></li><li class=" "><p>cms.pagetemplate</p>
+<ul class=" "><li class=" "><p>articles.xml</p>
+</li></ul></li><li class=" "><p>cms.pagetemplatesite</p>
+<ul class=" "><li class=" "><p>articles@7baacb97a4.xml</p>
+</li></ul></li><li class=" "><p>cms.transformation</p>
+<ul class=" "><li class=" "><p>cms.news@8a478af656<br></p>
+<ul class=" "><li class=" "><p>newslist.xml</p>
+</li></ul></li></ul></li><li class=" "><p>cms.webpart</p>
+<ul class=" "><li class=" "><p>repeater.xml</p>
+</li><li class=" "><p>logonform.xml</p>
+</li></ul></li><li class=" "><p>cms.webpartcategory</p>
+<ul class=" "><li class=" "><p>documentviewers.xml</p>
+</li></ul></li><li class=" "><p>cms.webpartlayout</p>
+<ul class=" "><li class=" "><p>logonform@9c9772813a<br></p>
+<ul class=" "><li class=" "><p>ecommercelogon.xml</p>
+</li></ul></li></ul></li></ul></li><li class=" "><p>dancinggoat</p>
+<ul class=" "><li class=" "><p>cms.documenttypescope</p>
+<ul class=" "><li class=" "><p>articles@e0c9de07c4.xml</p>
+</li></ul></li><li class=" "><p>cms.emailtemplate</p>
+<ul class=" "><li class=" "><p>blog.newcommentnotification.xml</p>
+</li></ul></li><li class=" "><p>cms.pagetemplate</p>
+<ul class=" "><li class=" "><p>3f0209c2-c0b9-47de-a855-0ca34e586b77.xml</p>
+</li></ul></li><li class=" "><p>cms.pagetemplatescope</p>
+<ul class=" "><li class=" "><p>dancinggoat-landingpage@5db220236b<br></p>
+<ul class=" "><li class=" "><p>home@6be8e032f6.xml</p>
+</li></ul></li></ul></li><li class=" "><p>cms.role</p>
+<ul class=" "><li class=" "><p>contenteditor.xml</p>
+</li></ul></li><li class=" "><p>cms.userrole</p>
+<ul class=" "><li class=" "><p>contenteditor@f6aafc4899.xml</p>
 </li></ul></li></ul></li></ul>     
     </div>
 </div>
     <h3 id="src-68880574_continuousintegrationrepositorystructure-storagestructureforspecificobjecttypes" class="heading "><span>Storage structure for specific object types</span></h3>
     <h4 id="src-68880574_continuousintegrationrepositorystructure-pages" class="heading "><span>Pages</span></h4>
-<p   
->The system uses three object types to store the definitions and settings of <a   href="working-with-pages">Pages</a>. As a result, the files containing the serialized page data use a more complex structure than standard objects. The structure reflects how pages are <a   href="page-database-structure">stored in the database</a>.</p>
-<p   
->Each page is serialized in a site-specific <strong class=" ">cms.document</strong> folder and contains:</p>
-<ul class=" "><li class=" "><p   
->A file in the <i class=" ">&lt;nodealiaspath&gt;@&lt;hash&gt;.xml </i>format describing the node data. This data determines where the page is stored in the content tree. The data is shared by all language versions of the page.</p>
-</li><li class=" "><p   
->A folder in the <i class=" ">&lt;nodealiaspath&gt;@&lt;hash&gt;#&lt;culturecode&gt; </i>format containing:</p>
-<ul class=" "><li class=" "><p   
->A <i class=" ">document.xml</i> file, containing language-specific data. Also contains the content of <a   href="editing-pages">editable regions</a> and <a   href="adding-page-content-through-widgets">editor widgets</a>.</p>
-</li><li class=" "><p   
->A <i class=" ">fields.xml</i> file, containing the data stored in the fields of individual <a   href="page-types">page types</a>.</p>
-</li></ul></li></ul><p   
-><strong class=" ">Note:</strong> Other page-related object types, such as <a   href="setting-page-aliases">Page aliases</a>, <a   href="page-attachments">Page attachments</a> and <a   href="page-level-permissions-%28acls%29">Page-level permissions (ACLs)</a>, are stored separately in the <i class=" ">CIRepository</i> folder.</p>
-<p   
->For example, a <i class=" ">&quot;Coffee Beverages Explained&quot; </i>page with the &quot;<i class=" ">en-us</i>&quot; culture code on the <i class=" ">dancinggoat </i>site would be serialized into the following XML files:</p>
-<div  class="box-general box-info">
+<p>The system uses three object types to store the definitions and settings of <a href="working-with-pages">Pages</a>. As a result, the files containing the serialized page data use a more complex structure than standard objects. The structure reflects how pages are <a href="page-database-structure">stored in the database</a>.</p>
+<p>Each page is serialized in a site-specific <strong class=" ">cms.document</strong> folder and contains:</p>
+<ul class=" "><li class=" "><p>A file in the <i class=" ">&lt;nodealiaspath&gt;@&lt;hash&gt;.xml </i>format describing the node data. This data determines where the page is stored in the content tree. The data is shared by all language versions of the page.</p>
+</li><li class=" "><p>A folder in the <i class=" ">&lt;nodealiaspath&gt;@&lt;hash&gt;#&lt;culturecode&gt; </i>format containing:</p>
+<ul class=" "><li class=" "><p>A <i class=" ">document.xml</i> file, containing language-specific data. Also contains the content of <a href="editing-pages">editable regions</a> and <a href="adding-page-content-through-widgets">editor widgets</a>.</p>
+</li><li class=" "><p>A <i class=" ">fields.xml</i> file, containing the data stored in the fields of individual <a href="page-types">page types</a>.</p>
+</li></ul></li></ul><p><strong class=" ">Note:</strong> Other page-related object types, such as <a href="setting-page-aliases">Page aliases</a>, <a href="page-attachments">Page attachments</a> and <a href="page-level-permissions-%28acls%29">Page-level permissions (ACLs)</a>, are stored separately in the <i class=" ">CIRepository</i> folder.</p>
+<p>For example, a <i class=" ">"Coffee Beverages Explained" </i>page with the "<i class=" ">en-us</i>" culture code on the <i class=" ">dancinggoat </i>site would be serialized into the following XML files:</p>
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
-                <p   
->CMS\App_Data\CIRepository</p>
-<ul class=" "><li class=" "><p   
->dancinggoat</p>
-<ul class=" "><li class=" "><p   
->cms.attachment</p>
-<ul class=" "><li class=" "><p   
->articles_coffee-be..es-explained_en-us@b93096c0b8<br/></p>
-<ul class=" "><li class=" "><p   
->coffee-beverages-explained-1080px.jpg@33fb4ffda2#file.jpg</p>
-</li><li class=" "><p   
->coffee-beverages-explained-1080px.jpg@33fb4ffda2.xml</p>
-</li></ul></li></ul></li><li class=" "><p   
->cms.document</p>
-<ul class=" "><li class=" "><p   
->articles_coffee-beverages-explained@e50cf58d9e.xml</p>
-</li><li class=" "><p   
->articles_coffee-beverages-explained@e50cf58d9e#en-us</p>
-<ul class=" "><li class=" "><p   
->document.xml</p>
-</li><li class=" "><p   
->fields.xml</p>
+                <p>CMS\App_Data\CIRepository</p>
+<ul class=" "><li class=" "><p>dancinggoat</p>
+<ul class=" "><li class=" "><p>cms.attachment</p>
+<ul class=" "><li class=" "><p>articles_coffee-be..es-explained_en-us@b93096c0b8<br></p>
+<ul class=" "><li class=" "><p>coffee-beverages-explained-1080px.jpg@33fb4ffda2#file.jpg</p>
+</li><li class=" "><p>coffee-beverages-explained-1080px.jpg@33fb4ffda2.xml</p>
+</li></ul></li></ul></li><li class=" "><p>cms.document</p>
+<ul class=" "><li class=" "><p>articles_coffee-beverages-explained@e50cf58d9e.xml</p>
+</li><li class=" "><p>articles_coffee-beverages-explained@e50cf58d9e#en-us</p>
+<ul class=" "><li class=" "><p>document.xml</p>
+</li><li class=" "><p>fields.xml</p>
 </li></ul></li></ul></li></ul></li></ul>     
     </div>
 </div>
     <h4 id="src-68880574_continuousintegrationrepositorystructure-forms" class="heading "><span>Forms</span></h4>
-<p   
->The system uses multiple object types to store the definitions and settings of <a   href="forms">Forms</a>. As a result, the files containing the serialized data of forms use a more complex structure than standard objects.</p>
-<p   
->Each form is serialized into the following files:</p>
-<ul class=" "><li class=" "><p   
->A global <strong class=" ">cms.formclass</strong> item.</p>
-</li><li class=" "><p   
->A site-specific <strong class=" ">cms.form</strong> item.</p>
-</li><li class=" "><p   
->Any alternative forms under the main form are serialized as child objects of the global <i class=" ">cms.formclass</i> item.</p>
-</li><li class=" "><p   
->Bindings between forms and roles (determine which user roles are allowed to manage the form and its data in the <i class=" ">Forms</i> application) are site-specific, and the main object in the relationship is the form&#39;s <i class=" ">cms.form</i> item.</p>
-</li></ul><p   
-><strong class=" ">Note</strong>: The continuous integration solution does NOT serialize the data records stored by individual forms.</p>
-<p   
->For example, a form on the <i class=" ">dancinggoat</i> site with the <i class=" ">&quot;UserFeedback&quot;</i> code name, a <i class=" ">&quot;VIPFeedback&quot;</i> alternative form and role bindings would be serialized into the following XML files:</p>
-<div  class="box-general box-info">
+<p>The system uses multiple object types to store the definitions and settings of <a href="forms">Forms</a>. As a result, the files containing the serialized data of forms use a more complex structure than standard objects.</p>
+<p>Each form is serialized into the following files:</p>
+<ul class=" "><li class=" "><p>A global <strong class=" ">cms.formclass</strong> item.</p>
+</li><li class=" "><p>A site-specific <strong class=" ">cms.form</strong> item.</p>
+</li><li class=" "><p>Any alternative forms under the main form are serialized as child objects of the global <i class=" ">cms.formclass</i> item.</p>
+</li><li class=" "><p>Bindings between forms and roles (determine which user roles are allowed to manage the form and its data in the <i class=" ">Forms</i> application) are site-specific, and the main object in the relationship is the form's <i class=" ">cms.form</i> item.</p>
+</li></ul><p><strong class=" ">Note</strong>: The continuous integration solution does NOT serialize the data records stored by individual forms.</p>
+<p>For example, a form on the <i class=" ">dancinggoat</i> site with the <i class=" ">"UserFeedback"</i> code name, a <i class=" ">"VIPFeedback"</i> alternative form and role bindings would be serialized into the following XML files:</p>
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
-                <p   
->CMS\App_Data\CIRepository</p>
-<ul class=" "><li class=" "><p   
->@global</p>
-<ul class=" "><li class=" "><p   
->cms.alternativeform<br/></p>
-<ul class=" "><li class=" "><p   
->bizform.userfeedback@09642c63d0<br/></p>
-<ul class=" "><li class=" "><p   
->vipfeedback.xml</p>
-</li></ul></li></ul></li><li class=" "><p   
->cms.formclass</p>
-<ul class=" "><li class=" "><p   
->bizform.userfeedback.xml</p>
-</li></ul></li></ul></li><li class=" "><p   
->dancinggoat</p>
-<ul class=" "><li class=" "><p   
->cms.form</p>
-<ul class=" "><li class=" "><p   
->userfeedback.xml</p>
-</li></ul></li><li class=" "><p   
->cms.formrole</p>
-<ul class=" "><li class=" "><p   
->userfeedback@b8da61c184.xml</p>
+                <p>CMS\App_Data\CIRepository</p>
+<ul class=" "><li class=" "><p>@global</p>
+<ul class=" "><li class=" "><p>cms.alternativeform<br></p>
+<ul class=" "><li class=" "><p>bizform.userfeedback@09642c63d0<br></p>
+<ul class=" "><li class=" "><p>vipfeedback.xml</p>
+</li></ul></li></ul></li><li class=" "><p>cms.formclass</p>
+<ul class=" "><li class=" "><p>bizform.userfeedback.xml</p>
+</li></ul></li></ul></li><li class=" "><p>dancinggoat</p>
+<ul class=" "><li class=" "><p>cms.form</p>
+<ul class=" "><li class=" "><p>userfeedback.xml</p>
+</li></ul></li><li class=" "><p>cms.formrole</p>
+<ul class=" "><li class=" "><p>userfeedback@b8da61c184.xml</p>
 </li></ul></li></ul></li></ul>     
     </div>
 </div>
     <h4 id="src-68880574_continuousintegrationrepositorystructure-users" class="heading "><span>Users</span></h4>
-<p   
-><a   href="user-management">Users</a> in Kentico are a composite object type. As a result, the files containing the serialized data of users have a more complex structure than standard objects.</p>
-<p   
->Each user is serialized into the following files:</p>
-<ul class=" "><li class=" "><p   
->A global <strong class=" ">cms.user</strong> item, containing the basic user properties.</p>
-</li><li class=" "><p   
->A global <strong class=" ">cms.usersettings</strong> item organized as a child of the corresponding <i class=" ">cms.user</i> object. Contains the additional settings available when editing users in the <i class=" ">Users</i> application on the <i class=" ">Settings</i> tab.</p>
-</li><li class=" "><p   
->Other child objects and bindings, such as personal user categories and user-site relationships, are stored separately in the <i class=" ">CIRepository</i> folder.</p>
-</li></ul><p   
->For example, a user object with the username <i class=" ">Andy</i> would be serialized into the following basic XML files:</p>
-<div  class="box-general box-info">
+<p><a href="user-management">Users</a> in Kentico are a composite object type. As a result, the files containing the serialized data of users have a more complex structure than standard objects.</p>
+<p>Each user is serialized into the following files:</p>
+<ul class=" "><li class=" "><p>A global <strong class=" ">cms.user</strong> item, containing the basic user properties.</p>
+</li><li class=" "><p>A global <strong class=" ">cms.usersettings</strong> item organized as a child of the corresponding <i class=" ">cms.user</i> object. Contains the additional settings available when editing users in the <i class=" ">Users</i> application on the <i class=" ">Settings</i> tab.</p>
+</li><li class=" "><p>Other child objects and bindings, such as personal user categories and user-site relationships, are stored separately in the <i class=" ">CIRepository</i> folder.</p>
+</li></ul><p>For example, a user object with the username <i class=" ">Andy</i> would be serialized into the following basic XML files:</p>
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
-                <p   
->CMS\App_Data\CIRepository</p>
-<ul class=" "><li class=" "><p   
->@global</p>
-<ul class=" "><li class=" "><p   
->cms.user<br/></p>
-<ul class=" "><li class=" "><p   
->andy.xml</p>
-</li></ul></li><li class=" "><p   
->cms.usersettings<br/></p>
-<ul class=" "><li class=" "><p   
->andy@7b3b12561e</p>
-<ul class=" "><li class=" "><p   
->646cd67b-6380-462c-be47-d68449445465.xml</p>
+                <p>CMS\App_Data\CIRepository</p>
+<ul class=" "><li class=" "><p>@global</p>
+<ul class=" "><li class=" "><p>cms.user<br></p>
+<ul class=" "><li class=" "><p>andy.xml</p>
+</li></ul></li><li class=" "><p>cms.usersettings<br></p>
+<ul class=" "><li class=" "><p>andy@7b3b12561e</p>
+<ul class=" "><li class=" "><p>646cd67b-6380-462c-be47-d68449445465.xml</p>
 </li></ul></li></ul></li></ul></li></ul>     
     </div>
 </div>
     <h4 id="src-68880574_continuousintegrationrepositorystructure-resourcestrings" class="heading "><span>Resource strings</span></h4>
-<p   
->Each <a   href="working-with-resource-strings">resource strings</a> stored in the Kentico database (not strings in <i class=" ">resx</i> files) is serialized into the following files:</p>
-<ul class=" "><li class=" "><p   
->A global <strong class=" ">cms.resourcestring</strong> item, containing the key of the resource string.</p>
-</li><li class=" "><p   
->A global <strong class=" ">cms.resourcetranslation</strong> item, containing bindings between the resource string and individual cultures. Stores the text value (translation) for each culture.</p>
-</li></ul><p   
->For example, a resource string with the <i class=" ">CustomString</i> key would be serialized into the following XML files:</p>
-<div  class="box-general box-info">
+<p>Each <a href="working-with-resource-strings">resource strings</a> stored in the Kentico database (not strings in <i class=" ">resx</i> files) is serialized into the following files:</p>
+<ul class=" "><li class=" "><p>A global <strong class=" ">cms.resourcestring</strong> item, containing the key of the resource string.</p>
+</li><li class=" "><p>A global <strong class=" ">cms.resourcetranslation</strong> item, containing bindings between the resource string and individual cultures. Stores the text value (translation) for each culture.</p>
+</li></ul><p>For example, a resource string with the <i class=" ">CustomString</i> key would be serialized into the following XML files:</p>
+<div class="box-general box-info">
   
             <div class="box-content-noicon">
-                <p   
->CMS\App_Data\CIRepository</p>
-<ul class=" "><li class=" "><p   
->@global</p>
-<ul class=" "><li class=" "><p   
->cms.resourcestring<br/></p>
-<ul class=" "><li class=" "><p   
->customstring.xml</p>
-</li></ul></li><li class=" "><p   
->cms.resourcetranslation<br/></p>
-<ul class=" "><li class=" "><p   
->customstring@09f9b53a99.xml</p>
+                <p>CMS\App_Data\CIRepository</p>
+<ul class=" "><li class=" "><p>@global</p>
+<ul class=" "><li class=" "><p>cms.resourcestring<br></p>
+<ul class=" "><li class=" "><p>customstring.xml</p>
+</li></ul></li><li class=" "><p>cms.resourcetranslation<br></p>
+<ul class=" "><li class=" "><p>customstring@09f9b53a99.xml</p>
 </li></ul></li></ul></li></ul>     
     </div>
 </div>
@@ -8995,8 +8861,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9008,10 +8874,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9030,9 +8896,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9043,7 +8906,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9054,5 +8917,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating form controls with XML values - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882188"> <span>Creating form controls with XML values</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,89 +8659,65 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When developing complex <a   href="developing-form-controls">form controls</a> consisting of multiple input elements, you can use values in <a  class="external-link" href="http://en.wikipedia.org/wiki/XML">XML</a> format to save the resulting data into form fields. XML allows you to store structured data that can be processed by APIs and is also readable by humans.</p>
-<p   
->Kentico provides the following recommendations and API methods to help you correctly create form controls with XML values:</p>
-<ul class=" "><li class=" "><p   
->When adding XML elements manually (for example via the <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/fw1ys7w6%28v=vs.100%29.aspx">XmlDocument.CreateElement</a>, <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlnode.appendchild%28v=vs.100%29.aspx">XmlElement.AppendChild</a> or <a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlnode.prependchild%28v=vs.100%29.aspx">PrependChild</a> methods), make sure that the <i class=" "><strong class=" ">element order is always consistent</strong></i> in the resulting XML document.<br/><br/></p>
-</li><li class=" "><p   
->To add attributes to elements, call the <strong class=" ">XmlElement.AddAttributes</strong> extension method, which ensures that all attributes are always in alphabetical order (based on the attribute names).<br/><br/></p>
-</li><li class=" "><p   
->When creating child elements based on dynamic data, prepare an <i class=" ">IDictionary</i> collection containing the required values, and call the <strong class=" ">XmlElement.AddChildElements</strong> extension method. The method ensures that the child elements are ordered alphabetically based on their element names.<br/><br/></p>
-</li><li class=" "><p   
->Call the <strong class=" ">XmlDocument.ToFormattedXmlString</strong> extension method on the resulting XML document to convert the XML data to a string that can be saved as the form control&#39;s value. The method provides whitespace formatting, including line breaking and indentation for each XML element.<br/><br/></p>
-</li><li class=" "><p   
->Once the form control is developed and registered in the system, use the <strong class=" ">Long text</strong> data type for form fields where you plan to use the control.</p>
-</li></ul><div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When developing complex <a href="developing-form-controls">form controls</a> consisting of multiple input elements, you can use values in <a class="external-link" href="http://en.wikipedia.org/wiki/XML">XML</a> format to save the resulting data into form fields. XML allows you to store structured data that can be processed by APIs and is also readable by humans.</p><p>Kentico provides the following recommendations and API methods to help you correctly create form controls with XML values:</p><ul class=" "><li class=" "><p>When adding XML elements manually (for example via the <a class="external-link" href="https://msdn.microsoft.com/en-us/library/fw1ys7w6%28v=vs.100%29.aspx">XmlDocument.CreateElement</a>, <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlnode.appendchild%28v=vs.100%29.aspx">XmlElement.AppendChild</a> or <a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.xml.xmlnode.prependchild%28v=vs.100%29.aspx">PrependChild</a> methods), make sure that the <i class=" "><strong class=" ">element order is always consistent</strong></i> in the resulting XML document.<br><br></p>
+</li><li class=" "><p>To add attributes to elements, call the <strong class=" ">XmlElement.AddAttributes</strong> extension method, which ensures that all attributes are always in alphabetical order (based on the attribute names).<br><br></p>
+</li><li class=" "><p>When creating child elements based on dynamic data, prepare an <i class=" ">IDictionary</i> collection containing the required values, and call the <strong class=" ">XmlElement.AddChildElements</strong> extension method. The method ensures that the child elements are ordered alphabetically based on their element names.<br><br></p>
+</li><li class=" "><p>Call the <strong class=" ">XmlDocument.ToFormattedXmlString</strong> extension method on the resulting XML document to convert the XML data to a string that can be saved as the form control's value. The method provides whitespace formatting, including line breaking and indentation for each XML element.<br><br></p>
+</li><li class=" "><p>Once the form control is developed and registered in the system, use the <strong class=" ">Long text</strong> data type for form fields where you plan to use the control.</p>
+</li></ul><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: The <i class=" ">XmlElement.AddAttributes</i>, <i class=" ">XmlElement.AddChildElements</i> and <i class=" ">XmlDocument.ToFormattedXmlString</i> extension methods are provided within the <strong class=" ">CMS.Helpers</strong> library.</p>
+            <p><strong class=" ">Note</strong>: The <i class=" ">XmlElement.AddAttributes</i>, <i class=" ">XmlElement.AddChildElements</i> and <i class=" ">XmlDocument.ToFormattedXmlString</i> extension methods are provided within the <strong class=" ">CMS.Helpers</strong> library.</p>
      
     </div>
-</div>
-<p   
->The steps above ensure that the XML data is formatted correctly and has consistent order. Consistency is important to allow easy comparison and change tracking in object data, particularly when objects containing fields with values provided by the form control are serialized (for example during <a   href="exporting-objects">Export</a>, <a   href="content-staging">Staging</a> or <a   href="working-with-object-versioning">Object versioning</a>).</p>
-<div  class="box-general box-info">
+</div><p>The steps above ensure that the XML data is formatted correctly and has consistent order. Consistency is important to allow easy comparison and change tracking in object data, particularly when objects containing fields with values provided by the form control are serialized (for example during <a href="exporting-objects">Export</a>, <a href="content-staging">Staging</a> or <a href="working-with-object-versioning">Object versioning</a>).</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Other data formats</strong></p>
-<p   
->If your form control saves its value in a different structured data format than XML (for example JSON), you need to ensure the consistency of the data manually.</p>
+            <p><strong class=" ">Other data formats</strong></p>
+<p>If your form control saves its value in a different structured data format than XML (for example JSON), you need to ensure the consistency of the data manually.</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="developing-form-controls">Developing form controls</a></p>
-</li><li class=" "><p   
-><a   href="example---developing-custom-form-controls">Example - Developing custom form controls</a></p>
+<ul class=" "><li class=" "><p><a href="developing-form-controls">Developing form controls</a></p>
+</li><li class=" "><p><a href="example---developing-custom-form-controls">Example - Developing custom form controls</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+    
     <h3 id="src-68882188_creatingformcontrolswithxmlvalues-example" class="heading "><span>Example</span></h3>
-<p   
->The following example demonstrates how to create a <a   href="developing-form-controls">form control</a> that consists of multiple internal controls and saves the resulting data into an XML value. The sample control allows users to:</p>
-<ul class=" "><li class=" "><p   
->Select an animal type from a list of predefined options</p>
-</li><li class=" "><p   
->Enter a species name</p>
-</li><li class=" "><p   
->Mark continents that the animal inhabits</p>
-</li></ul><div  class="box-general box-info">
+<p>The following example demonstrates how to create a <a href="developing-form-controls">form control</a> that consists of multiple internal controls and saves the resulting data into an XML value. The sample control allows users to:</p>
+<ul class=" "><li class=" "><p>Select an animal type from a list of predefined options</p>
+</li><li class=" "><p>Enter a species name</p>
+</li><li class=" "><p>Mark continents that the animal inhabits</p>
+</li></ul><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Form control implementation options</strong></p>
-<p   
->This example implements the custom form control as a Web user control (.ascx file) within the Kentico web project. You can alternatively create form controls by adding a control class to a separate assembly (the class must also inherit from the <i class=" ">FormEngineUserControl</i> base class).</p>
+            <p><strong class=" ">Form control implementation options</strong></p>
+<p>This example implements the custom form control as a Web user control (.ascx file) within the Kentico web project. You can alternatively create form controls by adding a control class to a separate assembly (the class must also inherit from the <i class=" ">FormEngineUserControl</i> base class).</p>
      
     </div>
 </div>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: For the sake of simplicity, the example only provides the most basic implementation (without sufficient input validation, error handling, etc.).</p>
+            <p><strong class=" ">Note</strong>: For the sake of simplicity, the example only provides the most basic implementation (without sufficient input validation, error handling, etc.).</p>
      
     </div>
 </div>
-<ol class=" "><li class=" "><p   
->Open your web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Right-click the <strong class=" ">CMSFormControls</strong> folder and choose <strong class=" ">Add -&gt; Add New Item</strong>.</p>
-</li><li class=" "><p   
->Create a new <strong class=" ">Web User Control</strong>, for example named <i class=" ">CustomAnimals.ascx</i>.</p>
-</li><li class=" "><p   
->Add the following input controls into the user control&#39;s markup:</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Open your web project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Right-click the <strong class=" ">CMSFormControls</strong> folder and choose <strong class=" ">Add -&gt; Add New Item</strong>.</p>
+</li><li class=" "><p>Create a new <strong class=" ">Web User Control</strong>, for example named <i class=" ">CustomAnimals.ascx</i>.</p>
+</li><li class=" "><p>Add the following input controls into the user control's markup:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8769,9 +8742,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Switch to the code behind, add the following <i class=" ">using</i> statements, and adjust the class declaration so that the control inherits from <strong class=" ">FormEngineUserControl</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Switch to the code behind, add the following <i class=" ">using</i> statements, and adjust the class declaration so that the control inherits from <strong class=" ">FormEngineUserControl</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8795,10 +8767,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Xml;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.UI.WebControls;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.FormEngine.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSFormControls_CustomAnimals : FormEngineUserControl</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -8806,9 +8778,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Add the following members into the class:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Add the following members into the class:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8840,22 +8811,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Gets the field's value as a string</code></div>
 <div class="line"><code class="plain">		</code><code class="keyword">string</code><code class="plain"> strValue = ValidationHelper.GetString(value, </code><code class="keyword">string</code><code class="plain">.Empty);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Sets up the drop-down and checkbox items of the control (occurs for new forms when attempting to set the default field value)</code></div>
 <div class="line"><code class="plain">		EnsureItems();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.IsNullOrEmpty(strValue))</code></div>
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// Creates an XmlDocument based on the field's value</code></div>
 <div class="line"><code class="plain">			XmlDocument xmlValue = </code><code class="keyword">new</code><code class="plain"> XmlDocument();</code></div>
 <div class="line"><code class="plain">			xmlValue.LoadXml(strValue);  </code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Sets values for the internal controls based on the XML data</code></div>
 <div class="line"><code class="plain">			SetValuesFromXml(xmlValue);</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}    </code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Sets up the items of the internal drop-down list and checkboxes.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8867,7 +8838,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		drpAnimalType.Items.Add(</code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"Bees"</code><code class="plain">, </code><code class="string">"Bees"</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">		drpAnimalType.Items.Add(</code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"Marsupials"</code><code class="plain">, </code><code class="string">"Marsupials"</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="keyword">if</code><code class="plain"> (checkContinents.Items.Count == 0)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		checkContinents.Items.Add(</code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"Africa"</code><code class="plain">));</code></div>
@@ -8879,7 +8850,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		checkContinents.Items.Add(</code><code class="keyword">new</code><code class="plain"> ListItem(</code><code class="string">"Antarctica"</code><code class="plain">));</code></div>
 <div class="line"><code class="plain">	}</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Returns a string containing XML data based on the values of the internal controls.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8887,37 +8858,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Creates a new XML document</code></div>
 <div class="line"><code class="plain">	XmlDocument xmlDoc = </code><code class="keyword">new</code><code class="plain"> XmlDocument();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Creates an animal XML element</code></div>
 <div class="line"><code class="plain">	XmlElement xmlAnimal = xmlDoc.CreateElement(</code><code class="string">"animal"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Prepares attributes for the animal element</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> animalAttributes = </code><code class="keyword">new</code><code class="plain"> Dictionary&lt;</code><code class="keyword">string</code><code class="plain">, </code><code class="keyword">string</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		{</code><code class="string">"type"</code><code class="plain">, drpAnimalType.SelectedValue},</code></div>
 <div class="line"><code class="plain">		{</code><code class="string">"species"</code><code class="plain">, txtSpecies.Text}</code></div>
 <div class="line"><code class="plain">	};</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Adds the attributes to the animal element (ensures consistent alphabetical order)</code></div>
 <div class="line"><code class="plain">	xmlAnimal.AddAttributes(animalAttributes);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Adds the animal element as the root of the XML document</code></div>
 <div class="line"><code class="plain">	xmlDoc.AppendChild(xmlAnimal);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Prepares a dictionary of child elements</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">var</code><code class="plain"> continentElements = </code><code class="keyword">new</code><code class="plain"> Dictionary&lt;</code><code class="keyword">string</code><code class="plain">, </code><code class="keyword">bool</code><code class="plain">&gt;();</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">foreach</code><code class="plain"> (ListItem item </code><code class="keyword">in</code><code class="plain"> checkContinents.Items)</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		continentElements.Add(item.Text.Replace(</code><code class="string">" "</code><code class="plain">, </code><code class="keyword">string</code><code class="plain">.Empty), item.Selected);</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Creates child elements under the animal element</code></div>
 <div class="line"><code class="plain">	xmlAnimal.AddChildElements(continentElements);</code></div>
 <div class="line"><code class="plain">        </code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Ensures line breaks and indentation formatting for the XML text, omits the XML declaration</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">return</code><code class="plain"> xmlDoc.ToFormattedXmlString(</code><code class="keyword">true</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Sets up the internal controls based on data from an XmlDocument.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8925,13 +8896,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">// Sets the animal type value based on the type attribute of the animal element</code></div>
 <div class="line"><code class="plain">	drpAnimalType.SelectedValue = System.Convert.ToString(xmlValue[</code><code class="string">"animal"</code><code class="plain">].Attributes[</code><code class="string">"type"</code><code class="plain">].Value);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Sets the species name based on the species attribute of the animal element (if it has a value)</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">if</code><code class="plain"> (xmlValue[</code><code class="string">"animal"</code><code class="plain">].HasAttribute(</code><code class="string">"species"</code><code class="plain">))</code></div>
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		txtSpecies.Text = System.Convert.ToString(xmlValue[</code><code class="string">"animal"</code><code class="plain">].Attributes[</code><code class="string">"species"</code><code class="plain">].Value);</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">// Sets the continent checkboxes based on the child elements under the animal element</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">foreach</code><code class="plain"> (ListItem item </code><code class="keyword">in</code><code class="plain"> checkContinents.Items)</code></div>
 <div class="line"><code class="plain">	{</code></div>
@@ -8942,48 +8913,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Save the control&#39;s files. <strong class=" ">Build</strong> your project if it is installed as a web application.</p>
-</li></ol><p   
->To register the form control in the system:</p>
-<ol class=" "><li class=" "><p   
->Sign in to the Kentico administration interface.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Form controls</strong> application.</p>
-</li><li class=" "><p   
->Click <strong class=" ">New form control</strong>.</p>
-</li><li class=" "><p   
->Enter the following values:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Control source</strong>: Web user control</p>
-</li><li class=" "><p   
-><strong class=" ">Display name</strong>: Animals XML</p>
-</li><li class=" "><p   
-><strong class=" ">Code name</strong>: Leave the <i class=" ">(automatic)</i> value</p>
-</li><li class=" "><p   
-><strong class=" ">File name</strong>: ~/CMSFormControls/CustomAnimals.ascx (you can click <strong class=" ">Select</strong> to choose the file)</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->On the <strong class=" ">General</strong> tab, set the <strong class=" ">Control scope</strong>:</p>
-<ul class=" "><li class=" "><p   
->Use control for: <strong class=" ">Long text</strong></p>
-</li><li class=" "><p   
->Show control in: Any required options</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->You can now assign the form control to form fields with the <i class=" ">Long text</i> data type.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882188/custom_xml_form_control.png" 
-        alt="The custom animal form control as it appears inside an editing form"        
-                height="150" />
+</li><li class=" "><p>Save the control's files. <strong class=" ">Build</strong> your project if it is installed as a web application.</p>
+</li></ol><p>To register the form control in the system:</p>
+<ol class=" "><li class=" "><p>Sign in to the Kentico administration interface.</p>
+</li><li class=" "><p>Open the <strong class=" ">Form controls</strong> application.</p>
+</li><li class=" "><p>Click <strong class=" ">New form control</strong>.</p>
+</li><li class=" "><p>Enter the following values:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Control source</strong>: Web user control</p>
+</li><li class=" "><p><strong class=" ">Display name</strong>: Animals XML</p>
+</li><li class=" "><p><strong class=" ">Code name</strong>: Leave the <i class=" ">(automatic)</i> value</p>
+</li><li class=" "><p><strong class=" ">File name</strong>: ~/CMSFormControls/CustomAnimals.ascx (you can click <strong class=" ">Select</strong> to choose the file)</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>On the <strong class=" ">General</strong> tab, set the <strong class=" ">Control scope</strong>:</p>
+<ul class=" "><li class=" "><p>Use control for: <strong class=" ">Long text</strong></p>
+</li><li class=" "><p>Show control in: Any required options</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>You can now assign the form control to form fields with the <i class=" ">Long text</i> data type.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882188/custom_xml_form_control.png" alt="The custom animal form control as it appears inside an editing form" height="150">
 </p>
-<p   
->The control saves the user input into XML data, and ensures consistent alphabetical order of attributes and child elements. For example, a field using the <i class=" ">Animals XML</i> control would have the following value for the input shown in the screenshot above:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The control saves the user input into XML data, and ensures consistent alphabetical order of attributes and child elements. For example, a field using the <i class=" ">Animals XML</i> control would have the following value for the input shown in the screenshot above:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9024,8 +8973,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9037,10 +8986,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9059,9 +9008,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9072,7 +9018,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9083,5 +9029,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

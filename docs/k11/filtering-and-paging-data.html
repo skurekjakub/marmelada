@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Filtering and paging data - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880621"> <span>Filtering and paging data</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,180 +8659,104 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Paging and filtering are features that help users navigate through large lists of data.</p>
-<p   
-><i class=" "><strong class=" ">Filters</strong></i> allow users to limit which data is displayed directly on the live site. The system provides several built-in filters for various types of data, and also allows developers to <a   href="developing-custom-filters">create custom filters</a>. Filters connect to data sources, and dynamically generate additional conditions that the system applies when loading data.</p>
-<p   
-><i class=" "><strong class=" ">Pagers</strong></i> separate lists of data into multiple pages and provide navigation between the pages. To implement paging, connect a <strong class=" ">Universal pager</strong> to your listing components. You have full control over the appearance of the pager (the design is based on <a   href="writing-transformations">transformations</a>). See the documentation of the <a   href="unipager">UniPager control</a> for details.</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Paging and filtering are features that help users navigate through large lists of data.</p><p><i class=" "><strong class=" ">Filters</strong></i> allow users to limit which data is displayed directly on the live site. The system provides several built-in filters for various types of data, and also allows developers to <a href="developing-custom-filters">create custom filters</a>. Filters connect to data sources, and dynamically generate additional conditions that the system applies when loading data.</p><p><i class=" "><strong class=" ">Pagers</strong></i> separate lists of data into multiple pages and provide navigation between the pages. To implement paging, connect a <strong class=" ">Universal pager</strong> to your listing components. You have full control over the appearance of the pager (the design is based on <a href="writing-transformations">transformations</a>). See the documentation of the <a href="unipager">UniPager control</a> for details.</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: When adding filters or pagers to lists of data, we strongly recommend using a separate data source web part connected to <i class=" "><strong class=" ">Basic</strong></i> listing web part. Because of differences in the life cycle of individual components, filters and pagers may not work correctly in all possible scenarios for web parts with built-in data sources.</p>
+            <p><strong class=" ">Note</strong>: When adding filters or pagers to lists of data, we strongly recommend using a separate data source web part connected to <i class=" "><strong class=" ">Basic</strong></i> listing web part. Because of differences in the life cycle of individual components, filters and pagers may not work correctly in all possible scenarios for web parts with built-in data sources.</p>
      
     </div>
-</div>
-<p   
->The diagram below illustrates how to link together data web parts with a pager and filter. You can place the web parts anywhere on the same page without any change in functionality. The captions at the beginning and end of the lines between the web parts show the properties that connect the components. The linked properties must have identical values.</p>
-<p   
-><img  class="confluence-embedded-image" 
-        
-        src="images/download/attachments/68880621/Filter_Pager_Diagram.png" 
-        alt="Diagram showing how filters and pagers connect with data web parts. The properties next to the connecting lines must have identical values."        
-        width="500"        height="575" />
-</p>
-<div  class="box-general box-info">
+</div><p>The diagram below illustrates how to link together data web parts with a pager and filter. You can place the web parts anywhere on the same page without any change in functionality. The captions at the beginning and end of the lines between the web parts show the properties that connect the components. The linked properties must have identical values.</p><p><img class="confluence-embedded-image" src="images/download/attachments/68880621/Filter_Pager_Diagram.png" alt="Diagram showing how filters and pagers connect with data web parts. The properties next to the connecting lines must have identical values." width="500" height="575">
+</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Data loading when using paging</strong></p>
-<p   
->By default, <a   href="loading-page-data">page</a> and <a   href="loading-data-using-custom-queries">query</a> data sources <i class=" ">load data per-page</i> when you connect a Universal pager. Instead of retrieving the full data for all pages, the data source loads and <a   href="caching-the-data-of-page-components">caches</a> individual pages separately, which reduces the initial load time. You can disable per-page loading through the <strong class=" ">Load pages individually</strong> property of data source web parts (in the <strong class=" ">System settings</strong> category).</p>
-<p   
-><strong class=" ">Note</strong>: To use per-page loading for query and page attachment data sources, you need to fill in values into the <strong class=" ">ORDER BY expression</strong> and <strong class=" ">Selected columns</strong> properties.</p>
+            <p><strong class=" ">Data loading when using paging</strong></p>
+<p>By default, <a href="loading-page-data">page</a> and <a href="loading-data-using-custom-queries">query</a> data sources <i class=" ">load data per-page</i> when you connect a Universal pager. Instead of retrieving the full data for all pages, the data source loads and <a href="caching-the-data-of-page-components">caches</a> individual pages separately, which reduces the initial load time. You can disable per-page loading through the <strong class=" ">Load pages individually</strong> property of data source web parts (in the <strong class=" ">System settings</strong> category).</p>
+<p><strong class=" ">Note</strong>: To use per-page loading for query and page attachment data sources, you need to fill in values into the <strong class=" ">ORDER BY expression</strong> and <strong class=" ">Selected columns</strong> properties.</p>
      
     </div>
-</div>
-<p   
-></p>
-<p   
-></p>
-    <div  class="confbox panel">
+</div><p></p><p></p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880621_filteringandpagingdata-example">Example</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880621_filteringandpagingdata-creatingthelistofarticles">Creating the list of articles</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880621_filteringandpagingdata-addingafilter">Adding a filter</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880621_filteringandpagingdata-settinguppaging">Setting up paging</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880621_filteringandpagingdata-example">Example</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880621_filteringandpagingdata-creatingthelistofarticles">Creating the list of articles</a></p>
+</li><li class=" "><p><a href="#src-68880621_filteringandpagingdata-addingafilter">Adding a filter</a></p>
+</li><li class=" "><p><a href="#src-68880621_filteringandpagingdata-settinguppaging">Setting up paging</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="developing-custom-filters">Developing custom filters</a></p>
-</li><li class=" "><p   
-><a   href="unipager">UniPager control</a></p>
-</li><li class=" "><p   
-><a   href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
+<ul class=" "><li class=" "><p><a href="developing-custom-filters">Developing custom filters</a></p>
+</li><li class=" "><p><a href="unipager">UniPager control</a></p>
+</li><li class=" "><p><a href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+
+
+
+
+
+    
+    
     <h3 id="src-68880621_filteringandpagingdata-example" class="heading "><span>Example</span></h3>
-<p   
->The following example demonstrates how to provide filtering and paging functionality for a list of articles. You can use the same approach for any type of data.</p>
-<div  class="box-general box-note">
+<p>The following example demonstrates how to provide filtering and paging functionality for a list of articles. You can use the same approach for any type of data.</p>
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: The example works with data from the sample <i class=" ">Dancing Goat</i> site. You can, for example, replace the original <strong class=" ">Repeater</strong> web part for displaying articles on the <strong class=" ">Articles</strong> page.</p>
+            <p><strong class=" ">Note</strong>: The example works with data from the sample <i class=" ">Dancing Goat</i> site. You can, for example, replace the original <strong class=" ">Repeater</strong> web part for displaying articles on the <strong class=" ">Articles</strong> page.</p>
      
     </div>
 </div>
     <h4 id="src-68880621_filteringandpagingdata-creatingthelistofarticles" class="heading "><span>Creating the list of articles</span></h4>
-<p   
->Start by creating a page with components that generate a basic list of articles:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
-><a   href="creating-new-pages">Create a new page</a> on your website.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Design</strong> tab.</p>
-</li><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Pages data source</strong> web part onto the page.</p>
-</li><li class=" "><p   
->Set the following properties for the <strong class=" ">Pages data source</strong>:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Path</strong>: /Articles/%</p>
-</li><li class=" "><p   
-><strong class=" ">Page types</strong>: DancingGoat.Article<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
-</li><li class=" "><p   
->Add the <strong class=" ">Basic repeater</strong> web part below the data source.</p>
-</li><li class=" "><p   
->Set the following properties for the <strong class=" ">Basic repeater</strong>:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Data source name</strong>: PagesDataSource <i class=" ">(the default ID of the Pages data source web part)</i></p>
-</li><li class=" "><p   
-><strong class=" ">Transformation name</strong>: DancingGoat.Article.List</p>
-</li><li class=" "><p   
-><strong class=" ">Selected item transformation</strong>: DancingGoat.Article.Detail<br/></p>
-</li></ul></li><li class=" "><p   
->Click<strong class=" "> Save &amp; Close</strong>.</p>
-</li></ol><p   
->The data source loads all pages with articles on the website, and the connected <strong class=" ">Basic repeater</strong> displays the data on the page.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880621/using_page_data_source_with_basic_repeater.png" 
-        alt="Design tab of a page after adding the Page data source and Basic repeater web parts"        
-        width="500"         />
+<p>Start by creating a page with components that generate a basic list of articles:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p><a href="creating-new-pages">Create a new page</a> on your website.</p>
+</li><li class=" "><p>Open the <strong class=" ">Design</strong> tab.</p>
+</li><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Pages data source</strong> web part onto the page.</p>
+</li><li class=" "><p>Set the following properties for the <strong class=" ">Pages data source</strong>:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Path</strong>: /Articles/%</p>
+</li><li class=" "><p><strong class=" ">Page types</strong>: DancingGoat.Article<br><br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li><li class=" "><p>Add the <strong class=" ">Basic repeater</strong> web part below the data source.</p>
+</li><li class=" "><p>Set the following properties for the <strong class=" ">Basic repeater</strong>:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Data source name</strong>: PagesDataSource <i class=" ">(the default ID of the Pages data source web part)</i></p>
+</li><li class=" "><p><strong class=" ">Transformation name</strong>: DancingGoat.Article.List</p>
+</li><li class=" "><p><strong class=" ">Selected item transformation</strong>: DancingGoat.Article.Detail<br></p>
+</li></ul></li><li class=" "><p>Click<strong class=" "> Save &amp; Close</strong>.</p>
+</li></ol><p>The data source loads all pages with articles on the website, and the connected <strong class=" ">Basic repeater</strong> displays the data on the page.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880621/using_page_data_source_with_basic_repeater.png" alt="Design tab of a page after adding the Page data source and Basic repeater web parts" width="500">
 </p>
     <h4 id="src-68880621_filteringandpagingdata-addingafilter" class="heading "><span>Adding a filter</span></h4>
-<p   
->The system provides a default filter that allows users to limit which articles the page displays (based on various criteria). To integrate the filter:</p>
-<ol class=" "><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Page name filter</strong> web part above the Basic repeater.</p>
-</li><li class=" "><p   
->Set the web part&#39;s <strong class=" ">Web part control ID</strong> property to <i class=" ">PageNameFilter</i>.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
-</li><li class=" "><p   
->Configure (double-click) the <strong class=" ">Pages data source</strong> web part.</p>
-</li><li class=" "><p   
->Type the filter&#39;s name (<i class=" ">PageNameFilter</i>) into the data source&#39;s <strong class=" ">Filter name</strong> property.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
-</li></ol><p   
->The filter is now connected to the <strong class=" ">Pages data source</strong> web part. The data source loads a limited set of items according to the selected filter options.</p>
-<p   
->You can try out the filter on the live site. For example, use the filter to display only articles containing the word <i class=" ">techniques</i>.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880621/filtering_techniques.png" 
-        alt="Page name filter web part on the live site"        
-        width="480"        height="593" />
+<p>The system provides a default filter that allows users to limit which articles the page displays (based on various criteria). To integrate the filter:</p>
+<ol class=" "><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Page name filter</strong> web part above the Basic repeater.</p>
+</li><li class=" "><p>Set the web part's <strong class=" ">Web part control ID</strong> property to <i class=" ">PageNameFilter</i>.</p>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li><li class=" "><p>Configure (double-click) the <strong class=" ">Pages data source</strong> web part.</p>
+</li><li class=" "><p>Type the filter's name (<i class=" ">PageNameFilter</i>) into the data source's <strong class=" ">Filter name</strong> property.</p>
+</li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li></ol><p>The filter is now connected to the <strong class=" ">Pages data source</strong> web part. The data source loads a limited set of items according to the selected filter options.</p>
+<p>You can try out the filter on the live site. For example, use the filter to display only articles containing the word <i class=" ">techniques</i>.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880621/filtering_techniques.png" alt="Page name filter web part on the live site" width="480" height="593">
 </p>
     <h4 id="src-68880621_filteringandpagingdata-settinguppaging" class="heading "><span>Setting up paging</span></h4>
-<p   
->Paging can be useful when displaying a large number of records. To add a pager to the list of articles:</p>
-<ol class=" "><li class=" "><p   
-><a   href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Universal pager</strong> web part onto the page, below the <strong class=" ">Basic repeater</strong>.</p>
-</li><li class=" "><p   
->Set the following properties for the pager:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Target control name</strong>: BasicRepeater <i class=" ">(the default ID of the Basic repeater web part)</i></p>
-</li><li class=" "><p   
-><strong class=" ">Page size</strong>: 3</p>
-</li><li class=" "><p   
-><strong class=" ">Paging mode</strong>: Postback</p>
-</li><li class=" "><p   
-><strong class=" ">Pager layout transformation</strong>: CMS.PagerTransformations.General-PagerLayout<br/><br/></p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save &amp; Close</strong>.</p>
-</li></ol><p   
->The Universal pager connects to the <strong class=" ">Basic repeater</strong> and separates the displayed data into multiple shorter pages.</p>
-<p   
->You can try out the pager on the live site. The page now only includes up to 3 articles, and allows users to switch between pages.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68880621/paging_articles.png" 
-        alt="Default appearance of the Universal pager below a list of data"        
-        width="500"         />
+<p>Paging can be useful when displaying a large number of records. To add a pager to the list of articles:</p>
+<ol class=" "><li class=" "><p><a href="using-and-configuring-web-parts">Add</a> the <strong class=" ">Universal pager</strong> web part onto the page, below the <strong class=" ">Basic repeater</strong>.</p>
+</li><li class=" "><p>Set the following properties for the pager:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Target control name</strong>: BasicRepeater <i class=" ">(the default ID of the Basic repeater web part)</i></p>
+</li><li class=" "><p><strong class=" ">Page size</strong>: 3</p>
+</li><li class=" "><p><strong class=" ">Paging mode</strong>: Postback</p>
+</li><li class=" "><p><strong class=" ">Pager layout transformation</strong>: CMS.PagerTransformations.General-PagerLayout<br><br></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save &amp; Close</strong>.</p>
+</li></ol><p>The Universal pager connects to the <strong class=" ">Basic repeater</strong> and separates the displayed data into multiple shorter pages.</p>
+<p>You can try out the pager on the live site. The page now only includes up to 3 articles, and allows users to switch between pages.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68880621/paging_articles.png" alt="Default appearance of the Universal pager below a list of data" width="500">
 </p>
                     </div>
                 </div>
@@ -8847,8 +8768,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8860,10 +8781,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8882,9 +8803,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8895,7 +8813,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8906,5 +8824,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

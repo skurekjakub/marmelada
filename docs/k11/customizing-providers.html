@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Customizing providers - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8635,7 +8632,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882171"> <span>Customizing providers</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8649,7 +8646,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8660,339 +8657,251 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Providers in the Kentico API are classes that allow the system to manipulate objects and perform various actions. The following list presents the providers that the system uses and their purpose:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Info providers</strong> contain methods for working with specific types of objects stored in the database, such as users, contacts, custom table records, etc.</p>
-</li><li class=" "><p   
-><strong class=" ">Data provider</strong> handles low-level database operations. The Info providers are built on top of the Data provider and use it to store and fetch data.</p>
-</li><li class=" "><p   
-><strong class=" ">Email provider</strong> manages the email queue and sends emails.</p>
-</li><li class=" "><p   
-><strong class=" ">Search provider</strong> ensures the functionality of the SQL search.</p>
-</li><li class=" "><p   
-><strong class=" ">File system providers</strong> allow you to access various file systems. They extend the CMS.IO namespace. See <a   href="working-with-physical-files-using-the-api">Working with physical files using the API</a> to learn how to write a custom file system provider.</p>
-</li></ul><p   
->By developing custom providers and using them instead of the standard ones, you can modify the behavior of the application (or a specific feature) according to your exact requirements.</p>
-    <h3 id="src-68882171_customizingproviders-addingyourcustomcodefiles" class="heading "><span>Adding your custom code files</span></h3>
-<p   
->When developing custom functionality, you can place your code files in:</p>
-<ul class=" "><li class=" "><p   
->A <strong class=" ">separate project</strong> (assembly) integrated into the Kentico solution</p>
-</li><li class=" "><p   
->The <strong class=" ">App_Code</strong> folder (or<strong class=" "> Old_App_Code</strong> on web application projects)</p>
-</li></ul><p   
->Placing your customizations into the App_Code folder ensures that the code is compiled dynamically when required and automatically referenced in all other parts of the application.</p>
-    <div  class="confbox panel">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Providers in the Kentico API are classes that allow the system to manipulate objects and perform various actions. The following list presents the providers that the system uses and their purpose:</p><ul class=" "><li class=" "><p><strong class=" ">Info providers</strong> contain methods for working with specific types of objects stored in the database, such as users, contacts, custom table records, etc.</p>
+</li><li class=" "><p><strong class=" ">Data provider</strong> handles low-level database operations. The Info providers are built on top of the Data provider and use it to store and fetch data.</p>
+</li><li class=" "><p><strong class=" ">Email provider</strong> manages the email queue and sends emails.</p>
+</li><li class=" "><p><strong class=" ">Search provider</strong> ensures the functionality of the SQL search.</p>
+</li><li class=" "><p><strong class=" ">File system providers</strong> allow you to access various file systems. They extend the CMS.IO namespace. See <a href="working-with-physical-files-using-the-api">Working with physical files using the API</a> to learn how to write a custom file system provider.</p>
+</li></ul><p>By developing custom providers and using them instead of the standard ones, you can modify the behavior of the application (or a specific feature) according to your exact requirements.</p><h3 id="src-68882171_customizingproviders-addingyourcustomcodefiles" class="heading "><span>Adding your custom code files</span></h3><p>When developing custom functionality, you can place your code files in:</p><ul class=" "><li class=" "><p>A <strong class=" ">separate project</strong> (assembly) integrated into the Kentico solution</p>
+</li><li class=" "><p>The <strong class=" ">App_Code</strong> folder (or<strong class=" "> Old_App_Code</strong> on web application projects)</p>
+</li></ul><p>Placing your customizations into the App_Code folder ensures that the code is compiled dynamically when required and automatically referenced in all other parts of the application.</p><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882171_customizingproviders-addingyourcustomcodefiles">Adding your custom code files</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882171_customizingproviders-writingthecustomcode">Writing the custom code</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882171_customizingproviders-registeringcustomproviders">Registering custom providers</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882171_customizingproviders-othercustomizationoptions">Other customization options</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882171_customizingproviders-examples">Examples</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882171_customizingproviders-addingyourcustomcodefiles">Adding your custom code files</a></p>
+</li><li class=" "><p><a href="#src-68882171_customizingproviders-writingthecustomcode">Writing the custom code</a></p>
+</li><li class=" "><p><a href="#src-68882171_customizingproviders-registeringcustomproviders">Registering custom providers</a></p>
+</li><li class=" "><p><a href="#src-68882171_customizingproviders-othercustomizationoptions">Other customization options</a></p>
+</li><li class=" "><p><a href="#src-68882171_customizingproviders-examples">Examples</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
-            <div class="title panel-header">In this section</div>
-            <div class="panel-content">
-<p   
-></p>
-<p   
-></p>
-        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+    
+
+
+    
+    
     <h3 id="src-68882171_customizingproviders-writingthecustomcode" class="heading "><span>Writing the custom code</span></h3>
-<p   
->Every class used to customize the application must <strong class=" ">inherit from the original class</strong>. This allows you to implement your modifications or additions by overriding the members of the given class. When creating overrides for existing methods, it is recommended to call the original base method within your custom code.</p>
+<p>Every class used to customize the application must <strong class=" ">inherit from the original class</strong>. This allows you to implement your modifications or additions by overriding the members of the given class. When creating overrides for existing methods, it is recommended to call the original base method within your custom code.</p>
     <h3 id="src-68882171_customizingproviders-registeringcustomproviders" class="heading "><span>Registering custom providers</span></h3>
-<p   
->After you write the code, you must register your custom classes to ensure that the system uses them instead of the default providers. You can choose between two options of registering custom provider classes:</p>
-<ul class=" "><li class=" "><p   
-><a   href="registering-providers-using-assembly-attributes">Using assembly attributes</a> - the most straightforward way to register providers.</p>
-</li><li class=" "><p   
-><a   href="registering-providers-via-the-web.config">Using the web.config file</a> - allows you to switch between different providers (custom or default) without having to edit the application code.</p>
+<p>After you write the code, you must register your custom classes to ensure that the system uses them instead of the default providers. You can choose between two options of registering custom provider classes:</p>
+<ul class=" "><li class=" "><p><a href="registering-providers-using-assembly-attributes">Using assembly attributes</a> - the most straightforward way to register providers.</p>
+</li><li class=" "><p><a href="registering-providers-via-the-web.config">Using the web.config file</a> - allows you to switch between different providers (custom or default) without having to edit the application code.</p>
 </li></ul>    <h3 id="src-68882171_customizingproviders-othercustomizationoptions" class="heading "><span>Other customization options</span></h3>
-<p   
->In addition to providers, you can also customize the following helper and manager classes:</p>
-    <div  class="tablewrap">
+<p>In addition to providers, you can also customize the following helper and manager classes:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Helper class name</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Helper class name</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Namespace</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Namespace</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->AutomationHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AutomationHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.SalesForce.Automation</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.SalesForce.Automation</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Provides <a   href="marketing-automation">marketing automation</a> support for common actions related to <a   href="salesforce-integration">Salesforce</a> integration.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Provides <a href="marketing-automation">marketing automation</a> support for common actions related to <a href="salesforce-integration">Salesforce</a> integration.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CacheHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CacheHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Helpers</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Helpers</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Handles operations with cache items.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Handles operations with cache items.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->ClassHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>ClassHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Base</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Base</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Takes care of dynamically loaded classes and assemblies.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Takes care of dynamically loaded classes and assemblies.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CookieHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CookieHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Helpers</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Helpers</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Contains methods for managing cookies.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Contains methods for managing cookies.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->DirectoryHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>DirectoryHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.IO</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.IO</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Manages directories in the file system.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Manages directories in the file system.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->LeadReplicationHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>LeadReplicationHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.SalesForce</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.SalesForce</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Replicates contacts into SalesForce leads.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Replicates contacts into SalesForce leads.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->LocalizationHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>LocalizationHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Localization</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Localization</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Retrieves localized text from resource strings.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Retrieves localized text from resource strings.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->MediaHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>MediaHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Base.Web.UI</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Base.Web.UI</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Provides methods for rendering media content.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Provides methods for rendering media content.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->MFAuthenticationHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>MFAuthenticationHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Membership</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Membership</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Contains methods and properties that implement and configure <a   href="configuring-multi-factor-authentication">multi-factor authentication</a>.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Contains methods and properties that implement and configure <a href="configuring-multi-factor-authentication">multi-factor authentication</a>.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->OutputHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>OutputHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.OutputFilter</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.OutputFilter</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Manages the HTML output and the output cache.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Manages the HTML output and the output cache.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->TriggerHelper</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>TriggerHelper</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Automation</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Automation</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Manages marketing automation triggers.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Manages marketing automation triggers.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-    <div  class="tablewrap">
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Manager class name</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Manager class name</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Namespace</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Namespace</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Description</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Description</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->AutomationManager</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>AutomationManager</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Automation</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Automation</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Handles the marketing automation process.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Handles the marketing automation process.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->SyncManager</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>SyncManager</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.Synchronization</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.Synchronization</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Synchronizes page and object data to other instances of the application when using <a   href="content-staging">Content staging</a>.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Synchronizes page and object data to other instances of the application when using <a href="content-staging">Content staging</a>.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->VersionManager</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>VersionManager</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.DocumentEngine</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.DocumentEngine</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Provides <a   href="configuring-and-using-page-versioning">page versioning</a> functionality.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Provides <a href="configuring-and-using-page-versioning">page versioning</a> functionality.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->WorkflowManager</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>WorkflowManager</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS.DocumentEngine</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS.DocumentEngine</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Handles the <a   href="configuring-workflows">workflow</a> process.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Handles the <a href="configuring-workflows">workflow</a> process.</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
->You can also use <a   href="handling-global-events">global event handlers</a> to customize the behavior of the system. Handlers allow you to execute custom code whenever a specific event occurs in the system, such as page or object changes, various parts of the user authentication process, etc.</p>
+<p>You can also use <a href="handling-global-events">global event handlers</a> to customize the behavior of the system. Handlers allow you to execute custom code whenever a specific event occurs in the system, such as page or object changes, various parts of the user authentication process, etc.</p>
     <h3 id="src-68882171_customizingproviders-examples" class="heading "><span>Examples</span></h3>
-<ul class=" "><li class=" "><p   
-><a   href="custom-info-provider-example">Custom Info provider example</a> demonstrates how to customize standard Info providers.</p>
-</li><li class=" "><p   
-><a   href="custom-email-provider-example">Custom Email provider example</a> shows a sample customization of the email provider.</p>
-</li><li class=" "><p   
-><a   href="custom-data-provider-example">Custom Data provider example</a> describes the specific steps that you need to take to customize the Data provider.</p>
-</li><li class=" "><p   
-><a   href="creating-custom-sql-search-providers">Custom SQL search provider example</a> demonstrates how you can modify the SQL search provider.</p>
-</li><li class=" "><p   
-><a   href="customizing-e-commerce-data-for-google-analytics">Customizing e-commerce data for Google Analytics</a> demonstrates how to customize helper classes that the system uses to create product and order JSON data for the purposes of Google Analytics.</p>
+<ul class=" "><li class=" "><p><a href="custom-info-provider-example">Custom Info provider example</a> demonstrates how to customize standard Info providers.</p>
+</li><li class=" "><p><a href="custom-email-provider-example">Custom Email provider example</a> shows a sample customization of the email provider.</p>
+</li><li class=" "><p><a href="custom-data-provider-example">Custom Data provider example</a> describes the specific steps that you need to take to customize the Data provider.</p>
+</li><li class=" "><p><a href="creating-custom-sql-search-providers">Custom SQL search provider example</a> demonstrates how you can modify the SQL search provider.</p>
+</li><li class=" "><p><a href="customizing-e-commerce-data-for-google-analytics">Customizing e-commerce data for Google Analytics</a> demonstrates how to customize helper classes that the system uses to create product and order JSON data for the purposes of Google Analytics.</p>
 </li></ul>                    </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -9003,8 +8912,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9016,10 +8925,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9038,9 +8947,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9051,7 +8957,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9062,5 +8968,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

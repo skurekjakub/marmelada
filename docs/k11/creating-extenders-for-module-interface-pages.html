@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Creating extenders for module interface pages - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882229"> <span>Creating extenders for module interface pages</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,107 +8659,73 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->When building the user interface of a custom module, the portal engine development approach allows you to quickly create pages based on common patterns directly in your browser (see the example in <a   href="creating-custom-modules">Creating custom modules</a> for more information). However, if you need custom functionality or content adjustments that you cannot configure through the properties of the available UI page templates, you need to develop an <i class=" "><strong class=" ">extender</strong></i> and assign it to the corresponding UI element.</p>
-<p   
->Extenders allow you to prepare custom code that the system executes when initializing the controls used on a page or the page itself. For example, you can use extenders to dynamically modify control properties or assign handler methods to events that occur during the page or control life cycle.</p>
-<div  class="box-general box-info">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>When building the user interface of a custom module, the portal engine development approach allows you to quickly create pages based on common patterns directly in your browser (see the example in <a href="creating-custom-modules">Creating custom modules</a> for more information). However, if you need custom functionality or content adjustments that you cannot configure through the properties of the available UI page templates, you need to develop an <i class=" "><strong class=" ">extender</strong></i> and assign it to the corresponding UI element.</p><p>Extenders allow you to prepare custom code that the system executes when initializing the controls used on a page or the page itself. For example, you can use extenders to dynamically modify control properties or assign handler methods to events that occur during the page or control life cycle.</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Development approaches for custom user interface pages</strong></p>
-<p   
->Before you start developing a user interface page that requires customization, carefully consider which of the following approaches best fits your needs:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Pages with portal engine templates and extenders </strong>- allows you to leverage the templates and automatic features of the portal engine and add custom code-behind logic using extenders. Suitable for pages that share a common pattern with other pages (for example object listing pages), but require one or more custom adjustments.<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Manual user interface pages</strong> - for pages that require heavy customization, it may be easier to implement the entire page as a separate web form. Gives you full control over the content and logic of the page, but you need to develop the whole page manually. See <a   href="manually-creating-the-interface-for-custom-modules">Manually creating the interface for custom modules</a> for more information about this approach.</p>
+            <p><strong class=" ">Development approaches for custom user interface pages</strong></p>
+<p>Before you start developing a user interface page that requires customization, carefully consider which of the following approaches best fits your needs:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Pages with portal engine templates and extenders </strong>- allows you to leverage the templates and automatic features of the portal engine and add custom code-behind logic using extenders. Suitable for pages that share a common pattern with other pages (for example object listing pages), but require one or more custom adjustments.<br><br></p>
+</li><li class=" "><p><strong class=" ">Manual user interface pages</strong> - for pages that require heavy customization, it may be easier to implement the entire page as a separate web form. Gives you full control over the content and logic of the page, but you need to develop the whole page manually. See <a href="manually-creating-the-interface-for-custom-modules">Manually creating the interface for custom modules</a> for more information about this approach.</p>
 </li></ul>     
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882229_creatingextendersformoduleinterfacepages-implementingextenders">Implementing extenders</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882229_creatingextendersformoduleinterfacepages-assigningextenderstomodulepages">Assigning extenders to module pages</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882229_creatingextendersformoduleinterfacepages-extendertypes">Extender types</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882229_safe-id-q3jlyxrpbmdlehrlbmrlcnnmb3jtb2r1bgvpbnrlcmzhy2vwywdlcy1fegftcgxlluv4dgvuzgluz2ftb2r1bgunc2xpc3rpbmdwywdl">Example - Extending a module&#39;s listing page</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882229_creatingextendersformoduleinterfacepages-addingclassfields">Adding class fields</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882229_creatingextendersformoduleinterfacepages-updatingthelistinggriddefinition">Updating the listing grid definition</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882229_creatingextendersformoduleinterfacepages-creatingtheextenderclass">Creating the extender class</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882229_creatingextendersformoduleinterfacepages-assigningtheextendertoauielement">Assigning the extender to a UI element</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882229_creatingextendersformoduleinterfacepages-implementingextenders">Implementing extenders</a></p>
+</li><li class=" "><p><a href="#src-68882229_creatingextendersformoduleinterfacepages-assigningextenderstomodulepages">Assigning extenders to module pages</a></p>
+</li><li class=" "><p><a href="#src-68882229_creatingextendersformoduleinterfacepages-extendertypes">Extender types</a></p>
+</li><li class=" "><p><a href="#src-68882229_safe-id-q3jlyxrpbmdlehrlbmrlcnnmb3jtb2r1bgvpbnrlcmzhy2vwywdlcy1fegftcgxlluv4dgvuzgluz2ftb2r1bgunc2xpc3rpbmdwywdl">Example - Extending a module's listing page</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882229_creatingextendersformoduleinterfacepages-addingclassfields">Adding class fields</a></p>
+</li><li class=" "><p><a href="#src-68882229_creatingextendersformoduleinterfacepages-updatingthelistinggriddefinition">Updating the listing grid definition</a></p>
+</li><li class=" "><p><a href="#src-68882229_creatingextendersformoduleinterfacepages-creatingtheextenderclass">Creating the extender class</a></p>
+</li><li class=" "><p><a href="#src-68882229_creatingextendersformoduleinterfacepages-assigningtheextendertoauielement">Assigning the extender to a UI element</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="creating-custom-modules">Creating custom modules</a></p>
-</li><li class=" "><p   
-><a   href="manually-creating-the-interface-for-custom-modules">Manually creating the interface for custom modules</a></p>
+<ul class=" "><li class=" "><p><a href="creating-custom-modules">Creating custom modules</a></p>
+</li><li class=" "><p><a href="manually-creating-the-interface-for-custom-modules">Manually creating the interface for custom modules</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+    
+    
     <h3 id="src-68882229_creatingextendersformoduleinterfacepages-implementingextenders" class="heading "><span>Implementing extenders</span></h3>
-<p   
->To develop a new extender, you need to create a class in the web project and write the required code:</p>
-<ol class=" "><li class=" "><p   
->Open your project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Add a new class in your module&#39;s code folder:</p>
-<ul class=" "><li class=" "><p   
->If your module uses a separate assembly, add the extender class into the corresponding project.</p>
-</li><li class=" "><p   
->For modules that do not have their own project, use the <strong class=" ">CMSModules/&lt;module code name&gt;</strong> folder in the <strong class=" ">App_Code</strong> directory (or <i class=" ">Old_App_Code</i> directory on web application installations).</p>
-</li></ul><div  class="box-general box-tip">
+<p>To develop a new extender, you need to create a class in the web project and write the required code:</p>
+<ol class=" "><li class=" "><p>Open your project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Add a new class in your module's code folder:</p>
+<ul class=" "><li class=" "><p>If your module uses a separate assembly, add the extender class into the corresponding project.</p>
+</li><li class=" "><p>For modules that do not have their own project, use the <strong class=" ">CMSModules/&lt;module code name&gt;</strong> folder in the <strong class=" ">App_Code</strong> directory (or <i class=" ">Old_App_Code</i> directory on web application installations).</p>
+</li></ul><div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Extender naming convention</strong>: We recommend using the <i class=" ">Extender</i> suffix in the name of the class and the corresponding file.</p>
+            <p><strong class=" ">Extender naming convention</strong>: We recommend using the <i class=" ">Extender</i> suffix in the name of the class and the corresponding file.</p>
      
     </div>
 </div>
-</li><li class=" "><p   
->Make the class inherit from an appropriate base class:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ControlExtender&lt;TControl&gt;</strong> - for extenders that target a control. Set the generic parameter to the type of the control that you are extending (see <a   href="#src-68882229_creatingextendersformoduleinterfacepages-extendertypes">Extender types</a>).</p>
-</li><li class=" "><p   
-><strong class=" ">PageExtender&lt;CMSPage&gt;</strong> - for extenders that apply to pages. Use <strong class=" ">CMSPage</strong> as the type in the generic parameter.</p>
-<div  class="box-general box-info">
+</li><li class=" "><p>Make the class inherit from an appropriate base class:</p>
+<ul class=" "><li class=" "><p><strong class=" ">ControlExtender&lt;TControl&gt;</strong> - for extenders that target a control. Set the generic parameter to the type of the control that you are extending (see <a href="#src-68882229_creatingextendersformoduleinterfacepages-extendertypes">Extender types</a>).</p>
+</li><li class=" "><p><strong class=" ">PageExtender&lt;CMSPage&gt;</strong> - for extenders that apply to pages. Use <strong class=" ">CMSPage</strong> as the type in the generic parameter.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->The extender base classes are located under the <strong class=" ">CMS.Base.Web.UI </strong>namespace.</p>
+            <p>The extender base classes are located under the <strong class=" ">CMS.Base.Web.UI </strong>namespace.</p>
      
     </div>
 </div>
-</li></ul></li><li class=" "><p   
->Override the <strong class=" ">OnInit()</strong> method in the extender class.<br/></p>
-<ul class=" "><li class=" "><p   
->You can add any custom initialization code for the page or control, for example assign handler methods to events.</p>
-</li><li class=" "><p   
->When extending a control, you can access a strongly typed instance of the given control through the <strong class=" ">Control</strong> property of the extender class.</p>
-</li></ul></li><li class=" "><p   
->Add any other code required to implement your custom functionality (such as the handler methods assigned to events in the <i class=" ">OnInit</i> method).</p>
-</li><li class=" "><p   
->If you created the extender in <i class=" ">App_Code</i>, you need to add the <strong class=" ">RegisterCustomClass</strong> assembly attribute above the class declaration (and any namespace declarations). The attribute registers the class under a specific name.<br/></p>
-</li><li class=" "><p   
->Save the file (build the solution if your project is a web application or if you use a separate project for the module code).<br/></p>
-</li></ol><div  class="code panel pdl js-codePanel" >
+</li></ul></li><li class=" "><p>Override the <strong class=" ">OnInit()</strong> method in the extender class.<br></p>
+<ul class=" "><li class=" "><p>You can add any custom initialization code for the page or control, for example assign handler methods to events.</p>
+</li><li class=" "><p>When extending a control, you can access a strongly typed instance of the given control through the <strong class=" ">Control</strong> property of the extender class.</p>
+</li></ul></li><li class=" "><p>Add any other code required to implement your custom functionality (such as the handler methods assigned to events in the <i class=" ">OnInit</i> method).</p>
+</li><li class=" "><p>If you created the extender in <i class=" ">App_Code</i>, you need to add the <strong class=" ">RegisterCustomClass</strong> assembly attribute above the class declaration (and any namespace declarations). The attribute registers the class under a specific name.<br></p>
+</li><li class=" "><p>Save the file (build the solution if your project is a web application or if you use a separate project for the module code).<br></p>
+</li></ol><div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>Basic example</strong>    </div>
@@ -8783,9 +8746,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.UIControls;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: RegisterCustomClass(</code><code class="string">"CustomExtender"</code><code class="plain">, </code><code class="keyword">typeof</code><code class="plain">(CustomExtender))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CustomExtender : ControlExtender&lt;UniGrid&gt;</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit()</code></div>
@@ -8799,233 +8762,160 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h3 id="src-68882229_creatingextendersformoduleinterfacepages-assigningextenderstomodulepages" class="heading "><span>Assigning extenders to module pages</span></h3>
-<p   
->After you implement the extender class, you need to assign it to the UI element representing the related page in the module&#39;s interface:</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application and edit the related module.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">User interface</strong> tab.</p>
-</li><li class=" "><p   
->Use the tree to select the UI element representing the page that you wish to extend:</p>
-</li><li class=" "><p   
->Open the element&#39;s <strong class=" ">Properties</strong> tab:</p>
-</li><li class=" "><p   
->Find the appropriate <strong class=" ">Extender</strong> property (see <a   href="#src-68882229_creatingextendersformoduleinterfacepages-extendertypes">Extender types</a>).</p>
-</li><li class=" "><p   
->Select your extender class using the property:<br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Assembly name</strong><br/></p>
-<ul class=" "><li class=" "><p   
->Choose <i class=" "><strong class=" ">(custom classes)</strong></i> for extender classes created and registered in <i class=" ">App_Code</i>.</p>
-</li><li class=" "><p   
->If you added the extender to a separate module project, choose the matching assembly<i class=" ">.</i></p>
-</li></ul></li><li class=" "><p   
-><strong class=" ">Class</strong> - select the specific extender class (the value includes the class&#39;s namespace).</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
->The extender is now applied to the given user interface page and the system runs the extender&#39;s initialization code when the page is loaded.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882229/extender_element_example.png" 
-        alt="Example of an extender assigned to a UI element with the New / Edit object page template"        
-        width="500"         />
+<p>After you implement the extender class, you need to assign it to the UI element representing the related page in the module's interface:</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application and edit the related module.</p>
+</li><li class=" "><p>Select the <strong class=" ">User interface</strong> tab.</p>
+</li><li class=" "><p>Use the tree to select the UI element representing the page that you wish to extend:</p>
+</li><li class=" "><p>Open the element's <strong class=" ">Properties</strong> tab:</p>
+</li><li class=" "><p>Find the appropriate <strong class=" ">Extender</strong> property (see <a href="#src-68882229_creatingextendersformoduleinterfacepages-extendertypes">Extender types</a>).</p>
+</li><li class=" "><p>Select your extender class using the property:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Assembly name</strong><br></p>
+<ul class=" "><li class=" "><p>Choose <i class=" "><strong class=" ">(custom classes)</strong></i> for extender classes created and registered in <i class=" ">App_Code</i>.</p>
+</li><li class=" "><p>If you added the extender to a separate module project, choose the matching assembly<i class=" ">.</i></p>
+</li></ul></li><li class=" "><p><strong class=" ">Class</strong> - select the specific extender class (the value includes the class's namespace).</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>The extender is now applied to the given user interface page and the system runs the extender's initialization code when the page is loaded.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882229/extender_element_example.png" alt="Example of an extender assigned to a UI element with the New / Edit object page template" width="500">
 </p>
     <h3 id="src-68882229_creatingextendersformoduleinterfacepages-extendertypes" class="heading "><span>Extender types</span></h3>
-<p   
->The following table lists the default UI page templates that you can customize using extenders:</p>
-    <div  class="tablewrap">
+<p>The following table lists the default UI page templates that you can customize using extenders:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->UI page template</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>UI page template</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Primary control</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Primary control</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Extender property (Properties tab of UI elements)</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Extender property (Properties tab of UI elements)</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Object listing<br/>Listing with site selector</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Object listing<br>Listing with site selector</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->UniGrid</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>UniGrid</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Listing -&gt; Grid extender</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Listing -&gt; Grid extender</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Listing with general selector</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Listing with general selector</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->UniGrid<br/>UniSelector</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>UniGrid<br>UniSelector</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Listing -&gt; Grid extender<br/>Dialog settings -&gt; Selector extender</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Listing -&gt; Grid extender<br>Dialog settings -&gt; Selector extender</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->New / Edit object</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>New / Edit object</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->UIForm</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>UIForm</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Edit -&gt; Edit extender</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Edit -&gt; Edit extender</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Edit bindings</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Edit bindings</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->UniSelector</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>UniSelector</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Binding -&gt; Edit extender</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Binding -&gt; Edit extender</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Vertical tabs<br/>(and other tab templates)</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Vertical tabs<br>(and other tab templates)</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->UITabs</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>UITabs</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Tabs -&gt; Tab extender</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Tabs -&gt; Tab extender</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Custom control</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Custom control</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Any base class of the selected user control</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Any base class of the selected user control</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Control settings -&gt; Control extender</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Control settings -&gt; Control extender</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
->Control extenders must inherit from the <strong class=" ">ControlExtender&lt;TControl&gt;</strong> class, where <i class=" ">TControl</i> is a control used on the given UI template. To assign a control extender, edit the module on the <strong class=" ">User interface</strong> tab, select the given UI element and use the appropriate extender property on the <strong class=" ">Properties</strong> tab.</p>
-<div  class="box-general box-info">
+<p>Control extenders must inherit from the <strong class=" ">ControlExtender&lt;TControl&gt;</strong> class, where <i class=" ">TControl</i> is a control used on the given UI template. To assign a control extender, edit the module on the <strong class=" ">User interface</strong> tab, select the given UI element and use the appropriate extender property on the <strong class=" ">Properties</strong> tab.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: The extender control type does not necessarily need to match the primary control related to the property through which the extender is assigned. If the type does not match, the extender automatically searches the underlying control hierarchy for the first control of the matching type. For example, you can create a <i class=" ">UIForm</i> extender for a different type of control without knowing how deep in the control hierarchy the form is located.</p>
+            <p><strong class=" ">Note</strong>: The extender control type does not necessarily need to match the primary control related to the property through which the extender is assigned. If the type does not match, the extender automatically searches the underlying control hierarchy for the first control of the matching type. For example, you can create a <i class=" ">UIForm</i> extender for a different type of control without knowing how deep in the control hierarchy the form is located.</p>
      
     </div>
 </div>
-<p   
->If you are developing an extender for the page itself (not a specific control), the extender must inherit from <strong class=" ">PageExtender&lt;CMSPage&gt;</strong>. To assign a page extender, edit the module on the <strong class=" ">User interface</strong> tab, select a UI element and use the <strong class=" ">Code behind -&gt; Extender</strong> property on the <strong class=" ">Properties</strong> tab. You can assign page extenders to UI elements with any type of page template.</p>
+<p>If you are developing an extender for the page itself (not a specific control), the extender must inherit from <strong class=" ">PageExtender&lt;CMSPage&gt;</strong>. To assign a page extender, edit the module on the <strong class=" ">User interface</strong> tab, select a UI element and use the <strong class=" ">Code behind -&gt; Extender</strong> property on the <strong class=" ">Properties</strong> tab. You can assign page extenders to UI elements with any type of page template.</p>
     <h3 id="src-68882229_safe-id-q3jlyxrpbmdlehrlbmrlcnnmb3jtb2r1bgvpbnrlcmzhy2vwywdlcy1fegftcgxlluv4dgvuzgluz2ftb2r1bgunc2xpc3rpbmdwywdl" class="heading "><span>Example - Extending a module's listing page</span></h3>
-<p   
->The following example demonstrates how to create an extender that adds the following features to the listing page of the sample <i class=" ">Company overview</i> module:</p>
-<ul class=" "><li class=" "><p   
->A header action button that allows users to send email to all listed offices</p>
-</li><li class=" "><p   
->List actions for sending email to specific offices</p>
-</li><li class=" "><p   
->An indicator that shows which offices are currently open, based on the time zone of each office&#39;s location</p>
-</li></ul><div  class="box-general box-note">
+<p>The following example demonstrates how to create an extender that adds the following features to the listing page of the sample <i class=" ">Company overview</i> module:</p>
+<ul class=" "><li class=" "><p>A header action button that allows users to send email to all listed offices</p>
+</li><li class=" "><p>List actions for sending email to specific offices</p>
+</li><li class=" "><p>An indicator that shows which offices are currently open, based on the time zone of each office's location</p>
+</li></ul><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
->To follow the example, you first need to create the <strong class=" ">Company overview</strong> custom module according to the instructions in <a   href="creating-custom-modules">Creating custom modules</a>.</p>
+            <p>To follow the example, you first need to create the <strong class=" ">Company overview</strong> custom module according to the instructions in <a href="creating-custom-modules">Creating custom modules</a>.</p>
      
     </div>
 </div>
     <h4 id="src-68882229_creatingextendersformoduleinterfacepages-addingclassfields" class="heading "><span>Adding class fields</span></h4>
-<p   
->Before you can create the extender, you need to expand the <i class=" ">Office</i> class used within the <i class=" ">Company overview</i> module to include fields for storing an email address and a reference to a time zone.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Modules</strong> application and edit the <strong class=" ">Company overview</strong> module.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">Classes</strong> tab and edit the <strong class=" ">Office</strong> class.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Fields</strong> tab and create a <strong class=" ">New field</strong>:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field type</strong>: Standard field</p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: OfficeEmail</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Text</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Office email address</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Email</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Create another <strong class=" ">New field</strong>:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field type</strong>: Standard field</p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: OfficeTimeZoneID</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Integer number</p>
-</li><li class=" "><p   
-><strong class=" ">Reference to</strong>: Time zone</p>
-</li><li class=" "><p   
-><strong class=" ">Reference type</strong>: Not required</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Office time zone</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Time zone selector (select via the <i class=" ">(more items...)</i> option)</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li><li class=" "><p   
->Switch to the <strong class=" ">Code</strong> tab of the class editing interface.</p>
-</li><li class=" "><p   
->Click <strong class=" ">Save code</strong>.</p>
-</li></ol><p   
->The <i class=" ">Office</i> class now contains the <i class=" ">OfficeEmail</i> and <i class=" ">OfficeTimeZoneID</i> fields, which allow users to set an email address and select a time zone when editing offices. By saving the new code of the class, you also updated the <i class=" ">OfficeInfo</i> API class in the web project (allows the system to handle the new fields).</p>
-<p   
-><strong class=" ">Note</strong>: On web application installations, you need to manually build the solution in Visual Studio to process the changes in the code.</p>
+<p>Before you can create the extender, you need to expand the <i class=" ">Office</i> class used within the <i class=" ">Company overview</i> module to include fields for storing an email address and a reference to a time zone.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Modules</strong> application and edit the <strong class=" ">Company overview</strong> module.</p>
+</li><li class=" "><p>Select the <strong class=" ">Classes</strong> tab and edit the <strong class=" ">Office</strong> class.</p>
+</li><li class=" "><p>Open the <strong class=" ">Fields</strong> tab and create a <strong class=" ">New field</strong>:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field type</strong>: Standard field</p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: OfficeEmail</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Office email address</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Email</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Create another <strong class=" ">New field</strong>:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field type</strong>: Standard field</p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: OfficeTimeZoneID</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Integer number</p>
+</li><li class=" "><p><strong class=" ">Reference to</strong>: Time zone</p>
+</li><li class=" "><p><strong class=" ">Reference type</strong>: Not required</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Office time zone</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Time zone selector (select via the <i class=" ">(more items...)</i> option)</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Code</strong> tab of the class editing interface.</p>
+</li><li class=" "><p>Click <strong class=" ">Save code</strong>.</p>
+</li></ol><p>The <i class=" ">Office</i> class now contains the <i class=" ">OfficeEmail</i> and <i class=" ">OfficeTimeZoneID</i> fields, which allow users to set an email address and select a time zone when editing offices. By saving the new code of the class, you also updated the <i class=" ">OfficeInfo</i> API class in the web project (allows the system to handle the new fields).</p>
+<p><strong class=" ">Note</strong>: On web application installations, you need to manually build the solution in Visual Studio to process the changes in the code.</p>
     <h4 id="src-68882229_creatingextendersformoduleinterfacepages-updatingthelistinggriddefinition" class="heading "><span>Updating the listing grid definition</span></h4>
-<p   
->Because the example extends the listing page of the <i class=" ">Company overview</i> module, you need to update the grid definition that specifies the page&#39;s content.</p>
-<p   
->By default, the grid definition used by the listing page of the Company overview module is stored in the <i class=" "><strong class=" ">~/App_Data/CMSModules/CompanyOverview/UI/Grids/CompanyOverview_Office/default.xml</strong></i> file. Edit the grid definition and change it to the following XML code:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>Because the example extends the listing page of the <i class=" ">Company overview</i> module, you need to update the grid definition that specifies the page's content.</p>
+<p>By default, the grid definition used by the listing page of the Company overview module is stored in the <i class=" "><strong class=" ">~/App_Data/CMSModules/CompanyOverview/UI/Grids/CompanyOverview_Office/default.xml</strong></i> file. Edit the grid definition and change it to the following XML code:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9066,24 +8956,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->The updated grid definition contains:</p>
-<ul class=" "><li class=" "><p   
->A new <i class=" "><strong class=" ">email</strong></i> action, which will be handled by the extender.</p>
-</li><li class=" "><p   
->A column with the <strong class=" ">OfficeTimeZoneID</strong> field as its source. The extender will handle the <i class=" "><strong class=" ">officehours</strong></i> source name and provide the output of the column.</p>
-</li><li class=" "><p   
->A column displaying the <strong class=" ">OfficeEmail</strong> value.</p>
-</li></ul><p   
->See also: <a   href="reference---unigrid-definition">Reference - UniGrid definition</a></p>
+<p>The updated grid definition contains:</p>
+<ul class=" "><li class=" "><p>A new <i class=" "><strong class=" ">email</strong></i> action, which will be handled by the extender.</p>
+</li><li class=" "><p>A column with the <strong class=" ">OfficeTimeZoneID</strong> field as its source. The extender will handle the <i class=" "><strong class=" ">officehours</strong></i> source name and provide the output of the column.</p>
+</li><li class=" "><p>A column displaying the <strong class=" ">OfficeEmail</strong> value.</p>
+</li></ul><p>See also: <a href="reference---unigrid-definition">Reference - UniGrid definition</a></p>
     <h4 id="src-68882229_creatingextendersformoduleinterfacepages-creatingtheextenderclass" class="heading "><span>Creating the extender class</span></h4>
-<ol class=" "><li class=" "><p   
->Open your project in Visual Studio.</p>
-</li><li class=" "><p   
->Create a new class named <strong class=" "><i class=" ">OfficeListExtender.cs</i></strong> in the module&#39;s code folder (by default <i class=" ">~/App_Code/CMSModules/CompanyOverview</i>).</p>
-</li><li class=" "><p   
->Add the following <i class=" ">using</i> statements to the start of the code:</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>Open your project in Visual Studio.</p>
+</li><li class=" "><p>Create a new class named <strong class=" "><i class=" ">OfficeListExtender.cs</i></strong> in the module's code folder (by default <i class=" ">~/App_Code/CMSModules/CompanyOverview</i>).</p>
+</li><li class=" "><p>Add the following <i class=" ">using</i> statements to the start of the code:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9104,7 +8986,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Linq;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> System.Web.UI.WebControls;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Base.Web.UI;</code></div>
@@ -9116,9 +8998,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Use the following code for the class:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Use the following code for the class:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9137,7 +9018,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">[assembly: RegisterCustomClass(</code><code class="string">"OfficeListExtender"</code><code class="plain">, </code><code class="keyword">typeof</code><code class="plain">(OfficeListExtender))]</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> OfficeListExtender : ControlExtender&lt;UniGrid&gt;</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -9147,16 +9028,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">	{</code></div>
 <div class="line"><code class="plain">		</code><code class="comments">// Calls a method that adds a custom header action button</code></div>
 <div class="line"><code class="plain">		InitHeaderActions();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Registers a method that handles the functionality of header actions</code></div>
 <div class="line"><code class="plain">		Control.HeaderActions.ActionPerformed += HeaderActions_ActionPerformed;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Assigns handlers to the UniGrid control's OnAction and OnExternalDatabound events</code></div>
 <div class="line"><code class="plain">		Control.OnAction += Control_OnAction;        </code></div>
 <div class="line"><code class="plain">		Control.OnExternalDataBound += Control_OnExternalDatabound;        </code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// Initializes header actions.</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9167,14 +9048,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			ButtonStyle = ButtonStyle.Default,</code></div>
 <div class="line"><code class="plain">			Text = ResHelper.GetString(</code><code class="string">"Email all"</code><code class="plain">),</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Sets a name that identifies the action when handling the 'ActionPerformed' event</code></div>
 <div class="line"><code class="plain">			CommandName = </code><code class="string">"emailall"</code><code class="plain">,                       </code></div>
 <div class="line"><code class="plain">		};</code></div>
 <div class="line"><code class="plain">		Control.HeaderActions.AddAction(mailAllButton);</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// Performs header actions.</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9186,10 +9067,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">			</code><code class="keyword">case</code><code class="plain"> </code><code class="string">"emailall"</code><code class="plain">:</code></div>
 <div class="line"><code class="plain">				</code><code class="comments">// Gets a string containing all office emails separated by commas</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">string</code><code class="plain"> officeEmails = String.Join(</code><code class="string">","</code><code class="plain">, CompanyOverview.OfficeInfoProvider.GetOffices().Select(o =&gt; o.OfficeEmail));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">				</code><code class="comments">// Prepares a mailto link for all office emails</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">string</code><code class="plain"> officesMailtoLink = HTMLHelper.HTMLEncode(String.Format(</code><code class="string">"mailto:"</code><code class="plain"> + officeEmails));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">				</code><code class="comments">// Opens the mailto link when the header action button is clicked</code></div>
 <div class="line"><code class="plain">				</code><code class="keyword">string</code><code class="plain"> scriptText = </code><code class="string">"win = window.open('"</code><code class="plain"> + officesMailtoLink + </code><code class="string">"', 'emailWindow');"</code><code class="plain"> +</code></div>
 <div class="line"><code class="plain">									</code><code class="string">"if (win &amp;&amp; win.open &amp;&amp; !win.closed) win.close();"</code><code class="plain">;</code></div>
@@ -9197,8 +9078,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">				</code><code class="keyword">break</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// Handles the UniGrid control's OnAction event.</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9210,15 +9091,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// Gets the email of the office for which the "Send email" action was used</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">string</code><code class="plain"> officeEmail = HTMLHelper.HTMLEncode(ValidationHelper.GetString(actionArgument, </code><code class="string">""</code><code class="plain">));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Opens a mailto link</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">string</code><code class="plain"> scriptText = </code><code class="string">"win = window.open('mailto:"</code><code class="plain"> + officeEmail + </code><code class="string">"', 'emailWindow');"</code><code class="plain"> + </code></div>
 <div class="line"><code class="plain">								</code><code class="string">"if (win &amp;&amp; win.open &amp;&amp; !win.closed) win.close();"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">			ScriptHelper.RegisterStartupScript(Control.Page, </code><code class="keyword">typeof</code><code class="plain">(</code><code class="keyword">string</code><code class="plain">), </code><code class="string">"OpenMailToLink"</code><code class="plain">, ScriptHelper.GetScript(scriptText));</code></div>
 <div class="line"><code class="plain">		}</code></div>
 <div class="line"><code class="plain">	}</code></div>
-<div class="line"> </div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// Handles the Unigrid control's OnExternalDataBound event.</code></div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9228,17 +9109,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">		{</code></div>
 <div class="line"><code class="plain">			</code><code class="comments">// Gets the ID of the time zone assigned to the office</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">int</code><code class="plain"> timeZoneId = ValidationHelper.GetInteger(parameter, 0);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Loads a TimeZoneInfo object representing the office's time zone</code></div>
 <div class="line"><code class="plain">			CMS.Globalization.TimeZoneInfo timeZone = TimeZoneInfoProvider.GetTimeZoneInfo(timeZoneId);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Gets the current time, converted to the office's time zone</code></div>
 <div class="line"><code class="plain">			DateTime currentDateTime = </code></div>
 <div class="line"><code class="plain">				TimeZoneHelper.ConvertTimeZoneDateTime(DateTime.UtcNow, TimeZoneInfoProvider.GetTimeZoneInfo(</code><code class="string">"GMT_UTC"</code><code class="plain">), timeZone, </code><code class="keyword">false</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Formats the office's local time into a string</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">string</code><code class="plain"> officeLocalTime = </code><code class="string">"(Local time: "</code><code class="plain"> + currentDateTime.ToString(</code><code class="string">"h:mm tt"</code><code class="plain">) + </code><code class="string">")"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Checks whether the office's local time is within office hours and displays the result in the column</code></div>
 <div class="line"><code class="plain">			</code><code class="keyword">if</code><code class="plain"> (currentDateTime.TimeOfDay &lt; </code><code class="keyword">new</code><code class="plain"> TimeSpan(9, 0, 0) || currentDateTime.TimeOfDay &gt; </code><code class="keyword">new</code><code class="plain"> TimeSpan(17, 0, 0))</code></div>
 <div class="line"><code class="plain">			{</code></div>
@@ -9249,7 +9130,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">				</code><code class="keyword">return</code><code class="plain"> </code><code class="string">"&lt;span class=\"StatusEnabled\"&gt;"</code><code class="plain"> + ResHelper.GetString(</code><code class="string">"general.yes"</code><code class="plain">) + </code><code class="string">"&lt;/span&gt; "</code><code class="plain"> + officeLocalTime;</code></div>
 <div class="line"><code class="plain">			}</code></div>
 <div class="line"><code class="plain">		}</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="keyword">return</code><code class="plain"> parameter;        </code></div>
 <div class="line"><code class="plain">    }	</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -9257,53 +9138,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Save the class (build the solution on web application installations).</p>
-</li></ol><p   
->The code provides the functionality of the listing page customizations and registers the extender under the name <i class=" "><strong class=" ">OfficeListExtender</strong></i>.</p>
-<div  class="box-general box-info">
+</li><li class=" "><p>Save the class (build the solution on web application installations).</p>
+</li></ol><p>The code provides the functionality of the listing page customizations and registers the extender under the name <i class=" "><strong class=" ">OfficeListExtender</strong></i>.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->For more information about the UniGrid <i class=" ">OnAction</i> and <i class=" ">OnExternalDatabout</i> events, see: <a   href="unigrid">UniGrid</a></p>
+            <p>For more information about the UniGrid <i class=" ">OnAction</i> and <i class=" ">OnExternalDatabout</i> events, see: <a href="unigrid">UniGrid</a></p>
      
     </div>
 </div>
     <h4 id="src-68882229_creatingextendersformoduleinterfacepages-assigningtheextendertoauielement" class="heading "><span>Assigning the extender to a UI element</span></h4>
-<p   
->To apply the extender to the listing page of the <i class=" ">Company overview</i> module:</p>
-<ol class=" "><li class=" "><p   
->In the <strong class=" ">Modules</strong> application, edit the <strong class=" ">Company overview</strong> module.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">User interface</strong> tab.</p>
-</li><li class=" "><p   
->Select the <strong class=" ">CMS -&gt; Administration -&gt; Custom -&gt; Company overview</strong> element in the UI element tree.</p>
-</li><li class=" "><p   
->Open the <strong class=" ">Properties</strong> tab of the element.</p>
-</li><li class=" "><p   
->Scroll down to the <strong class=" ">Listing</strong> category and set the <strong class=" ">Grid extender</strong> property:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Assembly name</strong>: (custom classes)</p>
-</li><li class=" "><p   
-><strong class=" ">Class</strong>: OfficeListExtender</p>
-</li></ul></li><li class=" "><p   
->Click <strong class=" ">Save</strong>.</p>
-</li></ol><p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882229/module_extender_assigning.png" 
-        alt="Assigning a Grid extender to a UI element that uses the Object listing page template"        
-        width="500"         />
+<p>To apply the extender to the listing page of the <i class=" ">Company overview</i> module:</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Modules</strong> application, edit the <strong class=" ">Company overview</strong> module.</p>
+</li><li class=" "><p>Select the <strong class=" ">User interface</strong> tab.</p>
+</li><li class=" "><p>Select the <strong class=" ">CMS -&gt; Administration -&gt; Custom -&gt; Company overview</strong> element in the UI element tree.</p>
+</li><li class=" "><p>Open the <strong class=" ">Properties</strong> tab of the element.</p>
+</li><li class=" "><p>Scroll down to the <strong class=" ">Listing</strong> category and set the <strong class=" ">Grid extender</strong> property:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Assembly name</strong>: (custom classes)</p>
+</li><li class=" "><p><strong class=" ">Class</strong>: OfficeListExtender</p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882229/module_extender_assigning.png" alt="Assigning a Grid extender to a UI element that uses the Object listing page template" width="500">
 </p>
-<p   
->The extender is now applied to the listing page of the <i class=" ">Company overview</i> module. To view the results, open the <strong class=" ">Company overview</strong> application (under the <strong class=" ">Custom</strong> category). The <strong class=" ">Email all</strong> header action button and the <strong class=" ">Send email</strong> actions of individual offices open <i class=" ">mailto</i> links, and the <strong class=" ">Is Open</strong> column shows which offices currently have office hours. You need to create offices with email address values and an assigned time zone to fully try out the customizations.</p>
-<p   
-><img  class="confluence-embedded-image confluence-content-image-border" 
-        
-        src="images/download/attachments/68882229/module_extended_listing.png" 
-        alt="The extended listing page of the Company overview module, with email actions and a custom formatted Is Open column"        
-        width="800"         />
+<p>The extender is now applied to the listing page of the <i class=" ">Company overview</i> module. To view the results, open the <strong class=" ">Company overview</strong> application (under the <strong class=" ">Custom</strong> category). The <strong class=" ">Email all</strong> header action button and the <strong class=" ">Send email</strong> actions of individual offices open <i class=" ">mailto</i> links, and the <strong class=" ">Is Open</strong> column shows which offices currently have office hours. You need to create offices with email address values and an assigned time zone to fully try out the customizations.</p>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/68882229/module_extended_listing.png" alt="The extended listing page of the Company overview module, with email actions and a custom formatted Is Open column" width="800">
 </p>
                     </div>
                 </div>
@@ -9315,8 +9173,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9328,10 +9186,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9350,9 +9208,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9363,7 +9218,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9374,5 +9229,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Defining image filters - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8637,7 +8634,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880834"> <span>Defining image filters</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8651,7 +8648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8662,31 +8659,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Filters describe image operations that can be applied on images saved as <a   href="page-attachments">page attachments</a>. These operations may include actions such as crop, resize, watermark, etc. The filters then serve as building blocks when <a   href="defining-image-variants">creating image variant definitions</a>.</p>
-<p   
->By default, no filters are included in the system. To add a new filter, you need to create a class in the Kentico project and implement the filter in code.</p>
+<p>Filters describe image operations that can be applied on images saved as <a href="page-attachments">page attachments</a>. These operations may include actions such as crop, resize, watermark, etc. The filters then serve as building blocks when <a href="defining-image-variants">creating image variant definitions</a>.</p>
+<p>By default, no filters are included in the system. To add a new filter, you need to create a class in the Kentico project and implement the filter in code.</p>
     <div class="section section-1" id="src-68880834_Definingimagefilters-Creatingacropfilter">
         <h1 class="heading "><span>Creating a crop filter</span></h1>
-<p   
->The following example describes how to create a basic crop image filter that crops images based on the provided width. The crop is applied on the center of the image. The example uses the built-in <i class=" ">ImageHelper</i> library to perform the image operation.</p>
-<ol class=" "><li class=" "><p   
->Open your project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
-</li><li class=" "><p   
->Create a new class in the <strong class=" ">App_Code</strong> folder (or <i class=" ">Old_App_Code</i> folder if the project is installed as a web application).<br/>You can name it, for example, <strong class=" ">CropImageFilter.cs</strong>.</p>
-<div  class="box-general box-info">
+<p>The following example describes how to create a basic crop image filter that crops images based on the provided width. The crop is applied on the center of the image. The example uses the built-in <i class=" ">ImageHelper</i> library to perform the image operation.</p>
+<ol class=" "><li class=" "><p>Open your project in Visual Studio (using the <strong class=" ">WebSite.sln</strong> or <strong class=" ">WebApp.sln</strong> file).</p>
+</li><li class=" "><p>Create a new class in the <strong class=" ">App_Code</strong> folder (or <i class=" ">Old_App_Code</i> folder if the project is installed as a web application).<br>You can name it, for example, <strong class=" ">CropImageFilter.cs</strong>.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Using the class in your own project<br/></strong></p>
-<p   
->If you want to use the code file in a separate library or external application, you need to allow the system to detect the class in a custom assembly. In your project, navigate to the<i class=" "> Properties/AssemblyInfo.cs</i> file and a    <span style="color: #000000;">
+            <p><strong class=" ">Using the class in your own project<br></strong></p>
+<p>If you want to use the code file in a separate library or external application, you need to allow the system to detect the class in a custom assembly. In your project, navigate to the<i class=" "> Properties/AssemblyInfo.cs</i> file and a    <span style="color: #000000;">
 dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
     <span style="color: #000000;">
     </span>
 </p>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8705,7 +8695,7 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using CMS;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">[assembly: AssemblyDiscoverable]</code></div>
 </div>
     </code></pre>
@@ -8714,9 +8704,8 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
      
     </div>
 </div>
-</li><li class=" "><p   
->Add <i class=" ">using</i> statements for the following namespaces:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Add <i class=" ">using</i> statements for the following namespaces:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8736,7 +8725,7 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using System;</code></div>
 <div class="line"><code class="plain">using System.IO;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">using CMS.Core;</code></div>
 <div class="line"><code class="plain">using CMS.Helpers;</code></div>
 <div class="line"><code class="plain">using CMS.ResponsiveImages;</code></div>
@@ -8744,11 +8733,9 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Set the class to implement the <strong class=" ">IImageFilter </strong>interface.</p>
-</li><li class=" "><p   
->Provide a property for setting the image width and use the property in the filter class constructor.</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Set the class to implement the <strong class=" ">IImageFilter </strong>interface.</p>
+</li><li class=" "><p>Provide a property for setting the image width and use the property in the filter class constructor.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8772,7 +8759,7 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CropImageFilter : IImageFilter</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">private</code><code class="plain"> </code><code class="keyword">int</code><code class="plain"> Width { get; set; }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> CropImageFilter(</code><code class="keyword">int</code><code class="plain"> width)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        Width = width;</code></div>
@@ -8784,26 +8771,20 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->In the class, implement the <strong class=" ">ApplyFilter </strong>method required by the interface. The <i class=" ">ApplyFilter</i> method defines the actions applied on the image data.</p>
-<div  class="box-general box-info">
+</li><li class=" "><p>In the class, implement the <strong class=" ">ApplyFilter </strong>method required by the interface. The <i class=" ">ApplyFilter</i> method defines the actions applied on the image data.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">ApplyFilter return values</strong></p>
-<p   
->Return values of the following types in the <i class=" ">ApplyFilter</i> method:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">ImageContainer</strong> &ndash; when the filter is applied successfully, return a new <i class=" ">ImageContainer</i> object.</p>
-</li><li class=" "><p   
-><strong class=" ">null</strong> &ndash; if the filter was not applied, return <i class=" ">null</i> to signify that the image data was not modified. Returning a <i class=" ">null</i> value means that the filter returns unmodified input image data.</p>
-</li><li class=" "><p   
-><strong class=" ">ImageFilterException</strong> &ndash; if the application of the filter fails or the filter cannot be applied, throw an <i class=" ">ImageFilterException</i> exception with an appropriate error message.</p>
+            <p><strong class=" ">ApplyFilter return values</strong></p>
+<p>Return values of the following types in the <i class=" ">ApplyFilter</i> method:</p>
+<ul class=" "><li class=" "><p><strong class=" ">ImageContainer</strong> – when the filter is applied successfully, return a new <i class=" ">ImageContainer</i> object.</p>
+</li><li class=" "><p><strong class=" ">null</strong> – if the filter was not applied, return <i class=" ">null</i> to signify that the image data was not modified. Returning a <i class=" ">null</i> value means that the filter returns unmodified input image data.</p>
+</li><li class=" "><p><strong class=" ">ImageFilterException</strong> – if the application of the filter fails or the filter cannot be applied, throw an <i class=" ">ImageFilterException</i> exception with an appropriate error message.</p>
 </li></ul>     
     </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8828,20 +8809,20 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
 <div class="line"><code class="plain">        using (Stream imageStream = container.OpenReadStream())</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            ImageHelper imageHelper = </code><code class="keyword">new</code><code class="plain"> ImageHelper(BinaryData.GetByteArrayFromStream(imageStream));</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Calculates correct image height to maintain aspect ratio</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">int</code><code class="plain">[] dimensions = imageHelper.EnsureImageDimensions(Width, </code><code class="value">0</code><code class="plain">, </code><code class="value">0</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">int</code><code class="plain"> croppedWidth = dimensions[</code><code class="value">0</code><code class="plain">];</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">int</code><code class="plain"> croppedHeight = dimensions[</code><code class="value">1</code><code class="plain">];</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">			</code><code class="comments">// Crops the center of image to the specified size</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">byte</code><code class="plain">[] trimmedImage = imageHelper.GetTrimmedImageData(croppedWidth, croppedHeight, ImageHelper.ImageTrimAreaEnum.MiddleCenter);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            using (MemoryStream croppedImageData = </code><code class="keyword">new</code><code class="plain"> MemoryStream(trimmedImage))</code></div>
 <div class="line"><code class="plain">            {</code></div>
 <div class="line"><code class="plain">                </code><code class="comments">// Updates image metadata to reflect new image size, maintains MIME type and extension</code></div>
 <div class="line"><code class="plain">				ImageMetadata croppedImageMetadata = </code><code class="keyword">new</code><code class="plain"> ImageMetadata(croppedWidth, croppedHeight, container.Metadata.MimeType, container.Metadata.Extension);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">                </code><code class="comments">// Returns the modified image data</code></div>
 <div class="line"><code class="plain">                </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> ImageContainer(croppedImageData , croppedImageMetadata);</code></div>
 <div class="line"><code class="plain">            }</code></div>
@@ -8856,10 +8837,8 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->On web application projects, build the solution.</p>
-</li></ol><p   
->With the crop filter prepared, you can now use it to <a   href="defining-image-variants">create an image variant definition</a>.</p>
+</li><li class=" "><p>On web application projects, build the solution.</p>
+</li></ol><p>With the crop filter prepared, you can now use it to <a href="defining-image-variants">create an image variant definition</a>.</p>
     </div>
                     </div>
                 </div>
@@ -8871,8 +8850,8 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8884,10 +8863,10 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8906,9 +8885,6 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8919,7 +8895,7 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8930,5 +8906,6 @@ dd the <i class=" ">AssemblyDiscoverable</i> assembly attribute:    </span>
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

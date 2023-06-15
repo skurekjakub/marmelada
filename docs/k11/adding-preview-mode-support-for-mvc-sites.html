@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Adding preview mode support for MVC sites - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68880526"> <span>Adding preview mode support for MVC sites</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,71 +8660,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Preview mode in Kentico provides a way to view the latest version of pages before they are published (for example when using <a   href="using-workflows">Workflow</a>). If you wish to use preview mode in an MVC application that handles the presentation of the website&#39;s pages, you need to implement the required functionality in the application&#39;s code.</p>
-<p   
->Before you can use preview URLs, you need to <a   href="specifying-the-url-pattern-for-content-only-pages">specify the URL pattern</a> (in Kentico administration) for your content only page types. The URL pattern is then used to create URLs to the Kentico content presented by an external application. Preview URL for pages are generated:</p>
-<ul class=" "><li class=" "><p   
->When using the main <strong class=" ">Preview</strong> mode in the <strong class=" ">Pages</strong> application.</p>
-</li><li class=" "><p   
->When generating preview links for pages in <strong class=" ">Pages -&gt; Properties -&gt; General -&gt; Preview URL</strong>. See: <a   href="sending-links-to-unpublished-pages">Sending links to unpublished pages</a></p>
-</li></ul><p   
->The preview URLs the system generates for content only pages consist of additional information, such as language version and a hash for validating the URL. The Kentico <a   href="installing-kentico-integration-packages">integration package</a> in your MVC application validates and processes the preview URL. The package then removes the additional information to leave only the original presentation URL based on the URL pattern. The original presentation URL then goes through the standard routing process.</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Preview mode in Kentico provides a way to view the latest version of pages before they are published (for example when using <a href="using-workflows">Workflow</a>). If you wish to use preview mode in an MVC application that handles the presentation of the website's pages, you need to implement the required functionality in the application's code.</p><p>Before you can use preview URLs, you need to <a href="specifying-the-url-pattern-for-content-only-pages">specify the URL pattern</a> (in Kentico administration) for your content only page types. The URL pattern is then used to create URLs to the Kentico content presented by an external application. Preview URL for pages are generated:</p><ul class=" "><li class=" "><p>When using the main <strong class=" ">Preview</strong> mode in the <strong class=" ">Pages</strong> application.</p>
+</li><li class=" "><p>When generating preview links for pages in <strong class=" ">Pages -&gt; Properties -&gt; General -&gt; Preview URL</strong>. See: <a href="sending-links-to-unpublished-pages">Sending links to unpublished pages</a></p>
+</li></ul><p>The preview URLs the system generates for content only pages consist of additional information, such as language version and a hash for validating the URL. The Kentico <a href="installing-kentico-integration-packages">integration package</a> in your MVC application validates and processes the preview URL. The package then removes the additional information to leave only the original presentation URL based on the URL pattern. The original presentation URL then goes through the standard routing process.</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong>: You need to manually ensure that your MVC application displays the <strong class=" ">latest versions of pages</strong> in preview mode. See <a   href="#src-68880526_addingpreviewmodesupportformvcsites-loadingthelatestversionsofpages">Loading the latest versions of pages</a> for details.</p>
+            <p><strong class=" ">Note</strong>: You need to manually ensure that your MVC application displays the <strong class=" ">latest versions of pages</strong> in preview mode. See <a href="#src-68880526_addingpreviewmodesupportformvcsites-loadingthelatestversionsofpages">Loading the latest versions of pages</a> for details.</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880526_addingpreviewmodesupportformvcsites-enablingpreviewmodeinmvcapplications">Enabling preview mode in MVC applications</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68880526_addingpreviewmodesupportformvcsites-excludingtrackingscriptsforpreviewmode">Excluding tracking scripts for preview mode</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880526_addingpreviewmodesupportformvcsites-checkingwhetherpreviewmodeisenabledforrequests">Checking whether preview mode is enabled for requests</a></p>
-</li><li class=" "><p   
-><a   href="#src-68880526_addingpreviewmodesupportformvcsites-loadingthelatestversionsofpages">Loading the latest versions of pages</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880526_addingpreviewmodesupportformvcsites-enablingpreviewmodeinmvcapplications">Enabling preview mode in MVC applications</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68880526_addingpreviewmodesupportformvcsites-excludingtrackingscriptsforpreviewmode">Excluding tracking scripts for preview mode</a></p>
+</li><li class=" "><p><a href="#src-68880526_addingpreviewmodesupportformvcsites-checkingwhetherpreviewmodeisenabledforrequests">Checking whether preview mode is enabled for requests</a></p>
+</li><li class=" "><p><a href="#src-68880526_addingpreviewmodesupportformvcsites-loadingthelatestversionsofpages">Loading the latest versions of pages</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="developing-sites-using-asp.net-mvc">Developing sites using ASP.NET MVC</a></p>
-</li><li class=" "><p   
-><a   href="installing-kentico-integration-packages">Installing Kentico integration packages</a></p>
-</li><li class=" "><p   
-><a   href="specifying-the-url-pattern-for-content-only-pages">Specifying the URL pattern for content only pages</a></p>
-</li><li class=" "><p   
-><a   href="sending-links-to-unpublished-pages">Sending links to unpublished pages</a></p>
-</li><li class=" "><p   
-><a   href="improving-performance-of-mvc-applications">Improving performance of MVC applications</a></p>
+<ul class=" "><li class=" "><p><a href="developing-sites-using-asp.net-mvc">Developing sites using ASP.NET MVC</a></p>
+</li><li class=" "><p><a href="installing-kentico-integration-packages">Installing Kentico integration packages</a></p>
+</li><li class=" "><p><a href="specifying-the-url-pattern-for-content-only-pages">Specifying the URL pattern for content only pages</a></p>
+</li><li class=" "><p><a href="sending-links-to-unpublished-pages">Sending links to unpublished pages</a></p>
+</li><li class=" "><p><a href="improving-performance-of-mvc-applications">Improving performance of MVC applications</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+    
+    
     <h3 id="src-68880526_addingpreviewmodesupportformvcsites-enablingpreviewmodeinmvcapplications" class="heading "><span>Enabling preview mode in MVC applications</span></h3>
-<p   
->    <span style="color: #000000;">
-Preview mode support is provided in the <a   href="installing-kentico-integration-packages">Kentico.Content.Web.Mvc integration package</a>. To enable preview support in your MVC application:    </span>
+<p>    <span style="color: #000000;">
+Preview mode support is provided in the <a href="installing-kentico-integration-packages">Kentico.Content.Web.Mvc integration package</a>. To enable preview support in your MVC application:    </span>
 </p>
-<ol class=" "><li class=" "><p   
->If necessary, set up your Kentico instance and MVC application (see <a   href="starting-with-mvc-development">Starting with MVC development</a>).</p>
-</li><li class=" "><p   
-><a   href="specifying-the-url-pattern-for-content-only-pages">Specify a URL pattern</a> for content only pages.</p>
-</li><li class=" "><p   
-><a   href="installing-kentico-integration-packages">Install</a> the <strong class=" ">Kentico.Content.Web.Mvc</strong> integration package in your MVC project.</p>
-</li><li class=" "><p   
->Enable the preview feature in the MVC application&#39;s <strong class=" ">ApplicationConfig.cs</strong> file:</p>
-<div  class="code panel pdl js-codePanel" >
+<ol class=" "><li class=" "><p>If necessary, set up your Kentico instance and MVC application (see <a href="starting-with-mvc-development">Starting with MVC development</a>).</p>
+</li><li class=" "><p><a href="specifying-the-url-pattern-for-content-only-pages">Specify a URL pattern</a> for content only pages.</p>
+</li><li class=" "><p><a href="installing-kentico-integration-packages">Install</a> the <strong class=" ">Kentico.Content.Web.Mvc</strong> integration package in your MVC project.</p>
+</li><li class=" "><p>Enable the preview feature in the MVC application's <strong class=" ">ApplicationConfig.cs</strong> file:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8746,9 +8721,9 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Content.Web.Mvc;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> RegisterFeatures(ApplicationBuilder builder)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">	...</code></div>
@@ -8759,26 +8734,21 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
     </code></pre>
   </div>
 </div>
-<div  class="box-general box-note">
+<div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Framing policy and preview mode</strong></p>
-<p   
->By default, the MVC application sends the <a  class="external-link" href="https://en.wikipedia.org/wiki/Clickjacking#X-Frame-Options">X-Frame-Options HTTP header</a> with the <i class=" ">SAMEORIGIN</i> framing policy. The <a   href="installing-kentico-integration-packages">Kentico integration package</a> disables the header for preview URLs. This allows users to preview content handled by the MVC application in the Kentico administration interface, even when running the administration on a different domain.</p>
+            <p><strong class=" ">Framing policy and preview mode</strong></p>
+<p>By default, the MVC application sends the <a class="external-link" href="https://en.wikipedia.org/wiki/Clickjacking#X-Frame-Options">X-Frame-Options HTTP header</a> with the <i class=" ">SAMEORIGIN</i> framing policy. The <a href="installing-kentico-integration-packages">Kentico integration package</a> disables the header for preview URLs. This allows users to preview content handled by the MVC application in the Kentico administration interface, even when running the administration on a different domain.</p>
      
     </div>
 </div>
 </li></ol>    <h4 id="src-68880526_addingpreviewmodesupportformvcsites-excludingtrackingscriptsforpreviewmode" class="heading "><span>Excluding tracking scripts for preview mode</span></h4>
-<p   
->If you use third-party analytics or tracking scripts on your website (for example Google Tag Manager scripts), we strongly recommend that you disable them for preview mode. The preview URLs are intended for internal use within the Kentico administration interface or for viewing unpublished pages. Exposing preview URLs to third parties and having them affect your website&#39;s analytics data is typically not desired.</p>
-<p   
->To exclude tracking scripts for preview mode, use conditions that <a   href="#src-68880526_addingpreviewmodesupportformvcsites-checkingwhetherpreviewmodeisenabledforrequests">evaluate whether preview mode is enabled for requests</a>. You can add the conditions directly around the script code within your site&#39;s views, or within related business code that you use to include the scripts.</p>
+<p>If you use third-party analytics or tracking scripts on your website (for example Google Tag Manager scripts), we strongly recommend that you disable them for preview mode. The preview URLs are intended for internal use within the Kentico administration interface or for viewing unpublished pages. Exposing preview URLs to third parties and having them affect your website's analytics data is typically not desired.</p>
+<p>To exclude tracking scripts for preview mode, use conditions that <a href="#src-68880526_addingpreviewmodesupportformvcsites-checkingwhetherpreviewmodeisenabledforrequests">evaluate whether preview mode is enabled for requests</a>. You can add the conditions directly around the script code within your site's views, or within related business code that you use to include the scripts.</p>
     <h4 id="src-68880526_addingpreviewmodesupportformvcsites-checkingwhetherpreviewmodeisenabledforrequests" class="heading "><span>Checking whether preview mode is enabled for requests</span></h4>
-<p   
->Use the following code to check whether preview mode is enabled for a request:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>Use the following code to check whether preview mode is enabled for a request:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8797,23 +8767,21 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Content.Web.Mvc;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">bool</code><code class="plain"> previewEnabled = System.Web.HttpContext.Current.Kentico().Preview().Enabled;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<p   
->The location where you need to check the request context for preview mode depends on the implementation of your MVC application. For example, directly in the code of your controllers or when registering repositories that make use of your <a   href="generating-classes-for-kentico-objects">generated providers.</a></p>
-<div  class="box-general box-tip">
+<p>The location where you need to check the request context for preview mode depends on the implementation of your MVC application. For example, directly in the code of your controllers or when registering repositories that make use of your <a href="generating-classes-for-kentico-objects">generated providers.</a></p>
+<div class="box-general box-tip">
   
                 <div class="box-icon icon-light-bulb"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Tip</strong>: If the <i class=" ">URL pattern</i> that you use for your content only pages does not include a variable for the page culture (for example if you use a different mechanism to pass the requested culture), you can get the culture from the context of the preview request:</p>
-<div  class="code panel pdl js-codePanel" >
+            <p><strong class=" ">Tip</strong>: If the <i class=" ">URL pattern</i> that you use for your content only pages does not include a variable for the page culture (for example if you use a different mechanism to pass the requested culture), you can get the culture from the context of the preview request:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8832,9 +8800,9 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Content.Web.Mvc;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">string</code><code class="plain"> cultureName = System.Web.HttpContext.Current.Kentico().Preview().CultureName;</code></div>
 </div>
     </code></pre>
@@ -8844,9 +8812,8 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
     </div>
 </div>
     <h4 id="src-68880526_addingpreviewmodesupportformvcsites-loadingthelatestversionsofpages" class="heading "><span>Loading the latest versions of pages</span></h4>
-<p   
->For requests that have preview mode enabled, you need to ensure that your code loads the <strong class=" ">latest</strong> versions of pages instead of the <i class=" ">published</i> versions. For more information about retrieving page data, see <a   href="generating-classes-for-kentico-objects">Generating classes for Kentico objects</a>. For example:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>For requests that have preview mode enabled, you need to ensure that your code loads the <strong class=" ">latest</strong> versions of pages instead of the <i class=" ">published</i> versions. For more information about retrieving page data, see <a href="generating-classes-for-kentico-objects">Generating classes for Kentico objects</a>. For example:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8875,27 +8842,22 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
     </code></pre>
   </div>
 </div>
-<p   
->If you use <a   href="improving-performance-of-mvc-applications">data caching</a> for your pages, you need to disable it for preview mode. This ensures that caching works correctly for standard requests, but is not used for the different content displayed in preview mode.</p>
-<div  class="box-general box-info">
+<p>If you use <a href="improving-performance-of-mvc-applications">data caching</a> for your pages, you need to disable it for preview mode. This ensures that caching works correctly for standard requests, but is not used for the different content displayed in preview mode.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Preview mode and controller output caching<br/></strong></p>
-<p   
->If you use caching of controller output in your MVC application (<a  class="external-link" href="https://msdn.microsoft.com/en-us/library/system.web.mvc.outputcacheattribute%28v=vs.100%29.aspx">OutputCache</a> attributes), the <a   href="developing-sites-using-asp.net-mvc#src-68880445_developingsitesusingasp.netmvc-integration_package">Kentico integration package</a> in your MVC application automatically ensures that the output cache is not used for page requests in preview mode.</p>
+            <p><strong class=" ">Preview mode and controller output caching<br></strong></p>
+<p>If you use caching of controller output in your MVC application (<a class="external-link" href="https://msdn.microsoft.com/en-us/library/system.web.mvc.outputcacheattribute%28v=vs.100%29.aspx">OutputCache</a> attributes), the <a href="developing-sites-using-asp.net-mvc#src-68880445_developingsitesusingasp.netmvc-integration_package">Kentico integration package</a> in your MVC application automatically ensures that the output cache is not used for page requests in preview mode.</p>
      
     </div>
 </div>
-<p   
->Preview mode should now work correctly for the Kentico application that you use to manage your website&#39;s content.</p>
-<div  class="box-general box-info">
+<p>Preview mode should now work correctly for the Kentico application that you use to manage your website's content.</p>
+<div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
->See our <a  class="external-link" href="https://github.com/Kentico/Mvc">MVC Demo site</a> for an advanced example of an MVC application that uses preview mode.</p>
+            <p>See our <a class="external-link" href="https://github.com/Kentico/Mvc">MVC Demo site</a> for an advanced example of an MVC application that uses preview mode.</p>
      
     </div>
 </div>
@@ -8909,8 +8871,8 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -8922,10 +8884,10 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -8944,9 +8906,6 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -8957,7 +8916,7 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -8968,5 +8927,6 @@ Preview mode support is provided in the <a   href="installing-kentico-integratio
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

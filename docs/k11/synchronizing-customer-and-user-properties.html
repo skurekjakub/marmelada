@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Synchronizing customer and user properties - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68881648"> <span>Synchronizing customer and user properties</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,163 +8660,123 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Customers (part of the <strong class=" ">CMS.Ecommerce</strong> namespace) and users (part of the <strong class=" ">CMS.Membership</strong> namespace) are different entities within Kentico. To avoid unnecessary configuration, the system contains mechanisms for synchronizing the properties of users and customers.</p>
-<p   
->The synchronization uses methods in the <strong class=" ">CustomerInfoProvider</strong> class in the <strong class=" ">CMS.Ecommerce</strong> namespace and runs in two ways:</p>
-<ul class=" "><li class=" "><p   
-><a   href="#src-68881648_synchronizingcustomeranduserproperties-fromcustomerpropertiestouserproperties">From customer properties to user properties</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881648_synchronizingcustomeranduserproperties-fromuserpropertiestocustomerproperties">From user properties to customer properties</a></p>
-</li></ul>    <h3 id="src-68881648_synchronizingcustomeranduserproperties-fromcustomerpropertiestouserproperties" class="heading "><span>From customer properties to user properties</span></h3>
-<p   
->If a customer&#39;s properties are changed, the <strong class=" ">CopyDataFromCustomerToUser</strong> method is triggered.</p>
-    <h4 id="src-68881648_synchronizingcustomeranduserproperties-propertiessynchronizedbydefault" class="heading "><span>Properties synchronized by default</span></h4>
-    <div  class="tablewrap">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Customers (part of the <strong class=" ">CMS.Ecommerce</strong> namespace) and users (part of the <strong class=" ">CMS.Membership</strong> namespace) are different entities within Kentico. To avoid unnecessary configuration, the system contains mechanisms for synchronizing the properties of users and customers.</p><p>The synchronization uses methods in the <strong class=" ">CustomerInfoProvider</strong> class in the <strong class=" ">CMS.Ecommerce</strong> namespace and runs in two ways:</p><ul class=" "><li class=" "><p><a href="#src-68881648_synchronizingcustomeranduserproperties-fromcustomerpropertiestouserproperties">From customer properties to user properties</a></p>
+</li><li class=" "><p><a href="#src-68881648_synchronizingcustomeranduserproperties-fromuserpropertiestocustomerproperties">From user properties to customer properties</a></p>
+</li></ul><h3 id="src-68881648_synchronizingcustomeranduserproperties-fromcustomerpropertiestouserproperties" class="heading "><span>From customer properties to user properties</span></h3><p>If a customer's properties are changed, the <strong class=" ">CopyDataFromCustomerToUser</strong> method is triggered.</p><h4 id="src-68881648_synchronizingcustomeranduserproperties-propertiessynchronizedbydefault" class="heading "><span>Properties synchronized by default</span></h4><div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col  width="88.0"/>
-                                    <col  width="657.0"/>
-                                    <col  width="213.0"/>
+                                    <col width="88.0">
+                                    <col width="657.0">
+                                    <col width="213.0">
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
-><br/></p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p><br></p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="2">
-    <p   
->Column name in the database</p>
+                <td class="confluenceTh" rowspan="1" colspan="2">
+    <p>Column name in the database</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td   rowspan="1" colspan="1">
+            <td rowspan="1" colspan="1">
                 </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->From</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>From</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->To</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>To</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->First name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>First name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerFirstName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerFirstName</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_User.FirstName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_User.FirstName</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Last name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Last name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerLastName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerLastName</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_User.LastName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_User.LastName</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Full name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Full name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerFirstName + CMS_User.MiddleName + COM_Customer.CustomerLastName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerFirstName + CMS_User.MiddleName + COM_Customer.CustomerLastName</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_User.FullName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_User.FullName</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Email</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Email</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerEmail</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerEmail</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_User.Email</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_User.Email</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Phone</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Phone</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerPhone</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerPhone</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_UserSettings.UserPhone</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_UserSettings.UserPhone</p>
             </td>
         </tr>
 </tbody>        </table>
-            </div>
-    <div  class="confbox panel">
+            </div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881648_synchronizingcustomeranduserproperties-fromcustomerpropertiestouserproperties">From customer properties to user properties</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881648_synchronizingcustomeranduserproperties-propertiessynchronizedbydefault">Properties synchronized by default</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881648_synchronizingcustomeranduserproperties-overridingthedefaultsynchronization">Overriding the default synchronization</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68881648_synchronizingcustomeranduserproperties-fromuserpropertiestocustomerproperties">From user properties to customer properties</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68881648_synchronizingcustomeranduserproperties-propertiessynchronizedbydefault.1">Properties synchronized by default</a></p>
-</li><li class=" "><p   
-><a   href="#src-68881648_synchronizingcustomeranduserproperties-overridingthedefaultsynchronization.1">Overriding the default synchronization</a></p>
-</li></ul></li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881648_synchronizingcustomeranduserproperties-fromcustomerpropertiestouserproperties">From customer properties to user properties</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881648_synchronizingcustomeranduserproperties-propertiessynchronizedbydefault">Properties synchronized by default</a></p>
+</li><li class=" "><p><a href="#src-68881648_synchronizingcustomeranduserproperties-overridingthedefaultsynchronization">Overriding the default synchronization</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68881648_synchronizingcustomeranduserproperties-fromuserpropertiestocustomerproperties">From user properties to customer properties</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68881648_synchronizingcustomeranduserproperties-propertiessynchronizedbydefault.1">Properties synchronized by default</a></p>
+</li><li class=" "><p><a href="#src-68881648_synchronizingcustomeranduserproperties-overridingthedefaultsynchronization.1">Overriding the default synchronization</a></p>
+</li></ul></li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="customers">Customers</a></p>
-</li><li class=" "><p   
-><a   href="user-management">User management</a></p>
-</li><li class=" "><p   
-><a   href="customizing-providers">Customizing providers</a></p>
-</li><li class=" "><p   
-><a   href="e-commerce-customization-model">E-commerce customization model</a></p>
-</li><li class=" "><p   
-><a   href="custom-development">Custom development</a></p>
-</li><li class=" "><p   
-><a   href="customizing-creation-of-new-customers">Customizing creation of new customers</a></p>
-</li><li class=" "><p   
-><a   href="customizing-customers%27-preferred-currency%2c-payment-method-and-shipping-option">Customizing customers&#39; preferred currency, payment method and shipping option</a></p>
+<ul class=" "><li class=" "><p><a href="customers">Customers</a></p>
+</li><li class=" "><p><a href="user-management">User management</a></p>
+</li><li class=" "><p><a href="customizing-providers">Customizing providers</a></p>
+</li><li class=" "><p><a href="e-commerce-customization-model">E-commerce customization model</a></p>
+</li><li class=" "><p><a href="custom-development">Custom development</a></p>
+</li><li class=" "><p><a href="customizing-creation-of-new-customers">Customizing creation of new customers</a></p>
+</li><li class=" "><p><a href="customizing-customers%27-preferred-currency%2c-payment-method-and-shipping-option">Customizing customers' preferred currency, payment method and shipping option</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+    
+
+    
+    
+    
+    
     <h4 id="src-68881648_synchronizingcustomeranduserproperties-overridingthedefaultsynchronization" class="heading "><span>Overriding the default synchronization</span></h4>
-<p   
->To change the default synchronization, override the <strong class=" ">CopyDataFromCustomerToUserInternal(CustomerInfo customer, UserInfo user)</strong> method.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>To change the default synchronization, override the <strong class=" ">CopyDataFromCustomerToUserInternal(CustomerInfo customer, UserInfo user)</strong> method.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8840,44 +8797,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">virtual</code><code class="plain"> </code><code class="keyword">bool</code><code class="plain"> CopyDataFromCustomerToUserInternal(CustomerInfo customer, UserInfo user)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">bool</code><code class="plain"> updated = </code><code class="keyword">false</code><code class="plain">;</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks that both customer and user are not null</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> ((customer == </code><code class="keyword">null</code><code class="plain">) || (user == </code><code class="keyword">null</code><code class="plain">))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">false</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks whether the customer's first name was updated</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.Equals(customer.CustomerFirstName, user.FirstName))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            user.FirstName = customer.CustomerFirstName;</code></div>
 <div class="line"><code class="plain">            updated = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks whether the customer's email was updated</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.Equals(customer.CustomerEmail, user.Email))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            user.Email = customer.CustomerEmail;</code></div>
 <div class="line"><code class="plain">            updated = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks whether the customer's last name was updated</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.Equals(customer.CustomerLastName, user.LastName))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            user.LastName = customer.CustomerLastName;</code></div>
 <div class="line"><code class="plain">            updated = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks whether the customer's phone number was updated</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.Equals(customer.CustomerPhone, ValidationHelper.GetString(user.UserSettings.GetValue(</code><code class="string">"UserPhone"</code><code class="plain">), </code><code class="string">""</code><code class="plain">)))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            user.UserSettings.SetValue(</code><code class="string">"UserPhone"</code><code class="plain">, customer.CustomerPhone);</code></div>
 <div class="line"><code class="plain">            updated = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Sets the full name from the first, middle and last names</code></div>
 <div class="line"><code class="plain">      user.FullName = UserInfoProvider.GetFullName(customer.CustomerFirstName, user.MiddleName, customer.CustomerLastName);</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Returns a bool value that indicates whether any of the customer's synchronized properties were changed</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">return</code><code class="plain"> updated;</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -8886,100 +8843,82 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
     <h3 id="src-68881648_synchronizingcustomeranduserproperties-fromuserpropertiestocustomerproperties" class="heading "><span>From user properties to customer properties</span></h3>
-<p   
->If a user&#39;s properties are changed, the <strong class=" ">CopyDataFromUserToCustomer</strong> method is triggered.</p>
+<p>If a user's properties are changed, the <strong class=" ">CopyDataFromUserToCustomer</strong> method is triggered.</p>
     <h4 id="src-68881648_synchronizingcustomeranduserproperties-propertiessynchronizedbydefault.1" class="heading "><span>Properties synchronized by default</span></h4>
-    <div  class="tablewrap">
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
-><br/></p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p><br></p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="2">
-    <p   
->Column name in the database</p>
+                <td class="confluenceTh" rowspan="1" colspan="2">
+    <p>Column name in the database</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td   rowspan="1" colspan="1">
+            <td rowspan="1" colspan="1">
                 </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->From</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>From</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->To</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>To</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->First name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>First name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_User.FirstName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_User.FirstName</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerFirstName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerFirstName</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Last name</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Last name</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_User.LastName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_User.LastName</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerLastName</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerLastName</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Email</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Email</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_User.Email</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_User.Email</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerEmail</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerEmail</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Phone</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Phone</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->CMS_UserSettings.UserPhone</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>CMS_UserSettings.UserPhone</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->COM_Customer.CustomerPhone</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>COM_Customer.CustomerPhone</p>
             </td>
         </tr>
 </tbody>        </table>
             </div>
     <h4 id="src-68881648_synchronizingcustomeranduserproperties-overridingthedefaultsynchronization.1" class="heading "><span>Overriding the default synchronization</span></h4>
-<p   
->To change the default synchronization, override the <strong class=" ">CopyDataFromUserToCustomerInternal(CustomerInfo customer, UserInfo user)</strong> method.</p>
-<div  class="code panel pdl js-codePanel" >
+<p>To change the default synchronization, override the <strong class=" ">CopyDataFromUserToCustomerInternal(CustomerInfo customer, UserInfo user)</strong> method.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9000,41 +8939,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">virtual</code><code class="plain"> </code><code class="keyword">bool</code><code class="plain"> CopyDataFromUserToCustomerInternal(CustomerInfo customer, UserInfo user)</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">bool</code><code class="plain"> updated = </code><code class="keyword">false</code><code class="plain">;</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks that both customer and user are not null</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> ((customer == </code><code class="keyword">null</code><code class="plain">) || (user == </code><code class="keyword">null</code><code class="plain">))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">false</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks whether the user's first name was updated</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.Equals(customer.CustomerFirstName, user.FirstName))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            customer.CustomerFirstName = user.FirstName;</code></div>
 <div class="line"><code class="plain">            updated = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks whether the user's email was updated</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.Equals(customer.CustomerEmail, user.Email))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            customer.CustomerEmail = user.Email;</code></div>
 <div class="line"><code class="plain">            updated = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks whether the user's last name was updated</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.Equals(customer.CustomerLastName, user.LastName))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            customer.CustomerLastName = user.LastName;</code></div>
 <div class="line"><code class="plain">            updated = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">      </code><code class="comments">// Checks whether the user's phone was updated</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">if</code><code class="plain"> (!</code><code class="keyword">string</code><code class="plain">.Equals(customer.CustomerPhone, ValidationHelper.GetString(user.UserSettings.GetValue(</code><code class="string">"UserPhone"</code><code class="plain">), </code><code class="string">""</code><code class="plain">)))</code></div>
 <div class="line"><code class="plain">      {</code></div>
 <div class="line"><code class="plain">            customer.CustomerPhone = ValidationHelper.GetString(user.UserSettings[</code><code class="string">"UserPhone"</code><code class="plain">],</code><code class="string">""</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">            updated = </code><code class="keyword">true</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">      }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">      </code><code class="comments">// Returns a bool value that indicates whether any of the user's synchronized properties were changed</code></div>
 <div class="line"><code class="plain">      </code><code class="keyword">return</code><code class="plain"> updated;</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -9052,8 +8991,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9065,10 +9004,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9087,9 +9026,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9100,7 +9036,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9111,5 +9047,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

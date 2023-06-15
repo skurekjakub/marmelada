@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Managing objects using REST - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882821"> <span>Managing objects using REST</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,107 +8660,77 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->To manage objects in Kentico using the REST service, send requests using the POST, PUT or DELETE <a  class="external-link" href="http://en.wikipedia.org/wiki/HTTP#Request_methods">HTTP method</a> to the appropriate URL &mdash; append the <i class=" "><strong class=" ">resource paths</strong> </i>described below to the <i class=" "><strong class=" ">base URL</strong></i> of your REST service.</p>
-<p   
->The base URL of the REST service is<strong class=" "> &lt;site domain name&gt;/rest</strong>. For example, if your site is running at <i class=" ">http://localhost/Kentico</i>, use <i class=" ">http://localhost/Kentico/rest </i>as the base URL of the service.</p>
-<p   
->Object resource paths start with an <i class=" "><strong class=" ">object type</strong></i> value. To find the value for specific object types, open the <strong class=" ">System</strong> application in the Kentico administration interface and select the <strong class=" ">Object types</strong> tab.</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>To manage objects in Kentico using the REST service, send requests using the POST, PUT or DELETE <a class="external-link" href="http://en.wikipedia.org/wiki/HTTP#Request_methods">HTTP method</a> to the appropriate URL — append the <i class=" "><strong class=" ">resource paths</strong> </i>described below to the <i class=" "><strong class=" ">base URL</strong></i> of your REST service.</p><p>The base URL of the REST service is<strong class=" "> &lt;site domain name&gt;/rest</strong>. For example, if your site is running at <i class=" ">http://localhost/Kentico</i>, use <i class=" ">http://localhost/Kentico/rest </i>as the base URL of the service.</p><p>Object resource paths start with an <i class=" "><strong class=" ">object type</strong></i> value. To find the value for specific object types, open the <strong class=" ">System</strong> application in the Kentico administration interface and select the <strong class=" ">Object types</strong> tab.</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Important</strong>: Do NOT use object requests to create, update or delete the pages of Kentico websites. See <a   href="managing-pages-using-rest">Managing pages using REST</a> for information about working with pages.</p>
+            <p><strong class=" ">Important</strong>: Do NOT use object requests to create, update or delete the pages of Kentico websites. See <a href="managing-pages-using-rest">Managing pages using REST</a> for information about working with pages.</p>
      
     </div>
-</div>
-    <h3 id="src-68882821_managingobjectsusingrest-creatingobjects" class="heading "><span>Creating objects</span></h3>
-<p   
->HTTP method: <strong class=" ">POST</strong></p>
-<p   
->Resource format:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;</strong> - creates a new object of the specified type.</p>
-</li><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/currentsite</strong> - creates a new object of the specified type and assigns it to the website running on the domain in the base URL.</p>
-</li><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/site/&lt;site name&gt;</strong> - creates a new object of the specified type and assigns it to the specified website.</p>
-</li><li class=" "><p   
-><strong class=" ">/customtableitem.&lt;custom table code name&gt;</strong> - creates a new data record inside the specified <a   href="custom-tables">custom table</a>.<i class=" "></i></p>
-</li><li class=" "><p   
-><strong class=" ">/bizformitem.bizform.&lt;form code name&gt;</strong> - creates a new data record inside the specified <a   href="forms">form</a>.</p>
-</li></ul><p   
->Set the name and other fields of the new object in the data of the POST request. Both <a  class="external-link" href="http://en.wikipedia.org/wiki/XML">XML</a> and <a  class="external-link" href="http://en.wikipedia.org/wiki/JSON">JSON</a> formats are supported for the data.</p>
-<div  class="box-general box-info">
+</div><h3 id="src-68882821_managingobjectsusingrest-creatingobjects" class="heading "><span>Creating objects</span></h3><p>HTTP method: <strong class=" ">POST</strong></p><p>Resource format:</p><ul class=" "><li class=" "><p><strong class=" ">/&lt;object type&gt;</strong> - creates a new object of the specified type.</p>
+</li><li class=" "><p><strong class=" ">/&lt;object type&gt;/currentsite</strong> - creates a new object of the specified type and assigns it to the website running on the domain in the base URL.</p>
+</li><li class=" "><p><strong class=" ">/&lt;object type&gt;/site/&lt;site name&gt;</strong> - creates a new object of the specified type and assigns it to the specified website.</p>
+</li><li class=" "><p><strong class=" ">/customtableitem.&lt;custom table code name&gt;</strong> - creates a new data record inside the specified <a href="custom-tables">custom table</a>.<i class=" "></i></p>
+</li><li class=" "><p><strong class=" ">/bizformitem.bizform.&lt;form code name&gt;</strong> - creates a new data record inside the specified <a href="forms">form</a>.</p>
+</li></ul><p>Set the name and other fields of the new object in the data of the POST request. Both <a class="external-link" href="http://en.wikipedia.org/wiki/XML">XML</a> and <a class="external-link" href="http://en.wikipedia.org/wiki/JSON">JSON</a> formats are supported for the data.</p><div class="box-general box-info">
   
                 <div class="box-icon icon-i-circle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Important</strong>:</p>
-<ul class=" "><li class=" "><p   
->The service automatically sets the system fields of the new object (such as the ID and timestamp fields).</p>
-</li><li class=" "><p   
->Creating multiple objects of the same type in a single request is not supported.</p>
-</li><li class=" "><p   
->You can create child or binding objects along with the primary object. When using the XML format for the data of such requests, enclose the data into the <strong class=" "><i class=" ">&lt;data&gt;</i></strong> element to ensure valid syntax with a single root element.</p>
+            <p><strong class=" ">Important</strong>:</p>
+<ul class=" "><li class=" "><p>The service automatically sets the system fields of the new object (such as the ID and timestamp fields).</p>
+</li><li class=" "><p>Creating multiple objects of the same type in a single request is not supported.</p>
+</li><li class=" "><p>You can create child or binding objects along with the primary object. When using the XML format for the data of such requests, enclose the data into the <strong class=" "><i class=" ">&lt;data&gt;</i></strong> element to ensure valid syntax with a single root element.</p>
 </li></ul>     
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<p   
-></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882821_managingobjectsusingrest-creatingobjects">Creating objects</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882821_managingobjectsusingrest-updatingexistingobjects">Updating existing objects</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882821_managingobjectsusingrest-deletingobjects">Deleting objects</a></p>
-</li></ul><p   
-></p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882821_managingobjectsusingrest-creatingobjects">Creating objects</a></p>
+</li><li class=" "><p><a href="#src-68882821_managingobjectsusingrest-updatingexistingobjects">Updating existing objects</a></p>
+</li><li class=" "><p><a href="#src-68882821_managingobjectsusingrest-deletingobjects">Deleting objects</a></p>
+</li></ul><p></p>
         </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="authenticating-rest-requests">Authenticating REST requests</a></p>
-</li><li class=" "><p   
-><a   href="managing-pages-using-rest">Managing pages using REST</a></p>
-</li><li class=" "><p   
-><a   href="getting-data-using-rest">Getting data using REST</a></p>
-</li><li class=" "><p   
-><a   href="sending-rest-requests-from-code">Sending REST requests from code</a></p>
+<ul class=" "><li class=" "><p><a href="authenticating-rest-requests">Authenticating REST requests</a></p>
+</li><li class=" "><p><a href="managing-pages-using-rest">Managing pages using REST</a></p>
+</li><li class=" "><p><a href="getting-data-using-rest">Getting data using REST</a></p>
+</li><li class=" "><p><a href="sending-rest-requests-from-code">Sending REST requests from code</a></p>
 </li></ul>        </div>
-    </div>
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+
+
+    
+
+
+
+
+    
+    
     <h4 id="src-68882821_managingobjectsusingrest-examples" class="heading "><span>Examples</span></h4>
-<p   
-><strong class=" ">Creates a new user with the Editor privilege level and an empty password. Assigns the user to the site running on the domain in the base URL.</strong></p>
-    <div  class="tablewrap">
+<p><strong class=" ">Creates a new user with the Editor privilege level and an empty password. Assigns the user to the site running on the domain in the base URL.</strong></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->XML</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>XML</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->JSON</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>JSON</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.user/currentsite</i></p>
-<p   
-><strong class=" ">Data</strong>:<i class=" "><br/></i></p>
-<div  class="code panel pdl js-codePanel" >
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.user/currentsite</i></p>
+<p><strong class=" ">Data</strong>:<i class=" "><br></i></p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8793,12 +8760,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.user/currentsite?format=json</i></p>
-<p   
-><strong class=" ">Data</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.user/currentsite?format=json</i></p>
+<p><strong class=" ">Data</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8831,31 +8796,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </tr>
 </tbody>        </table>
             </div>
-<p   
-><strong class=" ">Creates a new <i class=" ">country</i> object with a child state<br/></strong></p>
-    <div  class="tablewrap">
+<p><strong class=" ">Creates a new <i class=" ">country</i> object with a child state<br></strong></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->XML</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>XML</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->JSON</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>JSON</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.country</i></p>
-<p   
-><strong class=" ">Data</strong>:<i class=" "><br/></i></p>
-<div  class="code panel pdl js-codePanel" >
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.country</i></p>
+<p><strong class=" ">Data</strong>:<i class=" "><br></i></p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8889,12 +8849,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.country?format=json</i></p>
-<p   
-><strong class=" ">Data</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.country?format=json</i></p>
+<p><strong class=" ">Data</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8930,27 +8888,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </tr>
 </tbody>        </table>
             </div>
-<p   
-><strong class=" ">Creates a <a   href="setting-page-aliases">page alias</a> for the <i class=" ">Home</i> page of the sample Corporate site</strong></p>
-    <div  class="tablewrap">
+<p><strong class=" ">Creates a <a href="setting-page-aliases">page alias</a> for the <i class=" ">Home</i> page of the sample Corporate site</strong></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->XML</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>XML</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->JSON</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>JSON</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.documentalias/site/corporatesite</i></p>
-<p   
-><strong class=" ">Data</strong>:<i class=" "><br/></i></p>
-<div  class="code panel pdl js-codePanel" >
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" ">~/rest/cms.documentalias/site/corporatesite</i></p>
+<p><strong class=" ">Data</strong>:<i class=" "><br></i></p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -8977,12 +8930,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </div>
 </div>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" ">~/rest/<i class=" ">cms.documentalias/site/corporatesite</i>?format=json</i></p>
-<p   
-><strong class=" ">Data</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" ">~/rest/<i class=" ">cms.documentalias/site/corporatesite</i>?format=json</i></p>
+<p><strong class=" ">Data</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9012,27 +8963,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </tr>
 </tbody>        </table>
             </div>
-<p   
-><strong class=" ">Adds a new data record into the <i class=" ">Sample table</i> custom table</strong></p>
-    <div  class="tablewrap">
+<p><strong class=" ">Adds a new data record into the <i class=" ">Sample table</i> custom table</strong></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->XML</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>XML</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->JSON</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>JSON</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" ">~/rest/customtableitem.customtable.sampletable</i></p>
-<p   
-><strong class=" ">Data</strong>:<i class=" "><br/></i></p>
-<div  class="code panel pdl js-codePanel" >
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" ">~/rest/customtableitem.customtable.sampletable</i></p>
+<p><strong class=" ">Data</strong>:<i class=" "><br></i></p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9051,19 +8997,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">customtable_SampleTable</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">  &lt;</code><code class="keyword">ItemText</code><code class="plain">&gt;Record added via REST&lt;/</code><code class="keyword">ItemText</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&nbsp; &lt;</code><code class="keyword">ItemText</code><code class="plain">&gt;Record added via REST&lt;/</code><code class="keyword">ItemText</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">customtable_SampleTable</code><code class="plain">&gt;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" "><i class=" ">~/rest/customtableitem.customtable.sampletable</i>?format=json</i></p>
-<p   
-><strong class=" ">Data</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" "><i class=" ">~/rest/customtableitem.customtable.sampletable</i>?format=json</i></p>
+<p><strong class=" ">Data</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9091,46 +9035,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tbody>        </table>
             </div>
     <h3 id="src-68882821_managingobjectsusingrest-updatingexistingobjects" class="heading "><span>Updating existing objects</span></h3>
-<p   
->HTTP method: <strong class=" ">PUT</strong></p>
-<p   
->Resource format:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/&lt;id &gt;</strong> -<i class=" "> </i>updates the object with the specified identifier (primary key ID).</p>
-</li><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/&lt;code name&gt;</strong> - updates the object with the specified code name. For object types with site bindings, always updates the object assigned to the site running on the domain in the base URL.</p>
-</li><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/site/&lt;site name&gt;/&lt;code name or guid&gt;</strong> - updates the object with the specified code name or GUID value on the specified website.</p>
-</li><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/global/&lt;code name or guid&gt;</strong> - updates the global object with the specified code name or GUID value.</p>
-</li><li class=" "><p   
-><strong class=" ">/customtableitem.&lt;custom table code name&gt;/&lt;item id or guid&gt;</strong> - updates the data record with the specified identifier (ID or GUID value) inside the given <a   href="custom-tables">custom table</a>.<i class=" "></i></p>
-</li><li class=" "><p   
-><strong class=" ">/bizformitem.bizform.&lt;form code name&gt;/&lt;item id or guid&gt;</strong> - updates the data record with the specified identifier (ID or GUID value) inside the given <a   href="forms">form</a>.</p>
-</li></ul><p   
->Update the values of the object&#39;s fields using the data of the PUT request. Both <a  class="external-link" href="http://en.wikipedia.org/wiki/XML">XML</a> and <a  class="external-link" href="http://en.wikipedia.org/wiki/JSON">JSON</a> formats are supported for the data. Updating multiple objects in a single request is not supported.</p>
+<p>HTTP method: <strong class=" ">PUT</strong></p>
+<p>Resource format:</p>
+<ul class=" "><li class=" "><p><strong class=" ">/&lt;object type&gt;/&lt;id &gt;</strong> -<i class=" "> </i>updates the object with the specified identifier (primary key ID).</p>
+</li><li class=" "><p><strong class=" ">/&lt;object type&gt;/&lt;code name&gt;</strong> - updates the object with the specified code name. For object types with site bindings, always updates the object assigned to the site running on the domain in the base URL.</p>
+</li><li class=" "><p><strong class=" ">/&lt;object type&gt;/site/&lt;site name&gt;/&lt;code name or guid&gt;</strong> - updates the object with the specified code name or GUID value on the specified website.</p>
+</li><li class=" "><p><strong class=" ">/&lt;object type&gt;/global/&lt;code name or guid&gt;</strong> - updates the global object with the specified code name or GUID value.</p>
+</li><li class=" "><p><strong class=" ">/customtableitem.&lt;custom table code name&gt;/&lt;item id or guid&gt;</strong> - updates the data record with the specified identifier (ID or GUID value) inside the given <a href="custom-tables">custom table</a>.<i class=" "></i></p>
+</li><li class=" "><p><strong class=" ">/bizformitem.bizform.&lt;form code name&gt;/&lt;item id or guid&gt;</strong> - updates the data record with the specified identifier (ID or GUID value) inside the given <a href="forms">form</a>.</p>
+</li></ul><p>Update the values of the object's fields using the data of the PUT request. Both <a class="external-link" href="http://en.wikipedia.org/wiki/XML">XML</a> and <a class="external-link" href="http://en.wikipedia.org/wiki/JSON">JSON</a> formats are supported for the data. Updating multiple objects in a single request is not supported.</p>
     <h4 id="src-68882821_managingobjectsusingrest-examples.1" class="heading "><span>Examples</span></h4>
-<p   
-><strong class=" ">Updates the email address of the <i class=" ">administrator</i> user</strong></p>
-    <div  class="tablewrap">
+<p><strong class=" ">Updates the email address of the <i class=" ">administrator</i> user</strong></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->XML</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>XML</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->JSON</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>JSON</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" "><i class=" ">~/rest/cms.user/administrator</i></i></p>
-<p   
-><strong class=" ">Data</strong>:<i class=" "><br/></i></p>
-<div  class="code panel pdl js-codePanel" >
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" "><i class=" ">~/rest/cms.user/administrator</i></i></p>
+<p><strong class=" ">Data</strong>:<i class=" "><br></i></p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9149,19 +9079,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">CMS_User</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">  &lt;</code><code class="keyword">Email</code><code class="plain">&gt;newAddress@localhost.local&lt;/</code><code class="keyword">Email</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&nbsp; &lt;</code><code class="keyword">Email</code><code class="plain">&gt;newAddress@localhost.local&lt;/</code><code class="keyword">Email</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">CMS_User</code><code class="plain">&gt;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" "><i class=" ">~/rest/cms.user/administrator?format=json</i></i></p>
-<p   
-><strong class=" ">Data</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" "><i class=" ">~/rest/cms.user/administrator?format=json</i></i></p>
+<p><strong class=" ">Data</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9188,27 +9116,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </tr>
 </tbody>        </table>
             </div>
-<p   
-><strong class=" ">Updates a data record of the sample <i class=" ">Contact us</i> form</strong></p>
-    <div  class="tablewrap">
+<p><strong class=" ">Updates a data record of the sample <i class=" ">Contact us</i> form</strong></p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->XML</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>XML</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->JSON</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>JSON</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>:<i class=" "> ~/rest/bizformitem.bizform.contactus/1</i></p>
-<p   
-><strong class=" ">Data</strong>:<i class=" "><br/></i></p>
-<div  class="code panel pdl js-codePanel" >
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>:<i class=" "> ~/rest/bizformitem.bizform.contactus/1</i></p>
+<p><strong class=" ">Data</strong>:<i class=" "><br></i></p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9227,20 +9150,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;</code><code class="keyword">Form_ContactUs</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">  &lt;</code><code class="keyword">Email</code><code class="plain">&gt;newMail@localhost.local&lt;/</code><code class="keyword">Email</code><code class="plain">&gt;</code></div>
-<div class="line"><code class="plain">  &lt;</code><code class="keyword">Message</code><code class="plain">&gt;Updated message&lt;/</code><code class="keyword">Message</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&nbsp; &lt;</code><code class="keyword">Email</code><code class="plain">&gt;newMail@localhost.local&lt;/</code><code class="keyword">Email</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&nbsp; &lt;</code><code class="keyword">Message</code><code class="plain">&gt;Updated message&lt;/</code><code class="keyword">Message</code><code class="plain">&gt;</code></div>
 <div class="line"><code class="plain">&lt;/</code><code class="keyword">Form_ContactUs</code><code class="plain">&gt;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
-><strong class=" ">URL</strong>: <i class=" "><i class=" "><i class=" ">~/rest/bizformitem.bizform.contactus/1</i>?format=json</i></i></p>
-<p   
-><strong class=" ">Data</strong>:</p>
-<div  class="code panel pdl js-codePanel" >
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p><strong class=" ">URL</strong>: <i class=" "><i class=" "><i class=" ">~/rest/bizformitem.bizform.contactus/1</i>?format=json</i></i></p>
+<p><strong class=" ">Data</strong>:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9271,34 +9192,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tbody>        </table>
             </div>
     <h3 id="src-68882821_managingobjectsusingrest-deletingobjects" class="heading "><span>Deleting objects</span></h3>
-<p   
->HTTP method: <strong class=" ">DELETE</strong></p>
-<p   
->Resource format:</p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/&lt;id&gt;</strong> - deletes the object with the specified identifier (primary key ID).</p>
-</li><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/&lt;code name&gt; - </strong>deletes the object with the specified code name. For object types with site bindings, always deletes the object assigned to the site running on the domain in the base URL.</p>
-</li><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/site/&lt;site name&gt;/&lt;code name or guid&gt;</strong> - deletes the object with the specified code name or GUID value from the specified website.</p>
-</li><li class=" "><p   
-><strong class=" ">/&lt;object type&gt;/global/&lt;code name or guid&gt;</strong> - deletes the global object with the specified code name or GUID value.</p>
-</li><li class=" "><p   
-><strong class=" ">/customtableitem.&lt;custom table code name&gt;/&lt;item id or guid&gt;</strong> - deletes the data record with the specified identifier (ID or GUID value) from the given <a   href="custom-tables">custom table</a>.<i class=" "></i></p>
-</li><li class=" "><p   
-><strong class=" ">/bizformitem.bizform.&lt;form code name&gt;/&lt;item id or guid&gt;</strong> - deletes the data record the specified identifier (ID or GUID value) from the given <a   href="forms">form</a>.</p>
-</li></ul><p   
->URL examples:</p>
-<ul class=" "><li class=" "><p   
->~/rest/cms.user/53</p>
-</li><li class=" "><p   
->~/rest/cms.country/usa</p>
-</li><li class=" "><p   
->~/rest/cms.emailtemplate/site/corporatesite/Blog.NotificationToModerators</p>
-</li><li class=" "><p   
->~/rest/customtableitem.customtable.SampleTable/5</p>
-</li></ul><p   
->Deleting multiple objects in a single request is not supported. You need to send a separate DELETE request for each object.</p>
+<p>HTTP method: <strong class=" ">DELETE</strong></p>
+<p>Resource format:</p>
+<ul class=" "><li class=" "><p><strong class=" ">/&lt;object type&gt;/&lt;id&gt;</strong> - deletes the object with the specified identifier (primary key ID).</p>
+</li><li class=" "><p><strong class=" ">/&lt;object type&gt;/&lt;code name&gt; - </strong>deletes the object with the specified code name. For object types with site bindings, always deletes the object assigned to the site running on the domain in the base URL.</p>
+</li><li class=" "><p><strong class=" ">/&lt;object type&gt;/site/&lt;site name&gt;/&lt;code name or guid&gt;</strong> - deletes the object with the specified code name or GUID value from the specified website.</p>
+</li><li class=" "><p><strong class=" ">/&lt;object type&gt;/global/&lt;code name or guid&gt;</strong> - deletes the global object with the specified code name or GUID value.</p>
+</li><li class=" "><p><strong class=" ">/customtableitem.&lt;custom table code name&gt;/&lt;item id or guid&gt;</strong> - deletes the data record with the specified identifier (ID or GUID value) from the given <a href="custom-tables">custom table</a>.<i class=" "></i></p>
+</li><li class=" "><p><strong class=" ">/bizformitem.bizform.&lt;form code name&gt;/&lt;item id or guid&gt;</strong> - deletes the data record the specified identifier (ID or GUID value) from the given <a href="forms">form</a>.</p>
+</li></ul><p>URL examples:</p>
+<ul class=" "><li class=" "><p>~/rest/cms.user/53</p>
+</li><li class=" "><p>~/rest/cms.country/usa</p>
+</li><li class=" "><p>~/rest/cms.emailtemplate/site/corporatesite/Blog.NotificationToModerators</p>
+</li><li class=" "><p>~/rest/customtableitem.customtable.SampleTable/5</p>
+</li></ul><p>Deleting multiple objects in a single request is not supported. You need to send a separate DELETE request for each object.</p>
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -9309,8 +9216,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9322,10 +9229,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9344,9 +9251,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9357,7 +9261,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9368,5 +9272,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>

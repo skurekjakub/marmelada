@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Developing data source web parts - Kentico 11 Documentation</title>
@@ -33,7 +31,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 
 
-<link rel="stylesheet" href="assets/css/content-style.css">
     <link rel="stylesheet" href="assets/css/search.css">
 
 <link rel="stylesheet" href="assets/css/theme.main.css">
@@ -115,7 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
                             <div class="header-search-field">
                                 <span class="header-search-field__icon icon-magnifier"></span>
-                                <input class="header-search-field__input search-input" type="text" placeholder="Search the $searchPlaceholderSuffix" tabindex="-1" autocomplete="off" name="q" value="">
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
                             </div>
                             <div class="header-search-button-wrapper">
                                 <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
@@ -8638,7 +8635,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>                    <h1 id="src-68882210"> <span>Developing data source web parts</span></h1>
                     <div class="page-metadata">
     <div class="page-metadata-modification-info">
-     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download>
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
         <span>Save as PDF</span>
         <span class="page-metadata-export-icon icon-arrow-down-line"></span>
       </a>
@@ -8652,7 +8649,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div id="page-link-panel">
     <div id="page-link-panel-inner">
       	
-    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">&#10006;</a>
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
     	<form>
        		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
           	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
@@ -8663,55 +8660,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </header>
                 <div id="content" class="page">
                     <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
-<p   
->Data source <a   href="developing-web-parts">web parts</a> are responsible for loading data. You can display the retrieved data on the website by connecting the data source to a listing web part.</p>
-<p   
->To develop custom data source web parts, you need to create two separate user controls:</p>
-<ol class=" "><li class=" "><p   
->The first control loads the data. This control must inherit from <strong class=" ">CMSBaseDataSource</strong> (found in the <i class=" ">CMS.DocumentEngine.Web.UI</i> namespace).</p>
-</li><li class=" "><p   
->The second user control contains the first control in its markup and serves as the source file for the actual web part. Must inherit from <strong class=" ">CMSAbstractWebPart</strong>.</p>
-</li></ol>    <h3 id="src-68882210_developingdatasourcewebparts-example-creatingauserdatasource" class="heading "><span>Example - Creating a user data source</span></h3>
-<p   
->The following example shows how to create a custom data source that loads user data from the Kentico database.</p>
-<p   
->Open your web project in Visual Studio and create two user controls according to the sections below.</p>
-<div  class="box-general box-note">
+<div class="sp-grid-section"><div class="sp-grid-cell sp-grid-60"><p>Data source <a href="developing-web-parts">web parts</a> are responsible for loading data. You can display the retrieved data on the website by connecting the data source to a listing web part.</p><p>To develop custom data source web parts, you need to create two separate user controls:</p><ol class=" "><li class=" "><p>The first control loads the data. This control must inherit from <strong class=" ">CMSBaseDataSource</strong> (found in the <i class=" ">CMS.DocumentEngine.Web.UI</i> namespace).</p>
+</li><li class=" "><p>The second user control contains the first control in its markup and serves as the source file for the actual web part. Must inherit from <strong class=" ">CMSAbstractWebPart</strong>.</p>
+</li></ol><h3 id="src-68882210_developingdatasourcewebparts-example-creatingauserdatasource" class="heading "><span>Example - Creating a user data source</span></h3><p>The following example shows how to create a custom data source that loads user data from the Kentico database.</p><p>Open your web project in Visual Studio and create two user controls according to the sections below.</p><div class="box-general box-note">
   
                 <div class="box-icon icon-exclamation-triangle"> </div> 
         <div class="box-content"> 
-            <p   
-><strong class=" ">Note</strong></p>
-<p   
->Set the values of the <i class=" ">Inherits</i> attributes in the user control declarations and the class names according to the names and locations of your controls. If your Kentico project was installed as a web application, you need to rename the <i class=" ">CodeFile</i> attributes to <i class=" ">Codebehind</i>.</p>
-<p   
->The code in the example assumes that the control is placed inside the <strong class=" ">~/CMSGlobalFiles</strong> folder (you may need to manually create this folder if you wish to use the default code). When developing your own controls, you can use another location and adjust the <i class=" ">Inherits</i> attribute and the corresponding class names as required.</p>
+            <p><strong class=" ">Note</strong></p>
+<p>Set the values of the <i class=" ">Inherits</i> attributes in the user control declarations and the class names according to the names and locations of your controls. If your Kentico project was installed as a web application, you need to rename the <i class=" ">CodeFile</i> attributes to <i class=" ">Codebehind</i>.</p>
+<p>The code in the example assumes that the control is placed inside the <strong class=" ">~/CMSGlobalFiles</strong> folder (you may need to manually create this folder if you wish to use the default code). When developing your own controls, you can use another location and adjust the <i class=" ">Inherits</i> attribute and the corresponding class names as required.</p>
      
     </div>
-</div>
-    <div  class="confbox panel">
+</div><div class="sp-grid-section"></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div></div><div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"><div class="confbox panel">
             <div class="title panel-header">On this page</div>
             <div class="panel-content">
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882210_developingdatasourcewebparts-example-creatingauserdatasource">Example - Creating a user data source</a></p>
-<ul class="toc-indentation "><li class=" "><p   
-><a   href="#src-68882210_developingdatasourcewebparts-registeringthewebpart">Registering the web part</a></p>
-</li><li class=" "><p   
-><a   href="#src-68882210_developingdatasourcewebparts-result">Result</a></p>
-</li></ul></li><li class=" "><p   
-><a   href="#src-68882210_safe-id-rgv2zwxvcgluz2rhdgfzb3vyy2v3zwjwyxj0cy1fegftcgxl4octsw1wbgvtzw50aw5nzgf0yxnvdxjjzwnhy2hpbmc">Example &ndash; Implementing data source caching</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882210_developingdatasourcewebparts-example-creatingauserdatasource">Example - Creating a user data source</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-68882210_developingdatasourcewebparts-registeringthewebpart">Registering the web part</a></p>
+</li><li class=" "><p><a href="#src-68882210_developingdatasourcewebparts-result">Result</a></p>
+</li></ul></li><li class=" "><p><a href="#src-68882210_safe-id-rgv2zwxvcgluz2rhdgfzb3vyy2v3zwjwyxj0cy1fegftcgxl4octsw1wbgvtzw50aw5nzgf0yxnvdxjjzwnhy2hpbmc">Example – Implementing data source caching</a></p>
 </li></ul>        </div>
-    </div>
-    <div  class="confbox panel">
+    </div><div class="confbox panel">
             <div class="title panel-header">Related pages</div>
             <div class="panel-content">
-<ul class=" "><li class=" "><p   
-><a   href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
-</li><li class=" "><p   
-><a   href="creating-new-web-parts">Creating new web parts</a></p>
+<ul class=" "><li class=" "><p><a href="loading-and-displaying-data-on-websites">Loading and displaying data on websites</a></p>
+</li><li class=" "><p><a href="creating-new-web-parts">Creating new web parts</a></p>
 </li></ul>        </div>
-    </div>
-<div  class="code panel pdl js-codePanel" >
+    </div></div></div><div class="sp-grid-section bottom-column"><div class="sp-grid-cell sp-grid-100"></div></div>
+
+    
+
+
+
+    
+    
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>DataSourceControl.ascx</strong>    </div>
@@ -8735,7 +8717,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>DataSourceControl.ascx.cs</strong>    </div>
@@ -8754,11 +8736,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="DataSourceControl.ascx.cs" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> System;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.DocumentEngine.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Membership;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.FormEngine.Web.UI;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// User data source. Loads all users according to a specified Where condition.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8767,30 +8749,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Assigns a handler for the 'OnFilterChanged' event if there is a filter attached to the data source.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// You do not need to implement this method if you do not plan to use filters with the data source web part.</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="plain">   &nbsp;</code><code class="comments">/// &lt;/summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> OnInit(EventArgs e)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">if</code><code class="plain"> (SourceFilterControl != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            SourceFilterControl.OnFilterChanged += </code><code class="keyword">new</code><code class="plain"> ActionEventHandler(DataFilter_OnFilterChanged);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.OnInit(e);</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Handles the OnFilterChanged event.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// You do not need to implement this method if you do not plan to use filters with the data source web part.</code></div>
-<div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
+<div class="line"><code class="plain">   &nbsp;</code><code class="comments">/// &lt;/summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">void</code><code class="plain"> DataFilter_OnFilterChanged()</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// Clears the old data</code></div>
 <div class="line"><code class="plain">        InvalidateLoadedData();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Raises the change event</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.RaiseOnFilterChanged();</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Loads the data of the data source.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8801,13 +8783,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            SourceFilterControl.InitDataProperties(</code><code class="keyword">this</code><code class="plain">);</code></div>
 <div class="line"><code class="plain">        }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">		</code><code class="comments">// Loads the data. The WhereCondition and OrderBy properties are inherited from the parent class.</code></div>
 <div class="line"><code class="plain">		DataSource = UserInfoProvider.GetUsersDataWithSettings()</code></div>
 <div class="line"><code class="plain">										.Where(WhereCondition)</code></div>
 <div class="line"><code class="plain">										.OrderBy(OrderBy)</code></div>
 <div class="line"><code class="plain">										.TypedResult;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="keyword">return</code><code class="plain"> DataSource;</code></div>
 <div class="line"><code class="plain">    }</code></div>
 <div class="line"><code class="plain">}</code></div>
@@ -8815,7 +8797,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>DataSourceWebPart.ascx</strong>    </div>
@@ -8834,15 +8816,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="DataSourceWebPart.ascx" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">&lt;%@ Control Language=</code><code class="string">"C#"</code><code class="plain"> AutoEventWireup=</code><code class="string">"true"</code><code class="plain"> CodeFile=</code><code class="string">"~/CMSGlobalFiles/DataSourceWebPart.ascx.cs"</code><code class="plain"> Inherits=</code><code class="string">"CMSGlobalFiles_DataSourceWebPart"</code><code class="plain"> %&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;%@ Register Src=</code><code class="string">"~/CMSGlobalFiles/DataSourceControl.ascx"</code><code class="plain"> TagPrefix=</code><code class="string">"cms"</code><code class="plain"> TagName=</code><code class="string">"DataSourceControl"</code><code class="plain"> %&gt;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">&lt;cms:DataSourceControl ID=</code><code class="string">"srcUsers"</code><code class="plain"> runat=</code><code class="string">"server"</code><code class="plain"> /&gt;</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-<div  class="code panel pdl js-codePanel" >
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>DataSourceWebPart.ascx.cs</strong>    </div>
@@ -8862,7 +8844,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="DataSourceWebPart.ascx.cs" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.PortalEngine.Web.UI;</code></div>
 <div class="line"><code class="keyword">using</code><code class="plain"> CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSGlobalFiles_DataSourceWebPart : CMSAbstractWebPart</code></div>
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
@@ -8880,7 +8862,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            srcUsers.WhereCondition = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Gets or sets the value of the OrderBy web part property.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8896,7 +8878,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            srcUsers.OrderBy = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Gets or sets the value of the FilterName web part property.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8912,7 +8894,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            srcUsers.SourceFilterName = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Content loaded event handler.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8921,7 +8903,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        </code><code class="keyword">base</code><code class="plain">.OnContentLoaded();</code></div>
 <div class="line"><code class="plain">        SetupControl();</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Initializes the properties of the internal data source control.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -8935,13 +8917,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">        {</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">this</code><code class="plain">.srcUsers.WhereCondition = </code><code class="keyword">this</code><code class="plain">.WhereCondition;</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">this</code><code class="plain">.srcUsers.OrderBy = </code><code class="keyword">this</code><code class="plain">.OrderBy;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Sets the inner data source's name according to the web part's 'Web part control ID' property.</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// This allows listing web parts to connect to the inner control.</code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// The identifier property is named 'FilterName' because data sources inherit the property from </code></div>
 <div class="line"><code class="plain">            </code><code class="comments">// a base class shared with filter objects.</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">this</code><code class="plain">.srcUsers.FilterName = (</code><code class="keyword">string</code><code class="plain">)</code><code class="keyword">this</code><code class="plain">.GetValue(</code><code class="string">"WebPartControlID"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">            </code><code class="comments">// Connects the attached filter, as specified by the 'Filter name' property of the web part</code></div>
 <div class="line"><code class="plain">            </code><code class="keyword">this</code><code class="plain">.srcUsers.SourceFilterName = </code><code class="keyword">this</code><code class="plain">.FilterName;</code></div>
 <div class="line"><code class="plain">        }</code></div>
@@ -8951,116 +8933,79 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-<p   
->If your Kentico project was installed as a web application, you must <strong class=" ">Build</strong> the project.</p>
+<p>If your Kentico project was installed as a web application, you must <strong class=" ">Build</strong> the project.</p>
     <h4 id="src-68882210_developingdatasourcewebparts-registeringthewebpart" class="heading "><span>Registering the web part</span></h4>
-<p   
->Register the <strong class=" ">DataSourceWebPart.ascx</strong> control as a new web part in Kentico.</p>
-<ol class=" "><li class=" "><p   
->Open the <strong class=" ">Web parts</strong> application.</p>
-</li><li class=" "><p   
->Create a new web part. See <a   href="creating-new-web-parts">Creating new web parts</a> for details.</p>
-</li><li class=" "><p   
->Type <i class=" ">Custom user data source</i> as the web part&#39;s <strong class=" ">Display name</strong>.</p>
-</li><li class=" "><p   
->Set the <strong class=" ">Type</strong> of the web part to <i class=" ">Data source</i> on the <strong class=" ">General</strong> tab.</p>
-</li><li class=" "><p   
->On the <strong class=" ">Properties</strong> tab, define the following properties for the web part:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field name</strong>: OrderBy</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Text</p>
-</li><li class=" "><p   
-><strong class=" ">Size</strong>: 500</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: SQL Order by clause</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Order by<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: WhereCondition</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Text</p>
-</li><li class=" "><p   
-><strong class=" ">Size</strong>: 500</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: SQL Where condition</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Where condition<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: FilterName</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Text</p>
-</li><li class=" "><p   
-><strong class=" ">Size</strong>: 200</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Filter name</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Text box</p>
+<p>Register the <strong class=" ">DataSourceWebPart.ascx</strong> control as a new web part in Kentico.</p>
+<ol class=" "><li class=" "><p>Open the <strong class=" ">Web parts</strong> application.</p>
+</li><li class=" "><p>Create a new web part. See <a href="creating-new-web-parts">Creating new web parts</a> for details.</p>
+</li><li class=" "><p>Type <i class=" ">Custom user data source</i> as the web part's <strong class=" ">Display name</strong>.</p>
+</li><li class=" "><p>Set the <strong class=" ">Type</strong> of the web part to <i class=" ">Data source</i> on the <strong class=" ">General</strong> tab.</p>
+</li><li class=" "><p>On the <strong class=" ">Properties</strong> tab, define the following properties for the web part:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: OrderBy</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 500</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: SQL Order by clause</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Order by<br><br></p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: WhereCondition</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 500</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: SQL Where condition</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Where condition<br><br></p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: FilterName</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 200</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Filter name</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text box</p>
 </li></ul></li></ol>    <h4 id="src-68882210_developingdatasourcewebparts-result" class="heading "><span>Result</span></h4>
-<p   
->The custom data source web part is now ready and you can try out its functionality.</p>
-<p   
->Open the <strong class=" ">Pages</strong> application, create a new page and add the following web parts on the <strong class=" ">Design</strong> tab:</p>
-    <div  class="tablewrap">
+<p>The custom data source web part is now ready and you can try out its functionality.</p>
+<p>Open the <strong class=" ">Pages</strong> application, create a new page and add the following web parts on the <strong class=" ">Design</strong> tab:</p>
+    <div class="tablewrap">
         <table class="wrapped confluenceTable">
                     <colgroup>
-                                    <col />
-                                    <col />
+                                    <col>
+                                    <col>
                             </colgroup>
         <thead class=" ">    <tr>
-            <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Web part</p>
+            <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Web part</p>
             </td>
-                <td  class="confluenceTh" rowspan="1" colspan="1">
-    <p   
->Instructions</p>
+                <td class="confluenceTh" rowspan="1" colspan="1">
+    <p>Instructions</p>
             </td>
         </tr>
 </thead><tfoot class=" "></tfoot><tbody class=" ">    <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Custom user data source</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Custom user data source</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Type <i class=" ">UsersFilter</i> into the <strong class=" ">Filter name</strong> property.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Type <i class=" ">UsersFilter</i> into the <strong class=" ">Filter name</strong> property.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Users filter</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Users filter</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Leave the default property values. The <strong class=" ">Web part control ID</strong> is set to <i class=" ">UsersFilter</i> by default, which connects the filter to the custom data source.</p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Leave the default property values. The <strong class=" ">Web part control ID</strong> is set to <i class=" ">UsersFilter</i> by default, which connects the filter to the custom data source.</p>
             </td>
         </tr>
     <tr>
-            <td  class="confluenceTd" rowspan="1" colspan="1">
-    <p   
->Basic repeater</p>
+            <td class="confluenceTd" rowspan="1" colspan="1">
+    <p>Basic repeater</p>
             </td>
-                <td  class="confluenceTd" rowspan="1" colspan="1">
-    <ol class=" "><li class=" "><p   
->Enter the ID of the Custom user data source web part into the <strong class=" ">Data source name</strong> property: <i class=" ">CustomUserDataSource</i></p>
-</li><li class=" "><p   
->Set an appropriate <strong class=" ">Transformation name</strong> for displaying users, for example: <i class=" ">Community.Transformations.MembersList</i></p>
+                <td class="confluenceTd" rowspan="1" colspan="1">
+    <ol class=" "><li class=" "><p>Enter the ID of the Custom user data source web part into the <strong class=" ">Data source name</strong> property: <i class=" ">CustomUserDataSource</i></p>
+</li><li class=" "><p>Set an appropriate <strong class=" ">Transformation name</strong> for displaying users, for example: <i class=" ">Community.Transformations.MembersList</i></p>
 </li></ol>            </td>
         </tr>
 </tbody>        </table>
             </div>
-<p   
->The page displays a list of all users in the system. You can modify the list by configuring the <i class=" ">SQL Where condition</i> and <i class=" ">SQL Order by clause</i> properties of the data source. Visitors can dynamically narrow down the list directly on the page using the connected filter.</p>
-    <h3 id="src-68882210_safe-id-rgv2zwxvcgluz2rhdgfzb3vyy2v3zwjwyxj0cy1fegftcgxl4octsw1wbgvtzw50aw5nzgf0yxnvdxjjzwnhy2hpbmc" class="heading "><span>Example &ndash; Implementing data source caching</span></h3>
-<p   
->This example builds on the previous one to add <a   href="caching-the-data-of-page-components">caching</a> functionality for the retrieved data. Cached data does not need to be retrieved every time the page is requested, which increases the website performance and lowers database overhead.</p>
-<p   
->To implement data source caching for the previous example, you need to:</p>
-<ol class=" "><li class=" "><p   
->Add the following code to the <strong class=" ">DataSourceWebPart.ascx.cs</strong> file:</p>
-<div  class="code panel pdl js-codePanel" >
+<p>The page displays a list of all users in the system. You can modify the list by configuring the <i class=" ">SQL Where condition</i> and <i class=" ">SQL Order by clause</i> properties of the data source. Visitors can dynamically narrow down the list directly on the page using the connected filter.</p>
+    <h3 id="src-68882210_safe-id-rgv2zwxvcgluz2rhdgfzb3vyy2v3zwjwyxj0cy1fegftcgxl4octsw1wbgvtzw50aw5nzgf0yxnvdxjjzwnhy2hpbmc" class="heading "><span>Example – Implementing data source caching</span></h3>
+<p>This example builds on the previous one to add <a href="caching-the-data-of-page-components">caching</a> functionality for the retrieved data. Cached data does not need to be retrieved every time the page is requested, which increases the website performance and lowers database overhead.</p>
+<p>To implement data source caching for the previous example, you need to:</p>
+<ol class=" "><li class=" "><p>Add the following code to the <strong class=" ">DataSourceWebPart.ascx.cs</strong> file:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
       <strong>DataSourceWebPart.ascx.cs</strong>    </div>
@@ -9080,10 +9025,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-title="DataSourceWebPart.ascx.cs" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="keyword">public</code><code class="plain"> </code><code class="keyword">partial</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> CMSGlobalFiles_DataSourceWebPart : CMSAbstractWebPart</code></div>
 <div class="line"><code class="plain">{</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
-<div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">&nbsp;   </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Gets or sets the cache item name.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">override</code><code class="plain"> </code><code class="keyword">string</code><code class="plain"> CacheItemName</code></div>
@@ -9098,7 +9043,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            srcUsers.CacheItemName = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Cache dependencies, each cache dependency on a new line.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9114,7 +9059,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            srcUsers.CacheDependencies = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">	</code><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// Gets or sets the cache minutes.</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9130,17 +9075,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">            srcUsers.CacheMinutes = value;</code></div>
 <div class="line"><code class="plain">        }</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"><code class="plain"> </code></div>
+<div class="line"><code class="plain">&nbsp;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->Replace the <strong class=" ">SetupControl()</strong> method implementation (in <strong class=" ">DataSourceWebPart.ascx.cs</strong>) with the following:</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>Replace the <strong class=" ">SetupControl()</strong> method implementation (in <strong class=" ">DataSourceWebPart.ascx.cs</strong>) with the following:</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9168,13 +9112,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.srcUsers.WhereCondition = </code><code class="keyword">this</code><code class="plain">.WhereCondition;</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.srcUsers.OrderBy = </code><code class="keyword">this</code><code class="plain">.OrderBy;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Sets the inner data source's name according to the web part's 'Web part control ID' property.</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// This allows listing web parts to connect to the inner control.</code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// The identifier property is named 'FilterName' because data sources inherit the property from </code></div>
 <div class="line"><code class="plain">        </code><code class="comments">// a base class shared with filter objects.</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.srcUsers.FilterName = (string)</code><code class="keyword">this</code><code class="plain">.GetValue(</code><code class="string">"WebPartControlID"</code><code class="plain">);</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">        </code><code class="comments">// Connects the attached filter, as specified by the 'Filter name' property of the web part</code></div>
 <div class="line"><code class="plain">        </code><code class="keyword">this</code><code class="plain">.srcUsers.SourceFilterName = </code><code class="keyword">this</code><code class="plain">.FilterName;</code></div>
 <div class="line"><code class="plain">               </code></div>
@@ -9187,9 +9131,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->(Optional) In <strong class=" ">DataSourceControl.ascx.cs</strong>, override the <strong class=" ">GetDefaultCacheKey()</strong> and <strong class=" ">GetDefaultCacheDependencies()</strong><strong class=" "> </strong>methods, generating the cache item name and cache dependencies, with your custom logic. The code sample below shows the default implementation of these methods for the <i class=" ">UsersDataSource</i> web part.</p>
-<div  class="code panel pdl js-codePanel" >
+</li><li class=" "><p>(Optional) In <strong class=" ">DataSourceControl.ascx.cs</strong>, override the <strong class=" ">GetDefaultCacheKey()</strong> and <strong class=" ">GetDefaultCacheDependencies()</strong><strong class=" "> </strong>methods, generating the cache item name and cache dependencies, with your custom logic. The code sample below shows the default implementation of these methods for the <i class=" ">UsersDataSource</i> web part.</p>
+<div class="code panel pdl js-codePanel">
     <div class="codeHeader panelHeader pdl">
     <div class="codeHeader-title">
           </div>
@@ -9208,9 +9151,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <pre><code class="js-code language-csharp">
                 <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
 <div class="line"><code class="plain">using CMS.Helpers;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">...</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Gets default cache key.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9218,8 +9161,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> </code><code class="keyword">new</code><code class="plain"> object[] { </code><code class="string">"customuserdatasource"</code><code class="plain">, CacheHelper.BaseCacheKey, ClientID, WhereCondition, OrderBy};</code></div>
 <div class="line"><code class="plain">}</code></div>
-<div class="line"> </div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="comments">/// &lt;summary&gt;</code></div>
 <div class="line"><code class="comments">/// Gets the default cache dependencies for the data source.</code></div>
 <div class="line"><code class="comments">/// &lt;/summary&gt;</code></div>
@@ -9227,66 +9170,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><code class="plain">{</code></div>
 <div class="line"><code class="plain">    </code><code class="comments">// Get default dependencies</code></div>
 <div class="line"><code class="plain">    string result = base.GetDefaultCacheDependencies();</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">if</code><code class="plain"> (result != </code><code class="keyword">null</code><code class="plain">)</code></div>
 <div class="line"><code class="plain">    {</code></div>
 <div class="line"><code class="plain">        result += </code><code class="string">"\n"</code><code class="plain">;</code></div>
 <div class="line"><code class="plain">    }</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    result += </code><code class="string">"cms.user|all"</code><code class="plain">;</code></div>
-<div class="line"> </div>
+<div class="line">&nbsp;</div>
 <div class="line"><code class="plain">    </code><code class="keyword">return</code><code class="plain"> result;</code></div>
 <div class="line"><code class="plain">}</code></div>
 </div>
     </code></pre>
   </div>
 </div>
-</li><li class=" "><p   
->If your Kentico project was installed as a web application, <strong class=" ">Build</strong> the project.</p>
-</li><li class=" "><p   
->Open the <i class=" ">Custom user data source</i> web part in the<strong class=" "> Web parts</strong> application and switch to the <strong class=" ">Properties</strong> tab.</p>
-</li><li class=" "><p   
->Click<strong class=" "> ...</strong> next to the <strong class=" ">New field</strong> button and select <strong class=" ">New category</strong>.</p>
-</li><li class=" "><p   
->Enter <i class=" ">Data caching</i> as the <strong class=" ">Category caption</strong> and move the category below the existing properties.</p>
-</li><li class=" "><p   
->Add the following fields under the category:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">Field name</strong>: CacheItemName</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Text</p>
-</li><li class=" "><p   
-><strong class=" ">Size</strong>: 500</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Cache item name</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Text box<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: CacheMinutes</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Integer number</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Cache minutes</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Text box<br/><br/></p>
-</li><li class=" "><p   
-><strong class=" ">Field name</strong>: CacheDependencies</p>
-</li><li class=" "><p   
-><strong class=" ">Data type</strong>: Long text</p>
-</li><li class=" "><p   
-><strong class=" ">Field caption</strong>: Cache dependencies</p>
-</li><li class=" "><p   
-><strong class=" ">Form control</strong>: Cache dependencies<br/></p>
-</li></ul></li><li class=" "><p   
->Insert the web part onto a page and set the values of the newly created fields to, for example, the following:<br/><br/></p>
-<ul class=" "><li class=" "><p   
-><strong class=" ">CacheItemName</strong>: CustomUserDataSourceCache</p>
-</li><li class=" "><p   
-><strong class=" ">CacheMinutes</strong>: 10</p>
-</li><li class=" "><p   
-><strong class=" ">CacheDependencies</strong>: cms.user|all</p>
-</li></ul></li></ol><p   
->The data is now set to cache for a duration of 10 minutes (controlled by the <strong class=" ">CacheMinutes</strong> field) and any changes to <strong class=" ">cms.user </strong>objects<a   href="setting-cache-dependencies">&nbsp;automatically invalidate the cache</a> (controlled by the <strong class=" ">CacheDependencies</strong> field).</p>
+</li><li class=" "><p>If your Kentico project was installed as a web application, <strong class=" ">Build</strong> the project.</p>
+</li><li class=" "><p>Open the <i class=" ">Custom user data source</i> web part in the<strong class=" "> Web parts</strong> application and switch to the <strong class=" ">Properties</strong> tab.</p>
+</li><li class=" "><p>Click<strong class=" "> ...</strong> next to the <strong class=" ">New field</strong> button and select <strong class=" ">New category</strong>.</p>
+</li><li class=" "><p>Enter <i class=" ">Data caching</i> as the <strong class=" ">Category caption</strong> and move the category below the existing properties.</p>
+</li><li class=" "><p>Add the following fields under the category:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: CacheItemName</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 500</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Cache item name</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text box<br><br></p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: CacheMinutes</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Integer number</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Cache minutes</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text box<br><br></p>
+</li><li class=" "><p><strong class=" ">Field name</strong>: CacheDependencies</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Long text</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Cache dependencies</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Cache dependencies<br></p>
+</li></ul></li><li class=" "><p>Insert the web part onto a page and set the values of the newly created fields to, for example, the following:<br><br></p>
+<ul class=" "><li class=" "><p><strong class=" ">CacheItemName</strong>: CustomUserDataSourceCache</p>
+</li><li class=" "><p><strong class=" ">CacheMinutes</strong>: 10</p>
+</li><li class=" "><p><strong class=" ">CacheDependencies</strong>: cms.user|all</p>
+</li></ul></li></ol><p>The data is now set to cache for a duration of 10 minutes (controlled by the <strong class=" ">CacheMinutes</strong> field) and any changes to <strong class=" ">cms.user </strong>objects<a href="setting-cache-dependencies">&nbsp;automatically invalidate the cache</a> (controlled by the <strong class=" ">CacheDependencies</strong> field).</p>
                     </div>
                 </div>
                     <footer class="ht-content-footer">                
@@ -9297,8 +9217,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             </a>
                         </div>   
                     </footer>
-                </div>
-            </article>
+                </article></div>
+            
         </div>
     </div>
 
@@ -9310,10 +9230,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="col-6">
         <ul class="footer-menu">
           <li>
-            <a href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions & Answers</a>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
           </li>
           <li>
-            <a href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
           </li>    
         </ul>
       </div>
@@ -9332,9 +9252,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script type="text/javascript" src="assets/js/theme.prism.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" 
-    integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript" src="assets/js/translate.js"></script>
 
@@ -9345,7 +9262,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="text/javascript" src="assets/js/theme.custom.js"></script>
 <script type="text/javascript" src="assets/js/snackbar.js"></script>
 
-<script type="text/javascript" async>
+<script type="text/javascript" async="">
     // Populates the documentation version switcher header
     // loadVersionLinkData is located in theme.custom.js
     $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
@@ -9356,5 +9273,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="assets/js/scroll-search.js"></script>
 
     <script src="assets/js/expand-macro.js"></script>
-</body>
-</html>
+
+
+</body></html>
