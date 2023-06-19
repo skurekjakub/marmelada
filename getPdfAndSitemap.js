@@ -42,8 +42,11 @@ function EnumeratePages(dirpath)
             .filter((file) => path.parse(file).name.toLowerCase() !== 'index')
             .filter((file) => path.parse(file).name.toLowerCase() !== 'search')
             // k11 hidden page
-            .filter((file) => path.parse(file).name.toLowerCase() !== 'customizing-evaluation-of-buy-x-get-y-discounts');
-  
+            if (dirpath.contains('k11'))
+            {
+            files.filter((file) => path.parse(file).name.toLowerCase() !== 'customizing-evaluation-of-buy-x-get-y-discounts')
+            .filter((file) => path.parse(file).name.toLowerCase() !== 'customizing-application-of-buy-x-get-y-discounts');
+           }
 
     var pageData = files.map(file => {
       console.log('Processing...' + file);
@@ -70,6 +73,7 @@ function generateSitemap(baseUrl, spaceKey, pageData, dirpath)
     });
 
     fileStream.write('</urlset>');
+    fileStream.close();
 
     console.log('Sitemap generated.');
 }
@@ -82,56 +86,56 @@ var data = EnumeratePages('docs/k11/');
 generateSitemap(SERVER, 'k11', data, 'docs/k11/');
 
 
-// console.log(`Length... ===============   ` + data.length);
+console.log(`Length... ===============   ` + data.length);
 
-// async.mapLimit(data, 1, (element, callback) => {
+async.mapLimit(data, 1, (element, callback) => {
                           
-//                           if (fs.existsSync('docs/pdf/k11/' + element.pageName.toLowerCase() + '.pdf'))
-//                           {
-//                             console.log(`${element.pageName} already exists, skipping.`)
-//                             return callback(null,null);
-//                           }    
+                          if (fs.existsSync('docs/pdf/k11/' + element.pageName.toLowerCase() + '.pdf'))
+                          {
+                            console.log(`${element.pageName} already exists, skipping.`)
+                            return callback(null,null);
+                          }    
                           
 
-//                             http.get(element.exportUrl,
-//                               (res) => {
-//                                     if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+                            http.get(element.exportUrl,
+                              (res) => {
+                                    if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
                                       
-//                                       const location = res.headers.location;
-//                                         console.log(`Redirected to: ${location}`);
+                                      const location = res.headers.location;
+                                        console.log(`Redirected to: ${location}`);
                                         
-//                                         console.log(`Downloading ${element.pageName} `)
-//                                         http.get(SERVER + location, (res) => {
-//                                           const fileStream = fs.createWriteStream('docs/pdf/k11/' + element.pageName.toLowerCase() + '.pdf');
-//                                           res.pipe(fileStream);
+                                        console.log(`Downloading ${element.pageName} `)
+                                        http.get(SERVER + location, (res) => {
+                                          const fileStream = fs.createWriteStream('docs/pdf/k11/' + element.pageName.toLowerCase() + '.pdf');
+                                          res.pipe(fileStream);
                                         
-//                                           fileStream.on('finish', () => {
-//                                             console.log('PDF downloaded successfully.');
-//                                           });
+                                          fileStream.on('finish', () => {
+                                            console.log('PDF downloaded successfully.');
+                                          });
 
-//                                           delay(DELAY).then(() => {
+                                          delay(DELAY).then(() => {
                                             
-//                                             return callback(null, null);
-//                                           });
+                                            return callback(null, null);
+                                          });
                                       
-//                                         }).on('error', (err) => {
-//                                           console.error(`Error: ${err.message}`);
-//                                         });
+                                        }).on('error', (err) => {
+                                          console.error(`Error: ${err.message}`);
+                                        });
                                       
-//                                     } else {
-//                                       handleResponse(res, element.pageName, 'docs/pdf/k11/');
-//                                     }
-//                                     }).on('error', (err) => {
-//                                           console.log(err);
-//                                           return callback(err, null);
-//                                     }).on('end', () => {
-//                                           callback(null, null);
-//                                      });
-//                             }, 
-//                 (err, results) => {
-//                 if (err) {
-//                   console.error(err);
-//                 } else {
-//                   console.log(results);
-//                 }
-//               });
+                                    } else {
+                                      handleResponse(res, element.pageName, 'docs/pdf/k11/');
+                                    }
+                                    }).on('error', (err) => {
+                                          console.log(err);
+                                          return callback(err, null);
+                                    }).on('end', () => {
+                                          callback(null, null);
+                                     });
+                            }, 
+                (err, results) => {
+                if (err) {
+                  console.error(err);
+                } else {
+                  console.log(results);
+                }
+              });

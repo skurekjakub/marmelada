@@ -51,7 +51,7 @@
             (window.location.port ? ':' + window.location.port : '');
         var pageLocation = locationOrigin + window.location.pathname;
         var url = pageLocation.substr(0, pageLocation.lastIndexOf('/') + 1);
-        var searchPageUrl = url + 'search.$context.getLinkNamingStrategy().getExtension()?query=' + query;
+        var searchPageUrl = url + 'search?query=' + query;
         window.location.assign(searchPageUrl);
     };
 
@@ -64,7 +64,7 @@
     var displaySearchResultsPage = function(searchResults, query) {
         var container = jQuery('#html-search-results');
 
-        container.find('.ht-content-header h1').html(SCROLL_WEBHELP.i18n('searchResultsTitle', searchResults.length, { query: escapeHtml(query) }));
+        //container.find('.ht-content-header h1').html('searchResultsTitle', searchResults.length, { query: escapeHtml(query) });
 
         var list = jQuery("#search-results");
         list.empty();
@@ -72,7 +72,7 @@
         var baseUrl = window.location.href.substr(0, window.location.href.lastIndexOf('/') + 1);
 
         jQuery.each(searchResults, function(index, searchResult) {
-            var displayUrl = baseUrl + searchResult.link;
+            var displayUrl = baseUrl + searchResult.link.toLowerCase().replace('.html','');
             list.append('<section class="search-result">'
                 +'<header><h2><a href="' + encodeURI(searchResult.link) + '">' + SCROLL_WEBHELP.escapeHtml(searchResult.title) + '</a></h2></header>'
                 +'<div class="search-result-content"><p class="search-result-link">' + SCROLL_WEBHELP.escapeHtml(displayUrl) + '</p></div>'

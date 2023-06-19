@@ -382,7 +382,7 @@ var buildDocLink = function buildDocLink(version, docType, useDocTypeInLinkText,
 		// Removes the space key from the link for the version (uses the base URL without a key in the path)
 		if (spaceKey === CONFIG.DOC_ROOT_URL_SPACE_KEY) {
 			spaceKey = "";
-			spaceKeySlash = "";
+			spaceKeySlash = "/";
 		}
 	// Pattern for older spaces with a version number suffix in the space key	
     } else {
@@ -880,7 +880,7 @@ var kenticoThemeOpenSearchResultsPage = function () {
     searchQuery = encodeURIComponent(searchQuery);
 
     // Sets the max number of search results per page to 10
-    searchQuery = searchQuery + '&max=10';
+    searchQuery = searchQuery;
 
     // Determines whether label filtering based on the current dev model is allowed
     // True by default, false if the 'Show results for all dev models' checkbox exists (on the search results page) and is selected
@@ -1211,8 +1211,8 @@ var copyIconMouseOut = function copyIconMouseOut(e) {
 
 var initFooterLinks = function()
 {
-   $(".js-qa-link").attr('href', THEME_CONFIG.KENTICO_QA_LINK);
-   $(".js-support-link").attr('href', THEME_CONFIG.KENTICO_QA_LINK);
+   $("a.js-qa-link").attr('href', THEME_CONFIG.KENTICO_QA_LINK);
+   $("a.js-support-link").attr('href', THEME_CONFIG.KENTICO_SUPPORT_LINK);
 }
 
 $(document).ready(initFooterLinks);

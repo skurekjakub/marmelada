@@ -284,7 +284,7 @@
             // $(document).unbind('keydown');
 
             $.each(searchResults, function (index, searchResult) {
-                resultsList.append('<li n="' + index + '" class="search-result"><a href="' + searchResult.link + '">' + SCROLL_WEBHELP.escapeHtml(searchResult.title) + '</a></li>');
+                resultsList.append('<li n="' + index + '" class="search-result"><a href="' + searchResult.link.toLowerCase().replace('.html','') + '">' + SCROLL_WEBHELP.escapeHtml(searchResult.title) + '</a></li>');
             });
 
             // CUSTOM - Broken down into individual component elements, needed to securely display the query value

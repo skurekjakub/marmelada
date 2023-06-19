@@ -18,11 +18,16 @@ function fixExport(spaceKey)
 
     if(fs.existsSync(fullPath))
     {
+        // create logger
+        var logger = fs.createWriteStream(fullPath + 'logger.log');
+
         // Lowercase all HTML files
         fs.readdir(fullPath, (error, files) => {
             if (error) console.log(error)
             files.forEach( file => 
                 {
+                    logger.write(`Processing page ${file}`);
+
                     console.log(`Processing ... ${file}`);
                     const renamedFilePath = path.join(fullPath, file.toLowerCase());
                     // full lowercase the html filename
@@ -31,17 +36,18 @@ function fixExport(spaceKey)
                     const stats = fs.statSync(renamedFilePath)
                     if (!stats.isDirectory())
                     {
-                        removeInThisSectionPanel(renamedFilePath);
-                        fixTwoColumnPageLayout(renamedFilePath);
+                        //removeInThisSectionPanel(renamedFilePath, logger);
+                        //fixTwoColumnPageLayout(renamedFilePath, logger);
 
-                        generateHelpServiceRedirectHandler(renamedFilePath);
+                        generateHelpServiceRedirectHandler(renamedFilePath, logger);
                     }
                 })
             })
+        logger.close();
     }
 }
 
-function removeInThisSectionPanel(filePath)
+function removeInThisSectionPanel(filePath, logger)
 {
     console.log('Removing "In this section panels."');
 
@@ -51,12 +57,12 @@ function removeInThisSectionPanel(filePath)
     const $ = cheerio.load(html);
 
     // Removes panels titled "In this section"
-    $('.confbox.panel .title.panel-header:contains("In this section")').first().parent().remove();
+    $('.sp-panel header:contains("In this section")').first().parent().remove();
 
     fs.writeFileSync(filePath, $.html());
 }
 
-function fixTwoColumnPageLayout(filePath)
+function fixTwoColumnPageLayout(filePath, logger)
 {
     console.log('Fixing "On this page" and "Related pages" two-column layout.');
 
@@ -77,8 +83,8 @@ function fixTwoColumnPageLayout(filePath)
     const $ = cheerio.load(html);
 
     // Find the first occurrence of the HTML code to be wrapped
-    const onThisPage = $('.confbox.panel .title.panel-header:contains("On this page")').first().parent();
-    const relatedPages = $('.confbox.panel .title.panel-header:contains("Related pages")').first().parent();
+    const onThisPage = $('.sp-panel header:contains("On this page")').first().parent();
+    const relatedPages = $('.sp-panel header:contains("Related pages")').first().parent();
     if (onThisPage.length)
     {
         $(SECTIONMARKUP).insertBefore(onThisPage);
@@ -191,7 +197,7 @@ function getTinyIdentifier(pageId)
       .replace(/=/g,""))
 }
 
-function generateHelpServiceRedirectHandler(filePath)
+function generateHelpServiceRedirectHandler(filePath, logger)
 {
     const html = fs.readFileSync(filePath, 'utf8');
 
@@ -202,8 +208,9 @@ function generateHelpServiceRedirectHandler(filePath)
     const tinyId = getTinyIdentifier(pageId);
 
     console.log(`PageId ${pageId} -> tinyId ${tinyId}`);  
-    const pagePath = filePath.replace(`${__dirname}\\docs`, "");
-
+    const placeholder = filePath.replace(`${__dirname}\\docs`, "");
+    var pagePath = placeholder.substring(0, placeholder.length-5);
+    logger.write(`PageID = ${pageId}; TinyID = ${tinyId}`);
     const redirectHandler = `<!DOCTYPE html>
     <html lang="en-US">
       <meta charset="utf-8">

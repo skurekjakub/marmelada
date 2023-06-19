@@ -17,6 +17,9 @@
             if ($(this).attr('data-destpageid') === pageId) {
                 $(this).addClass('current');
             }
+            if ($(this).attr('href') === 'sitemap.xml') {
+                $(this).attr('style','display:none;');
+            }
         });
 
         $('a.ht-nav-page-link.current').parents('li').addClass('active open').removeClass('collapsed');
