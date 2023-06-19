@@ -1081,6 +1081,91 @@ var hideFrontLayer = function hideFrontLayer() {
 
 // ================================== Cookie Banner ==================================
 
+var getCookie = function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
+var initCookieLevel = function (){
+    var cookieLevel = 0;
+    if (getCookie('xperience.cookieconsentlevel') !== "")
+    {
+        cookieLevel = $.cookie('xperience.cookieconsentlevel');    
+        
+        if (cookieLevel = 1)
+        {
+            window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'denied',
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'security_storage': 'denied'
+            }
+        });
+        }
+        else if (cookieLevel = 2)
+        {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'consent.default',
+                'consent': {
+                'functionality_storage': 'granted',
+                'personalization_storage': 'granted',
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'security_storage': 'denied'
+                }
+            });
+        }
+        else if (cookieLevel = 3)
+        {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'consent.default',
+                'consent': {
+                'functionality_storage': 'granted',
+                'personalization_storage': 'granted',
+                'analytics_storage': 'granted',
+                'ad_storage': 'denied',
+                'security_storage': 'denied'
+                }
+            });
+        }
+        else if (cookieLevel = 4)
+        {
+            window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'consent.default',
+            'consent': {
+            'functionality_storage': 'granted',
+            'personalization_storage': 'granted',
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'security_storage': 'granted'
+            }
+        });     
+        }
+    }
+};
+
+$(document).ready(initCookieLevel);
+
+
 var createCookie = function createCookie(name, value, days, domain) {
     var domain = "; domain=" + domain;
     var expires;
@@ -1213,6 +1298,35 @@ var initFooterLinks = function()
 {
    $("a.js-qa-link").attr('href', THEME_CONFIG.KENTICO_QA_LINK);
    $("a.js-support-link").attr('href', THEME_CONFIG.KENTICO_SUPPORT_LINK);
+
+
+    if ($('#main-content').text().trim().length == 0 )
+    {
+        $('#main-content').append('This section collects all pages related to the topic. Use the page tree to navigate the section.');
+        $('#main-content').append($('a.ht-nav-page-link.current').parent().children().last().clone())
+    }
 }
 
 $(document).ready(initFooterLinks);
+
+
+// downcase heading elements
+var fixHeadingsUpper = function fixHeadingsUpper (){
+    if($('#main-content h1').length !== 0)
+    {
+        $('#main-content h1').each(function (index) { $(this).replaceWith(`<h2 id=${this.id} class=${this.className}>` +  $(this).html() + '</h2>') })
+    }
+};
+
+// upcase heading elements
+var fixHeadingsLower = function fixHeadingsLower (){
+    if($('#main-content h2').length === 0 && $('#main-content h3').length !== 0)
+    {
+        $('#main-content h3').each(function (index) { $(this).replaceWith(`<h2 id=${this.id} class=${this.className}>` +  $(this).html() + '</h2>') })
+    }
+};
+
+window.addEventListener("DOMContentLoaded", (event) => {
+    fixHeadingsUpper();
+    fixHeadingsLower();
+  });

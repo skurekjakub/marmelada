@@ -74,7 +74,7 @@
         jQuery.each(searchResults, function(index, searchResult) {
             var displayUrl = baseUrl + searchResult.link.toLowerCase().replace('.html','');
             list.append('<section class="search-result">'
-                +'<header><h2><a href="' + encodeURI(searchResult.link) + '">' + SCROLL_WEBHELP.escapeHtml(searchResult.title) + '</a></h2></header>'
+                +'<header><h2><a href="' + encodeURI(searchResult.link.substr(0, searchResult.link.length-5)).toLowerCase() + '">' + SCROLL_WEBHELP.escapeHtml(searchResult.title) + '</a></h2></header>'
                 +'<div class="search-result-content"><p class="search-result-link">' + SCROLL_WEBHELP.escapeHtml(displayUrl) + '</p></div>'
                 +'<hr>'
                 +'</section>');
