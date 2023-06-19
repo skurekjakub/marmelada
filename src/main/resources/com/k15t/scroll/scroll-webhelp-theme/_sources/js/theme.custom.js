@@ -1167,6 +1167,7 @@ $(document).ready(initCookieLevel);
 
 
 var createCookie = function createCookie(name, value, days, domain) {
+    console.log(`creating cookie ${name} ${value} ${days} ${domain}`);
     var domain = "; domain=" + domain;
     var expires;
 
@@ -1187,16 +1188,16 @@ var eraseCookie = function eraseCookie(name) {
 
 // Sets the shared cookie and hides the cookie banner
 var consentWithCookieUsage = function consentWithCookieUsage() {
-    $("#cookie-banner").addClass("hidden");
+    $("#cookie-banner").attr("style", 'display:none;');
     // Use domain ".xperience.io" to share the cookie with xperience.io and all subdomains
-    createCookie("xperience.cookielevelselection", true, 365, ".xperience.io");
+    createCookie("xperience.cookielevelselection", true, 365, window.location.host);
 };
 
 
 var hideCookieConsentBanner = function hideCookieConsentBanner() {
     var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)xperience.cookielevelselection\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     if (cookieValue || !navigator.cookieEnabled) {
-        $("#cookie-banner").addClass("hidden");
+        $("#cookie-banner").attr("style", 'display:none;');
     }
 };
 
@@ -1216,7 +1217,7 @@ var setCookieLevel = function setCookieLevel(level) {
 
     consentWithCookieUsage();
     // Use domain ".xperience.io" to share the cookie with xperience.io and all subdomains
-    createCookie("xperience.cookieconsentlevel", level, 365, ".xperience.io");
+    createCookie("xperience.cookieconsentlevel", level, 365, window.location.host);
 
     // Send 'consent.update'
     if (level === 1) {
@@ -1244,7 +1245,6 @@ var setCookieLevel = function setCookieLevel(level) {
             }
         });
     }
-
 };
 
 

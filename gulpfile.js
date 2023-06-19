@@ -36,14 +36,13 @@ function fixExport(spaceKey)
                     const stats = fs.statSync(renamedFilePath)
                     if (!stats.isDirectory())
                     {
-                        //removeInThisSectionPanel(renamedFilePath, logger);
-                        //fixTwoColumnPageLayout(renamedFilePath, logger);
+                        removeInThisSectionPanel(renamedFilePath, logger);
+                        fixTwoColumnPageLayout(renamedFilePath, logger);
 
                         generateHelpServiceRedirectHandler(renamedFilePath, logger);
                     }
                 })
             })
-        logger.close();
     }
 }
 
