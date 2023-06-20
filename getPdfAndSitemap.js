@@ -82,7 +82,7 @@ async function delay(ms) {
   await new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const SPACEKEY = 'api11';
+const SPACEKEY = 'k11';
 
 var data = EnumeratePages(`docs/${SPACEKEY}/`);
 generateSitemap(SERVER, SPACEKEY, data, `docs/${SPACEKEY}/`);
