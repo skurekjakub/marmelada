@@ -1,0 +1,1001 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sites - API Examples Kentico 11</title>
+
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+    
+<meta name="description" content="Kentico Xperience Documentation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+<meta name="confluence-space-key" content="API11">
+<meta name="confluence-page-title" content="API Examples Kentico 11">
+<meta name="confluence-page-tiny-suffix" content="">
+<meta name="confluence-page-labels" content="">
+
+<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+
+<link rel="stylesheet" href="assets/css/theme.prismhighlighter.css">
+<link rel="stylesheet" href="assets/css/theme.lightbox.css">
+<link rel="stylesheet" href="assets/css/theme.snackbar.css">
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body incorrectpageid="69992450" pageid="70451222" id="top" data-pagetitle="Sites">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+   <div class="container">
+        <div class="ht-headerbar-row">
+            <div class="ht-headerbar-left">
+                <button class="menu-toggle button button--icon-only js-menu-toggle" type="button" title="Open menu">
+                    <span class="menu-toggle-icon menu-toggle-icon--default icon-menu"></span>
+                    <span class="menu-toggle-icon menu-toggle-icon--active icon-modal-close"></span>
+                    <span class="menu-toggle-label menu-toggle-label--default sr-only">Open menu</span>
+                    <span class="menu-toggle-label menu-toggle-label--active sr-only">Hide menu</span>
+                </button>
+                <a href="../api11" class="xperience-logo">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Xperience Docs" class="xperience-logo__image">
+                </a>
+            </div>
+            <div class="ht-headerbar-center">
+                <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>            </div>  
+            <div class="ht-headerbar-right">
+            
+                                <div id="ht-search" class="header-search-box open show js-header-search-box">
+                                                                                <div class="ht-search-input header-search-wrapper">
+                        <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
+                            <div class="header-search-field">
+                                <span class="header-search-field__icon icon-magnifier"></span>
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
+                            </div>
+                            <div class="header-search-button-wrapper">
+                                <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
+                            </div>
+                        </form>
+    
+                        <div class="ht-search-dropdown ht-dropdown header-search-dropdown">
+                            <ul></ul>
+                        </div>
+                    </div>
+
+                    <button class="ht-search-close button button--icon-only js-header-search-close" type="button" title="Close search">
+                        <span class="icon-modal-close"></span>
+                        <span class="sr-only">Close search</span>
+                    </button>
+                </div>
+
+                <button class="ht-search-open button button--icon-only js-header-search-open" type="button" title="Open search">
+                    <span class="icon-magnifier"></span>
+                    <span class="sr-only">Open search</span>
+                </button>
+                
+                                <a id="sp-viewport-control-opener" href="#" style="display:none"></a>
+                            </div>
+        </div>
+    </div>
+        
+            
+                    
+                                
+                            </header>    	<div id="old-version-note" class="sidebar-left-padding">
+		<div class="container">
+			<p><strong>Is this really the version you are looking for?</strong> Kentico API11 documentation is no longer updated. Use the switch in the header to choose your Kentico Xperience version.</p>
+		</div>
+	</div></div>
+
+<div id="ht-wrap-container">
+
+               
+
+    <div class="container">
+        <div class="ht-layout">
+            <div class="ht-layout-sidebar">
+                
+<aside id="ht-sidebar">
+    <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            
+<nav class="ht-pages-nav">
+    <ul class="ht-pages-nav-top">
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451229" href="content-management">Content management</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451230" href="attachments">Attachments</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451231" href="blogs">Blogs</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451232" href="custom-table-data">Custom table data</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451233" href="form-data">Form data</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451234" href="media-libraries">Media libraries</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451235" href="page-relationships">Page relationships</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451236" href="pages">Pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451237" href="page-security">Page security</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451238" href="page-workflow-and-versioning">Page workflow and versioning</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451239" href="polls">Polls</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451240" href="sharepoint">SharePoint</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451241" href="tags">Tags</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451267" href="on-line-marketing">On-line marketing</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451268" href="accounts">Accounts</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451269" href="activities">Activities</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451270" href="contact-groups">Contact groups</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451271" href="contacts">Contacts</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451272" href="email-marketing">Email marketing</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451273" href="marketing-automation">Marketing automation</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451254" href="e-commerce">E-commerce</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451255" href="currencies-and-exchange-rates">Currencies and exchange rates</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451256" href="customers">Customers</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451257" href="departments">Departments</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451258" href="discounts">Discounts</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="72975832" href="gift-cards">Gift cards</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451259" href="orders">Orders</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451260" href="payment-methods">Payment methods</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451261" href="product-options-and-variants">Product options and variants</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451262" href="product-related-objects">Product-related objects</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451263" href="products">Products</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451264" href="shipping-options">Shipping options</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451265" href="shopping-carts">Shopping carts</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451266" href="tax-classes">Tax classes</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451274" href="social-and-community">Social and Community</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451275" href="abuse-report">Abuse report</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451276" href="avatars">Avatars</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451277" href="badges">Badges</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451278" href="bad-words">Bad words</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451279" href="events">Events</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451280" href="facebook">Facebook</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451281" href="forums">Forums</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451282" href="friends">Friends</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451283" href="groups">Groups</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451284" href="message-boards">Message boards</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451285" href="messages">Messages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451286" href="twitter">Twitter</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451242" href="development">Development</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451243" href="css-stylesheets">CSS stylesheets</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451244" href="form-controls">Form controls</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451245" href="modules">Modules</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451246" href="module-settings">Module settings</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451247" href="notifications">Notifications</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451248" href="object-versioning-and-recycle-bin">Object versioning and recycle bin</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451249" href="page-layouts">Page layouts</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451250" href="page-templates">Page templates</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451251" href="web-parts">Web parts</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451252" href="web-templates">Web templates</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451253" href="widgets">Widgets</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451210" href="configuration">Configuration</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451211" href="banned-ips">Banned IPs</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451212" href="categories">Categories</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76851531" href="consents">Consents</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451213" href="countries">Countries</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="98239491" href="email-queue">Email queue</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451214" href="event-log">Event log</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451215" href="import-and-export">Import and export</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451216" href="localization">Localization</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451217" href="membership">Membership</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451218" href="reporting">Reporting</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451219" href="roles">Roles</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451220" href="scheduled-tasks">Scheduled tasks</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451221" href="settings">Settings</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451222" href="sites">Sites</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451223" href="smart-search">Smart search</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451224" href="staging">Staging</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451225" href="time-zones">Time zones</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451226" href="users">Users</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451227" href="web-farms">Web farms</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="70451228" href="workflows">Workflows</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76842896" href="sitemap.xml">sitemap.xml</a>
+    </li>
+            </ul>
+</nav>        </div>
+    </div>
+</aside>            </div>
+            <div class="ht-layout-main">
+            <article id="ht-content" class="ht-content">
+                <header class="ht-content-header">
+                    <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="api-examples-kentico-11.html">API Examples Kentico 11</a></li>
+                                                                                     <li><a href="configuration.html">Configuration</a></li>
+                                                            </ul>
+</div>                    <h1 id="src-70451222"> <span>Sites</span></h1>
+                    <div class="page-metadata">
+    <div class="page-metadata-modification-info">
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
+        <span>Save as PDF</span>
+        <span class="page-metadata-export-icon icon-arrow-down-line"></span>
+      </a>
+      <span class="page-action-separator">|</span>
+      <a id="get-page-link" class="page-metadata-copy" href="#" onclick="openPageLink(69992450)">
+        <span>Copy page link</span>
+        <span class="page-metadata-copy-icon icon-chain"></span>
+      </a>
+      </div>
+
+  <div id="page-link-panel">
+    <div id="page-link-panel-inner">
+      	
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
+    	<form>
+       		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
+          	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
+		</form>
+    	</div>
+  </div>
+</div>
+                </header>
+                <div id="content" class="page">
+                    <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<span id="src-70451222_Sites-toc"></span><p>List of examples:</p>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451222_sites-sites">Sites</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451222_sites-creatinganewsite">Creating a new site</a></p>
+</li><li class=" "><p><a href="#src-70451222_sites-updatingasite">Updating a site</a></p>
+</li><li class=" "><p><a href="#src-70451222_sites-updatingmultiplesites">Updating multiple sites</a></p>
+</li><li class=" "><p><a href="#src-70451222_sites-assigningaculturetoasite">Assigning a culture to a site</a></p>
+</li><li class=" "><p><a href="#src-70451222_sites-removingaculturefromasite">Removing a culture from a site</a></p>
+</li><li class=" "><p><a href="#src-70451222_sites-addingadomainaliastoasite">Adding a domain alias to a site</a></p>
+</li><li class=" "><p><a href="#src-70451222_safe-id-u2l0zxmtrgvszxrpbmdhc2l0zsdzzg9tywluywxpyxm">Deleting a site's domain alias</a></p>
+</li><li class=" "><p><a href="#src-70451222_sites-deletingasite">Deleting a site</a></p>
+</li></ul></li><li class=" "><p><a href="#src-70451222_sites-siteactions">Site actions</a></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-70451222_sites-startingasite">Starting a site</a></p>
+</li><li class=" "><p><a href="#src-70451222_sites-stoppingasite">Stopping a site</a></p>
+</li></ul></li></ul><p></p>
+    <div class="section section-1" id="src-70451222_Sites-Sites">
+        <h1 class="heading "><span>Sites</span></h1>
+    <div class="section section-2" id="src-70451222_Sites-Creatinganewsite">
+        <h2 class="heading "><span>Creating a new site</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Creates a new site object</code></div>
+<div class="line"><code class="plain">SiteInfo newSite = </code><code class="keyword">new</code><code class="plain"> SiteInfo();</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="comments">// Sets the site properties</code></div>
+<div class="line"><code class="plain">newSite.DisplayName = </code><code class="string">"New site"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">newSite.SiteName = </code><code class="string">"NewSite"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">newSite.Status = SiteStatusEnum.Stopped;</code></div>
+<div class="line"><code class="plain">newSite.DomainName = </code><code class="string">"127.0.0.1"</code><code class="plain">;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="comments">// Saves the site to the database</code></div>
+<div class="line"><code class="plain">SiteInfoProvider.SetSiteInfo(newSite);</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    <div class="section section-2" id="src-70451222_Sites-Updatingasite">
+        <h2 class="heading "><span>Updating a site</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets the site</code></div>
+<div class="line"><code class="plain">SiteInfo updateSite = SiteInfoProvider.GetSiteInfo(</code><code class="string">"NewSite"</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (updateSite != </code><code class="keyword">null</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Updates the site properties</code></div>
+<div class="line"><code class="plain">	updateSite.DisplayName = updateSite.DisplayName.ToLower();</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">	</code><code class="comments">// Saves the modified site to the database</code></div>
+<div class="line"><code class="plain">	SiteInfoProvider.SetSiteInfo(updateSite);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    <div class="section section-2" id="src-70451222_Sites-Updatingmultiplesites">
+        <h2 class="heading "><span>Updating multiple sites</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets all sites whose code name starts with 'New'</code></div>
+<div class="line"><code class="keyword">var</code><code class="plain"> sites = SiteInfoProvider.GetSites().WhereStartsWith(</code><code class="string">"SiteName"</code><code class="plain">, </code><code class="string">"New"</code><code class="plain">);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="comments">// Loops through individual sites</code></div>
+<div class="line"><code class="keyword">foreach</code><code class="plain"> (SiteInfo site </code><code class="keyword">in</code><code class="plain"> sites)</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Updates the site properties</code></div>
+<div class="line"><code class="plain">	site.DisplayName = site.DisplayName.ToUpper();</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">	</code><code class="comments">// Saves the modified site to the database</code></div>
+<div class="line"><code class="plain">	SiteInfoProvider.SetSiteInfo(site);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    <div class="section section-2" id="src-70451222_Sites-Assigningaculturetoasite">
+        <h2 class="heading "><span>Assigning a culture to a site</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets the site and culture objects</code></div>
+<div class="line"><code class="plain">SiteInfo site = SiteInfoProvider.GetSiteInfo(</code><code class="string">"NewSite"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">CultureInfo culture = CultureInfoProvider.GetCultureInfo(</code><code class="string">"ar-sa"</code><code class="plain">);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">if</code><code class="plain"> ((site != </code><code class="keyword">null</code><code class="plain">) &amp;&amp; (culture != </code><code class="keyword">null</code><code class="plain">))</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Assigns the culture to the site</code></div>
+<div class="line"><code class="plain">	CultureSiteInfoProvider.AddCultureToSite(culture.CultureID, site.SiteID);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    <div class="section section-2" id="src-70451222_Sites-Removingaculturefromasite">
+        <h2 class="heading "><span>Removing a culture from a site</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets the site and culture objects</code></div>
+<div class="line"><code class="plain">SiteInfo site = SiteInfoProvider.GetSiteInfo(</code><code class="string">"NewSite"</code><code class="plain">);</code></div>
+<div class="line"><code class="plain">CultureInfo culture = CultureInfoProvider.GetCultureInfo(</code><code class="string">"ar-sa"</code><code class="plain">);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">if</code><code class="plain"> ((site != </code><code class="keyword">null</code><code class="plain">) &amp;&amp; (culture != </code><code class="keyword">null</code><code class="plain">))</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Removes the culture from the site</code></div>
+<div class="line"><code class="plain">	CultureSiteInfoProvider.RemoveCultureFromSite(culture.CultureID, site.SiteID);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    <div class="section section-2" id="src-70451222_Sites-Addingadomainaliastoasite">
+        <h2 class="heading "><span>Adding a domain alias to a site</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets the site object</code></div>
+<div class="line"><code class="plain">SiteInfo site = SiteInfoProvider.GetSiteInfo(</code><code class="string">"NewSite"</code><code class="plain">);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (site != </code><code class="keyword">null</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Creates a new site domain alias object</code></div>
+<div class="line"><code class="plain">	SiteDomainAliasInfo newAlias = </code><code class="keyword">new</code><code class="plain"> SiteDomainAliasInfo();					</code></div>
+<div class="line"><code class="plain">	newAlias.SiteDomainAliasName = </code><code class="string">"127.0.0.1"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">	</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Assigns the domain alias to the site</code></div>
+<div class="line"><code class="plain">	newAlias.SiteID = site.SiteID;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">	</code><code class="comments">// Saves the site domain alias to the database</code></div>
+<div class="line"><code class="plain">	SiteDomainAliasInfoProvider.SetSiteDomainAliasInfo(newAlias);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    <div class="section section-2" id="src-70451222_safe-id-U2l0ZXMtRGVsZXRpbmdhc2l0ZSdzZG9tYWluYWxpYXM">
+        <h2 class="heading "><span>Deleting a site's domain alias</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets the site object</code></div>
+<div class="line"><code class="plain">SiteInfo site = SiteInfoProvider.GetSiteInfo(</code><code class="string">"NewSite"</code><code class="plain">);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (site != </code><code class="keyword">null</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Gets the specified domain alias for the site</code></div>
+<div class="line"><code class="plain">	SiteDomainAliasInfo deleteAlias = SiteDomainAliasInfoProvider.GetSiteDomainAliasInfo(</code><code class="string">"127.0.0.1"</code><code class="plain">, site.SiteID);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">	</code><code class="comments">// Deletes the site domain alias</code></div>
+<div class="line"><code class="plain">	SiteDomainAliasInfoProvider.DeleteSiteDomainAliasInfo(deleteAlias);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    <div class="section section-2" id="src-70451222_Sites-Deletingasite">
+        <h2 class="heading "><span>Deleting a site</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets the site</code></div>
+<div class="line"><code class="plain">SiteInfo deleteSite = SiteInfoProvider.GetSiteInfo(</code><code class="string">"NewSite"</code><code class="plain">);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (deleteSite != </code><code class="keyword">null</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Deletes the site</code></div>
+<div class="line"><code class="plain">	SiteInfoProvider.DeleteSiteInfo(deleteSite);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-70451222_Sites-Siteactions">
+        <h1 class="heading "><span>Site actions</span></h1>
+    <div class="section section-2" id="src-70451222_Sites-Startingasite">
+        <h2 class="heading "><span>Starting a site</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets the site</code></div>
+<div class="line"><code class="plain">SiteInfo site = SiteInfoProvider.GetSiteInfo(</code><code class="string">"NewSite"</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (site != </code><code class="keyword">null</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Starts the site</code></div>
+<div class="line"><code class="plain">	SiteInfoProvider.RunSite(site.SiteName);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    <div class="section section-2" id="src-70451222_Sites-Stoppingasite">
+        <h2 class="heading "><span>Stopping a site</span></h2>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="comments">// Gets the site</code></div>
+<div class="line"><code class="plain">SiteInfo site = SiteInfoProvider.GetSiteInfo(</code><code class="string">"NewSite"</code><code class="plain">);</code></div>
+<div class="line"><code class="keyword">if</code><code class="plain"> (site != </code><code class="keyword">null</code><code class="plain">)</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">	</code><code class="comments">// Stops the site</code></div>
+<div class="line"><code class="plain">	SiteInfoProvider.StopSite(site.SiteName);</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+<p><a href="#src-70451222_sites-toc">&gt; Back to list of examples</a></p>
+    </div>
+    </div>
+                    </div>
+                </div>
+                    <footer class="ht-content-footer">                
+                        <div id="feedback-link-container">
+                            <a href="#top" id="back-to-top">
+                                <span class="icon-chevron-up"></span>
+                                <span class="sr-only">Go back to top</span>
+                            </a>
+                        </div>   
+                    </footer>
+                </article></div>
+            
+        </div>
+    </div>
+
+               
+            
+    <footer id="ht-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <ul class="footer-menu">
+          <li>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
+          </li>
+          <li>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+          </li>    
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+  <div id="cookie-banner">
+    <div class="container">
+      <div class="inner">
+        <div class="text">
+          We use small cookies to improve your browsing experience and to analyze traffic. To process the analytical cookies, we need your consent.
+          <br>You may revoke your consent on the <a href="https://xperience.io/policies/cookies-policy" target="_blank">Cookies Policy</a> 
+          page or in your browser at any time.
+        </div>
+        <button type="submit" value="4" name="CookieLevelSelectedAll" class="button button--primary" onclick="setCookieLevel('analytical')">
+          ACCEPT ALL
+        </button>
+        <button type="submit" value="1" name="CookieLevelSelectedNecessary" class="button button--tertiary" onclick="setCookieLevel('necessary')">
+          Use only functional
+        </button>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/googleTagManager.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.prism.js"></script>
+<script type="text/javascript" src="assets/js/clipboard.min.js"></script>
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.config.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.js"></script>
+<script type="text/javascript" src="assets/js/snackbar.js"></script>
+
+<script type="text/javascript" async="">
+    // Populates the documentation version switcher header
+    // loadVersionLinkData is located in theme.custom.js
+    $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
+</script><script type="text/javascript" src="assets/js/theme.lightbox.js"></script>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>

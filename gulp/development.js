@@ -34,7 +34,9 @@ function build_scripts()
         .pipe(sourcemaps.write())		
         .pipe(gulp.dest(WEBHELP_ROOT + '/scroll-html/assets/js'))
         .pipe(gulp.dest('docs/du/assets/js'))
-        .pipe(gulp.dest('docs/k11/assets/js'));
+        .pipe(gulp.dest('docs/k11tutorial/assets/js'))
+        .pipe(gulp.dest('docs/k11/assets/js'))
+        .pipe(gulp.dest('docs/api11/assets/js'));
 }
 
 function build_styles()
@@ -49,6 +51,8 @@ function build_styles()
         }))   
         .pipe(gulp.dest(WEBHELP_ROOT + '/scroll-html/assets/css'))
         .pipe(gulp.dest('docs/du/assets/css'))
+        .pipe(gulp.dest('docs/api11/assets/css'))
+        .pipe(gulp.dest('docs/k11tutorial/assets/css'))
         .pipe(gulp.dest('docs/k11/assets/css'));
 }
 

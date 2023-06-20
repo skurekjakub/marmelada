@@ -232,7 +232,6 @@ function generateHelpServiceRedirectHandler(filePath, logger)
 async function fixK11(cb)
 {
     fixExport("k11");
-    fixExport("k11api");
     return cb;
 }
 
@@ -240,6 +239,13 @@ async function fixK11Tutorial(cb)
 {
     
     fixExport("k11tutorial");
+    return cb;
+}
+
+async function fixAPI11(cb)
+{
+
+    fixExport("api11");
     return cb;
 }
 
@@ -306,5 +312,6 @@ exports.build_scripts = dev.build_scripts;
 
 exports.fixExportK11 = gulp.series(fixK11);
 exports.fixExportK11Tutorial = fixK11Tutorial;
+exports.fixExportAPI11 = fixAPI11;
 
 exports.watch = browsersyncWatch;

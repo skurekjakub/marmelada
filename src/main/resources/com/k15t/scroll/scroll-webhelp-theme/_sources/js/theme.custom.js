@@ -458,13 +458,59 @@ var loadDocTypeHeaderList = function loadDocTypeHeaderList(currentDocVersion, cu
 
     var docTypeLinks = "";
     availableDocTypes.forEach(function (item) {
-        docTypeLinks += buildDocLink(currentDocVersion, item, true, item == currentDocType);
+        docTypeLinks += buildDocLinkSpecial(currentDocVersion, item, true, item == currentDocType);
     });
 
     $('.js-menuDdlBtn-docType').html(currentDocType);
     $('.js-menuDdl-docType').html(docTypeLinks);
 };
 
+// Builds links to the documentation space root for a specified documentation type and version
+var buildDocLinkSpecial = function buildDocLinkSpecial(version, docType, useDocTypeInLinkText, isCurrent) {
+    var spaceKey;
+    var spaceKeySlash = "../";
+	
+	// Pattern for Xperience 13 or newer docs
+    if (CONFIG.OBSOLETE_SPACE_KEY_FORMAT_VERSIONS.indexOf(version) === -1) {
+		// The XP docs do not have a number prefix in their space keys
+		var versionPrefix = (version === "xp") ? "" : version;
+		
+        switch (docType) {
+            case "Tutorial":
+                spaceKey = versionPrefix + "tutorial";
+                break;
+            case "API Examples":
+                spaceKey = versionPrefix + "api";
+                break;
+            default:
+                spaceKey = version;
+        }		
+		// Removes the space key from the link for the version (uses the base URL without a key in the path)
+		if (spaceKey === CONFIG.DOC_ROOT_URL_SPACE_KEY) {
+			spaceKey = "";
+			spaceKeySlash = "../";
+		}
+	// Pattern for older spaces with a version number suffix in the space key	
+    } else {
+        switch (docType) {
+            case "Tutorial":
+                spaceKey = "k" + version + "tutorial";
+                break;
+            case "API Examples":
+                spaceKey = "api" + version;
+                break;
+            default:
+                spaceKey = "k" + version;
+        }
+    }
+    
+    var linkText = useDocTypeInLinkText ? docType : getVersionTextFromVersionId(version);
+    var linkTitle = ' title="' + (useDocTypeInLinkText ? docType : getVersionLinkTitle(version)) + '"';
+
+    var classAttribute = 'class="' + (isCurrent ? ' current' : '') + '"';
+
+    return '<li><a href="' + spaceKeySlash + spaceKey + '"' + classAttribute + linkTitle + '>' + linkText + '</a></li>';
+};
 
 // Adds the options to the documentation type and version drop-down lists
 var loadHeaderLists = function loadHeaderLists() {
@@ -1287,7 +1333,7 @@ var copyIconMouseOut = function copyIconMouseOut(e) {
 	var copyHeadingLinkIcon = '<span title="Copy link to heading" class="heading-link-icon icon-chain" onclick="copyHeadingLink(event)" onmouseout="copyIconMouseOut(event)"></span>';
 	
 	// Selector for h2 and h3 headings in standard Confluence content (no section, full-width section, and 2/3 section content)
-	var headingElements = '#main-content .sp-grid-60 h2, #main-content .sp-grid-100 h2, #main-content .sp-grid-60 h3, #main-content .sp-grid-100 h3';
+	var headingElements = '#main-content h2, #main-content .sp-grid-60 h3, #main-content h3';
 	
 	// Filters out headings in box macros and headings containing links
 	// Appends the "Copy heading link" icon to the heading content
