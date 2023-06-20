@@ -42,7 +42,7 @@ function EnumeratePages(dirpath)
             .filter((file) => path.parse(file).name.toLowerCase() !== 'index')
             .filter((file) => path.parse(file).name.toLowerCase() !== 'search')
             // k11 hidden page
-            if (dirpath.contains('k11'))
+            if (dirpath.includes('k11/'))
             {
             files.filter((file) => path.parse(file).name.toLowerCase() !== 'customizing-evaluation-of-buy-x-get-y-discounts')
             .filter((file) => path.parse(file).name.toLowerCase() !== 'customizing-application-of-buy-x-get-y-discounts');
@@ -82,15 +82,17 @@ async function delay(ms) {
   await new Promise(resolve => setTimeout(resolve, ms));
 }
 
-var data = EnumeratePages('docs/k11/');
-generateSitemap(SERVER, 'k11', data, 'docs/k11/');
+const SPACEKEY = 'k11tutorial';
+
+var data = EnumeratePages(`docs/${SPACEKEY}/`);
+generateSitemap(SERVER, SPACEKEY, data, `docs/${SPACEKEY}/`);
 
 
 console.log(`Length... ===============   ` + data.length);
 
 async.mapLimit(data, 1, (element, callback) => {
                           
-                          if (fs.existsSync('docs/pdf/k11/' + element.pageName.toLowerCase() + '.pdf'))
+                          if (fs.existsSync(`docs/pdf/${SPACEKEY}/` + element.pageName.toLowerCase() + '.pdf'))
                           {
                             console.log(`${element.pageName} already exists, skipping.`)
                             return callback(null,null);
@@ -106,7 +108,7 @@ async.mapLimit(data, 1, (element, callback) => {
                                         
                                         console.log(`Downloading ${element.pageName} `)
                                         http.get(SERVER + location, (res) => {
-                                          const fileStream = fs.createWriteStream('docs/pdf/k11/' + element.pageName.toLowerCase() + '.pdf');
+                                          const fileStream = fs.createWriteStream(`docs/pdf/${SPACEKEY}/` + element.pageName.toLowerCase() + '.pdf');
                                           res.pipe(fileStream);
                                         
                                           fileStream.on('finish', () => {
@@ -123,7 +125,7 @@ async.mapLimit(data, 1, (element, callback) => {
                                         });
                                       
                                     } else {
-                                      handleResponse(res, element.pageName, 'docs/pdf/k11/');
+                                      handleResponse(res, element.pageName, `docs/pdf/${SPACEKEY}/`);
                                     }
                                     }).on('error', (err) => {
                                           console.log(err);

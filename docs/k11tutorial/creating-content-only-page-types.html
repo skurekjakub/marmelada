@@ -1,0 +1,596 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating content only page types - Kentico 11 Tutorial</title>
+
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+    
+<meta name="description" content="Kentico Xperience Documentation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+<meta name="confluence-space-key" content="K11Tutorial">
+<meta name="confluence-page-title" content="Welcome to Kentico 11">
+<meta name="confluence-page-tiny-suffix" content="">
+<meta name="confluence-page-labels" content="">
+
+<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+
+<link rel="stylesheet" href="assets/css/theme.prismhighlighter.css">
+<link rel="stylesheet" href="assets/css/theme.lightbox.css">
+<link rel="stylesheet" href="assets/css/theme.snackbar.css">
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body incorrectpageid="76845685" pageid="76853195" id="top" data-pagetitle="Creating content only page types">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+   <div class="container">
+        <div class="ht-headerbar-row">
+            <div class="ht-headerbar-left">
+                <button class="menu-toggle button button--icon-only js-menu-toggle" type="button" title="Open menu">
+                    <span class="menu-toggle-icon menu-toggle-icon--default icon-menu"></span>
+                    <span class="menu-toggle-icon menu-toggle-icon--active icon-modal-close"></span>
+                    <span class="menu-toggle-label menu-toggle-label--default sr-only">Open menu</span>
+                    <span class="menu-toggle-label menu-toggle-label--active sr-only">Hide menu</span>
+                </button>
+                <a href="../k11tutorial" class="xperience-logo">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Xperience Docs" class="xperience-logo__image">
+                </a>
+            </div>
+            <div class="ht-headerbar-center">
+                <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>            </div>  
+            <div class="ht-headerbar-right">
+            
+                                <div id="ht-search" class="header-search-box open show js-header-search-box">
+                                                                                <div class="ht-search-input header-search-wrapper">
+                        <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
+                            <div class="header-search-field">
+                                <span class="header-search-field__icon icon-magnifier"></span>
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
+                            </div>
+                            <div class="header-search-button-wrapper">
+                                <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
+                            </div>
+                        </form>
+    
+                        <div class="ht-search-dropdown ht-dropdown header-search-dropdown">
+                            <ul></ul>
+                        </div>
+                    </div>
+
+                    <button class="ht-search-close button button--icon-only js-header-search-close" type="button" title="Close search">
+                        <span class="icon-modal-close"></span>
+                        <span class="sr-only">Close search</span>
+                    </button>
+                </div>
+
+                <button class="ht-search-open button button--icon-only js-header-search-open" type="button" title="Open search">
+                    <span class="icon-magnifier"></span>
+                    <span class="sr-only">Open search</span>
+                </button>
+                
+                                <a id="sp-viewport-control-opener" href="#" style="display:none"></a>
+                            </div>
+        </div>
+    </div>
+        
+            
+                    
+                                
+                            </header>    	<div id="old-version-note" class="sidebar-left-padding">
+		<div class="container">
+			<p><strong>Is this really the version you are looking for?</strong> Kentico K11Tutorial documentation is no longer updated. Use the switch in the header to choose your Kentico Xperience version.</p>
+		</div>
+	</div></div>
+
+<div id="ht-wrap-container">
+
+               
+
+    <div class="container">
+        <div class="ht-layout">
+            <div class="ht-layout-sidebar">
+                
+<aside id="ht-sidebar">
+    <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            
+<nav class="ht-pages-nav">
+    <ul class="ht-pages-nav-top">
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845692" href="getting-started-with-kentico">Getting started with Kentico</a>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845695" href="using-the-kentico-interface">Using the Kentico interface</a>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845754" href="site-development-overview">Site development overview</a>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852751" href="portal-engine-development">Portal Engine development</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845744" href="creating-a-new-website">Creating a new website</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845738" href="adding-styles-to-the-website">Adding styles to the website</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845736" href="working-with-the-pages-application">Working with the Pages application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845724" href="creating-the-master-page">Creating the master page</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845713" href="creating-website-pages">Creating website pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845701" href="creating-page-templates">Creating page templates</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845699" href="next-steps">Next steps</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852749" href="mvc-development">MVC development</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852807" href="creating-a-new-mvc-site">Creating a new MVC site</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852822" href="creating-a-new-mvc-application">Creating a new MVC application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853195" href="creating-content-only-page-types">Creating content only page types</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853448" href="adding-content-only-pages-to-the-mvc-site">Adding content only pages to the MVC site</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853537" href="working-with-generated-classes-in-the-mvc-application">Working with generated classes in the MVC application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853773" href="creating-the-website-layout">Creating the website layout</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76858030" href="displaying-the-content-of-the-pages">Displaying the content of the pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76854119" href="creating-the-navigation-menu">Creating the navigation menu</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76858033" href="next-steps-in-mvc-development">Next steps in MVC development</a>
+    </li>
+                                    </ul>
+    </li>
+            </ul>
+</nav>        </div>
+    </div>
+</aside>            </div>
+            <div class="ht-layout-main">
+            <article id="ht-content" class="ht-content">
+                <header class="ht-content-header">
+                    <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="welcome-to-kentico-11.html">Kentico 11 Tutorial</a></li>
+                                                                                     <li><a href="mvc-development.html">MVC development</a></li>
+                                                            </ul>
+</div>                    <h1 id="src-76853195"> <span>Creating content only page types</span></h1>
+                    <div class="page-metadata">
+    <div class="page-metadata-modification-info">
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
+        <span>Save as PDF</span>
+        <span class="page-metadata-export-icon icon-arrow-down-line"></span>
+      </a>
+      <span class="page-action-separator">|</span>
+      <a id="get-page-link" class="page-metadata-copy" href="#" onclick="openPageLink(76845685)">
+        <span>Copy page link</span>
+        <span class="page-metadata-copy-icon icon-chain"></span>
+      </a>
+      </div>
+
+  <div id="page-link-panel">
+    <div id="page-link-panel-inner">
+      	
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
+    	<form>
+       		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
+          	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
+		</form>
+    	</div>
+  </div>
+</div>
+                </header>
+                <div id="content" class="page">
+                    <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<div class="box-general box-info">
+  
+                <div class="box-icon icon-i-circle"> </div> 
+        <div class="box-content"> 
+            <p>This page is a part of a tutorial, which you should follow sequentially, from the beginning to the end. <a href="getting-started-with-kentico">Go to the first page: Getting started with Kentico</a>.</p>
+     
+    </div>
+</div>
+    <div class="section section-1" id="src-76853195_safe-id-Q3JlYXRpbmdjb250ZW50b25seXBhZ2V0eXBlcy1Zb3V3aWxsbGVhcm5hYm91dDo">
+        <h1 class="heading "><span>You will learn about:</span></h1>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-76853195_creatingcontentonlypagetypes-contentonlypagetypesinkenticomvc">Content only page types in Kentico MVC</a></p>
+</li><li class=" "><p><a href="#src-76853195_creatingcontentonlypagetypes-creatingthepagetypeforthehomepage">Creating the page type for the Home page</a></p>
+</li><li class=" "><p><a href="#src-76853195_creatingcontentonlypagetypes-creatingthepagetypeforthemedicalcenterpage">Creating the page type for the Medical center page</a></p>
+</li><li class=" "><p><a href="#src-76853195_creatingcontentonlypagetypes-creatingthepagetypesforthewebsitenavigation">Creating the page types for the website navigation</a></p>
+</li></ul><p></p>
+<p>In <a href="creating-a-new-mvc-site">step&nbsp;1</a> and <a href="creating-a-new-mvc-application">step 2</a> of this tutorial, you have set up your environment for MVC development. Let's start building your tutorial website.</p>
+<p>The website will have two pages and a simple navigation menu. The <i class=" ">Home</i> page will have a <i class=" ">header</i>, a <i class=" ">text heading,</i> and the <i class=" ">text</i> itself. The <i class=" ">Medical center </i>page will have a <i class=" ">header</i> text field and a content field that can be formatted using HTML. To allow content editors full control over the menu, you will create a menu item page type with a page selector and another page type representing a content tree section that will separate the menu items from the rest of the pages. The menu item page type will allow editors to hand-pick pages that will display in the website's navigation.</p>
+<p>In this tutorial step, you will create page types for the dynamic menu and the pages that will store the content of the MVC site.</p>
+    </div>
+    <div class="section section-1" id="src-76853195_Creatingcontentonlypagetypes-ContentonlypagetypesinKenticoMVC">
+        <h1 class="heading "><span>Content only page types in Kentico MVC</span></h1>
+<p><strong class=" ">Content only page types</strong> are the most suitable page type for the development of an MVC site. They use fields to define a reusable structure of the page, and content editors use these fields to edit content on their website. Each page type has a separate database table storing the values of the defined fields, and also uses two general tables to store additional page information.</p>
+<p><strong class=" ">Content only pages</strong> are not based on traditional page templates. Their content, e.g., text, HTML hyperlinks, images, etc., is stored and edited via the Kentico administration interface, but the presentation of the content is handled by corresponding MVC views. To help your website editors navigate around their content, you can create a hierarchical structure on the Kentico site. This structure will be just a visual representation, because content only pages do not define actual pages on the live site.</p>
+    <div class="section section-2" id="src-76853195_safe-id-Q3JlYXRpbmdjb250ZW50b25seXBhZ2V0eXBlcy1Ib3dpc3RoZWRhdGFzdG9yZWQ_">
+        <h2 class="heading "><span>How is the data stored?</span></h2>
+<p>For example, your <i class=" ">Home</i> page type for the tutorial website will have three fields. The first two <i class=" ">Text </i>fields will hold the page header and the heading, and the third field will be a <i class=" ">Text area</i>. Any page based on this new page type will have its content stored in the <i class=" ">MEDIO_Home</i> database table. Additional data, such as general page properties, is stored in the <i class=" ">CMS_Document</i> table, and data related to the page's position in the content tree hierarchy is stored in the <i class=" ">CMS_Tree </i>table.<br></p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-76853195_Creatingcontentonlypagetypes-CreatingthepagetypefortheHomepage">
+        <h1 class="heading "><span>Creating the page type for the Home page</span></h1>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Page types</strong> application, click the <strong class=" ">New page type</strong> button to start the wizard.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/create_new_mvc_page_type.png" alt="Create a new content only page type" width="600" height="240">
+</li><li class=" "><p>In <strong class=" ">Step 1 </strong>of the wizard, fill in the following values:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Page type display name</strong>: Home<strong class=" "> </strong>(MEDIO Clinic)</p>
+</li><li class=" "><p><strong class=" ">Namespace</strong>: MEDIO</p>
+</li><li class=" "><p><strong class=" ">Name</strong>: Home<i class=" "><br></i><br><i class=" "><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/new_mvc_page_type_wizard_1.png" width="600">
+<br></i></p>
+</li></ul></li><li class=" "><p>Click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 2</strong>, make sure the <strong class=" ">Content only page type</strong> option is selected, and leave the other values as they are.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/new_mvc_page_type_wizard_2.png" width="600" height="332">
+</li><li class=" "><p>Click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 3</strong>, click the <strong class=" ">New field</strong> button to create a field for the <i class=" ">page header</i>.</p>
+</li><li class=" "><p>Fill in the following values:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: HomeHeader</p>
+</li><li class=" "><p><strong class=" ">Data </strong><strong class=" ">type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 1000</p>
+</li><li class=" "><p><strong class=" ">Field </strong><strong class=" ">caption</strong>: Header</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text area<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/new_mvc_page_type_wizard_3_2.png" alt="Setting up new text field properties in a content only page type" width="600">
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Click the <strong class=" ">New field</strong> button to create the second field for the <i class=" ">page heading</i> with the following values:<br></p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: HomeTextHeading</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 200</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Text heading</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text box<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/new_mvc_page_type_wizard_3_3.png" alt="Creating a new field to hold long text" width="600">
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Create the third field for the page text with the following values:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: HomeText</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Long text</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Text area<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/new_mvc_page_type_wizard_3_4.png" alt="Creating the long text data type on the Home page" width="600">
+</li></ul></li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 4</strong>, do not change anything, and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 5</strong>, click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 6</strong>, click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>In <strong class=" ">Step 7</strong>, click <strong class=" ">Finish</strong> to complete the new page type wizard.<br><br><i class=" "><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/new_mvc_page_type_wizard_5.png" width="600">
+<br></i></p>
+</li></ol>    <div class="section section-2" id="src-76853195_safe-id-Q3JlYXRpbmdjb250ZW50b25seXBhZ2V0eXBlcy1TZXR0aW5ndGhlcGFnZXR5cGUnc1VSTHBhdHRlcm4">
+        <h2 class="heading "><span>Setting the page type's URL pattern</span></h2>
+<p>Content only pages just store data, and the presentation of actual web pages is handled by the MVC application. As a result, the Kentico administration application does not automatically know the live URLs under which individual pages will be available.</p>
+<p>You can add this information into the system by setting a <strong class=" ">URL pattern</strong> for your content only page types.</p>
+<div class="box-general box-info">
+  
+                <div class="box-icon icon-i-circle"> </div> 
+        <div class="box-content"> 
+            <p><strong class=" ">Features that use the URL pattern</strong></p>
+<p>By setting the correct URL pattern for your page types, you allow content editors to do the following:</p>
+<ul class=" "><li class=" "><p>Preview content in the <i class=" ">Pages</i> application, and use the <i class=" ">Live site</i> button in the application list to open the appropriate page on the MVC site</p>
+</li><li class=" "><p>Add page links into the content of rich text fields using the system's WYSIWYG editor</p>
+</li></ul><p>Additionally, the sample implementation of the navigation menu in this tutorial will use the URL pattern values to generate page links.</p>
+     
+    </div>
+</div>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Page types</strong> application, make sure you are on the <strong class=" ">General</strong> tab of your <i class=" ">Home (MEDIO clinic)</i> page type.</p>
+</li><li class=" "><p>Type the following value into the <strong class=" ">URL pattern</strong> field: <i class=" ">/Home</i><br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/setting_the_url_pattern_field.png" alt="Setting the page types URL pattern" width="600">
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>There will only be a single Home page of the <i class=" ">Home (MEDIO clinic)</i> type, so a static <i class=" ">/Home</i> URL pattern is sufficient. On more complex sites, you may need to add macro variables into the pattern to generate URLs dynamically (e.g. for identifiers when using the same page type for multiple pages, or for different language versions of the same page). The system combines the URL pattern with the site's presentation URL, so the final live URL of the Home page will be: <i class=" ">http://localhost/MedioMVC/Home</i></p>
+    </div>
+    <div class="section section-2" id="src-76853195_safe-id-Q3JlYXRpbmdjb250ZW50b25seXBhZ2V0eXBlcy1QcmVwYXJpbmd0aGVwYWdldHlwZSdzd3JhcHBlcmNsYXNzZXM">
+        <h2 class="heading "><span>Preparing the page type's wrapper classes</span></h2>
+<p>Before you start adding new pages and their content, let's make sure you'll be able to work with this page type in your MVC application. Kentico allows you to generate code for your page type directly from the user interface.</p>
+<ol class=" "><li class=" "><p>To generate code for the <i class=" ">Home (MEDIO Clinic)</i> page type, switch to the <strong class=" ">Code</strong> tab.</p>
+</li><li class=" "><p>Verify the <strong class=" ">Save path</strong> (by default, the path is set to <i class=" ">~/App_Code/CMSClasses</i>), and click <strong class=" ">Save code</strong>.</p>
+<div class="box-general box-note">
+  
+                <div class="box-icon icon-exclamation-triangle"> </div> 
+        <div class="box-content"> 
+            <p>If you have installed Kentico as a web application, your default path to save classes will be set to <i class=" ">~/Old_App_Code/CMSClasses</i>.</p>
+     
+    </div>
+</div>
+<p><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/new_mvc_site_generating_code.png" alt="Generating code for the page type on your website" width="600">
+</p>
+</li></ol><p>The code generator creates two wrapper classes, <i class=" ">Home</i> and <i class=" ">HomeProvider.</i> The Home class contains properties matching the page type fields you have defined, and the provider allows developers to work with pages of the given type in the MVC site's code.</p>
+<p>Later in the tutorial, you will use these two classes to retrieve and display content on the website. But first, let's create all page types you will need to build your tutorial website.</p>
+    </div>
+    </div>
+    <div class="section section-1" id="src-76853195_Creatingcontentonlypagetypes-CreatingthepagetypefortheMedicalcenterpage">
+        <h1 class="heading "><span>Creating the page type for the Medical center page</span></h1>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Page types</strong> application, click the <strong class=" ">New page type</strong> button to start the wizard.</p>
+</li><li class=" "><p>In <strong class=" ">Step </strong><strong class=" ">1</strong> of the wizard, fill in the following values:</p>
+<ol class=" "><li class=" "><p><strong class=" ">Page type display name</strong>:<strong class=" "> </strong>Medical center (MEDIO Clinic)</p>
+</li><li class=" "><p><strong class=" ">Namespace</strong>: MEDIO</p>
+</li><li class=" "><p><strong class=" ">Name</strong>: MedicalCenter</p>
+</li></ol></li><li class=" "><p>In <strong class=" ">Step 2</strong>, make sure the <strong class=" ">Content only page type</strong> option is selected.</p>
+</li><li class=" "><p>In <strong class=" ">Step 3</strong>, create two fields with following values:</p>
+<ol class=" "><li class=" "><p>The field for the <i class=" ">Medical center</i> header</p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: MedicalCenterHeader</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 200</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Header</p>
+</li></ul></li><li class=" "><p>The field for the <i class=" ">Medical center</i> text</p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: MedicalCenterText</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Long text</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Form control</strong>: Rich text editor</p>
+</li></ul></li></ol></li><li class=" "><p>Finish the page type wizard.</p>
+</li><li class=" "><p>On the <strong class=" ">General</strong> tab of the <i class=" ">Medical center (MEDIO Clinic) </i>page type, enter <i class=" ">/MedicalCenter</i> into the <strong class=" ">URL pattern</strong> field.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Code</strong> tab.</p>
+</li><li class=" "><p>Verify that the <strong class=" ">Save path</strong> is set to <i class=" ">~/App_Code/CMSClasses</i> and save the code of the page type.</p>
+</li></ol><p>You have created the page types for your pages. Now, let's create the page types you will use to build the navigation menu.</p>
+    </div>
+    <div class="section section-1" id="src-76853195_Creatingcontentonlypagetypes-Creatingthepagetypesforthewebsitenavigation">
+        <h1 class="heading "><span>Creating the page types for the website navigation</span></h1>
+<p>There are several ways to implement navigation on MVC sites. This tutorial demonstrates how to create a dynamic navigation menu that allows content editors to control the content. Your website's editors will create new menu items as separate "pages" in the content tree, and select which page from the content tree will be the link target for each menu item. You will then code the menu's appearance and linking functionality in the MVC application. This dynamic approach gives editors full control over the navigation menu items, without the need to adjust the MVC site's code.</p>
+    <div class="section section-2" id="src-76853195_Creatingcontentonlypagetypes-Creatingthepagetypeforthemenusection">
+        <h2 class="heading "><span>Creating the page type for the menu section</span></h2>
+<p>To keep the content tree organized, you will first create a page type that will serve as a parent for the menu items and separate them from the remaining pages.</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Page types </strong>application, click the <strong class=" ">New page type</strong> button.</p>
+</li><li class=" "><p>In <strong class=" ">Step 1</strong> of the wizard, fill in the following values:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Page type display name</strong>:<strong class=" "> </strong>Menu items (MEDIO Clinic)</p>
+</li><li class=" "><p><strong class=" ">Namespace</strong>: MEDIO</p>
+</li><li class=" "><p><strong class=" ">Name</strong>: MenuItems</p>
+</li></ul></li><li class=" "><p>In <strong class=" ">Step </strong><strong class=" ">2</strong>, make sure the <strong class=" ">Content only page type</strong> option is selected.</p>
+</li><li class=" "><p>In <strong class=" ">Step 3</strong>, create a new required field with the following values:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: MenuItems</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 200</p>
+</li><li class=" "><p><strong class=" ">Required</strong>: Yes (selected)</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Name</p>
+</li></ul></li><li class=" "><p>In <strong class=" ">Step 4</strong>, leave the <i class=" ">MenuItems</i> field as the <strong class=" ">Page name source</strong> and click <strong class=" ">Next</strong>.</p>
+</li><li class=" "><p>Finish the wizard.</p>
+</li><li class=" "><p>On the <strong class=" ">General</strong> tab, type <i class=" "><strong class=" ">/</strong></i> (<i class=" ">forward slash</i>) into the <strong class=" ">URL pattern</strong> field. This ensures that the preview and live URL for the menu items page in the <i class=" ">Pages</i> application always displays the site's root page.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li></ol><p>This page type will be used to create a content tree section for menu items, so they don't visually blend in with the rest of the pages. The resulting page will only serve as a visual separator, and you will not work with it in the MVC application.</p>
+    </div>
+    <div class="section section-2" id="src-76853195_Creatingcontentonlypagetypes-Creatingthepagetypeformenuitems">
+        <h2 class="heading "><span>Creating the page type for menu items</span></h2>
+<p>For the individual items in the menu, you need a <i class=" ">text</i> caption which will be displayed on the live site, and a way to choose where the hyperlink will send visitors. For the latter, you will use a <i class=" ">page selector</i> which allows editors to hand-pick the items in the content tree. While building this page type, you will also limit the scope so content editors can only add menu items as child pages under the <i class=" ">Menu items</i> section.</p>
+<ol class=" "><li class=" "><p>In the <strong class=" ">Page types </strong>application, click the <strong class=" ">New page type</strong> button.</p>
+</li><li class=" "><p>In <strong class=" ">Step 1</strong> of the wizard, fill in the following values:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Page type display name</strong>:<strong class=" "> </strong>Menu item (MEDIO Clinic)</p>
+</li><li class=" "><p><strong class=" ">Namespace</strong>: MEDIO</p>
+</li><li class=" "><p><strong class=" ">Name</strong>: MenuItem</p>
+</li></ul></li><li class=" "><p>In <strong class=" ">Step 2</strong>, make sure the <strong class=" ">Content-only page type</strong> option is selected.</p>
+</li><li class=" "><p>In <strong class=" ">Step 3</strong>, create fields with the following values:</p>
+<ol class=" "><li class=" "><p>The field for the menu item text:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: MenuItemText</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Text</p>
+</li><li class=" "><p><strong class=" ">Size</strong>: 200</p>
+</li><li class=" "><p><strong class=" ">Required:</strong> Yes</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Menu text<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/creating_the_menu_item_page_type_menu_text.png" alt="Creating a name text field for the menu item page" width="600" height="383">
+</li></ul></li><li class=" "><p>The field for the page selector:</p>
+<ul class=" "><li class=" "><p><strong class=" ">Field name</strong>: MenuItemPage</p>
+</li><li class=" "><p><strong class=" ">Data type</strong>: Unique identifier (GUID)</p>
+</li><li class=" "><p><strong class=" ">Required:</strong> Yes</p>
+</li><li class=" "><p><strong class=" ">Field caption</strong>: Page</p>
+</li><li class=" "><p><strong class=" ">Form </strong><strong class=" ">control</strong>: Page selector<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/creating_the_menu_item_page_type_page_selector.png" alt="Creating a new page selector field" width="600">
+</li></ul></li></ol></li><li class=" "><p>In <strong class=" ">Step 5</strong>, update the <strong class=" ">Allowed parent page types</strong>:<br></p>
+<ul class=" "><li class=" "><p>Remove <strong class=" ">Root (CMS.Root) </strong>as an allowed parent page type – select <i class=" ">R</i><i class=" ">oot</i><i class=" "> (CMS.Root)</i> in the list, click the <strong class=" ">Remove selected</strong> button, then click <strong class=" ">OK</strong>.</p>
+</li><li class=" "><p>Click the <strong class=" ">Add page types</strong> button and select the <strong class=" ">Menu items (MEDIO.MenuItems)</strong> page type as the allowed parent.<br><br></p>
+<img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76853195/creating_the_menu_item_page_type_allowed_parent_page_type.png" alt="Setting up allowed parent page type for menu item" width="600">
+</li></ul></li><li class=" "><p>Finish the wizard.</p>
+</li><li class=" "><p>On the <strong class=" ">General</strong> tab, type <i class=" "><strong class=" ">/</strong></i> (<i class=" ">forward slash</i>) into the <strong class=" ">URL pattern</strong> field. This ensures that the preview and live URL for menu items in the <i class=" ">Pages</i> application always displays the site's root page.</p>
+</li><li class=" "><p>Click <strong class=" ">Save</strong>.</p>
+</li><li class=" "><p>Switch to the <strong class=" ">Code</strong> tab and save the code for your <i class=" ">Menu item (MEDIO Clinic)</i> page type.</p>
+</li></ol><p>You have now prepared all the page types you need for your tutorial website. Let's add some content to your <i class=" ">MEDIO Clinic MVC</i> site.</p>
+    <div class="sp-panel conf-macro output-block">
+            <div class="panel-content">
+<p><strong class=" ">Previous page:</strong> <a href="creating-a-new-mvc-application">Creating a new MVC application</a> — <strong class=" ">Next page:</strong> <a href="adding-content-only-pages-to-the-mvc-site">Adding content only pages to the MVC site</a></p>
+<p style="text-align:right;"><strong class=" ">Completed pages:</strong> 4 of 10<strong class=" "></strong></p>
+<p style="text-align:right;">    <span style="color: #999999;">
+    <span style="color: #999999;">
+Ο    </span>
+    <span style="color: #999999;">
+Ο    </span>
+Ο    <span style="color: #000000;">
+<strong class=" ">Ο</strong>    </span>
+ΟΟ    <span style="color: #999999;">
+Ο    </span>
+OΟΟΟ    </span>
+</p>
+        </div>
+    </div>
+    </div>
+    </div>
+                    </div>
+                </div>
+                    <footer class="ht-content-footer">                
+                        <div id="feedback-link-container">
+                            <a href="#top" id="back-to-top">
+                                <span class="icon-chevron-up"></span>
+                                <span class="sr-only">Go back to top</span>
+                            </a>
+                        </div>   
+                    </footer>
+                </article></div>
+            
+        </div>
+    </div>
+
+               
+            
+    <footer id="ht-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <ul class="footer-menu">
+          <li>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
+          </li>
+          <li>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+          </li>    
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+  <div id="cookie-banner">
+    <div class="container">
+      <div class="inner">
+        <div class="text">
+          We use small cookies to improve your browsing experience and to analyze traffic. To process the analytical cookies, we need your consent.
+          <br>You may revoke your consent on the <a href="https://xperience.io/policies/cookies-policy" target="_blank">Cookies Policy</a> 
+          page or in your browser at any time.
+        </div>
+        <button type="submit" value="4" name="CookieLevelSelectedAll" class="button button--primary" onclick="setCookieLevel('analytical')">
+          ACCEPT ALL
+        </button>
+        <button type="submit" value="1" name="CookieLevelSelectedNecessary" class="button button--tertiary" onclick="setCookieLevel('necessary')">
+          Use only functional
+        </button>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/googleTagManager.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.prism.js"></script>
+<script type="text/javascript" src="assets/js/clipboard.min.js"></script>
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.config.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.js"></script>
+<script type="text/javascript" src="assets/js/snackbar.js"></script>
+
+<script type="text/javascript" async="">
+    // Populates the documentation version switcher header
+    // loadVersionLinkData is located in theme.custom.js
+    $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
+</script><script type="text/javascript" src="assets/js/theme.lightbox.js"></script>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>

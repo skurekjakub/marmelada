@@ -1,0 +1,731 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating a new MVC application - Kentico 11 Tutorial</title>
+
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+    
+<meta name="description" content="Kentico Xperience Documentation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+<meta name="confluence-space-key" content="K11Tutorial">
+<meta name="confluence-page-title" content="Welcome to Kentico 11">
+<meta name="confluence-page-tiny-suffix" content="">
+<meta name="confluence-page-labels" content="">
+
+<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+
+<link rel="stylesheet" href="assets/css/theme.prismhighlighter.css">
+<link rel="stylesheet" href="assets/css/theme.lightbox.css">
+<link rel="stylesheet" href="assets/css/theme.snackbar.css">
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body incorrectpageid="76845685" pageid="76852822" id="top" data-pagetitle="Creating a new MVC application">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+   <div class="container">
+        <div class="ht-headerbar-row">
+            <div class="ht-headerbar-left">
+                <button class="menu-toggle button button--icon-only js-menu-toggle" type="button" title="Open menu">
+                    <span class="menu-toggle-icon menu-toggle-icon--default icon-menu"></span>
+                    <span class="menu-toggle-icon menu-toggle-icon--active icon-modal-close"></span>
+                    <span class="menu-toggle-label menu-toggle-label--default sr-only">Open menu</span>
+                    <span class="menu-toggle-label menu-toggle-label--active sr-only">Hide menu</span>
+                </button>
+                <a href="../k11tutorial" class="xperience-logo">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Xperience Docs" class="xperience-logo__image">
+                </a>
+            </div>
+            <div class="ht-headerbar-center">
+                <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>            </div>  
+            <div class="ht-headerbar-right">
+            
+                                <div id="ht-search" class="header-search-box open show js-header-search-box">
+                                                                                <div class="ht-search-input header-search-wrapper">
+                        <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
+                            <div class="header-search-field">
+                                <span class="header-search-field__icon icon-magnifier"></span>
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
+                            </div>
+                            <div class="header-search-button-wrapper">
+                                <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
+                            </div>
+                        </form>
+    
+                        <div class="ht-search-dropdown ht-dropdown header-search-dropdown">
+                            <ul></ul>
+                        </div>
+                    </div>
+
+                    <button class="ht-search-close button button--icon-only js-header-search-close" type="button" title="Close search">
+                        <span class="icon-modal-close"></span>
+                        <span class="sr-only">Close search</span>
+                    </button>
+                </div>
+
+                <button class="ht-search-open button button--icon-only js-header-search-open" type="button" title="Open search">
+                    <span class="icon-magnifier"></span>
+                    <span class="sr-only">Open search</span>
+                </button>
+                
+                                <a id="sp-viewport-control-opener" href="#" style="display:none"></a>
+                            </div>
+        </div>
+    </div>
+        
+            
+                    
+                                
+                            </header>    	<div id="old-version-note" class="sidebar-left-padding">
+		<div class="container">
+			<p><strong>Is this really the version you are looking for?</strong> Kentico K11Tutorial documentation is no longer updated. Use the switch in the header to choose your Kentico Xperience version.</p>
+		</div>
+	</div></div>
+
+<div id="ht-wrap-container">
+
+               
+
+    <div class="container">
+        <div class="ht-layout">
+            <div class="ht-layout-sidebar">
+                
+<aside id="ht-sidebar">
+    <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            
+<nav class="ht-pages-nav">
+    <ul class="ht-pages-nav-top">
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845692" href="getting-started-with-kentico">Getting started with Kentico</a>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845695" href="using-the-kentico-interface">Using the Kentico interface</a>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845754" href="site-development-overview">Site development overview</a>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852751" href="portal-engine-development">Portal Engine development</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845744" href="creating-a-new-website">Creating a new website</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845738" href="adding-styles-to-the-website">Adding styles to the website</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845736" href="working-with-the-pages-application">Working with the Pages application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845724" href="creating-the-master-page">Creating the master page</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845713" href="creating-website-pages">Creating website pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845701" href="creating-page-templates">Creating page templates</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845699" href="next-steps">Next steps</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852749" href="mvc-development">MVC development</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852807" href="creating-a-new-mvc-site">Creating a new MVC site</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852822" href="creating-a-new-mvc-application">Creating a new MVC application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853195" href="creating-content-only-page-types">Creating content only page types</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853448" href="adding-content-only-pages-to-the-mvc-site">Adding content only pages to the MVC site</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853537" href="working-with-generated-classes-in-the-mvc-application">Working with generated classes in the MVC application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853773" href="creating-the-website-layout">Creating the website layout</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76858030" href="displaying-the-content-of-the-pages">Displaying the content of the pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76854119" href="creating-the-navigation-menu">Creating the navigation menu</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76858033" href="next-steps-in-mvc-development">Next steps in MVC development</a>
+    </li>
+                                    </ul>
+    </li>
+            </ul>
+</nav>        </div>
+    </div>
+</aside>            </div>
+            <div class="ht-layout-main">
+            <article id="ht-content" class="ht-content">
+                <header class="ht-content-header">
+                    <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="welcome-to-kentico-11.html">Kentico 11 Tutorial</a></li>
+                                                                                     <li><a href="mvc-development.html">MVC development</a></li>
+                                                            </ul>
+</div>                    <h1 id="src-76852822"> <span>Creating a new MVC application</span></h1>
+                    <div class="page-metadata">
+    <div class="page-metadata-modification-info">
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
+        <span>Save as PDF</span>
+        <span class="page-metadata-export-icon icon-arrow-down-line"></span>
+      </a>
+      <span class="page-action-separator">|</span>
+      <a id="get-page-link" class="page-metadata-copy" href="#" onclick="openPageLink(76845685)">
+        <span>Copy page link</span>
+        <span class="page-metadata-copy-icon icon-chain"></span>
+      </a>
+      </div>
+
+  <div id="page-link-panel">
+    <div id="page-link-panel-inner">
+      	
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
+    	<form>
+       		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
+          	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
+		</form>
+    	</div>
+  </div>
+</div>
+                </header>
+                <div id="content" class="page">
+                    <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<div class="box-general box-info">
+  
+                <div class="box-icon icon-i-circle"> </div> 
+        <div class="box-content"> 
+            <p>This page is a part of a tutorial, which you should follow sequentially, from the beginning to the end. <a href="getting-started-with-kentico">Go to the first page: Getting started with Kentico</a>.</p>
+     
+    </div>
+</div>
+    <div class="section section-1" id="src-76852822_safe-id-Q3JlYXRpbmdhbmV3TVZDYXBwbGljYXRpb24tWW91d2lsbGxlYXJuYWJvdXQ6">
+        <h1 class="heading "><span>You will learn about:</span></h1>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-76852822_creatinganewmvcapplication-creatingthemvcapplicationproject">Creating the MVC application project</a></p>
+</li><li class=" "><p><a href="#src-76852822_creatinganewmvcapplication-installingkenticointegrationpackages">Installing Kentico integration packages</a></p>
+</li><li class=" "><p><a href="#src-76852822_creatinganewmvcapplication-enablingkenticointegrationpackages">Enabling Kentico integration packages</a></p>
+</li><li class=" "><p><a href="#src-76852822_creatinganewmvcapplication-connectingthemvcapplicationtothedatabase">Connecting the MVC application to the database</a></p>
+</li><li class=" "><p><a href="#src-76852822_creatinganewmvcapplication-configuringthehashsaltkey">Configuring the hash salt key</a></p>
+</li><li class=" "><p><a href="#src-76852822_creatinganewmvcapplication-mappingkenticourlroutes">Mapping Kentico URL routes</a></p>
+</li><li class=" "><p><a href="#src-76852822_creatinganewmvcapplication-enablingclassdiscovery">Enabling class discovery</a></p>
+</li><li class=" "><p><a href="#src-76852822_safe-id-q3jlyxrpbmdhbmv3tvzdyxbwbgljyxrpb24tu2v0dgluz3rozxbyb2ply3qnc1vsta">Setting the project's URL</a></p>
+</li></ul><p></p>
+<p>In the <a href="creating-a-new-mvc-site">previous step</a> of the tutorial, you have set up the Kentico instance that will serve as your MVC site's content repository. In this step, you will create the MVC project that will present the live site and configure it to work with your Kentico instance.</p>
+    </div>
+    <div class="section section-1" id="src-76852822_CreatinganewMVCapplication-CreatingtheMVCapplicationproject">
+        <h1 class="heading "><span>Creating the MVC application project</span></h1>
+<ol class=" "><li class=" "><p>Create a new project in Visual Studio.</p>
+</li><li class=" "><p>Select the <strong class=" ">ASP.NET Web Application (.NET Framework)</strong> project template.</p>
+<ul class=" "><li class=" "><p>Enter <i class=" ">MedioMVC</i> as the project's name.</p>
+</li><li class=" "><p>Select a location for your project.</p>
+<div class="box-general box-tip">
+  
+                <div class="box-icon icon-light-bulb"> </div> 
+        <div class="box-content"> 
+            <p>To prevent conflicts in permissions, we recommend that you save your <i class=" ">MedioMVC</i> tutorial project in the same folder where you have installed Kentico 11, for example: <i class=" ">C:\inetpub\wwwroot\</i></p>
+     
+    </div>
+</div>
+<p><br><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76852822/creating_vs_mvc_application_web_app_project.png" alt="Creating a new MVC application project" width="600">
+</p>
+</li></ul><p><i class=" "><br></i></p>
+</li><li class=" "><p>In the next step, choose the <strong class=" ">Empty</strong> template option.</p>
+</li><li class=" "><p>Select the <strong class=" ">MVC</strong> checkbox to add folders and core references for MVC.</p>
+</li></ol><p style="margin-left:60px;"><br><img class="confluence-embedded-image confluence-content-image-border" src="images/download/attachments/76852822/creating_vs_mvc_application_web_app_template.png" alt="Adding core MVC folders and references to the tutorial project" width="600">
+</p>
+    </div>
+    <div class="section section-1" id="src-76852822_CreatinganewMVCapplication-InstallingKenticointegrationpackages">
+        <h1 class="heading "><span>Installing Kentico integration packages</span></h1>
+<p>To help you start developing the MVC application, Kentico provides integration (<a class="external-link" href="https://www.nuget.org/">NuGet</a>) packages you can install through Visual Studio. For the functionality covered in this tutorial, you need to install the <strong class=" ">Kentico.Web.Mvc</strong> and <strong class=" ">Kentico.Content.Web.Mvc</strong> packages.</p>
+<ol class=" "><li class=" "><p>In Visual Studio, right-click the <i class=" ">MedioMVC</i> project and select <strong class=" ">Manage NuGet Packages</strong>.</p>
+</li><li class=" "><p>Search for the <strong class=" ">Kentico.Web.Mvc</strong> package (on the <strong class=" ">Browse</strong> tab).</p>
+</li><li class=" "><p>Confirm the installation of <i class=" ">Kentico.Web.Mvc<strong class=" "> </strong></i>NuGet package and all its dependencies.</p>
+</li><li class=" "><p>Use the same process to install the <strong class=" ">Kentico.Content.Web.Mvc</strong> package.</p>
+</li></ol><p>The <strong class=" ">Kentico.Web.Mvc</strong> package contains the necessary items which will make your MVC application work with the Kentico application. The additional <strong class=" ">Kentico.Content.Web.Mvc</strong> NuGet package contains API that will enable previewing of pages in the administration interface.</p>
+<p>To ensure that these items work in your <i class=" ">MedioMVC</i> solution, you need to configure several key elements in your MVC project.</p>
+    </div>
+    <div class="section section-1" id="src-76852822_CreatinganewMVCapplication-EnablingKenticointegrationpackages">
+        <h1 class="heading "><span>Enabling Kentico integration packages</span></h1>
+<ol class=" "><li class=" "><p>In the <i class=" ">App_Start</i> folder, edit the <strong class=" ">ApplicationConfig.cs</strong> file. The class was added to your project automatically by the <i class=" ">Kentico.Web.Mvc</i> integration package.</p>
+</li><li class=" "><p>Add a <i class=" ">using</i> statement for the <strong class=" ">Kentico.Content.Web.Mvc</strong> namespace and call <strong class=" ">builder.UsePreview()</strong> in the <strong class=" ">RegisterFeatures</strong> method.</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Web.Mvc;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Content.Web.Mvc;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">namespace</code><code class="plain"> MedioMVC</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> ApplicationConfig</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> RegisterFeatures(ApplicationBuilder builder)</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            builder.UseDataAnnotationsLocalization();</code></div>
+<div class="line"><code class="plain">            builder.UseNotFoundHandler();</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">            </code><code class="comments">// Enables the Preview mode functionality, which allows your website editors to preview</code></div>
+<div class="line"><code class="plain">            </code><code class="comments">// the content of the MVC site's pages from the Kentico user interface.</code></div>
+<div class="line"><code class="plain">            builder.UsePreview();</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+</li><li class=" "><p>Save your changes.</p>
+</li><li class=" "><p>Edit your project's <strong class=" ">Global.asax</strong> file.</p>
+</li><li class=" "><p>Add a <i class=" ">using</i> statement for the <strong class=" ">Kentico.Web.Mvc</strong> namespace.</p>
+</li><li class=" "><p>In the <i class=" ">Application_Start</i> method, call the <strong class=" ">ApplicationConfig.RegisterFeatures(ApplicationBuilder.Current)</strong> method.</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Mvc;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Routing;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Web.Mvc;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">namespace</code><code class="plain"> MedioMVC</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> MvcApplication : System.Web.HttpApplication</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">protected</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> Application_Start()</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            AreaRegistration.RegisterAllAreas();</code></div>
+<div class="line"><code class="plain">            RouteConfig.RegisterRoutes(RouteTable.Routes);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">			</code><code class="comments">// Enables and configures the selected Kentico ASP.NET MVC integration features for the MedioMVC application</code></div>
+<div class="line"><code class="plain">   			ApplicationConfig.RegisterFeatures(ApplicationBuilder.Current);</code></div>
+<div class="line"><code class="plain">        }</code></div>
+<div class="line"><code class="plain">    }</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+</li><li class=" "><p>Save your changes.</p>
+</li></ol><p>By adding the <i class=" ">ApplicationConfig.RegisterFeatures(ApplicationBuilder.Current)</i> method to the <i class=" ">Global.asax</i> file, you have made sure that your configuration in <i class=" ">ApplicationConfig.cs</i> will be executed on the application start. Your <i class=" ">MedioMVC</i> project is now ready for integration with the Kentico instance. To find out about more about the integration packages you have installed, see <a href="http://localhost:8090/display/K11/Installing+Kentico+integration+packages">Installing Kentico integration packages</a>.</p>
+    </div>
+    <div class="section section-1" id="src-76852822_CreatinganewMVCapplication-ConnectingtheMVCapplicationtothedatabase">
+        <h1 class="heading "><span>Connecting the MVC application to the database</span></h1>
+<ol class=" "><li class=" "><p>Navigate to the <strong class=" ">web.config</strong> file of your Kentico project and open it in a text editor. The <i class=" ">web.config</i> file is located in the <i class=" ">ProjectName/CMS</i> folder, e.g., <i class=" ">C:\inetpub\wwwroot\Kentico11\CMS.</i></p>
+</li><li class=" "><p>Locate the <i class=" ">&lt;connectionStrings&gt;</i> element in the Kentico <i class=" ">web.config</i> file</p>
+</li><li class=" "><p>Copy the exact connection string from the Kentico <i class=" ">web.config </i>file into the <i class=" ">&lt;connectionStrings&gt;</i> element in your <i class=" ">MedioMVC</i> project's <i class=" ">web.config</i> file.</p>
+</li><li class=" "><p>Save your changes.</p>
+</li></ol><div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;?</code><code class="keyword">xml</code><code class="plain"> </code><code class="color1">version</code><code class="plain">=</code><code class="string">"1.0"</code><code class="plain"> </code><code class="color1">encoding</code><code class="plain">=</code><code class="string">"utf-8"</code><code class="plain">?&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">configuration</code><code class="plain">&gt;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain">&lt;!-- </code></div>
+<div class="line"><code class="plain">The MVC application will use the database of your Kentico instance</code></div>
+<div class="line"><code class="plain">Change the values of database, server, user id and password to your match your connection string</code></div>
+<div class="line"><code class="plain">--&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">connectionStrings</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">name</code><code class="plain">=</code><code class="string">"CMSConnectionString"</code><code class="plain"> </code><code class="color1">connectionString</code><code class="plain">=</code><code class="string">"Persist Security Info=False;database=Kentico11;server=myserver;user id=username;password=mypassword;Current Language=English;Connection Timeout=120;"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">connectionStrings</code><code class="plain">&gt;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">...</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">configuration</code><code class="plain">&gt;</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+    </div>
+    <div class="section section-1" id="src-76852822_CreatinganewMVCapplication-Configuringthehashsaltkey">
+        <h1 class="heading "><span>Configuring the hash salt key</span></h1>
+<p>Some Kentico features utilize hashing (macros, preview URLs, etc.). To ensure correct behavior of the system, both the MVC and Kentico applications need to generate hashes using the same salt value.</p>
+<ol class=" "><li class=" "><p>Navigate to the Kentico <strong class=" ">web.config</strong> file.</p>
+</li><li class=" "><p>Locate <strong class=" ">CMSHashStringSalt</strong> among the <i class=" ">&lt;appSettings&gt;</i> keys.</p>
+</li><li class=" "><p>Copy the value of the <i class=" ">CMSHashStringSalt</i> key into the same key in the <i class=" ">MedioMVC</i> project's <i class=" ">web.config</i> (the hash salt value is empty in the default web.config).</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;!-- Example of app settings in the MedioMVC project with the "CMSHashStringSalt" key --&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">configuration</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">  &lt;</code><code class="keyword">appSettings</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"webpages:Version"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"3.0.0.0"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"webpages:Enabled"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"false"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"ClientValidationEnabled"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"true"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"UnobtrusiveJavaScriptEnabled"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"true"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">	</code></div>
+<div class="line"><code class="plain">	&lt;!-- CMSHashStringSalt key --&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">add</code><code class="plain"> </code><code class="color1">key</code><code class="plain">=</code><code class="string">"CMSHashStringSalt"</code><code class="plain"> </code><code class="color1">value</code><code class="plain">=</code><code class="string">"0bc1b86a-3fc8-4305-a8c3-20f5141aaf0a"</code><code class="plain"> /&gt;</code></div>
+<div class="line"><code class="plain">  &lt;/</code><code class="keyword">appSettings</code><code class="plain">&gt;</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+</li><li class=" "><p>Save your changes.</p>
+</li></ol><p>Your applications now use the same hash salt value. For example, in this tutorial, the identical hash salts allow page preview URLs to work correctly. The hash salt configuration also enables other features not covered by the tutorial, for example resolving of macros in emails based on templates, which are defined in the Kentico administration interface, but actually sent by the MVC application in response to live site user actions.</p>
+    </div>
+    <div class="section section-1" id="src-76852822_CreatinganewMVCapplication-MappingKenticoURLroutes">
+        <h1 class="heading "><span>Mapping Kentico URL routes</span></h1>
+<p>The Kentico API uses HTTP handlers with specific URLs to retrieve content and perform various other functions (for example /<i class=" ">getmedia</i> and <i class=" ">/getattachment</i> handlers that display images and other file content). To make sure your MVC application directs such URLs to the appropriate handlers, you need to register Kentico specific routes in your MVC application's route table.</p>
+<div class="box-general box-note">
+  
+                <div class="box-icon icon-exclamation-triangle"> </div> 
+        <div class="box-content"> 
+            <p>Kentico routes must be mapped before you map other more general routes for your site's content. Otherwise the URLs of Kentico HTTP handlers could match your custom routes, which would result in missing content or incorrect behavior.</p>
+     
+    </div>
+</div>
+<ol class=" "><li class=" "><p>In Visual Studio, edit the <strong class=" ">RouteConfig.cs</strong> file in the <i class=" ">App_Start</i> folder.</p>
+</li><li class=" "><p>Add a <i class=" ">using</i> statement for the <strong class=" ">Kentico.Web.Mvc</strong> namespace.</p>
+</li><li class=" "><p>Call the <strong class=" ">Kentico().MapRoutes</strong> method above the <strong class=" ">Default </strong><i class=" ">MapRoute</i> method.</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Mvc;</code></div>
+<div class="line"><code class="keyword">using</code><code class="plain"> System.Web.Routing;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">using</code><code class="plain"> Kentico.Web.Mvc;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="keyword">namespace</code><code class="plain"> MedioMVC</code></div>
+<div class="line"><code class="plain">{</code></div>
+<div class="line"><code class="plain">    </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">class</code><code class="plain"> RouteConfig</code></div>
+<div class="line"><code class="plain">    {</code></div>
+<div class="line"><code class="plain">        </code><code class="keyword">public</code><code class="plain"> </code><code class="keyword">static</code><code class="plain"> </code><code class="keyword">void</code><code class="plain"> RegisterRoutes(RouteCollection routes)</code></div>
+<div class="line"><code class="plain">        {</code></div>
+<div class="line"><code class="plain">            routes.IgnoreRoute(</code><code class="string">"{resource}.axd/{*pathInfo}"</code><code class="plain">);</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">            </code><code class="comments">// Maps routes to Kentico HTTP handlers</code></div>
+<div class="line"><code class="plain">            routes.Kentico().MapRoutes();</code></div>
+<div class="line"><code class="plain">		...</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+</li><li class=" "><p>Save your changes</p>
+</li></ol><p>By mapping the Kentico routes, you have made sure that Kentico HTTP handlers will work correctly on your MVC site. Remember that you have to call the <i class=" ">Kentico().MapRoutes</i> method <strong class=" ">before</strong> you map other more general routes for your site's content.</p>
+    </div>
+    <div class="section section-1" id="src-76852822_CreatinganewMVCapplication-Enablingclassdiscovery">
+        <h1 class="heading "><span>Enabling class discovery</span></h1>
+<p>You will often need to extend your MVC project by adding and registering classes. For example, later in the tutorial you will generate classes representing page types and add them to your MVC project.</p>
+<p>Kentico application code uses a <strong class=" ">discovery</strong> process to detect various types of registered classes during initialization. For performance reasons, only code assemblies that are marked as discoverable are processed. As a result, you need to make sure the assembly compiled from your MVC project is discoverable.</p>
+<ol class=" "><li class=" "><p>In Visual Studio, open the <strong class=" ">Properties</strong> folder.</p>
+</li><li class=" "><p>Create a new class, for example named <i class=" ">WebAssemblyInfo.cs</i>.</p>
+</li><li class=" "><p>Add the following into the class:</p>
+<ul class=" "><li class=" "><p>a <i class=" ">using</i> statement for the <strong class=" ">CMS </strong>namespace.</p>
+</li><li class=" "><p>the <strong class=" ">[assembly: AssemblyDiscoverable]</strong> attribute.</p>
+</li></ul><div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="keyword">using</code><code class="plain"> CMS;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="comments">// Ensures that the Kentico API can work correctly with generated and custom classes registered in the MVC project</code></div>
+<div class="line"><code class="plain">[assembly: AssemblyDiscoverable]</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+</li><li class=" "><p>Save your changes.</p>
+</li></ol><p>By adding the <i class=" ">AssemblyDiscoverable</i> attribute, you ensure that the Kentico discovery process includes your MVC project's code assembly. This allows the application to work with various types of custom components added by developers (such as generated classes for page types).</p>
+<p>The attribute is placed into a separate class because the default <i class=" ">AssemblyInfo</i> class cannot access code from external libraries in cases where the web project is precompiled with outputs merged into a single assembly (during deployment).</p>
+    </div>
+    <div class="section section-1" id="src-76852822_safe-id-Q3JlYXRpbmdhbmV3TVZDYXBwbGljYXRpb24tU2V0dGluZ3RoZXByb2plY3Qnc1VSTA">
+        <h1 class="heading "><span>Setting the project's URL</span></h1>
+<p>You want your MVC application to run under a specific URL, which you defined while setting the Kentico site. You need to register an IIS application for your MVC project with the given URL.</p>
+<ol class=" "><li class=" "><p>In Visual Studio, right-click the <strong class=" ">MedioMVC</strong> project in the Solution Explorer and select <strong class=" ">Properties</strong>.</p>
+</li><li class=" "><p>Open the <strong class=" ">Web</strong> tab.</p>
+</li><li class=" "><p>In the <strong class=" ">Servers</strong> section, select <i class=" ">Local IIS</i>.</p>
+</li><li class=" "><p>Set the <strong class=" ">Project Url</strong> to match the <i class=" ">Presentation URL</i> of your site in Kentico, e.g.,<strong class=" "> </strong><i class=" ">http://localhost/MedioMVC</i></p>
+</li><li class=" "><p>Click<strong class=" "> Create Virtual Directory</strong>.<strong class=" "> </strong>Visual Studio creates an application for your project in IIS.</p>
+</li><li class=" "><p>Close the success message and save your project's properties.</p>
+</li></ol><p>Running your MVC project on the same URL as the <i class=" ">Presentation URL</i> set for your Kentico content only site allows content editors to preview pages from the Kentico interface, add hyperlinks to pages in text editor fields, and more.</p>
+<p>You are all set! You have created the MVC application and adjusted all the necessary configuration. Your MVC application is now connected to your Kentico site, and you can start building your site's pages in the next step.</p>
+    <div class="sp-panel conf-macro output-block">
+            <div class="panel-content">
+<p><strong class=" ">Previous page:</strong> <a href="creating-a-new-mvc-site">Creating a new MVC site</a> — <strong class=" ">Next page:</strong> <a href="creating-content-only-page-types">Creating content only page types</a></p>
+<p style="text-align:right;"><strong class=" ">Completed pages:</strong> 3 of 10<strong class=" "></strong></p>
+<p style="text-align:right;">    <span style="color: #999999;">
+ΟΟ    <span style="color: #000000;">
+<strong class=" ">Ο</strong>    </span>
+ΟΟΟ    <span style="color: #999999;">
+Ο    </span>
+ΟΟΟ    </span>
+</p>
+        </div>
+    </div>
+    </div>
+                    </div>
+                </div>
+                    <footer class="ht-content-footer">                
+                        <div id="feedback-link-container">
+                            <a href="#top" id="back-to-top">
+                                <span class="icon-chevron-up"></span>
+                                <span class="sr-only">Go back to top</span>
+                            </a>
+                        </div>   
+                    </footer>
+                </article></div>
+            
+        </div>
+    </div>
+
+               
+            
+    <footer id="ht-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <ul class="footer-menu">
+          <li>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
+          </li>
+          <li>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+          </li>    
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+  <div id="cookie-banner">
+    <div class="container">
+      <div class="inner">
+        <div class="text">
+          We use small cookies to improve your browsing experience and to analyze traffic. To process the analytical cookies, we need your consent.
+          <br>You may revoke your consent on the <a href="https://xperience.io/policies/cookies-policy" target="_blank">Cookies Policy</a> 
+          page or in your browser at any time.
+        </div>
+        <button type="submit" value="4" name="CookieLevelSelectedAll" class="button button--primary" onclick="setCookieLevel('analytical')">
+          ACCEPT ALL
+        </button>
+        <button type="submit" value="1" name="CookieLevelSelectedNecessary" class="button button--tertiary" onclick="setCookieLevel('necessary')">
+          Use only functional
+        </button>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/googleTagManager.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.prism.js"></script>
+<script type="text/javascript" src="assets/js/clipboard.min.js"></script>
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.config.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.js"></script>
+<script type="text/javascript" src="assets/js/snackbar.js"></script>
+
+<script type="text/javascript" async="">
+    // Populates the documentation version switcher header
+    // loadVersionLinkData is located in theme.custom.js
+    $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
+</script><script type="text/javascript" src="assets/js/theme.lightbox.js"></script>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>

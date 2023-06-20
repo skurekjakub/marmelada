@@ -70,7 +70,6 @@ function fixTwoColumnPageLayout(filePath, logger)
     const RIGHTCOLUMNMARKUP = '<div class="sp-grid-cell sp-grid-40 sp-grid-sidebar"></div>';
     const LEFTCOLUMN = ".sp-grid-cell.sp-grid-60";
     const LEFTCOLUMNMARKUP = '<div class="sp-grid-cell sp-grid-60"></div>';
-    // TODO
     const BOTTOMSECTIONMARKUP = '<div class="sp-grid-section bottom-column"></div>';
     const BOTTOMSECTION = '.sp-grid-section.bottom-column'
     const BOTTOMSECTIONCELLMARKUP = '<div class="sp-grid-cell sp-grid-100"></div>';
@@ -233,8 +232,14 @@ function generateHelpServiceRedirectHandler(filePath, logger)
 async function fixK11(cb)
 {
     fixExport("k11");
-    fixExport("k11tutorial");
     fixExport("k11api");
+    return cb;
+}
+
+async function fixK11Tutorial(cb)
+{
+    
+    fixExport("k11tutorial");
     return cb;
 }
 
@@ -299,6 +304,7 @@ exports.build = gulp.series(dev.build_scripts,dev.build_styles,build_plugin);
 exports.build_styles = dev.build_styles;
 exports.build_scripts = dev.build_scripts;
 
-exports.fixExport = gulp.series(fixK11);
+exports.fixExportK11 = gulp.series(fixK11);
+exports.fixExportK11Tutorial = fixK11Tutorial;
 
 exports.watch = browsersyncWatch;

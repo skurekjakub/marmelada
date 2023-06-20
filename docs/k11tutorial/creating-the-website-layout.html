@@ -1,0 +1,575 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Creating the website layout - Kentico 11 Tutorial</title>
+
+    <link rel="stylesheet" href="assets/css/expand-macro.css">
+
+    
+<meta name="description" content="Kentico Xperience Documentation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+<meta name="confluence-space-key" content="K11Tutorial">
+<meta name="confluence-page-title" content="Welcome to Kentico 11">
+<meta name="confluence-page-tiny-suffix" content="">
+<meta name="confluence-page-labels" content="">
+
+<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+
+
+    <link rel="stylesheet" href="assets/css/search.css">
+
+<link rel="stylesheet" href="assets/css/theme.main.css">
+
+<link rel="stylesheet" href="assets/css/theme.prismhighlighter.css">
+<link rel="stylesheet" href="assets/css/theme.lightbox.css">
+<link rel="stylesheet" href="assets/css/theme.snackbar.css">
+            <!-- ES5 support for older browsers, needed by lunr -->
+        <script src="js/augment.js"></script> 
+        <script id="worker" type="javascript/worker">
+
+        startIndex = function() {
+            idx = lunr.Index.load(lunrIndex);
+            idx.pipeline.remove(lunr.stopWordFilter);
+            postMessage({type: "setup-complete"});
+        }
+
+        onmessage = function (event) {
+            var message = event.data;
+
+            if ((message.type === 'setup') && message.baseUrl) {
+                var url = message.baseUrl;
+                importScripts(url + 'js/lunr.js');
+                importScripts(url + 'js/lunr-extras.js');
+                importScripts(url + 'js/lunr-index.js');
+                importScripts(url + 'js/lunr-data.js');
+                startIndex();
+            }
+
+            if (idx && (message.type === 'search-request') && message.query) {
+                var searchWord = message.query;
+                var results = idx.search(searchWord).map(function (result) {
+                    return lunrData.filter(function (d) {
+                        return d.id === parseInt(result.ref, 10)
+                    })[0]
+                });
+                postMessage({type: 'search-results', results: results, query: searchWord, queryId: message.queryId});
+            }
+        }
+
+    </script>
+    </head>
+
+<body incorrectpageid="76845685" pageid="76853773" id="top" data-pagetitle="Creating the website layout">
+
+<div id="ht-loader">
+    <noscript>
+        <p style="width: 100%; text-align:center; position: absolute; margin-top: 200px;">This content cannot be displayed without JavaScript.<br>Please enable JavaScript and reload the page.</p>
+    </noscript>
+</div>
+
+<div>
+   	<header id="ht-headerbar">
+   <div class="container">
+        <div class="ht-headerbar-row">
+            <div class="ht-headerbar-left">
+                <button class="menu-toggle button button--icon-only js-menu-toggle" type="button" title="Open menu">
+                    <span class="menu-toggle-icon menu-toggle-icon--default icon-menu"></span>
+                    <span class="menu-toggle-icon menu-toggle-icon--active icon-modal-close"></span>
+                    <span class="menu-toggle-label menu-toggle-label--default sr-only">Open menu</span>
+                    <span class="menu-toggle-label menu-toggle-label--active sr-only">Hide menu</span>
+                </button>
+                <a href="../k11tutorial" class="xperience-logo">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Xperience Docs" class="xperience-logo__image">
+                </a>
+            </div>
+            <div class="ht-headerbar-center">
+                <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>            </div>  
+            <div class="ht-headerbar-right">
+            
+                                <div id="ht-search" class="header-search-box open show js-header-search-box">
+                                                                                <div class="ht-search-input header-search-wrapper">
+                        <form class="header-search" action="${viewport.link}/search" method="GET" id="search">
+                            <div class="header-search-field">
+                                <span class="header-search-field__icon icon-magnifier"></span>
+                                <input class="header-search-field__input search-input" type="text" placeholder="Search the docs..." tabindex="-1" autocomplete="off" name="q" value="">
+                            </div>
+                            <div class="header-search-button-wrapper">
+                                <button id="searchButton" class="header-search-button button button--secondary" type="submit">Search</button>
+                            </div>
+                        </form>
+    
+                        <div class="ht-search-dropdown ht-dropdown header-search-dropdown">
+                            <ul></ul>
+                        </div>
+                    </div>
+
+                    <button class="ht-search-close button button--icon-only js-header-search-close" type="button" title="Close search">
+                        <span class="icon-modal-close"></span>
+                        <span class="sr-only">Close search</span>
+                    </button>
+                </div>
+
+                <button class="ht-search-open button button--icon-only js-header-search-open" type="button" title="Open search">
+                    <span class="icon-magnifier"></span>
+                    <span class="sr-only">Open search</span>
+                </button>
+                
+                                <a id="sp-viewport-control-opener" href="#" style="display:none"></a>
+                            </div>
+        </div>
+    </div>
+        
+            
+                    
+                                
+                            </header>    	<div id="old-version-note" class="sidebar-left-padding">
+		<div class="container">
+			<p><strong>Is this really the version you are looking for?</strong> Kentico K11Tutorial documentation is no longer updated. Use the switch in the header to choose your Kentico Xperience version.</p>
+		</div>
+	</div></div>
+
+<div id="ht-wrap-container">
+
+               
+
+    <div class="container">
+        <div class="ht-layout">
+            <div class="ht-layout-sidebar">
+                
+<aside id="ht-sidebar">
+    <div class="menu-ddl">
+  	  	  	<button onclick="insertVersionLinks(versionSwitcherData)" class="header-ddl-button docVersion js-menuDdlBtn-version" title="Which Kentico Xperience version do you have?"></button>
+  	<ul class="menu-ddl-content-main menu-ddl-content docVersion js-menuDdl-version">
+	</ul>
+</div>
+<ul class="header-menu js-menuDdl-docType">
+</ul>    <div class="ht-sidebar-content">
+        <div class="ht-sidebar-content-scroll-container">
+            
+<nav class="ht-pages-nav">
+    <ul class="ht-pages-nav-top">
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845692" href="getting-started-with-kentico">Getting started with Kentico</a>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845695" href="using-the-kentico-interface">Using the Kentico interface</a>
+    </li>
+                    <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845754" href="site-development-overview">Site development overview</a>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852751" href="portal-engine-development">Portal Engine development</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845744" href="creating-a-new-website">Creating a new website</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845738" href="adding-styles-to-the-website">Adding styles to the website</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845736" href="working-with-the-pages-application">Working with the Pages application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845724" href="creating-the-master-page">Creating the master page</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845713" href="creating-website-pages">Creating website pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845701" href="creating-page-templates">Creating page templates</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76845699" href="next-steps">Next steps</a>
+    </li>
+                                    </ul>
+    </li>
+                    <li class="collapsed">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852749" href="mvc-development">MVC development</a>
+            <span class="sp-toggle sp-aui-icon-small ht-pages-nav-toggle">
+                <svg id="icon-minus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+                <svg id="icon-plus" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#CCCCCC">
+                        <rect x="11" y="7" width="2" height="10"></rect>
+                        <rect x="7" y="11" width="10" height="2"></rect>
+                    </g>
+                </svg>
+            </span>
+        <ul class="nav ht-pages-nav-sub">
+                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852807" href="creating-a-new-mvc-site">Creating a new MVC site</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76852822" href="creating-a-new-mvc-application">Creating a new MVC application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853195" href="creating-content-only-page-types">Creating content only page types</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853448" href="adding-content-only-pages-to-the-mvc-site">Adding content only pages to the MVC site</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853537" href="working-with-generated-classes-in-the-mvc-application">Working with generated classes in the MVC application</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76853773" href="creating-the-website-layout">Creating the website layout</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76858030" href="displaying-the-content-of-the-pages">Displaying the content of the pages</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76854119" href="creating-the-navigation-menu">Creating the navigation menu</a>
+    </li>
+                                                                 <li class="leaf">
+        <a target="_parent" class="ht-nav-page-link" data-destpageid="76858033" href="next-steps-in-mvc-development">Next steps in MVC development</a>
+    </li>
+                                    </ul>
+    </li>
+            </ul>
+</nav>        </div>
+    </div>
+</aside>            </div>
+            <div class="ht-layout-main">
+            <article id="ht-content" class="ht-content">
+                <header class="ht-content-header">
+                    <div id="ht-breadcrumb">
+    <ul>
+        <li><a href="welcome-to-kentico-11.html">Kentico 11 Tutorial</a></li>
+                                                                                     <li><a href="mvc-development.html">MVC development</a></li>
+                                                            </ul>
+</div>                    <h1 id="src-76853773"> <span>Creating the website layout</span></h1>
+                    <div class="page-metadata">
+    <div class="page-metadata-modification-info">
+     <a id="export-pdf" class="first-page-action-link page-metadata-export" href="#" download="">
+        <span>Save as PDF</span>
+        <span class="page-metadata-export-icon icon-arrow-down-line"></span>
+      </a>
+      <span class="page-action-separator">|</span>
+      <a id="get-page-link" class="page-metadata-copy" href="#" onclick="openPageLink(76845685)">
+        <span>Copy page link</span>
+        <span class="page-metadata-copy-icon icon-chain"></span>
+      </a>
+      </div>
+
+  <div id="page-link-panel">
+    <div id="page-link-panel-inner">
+      	
+    	<a id="page-link-close" onclick="closePageLink()" href="#" title="Close page link panel">✖</a>
+    	<form>
+       		<input id="page-link-textbox" type="text" readonly="readonly" autocomplete="off" onclick="this.select();">
+          	<a id="copy-clipboard-link" onclick="copyPageLinkToClip()" href="#">Copy&nbsp;to&nbsp;clipboard</a>
+		</form>
+    	</div>
+  </div>
+</div>
+                </header>
+                <div id="content" class="page">
+                    <div id="main-content" class="wiki-content sp-grid-section" data-index-for-search="true">
+<div class="box-general box-info">
+  
+                <div class="box-icon icon-i-circle"> </div> 
+        <div class="box-content"> 
+            <p>This page is a part of a tutorial, which you should follow sequentially, from the beginning to the end. <a href="getting-started-with-kentico">Go to the first page: Getting started with Kentico</a>.</p>
+     
+    </div>
+</div>
+    <div class="section section-1" id="src-76853773_safe-id-Q3JlYXRpbmd0aGV3ZWJzaXRlbGF5b3V0LVlvdXdpbGxsZWFybmFib3V0Og">
+        <h1 class="heading "><span>You will learn about:</span></h1>
+<p></p>
+<ul class="toc-indentation "><li class=" "><p><a href="#src-76853773_creatingthewebsitelayout-addingthecssresources">Adding the CSS resources</a></p>
+</li><li class=" "><p><a href="#src-76853773_creatingthewebsitelayout-creatingthesitelayout">Creating the site layout</a></p>
+</li><li class=" "><p><a href="#src-76853773_creatingthewebsitelayout-addingtheviewstartfile">Adding the ViewStart file</a></p>
+</li></ul><p></p>
+<p>Your tutorial website is coming up nicely! In the previous steps, you have created all the resources you'll need to build your MVC application.</p>
+<p>To achieve a consistent experience on your website, create a layout view. The view will contain the website's header, navigation menu, and footer content, and ensure a uniform look across all pages on the website. You will also add a <i class=" ">_ViewStart</i> file that assigns the default layout to all views in your MVC project.</p>
+    </div>
+    <div class="section section-1" id="src-76853773_Creatingthewebsitelayout-AddingtheCSSresources">
+        <h1 class="heading "><span>Adding the CSS resources</span></h1>
+<p>The basic design of the <i class=" ">Medio clinic</i> website relies on CSS styles from the <i class=" ">styles.css</i> file in the tutorial resources (you can download the resources here: <a href="attachments/76845693_1_TutorialWebsite.zip">TutorialWebsite.zip</a>). We recommend that you keep design-related resources apart from the rest of the code in the MVC application.</p>
+<ol class=" "><li class=" "><p>In <strong class=" ">Visual Studio</strong>, select the <strong class=" ">MedioMVC</strong> project and add a new folder named <strong class=" ">Content.</strong></p>
+</li><li class=" "><p>Create a new <strong class=" ">Styles</strong> subfolder in the <i class=" ">Content</i> folder.</p>
+</li><li class=" "><p>Add the <strong class=" ">styles.css</strong> file you have downloaded to the <i class=" ">Styles</i> folder.</p>
+</li></ol><p>Your project now has the stylesheet you will use to define the website's design.</p>
+    </div>
+    <div class="section section-1" id="src-76853773_Creatingthewebsitelayout-Creatingthesitelayout">
+        <h1 class="heading "><span>Creating the site layout</span></h1>
+<p>In this step, you will create the layout view.</p>
+<ol class=" "><li class=" "><p>In Visual Studio, create a new <strong class=" ">Shared</strong> folder under the <strong class=" ">Views</strong> folder.</p>
+</li><li class=" "><p>Select the <strong class=" ">Shared</strong> folder and add a new layout named: <i class=" ">_Layout</i><br></p>
+<div class="box-general box-note">
+  
+                <div class="box-icon icon-exclamation-triangle"> </div> 
+        <div class="box-content"> 
+            <p>You can use the built-in templates in Visual Studio. Right-click the <strong class=" ">Shared</strong> folder, go to <strong class=" ">Add</strong> option and select the <strong class=" ">MVC 5 Layout Page (Razor) </strong>template from the menu.</p>
+     
+    </div>
+</div>
+</li><li class=" "><p>Replace the code in <i class=" ">_Layout.cshtml</i> with the sample code in the <strong class=" ">index.html</strong> file from the tutorial resources (you can download the resources here: <a href="attachments/76845693_1_TutorialWebsite.zip">TutorialWebsite.zip</a>).</p>
+</li><li class=" "><p>Locate the <i class=" ">&lt;title&gt;...&lt;/title&gt;</i> tags, and replace the hardcoded page title <i class=" ">Tutorial website</i> with a <i class=" ">Medio Clinic -</i> prefix and the Razor call <strong class=" ">@ViewBag.Title</strong>.</p>
+</li><li class=" "><p>Change the link to the stylesheet to reflect the location of the <i class=" ">styles.css</i> file in your project.</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;</code><code class="keyword">link</code><code class="plain"> </code><code class="color1">rel</code><code class="plain">=</code><code class="string">"stylesheet"</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"~/Content/Styles/styles.css"</code><code class="plain">&gt;</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+</li><li class=" "><p>Delete the content between the closing <i class=" ">&lt;/header&gt; </i>and<i class=" "> </i>opening<i class=" "> &lt;footer&gt;</i> tags, and replace it with the Razor call <strong class=" ">@RenderBody().</strong></p>
+</li><li class=" "><p>Your <strong class=" ">_Layout.cshtml</strong> code should look like this:</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">&lt;!DOCTYPE html&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">html</code><code class="plain"> </code><code class="color1">lang</code><code class="plain">=</code><code class="string">"en"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">head</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">meta</code><code class="plain"> </code><code class="color1">charset</code><code class="plain">=</code><code class="string">"utf-8"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	@* Dynamically resolves the page's title *@</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">title</code><code class="plain">&gt;Medio Clinic - @ViewBag.Title&lt;/</code><code class="keyword">title</code><code class="plain">&gt;</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">link</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"</code><code class="plain"> </code><code class="color1">rel</code><code class="plain">=</code><code class="string">"stylesheet"</code><code class="plain"> </code><code class="color1">integrity</code><code class="plain">=</code><code class="string">"sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"</code><code class="plain"> </code><code class="color1">crossorigin</code><code class="plain">=</code><code class="string">"anonymous"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">link</code><code class="plain"> </code><code class="color1">rel</code><code class="plain">=</code><code class="string">"stylesheet"</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">link</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"http://fonts.googleapis.com/css?family=Lato:400,700italic&amp;amp;subset=latin,latin-ext"</code><code class="plain"> </code><code class="color1">rel</code><code class="plain">=</code><code class="string">"stylesheet"</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">"text/css"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">link</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"http://fonts.googleapis.com/css?family=Lobster"</code><code class="plain"> </code><code class="color1">rel</code><code class="plain">=</code><code class="string">"stylesheet"</code><code class="plain"> </code><code class="color1">type</code><code class="plain">=</code><code class="string">"text/css"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	</code></div>
+<div class="line"><code class="plain">	@* Loads the style.css resource *@</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">link</code><code class="plain"> </code><code class="color1">rel</code><code class="plain">=</code><code class="string">"stylesheet"</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"~/Content/Styles/styles.css"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">head</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;</code><code class="keyword">body</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">header</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"col-sm-offset-3 col-sm-6"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"col-sm-6"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"./index.html"</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"MedioClinic homepage"</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"logo"</code><code class="plain">&gt;MEDIO clinic&lt;/</code><code class="keyword">a</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"col-sm-6 nav"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">nav</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"./index.html"</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Medical centers"</code><code class="plain">&gt;Home&lt;/</code><code class="keyword">a</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"./medical-center.html"</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Medical centers"</code><code class="plain">&gt;Medical center&lt;/</code><code class="keyword">a</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">nav</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"clearfix"</code><code class="plain">&gt;&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">header</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">	</code></div>
+<div class="line"><code class="plain">	@* Loads the content of your Tutorial's pages as sub views *@</code></div>
+<div class="line"><code class="plain">    @RenderBody()</code></div>
+<div class="line">&nbsp;</div>
+<div class="line"><code class="plain">    &lt;</code><code class="keyword">footer</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"col-sm-offset-3 col-sm-6"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"row"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"col-sm-6"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">h4</code><code class="plain">&gt;MEDIO clinic&lt;/</code><code class="keyword">h4</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">ul</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">li</code><code class="plain">&gt;&lt;</code><code class="keyword">i</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"fa fa-map-marker"</code><code class="plain">&gt;&lt;/</code><code class="keyword">i</code><code class="plain">&gt; Address: &lt;</code><code class="keyword">address</code><code class="plain">&gt;7A Kentico street, Bedford, NH 03110, USA&lt;/</code><code class="keyword">address</code><code class="plain">&gt;&lt;/</code><code class="keyword">li</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">li</code><code class="plain">&gt;&lt;</code><code class="keyword">i</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"fa fa-envelope-o"</code><code class="plain">&gt;&lt;/</code><code class="keyword">i</code><code class="plain">&gt; E-mail: &lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"mailto:info@medio-clinic.com"</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Email us"</code><code class="plain">&gt;info@medio-clinic.com&lt;/</code><code class="keyword">a</code><code class="plain">&gt;&lt;/</code><code class="keyword">li</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                        &lt;</code><code class="keyword">li</code><code class="plain">&gt;&lt;</code><code class="keyword">i</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"fa fa-phone"</code><code class="plain">&gt;&lt;/</code><code class="keyword">i</code><code class="plain">&gt; Phone number: &lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"tel:5417543010"</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Phone us"</code><code class="plain">&gt;(541) 754-3010&lt;/</code><code class="keyword">a</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;/</code><code class="keyword">ul</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"col-sm-6"</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                    &lt;</code><code class="keyword">span</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"cms"</code><code class="plain">&gt;Powered by &lt;</code><code class="keyword">a</code><code class="plain"> </code><code class="color1">href</code><code class="plain">=</code><code class="string">"http://www.kentico.com"</code><code class="plain"> </code><code class="color1">title</code><code class="plain">=</code><code class="string">"Kentico CMS"</code><code class="plain">&gt;Kentico CMS for ASP.NET&lt;/</code><code class="keyword">a</code><code class="plain">&gt;&lt;/</code><code class="keyword">span</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">                &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">            &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">        &lt;</code><code class="keyword">div</code><code class="plain"> </code><code class="color1">class</code><code class="plain">=</code><code class="string">"clearfix"</code><code class="plain">&gt;&lt;/</code><code class="keyword">div</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">    &lt;/</code><code class="keyword">footer</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">body</code><code class="plain">&gt;</code></div>
+<div class="line"><code class="plain">&lt;/</code><code class="keyword">html</code><code class="plain">&gt;</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+</li><li class=" "><p>Save your changes</p>
+</li></ol>    </div>
+    <div class="section section-1" id="src-76853773_Creatingthewebsitelayout-AddingtheViewStartfile">
+        <h1 class="heading "><span>Adding the ViewStart file</span></h1>
+<p>A ViewStart file allows you to define common Razor code that executes at the start of each view’s rendering. We will use this to set <i class=" ">_Layout.cshtml</i> as the default layout for all views on your website.</p>
+<ol class=" "><li class=" "><p>Select the <strong class=" ">Views</strong> folder, and add a new <strong class=" ">Empty</strong> view named: <i class=" ">_ViewStart</i></p>
+</li><li class=" "><p>Replace the default code with the following Razor markup:</p>
+<div class="code panel pdl js-codePanel">
+    <div class="codeHeader panelHeader pdl">
+    <div class="codeHeader-title">
+          </div>
+    <div class="codeHeader-actions">
+      <button class="codeClipboard button js-codeClipboard">
+        <span class="codeClipboard-icon codeClipboard-icon--default icon-doc-copy"></span>
+        <span class="codeClipboard-icon codeClipboard-icon--success icon-check"></span>
+        <span class="codeClipboard-label">Copy the code</span>
+      </button>
+      </div>
+  </div>
+  
+    <div class="codeContent panelContent pdl">
+        
+                
+            <pre><code class="js-code language-csharp">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="defaultnew syntaxhighlighter scroll-html-formatted-code" data-linenumbers="false" data-firstline="1">
+<div class="line"><code class="plain">@{</code></div>
+<div class="line"><code class="plain">    Layout = </code><code class="string">"~/Views/Shared/_Layout.cshtml"</code><code class="plain">;</code></div>
+<div class="line"><code class="plain">}</code></div>
+</div>
+    </code></pre>
+  </div>
+</div>
+</li><li class=" "><p>Save your changes.</p>
+</li></ol><p>All views in your MVC project will now use the site's default layout unless the developer specifies otherwise.</p>
+<p>You now have a consistent layout for your website. You also have the option to change the common layout for all views in a single location, if you want to provide your website's visitors with a different experience.</p>
+    <div class="sp-panel conf-macro output-block">
+            <div class="panel-content">
+<p><strong class=" ">Previous page:</strong> <a href="working-with-generated-classes-in-the-mvc-application">Working with generated classes in the MVC application</a> — <strong class=" ">Next page:</strong> <a href="displaying-the-content-of-the-pages">Displaying the content of the pages</a></p>
+<p style="text-align:right;"><strong class=" ">Completed pages:</strong> 7 of 10<strong class=" "></strong></p>
+<p style="text-align:right;">    <span style="color: #999999;">
+ΟΟ    <span style="color: #999999;">
+Ο    </span>
+ΟΟΟ    <span style="color: #000000;">
+<strong class=" ">Ο</strong>    </span>
+Ο    <span style="color: #999999;">
+Ο    </span>
+Ο    </span>
+</p>
+        </div>
+    </div>
+    </div>
+                    </div>
+                </div>
+                    <footer class="ht-content-footer">                
+                        <div id="feedback-link-container">
+                            <a href="#top" id="back-to-top">
+                                <span class="icon-chevron-up"></span>
+                                <span class="sr-only">Go back to top</span>
+                            </a>
+                        </div>   
+                    </footer>
+                </article></div>
+            
+        </div>
+    </div>
+
+               
+            
+    <footer id="ht-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <ul class="footer-menu">
+          <li>
+            <a class="js-qa-link" href="https://devnet.kentico.com/questions-answers" target="_blank">Community Questions &amp; Answers</a>
+          </li>
+          <li>
+            <a class="js-support-link" href="https://devnet.kentico.com/support" target="_blank">Contact support</a>
+          </li>    
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer></div>
+
+<div>
+    <div id="ht-mq-detect"></div>
+</div>
+
+  <div id="cookie-banner">
+    <div class="container">
+      <div class="inner">
+        <div class="text">
+          We use small cookies to improve your browsing experience and to analyze traffic. To process the analytical cookies, we need your consent.
+          <br>You may revoke your consent on the <a href="https://xperience.io/policies/cookies-policy" target="_blank">Cookies Policy</a> 
+          page or in your browser at any time.
+        </div>
+        <button type="submit" value="4" name="CookieLevelSelectedAll" class="button button--primary" onclick="setCookieLevel('analytical')">
+          ACCEPT ALL
+        </button>
+        <button type="submit" value="1" name="CookieLevelSelectedNecessary" class="button button--tertiary" onclick="setCookieLevel('necessary')">
+          Use only functional
+        </button>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/js/scroll-tree.js"></script>
+
+<script type="text/javascript" src="assets/js/googleTagManager.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.prism.js"></script>
+<script type="text/javascript" src="assets/js/clipboard.min.js"></script>
+
+<script type="text/javascript" src="assets/js/translate.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.main.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.config.js"></script>
+
+<script type="text/javascript" src="assets/js/theme.custom.js"></script>
+<script type="text/javascript" src="assets/js/snackbar.js"></script>
+
+<script type="text/javascript" async="">
+    // Populates the documentation version switcher header
+    // loadVersionLinkData is located in theme.custom.js
+    $(window).on('load', loadVersionLinkData(CONFIG.CONFLUENCE_PAGE_TINYID));
+</script><script type="text/javascript" src="assets/js/theme.lightbox.js"></script>
+
+    <script src="js/lunr.js"></script>
+    <script src="js/lunr-extras.js"></script>
+    <script src="assets/js/scroll-search.js"></script>
+
+    <script src="assets/js/expand-macro.js"></script>
+
+
+</body></html>
