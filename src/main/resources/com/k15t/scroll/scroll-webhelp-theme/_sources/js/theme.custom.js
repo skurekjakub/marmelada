@@ -1360,7 +1360,7 @@ $(document).ready(initFooterLinks);
 var fixHeadingsUpper = function fixHeadingsUpper (){
     if($('#main-content h1').length !== 0)
     {
-        $('#main-content h1').each(function (index) { $(this).replaceWith(`<h2 id=${this.id} class=${this.className}>` +  $(this).html() + '</h2>') })
+        $('#main-content h1').each(function (index) { $(this).replaceWith(`<h2 id="${this.id}" class="${this.className}">` +  $(this).html() + '</h2>') })
     }
 };
 
@@ -1368,9 +1368,9 @@ var fixHeadingsUpper = function fixHeadingsUpper (){
 var fixHeadingsLower = function fixHeadingsLower (){
     if($('#main-content h2').length === 0 && $('#main-content h3').length !== 0)
     {
-        $('#main-content h3').each(function (index) { $(this).replaceWith(`<h2 id=${this.id} class=${this.className}>` +  $(this).html() + '</h2>') })
+        $('#main-content h3').each(function (index) { $(this).replaceWith(`<h2 id="${this.id}" class="${this.className}">` +  $(this).html() + '</h2>') })
     }
-};
+}; 
 
 window.addEventListener("DOMContentLoaded", (event) => {
     fixHeadingsUpper();
