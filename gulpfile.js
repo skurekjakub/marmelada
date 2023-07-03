@@ -13,8 +13,8 @@ const WEBHELP_RESOURCES = 'src/main/resources/com/k15t/scroll/scroll-webhelp-the
 
 function fixExport(spaceKey)
 {
-    const docsPath = path.join(__dirname, "docs")
-    const fullPath = path.join(docsPath, spaceKey)
+    const docsPath = path.join(__dirname, "docs");
+    const fullPath = path.join(docsPath, spaceKey);
 
     if(fs.existsSync(fullPath))
     {
